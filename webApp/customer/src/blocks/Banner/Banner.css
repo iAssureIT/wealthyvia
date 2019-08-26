@@ -1,0 +1,50 @@
+.bannerContainer{
+	background-image: url("/images/bannerImg.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	padding: 40px !important;
+    font-family: 'PT Sans', sans-serif;
+	height: 100%;
+
+	color:#fff;
+}
+.bannerContent{
+	height: 400px;
+	margin-top:4%;
+	margin-bottom: 8%;
+}
+.investButton{
+	height: 35px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 20px;
+	padding-top: 4px;
+	cursor: pointer;
+	background-color: #DD7975;
+	color: #fff;
+}
+.bannerContent label{
+	font-size: 22px;
+}
+.divHeading{
+	color: #fff;
+	font-size: 5.9rem;
+	margin-top: 1.25rem !important;
+	font-weight: bold;
+
+}
+.bannerPara{
+	margin-top: .75rem !important;
+	font-size: 22px;
+	line-height: 34px;
+}
+.investNowButton{
+	height: 55px;
+	text-align: center;
+	padding-top:16px;
+	margin-top: 2.5rem !important;
+	font-weight: bold;
+	cursor: pointer;
+	word-spacing: 0.04em;
+
+}

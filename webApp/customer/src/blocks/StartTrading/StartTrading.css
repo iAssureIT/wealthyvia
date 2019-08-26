@@ -1,0 +1,45 @@
+.startTrandingImgContainer{
+
+}
+.startTrandingContent{
+	padding: 90px !important;
+	font-family: 'PT Sans', sans-serif;
+
+}
+.startTrandingContent label{
+	font-size: 5rem;
+	line-height:1.2;
+	font-weight: bold;
+}
+.startTrandingContent p{
+	margin-top: 1em;
+	font-size: 1.1em;
+    line-height: 1.5em;
+}
+
+.startTrandingContent a{
+	text-decoration: underline;
+}
+.startTrandingImgContainer img{
+	margin-top: -380px;
+}
+.startInterestingButton{
+	padding: 18px;
+	text-align: center;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	letter-spacing: 0.03em;
+	background-color: #00819D;
+}
+.learnMore{
+	padding: 17px !important;
+	padding-left: 25px !important; 
+}
+.learnMore a{
+	font-weight: bold;
+	color:#00819D !important;
+}
+.pad50{
+	padding-top:50px;
+}

@@ -1,0 +1,32 @@
+.gifContainer{
+	padding-top:80px;
+	padding-bottom: 80px;
+	font-family: 'PT Sans', sans-serif;
+
+}
+.gifContainer img{
+	height: 100%;
+	width:100%;
+}
+.gifTextContainer{
+	padding: 90px !important;
+	font-family: 'PT Sans', sans-serif;
+
+	padding-top:250px !important;
+}
+.gifTextContainer label{
+	font-size: 5rem;
+	line-height:1.2;
+	font-weight: bold;
+}
+.gifTextContainer p{
+	margin-top: 1em;
+	font-size: 1.1em;
+    line-height: 1.5em;
+}
+.iceBlueColor{
+	color: #0081A3 !important
+}
+.gifTextContainer a{
+	text-decoration: underline;
+}

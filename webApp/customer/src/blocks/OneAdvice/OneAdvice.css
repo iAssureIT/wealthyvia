@@ -1,0 +1,18 @@
+.oneOnOneAdvice{
+	padding: 90px !important;
+	font-family: 'PT Sans', sans-serif;
+	padding-top:180px !important;
+}
+.oneOnOneAdvice label{
+	font-size: 5rem;
+	line-height:1.2;
+	font-weight: bold;
+}
+.oneOnOneAdvice p{
+	margin-top: 1em;
+	font-size: 1.1em;
+    line-height: 1.5em;
+}
+.oneOnOneAdvice a{
+	text-decoration: underline;
+}
