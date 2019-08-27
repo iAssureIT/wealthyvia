@@ -25,9 +25,9 @@ export default class Banner extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainer">
               <div className="">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
-                    <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investButton" >
+                    <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5  investButton" >
                       <div className="row">
-                      Sofi Invest
+                      Wealthyvia Invest
                       </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
@@ -37,7 +37,7 @@ export default class Banner extends Component {
                     </div>  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
                       <div className="row">
-                        <p>Get started and grow as an investor without paying SoFi fees. Trade stocks and ETFs yourself with active investing and let us build a portfolio for your long-term goals with automated investing.</p>
+                        <p>Get started and grow as an investor without paying Wealthyvia fees. Trade stocks and ETFs yourself with active investing and let us build a portfolio for your long-term goals with automated investing.</p>
                       </div>
                     </div>
                       <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5 backColorPurple investNowButton" >

@@ -34,7 +34,7 @@ export default class NoFees extends Component {
                   </div>
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifTextContainer">
                     <label><span className="iceBlueColor">No fees. </span>No excuses.</label>
-                    <p>Not-so-newsflash: fees are frustrating and they can keep people from investing. It’s why we charge $0 in SoFi transaction and management fees. So there’s no reason not to <a href="" className="iceBlueColor">start investing.</a></p>
+                    <p>Not-so-newsflash: fees are frustrating and they can keep people from investing. It’s why we charge $0 in Wealthyvia transaction and management fees. So there’s no reason not to <a href="" className="iceBlueColor">start investing.</a></p>
                   </div>
                 </div>
               </div>

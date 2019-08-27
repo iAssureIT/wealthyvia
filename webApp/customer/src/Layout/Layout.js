@@ -2,6 +2,10 @@ import React,{Component}                         from 'react';
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
 import Header                           from "../blocks/common/Header/Header.js";
 import Homepage                                  from "../pages/Homepage/Homepage.js";
+import AboutUs                                  from "../pages/AboutUs/AboutUs.js";
+import ContactUs                                  from "../pages/ContactUs/ContactUs.js";
+import Footer                        from "../blocks/common/Footer/Footer.js";
+
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
 import EcommerceFooter                           from "../blocks/common/EcommerceFooter/EcommerceFooter.js";
@@ -40,6 +44,8 @@ const WebLayout = () => (
   <div>
          
               <Route path="/"                         exact strict component={Homepage}  />
+              <Route path="/about-us"                         exact strict component={AboutUs}  />
+              <Route path="/contact-us"                         exact strict component={ContactUs}  />
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />
               <Route path="/about-us"                 exact strict component={AboutUs}  />
@@ -87,9 +93,11 @@ const WebLayout = () => (
   return (
     <div>
       <Router>
+        <Header />
         <Switch>
           <Route path="/" component={ WebLayout } />
         </Switch>
+        <Footer/>
       </Router>
     </div>
   );

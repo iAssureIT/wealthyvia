@@ -422,3 +422,47 @@ dropdown-submenu {
 .customClass{
   margin:5px !important;
 }
+.customNavBar{
+  border-radius: 0px !important;
+  background-color: #201a47 !important;
+  border:none !important;
+  padding: 6px;
+  padding-left:40px !important;
+  padding-right:40px !important;
+}
+.customUl li>a{
+  font-weight: normal !important;
+  color: #fff !important;
+/*  margin-left: 12px;*/  
+  font-size: 15px !important;
+  letter-spacing: 0.03em;
+}
+.customUl li:hover{
+  text-decoration: underline;
+}
+.webSiteName{
+  color: #fff !important;
+  font-weight: bold;
+  font-size: 25px !important;
+  letter-spacing: 0.03em;
+}
+.investNowButtonHeader{
+  background-color: #fff;
+  color: #201a47;
+  padding: 10px !important;
+  font-weight: bold;
+  text-align:center;
+  margin-top: 0.5%;
+  font-size: 13px;
+  transition-duration: 1s;
+  cursor: pointer;
+}
+.investNowButtonHeader:hover{
+  transition-duration: 1s;
+  background-color: #AB989D;
+}
+.loginButton{
+  color:#fff;
+  padding: 14px;
+
+}

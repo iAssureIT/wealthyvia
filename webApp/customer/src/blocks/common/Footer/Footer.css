@@ -1,0 +1,51 @@
+.footerDivFirst{
+    font-family: 'PT Sans', sans-serif;
+
+}
+.footerDivFirst label{
+color: #007993;
+    font-size: .9em;
+}
+.footerDivFirst ul>li{
+	list-style: none !important;
+	cursor: pointer;
+	font-size: 12px;
+	color: #5b5b5b;
+	letter-spacing: 0.02em;
+	margin-bottom: 5px;
+}
+.footerDivFirst ul{
+	padding-left: 0px !important;
+}
+.borderRadi{
+	border-radius: 2px !important;
+}
+.inputContainerEH{
+	 border: 1px solid #aaa;
+    height: 32px;
+    margin-top: 10px;
+    border-radius: 3px !important;
+    padding: 0px !important;
+}
+.customInput{
+	padding: 15px;
+	border-radius: 0px !important;
+    height: 30px !important;
+    border: none;
+      font-family: 'PT Sans', sans-serif;
+
+}
+.customInputEH:focus{
+	outline: none !important;
+}
+.searchIcon{
+	height: 30px;
+	padding: 5px;
+	cursor: pointer;
+	background-color: #007993;
+	color: #fff;
+}
+.searchIcon:hover{
+		background-color: #00A9CE;
+
+}

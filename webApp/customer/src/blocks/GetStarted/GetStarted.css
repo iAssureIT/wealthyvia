@@ -1,0 +1,48 @@
+.getStartedContainer{
+	text-align: center;
+	font-family: 'PT Sans', sans-serif;
+	padding: 60px !important;
+
+
+}
+.getStartedContainer label{
+    font-size: 5.125rem;
+    color: #424242;
+    font-weight: 900 !important;
+    padding-top: 0px !important;
+    padding: 40px;
+    line-height: 5.2rem;
+
+
+}
+.doItYourself{
+	background-color: #FED880;
+	height: 100%;
+	padding:30px;
+
+}
+.handsOff{
+	background-color: #DD7975;
+		height: 100%;
+}
+.doItYourself label{
+	color: #201747 !important;
+	margin-bottom: 1.25rem !important;
+	padding: 25px !important;
+	font-size: 5.125rem;
+
+}
+.startInvestingButton{
+	background-color: #201a47;
+	padding: 18px;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+
+}
+.learnMore a{
+	padding: 20px;
+	color: #201a47 !important;
+	font-size: 15px;
+	text-decoration: underline;
+}
