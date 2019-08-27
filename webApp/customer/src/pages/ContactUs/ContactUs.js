@@ -29,9 +29,19 @@ export default class ContactUs extends Component {
                 <span  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-globe"></i>&nbsp;&nbsp;www.wealthyvia.com</span>
                 <span  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-mobile" aria-hidden="true"></i> &nbsp;&nbsp;+91 9372120785 / +91 7892729130</span>
               </div>
+
                 
               <form className="col-lg-10 col-md-12 col-sm-12 col-xs-12  contactUsForm ">
                  <div className="row">
+                 <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 sendUsSupport">
+                    <div className="row">
+                      <label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 headingSend">Send us support message </label>
+                      <p>We're here to help! Email us through the secure form below, or log in to see our phone number.
+                        When sending us a message, please share the email address you use for wealthyvia.</p>
+                      
+
+                    </div>
+                  </div>
                   <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom" >
                     <div className="row">
                       <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Topic </label>
@@ -43,10 +53,11 @@ export default class ContactUs extends Component {
                       </select>
                     </div>
                   </div>
+                  
                    <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
                     <div className="row">
                       <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Name </label>
-                      <input type="text" className="customSelectContact col-lg-4"  placeholder="First Name"/>
+                      <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 "><input type="text" className="customSelectContact col-lg-12 row"  placeholder="First Name"/></div>
                       <input type="text" className="customSelectContact col-lg-4"  placeholder="Last Name"/>
 
                     </div>

@@ -4,6 +4,7 @@
 .contactUsBody{
 	padding: 20px;
 	margin-bottom: 20px;
+	
 }
 .LabelContactUs{
 	
@@ -105,4 +106,13 @@ font-weight: normal !important;
 .sendButton{
 	padding: 10px;
 	background-color: #e7e7ea;
+}
+.headingSend{
+  padding: 0px !important;
+  font-weight: normal !important;
+  font-size: 25px;
+  
+}
+.sendUsSupport{
+	margin-bottom: 20px;
 }

@@ -464,5 +464,5 @@ dropdown-submenu {
 .loginButton{
   color:#fff;
   padding: 14px;
-
+  cursor: pointer;
 }

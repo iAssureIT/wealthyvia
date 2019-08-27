@@ -1,3 +1,7 @@
+.footerContainer{
+	border-top:10px solid #201a47;
+	padding: 20px;
+}
 .footerDivFirst{
     font-family: 'PT Sans', sans-serif;
 
@@ -48,4 +52,13 @@ color: #007993;
 .searchIcon:hover{
 		background-color: #00A9CE;
 
+}
+.imgContainer{
+	margin-top: 1px;
+}
+.faceBook{
+	color: #666;
+	padding: 10px;
+	margin-right: 20px;
+	font-size: 20px;
 }
