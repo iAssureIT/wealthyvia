@@ -23,16 +23,16 @@ export default class Footer extends Component {
 
     return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite footerContainer mt20 ">
-                <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
-                <label>PRODUCTS</label>
+                <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
+                <label>Products</label>
                 <ul>
-                    <li>Student Loan Refinancing</li>
-                    <li>Medical/Dental Resident Refinancing</li>
-                    <li>Parent PLUS Refinancing</li>
-                   <li> Private Student Loans</li>
-                   <li> Undergraduate Student Loans</li>
-                   <li> Graduate Student Loans</li>
-                   <li> Parent Student Loans</li>
+                    <li>FlyNifty</li>
+                    <li>Safest of Safe stocks</li>
+                    <li>Unlisted Stocks</li>
+                   <li> USA Stocks</li>
+                   <li> Unlisted Stocks</li>
+                   <li> Artha 5GCPM Midcap Large cap Portfolio and small Cases</li>
+                  {/* <li> Parent Student Loans</li>
                    <li> Personal Loans</li>
                    <li> Home Loans</li>
                    <li> Mortgage</li>
@@ -48,26 +48,26 @@ export default class Footer extends Component {
                    <li> Auto Insurance</li>
                    <li> Life Insurance</li>
                    <li> Wealthyvia Money®</li>
-                   <li> Wealthyvia Relay</li>
+                   <li> Wealthyvia Relay</li>*/}
                 </ul>
 
 
                 </div>
-                <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
-                  <label>COMPANY</label>
+                <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
+                  <label>Company</label>
                   <ul>
-                  <li>About Us</li>
-                  <li>How it Works</li>
+                  <a href="/about-us"><li >About Us</li></a>
+                {/*  <li>How it Works</li>
                   <li>Reviews</li>
                   <li>Press</li>
-                  <li>Jobs</li>
-                  <li>Blog</li>
-                 <li> FAQ</li>
+                  <li>Jobs</li>*/}
+                  <li>Blogs</li>
+                 
                   </ul>
 
 
                 </div>
-                <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
+              {/*  <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
                   <label>LEGAL</label>
                   <ul>
                   <li>Privacy & Security</li>
@@ -81,26 +81,26 @@ export default class Footer extends Component {
                   </ul>
 
 
-                </div>
+                </div>*/}
                 <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
-                  <label>QUESTIONS</label>
+                  <label>Get In Touch</label>
                   <ul>
                  <li> FAQ</li>
-                 <li> Contact Us</li>
-                 <li> Tweet @WealthyviaSupport</li>
+                  <a href="/contact-us"><li >Contact Us</li></a>
+              {/*   <li> Tweet @WealthyviaSupport</li>
                  <li> Customer Support:</li>
                 
                  <li> Home Loans General Support:</li>
                
                  <li> homeloans@Wealthyvia.com</li>
                  <li> Invest Support:</li>
-                 <li> For Invest Support Callinvestsupport@Wealthyvia.com</li>
+                 <li> For Invest Support Callinvestsupport@Wealthyvia.com</li>*/}
                   </ul>
 
 
                 </div>
                 <div className="col-lg-4 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
-                  <label>HEAR ABOUT WEALTYVIA TIPS, EXPERIENCES & MORE</label>
+                  <label>Hear about wealthyvia tips, experience & more</label>
                    <div className="col-lg-8 col-md-3 col-sm-3 col-xs-3 inputContainerEH ">
                      <input type="text" className="customInput col-lg-10 col-md-6 col-sm-6 col-xs-6" placeholder="Enter Email Address"/>
                       <span className="searchIcon col-lg-2"><i class="fa fa-chevron-right iconS"></i></span>

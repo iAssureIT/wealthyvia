@@ -466,3 +466,42 @@ dropdown-submenu {
   padding: 14px;
   cursor: pointer;
 }
+.headLi{
+   color: #333 !important; 
+}
+.customDropdown li{
+  color: #333 !important;
+}
+.customDropdown{
+  position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    float: left;
+    width: 100px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #201b47 !important;
+    background-clip: padding-box;
+    border-radius: 4px;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+
+}
+.listItem{
+    background-color: #201b47;
+    margin-left: -20px;
+    padding: 5px;
+}
+.listItem:hover{
+  background-color: #201b47cf !important;
+  text-decoration: none !important;
+}
+
+.customDropdown>li>a:hover{
+  background-color: transparent!important;
+
+}

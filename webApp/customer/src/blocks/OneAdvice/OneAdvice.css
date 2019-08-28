@@ -9,10 +9,16 @@
 	font-weight: bold;
 }
 .oneOnOneAdvice p{
-	margin-top: 1em;
-	font-size: 1.1em;
-    line-height: 1.5em;
+	margin-top: 0.2em;
+	
 }
 .oneOnOneAdvice a{
 	text-decoration: underline;
+}
+.yearP{
+	font-weight: bold;
+}
+.percentage{
+	font-weight: bold;
+	font-size:5rem;	
 }

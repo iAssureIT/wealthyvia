@@ -28,12 +28,17 @@ export default class StartTrading extends Component {
                 <div className="col-lg-10 col-md-6 col-sm-12 col-xs-12 startTrandingContent backColorGray">
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <label><span className="iceBlueColor">Start trading. </span>No experience required.</label>
-                    <p>Whether you’re trading full time or just on the side—if you can swipe right, you can swap stocks. With active investing, we make it easy to start making trades on your own.</p>
+                    <label><span className="iceBlueColor">Stock </span>Selection Process</label>
+                    <p>Look out for Future Earnings Arbitrage.<br/>
+                        Management pedigree. High promoter<br/>
+                        holding & Zero pledging.<br/>
+                        Growth at reasonable price.<br/>
+                        Low Leverage and consistently Dividend &<br/>
+                        Tax paying companies.</p>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad50">
-                        <div className="startInterestingButton col-lg-3 col-md-6 col-sm-12 col-xs-12 "> Start active investing</div>
-                        <div className=" col-lg-3 col-md-6 col-sm-12 col-xs-12 learnMore"> <a href="">Learn More &nbsp; <i class="fa fa-arrow-right"></i></a></div>
+                       {/* <div className=" col-lg-3 col-md-6 col-sm-12 col-xs-12 "></div>*/}
+                        <div className=" col-lg-3 col-md-6 col-sm-12 col-xs-12 learnMoreST row"> <a href="">Learn More &nbsp; <i class="fa fa-arrow-right"></i></a></div>
                     </div> 
                   </div>
                 </div>

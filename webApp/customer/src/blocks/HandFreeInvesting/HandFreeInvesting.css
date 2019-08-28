@@ -1,0 +1,19 @@
+.handFreeInvesting{
+	padding: 50px !important;
+	font-family: 'PT Sans', sans-serif;
+
+}
+.handFreeInvesting label{
+	font-size: 5rem;
+	line-height:1.2;
+	font-weight: bold;
+}
+.handFreeInvesting p{
+	margin-top: 1em;
+	font-size: 1.1em;
+    line-height: 1.5em;
+}
+
+.handFreeInvesting a{
+	text-decoration: underline;
+}

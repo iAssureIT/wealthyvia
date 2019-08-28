@@ -2,7 +2,7 @@
 
 }
 .startTrandingContent{
-	padding: 90px !important;
+	padding: 50px !important;
 	font-family: 'PT Sans', sans-serif;
 
 }
@@ -21,7 +21,7 @@
 	text-decoration: underline;
 }
 .startTrandingImgContainer img{
-	margin-top: -380px;
+	margin-top: -350px;
 }
 .startInterestingButton{
 	padding: 18px;
@@ -36,8 +36,9 @@
 	padding: 17px !important;
 	padding-left: 25px !important; 
 }
-.learnMore a{
+.learnMoreST a{
 	font-weight: bold;
+	padding: 0px !important;
 	color:#00819D !important;
 }
 .pad50{
