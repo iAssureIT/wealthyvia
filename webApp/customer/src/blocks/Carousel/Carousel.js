@@ -10,57 +10,63 @@ export default class Carousel extends Component {
   	}  
   render() {
 		return (
-				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite padB50 marginTop180 pad20">
-					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<div className="col-lg-9 col-md-12 col-sm-12 col-xs-12 bannerContainerCar">
+				<div className="row">
+			  		<div id="customCarousel" className="carousel " data-ride="carousel">
+					    <ol className="carousel-indicators squareIndicator">
+					      <li data-target="#customCarousel" data-slide-to="0" className="active"></li>
+					      <li data-target="#customCarousel" data-slide-to="1"></li>
+					      <li data-target="#customCarousel" data-slide-to="2"></li>
+					      <li data-target="#customCarousel" data-slide-to="3"></li>
+					     
+					    </ol>
+					    <div className="carousel-inner height350">
+					      <div className="item fadding">
+					        <img src="/images/bannerImg.jpg"  />
+					    	 <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    	 	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Capital Protection. Risk Mitigation. Alpha generation</label>
+					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
+				                      Read more → 
+				                    </div>
+				       		 </div>
+					      </div>
 
-						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerEcomm">
-							<div className="row">
-						  		<div id="customCarousel" className="carousel " data-ride="carousel">
-								    <ol className="carousel-indicators squareIndicator">
-								      <li data-target="#customCarousel" data-slide-to="0" className="active"></li>
-								      <li data-target="#customCarousel" data-slide-to="1"></li>
-								      <li data-target="#customCarousel" data-slide-to="2"></li>
-								      <li data-target="#customCarousel" data-slide-to="3"></li>
-								     
-								    </ol>
-								    <div className="carousel-inner height350">
-								      <div className="item fadding">
-								        <img src="/images/bannerImg.jpg"  />
-								    
-								      </div>
-
-								      <div className="item fadding">
-								        <img src="/images/bannerImg.png"  />
-									      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							        </div>
-								      </div>
-								    
-								      <div className="item fadding">
-								        <img src="/images/bannerImg.png"  />
-									      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
-							          </div>
-								      </div>
-								      
-							    	<div className="item active fadding">
-								        <img src="/images/bannerImg.png"  />
-								    
-							   		 </div>
-								</div>
-							    <a className="left carousel-control customControl" href="#customCarousel" data-slide="prev">
-							      <span className="glyphicon glyphicon-chevron-left backDivEcommerce"></span>
-							      <span className="sr-only">Previous</span>
-							    </a>
-							    <a className="right carousel-control" href="#customCarousel" data-slide="next">
-							      <span className="glyphicon glyphicon-chevron-right backDivEcommerce"></span>
-							      <span className="sr-only">Next</span>
-							    </a>
-
-						 		</div>
-							</div>
-						</div>
+					      <div className="item fadding">
+				        <img src="/images/bannerImg.jpg"  />
+						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create : Profound.Profuse.Precise.</label>
+					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
+				                      Read more → 
+				                    </div>
+				        </div>
+					      </div>
+					    
+					      <div className="item fadding">
+					        <img src="/images/bannerImg.jpg"  />
+						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your  long term best friend and we create that friends circle for you.</label>
+					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
+				                      Read more → 
+				                    </div>
+				          </div>
+					      </div>
+					      
+				    	<div className="item active fadding">
+				        <img src="/images/bannerImg.jpg"  />
+					     <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					      	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Intelligence to identify <br/>
+																Systemized process to execute <br/>
+																Courage to capitalise </label>
+					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
+				                      Read more → 
+				                    </div>
+				          </div>
+				   		 </div>
 					</div>
-					
-			</div>
+				 
+			 		</div>
+				</div>
+			</div>		
 		);
 	}
 }

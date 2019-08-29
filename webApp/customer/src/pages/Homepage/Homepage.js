@@ -9,6 +9,8 @@ import HandFreeInvesting        		 from "../../blocks/HandFreeInvesting/HandFree
 import GetStarted        				     from "../../blocks/GetStarted/GetStarted.js";
 import Footer                        from "../../blocks/common/Footer/Footer.js";
 import Carousel                        from "../../blocks/Carousel/Carousel.js";
+import Blogs                        from "../../blocks/Blogs/Blogs.js";
+import BottomDiv                        from "../../blocks/BottomDiv/BottomDiv.js";
 
 export default class Homepage extends Component {
 	constructor(props){
@@ -25,9 +27,11 @@ export default class Homepage extends Component {
 		return (
 				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mb50">
 					<div className="row">
-				      <Banner/>
-{/*             <Carousel/>
-*/}     				<Invest/>
+				     {/* <Banner/>*/}
+             <Carousel/>
+             <Blogs />
+             <BottomDiv />
+    				<Invest/>
       				<NoFees/>
       				<OneAdvice/>
       				<StartTrading/>

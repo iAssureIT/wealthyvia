@@ -2,3 +2,126 @@
 	height: 100%;
 	width: 100%;
 }
+.bannerContainerCar{
+	background-color: #333;
+	height: 420px;
+}
+.height350 img{
+height: 420px !important;
+width: 100%;
+}
+.squareIndicator{
+	left: 90% !important;
+}
+.squareIndicator li{
+  border-radius: 0px !important;
+  margin-right: 5px !important;
+  padding: 5px !important;
+  background-color: #000 !important;
+  border: 1px solid #000 !important;
+}
+.squareIndicator .active{
+  margin: 1px !important;
+  margin-right:  5px !important;
+  border: 1px solid #25bbf3 !important;
+  background-color: #25bbf3 !important;
+}
+.caption{
+	position: absolute;
+	height: 120px;
+	padding: 5px;
+	text-align: left !important;
+	z-index: 1000;
+	    font-family: 'PT Sans', sans-serif;
+
+	margin-top: -180px;
+	color: #fff;
+}
+.caption label{
+    transition: all 0s ease 0s;
+    line-height: 35px;
+    font-size: 29px;
+    font-family: 'PT Sans', sans-serif;
+    visibility: visible;
+    opacity: 1;
+    transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, -33.4375, 0, 1);
+}
+.caption p{
+    font-family: 'PT Sans', sans-serif;
+    font-size: 13px;
+}
+.readMoreButtonCar{
+	height: 35px;
+	text-align: center;
+	font-size: 15px;
+	padding: 4px;
+	cursor: pointer;
+	font-family: 'PT Sans', sans-serif;
+	margin-top: 0px !important;
+	font-weight: bold;
+	background-color: transparent;
+	border:3px solid #201a47;
+	color: #fff;
+}
+.readMoreButtonCar:hover{
+	  box-shadow: inset 100px 0px 1px 0 #201a47;
+    box-shadow: inset 0px 100px 1px 0 #201a47;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+
+}
+.flip-scale-up-hor {
+	        animation: flip-scale-up-hor 0.9s linear both;
+}
+
+.slide-top {
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.slide-bottom {
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.slide-bottom-slow {
+	        animation: slide-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@keyframes flip-scale-up-hor {
+  0% {
+            transform: scale(1) rotateX(0);
+  }
+  50% {
+            transform: scale(2.5) rotateX(-90deg);
+  }
+  75% {
+            transform: scale(1) rotateX(-180deg);
+  }
+   100% {
+            transform: scale(1) rotateX(0);
+  }
+}
+ 
+
+@keyframes slide-top {
+  0% {
+            transform: translateY(-100px);
+  }
+  100% {
+            transform: translateY(0px);
+  }
+}
+@keyframes .slide-bottom{
+  0% {
+            transform: translateY(-200px);
+  }
+  100% {
+            transform: translateY(0px);
+  }
+}
+
+@keyframes .slide-bottom-slow{
+  0% {
+            transform: translateY(-300px);
+  }
+  100% {
+            transform: translateY(0px);
+  }
+}

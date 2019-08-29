@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $         from 'jquery';
-
+import AboutUsCarousel from "../../blocks/AboutUsCarousel/AboutUsCarousel.js";
 import "./AboutUs.css";
 
 export default class AboutUs extends Component {
@@ -22,38 +22,33 @@ export default class AboutUs extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
-            
-                    <div className="row">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backGradient">
-                        <label>ABOUT THE COMPANY</label>
-                        <p className="col-lg-8 col-lg-offset-2">We provide our research analysis advisory to our HNI(High Net worth Individuals) , Institutional and retail clients.</p>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-lg-offset-4 col-md-12 col-sm-12 col-xs-12 ">
-                      <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 ourStoryDiv">
-                        <label>Our Story</label>
-                      </div>
-                   </div>
-                    <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 storyContainer">
-                      <ul className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ourStoryUl">
-                      <li>Arthavruddhi Capital is a SEBI registered (INH000005397) advisory services firm.</li>
-                      <li>Over two decades of combined experience in the markets.</li>
-                      <li>Proprietary framework - 5GCPM.</li>
-                      <li>Specialists in identifying companies who are positioned to capture the next big opportunity.</li>
-                      </ul>
-                  </div>
-                  <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 storyContainer whyUs mt20">
-                   <label className="">Why Us</label>
-                  <ul className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <li>Profound process of Stock Selection.</li>
-                  <li>Risk Management & Loss Aversion.</li>
-                  <li>Generating Alpha across market cycles.</li>
-                  <li>Extensive Research & data crunching.</li>
-                  <li>Predefined Entry & Exit strategies.</li>
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 aboutUsContainer">
+                <div className="row">
+                  <div className="triangle-bottomleft hidden-xs hidden-md hidden-sm col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                  <div className="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <label className="outstandingTeam">Our Outstanding Team</label>
+                  <ul className="customUlabout">
+                  <li>Total  80 plus years of experience in stock market combined  founders and 7  analysts. </li>
+
+                  <li>Well connects to Managements of Business </li>
+
+                  <li>network of analysts and consultants </li>
+
+                  <li>Experience of Bear Markets</li>
+
+                  <li>Best of advanced analytical tools, self developed softwares  and algo systems for data collection, analysis and interpretations</li>
                   </ul>
-                  </div>
+                  
+                </div>
+                </div>
             </div>
+            </div>
+                <div className="row">
+                <AboutUsCarousel />
+            </div>
+          </div>
     );
   }
 }

@@ -1,0 +1,8 @@
+.imgContainerAU{
+	height: 550px !important;
+}
+.imgContainerAU img{
+	border:none !important;
+	height: 550px;
+	width: 200px;
+}

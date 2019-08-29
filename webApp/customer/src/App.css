@@ -94,10 +94,10 @@ a .active{
   color: #f00 !important;
 }
 .backColorGray{
-  background-color: #eef3f4;
+  background-color: #eef3f4 !important;
 }
 .backColorWhite{
-  background-color: #fff;
+  background-color: #fff !important;
 }
 .mt20{
   margin-top: 20px;

@@ -427,7 +427,6 @@ dropdown-submenu {
   border-radius: 0px !important;
   background-color: #201a47 !important;
   border:none !important;
-  padding: 6px;
   padding-left:40px !important;
   padding-right:40px !important;
 }
@@ -442,7 +441,6 @@ dropdown-submenu {
   text-decoration: underline;
 }
 .webSiteName{
-  color: #fff !important;
   font-weight: bold;
   font-size: 25px !important;
   letter-spacing: 0.03em;
@@ -505,4 +503,10 @@ dropdown-submenu {
 .customDropdown>li>a:hover{
   background-color: transparent!important;
 
+}
+.colorP{
+  color: #201b47 !important;
+}
+.colorWhite{
+  color:#fff !important;
 }
