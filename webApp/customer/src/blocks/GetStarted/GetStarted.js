@@ -22,7 +22,6 @@ export default class GetStarted extends Component {
   render() {
 
     return (
-            <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray mt20 getStartedContainer">
                 <div className="row">
                   <label className="col-lg-6  col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">You’ve made it this far. Let’s get started.</label>
@@ -42,7 +41,6 @@ export default class GetStarted extends Component {
                           </div>
                       </div>
                     </div>
-                </div>
               </div>
             </div>
     );

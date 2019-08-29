@@ -44,3 +44,20 @@
 .pad50{
 	padding-top:50px;
 }
+.paraeff1{
+  position: relative;
+  right:40px !important;
+  top:-630px;
+  opacity:1 !important;
+  transform: rotate(0deg);
+  transition-duration: 1.5s;
+}
+.para1{
+  position: relative;
+  right:-500px;
+  top:-30px;
+  opacity: 0;
+  transform: rotate(0deg);
+  transition-duration: 1.5s;
+
+}

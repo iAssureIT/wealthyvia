@@ -32,6 +32,7 @@ import Useraccountpage                           from "../pages/Useraccountpage/
 import WhistlistPage                             from "../blocks/WhistlistPage/WhistlistPage.js";
 import ShipmentTracking                          from "../blocks/ShipmentTracking/ShipmentTracking.js";
 import OrderPlaceSuccessfully                    from '../pages/BillingDetails/OrderPlaceSuccessfully.js';
+*/
 // Section: 1 - SystemSecurity ******************************************************
 import Login            from '../systemSecurity/Login.js';
 import ConfirmOtp       from '../systemSecurity/ConfirmOtp.js'; 
@@ -39,7 +40,7 @@ import ForgotPassword   from '../systemSecurity/ForgotPassword.js';
 import ResetPassword    from '../systemSecurity/ResetPassword.js';
 import SignUp           from '../systemSecurity/SignUp.js';
 import VerifyAccount    from '../systemSecurity/VerifyAccount.js';
-*/
+
 const WebLayout = () => (
   <div>
          
@@ -67,12 +68,6 @@ const WebLayout = () => (
               <Route path="/EcommerceBlogView"        exact strict component={EcommerceBlogView}  />
               <Route path="/AllBlogs"                 exact strict component={AllBlogs}  />
               <Route path="/BlogView"                 exact strict component={BlogView}  />
-              <Route path="/login"          exact strict component={ Login } />
-              <Route path="/signup"         exact strict component={ SignUp } />
-              <Route path="/forgot-pwd"     exact strict component={ ForgotPassword } />
-              <Route path="/reset-pwd"      exact strict component={ ResetPassword } />
-              <Route path="/verify-account" exact strict component={ VerifyAccount } />
-              <Route path="/confirm-otp/:user_ID"    exact strict component={ ConfirmOtp } />
 
               <Route path="/confirm-order"                 exact strict component={BillingDetails}  />
               <Route path="/payment/:order_ID"                 exact strict component={OrderPlaceSuccessfully}  />
@@ -86,6 +81,12 @@ const WebLayout = () => (
               <Route path="/ShipmentTracking"                 exact strict component={ShipmentTracking}  />
               
 */}
+              <Route path="/login"          exact strict component={ Login } />
+              <Route path="/signup"         exact strict component={ SignUp } />
+              <Route path="/forgot-pwd"     exact strict component={ ForgotPassword } />
+              <Route path="/reset-pwd"      exact strict component={ ResetPassword } />
+              <Route path="/verify-account" exact strict component={ VerifyAccount } />
+              <Route path="/confirm-otp/:user_ID"    exact strict component={ ConfirmOtp } />
         </div>
 );
 

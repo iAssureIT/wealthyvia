@@ -22,7 +22,7 @@ export default class Footer extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite footerContainer mt20 ">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite footerContainer ">
                 <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2 footerDivFirst">
                 <label>Products</label>
                 <ul>

@@ -8,6 +8,7 @@ import StartTrading        				   from "../../blocks/StartTrading/StartTrading.j
 import HandFreeInvesting        		 from "../../blocks/HandFreeInvesting/HandFreeInvesting.js";
 import GetStarted        				     from "../../blocks/GetStarted/GetStarted.js";
 import Footer                        from "../../blocks/common/Footer/Footer.js";
+import Carousel                        from "../../blocks/Carousel/Carousel.js";
 
 export default class Homepage extends Component {
 	constructor(props){
@@ -25,7 +26,8 @@ export default class Homepage extends Component {
 				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mb50">
 					<div className="row">
 				      <Banner/>
-      				<Invest/>
+{/*             <Carousel/>
+*/}     				<Invest/>
       				<NoFees/>
       				<OneAdvice/>
       				<StartTrading/>

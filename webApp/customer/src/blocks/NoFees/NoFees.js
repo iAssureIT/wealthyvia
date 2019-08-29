@@ -35,8 +35,8 @@ export default class NoFees extends Component {
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifTextContainer">
                     <label><span className="iceBlueColor">Skin In. </span>The Game.</label>
                     <p>Our Financial well being is linked with yours.
-No scope for rekless behaviour.
-Risk Management is our utmost priority over Returns.</p>
+                  No scope for rekless behaviour.
+                  Risk Management is our utmost priority over Returns.</p>
                   </div>
                 </div>
               </div>

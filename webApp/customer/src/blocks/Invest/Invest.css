@@ -21,6 +21,12 @@
 	height: 100%;
 	color:#fff;
 	text-align: left !important;
+	transition-duration: 0.5s;
+}
+.subDiv1 img{
+	
+	transition-duration: 0.5s;
+
 
 }
 .payZero{
@@ -45,4 +51,9 @@
 }
 .investContainer .investLabel{
 	text-align: center;
+}
+.subDiv1:hover img{
+	transform: scale(1.2);
+	transition-duration: 0.5s;
+	cursor: pointer;
 }

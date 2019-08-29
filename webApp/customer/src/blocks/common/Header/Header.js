@@ -16,87 +16,72 @@ export default class Header extends Component {
 
   componentDidMount()
   {
- 
+
   } 
 
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
-              <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPurple">
-                <div className="row">
-                  <nav class="navbar marginZero customNavBar navbar-default">
-                    <div class="container-fluid">
-                      <div class="navbar-header">
-                        <a class="navbar-brand webSiteName" href="/">Wealthyvia</a>
-                      </div>
-                      <ul class="nav navbar-nav customUl">
-                        <li><a href="/">Home </a></li>
-                         <li className="dropdown">
-                            <a className="dropdown-toggle" data-toggle="dropdown" href="#">Services&nbsp;<i className="fa fa-angle-down"></i></a>
-                            <ul className="dropdown-menu customDropdown col-lg-12">
-                              <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Service 1</a>
-                                 {/* <ul className="dropdown-submenu noStyle">
-                                  <li><a href="#">Potato, Onion & Tomato</a></li>
-                                  <li><a href="#">Cucumber & Capsicum</a></li>
-                                  <li><a href="#">Root Vegetables</a></li>
-                                  <li><a href="#">Cabbage & Cauliflower</a></li>
-                                  <li><a href="#">Leafy Vegetables</a></li>
-                                  <li><a href="#">Beans, Brinjals & Okra</a></li>
-                                  <li><a href="#">Gourd, Pumpkin, Drumstick</a></li>
-                                  <li><a href="#">Lemon, Ginger & Garlic</a></li>
-                                </ul>*/}
-                              </li>
-                               <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Service 2</a>
-                               
-                              </li>
-                              <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Service 3</a> 
-                               
-                              </li>
-                            </ul>
-                          </li>  
-                          <li className="dropdown">
-                            <a className="dropdown-toggle" data-toggle="dropdown" href="#">Offerings&nbsp;<i className="fa fa-angle-down"></i></a>
-                            <ul className="dropdown-menu customDropdown col-lg-12">
-                              <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">5GCPM Portfolio</a>
-                                
-                              </li>
-                               <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Safe Heavan Stocks</a>
-                               
-                              </li>
-                              <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Safe Heavan Stocks + Alpha</a> 
-                               
-                              </li>
-                               <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Nifty Algo Tranding</a> 
-                               
-                              </li>
-                              <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">USA Stocks Portfolio</a> 
-                               
-                              </li>
-                               <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Unlisted Stocks</a> 
-                               
-                              </li>
-                               <li className="col-lg-12 col-md-6 col-sm-12 col-xs-12 listItem"><a href="#" className="headLi">Multibagger</a> 
-                               
-                              </li>
-                            </ul>
-                          </li>
-                     {/*   <li><a href="#">Offerings</a></li>
-                        <li><a href="#">Services</a></li>*/}
-                        <li><a href="#">Blogs</a></li>
-                        <li><a href="/contact-us">Contact Us</a></li>
-                        <li><a href="/about-us">About Us</a></li>
-                      </ul>
-                      <div className="col-lg-1 col-md-1 col-sm-2 col-xs-2  loginButton pull-right">
-                        Login/Signup
-                      </div>
-                    </div>
-                  </nav>
+           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <div className="row">
+            <nav class="navbar marginZero customNavBar navbar-default">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand webSiteName" href="/">Wealthyvia</a>
+                  </div>
+
+                  <div class="collapse navbar-collapse" id="navBar">
+                    <ul class="nav navbar-nav customUl">
+                      <li class=""><a href="/">Home <span class="sr-only">(current)</span></a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+                    
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Offerings <span class="caret"></span></a>
+                        <ul class="dropdown-menu customDropdown">
+                          <li className="listItem"><a href="#">5GCPM Portfolio</a></li>
+                          <li className="listItem"><a href="#">Safe Heavan Stocks</a></li>
+                          <li className="listItem"><a href="#">Safe Heavan Stocks + Alpha</a></li>
+                          <li className="listItem"><a href="#">Nifty Algo Tranding</a></li>
+                          <li className="listItem"><a href="#">USA Stocks Portfolio</a></li>
+                          <li className="listItem"><a href="#">Unlisted Stocks</a></li>
+                          <li className="listItem"><a href="#">Multibagger</a></li>
+                     
+                        </ul>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#">Blogs </a>
+                        
+                      </li>
+                       <li class="dropdown">
+                        <a href="/contact-us" >Contact Us </a>
+                        
+                      </li>
+                      <li class="dropdown">
+                        <a href="/about-us" >About Us </a>
+                        
+                      </li>
+                    </ul>
+                
+                    <ul class="nav navbar-nav navbar-right customUl">
+                      <li class="dropdown">
+                        <a href="/login">Login/Signup </a>
+                       
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-              </div>
-            </div>          
+              </nav>
+          </div>
+          
+      </div>    
     );
   }
 }

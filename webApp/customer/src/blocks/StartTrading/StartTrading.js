@@ -16,7 +16,17 @@ export default class StartTrading extends Component {
 
   componentDidMount()
   {
- 
+  $(window).scroll(function() 
+    {    
+        var scroll = $(window).scrollTop();
+        console.log(" scroll",scroll)
+        if (scroll >= 2150) {
+            $(".para1").addClass("paraeff1");
+        } else {
+            $(".para1").removeClass("paraeff1");
+        }
+        
+    });
   } 
 
   render() {
@@ -42,7 +52,7 @@ export default class StartTrading extends Component {
                     </div> 
                   </div>
                 </div>
-               <div className="col-lg-6 col-lg-offset-7 col-md-6  col-sm-12  col-xs-12  startTrandingImgContainer">
+               <div className="col-lg-6 col-lg-offset-7 col-md-6  col-sm-12  col-xs-12  startTrandingImgContainer para1">
                   <div>
                     <img src="/images/img4.jpg"/>
                   </div>
