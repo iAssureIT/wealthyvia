@@ -5,6 +5,7 @@ import Homepage                                  from "../pages/Homepage/Homepag
 import AboutUs                                  from "../pages/AboutUs/AboutUs.js";
 import ContactUs                                  from "../pages/ContactUs/ContactUs.js";
 import Footer                        from "../blocks/common/Footer/Footer.js";
+import ProductPage                               from "../pages/ProductPage/ProductPage.js";
 
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
@@ -18,7 +19,6 @@ import TermsAndCondition                         from "../pages/TermsAndConditio
 import PrivacyPolicy                             from "../pages/PrivacyPolicy/PrivacyPolicy.js";
 import ProductDetails                            from "../pages/ProductDetails/ProductDetails.js";
 import ProductDetailsEcommerce                   from "../pages/ProductDetailsEcommerce/ProductDetailsEcommerce.js";
-import ProductPage                               from "../pages/ProductPage/ProductPage.js";
 import ProductPageEcommerce                      from "../pages/ProductPageEcommerce/ProductPageEcommerce.js";
 import AllBlogs                                  from "../pages/AllBlogs/AllBlogs.js";
 import AllBlogsGrocery                           from "../pages/AllBlogs/AllBlogsGrocery.js";
@@ -47,6 +47,8 @@ const WebLayout = () => (
               <Route path="/"                         exact strict component={Homepage}  />
               <Route path="/about-us"                         exact strict component={AboutUs}  />
               <Route path="/contact-us"                         exact strict component={ContactUs}  />
+              <Route path="/ProductPage"              exact strict component={ProductPage}  />
+              <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />
               <Route path="/about-us"                 exact strict component={AboutUs}  />
@@ -58,7 +60,6 @@ const WebLayout = () => (
               
               <Route path="/ProductDetails"           exact strict component={ProductDetails}  />
               <Route path="/ProductDetailsEcommerce/:productID"           exact strict component={ProductDetailsEcommerce}  />
-              <Route path="/ProductPage"              exact strict component={ProductPage}  />
               <Route path="/main-site/:categoryID"    exact strict component={ProductPageEcommerce}  />
               <Route path="/Grocery/:categoryID"    exact strict component={ProductPage}  />
               <Route path="/SearchProducts/:categoryName"    exact strict component={SearchProducts}  />

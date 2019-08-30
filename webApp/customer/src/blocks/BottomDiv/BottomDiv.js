@@ -85,20 +85,7 @@ export default class BottomDiv extends Component {
 
 			  		</div>
 				</div></a>
-			{/*	<div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
-						<div className="row">
-			  			<img src="/images/ceo.png"/>
-						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">Media Centre</label><br/>
-				          <p>Get the latest news and updates on ASK Group and its companies.</p>
-				          <span className="shopNowButtonFilters">Read More</span><br/>
-				        </div>
-				        <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="margins">Media Centre</label><br/>
-				      	</div>
-
-			  		</div>
-				</div>*/}
+			
 				
 			</div>		
 		</div>

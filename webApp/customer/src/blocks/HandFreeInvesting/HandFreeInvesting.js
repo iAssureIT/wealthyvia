@@ -8,6 +8,7 @@ export default class HandFreeInvesting extends Component {
   constructor(props) {
     super(props);
         this.state = {
+          nameOfDiv:"uslistedStocks",
         };
     }
   ScrollTop(event){
@@ -44,7 +45,7 @@ export default class HandFreeInvesting extends Component {
                        only  liquid stocks 
                       Detailed research report & data
                       Pre Ipo stage </p>
-                       <a href="" className="">Read More </a>
+                       <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
                     </div>
                   </div>
                 </div>

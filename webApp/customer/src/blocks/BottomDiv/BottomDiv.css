@@ -114,7 +114,9 @@
     text-align: center;
     background-color: rgba(0,0,0,0.6);
     margin-top: -185px;
-    padding: 60px;
+    padding: 15px;
+    padding-top: 57px !important;
+
     color: #fff;
 }
 .miniDiv1Filterother img {
@@ -155,7 +157,8 @@
     text-align: center;
     background-color: rgba(0,0,0,0.9);
     margin-top: -185px;
-    padding: 30px;
+    padding: 15px;
+    padding-top: 30px !important;
     color: #fff;
 }
 .miniFilterTextDivother label{

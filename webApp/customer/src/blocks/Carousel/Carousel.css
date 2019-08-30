@@ -29,12 +29,12 @@ width: 100%;
 .caption{
 	position: absolute;
 	height: 120px;
-	padding: 5px;
+	padding: 25px !important;
 	text-align: left !important;
 	z-index: 1000;
 	    font-family: 'PT Sans', sans-serif;
 
-	margin-top: -180px;
+	margin-top: -260px;
 	color: #fff;
 }
 .caption label{
