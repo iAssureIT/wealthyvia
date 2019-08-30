@@ -13,7 +13,7 @@ export default class BottomDiv extends Component {
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPurple">
 			  	<div className="row">
 
-			  		<div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+			  		<a href="#5gcpm" className="scroll"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ceo.png"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -26,37 +26,52 @@ export default class BottomDiv extends Component {
 				      	</div>
 
 			  		</div>
-				</div>
+				</div></a>
 
-					<div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162 ">
+					<a href="#safeHevenMoats"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="/images/ceo.png"/>
-						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			  			<img src="/images/ab3.jpg"/>
+						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">Safe Heaven Moats</label><br/>
 				          <p>Spearheaded by renowned financial specialists.</p>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
-				        <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">Safe Heaven Moats</label><br/>
 				      	</div>
 
 			  		</div>
-				</div>
-					<div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+				</div></a>
+				<a href="#safeHeven"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="/images/ceo.png"/>
-						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			  			<img src="/images/ab1.jpg"/>
+						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">SHM and MF alpha</label><br/>
-				          <p>Get the latest news and updates on ASK Group and its companies.</p>
+				          <p>Spearheaded by renowned financial specialists.</p>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
-				        <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">SHM and MF alpha</label><br/>
 				      	</div>
 
 			  		</div>
-				</div>
-				<div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+				</div></a>
+				<a href="#unlistedPre"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+						<div className="row">
+			  			<img src="/images/ab2.jpg"/>
+						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				          <label className="pad20">Unlisted Pre Ipo</label><br/>
+				          <p>Spearheaded by renowned financial specialists.</p>
+				          <span className="shopNowButtonFilters">Read More</span><br/>
+				        </div>
+				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				          <label className="margins">Unlisted Pre Ipo</label><br/>
+				      	</div>
+
+			  		</div>
+				</div></a>
+					
+				<a href="#uslistedStocks"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ceo.png"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -69,7 +84,7 @@ export default class BottomDiv extends Component {
 				      	</div>
 
 			  		</div>
-				</div>
+				</div></a>
 			{/*	<div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ceo.png"/>

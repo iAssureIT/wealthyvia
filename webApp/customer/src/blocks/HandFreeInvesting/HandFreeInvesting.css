@@ -10,7 +10,7 @@
 }
 .handFreeInvesting p{
 	margin-top: 1em;
-	font-size: 1.1em;
+	font-size: 1.5em;
     line-height: 1.5em;
 }
 
@@ -28,7 +28,7 @@
 .para0{
   position: relative;
   left:-500px;
-  top:-430px;
+  top:-310px;
   opacity: 0;
   transform: rotate(0deg);
   transition-duration: 1.5s;

@@ -15,7 +15,7 @@ export default class Blogs extends Component {
 
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter">
 						<div className="row">
-			  			<img src="/images/ceo.png"/>
+			  			<img src="/images/ab3.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">From the CEO's Desk</label><br/>
 				          <p>Meet our CEO.</p>
@@ -30,7 +30,7 @@ export default class Blogs extends Component {
 
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter">
 						<div className="row">
-			  			<img src="/images/board.jpg"/>
+			  			<img src="/images/ab3.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">Our Board Members</label><br/>
 				          <p>Spearheaded by renowned financial specialists.</p>
@@ -44,7 +44,7 @@ export default class Blogs extends Component {
 				</div>
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter">
 						<div className="row">
-			  			<img src="/images/infoCenter.jpg"/>
+			  			<img src="/images/ab3.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">Media Centre</label><br/>
 				          <p>Get the latest news and updates on ASK Group and its companies.</p>

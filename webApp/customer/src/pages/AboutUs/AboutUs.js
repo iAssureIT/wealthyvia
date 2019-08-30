@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $         from 'jquery';
 import AboutUsCarousel from "../../blocks/AboutUsCarousel/AboutUsCarousel.js";
+import ClientDeliverables from "../../blocks/ClientDeliverables/ClientDeliverables.js";
+import ValuesWeCreate from "../../blocks/ValuesWeCreate/ValuesWeCreate.js";
 import "./AboutUs.css";
 
 export default class AboutUs extends Component {
@@ -45,8 +47,14 @@ export default class AboutUs extends Component {
                 </div>
             </div>
             </div>
-                <div className="row">
+            <div className="row">
                 <AboutUsCarousel />
+            </div>
+             <div className="row">
+                <ClientDeliverables />
+            </div>
+             <div className="row">
+                <ValuesWeCreate />
             </div>
           </div>
     );

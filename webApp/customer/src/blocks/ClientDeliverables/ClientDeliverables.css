@@ -1,0 +1,47 @@
+.iconContainerCD{
+color: #fff;
+background-color: #25bbf3;
+padding: 20px;
+font-size: 25px !important;
+border-radius: 50%;
+
+}
+.payZeroCD{
+	font-size: 2rem;
+	line-height: 1.2;
+	color:#201A47;
+	font-family: 'PT Sans', sans-serif;
+	font-weight: 700;
+	word-spacing:0em;
+	padding:10px;
+}
+.subDivCD{
+	text-align: center;
+		cursor: pointer;
+
+
+}
+.subDivCD i{
+	transition-duration: 0.5s;
+
+}
+.subDivCD:hover i{
+	transform: scale(1.2);
+	transition-duration: 0.5s;
+	cursor: pointer;
+}
+.investContainerCD{
+	text-align: center;
+	padding: 20px;
+		font-family: 'PT Sans', sans-serif;
+
+}
+.investLabelCD{
+	font-weight: bold;
+	padding: 60px;
+	font-size: 40px;
+	color:#201A47;
+}
+.height500{
+	height: 650px;
+}

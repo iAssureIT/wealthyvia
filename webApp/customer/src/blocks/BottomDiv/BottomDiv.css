@@ -2,29 +2,29 @@
 	height: 420px;
 }
 
-.miniDiv1Filter img {
+.miniDiv1Filterother img {
     transform: scale(1);
     cursor: pointer;
     height: 100%;
     width: 100%;
     transition-duration: 0.5s;
 }
-.miniDiv1Filter{
+.miniDiv1Filterother{
       overflow: hidden;
     height: 140px;
 }
-.miniDiv1Filter:hover img{
+.miniDiv1Filterother:hover img{
   transform: scale(1.1);
   cursor: pointer !important;
   transition-duration: 0.5s;
 }
-.miniDiv1Filter:hover .miniFilterTextDiv{
+.miniDiv1Filterother:hover .miniFilterTextDivother{
 	opacity: 1;
 	    transition-duration: 0.5s;
 
 
 }
-.miniDiv1Filter:hover .miniFilterTextDiv1{
+.miniDiv1Filterother:hover .miniFilterTextDiv1{
 	opacity: 0;
 	    transition-duration: 0.5s;
 
@@ -34,7 +34,7 @@
 	border-top: 1px solid #aaa;
 	border-bottom: 1px solid #aaa;
 }
-.miniFilterTextDiv{
+.miniFilterTextDivother{
 	position: absolute;
 	height: 200px;
 	opacity: 0;
@@ -48,7 +48,7 @@
 	padding: 30px;
 	color: #fff;
 }
-.miniFilterTextDiv label{
+.miniFilterTextDivother label{
     font-size: 20px;
     padding-top: 20px; 
     line-height: 5px;
@@ -98,5 +98,86 @@
 }
 */
 .ht162{
-    height: 168px !important;
+    height: 170px !important;
+}
+.height170{
+    height: 170px !important;
+}
+.miniFilterTextDiv2 {
+    position: absolute;
+    height: 200px;
+    opacity: 1;
+    z-index: 1000;
+    transition-duration: 0.5s;
+    font-family: 'PT Sans', sans-serif;
+    cursor: pointer;
+    text-align: center;
+    background-color: rgba(0,0,0,0.6);
+    margin-top: -185px;
+    padding: 60px;
+    color: #fff;
+}
+.miniDiv1Filterother img {
+    transform: scale(1);
+    cursor: pointer;
+    height: 170px;
+    width: 100%;
+    transition-duration: 0.5s;
+}
+.miniDiv1Filterother{
+      overflow: hidden;
+    height: 140px;
+}
+.miniDiv1Filterother:hover img{
+  transform: scale(1.1);
+  cursor: pointer !important;
+  transition-duration: 0.5s;
+}
+.miniDiv1Filterother:hover .miniFilterTextDiv{
+    opacity: 1;
+        transition-duration: 0.5s;
+
+
+}
+.miniDiv1Filterother:hover .miniFilterTextDiv1{
+    opacity: 0;
+        transition-duration: 0.5s;
+
+
+}
+.miniFilterTextDivother{
+    position: absolute;
+    height: 200px;
+    opacity: 0;
+    z-index: 1000;
+    transition-duration: 0.5s;
+    font-family: 'PT Sans', sans-serif;
+    text-align: center;
+    background-color: rgba(0,0,0,0.9);
+    margin-top: -185px;
+    padding: 30px;
+    color: #fff;
+}
+.miniFilterTextDivother label{
+    font-size: 20px;
+    padding-top: 20px; 
+    line-height: 5px;
+    color: #fff;
+}
+.miniFilterTextDiv2 label{
+    font-size: 20px;
+    line-height: 45px;
+    color: #fff;
+}
+.miniDiv1Filterother:hover .miniFilterTextDivother{
+    opacity: 1;
+        transition-duration: 0.5s;
+
+
+}
+.miniDiv1Filterother:hover .miniFilterTextDiv2{
+    opacity: 0;
+        transition-duration: 0.5s;
+
+
 }

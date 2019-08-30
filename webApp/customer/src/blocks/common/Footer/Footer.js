@@ -57,11 +57,11 @@ export default class Footer extends Component {
                   <label>Company</label>
                   <ul>
                   <a href="/about-us"><li >About Us</li></a>
-                {/*  <li>How it Works</li>
-                  <li>Reviews</li>
-                  <li>Press</li>
-                  <li>Jobs</li>*/}
                   <li>Blogs</li>
+                 <li>Disclaimers</li>
+                  <li>Numbers</li>
+                  <li>Registrations certifications </li>
+                  
                  
                   </ul>
 

@@ -23,7 +23,7 @@ export default class NoFees extends Component {
 
     return (
             <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" id="5gcpm">
                 <div className="row">
 
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifContainer">
@@ -32,11 +32,10 @@ export default class NoFees extends Component {
                     </div>
 
                   </div>
-                  <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifTextContainer">
-                    <label><span className="iceBlueColor">Skin In. </span>The Game.</label>
-                    <p>Our Financial well being is linked with yours.
-                  No scope for rekless behaviour.
-                  Risk Management is our utmost priority over Returns.</p>
+                  <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifTextContainer learnMoreST">
+                    <label><span className="iceBlueColor">5GCPM </span></label>
+                    <p>Profound Research 
+                    Growth cycle and factors identification, sound framework, and..</p><a href=""> Read more</a>
                   </div>
                 </div>
               </div>

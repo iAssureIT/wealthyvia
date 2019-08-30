@@ -13,7 +13,7 @@
 }
 .startTrandingContent p{
 	margin-top: 1em;
-	font-size: 1.1em;
+	font-size: 1.5em;
     line-height: 1.5em;
 }
 
@@ -44,15 +44,14 @@
 .pad50{
 	padding-top:50px;
 }
-.paraeff1{
+.paraeff4{
   position: relative;
   right:40px !important;
-  top:-630px;
   opacity:1 !important;
   transform: rotate(0deg);
   transition-duration: 1.5s;
 }
-.para1{
+.para2{
   position: relative;
   right:-500px;
   top:-30px;

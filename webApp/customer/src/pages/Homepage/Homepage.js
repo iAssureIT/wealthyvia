@@ -6,6 +6,7 @@ import NoFees        				         from "../../blocks/NoFees/NoFees.js";
 import OneAdvice        				     from "../../blocks/OneAdvice/OneAdvice.js";
 import StartTrading        				   from "../../blocks/StartTrading/StartTrading.js";
 import HandFreeInvesting        		 from "../../blocks/HandFreeInvesting/HandFreeInvesting.js";
+import UsStocksInvest             from "../../blocks/UsStocksInvest/UsStocksInvest.js";
 import GetStarted        				     from "../../blocks/GetStarted/GetStarted.js";
 import Footer                        from "../../blocks/common/Footer/Footer.js";
 import Carousel                        from "../../blocks/Carousel/Carousel.js";
@@ -36,6 +37,7 @@ export default class Homepage extends Component {
       				<OneAdvice/>
       				<StartTrading/>
       				<HandFreeInvesting/>
+              <UsStocksInvest/>
       				<GetStarted/>
 					</div>
       </div>

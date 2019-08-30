@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import $         from 'jquery';
 
-import "./StartTrading.css";
+import "./UsStocksInvest.css";
 
-export default class StartTrading extends Component {
+export default class UsStocksInvest extends Component {
 
   constructor(props) {
     super(props);
@@ -20,10 +20,10 @@ export default class StartTrading extends Component {
     {    
         var scroll = $(window).scrollTop();
         console.log(" scroll",scroll)
-        if (scroll >= 2150) {
-            $(".para2").addClass("paraeff4");
+        if (scroll >= 3720) {
+            $(".para1").addClass("paraeff1");
         } else {
-            $(".para2").removeClass("paraeff4");
+            $(".para1").removeClass("paraeff1");
         }
         
     });
@@ -32,18 +32,19 @@ export default class StartTrading extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mt20" id="safeHeven">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mt20" id="unlistedPre">
               <div className="row">
 
                 <div className="col-lg-10 col-md-6 col-sm-12 col-xs-12 startTrandingContent backColorGray">
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <label><span className="iceBlueColor">MF and safe heaven moats +  </span>alpha</label>
-                    <p>Additional returns.<br/>
-                        Algo based technical analysis<br/>
-                        Regular monthly return possibilities<br/>
-                        Algo system trades<br/>
-                        </p>
+                    <label><span className="iceBlueColor">US stocks investments </span>simplified</label>
+                    <p>Unleash global growth potential 
+                        Invest in largest economy and 
+                        40% market of the world equities
+                        Geographical diversification
+                        High Tech global giants 
+                        zero brokerage</p>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad50">
                        {/* <div className=" col-lg-3 col-md-6 col-sm-12 col-xs-12 "></div>*/}
@@ -51,7 +52,7 @@ export default class StartTrading extends Component {
                     </div> 
                   </div>
                 </div>
-               <div className="col-lg-6 col-lg-offset-7 col-md-6  col-sm-12  col-xs-12  startTrandingImgContainer para2">
+               <div className="col-lg-6 col-lg-offset-7 col-md-6  col-sm-12  col-xs-12  startTrandingImgContainer para1">
                   <div>
                     <img src="/images/img4.jpg"/>
                   </div>
