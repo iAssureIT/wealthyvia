@@ -32,8 +32,8 @@ export default class Homepage extends Component {
              <Carousel/>
              <Blogs />
              <BottomDiv />
-    				<Invest/>
-      				<NoFees/>
+{/*    				<Invest/>
+*/}      				<NoFees/>
       				<OneAdvice/>
       				<StartTrading/>
       				<HandFreeInvesting/>

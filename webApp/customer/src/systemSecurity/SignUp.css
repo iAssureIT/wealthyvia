@@ -30,7 +30,7 @@
   background-image: url("/images/signIn.jpg");
   padding: 0px !important;
   margin-right: -15px !important;
-  height: 580px !important;
+  height: 540px !important;
 }
 .signupPadding{
   padding-top:2%;
@@ -1151,7 +1151,7 @@ input[type="radio"]:checked:before {
   position: absolute;
   border:1px #aaa solid;
   padding:25px;
-  margin-top: 8%;
+  margin-top: 5%;
   padding-bottom: 5%;
   background-color: #fff!important;
   float: right;

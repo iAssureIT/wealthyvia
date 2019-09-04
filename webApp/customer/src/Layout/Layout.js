@@ -6,6 +6,7 @@ import AboutUs                                  from "../pages/AboutUs/AboutUs.j
 import ContactUs                                  from "../pages/ContactUs/ContactUs.js";
 import Footer                        from "../blocks/common/Footer/Footer.js";
 import ProductPage                               from "../pages/ProductPage/ProductPage.js";
+import RiskProfilePage                               from "../pages/RiskProfilePage/RiskProfilePage.js";
 
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
@@ -48,6 +49,7 @@ const WebLayout = () => (
               <Route path="/about-us"                         exact strict component={AboutUs}  />
               <Route path="/contact-us"                         exact strict component={ContactUs}  />
               <Route path="/ProductPage"              exact strict component={ProductPage}  />
+              <Route path="/RiskProfilePage"              exact strict component={RiskProfilePage}  />
               <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />

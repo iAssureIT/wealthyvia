@@ -1,6 +1,6 @@
 .gifContainer{
-	padding-top:80px;
-	padding-bottom: 80px;
+	padding-top:40px;
+	padding-bottom: 40px;
 	font-family: 'PT Sans', sans-serif;
 
 }
@@ -9,10 +9,10 @@
 	width:100%;
 }
 .gifTextContainer{
-	padding: 90px !important;
+	padding: 40px !important;
 	font-family: 'PT Sans', sans-serif;
 
-	padding-top:250px !important;
+	padding-top:10% !important;
 }
 .gifTextContainer label{
 	font-size: 5rem;
@@ -20,7 +20,7 @@
 	font-weight: bold;
 }
 .gifTextContainer p{
-	font-size: 1.8em;
+	font-size: 1.5em;
     line-height: 1.5em;
 }
 .iceBlueColor{

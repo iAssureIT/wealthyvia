@@ -17,7 +17,7 @@
 .handFreeInvesting a{
 	text-decoration: underline;
 }
-.paraeff{
+/*.paraeff{
   position: relative;
   left :50px !important;
   top:-430px;
@@ -25,17 +25,20 @@
   transform: rotate(0deg);
   transition-duration: 1.5s;
 }
-.para0{
+*/.para0{
   position: relative;
-  left:-500px;
-  top:-310px;
-  opacity: 0;
+/*  left:-500px;
+*/  top:-310px;
+  opacity: 1;
   transform: rotate(0deg);
   transition-duration: 1.5s;
 
 }
+.heightAuto{
+  height: auto;
+}
 .ht500{
-	height: 620px;
+	height: 500px;
 }
 .learnMoreHF a{
   padding: 20px;

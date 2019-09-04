@@ -110,25 +110,25 @@ class Login extends Component {
 
     return(  
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
-        <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-12 signupPadding loginFormWrap ">
+        <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-8 col-xs-offset-2 signupPadding loginFormWrap ">
           <div className="col-lg-12 divLoginInWrap">
               
             <form id="login" onSubmit={this.userlogin.bind(this)}>
               <br/>
-              <div className="col-lg-4 col-lg-offset-4 ">
+              <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 ">
              {/* <h3> hhhh</h3>*/}
               {<h4 className="signInNameTitle "><span className="">Login</span></h4>
               }</div>
               <div className="col-lg-12 col-md-12 col-sm-12 ">
                 <div className="inputContent">
                   <span className="blocking-span noIb">
-                    <input type="email" className="col-lg-12 col-md-1col-lg-12 col-md-12 col-sm-12 oesSignUpForm tmsLoginTextBox" onChange={this.handleChange} ref="loginusername" id="loginusername" name="loginusername" placeholder="" required/>
+                    <input type="email" className="col-lg-12 col-md-12 col-xs-12 col-sm-12 oesSignUpForm tmsLoginTextBox" onChange={this.handleChange} ref="loginusername" id="loginusername" name="loginusername" placeholder="" required/>
                     <span className="floating-label"><i className="fa fa-envelope signupIconFont" aria-hidden="true"/>Email ID</span>   
                   </span>
                 </div>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12 marBtm30">
-                <div className="form-group form-group1 fltlft input-group col-lg-12 col-md-12 col-sm-12 inputContent ">     
+                <div className="form-group form-group1 fltlft input-group col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContent ">     
                   <span className="blocking-span noIb">
                     <input type="password" className="form-control border3 pass oesSignUpForm confirmbtm inputTextPass tmsLoginTextBox" ref="loginpassword" name="loginpassword" required/>
                     <span className="floating-label1 lbfloatpass"><i className="fa fa-lock" aria-hidden="true"></i> Password</span>                 

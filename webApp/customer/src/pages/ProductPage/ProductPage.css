@@ -1,0 +1,44 @@
+.titleContainer{
+	text-align: center;
+}
+.titleContainer label{
+	color: #201a47 !important;
+	font-size: 26px !important;
+	padding: 20px;
+
+}
+.productContainer{
+	height: auto;
+	padding: 20px;
+	margin: 20px;
+	line-height: 25px;
+	font-family: 'PT Sans', sans-serif;
+	box-shadow: 5px 5px 5px 5px #aaa;
+}
+.productContainer label{
+	color:#007993 ;
+	font-size: 18px;
+}
+.imageContainer img{
+	height: 100%;
+	width: 100%;
+}
+.customTablePP tr> td,th{
+	border:1px solid #aaa;
+	padding: 20px !important;
+}
+.customOl{
+	    padding-left: 15px !important;
+}
+.customOl li{
+	padding:5px !important;
+}
+.specifications{
+	padding:10px;
+}
+.buyNowButtonPP{
+	color: #fff;
+	background-color: #201a47;
+	padding: 8px;
+	cursor: pointer;
+}

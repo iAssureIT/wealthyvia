@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+ import React, { Component } from 'react';
 import "./BottomDiv.css";
 
 export default class BottomDiv extends Component {
@@ -10,8 +10,9 @@ export default class BottomDiv extends Component {
   	}  
   render() {
 		return (
-			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPurple">
+			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
 			  	<div className="row">
+			  		<div className="blogHeading hidden-lg col-md-12 col-sm-12 col-xs-12"> Products </div>
 
 			  		<a href="#5gcpm" className="scroll"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">

@@ -36,7 +36,7 @@ export default class HandFreeInvesting extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite ht500 " id="uslistedStocks">
               <div className="row">
 
-                <div className="col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 handFreeInvesting  backColorGray">
+                <div className="col-lg-10 col-lg-offset-2 col-md-12 hidden-xs hidden-sm handFreeInvesting  backColorGray">
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right learnMoreST">
                     <label><span className="iceBlueColor">Unlisted space</span><br/> investment </label>
@@ -49,11 +49,33 @@ export default class HandFreeInvesting extends Component {
                     </div>
                   </div>
                 </div>
-               <div className="col-lg-6 col-md-6  col-sm-12  col-xs-12  para0">
+               <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  para0">
                   <div>
                     <img src="/images/img1.jpg"/>
                   </div>
                 </div>
+                 <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite heightAuto ">
+              <div className="row">
+                <div className="col-sm-12 col-sm-12 hidden-md hidden-lg handFreeInvesting  backColorGray">
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
+                    <label><span className="iceBlueColor">Unlisted space</span><br/> investment </label>
+                    <p>Trust & Transparency 
+                      Hassle free shares crediting 
+                       only  liquid stocks 
+                      Detailed research report & data
+                      Pre Ipo stage </p>
+                       <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                    </div>
+                  </div>
+                </div>
+               <div className="col-sm-12 col-sm-12 hidden-md hidden-lg ">
+                  <div>
+                    <img src="/images/img1.jpg"/>
+                  </div>
+                </div>
+              </div>
+              </div>
               </div>
             </div>
       );

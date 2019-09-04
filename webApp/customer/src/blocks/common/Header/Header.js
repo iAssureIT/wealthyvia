@@ -26,11 +26,11 @@ export default class Header extends Component {
           <div className="row">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div className="row">
-            <nav class="navbar marginZero customNavBar backColorWhite colorP navbar-default  hidden-xs hidden-sm">
+            <nav class="navbar marginZero customNavBarUpper backColorWhite colorP navbar-default  hidden-xs hidden-sm">
                 <div class="container-fluid">
                   <div class="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <a class="navbar-brand webSiteName colorP col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">Wealthyvia</a>
-                  <div className="col-lg-11 col-md-11 col-sm-11 col-xs-11"> <a className="navbar-brand colorP pull-right">The Value we create : Profound.Profuse.Precise. </a></div>
+                    <a class="navbar-brand webSiteName colorP col-lg-4 col-md-4 col-sm-4 col-xs-4" href="/">Wealthyvia</a>
+                  <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP">The Value we create : Profound.Profuse.Precise. </a></div>
                   </div>
 
                  
@@ -44,7 +44,7 @@ export default class Header extends Component {
             <nav class="navbar marginZero customNavBar navbar-default">
                 <div class="container-fluid">
                   <div class="navbar-header">
-                                      <a class="navbar-brand webSiteName colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">Wealthyvia</a>
+                                      <a class="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">Wealthyvia</a>
 
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
                       <span class="sr-only">Toggle navigation</span>

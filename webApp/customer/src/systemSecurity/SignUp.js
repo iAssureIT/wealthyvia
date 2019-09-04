@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import {browserHistory} from 'react-router';
 import swal from 'sweetalert';
 import $ from "jquery";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/js/modal.js';
-import 'bootstrap/js/tab.js';
+/*import 'bootstrap/js/modal.js';
+*/import 'bootstrap/js/tab.js';
 import 'font-awesome/css/font-awesome.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
@@ -204,12 +203,12 @@ class SignUp extends Component {
 		return(
 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
-        		<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-12 signupPadding signUpFormWrap">
+        		<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-8 col-xs-offset-2 signupPadding signUpFormWrap">
 					<div className="divLoginInWrap">
 						
 						<form id="signUpUser" onSubmit={this.usersignup.bind(this)}>
 	                    	<h3 className="signUpNameTitle2 margintop0"><span className="bordbt">SIGN UP</span></h3>
-							<div className="col-lg-12 col-md-12 signUpInnerWrapperOES signupfrm">
+							<div className="col-lg-12 col-md-12  signUpInnerWrapperOES signupfrm">
 								<div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd boxMarg">
 							   		<span className="blocking-span noIb">
 									   <input type="text" className="form-control abacusTextbox oesSignUpForm" id="firstname" ref="firstname" name="firstname"  onChange={this.handleChange} data-text="firstNameV" required/>

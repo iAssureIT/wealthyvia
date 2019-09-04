@@ -34,8 +34,7 @@ export default class NoFees extends Component {
                   </div>
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifTextContainer learnMoreST">
                     <label><span className="iceBlueColor">5GCPM </span></label>
-                    <p>Profound Research 
-                    Growth cycle and factors identification, sound framework, and..</p><a href=""> Read more</a>
+                    <p>Wealth is a function of investing in intelligent ideas with conviction. Its not only about patience but also about disciplined approach. Such rare gem stocks that compound at higher rate and produce considerable growth In portfolio are Rare. Our self-designed& developed 5GCPM framework helps you to invest in such stocks..</p><a href=""> Read more</a>
                   </div>
                 </div>
               </div>

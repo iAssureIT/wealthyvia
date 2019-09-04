@@ -22,7 +22,7 @@ export default class ClientDeliverables extends Component {
   render() {
 
     return (
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 height500">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 heightAuto">
             <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite investContainerCD">
               <div className="row">
                 <label className="investLabelCD col-lg-12 col-md-12 col-sm-12 col-xs-12">What we deliver to our clients </label>

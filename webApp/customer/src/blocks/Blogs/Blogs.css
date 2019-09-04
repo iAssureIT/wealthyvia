@@ -1,5 +1,5 @@
 .blogContainer{
-	height: 420px;
+	height: auto;
 }
 
 .miniDiv1Filter img {
@@ -96,4 +96,11 @@
 
 .pad20{
 	padding-top: 20px !important;
+}
+.blogHeading{
+    font-size: 25px;
+        font-family: 'PT Sans', sans-serif;
+        color: #201b47;
+text-align: center;
+padding: 10px;
 }
