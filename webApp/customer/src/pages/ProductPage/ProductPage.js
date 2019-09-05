@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import $ 				 			from 'jquery';
+
+import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
+
 import "./ProductPage.css";
 
 export default class ProductPage extends Component {
@@ -26,11 +30,251 @@ export default class ProductPage extends Component {
 		},()=>{});
 
 	}
+	  Submit(event){
+  	event.preventDefault();
+  	$("#myModal").hide();
+	$("#myModal").removeClass('in');
+	$("#kycModal").show();
+	$("#kycModal").addClass('in');
+  }
+	closeModal(event){
+	$("#kycModal").removeClass('in');
+
+	}
   render() {
-  	console.log('parameter',this.prop);
+  		const options = [
+  { label: '15% is fine with me but don’t wanna lose at all . Safety first . Long term.', value: 1},
+  { label: 'I am ok to take little risk but return should be 25-30%', value: 2},
+  { label: 'I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years', value: 3},
+  { label: 'Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.', value: 4},
+  { label: 'I wanna allocate some portion to big tech giants like amazon facebook types too.', value: 5},
+  { label: 'I am day trader, daily play with markets. I want continuous smart trades.', value: 6},
+];
 		return (
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 			  	<div className="row">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+								<div className="row">
+								 	<div className="modal fade in " id="myModal" role="dialog">
+			                          <div className="modal-dialog customModalRP" >
+		                                <button type="button" className="close" data-dismiss="modal" > <i className="fa fa-times"></i></button>
+		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  " >
+		                                	<form id="riskform">
+		                                			<label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>
+		                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+			                                		<p><b>1) What is the primary goal for the funds invested through WealthVia?</b></p>
+		                                			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+														<ReactMultiSelectCheckboxes options={options} />
+													</div>
+			                                	</div> 
+			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+				                                		<p><b>2) Any near term need for the funds invested with us ?</b></p>
+				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															 <div className="dropdown">
+															    <button type="button" 
+															      className="btn customDrop btn-select"
+															      data-toggle="dropdown">Select..</button>
+															    <ul className="dropdown-menu dropdown-menu-select">
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="001" name="alphabet"/>
+															        <i>Yes after two years</i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="002" name="alphabet"/>
+															        <i>Yes after 6 -8 months</i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="003" name="alphabet"/>
+															        <i>It’s a separate capital to invest apart from my needs. I want to build good portfolio.</i>
+															        </label>
+															    </li>
+															    </ul>
+															  </div>				                                		
+															</div>
+				                                		
+			                                	</div>
+			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+				                                		<p><b>3) Your investments % exposure of your investable capital can be best described as</b></p>
+				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															 <div className="dropdown">
+															    <button type="button" 
+															      className="btn customDrop btn-select"
+															      data-toggle="dropdown">Select..</button>
+															    <ul className="dropdown-menu dropdown-menu-select">
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="001" name="alphabet"/>
+															        <i>FD/bonds/gold 80%, MF /direct equity 20% </i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="002" name="alphabet"/>
+															        <i>FD 60% , 30 %Gold, 10% bonds, no direct equity</i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="003" name="alphabet"/>
+															        <i>FD 10%, MF 25%, Direct equity 65%.</i>
+															        </label>
+															    </li>
+															      <li><label className="dropdown-radio">
+															        <input type="radio" value="003" name="alphabet"/>
+															        <i>Direct equity 90%, FD 10%. </i>
+															        </label>
+															    </li>
+															    </ul>
+															  </div>				                                		
+															</div>
+				                                		
+			                                	</div>
+			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+				                                		<p><b>4) What is number of years you have spent in stock market investments</b></p>
+				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															 <div className="dropdown">
+															    <button type="button" 
+															      className="btn customDrop btn-select"
+															      data-toggle="dropdown">Select..</button>
+															    <ul className="dropdown-menu dropdown-menu-select">
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="001" name="alphabet"/>
+															        <i>0-2 years </i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="002" name="alphabet"/>
+															        <i>3-5 years</i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="003" name="alphabet"/>
+															        <i>5 years plus</i>
+															        </label>
+															    </li>
+															      <li><label className="dropdown-radio">
+															        <input type="radio" value="04" name="alphabet"/>
+															        <i>12-15 plus years </i>
+															        </label>
+															    </li>
+															    </ul>
+															  </div>				                                		
+															</div>
+				                                		
+			                                	</div>
+			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+				                                		<p><b>4) What is your biggest drawdown on your entire portfolio ?</b></p>
+				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+															 <div className="dropdown">
+															    <button type="button" 
+															      className="btn customDrop btn-select"
+															      data-toggle="dropdown">Select..</button>
+															    <ul className="dropdown-menu dropdown-menu-select">
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="001" name="alphabet"/>
+															        <i>0 to -25% </i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="002" name="alphabet"/>
+															        <i>-25% to -50%</i>
+															        </label>
+															    </li>
+															    <li><label className="dropdown-radio">
+															        <input type="radio" value="003" name="alphabet"/>
+															        <i>-51% to -75%</i>
+															        </label>
+															    </li>
+															      <li><label className="dropdown-radio">
+															        <input type="radio" value="04" name="alphabet"/>
+															        <i>More than -75%</i>
+															        </label>
+															    </li>
+															    </ul>
+															  </div>				                                		
+															</div>
+				                                		
+			                                	</div>
+			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
+			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.Submit.bind(this)}>Submit</div>
+				                                		
+			                                	</div>
+		                                	</form>
+		                              	</div>
+		                              
+			                          </div>
+									</div>
+									<div className="modal fade in " id="kycModal" role="dialog">
+			                          <div className="modal-dialog customModalRP hight400" >
+		                                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal.bind(this)}> <i className="fa fa-times"></i></button>
+		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		                                	  <form>
+								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
+								              </div>
+								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row">
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Name</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                      <input type="text" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
+								                    </div>
+								                </div>
+								              </div>
+								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row"> 
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Mobile Number</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                      <input type="number" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Mobile Number" ref="unitCost" />
+								                    </div>
+								                </div>
+								              </div>
+								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row">
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Email ID</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                         <input type="email" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Email ID" ref="unitCost" />
+
+								                    </div>
+								                </div>
+								              </div>
+								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row">
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>PAN </label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost"  ref="unitCost" />
+								                    </div>
+								                </div>
+								              </div>
+								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row">
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Adress Proof</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
+								                    </div>
+								                </div>
+								              </div>
+								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right">
+								                      Submit
+								                    </div>
+								                     
+								              </div>
+								            </form>
+		                              	</div>
+		                              
+			                          </div>
+									</div>
+								</div>
+							</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>Safe Heaven Moats</label>
 			  		</div>
@@ -41,21 +285,10 @@ export default class ProductPage extends Component {
 			  				<img src="/images/boat.jpg"/>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-		  				<p >All these stories there rise and tell triggers of growth but at end you would again see HDFC Bank, nestle, gillette , asian paints kind of stocks. They also may fall but only ones that survive. 
-
-							After fall of 2018 in small and midcap , thought has proved more right than any other time. Why such thing happens. 
-
-							There only few companies that have consistency in high return on capital compared to their cost of capital. They generate huge cash and cash flow per share. Their incubation (initial time and competition ) period when industry and company are new entrants to the market is over and they had survived many storms of policies, government changes, crude oil up and down movements, currency changes and bull bear markets, booms and bursts. Now only few emerge as market leaders and winners. 
-
-							These companies however many times appear expensive to analysts. Also habitually investors and analysts have biggest concerns only about temporary current problems.<br/> They ignore these stocks with next quarter slowdown of growth , volumes shrinkage or margin affected due to raw material or slow demamd. But as in markets , only longer lasting valuable information pays off , companies come back with better growth at some a period while remaining so called expensive. People miss it. most People even who know most of things. 
-
-							As in carrom , Master players are identified by a quality that they dont miss the straight or the most obvious shots and they do it so effortlessly but majority of people miss it. Many people expert at cut shots or inclined ones miss it. These stocks in similar way are missed as investors thinking them too obvious. 
-
-							In reality they rise and double every four years or sometimes even more. <br/>
-
-							We do not think that most pms or mutual funds or advisors have beaten these obvious ones over 10 yr or 7 yr period . Though none of these stocks are beyond comprehension of common man. Their products or offerings have entered your home for long. These companies rise along with gdp and per capita incomes of middle class and also reap much better demographic dividend. </p>
+		  				<p>primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.
+							Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</p>
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-5 col-sm-5 col-xs-5 specifications">
+			  		{/*<div className="col-lg-10 col-lg-offset-1 col-md-5 col-sm-5 col-xs-5 specifications">
 			  	
 			  			<label>CAGR Table</label>
 
@@ -83,59 +316,16 @@ export default class ProductPage extends Component {
 						    <td>82.72</td>
 						
 						  </tr>
-						/*  <tr>
-						    <td>P&G Hygiene & Health Care</td>
-						    <td>8.43</td>
-						    <td>15.55</td>
-						    <td>20.89</td>
-						    <td>62.57</td>
-						    <td>65.87</td>
-						    <td>77.57</td>
-						    <td>82.72</td>
 						
-						  </tr>
-						  <tr>
-						    <td>Pidilite Industries</td>
-						    <td>8.43</td>
-						    <td>15.55</td>
-						    <td>20.89</td>
-						    <td>62.57</td>
-						    <td>65.87</td>
-						    <td>77.57</td>
-						    <td>82.72</td>
-						
-						  </tr>
-						   <tr>
-						    <td>Astral Poly Technik</td>
-						    <td>8.43</td>
-						    <td>15.55</td>
-						    <td>20.89</td>
-						    <td>62.57</td>
-						    <td>65.87</td>
-						    <td>77.57</td>
-						    <td>82.72</td>
-						
-						  </tr>
-						    <tr>
-						    <td>Hindustan Unilever</td>
-						    <td>8.43</td>
-						    <td>15.55</td>
-						    <td>20.89</td>
-						    <td>62.57</td>
-						    <td>65.87</td>
-						    <td>77.57</td>
-						    <td>82.72</td>
-						
-						  </tr>*/
 						    )}
 					</table>
 					                          
 
-			  		</div>
+			  		</div>*/}
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
 			  				<p>our Safe heaven portfolio is designed only with such similar stocks where investors can sleep well and enjoy natural growth for next 5-7-10 years. </p>
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-5 col-xs-5 specifications">
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications">
 			  			<label>Product Description</label>
 			  			<ol className="customOl">
 			  				<li>
@@ -164,26 +354,24 @@ export default class ProductPage extends Component {
 								</ul>
 							</li>
 							<li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
+							<li>Read a detailed blog post about this <span className="colored">here </span></li>
 							
 			  			</ol>
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications">
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace">
 			  			<label>Who is it suitable for?</label>
 			  			<ol>
 			  				
+							<li>  Risk can be crash like 2008 or recession economy</li>
 							<li> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
 							<li>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
 			  			</ol>
 			  		</div>
 
-					<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications">
-			  			<label>Pricing</label>
-			  			<ol>
-							<li> Keeping in mind the nature of product & the universe of stocks we manage in our portfolio – We are pricing it at Rs *****/- per year.</li>
-			  			</ol>
-			  		</div>
+					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP pull-right col-lg-2">Buy Now</div>
+			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+			  			<div className="pull-right col-lg-2 enquireNow">Enquire Now</div>
 			  		
 			  		</div>
 

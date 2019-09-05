@@ -10,7 +10,8 @@
 .productContainer{
 	height: auto;
 	padding: 20px;
-	margin: 20px;
+	margin-top:20px;
+	margin-bottom:20px;
 	line-height: 25px;
 	font-family: 'PT Sans', sans-serif;
 	box-shadow: 5px 5px 5px 5px #aaa;
@@ -41,4 +42,29 @@
 	background-color: #201a47;
 	padding: 8px;
 	cursor: pointer;
+}
+.inputContainerRP{
+  padding: 10px;
+  padding-top: 20px;
+  font-family: 'PT Sans', sans-serif !important;
+}
+.inputContainerRP label{
+	color:#333 ;
+	font-size: 14px;
+
+}
+.enquireNow{
+	color:#201a47;
+	font-weight: bold;
+	padding: 10px;
+	cursor: pointer;
+	font-size: 14px;
+}
+.colored{
+		color:#201a47 !important;
+		font-weight: bold;
+		cursor: pointer;
+}
+.lineSpace{
+	line-height: 30px;
 }

@@ -58,20 +58,25 @@ export default class Header extends Component {
                   <div class="collapse navbar-collapse" id="navBar">
                     <ul class="nav navbar-nav navbar-right customUl">
 
+                      
                       <li class="dropdown">
-                        <a href="#">Blogs </a>
-                        
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articulations <span class="caret"></span></a>
+                        <ul class="dropdown-menu customDropdown">
+                          <li className="listItem"><a href="">Blogs</a></li>
+                          <li className="listItem"><a href="">Communique</a></li>
+                     
+                        </ul>
                       </li>
-                      <li class="dropdown">
+                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Offerings <span class="caret"></span></a>
                         <ul class="dropdown-menu customDropdown">
-                          <li className="listItem"><a href="#5gcpm">5GCPM Portfolio</a></li>
-                          <li className="listItem"><a href="#safeHevenMoats">Safe Heavan Stocks</a></li>
-                          <li className="listItem"><a href="#safeHeven">Safe Heavan Stocks + Alpha</a></li>
+                          <li className="listItem"><a href="/#5gcpm">5GCPM Portfolio</a></li>
+                          <li className="listItem"><a href="/#safeHevenMoats">Safe Heavan Stocks</a></li>
+                          <li className="listItem"><a href="/#safeHeven">Safe Heavan Stocks + Alpha</a></li>
                           <li className="listItem"><a href="#">Nifty Algo Tranding</a></li>
                           <li className="listItem"><a href="#">USA Stocks Portfolio</a></li>
-                          <li className="listItem"><a href="#unlistedPre">Unlisted Stocks</a></li>
-                          <li className="listItem"><a href="#uslistedStocks">Multibagger</a></li>
+                          <li className="listItem"><a href="/#unlistedPre">Unlisted Stocks</a></li>
+                          <li className="listItem"><a href="/#uslistedStocks">Multibagger</a></li>
                      
                         </ul>
                       </li>

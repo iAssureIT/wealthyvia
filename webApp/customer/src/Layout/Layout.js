@@ -7,6 +7,7 @@ import ContactUs                                  from "../pages/ContactUs/Conta
 import Footer                        from "../blocks/common/Footer/Footer.js";
 import ProductPage                               from "../pages/ProductPage/ProductPage.js";
 import RiskProfilePage                               from "../pages/RiskProfilePage/RiskProfilePage.js";
+import KycForm                               from "../pages/KycForm/KycForm.js";
 
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
@@ -50,6 +51,7 @@ const WebLayout = () => (
               <Route path="/contact-us"                         exact strict component={ContactUs}  />
               <Route path="/ProductPage"              exact strict component={ProductPage}  />
               <Route path="/RiskProfilePage"              exact strict component={RiskProfilePage}  />
+              <Route path="/KycForm"              exact strict component={KycForm}  />
               <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />

@@ -131,10 +131,10 @@ export default class Footer extends Component {
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
-                    <div className="col-lg-5 col-md-5 col-sm-3 col-xs-4 imgContainer row">
+                    <div className="col-lg-5 col-md-5 col-sm-6 col-xs-7 imgContainer row">
                       <img src="/images/appstore.png"/>
                     </div>
-                    <div className="col-lg-4 col-md-5 col-md-offset-1 col-sm-3 col-xs-4  imgContainer row">
+                    <div className="col-lg-4 col-md-5 col-md-offset-1 col-sm-4 col-xs-3  imgContainer row">
                       <img src="/images/googleplay.png"/>
 
                     </div>
