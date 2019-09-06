@@ -68,3 +68,26 @@
 .lineSpace{
 	line-height: 30px;
 }
+.investBlock{
+	font-size: 18px;
+
+}
+.chartContainer{
+	height: 560px;
+}
+.chartContainer img{
+	height: 100%;
+	width: 100%;
+}
+.nyscContainer{
+	height: 300px;
+}
+.nyscContainer img{
+	height: 100%;
+	width: 100%;
+}
+.userImage{
+	height: 50px;
+	background-color: #333;
+	border-radius: 50%;
+}

@@ -8,6 +8,7 @@ export default class OneAdvice extends Component {
   constructor(props) {
     super(props);
         this.state = {
+          nameOfDiv:"safeHevenMoats"
         };
     }
   ScrollTop(event){
