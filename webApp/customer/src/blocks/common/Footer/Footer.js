@@ -101,11 +101,11 @@ export default class Footer extends Component {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6   col-xs-10 footerDivFirst">
                   <label>Hear about wealthyvia tips, experience & more</label>
-                   <div className="col-lg-8 col-md-8 col-sm-10 col-xs-10 inputContainerEH ">
+                   <div className="col-lg-8 col-md-8 col-sm-10 col-xs-12 inputContainerEH ">
                      <input type="text" className="customInput col-lg-10 col-md-10 col-sm-10 col-xs-10" placeholder="Enter Email Address"/>
                       <span className="searchIcon col-lg-2 col-md-2 col-xs-2 col-sm-2"><i class="fa fa-chevron-right iconS"></i></span>
                     </div>
-                  <div className="col-lg-12 col-md-10 col-mg-offset-1 col-sm-10 col-xs-10">
+                  <div className="col-lg-12 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12">
                     <div className="row">
                       <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
                         <i class="fa fa-facebook"></i>
@@ -131,10 +131,10 @@ export default class Footer extends Component {
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="row">
-                    <div className="col-lg-5 col-md-5 col-sm-6 col-xs-7 imgContainer">
+                    <div className="col-lg-5 col-md-5 col-sm-6 col-xs-5 imgContainer row">
                       <img src="/images/appstore.png"/>
                     </div>
-                    <div className="col-lg-4 col-md-5 col-md-offset-1 col-sm-4 col-xs-3  imgContainer">
+                    <div className="col-lg-4 col-md-5 col-md-offset-1 col-sm-4 col-xs-3  col-xs-offset-2 imgContainer">
                       <img src="/images/googleplay.png"/>
 
                     </div>

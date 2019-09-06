@@ -1,18 +1,57 @@
 import React, { Component } from 'react';
 import $         from 'jquery';
-
 import "./Header.css";
+import axios                from 'axios';
+axios.defaults.baseURL = 'http://gangaexpressapi.iassureit.com';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
 
 export default class Header extends Component {
 
   constructor(props) {
     super(props);
         this.state = {
+                          "userinfo" : {},
+
         };
     }
   ScrollTop(event){
     window.scrollTo(0,0);
   }
+ logout(){
+    // console.log('local', localStorage.setItem('admin_ID', ""))
+    var token = localStorage.setItem('admin_ID', "")
+    // console.log('token', token);
+      if(token!==null){
+      // console.log("Header Token = ",token);
+      // browserHistory.push("/login");
+      // this.props.history.push("/");
+    }
+  }
+  getData(){
+        const userid = localStorage.getItem('admin_ID');
+        axios.get("/api/users/"+userid)
+          .then((response)=>{ 
+              this.setState({
+                  userinfo : response.data
+              })
+          })
+          .catch((error)=>{
+                console.log('error', error);
+          })
+
+        axios.get("/api/carts/get/count/"+userid)
+          .then((response)=>{ 
+              this.setState({
+                  count : response.data
+              })
+              // this.props.redirectToPropertyDetails(response.data)
+          })
+          .catch((error)=>{
+                console.log('error', error);
+          })
+    }
 
   componentDidMount()
   {
@@ -20,6 +59,9 @@ export default class Header extends Component {
   } 
 
   render() {
+        const token = localStorage.getItem("admin_ID");
+        console.log("token",this.state.userinfo);
+
 
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -62,7 +104,7 @@ export default class Header extends Component {
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articulations <span class="caret"></span></a>
                         <ul class="dropdown-menu customDropdown">
-                          <li className="listItem"><a href="">Blogs</a></li>
+                          <li className="listItem"><a href="/BlogViewPage">Blogs</a></li>
                           <li className="listItem"><a href="">Communique</a></li>
                      
                         </ul>
@@ -86,7 +128,11 @@ export default class Header extends Component {
                         
                       </li>
                       <li class="dropdown">
+                      {token ?
+                        <a  onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.profile ? this.state.userinfo.profile.firstName:"superAdmin"}</a>
+                        :
                         <a href="/login">Login/Signup </a>
+                      }
                        
                       </li>
                     </ul>

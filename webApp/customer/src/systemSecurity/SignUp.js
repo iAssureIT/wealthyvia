@@ -203,7 +203,7 @@ class SignUp extends Component {
 		return(
 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
-        		<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-8 col-xs-offset-2 signupPadding signUpFormWrap">
+        		<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-10 col-xs-offset-1 signupPadding signUpFormWrap">
 					<div className="divLoginInWrap">
 						
 						<form id="signUpUser" onSubmit={this.usersignup.bind(this)}>

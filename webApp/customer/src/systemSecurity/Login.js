@@ -54,7 +54,7 @@ class Login extends Component {
 
         console.log("localStorage =",localStorage.getItem('admin_ID'));
         // browserHistory.replace('/');
-        this.props.history.push("/");
+        this.props.history.push("/BlogViewPage");
         window.location.reload();
         // direct.setState({loggedIn:response.data.token})
         if(localStorage==null){
@@ -111,15 +111,15 @@ class Login extends Component {
     return(  
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
         <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-8 col-xs-offset-2 signupPadding loginFormWrap ">
-          <div className="col-lg-12 divLoginInWrap">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divLoginInWrap">
               
             <form id="login" onSubmit={this.userlogin.bind(this)}>
               <br/>
-              <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 ">
+              <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-2 ">
              {/* <h3> hhhh</h3>*/}
               {<h4 className="signInNameTitle "><span className="">Login</span></h4>
               }</div>
-              <div className="col-lg-12 col-md-12 col-sm-12 ">
+              <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
                 <div className="inputContent">
                   <span className="blocking-span noIb">
                     <input type="email" className="col-lg-12 col-md-12 col-xs-12 col-sm-12 oesSignUpForm tmsLoginTextBox" onChange={this.handleChange} ref="loginusername" id="loginusername" name="loginusername" placeholder="" required/>

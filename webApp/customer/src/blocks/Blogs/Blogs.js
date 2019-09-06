@@ -38,7 +38,7 @@ export default class Blogs extends Component {
 
 											Volume increase of 10% in PNG and 9% in CNG in Q1 FY20 on YoY basis.
 
-											Adani Gas along with its JV partner IOC....<a href=""> read more</a></p>
+											Adani Gas along with its JV partner IOC....<a href="/login"> read more</a></p>
 									</div>
 								</div>
 							</div>
@@ -56,7 +56,7 @@ export default class Blogs extends Component {
 
 										These are the words coming from the management of Edelweiss.
 
-										...<a href=""> read more</a></p>
+										...<a href="/login"> read more</a></p>
 									</div>
 								</div>
 							</div>
@@ -74,7 +74,7 @@ export default class Blogs extends Component {
 
 										These are the words coming from the management of Edelweiss.
 
-										...<a href=""> read more</a></p>
+										...<a href="/login"> read more</a></p>
 									</div>
 								</div>
 							</div>

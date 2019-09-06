@@ -105,7 +105,7 @@ export default class BlogViewPage extends Component {
 			  		
 			  		</div>
 			  		<div className="col-lg-12 col-md-10 col-sm-12 col-xs-12 blogData">
-			  			<label className="subHeading">Practicability</label>
+			  			<label className="subHeading">Magic : Management of RISK</label>
 			  			<p>And Though all of above will give better clarity and intuitiveness about an investment ideas still can not guarantee sustainability of profit in the investment and can produce permanent or considerably long term loss in it. Therefore though fundamentally one needs to assure all of above , one also needs to give due consideration and equal or more importance to Risk Management.
 
 						we worked on how one can know that the long term trend or for considerable amount of time trend has been reversed. Not only with technical parameters but also with consideration of categories of investor behaviors in peculiar type of situations, fundamental quantifiable parameters and classification of changes in business perspectives and Market perspective towards that stock , we came up with Management of RISK thesis calling it as Magic combination of above.
