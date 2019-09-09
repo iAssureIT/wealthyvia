@@ -95,7 +95,7 @@ export default class ProductPage extends Component {
         });
       this.setState({
         "name"             : "",
-        "panNumber"      : "",
+        "panNumber"     	: "",
         "addressProof"      : "",
         "email"            : "",
         "contactNumber"    : "",
@@ -105,10 +105,15 @@ export default class ProductPage extends Component {
   	}
 
 	closeModal(event){
+	
+	}
+	CloseKycModal(){
 	$("#kycModal").removeClass('in');
+	$(".modal-backdrop").remove();
+	console.log("In")
+	$("body").removeClass("modal-open");
 
 	}
-
 	SubmitFirst(event){
   	event.preventDefault();
 	  	$("#myModal").hide();
@@ -211,7 +216,7 @@ export default class ProductPage extends Component {
 		return (
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 						<div className="row">
-			  		{/*	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -363,7 +368,7 @@ export default class ProductPage extends Component {
 									</div>
 									<div className="modal fade in " id="kycModal" role="dialog">
 			                          <div className="modal-dialog customModalRP hight400" >
-		                                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal.bind(this)}> <i className="fa fa-times"></i></button>
+		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                                	  <form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
@@ -432,7 +437,7 @@ export default class ProductPage extends Component {
 			                          </div>
 									</div>
 								</div>
-							</div>*/}
+							</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>Safe Heaven Moats</label>
 			  		</div>
@@ -510,7 +515,7 @@ export default class ProductPage extends Component {
 		return( 
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 						<div className="row">
-			  			{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -662,7 +667,7 @@ export default class ProductPage extends Component {
 									</div>
 									<div className="modal fade in " id="kycModal" role="dialog">
 			                          <div className="modal-dialog customModalRP hight400" >
-		                                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal.bind(this)}> <i className="fa fa-times"></i></button>
+		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                                	  <form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
@@ -731,7 +736,7 @@ export default class ProductPage extends Component {
 			                          </div>
 									</div>
 								</div>
-						</div>*/}
+						</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>5GCPM</label>
 			  		</div>
@@ -811,7 +816,7 @@ export default class ProductPage extends Component {
 		return( 
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 						<div className="row">
-			  		{/*	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -963,7 +968,7 @@ export default class ProductPage extends Component {
 									</div>
 									<div className="modal fade in " id="kycModal" role="dialog">
 			                          <div className="modal-dialog customModalRP hight400" >
-		                                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal.bind(this)}> <i className="fa fa-times"></i></button>
+		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                                	  <form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
@@ -1032,7 +1037,7 @@ export default class ProductPage extends Component {
 			                          </div>
 									</div>
 								</div>
-							</div>*/}
+							</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>Safe Heaven Stocks + Alpha</label>
 			  		</div>
@@ -1275,7 +1280,7 @@ export default class ProductPage extends Component {
 									</div>
 									<div className="modal fade in " id="kycModal" role="dialog">
 			                          <div className="modal-dialog customModalRP hight400" >
-		                                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal.bind(this)}> <i className="fa fa-times"></i></button>
+		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                                	  <form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
