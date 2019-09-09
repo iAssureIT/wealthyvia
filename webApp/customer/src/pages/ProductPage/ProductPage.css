@@ -396,6 +396,7 @@ font-family: 'PT Sans', sans-serif;
   font-weight: bold;
   cursor:pointer;
   font-size: 14px;
-
-
+}
+.hight450{
+  height: 400px !important;
 }

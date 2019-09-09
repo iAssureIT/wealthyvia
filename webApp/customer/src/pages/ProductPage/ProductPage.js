@@ -14,11 +14,16 @@ export default class ProductPage extends Component {
 	    	productDetailsArray:[],
 	    	  	"name"             : "",
         		"panNumber"      : "",
-        		"addressProof"      : "",
         		"email"            : "",
+        		"nameModal"             : "",
+        		"panNumberModal"      : "",
+        		"emailModal"            : "",
+        		"addressProof"      : "",
         		"contactNumber"    : "",
 	    		"fields"        : {},
-      			"errors"        : {},
+      			"errors"        : {},  
+            "fields1"        : {},
+            "errors1"        : {},
 	    };
   	}  
   	componentDidMount()
@@ -50,10 +55,13 @@ export default class ProductPage extends Component {
 
     this.setState({
       "name"             : this.refs.name.value,
+      "contactNumber"    : this.refs.contactNumber.value,
+      "email"            : this.refs.email.value,
+       "nameModal"             : this.refs.nameModal.value,
+      "contactNumberModal"    : this.refs.contactNumberModal.value,
+      "emailModal"            : this.refs.emailModal.value,
       "panNumber"      : this.refs.panNumber.value,
       "addressProof"      : this.refs.addressProof.value,
-      "email"            : this.refs.email.value,
-      "contactNumber"    : this.refs.contactNumber.value,
     });
        let fields = this.state.fields;
     fields[event.target.name] = event.target.value;
@@ -67,10 +75,23 @@ export default class ProductPage extends Component {
         errors: errors
       });
     }
+      let fields1 = this.state.fields1;
+    fields1[event.target.name] = event.target.value;
+    this.setState({
+      fields1
+    });
+    if (this.validateFormModal() && this.validateFormReqModal()) {
+      let errors1 = {};
+      errors1[event.target.name] = "";
+      this.setState({
+        errors1: errors1
+      });
+    }
 
   }
 
 	Submit(event){
+		event.preventDefault();
 
 	if (this.validateForm() && this.validateFormReq()) {
      
@@ -83,36 +104,74 @@ export default class ProductPage extends Component {
 
     }
       let fields = {};
-      fields["name"]            = "";
       fields["panNumber"]     = "";
       fields["addressProof"]     = "";
+      fields["name"]            = "";
       fields["email"]           = "";
       fields["contactNumber"]   = "";
-
-      swal({
-          title : "Congratulation....!",
-          text  : "Your response submitted sucessfully"
-        });
+    
+        swal("Congrats..!", "Your data is submitted sucessfully!", "success")
+ $("#kycModal").hide();
+    $("#kycModal").removeClass('in');
+      $(".modal-backdrop").remove();
+  console.log("In")
+  $("body").removeClass("modal-open");
       this.setState({
-        "name"             : "",
         "panNumber"     	: "",
         "addressProof"      : "",
+        "name"             : "",
         "email"            : "",
         "contactNumber"    : "",
+       
         "fields"           : fields
       });
+      
     }
+
   	}
 
-	closeModal(event){
-	
-	}
 	CloseKycModal(){
-	$("#kycModal").removeClass('in');
+   $("#kycModal").hide();
+    $("#kycModal").removeClass('in');
 	$(".modal-backdrop").remove();
 	console.log("In")
 	$("body").removeClass("modal-open");
 
+	}
+	SubmitEnquire(event){
+	event.preventDefault();
+      console.log("In",this.validateFormReqModal() )
+      console.log("In",this.validateFormModal() )
+
+
+	if (this.validateFormModal() && this.validateFormReqModal()) {
+     
+      var dataArray={
+     
+       "nameModal"             : this.refs.nameModal.value,
+      "contactNumberModal"    : this.refs.contactNumberModal.value,
+      "emailModal"            : this.refs.emailModal.value,
+
+    }
+      let fields1 = {};
+       fields1["nameModal"]            = "";
+      fields1["emailModal"]           = "";
+      fields1["contactNumberModal"]   = "";
+        swal("Thank You!", "Our tem will get in touch with you shortly..!", "success")
+  $("#EnquireModal").hide();
+    $("#EnquireModal").removeClass('in');
+      $(".modal-backdrop").remove();
+  console.log("In")
+  $("body").removeClass("modal-open");
+      	
+      this.setState({
+       
+         "nameModal"             : "",
+        "emailModal"            : "",
+        "contactNumberModal"    : "",
+        "fields1"           : fields1
+      });
+    }
 	}
 	SubmitFirst(event){
   	event.preventDefault();
@@ -129,7 +188,7 @@ export default class ProductPage extends Component {
       if (!fields["name"]) {
         formIsValid = false;
         errors["name"] = "This field is required.";
-      }     
+      }   
       if (!fields["panNumber"]) {
         formIsValid = false;
         errors["panNumber"] = "This field is required.";
@@ -154,6 +213,31 @@ export default class ProductPage extends Component {
       });
       return formIsValid;
   }
+    validateFormReqModal() {
+    let fields = this.state.fields1;
+    let errors = {};
+    let formIsValid = true;
+      
+        if (!fields["nameModal"]) {
+        formIsValid = false;
+        errors["nameModal"] = "This field is required.";
+      }     
+     
+        if (!fields["emailModal"]) {
+        formIsValid = false;
+        errors["emailModal"] = "This field is required.";
+      }          
+   
+       if (!fields["contactNumberModal"]) {
+        formIsValid = false;
+        errors["contactNumberModal"] = "This field is required.";
+      }
+       
+      this.setState({
+        errors1: errors
+      });
+      return formIsValid;
+  }
   validateForm() {
     let fields = this.state.fields;
     let errors = {};
@@ -172,12 +256,38 @@ export default class ProductPage extends Component {
           errors["contactNumber"] = "Please enter valid mobile no.";
         }
       }
+        
      
       this.setState({
         errors: errors
       });
       return formIsValid;
-  }
+}
+ validateFormModal() {
+    let fields = this.state.fields1;
+    let errors = {};
+    let formIsValid = true;
+      if (typeof fields["emailModal"] !== "undefined") {
+        //regular expression for email validation
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!pattern.test(fields["emailModal"])) {
+          formIsValid = false;
+          errors["emailModal"] = "Please enter valid email-ID.";
+        }
+      }
+    
+      if (typeof fields["contactNumberModal"] !== "undefined") {
+        if (!fields["contactNumberModal"].match(/^[0-9]{10}$/)) {
+          formIsValid = false;
+          errors["contactNumberModal"] = "Please enter valid mobile no.";
+        }
+      }
+     
+      this.setState({
+        errors1: errors
+      });
+      return formIsValid;
+}
   isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : evt.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57)  && (charCode < 96 || charCode > 105))
@@ -358,7 +468,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
-			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.Submit.bind(this)}>Submit</div>
+			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Submit</div>
 				                                		
 			                                	</div>
 		                                	</form>
@@ -370,7 +480,7 @@ export default class ProductPage extends Component {
 			                          <div className="modal-dialog customModalRP hight400" >
 		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                                	  <form>
+		                                	<form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
 								              </div>
@@ -380,9 +490,13 @@ export default class ProductPage extends Component {
 								                      <label>Name</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="text" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
+								                      <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+								                     <div className="errorMsg">{this.state.errors.name}</div>
+
 								                    </div>
+
 								                </div>
+
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row"> 
@@ -390,7 +504,9 @@ export default class ProductPage extends Component {
 								                      <label>Mobile Number</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="number" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Mobile Number" ref="unitCost" />
+								                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumber" placeholder="Enter Mobile Number" ref="contactNumber" value={this.state.contactNumber} onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.contactNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
@@ -400,7 +516,8 @@ export default class ProductPage extends Component {
 								                      <label>Email ID</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="email" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Email ID" ref="unitCost" />
+								                         <input type="email" className="customInputKF inputBox nameParts" name="email" placeholder="Enter Email ID" ref="email" value={this.state.email}  onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.email}</div>
 
 								                    </div>
 								                </div>
@@ -408,25 +525,29 @@ export default class ProductPage extends Component {
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>PAN </label>
+								                      <label>PAN (JPEG/PNG/PDF) </label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost"  ref="unitCost" />
+								                         <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.handleChange.bind(this)} />
+								                    	 <div className="errorMsg">{this.state.errors.panNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Adress Proof</label>
+								                      <label>Adress Proof (JPEG/PNG/PDF)</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
-								                    </div>
+								                         <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.handleChange.bind(this)} />
+								                   		<div className="errorMsg">{this.state.errors.addressProof}</div>
+ 
+								                   </div>
 								                </div>
 								              </div>
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
-								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right">
+								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.Submit.bind(this)}>
 								                      Submit
 								                    </div>
 								                     
@@ -435,6 +556,63 @@ export default class ProductPage extends Component {
 		                              	</div>
 		                              
 			                          </div>
+									</div>
+										<div className="modal fade in " id="EnquireModal" role="dialog">
+                        <div className="modal-dialog customModalRP hight450" >
+                            <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <form>
+								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+								                  <h4 className="formNameTitle "><span className="">Enquire Now</span></h4>
+								              </div>
+								       		    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row">
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Name</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                      <input type="text" className="customInputKF inputBox nameParts" id="nameModal" name="nameModal" placeholder="Enter Name" ref="nameModal" value={this.state.nameModal} onChange={this.handleChange.bind(this)}/>
+								                     <div className="errorMsg">{this.state.errors1.nameModal}</div>
+
+								                    </div>
+
+								                </div>
+
+								              </div>
+								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row"> 
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Mobile Number</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumberModal" placeholder="Enter Mobile Number" ref="contactNumberModal" value={this.state.contactNumberModal} onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors1.contactNumberModal}</div>
+
+								                    </div>
+								                </div>
+								              </div>
+								                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+								                <div className="row">
+								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+								                      <label>Email ID</label>
+								                    </div>
+								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+								                         <input type="email" className="customInputKF inputBox nameParts" name="emailModal" placeholder="Enter Email ID" ref="emailModal" value={this.state.emailModal}  onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors1.emailModal}</div>
+
+								                    </div>
+								                </div>
+								              </div>
+								               
+								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
+								                      Submit
+								                    </div>
+								                     
+								              </div>
+								            </form>
+		                      </div>
+			                 </div>
 									</div>
 								</div>
 							</div>
@@ -501,7 +679,7 @@ export default class ProductPage extends Component {
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className="pull-right col-lg-2 enquireNow">Enquire Now</div>
+			  			<div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -657,7 +835,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
-			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.Submit.bind(this)}>Submit</div>
+			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Submit</div>
 				                                		
 			                                	</div>
 		                                	</form>
@@ -669,7 +847,7 @@ export default class ProductPage extends Component {
 			                          <div className="modal-dialog customModalRP hight400" >
 		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                                	  <form>
+		                                	<form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
 								              </div>
@@ -679,9 +857,13 @@ export default class ProductPage extends Component {
 								                      <label>Name</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="text" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
+								                      <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+								                     <div className="errorMsg">{this.state.errors.name}</div>
+
 								                    </div>
+
 								                </div>
+
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row"> 
@@ -689,7 +871,9 @@ export default class ProductPage extends Component {
 								                      <label>Mobile Number</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="number" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Mobile Number" ref="unitCost" />
+								                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumber" placeholder="Enter Mobile Number" ref="contactNumber" value={this.state.contactNumber} onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.contactNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
@@ -699,7 +883,8 @@ export default class ProductPage extends Component {
 								                      <label>Email ID</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="email" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Email ID" ref="unitCost" />
+								                         <input type="email" className="customInputKF inputBox nameParts" name="email" placeholder="Enter Email ID" ref="email" value={this.state.email}  onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.email}</div>
 
 								                    </div>
 								                </div>
@@ -707,25 +892,29 @@ export default class ProductPage extends Component {
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>PAN </label>
+								                      <label>PAN (JPEG/PNG/PDF) </label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost"  ref="unitCost" />
+								                         <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.handleChange.bind(this)} />
+								                    	 <div className="errorMsg">{this.state.errors.panNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Adress Proof</label>
+								                      <label>Adress Proof (JPEG/PNG/PDF)</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
-								                    </div>
+								                         <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.handleChange.bind(this)} />
+								                   		<div className="errorMsg">{this.state.errors.addressProof}</div>
+ 
+								                   </div>
 								                </div>
 								              </div>
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
-								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right">
+								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.Submit.bind(this)}>
 								                      Submit
 								                    </div>
 								                     
@@ -735,6 +924,63 @@ export default class ProductPage extends Component {
 		                              
 			                          </div>
 									</div>
+                    <div className="modal fade in " id="EnquireModal" role="dialog">
+                        <div className="modal-dialog customModalRP hight450" >
+                            <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <form>
+                              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+                                  <h4 className="formNameTitle "><span className="">Enquire Now</span></h4>
+                              </div>
+                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Name</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="text" className="customInputKF inputBox nameParts" id="nameModal" name="nameModal" placeholder="Enter Name" ref="nameModal" value={this.state.nameModal} onChange={this.handleChange.bind(this)}/>
+                                     <div className="errorMsg">{this.state.errors1.nameModal}</div>
+
+                                    </div>
+
+                                </div>
+
+                              </div>
+                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row"> 
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Mobile Number</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumberModal" placeholder="Enter Mobile Number" ref="contactNumberModal" value={this.state.contactNumberModal} onChange={this.handleChange.bind(this)}/>
+                                    <div className="errorMsg">{this.state.errors1.contactNumberModal}</div>
+
+                                    </div>
+                                </div>
+                              </div>
+                                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Email ID</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                         <input type="email" className="customInputKF inputBox nameParts" name="emailModal" placeholder="Enter Email ID" ref="emailModal" value={this.state.emailModal}  onChange={this.handleChange.bind(this)}/>
+                                    <div className="errorMsg">{this.state.errors1.emailModal}</div>
+
+                                    </div>
+                                </div>
+                              </div>
+                               
+                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+                                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
+                                      Submit
+                                    </div>
+                                     
+                              </div>
+                            </form>
+                          </div>
+                       </div>
+                  </div>
 								</div>
 						</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
@@ -802,7 +1048,7 @@ export default class ProductPage extends Component {
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className="pull-right col-lg-2 enquireNow">Enquire Now</div>
+              <div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -958,7 +1204,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
-			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.Submit.bind(this)}>Submit</div>
+			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Submit</div>
 				                                		
 			                                	</div>
 		                                	</form>
@@ -970,7 +1216,7 @@ export default class ProductPage extends Component {
 			                          <div className="modal-dialog customModalRP hight400" >
 		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                                	  <form>
+		                                	<form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
 								              </div>
@@ -980,9 +1226,13 @@ export default class ProductPage extends Component {
 								                      <label>Name</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="text" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
+								                      <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+								                     <div className="errorMsg">{this.state.errors.name}</div>
+
 								                    </div>
+
 								                </div>
+
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row"> 
@@ -990,7 +1240,9 @@ export default class ProductPage extends Component {
 								                      <label>Mobile Number</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="number" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Mobile Number" ref="unitCost" />
+								                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumber" placeholder="Enter Mobile Number" ref="contactNumber" value={this.state.contactNumber} onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.contactNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
@@ -1000,7 +1252,8 @@ export default class ProductPage extends Component {
 								                      <label>Email ID</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="email" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Email ID" ref="unitCost" />
+								                         <input type="email" className="customInputKF inputBox nameParts" name="email" placeholder="Enter Email ID" ref="email" value={this.state.email}  onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.email}</div>
 
 								                    </div>
 								                </div>
@@ -1008,25 +1261,29 @@ export default class ProductPage extends Component {
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>PAN </label>
+								                      <label>PAN (JPEG/PNG/PDF) </label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost"  ref="unitCost" />
+								                         <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.handleChange.bind(this)} />
+								                    	 <div className="errorMsg">{this.state.errors.panNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Adress Proof</label>
+								                      <label>Adress Proof (JPEG/PNG/PDF)</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
-								                    </div>
+								                         <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.handleChange.bind(this)} />
+								                   		<div className="errorMsg">{this.state.errors.addressProof}</div>
+ 
+								                   </div>
 								                </div>
 								              </div>
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
-								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right">
+								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.Submit.bind(this)}>
 								                      Submit
 								                    </div>
 								                     
@@ -1036,6 +1293,63 @@ export default class ProductPage extends Component {
 		                              
 			                          </div>
 									</div>
+                    <div className="modal fade in " id="EnquireModal" role="dialog">
+                        <div className="modal-dialog customModalRP hight450" >
+                            <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <form>
+                              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+                                  <h4 className="formNameTitle "><span className="">Enquire Now</span></h4>
+                              </div>
+                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Name</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="text" className="customInputKF inputBox nameParts" id="nameModal" name="nameModal" placeholder="Enter Name" ref="nameModal" value={this.state.nameModal} onChange={this.handleChange.bind(this)}/>
+                                     <div className="errorMsg">{this.state.errors1.nameModal}</div>
+
+                                    </div>
+
+                                </div>
+
+                              </div>
+                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row"> 
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Mobile Number</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumberModal" placeholder="Enter Mobile Number" ref="contactNumberModal" value={this.state.contactNumberModal} onChange={this.handleChange.bind(this)}/>
+                                    <div className="errorMsg">{this.state.errors1.contactNumberModal}</div>
+
+                                    </div>
+                                </div>
+                              </div>
+                                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Email ID</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                         <input type="email" className="customInputKF inputBox nameParts" name="emailModal" placeholder="Enter Email ID" ref="emailModal" value={this.state.emailModal}  onChange={this.handleChange.bind(this)}/>
+                                    <div className="errorMsg">{this.state.errors1.emailModal}</div>
+
+                                    </div>
+                                </div>
+                              </div>
+                               
+                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+                                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
+                                      Submit
+                                    </div>
+                                     
+                              </div>
+                            </form>
+                          </div>
+                       </div>
+                  </div>
 								</div>
 							</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
@@ -1114,7 +1428,7 @@ export default class ProductPage extends Component {
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className="pull-right col-lg-2 enquireNow">Enquire Now</div>
+              <div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -1282,7 +1596,7 @@ export default class ProductPage extends Component {
 			                          <div className="modal-dialog customModalRP hight400" >
 		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                                	  <form>
+		                                	<form>
 								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
 								              </div>
@@ -1359,6 +1673,63 @@ export default class ProductPage extends Component {
 		                              
 			                          </div>
 									</div>
+                    <div className="modal fade in " id="EnquireModal" role="dialog">
+                        <div className="modal-dialog customModalRP hight450" >
+                            <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <form>
+                              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+                                  <h4 className="formNameTitle "><span className="">Enquire Now</span></h4>
+                              </div>
+                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Name</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="text" className="customInputKF inputBox nameParts" id="nameModal" name="nameModal" placeholder="Enter Name" ref="nameModal" value={this.state.nameModal} onChange={this.handleChange.bind(this)}/>
+                                     <div className="errorMsg">{this.state.errors1.nameModal}</div>
+
+                                    </div>
+
+                                </div>
+
+                              </div>
+                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row"> 
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Mobile Number</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumberModal" placeholder="Enter Mobile Number" ref="contactNumberModal" value={this.state.contactNumberModal} onChange={this.handleChange.bind(this)}/>
+                                    <div className="errorMsg">{this.state.errors1.contactNumberModal}</div>
+
+                                    </div>
+                                </div>
+                              </div>
+                                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+                                      <label>Email ID</label>
+                                    </div>
+                                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+                                         <input type="email" className="customInputKF inputBox nameParts" name="emailModal" placeholder="Enter Email ID" ref="emailModal" value={this.state.emailModal}  onChange={this.handleChange.bind(this)}/>
+                                    <div className="errorMsg">{this.state.errors1.emailModal}</div>
+
+                                    </div>
+                                </div>
+                              </div>
+                               
+                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+                                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
+                                      Submit
+                                    </div>
+                                     
+                              </div>
+                            </form>
+                          </div>
+                       </div>
+                  </div>
 								</div>
 							</div>
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
@@ -1407,7 +1778,7 @@ export default class ProductPage extends Component {
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
 			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className="pull-right col-lg-2 enquireNow">Enquire Now</div>
+              <div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 

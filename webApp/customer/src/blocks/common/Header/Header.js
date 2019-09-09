@@ -109,7 +109,7 @@ export default class Header extends Component {
                         :
                           <li className="listItem"><a href="/login">Arthavrudhhi Blogs</a></li>
                       }
-                          <li className="listItem"><a href="">Communque</a></li>
+                          <li className="listItem"><a href="">Communique</a></li>
                      
                         </ul>
                       </li>
@@ -120,8 +120,8 @@ export default class Header extends Component {
                           <li className="listItem"><a href="/#safeHevenMoats">Safe Heavan Stocks</a></li>
                           <li className="listItem"><a href="/#safeHeven">Safe Heavan Stocks + Alpha</a></li>
                           <li className="listItem"><a href="#">Nifty Algo Tranding</a></li>
-                          <li className="listItem"><a href="#">USA Stocks Portfolio</a></li>
-                          <li className="listItem"><a href="/#unlistedPre">Unlisted Stocks</a></li>
+                          <li className="listItem"><a href="/#unlistedPre">USA Stocks Portfolio</a></li>
+                          <li className="listItem"><a href="/#uslistedStocks">Unlisted Stocks</a></li>
                           <li className="listItem"><a href="/#uslistedStocks">Multibagger</a></li>
                      
                         </ul>
