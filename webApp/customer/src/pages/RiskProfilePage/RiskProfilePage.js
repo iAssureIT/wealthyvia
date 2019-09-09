@@ -27,11 +27,13 @@ export default class RiskProfilePage extends Component {
 
 		  //retrieve the checked value, if needed in page 
 		  var thisvalue = dropdown.find( checked ).val();
+    console.log('Selected value=', thisvalue)
+
 		});
   	}
-  	 onOptionSelect = (value) => {
+  /*	 onOptionSelect = (value) => {
     console.log('Selected value=', value)
-  }
+  }*/
   Submit(event){
   	event.preventDefault();
   	$("#myModal").hide();

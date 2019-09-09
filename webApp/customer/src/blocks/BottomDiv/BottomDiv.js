@@ -57,7 +57,7 @@ export default class BottomDiv extends Component {
 
 			  		</div>
 				</div></a>
-				<a href="#unlistedPre"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+				<a href="#uslistedStocks"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
 			  			<img src="/images/ab2.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -72,7 +72,7 @@ export default class BottomDiv extends Component {
 			  		</div>
 				</div></a>
 					
-				<a href="#uslistedStocks"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+				<a href="#unlistedPre"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ceo.png"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">

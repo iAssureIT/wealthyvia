@@ -104,7 +104,7 @@ background-color: #5f9c30 !important;
     cursor: pointer;
 }
 .mt5{
-      background-color: #5f9c30;
+    background-color: #5f9c30;
     color: #fff;
     display: inline-block;
     padding-left: 6px;
@@ -115,7 +115,7 @@ background-color: #5f9c30 !important;
     margin-top: 30px !important;
 }
 .customDropdown{
-    min-width: 600px !important;
+    min-width: 250px !important;
     padding-left: 15px !important;
     font-family: 'PT Sans', sans-serif;
 

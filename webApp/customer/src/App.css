@@ -175,3 +175,8 @@ a .active{
 .noPadding{
 padding:0px !important;
 }
+.errorMsg{
+      font-family: 'PT Sans', sans-serif;
+
+  color:#f00 !important;
+}

@@ -104,8 +104,12 @@ export default class Header extends Component {
                       <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articulations <span class="caret"></span></a>
                         <ul class="dropdown-menu customDropdown">
-                          <li className="listItem"><a href="/BlogViewPage">Blogs</a></li>
-                          <li className="listItem"><a href="">Communique</a></li>
+                           {token ?
+                          <li className="listItem"><a href="/BlogViewPage">Arthavrudhhi Blogs</a></li>
+                        :
+                          <li className="listItem"><a href="/login">Arthavrudhhi Blogs</a></li>
+                      }
+                          <li className="listItem"><a href="">Communque</a></li>
                      
                         </ul>
                       </li>
@@ -129,7 +133,7 @@ export default class Header extends Component {
                       </li>
                       <li class="dropdown">
                       {token ?
-                        <a  onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.profile ? this.state.userinfo.profile.firstName:"superAdmin"}</a>
+                        <a  onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.profile ? this.state.userinfo.profile.firstName:""}</a>
                         :
                         <a href="/login">Login/Signup </a>
                       }

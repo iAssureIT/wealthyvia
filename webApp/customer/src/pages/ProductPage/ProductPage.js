@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ 				 			from 'jquery';
 import Invest        				         from "../../blocks/Invest/Invest.js";
+import swal               from 'sweetalert';
 
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
@@ -10,29 +11,191 @@ export default class ProductPage extends Component {
 	constructor(props){
     super(props);
 	    this.state = {
-	    	productDetailsArray:[]
-	    	
+	    	productDetailsArray:[],
+	    	  	"name"             : "",
+        		"panNumber"      : "",
+        		"addressProof"      : "",
+        		"email"            : "",
+        		"contactNumber"    : "",
+	    		"fields"        : {},
+      			"errors"        : {},
 	    };
   	}  
-  	componentDidMount(){
-		
+  	componentDidMount()
+  	{
+		      console.log('Selected value=',$('.dropdown-radio').find('input').change())
+  		$('.dropdown-radio').find('input').change(function() {
+		  var dropdown = $(this).closest('.dropdown');
+		  var radioname = $(this).attr('name');
+		  var checked = 'input[name=' + radioname + ']:checked';
+		  
+		  //update the text
+		  var checkedtext = $(checked).closest('.dropdown-radio').text();
+		  dropdown.find('button').text( checkedtext );
+
+		  //retrieve the checked value, if needed in page 
+		  var thisvalue = dropdown.find( checked ).val();
+
+		});
+
 	console.log(this.props.match.params.divId);
 	this.setState({
 		divID : this.props.match.params.divId,
 	})
-
+  	}
+  	 onOptionSelect = (value) => {
+    console.log('Selected value=', value)	
 	}
-	  Submit(event){
-  	event.preventDefault();
-  	$("#myModal").hide();
-	$("#myModal").removeClass('in');
-	$("#kycModal").show();
-	$("#kycModal").addClass('in');
+  handleChange(event){
+
+    this.setState({
+      "name"             : this.refs.name.value,
+      "panNumber"      : this.refs.panNumber.value,
+      "addressProof"      : this.refs.addressProof.value,
+      "email"            : this.refs.email.value,
+      "contactNumber"    : this.refs.contactNumber.value,
+    });
+       let fields = this.state.fields;
+    fields[event.target.name] = event.target.value;
+    this.setState({
+      fields
+    });
+    if (this.validateForm() && this.validateFormReq()) {
+      let errors = {};
+      errors[event.target.name] = "";
+      this.setState({
+        errors: errors
+      });
+    }
+
   }
+
+	Submit(event){
+
+	if (this.validateForm() && this.validateFormReq()) {
+     
+      var dataArray={
+       "name"            : this.refs.name.value,
+      "addressProof"      : this.refs.addressProof.value,
+      "panNumber"      : this.refs.panNumber.value,
+      "email"            : this.refs.email.value,
+      "contactNumber"    : this.refs.contactNumber.value,
+
+    }
+      let fields = {};
+      fields["name"]            = "";
+      fields["panNumber"]     = "";
+      fields["addressProof"]     = "";
+      fields["email"]           = "";
+      fields["contactNumber"]   = "";
+
+      swal({
+          title : "Congratulation....!",
+          text  : "Your response submitted sucessfully"
+        });
+      this.setState({
+        "name"             : "",
+        "panNumber"      : "",
+        "addressProof"      : "",
+        "email"            : "",
+        "contactNumber"    : "",
+        "fields"           : fields
+      });
+    }
+  	}
+
 	closeModal(event){
 	$("#kycModal").removeClass('in');
 
 	}
+
+	SubmitFirst(event){
+  	event.preventDefault();
+	  	$("#myModal").hide();
+		$("#myModal").removeClass('in');
+		$("#kycModal").show();
+		$("#kycModal").addClass('in');
+	}
+
+   validateFormReq() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+      if (!fields["name"]) {
+        formIsValid = false;
+        errors["name"] = "This field is required.";
+      }     
+      if (!fields["panNumber"]) {
+        formIsValid = false;
+        errors["panNumber"] = "This field is required.";
+      }
+      if (!fields["addressProof"]) {
+        formIsValid = false;
+        errors["addressProof"] = "This field is required.";
+      }
+   
+      if (!fields["email"]) {
+        formIsValid = false;
+        errors["email"] = "This field is required.";
+      }          
+   
+       if (!fields["contactNumber"]) {
+        formIsValid = false;
+        errors["contactNumber"] = "This field is required.";
+      }
+       
+      this.setState({
+        errors: errors
+      });
+      return formIsValid;
+  }
+  validateForm() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+      if (typeof fields["email"] !== "undefined") {
+        //regular expression for email validation
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!pattern.test(fields["email"])) {
+          formIsValid = false;
+          errors["email"] = "Please enter valid email-ID.";
+        }
+      }
+      if (typeof fields["contactNumber"] !== "undefined") {
+        if (!fields["contactNumber"].match(/^[0-9]{10}$/)) {
+          formIsValid = false;
+          errors["contactNumber"] = "Please enter valid mobile no.";
+        }
+      }
+     
+      this.setState({
+        errors: errors
+      });
+      return formIsValid;
+  }
+  isNumberKey(evt){
+    var charCode = (evt.which) ? evt.which : evt.keyCode
+    if (charCode > 31 && (charCode < 48 || charCode > 57)  && (charCode < 96 || charCode > 105))
+    {
+    evt.preventDefault();
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  isTextKey(evt)  {
+   var charCode = (evt.which) ? evt.which : evt.keyCode;
+   if (charCode!=189 && charCode > 32 && (charCode < 65 || charCode > 90) )
+   {
+    evt.preventDefault();
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+
   render() {
   		const options = [
   { label: '15% is fine with me but don’t wanna lose at all . Safety first . Long term.', value: 1},
@@ -41,13 +204,14 @@ export default class ProductPage extends Component {
   { label: 'Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.', value: 4},
   { label: 'I wanna allocate some portion to big tech giants like amazon facebook types too.', value: 5},
   { label: 'I am day trader, daily play with markets. I want continuous smart trades.', value: 6},
+
 ];
 	if(this.state.divID == "safeHevenMoats")
 	{
 		return (
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  		{/*	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -268,7 +432,7 @@ export default class ProductPage extends Component {
 			                          </div>
 									</div>
 								</div>
-							</div>
+							</div>*/}
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>Safe Heaven Moats</label>
 			  		</div>
@@ -282,40 +446,7 @@ export default class ProductPage extends Component {
 		  				<p>primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.
 							Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</p>
 			  		</div>
-			  		{/*<div className="col-lg-10 col-lg-offset-1 col-md-5 col-sm-5 col-xs-5 specifications">
-			  	
-			  			<label>CAGR Table</label>
-
-			  		<table className="customTablePP">
-						  <tr>
-						    <th>Stock Name</th>
-						    <th>YTD</th>
-						    <th>1-Month</th>
-						    <th>3-Month</th>
-						    <th>1-Year</th>
-						    <th>3-Year</th>
-						    <th>5-Year</th>
-						    <th>10-Year</th>
-						  </tr>	 
-						  {this.state.productDetailsArray.map((data,index) =>
-
-						  <tr>
-						    <td>Bajaj Finance</td>
-						    <td>17.73</td>
-						    <td>15.55</td>
-						    <td>20.89</td>
-						    <td>62.57</td>
-						    <td>65.87</td>
-						    <td>77.57</td>
-						    <td>82.72</td>
-						
-						  </tr>
-						
-						    )}
-					</table>
-					                          
-
-			  		</div>*/}
+			  		
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
 			  				<p>our Safe heaven portfolio is designed only with such similar stocks where investors can sleep well and enjoy natural growth for next 5-7-10 years. </p>
 			  		</div>
@@ -379,7 +510,7 @@ export default class ProductPage extends Component {
 		return( 
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -600,13 +731,13 @@ export default class ProductPage extends Component {
 			                          </div>
 									</div>
 								</div>
-							</div>
+						</div>*/}
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>5GCPM</label>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
-			  			<p> As Dhirubhai Ambani aptly given the tagline “Growth is Life” for his Reliance Empire – Our framework first looks for growth opportunities. Over the last many years analyzing the companies & closely tracking the up  & down cycles we had observed that there are 5 different types of Growth drivers for any company to make it BIG into the next league.</p>
-			  		</div>
+{/*			  			<p> A method based model Portfolio by Arthavruddhi Capital</p>
+*/}			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 ">
 			  			<label className="investBlock">5GCPM  – A method based model Portfolio by Wealthyvia</label>
 			  			<Invest/>
@@ -680,7 +811,7 @@ export default class ProductPage extends Component {
 		return( 
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  		{/*	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -901,7 +1032,7 @@ export default class ProductPage extends Component {
 			                          </div>
 									</div>
 								</div>
-							</div>
+							</div>*/}
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>Safe Heaven Stocks + Alpha</label>
 			  		</div>
@@ -1058,7 +1189,7 @@ export default class ProductPage extends Component {
 															        </label>
 															    </li>
 															      <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
+															        <input type="radio" value="004" name="alphabet"/>
 															        <i>Direct equity 90%, FD 10%. </i>
 															        </label>
 															    </li>
@@ -1091,7 +1222,7 @@ export default class ProductPage extends Component {
 															        </label>
 															    </li>
 															      <li><label className="dropdown-radio">
-															        <input type="radio" value="04" name="alphabet"/>
+															        <input type="radio" value="004" name="alphabet"/>
 															        <i>12-15 plus years </i>
 															        </label>
 															    </li>
@@ -1124,7 +1255,7 @@ export default class ProductPage extends Component {
 															        </label>
 															    </li>
 															      <li><label className="dropdown-radio">
-															        <input type="radio" value="04" name="alphabet"/>
+															        <input type="radio" value="004" name="alphabet"/>
 															        <i>More than -75%</i>
 															        </label>
 															    </li>
@@ -1134,7 +1265,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
-			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.Submit.bind(this)}>Submit</div>
+			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Submit</div>
 				                                		
 			                                	</div>
 		                                	</form>
@@ -1156,9 +1287,13 @@ export default class ProductPage extends Component {
 								                      <label>Name</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="text" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
+								                      <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+								                     <div className="errorMsg">{this.state.errors.name}</div>
+
 								                    </div>
+
 								                </div>
+
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row"> 
@@ -1166,7 +1301,9 @@ export default class ProductPage extends Component {
 								                      <label>Mobile Number</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="number" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Mobile Number" ref="unitCost" />
+								                      <input type="number" className="customInputKF inputBox nameParts" name="contactNumber" placeholder="Enter Mobile Number" ref="contactNumber" value={this.state.contactNumber} onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.contactNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
@@ -1176,7 +1313,8 @@ export default class ProductPage extends Component {
 								                      <label>Email ID</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="email" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Email ID" ref="unitCost" />
+								                         <input type="email" className="customInputKF inputBox nameParts" name="email" placeholder="Enter Email ID" ref="email" value={this.state.email}  onChange={this.handleChange.bind(this)}/>
+								                    <div className="errorMsg">{this.state.errors.email}</div>
 
 								                    </div>
 								                </div>
@@ -1184,25 +1322,29 @@ export default class ProductPage extends Component {
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>PAN </label>
+								                      <label>PAN (JPEG/PNG/PDF) </label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost"  ref="unitCost" />
+								                         <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.handleChange.bind(this)} />
+								                    	 <div className="errorMsg">{this.state.errors.panNumber}</div>
+
 								                    </div>
 								                </div>
 								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row">
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Adress Proof</label>
+								                      <label>Adress Proof (JPEG/PNG/PDF)</label>
 								                    </div>
 								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
-								                    </div>
+								                         <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.handleChange.bind(this)} />
+								                   		<div className="errorMsg">{this.state.errors.addressProof}</div>
+ 
+								                   </div>
 								                </div>
 								              </div>
 								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
-								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right">
+								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.Submit.bind(this)}>
 								                      Submit
 								                    </div>
 								                     
@@ -1217,10 +1359,7 @@ export default class ProductPage extends Component {
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>US Stocks investing</label>
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
-			  			<p> As Dhirubhai Ambani aptly given the tagline “Growth is Life” for his Reliance Empire – Our framework first looks for growth opportunities. Over the last many years analyzing the companies & closely tracking the up  & down cycles we had observed that there are 5 different types of Growth drivers for any company to make it BIG into the next league.</p>
-			  		</div>
-			  		
+			  	
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
 			  			<label>Few Facts on USA market </label>
 			  			<ul className="customOl">
@@ -1276,229 +1415,8 @@ export default class ProductPage extends Component {
 	}else{
 		return( 
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
-						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
-								<div className="row">
-								 	<div className="modal fade in " id="myModal" role="dialog">
-			                          <div className="modal-dialog customModalRP" >
-		                                <button type="button" className="close" data-dismiss="modal" > <i className="fa fa-times"></i></button>
-		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  " >
-		                                	<form id="riskform">
-		                                			<label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>
-		                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-			                                		<p><b>1) What is the primary goal for the funds invested through WealthVia?</b></p>
-		                                			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<ReactMultiSelectCheckboxes options={options} />
-													</div>
-			                                	</div> 
-			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>2) Any near term need for the funds invested with us ?</b></p>
-				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>Yes after two years</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>Yes after 6 -8 months</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>It’s a separate capital to invest apart from my needs. I want to build good portfolio.</i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
-				                                		
-			                                	</div>
-			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>3) Your investments % exposure of your investable capital can be best described as</b></p>
-				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>FD/bonds/gold 80%, MF /direct equity 20% </i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>FD 60% , 30 %Gold, 10% bonds, no direct equity</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>FD 10%, MF 25%, Direct equity 65%.</i>
-															        </label>
-															    </li>
-															      <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>Direct equity 90%, FD 10%. </i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
-				                                		
-			                                	</div>
-			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>4) What is number of years you have spent in stock market investments</b></p>
-				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>0-2 years </i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>3-5 years</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>5 years plus</i>
-															        </label>
-															    </li>
-															      <li><label className="dropdown-radio">
-															        <input type="radio" value="04" name="alphabet"/>
-															        <i>12-15 plus years </i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
-				                                		
-			                                	</div>
-			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>4) What is your biggest drawdown on your entire portfolio ?</b></p>
-				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>0 to -25% </i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>-25% to -50%</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>-51% to -75%</i>
-															        </label>
-															    </li>
-															      <li><label className="dropdown-radio">
-															        <input type="radio" value="04" name="alphabet"/>
-															        <i>More than -75%</i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
-				                                		
-			                                	</div>
-			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
-			                                		<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.Submit.bind(this)}>Submit</div>
-				                                		
-			                                	</div>
-		                                	</form>
-		                              	</div>
-		                              
-			                          </div>
-									</div>
-									<div className="modal fade in " id="kycModal" role="dialog">
-			                          <div className="modal-dialog customModalRP hight400" >
-		                                <button type="button" className="close" data-dismiss="modal" onClick={this.closeModal.bind(this)}> <i className="fa fa-times"></i></button>
-		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                                	  <form>
-								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
-								              </div>
-								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-								                <div className="row">
-								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Name</label>
-								                    </div>
-								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="text" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
-								                    </div>
-								                </div>
-								              </div>
-								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-								                <div className="row"> 
-								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Mobile Number</label>
-								                    </div>
-								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="number" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Mobile Number" ref="unitCost" />
-								                    </div>
-								                </div>
-								              </div>
-								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-								                <div className="row">
-								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Email ID</label>
-								                    </div>
-								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="email" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Email ID" ref="unitCost" />
-
-								                    </div>
-								                </div>
-								              </div>
-								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-								                <div className="row">
-								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>PAN </label>
-								                    </div>
-								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost"  ref="unitCost" />
-								                    </div>
-								                </div>
-								              </div>
-								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-								                <div className="row">
-								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Adress Proof</label>
-								                    </div>
-								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                         <input type="file" className="customInputKF inputBox nameParts" name="unitCost" placeholder="Enter Name" ref="unitCost" />
-								                    </div>
-								                </div>
-								              </div>
-								               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
-								                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right">
-								                      Submit
-								                    </div>
-								                     
-								              </div>
-								            </form>
-		                              	</div>
-		                              
-			                          </div>
-									</div>
-								</div>
-							</div>
+				<div className="row">
+			  			
 			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>Unlisted shares</label>
 			  		</div>
@@ -1506,61 +1424,65 @@ export default class ProductPage extends Component {
 			  			<p>We are a Mumbai based dealer of Unlisted, Pre IPO shares. Our superiority stems robust systems and processes which provide smooth and hassle-free flow of agreement backed transactions by ensuring timely delivery of shares and money to the clients.
 							Many young companies grow much faster than mature companies due to their lower base hence they tend to significantly outperform the benchmark returns. However, a lot of this growth happens before the company goes public with an IPO. Hence participating in such companies in the Growth / Pre IPO stage can provide superior returns to the investor. Buyers need a safe mechanism that gives them access to high quality shares at the best price, provides matching of trade and enables even retail purchases.
 							While investments in Unlisted/Pre IPO shares have the potential of giving high returns, they are also accompanied by higher risk due to a variety of reasons. Investors need to exercise caution while investing in Unlisted/Pre IPO companies. Generally, they should have a minimum time horizon of 4 years and should not allocate more than 30% of their portfolio in Unlisted/Pre IPO shares.
-							We not just sell unlisted shares at arthavruddhi.com; but also first analyse the company and it’s shares liquidity and then only we will put on website to purchase for the investors.</p>
+							</p>
 			  		</div>
 			  		
-			  	{/*	<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-			  				<p>our Safe heaven portfolio is designed only with such similar stocks where investors can sleep well and enjoy natural growth for next 5-7-10 years. </p>
-			  		</div>
+			  	<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  				<p>We not just sell unlisted shares at arthavruddhi.com; but also first analyse the company and it’s shares liquidity and then only we will put on website to purchase for the investors. </p>
+			  		</div> 	
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications">
-			  			<label>Product Description</label>
-			  			<ol className="customOl">
-			  				<li>
-			  				Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation”</li>
-							<li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
-							<li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
-							<li>Preferred companies:-
-								<ul>
-									<li>Large Caps</li>
-								     <li>Leaders in the sector</li>
-								     <li>Quality Management</li>
-								     <li> Strong Balance sheet</li>
-								     <li> Decent growth</li>
-								     <li>Earnings predictability / Non Cyclical stocks</li>
-								     <li> Linked to Indian growth story </li>
-								</ul>
-							</li>
-							<li>Companies we don’t invest in:-
-								<ul>
-									<li>Micro & Small caps</li>
-								     <li>Cyclical stocks</li>
-								     <li>No earnings predictability</li>
-								     <li> Questionable management</li>
+			  		
+								<ul className="listStyleNone">
+									<li>How can you buy these unlisted shares online?</li>
+								     <li>You need to drop the mail on unlistedshares@xyz.com</li>
+								     <li>Or contact on 8369508540</li>
+								     <li>*our team will get in touch with you.</li>
 								     <li> One Trick Pony companies</li>
 								     <li>High debt / Leverage.</li>
 								</ul>
-							</li>
-							<li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
-							<li>Read a detailed blog post about this <span className="colored">here </span></li>
 							
-			  			</ol>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace">
-			  			<label>Who is it suitable for?</label>
+			  			<label>The process to buy unlisted shares</label>
 			  			<ol>
 			  				
-							<li>  Risk can be crash like 2008 or recession economy</li>
-							<li> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
-							<li>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
+							<li> As soon as investor will drop details with the name of the unlisted shares name and quantity which you would like to buy from us; we will get in touch with you.</li>
+							<li> We will share our account number and we will need your CMR copy which you will get from your broker.</li>
+							<li>Investor needs to then transfer the trade amount to our bank account and within T + 3-4 working days, you will get those shares in your CDSL or NSDL account (depending upon your broker).</li>
 			  			</ol>
 			  		</div>
-					*/}
-						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className="pull-right col-lg-2 enquireNow">Enquire Now</div>
-			  		
+				
+				<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  				<p>Bank details: </p>
 			  		</div>
-
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 ">
+			  		
+								<ul className="listStyleNone">
+									<li>Bank account name: xyz</li>
+								     <li>Account number 314643132464</li>
+								     <li>Bank : eg.State Bank of India</li>
+								     <li>IFSC code :SBI0098329</li>
+								</ul>
+							
+			  		</div>
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  lineSpace">
+			  			<label>Bank Account fraud warning,</label>
+			  			<ul className="listStyleNone">
+							<li> Our bank account details will not be changed during the course of transaction.</li>
+							<li> If we will ever change the details same will be reflected on our website.</li>
+			  			</ul>
+			  		</div>
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  lineSpace">
+			  			<label>We will not:</label>
+			  			<ul className="listStyleNone">
+							<li> Try to change the details over a phone call or any direct mail.</li>
+							<li> Ask you to send us investor’s bank details by email from any other id.</li>
+			  			</ul>
+			  		</div>
+				
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  				<p><b>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</b> </p>
+			  		</div>
 
 				</div>	
 			
