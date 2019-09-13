@@ -43,7 +43,62 @@
 	height: 100%;
 	width: 100%;
 }
+.blogData p{
+	overflow: hidden;
+}
 .subHeading{
 	font-size: 25px;
 	padding-bottom: 10px;
+}
+.likeDiv{
+	border-bottom: 1px solid #aaa;
+	border-top: 1px solid #aaa;
+	padding: 10px;
+	font-size: 20px;
+
+}
+.likeDiv i{
+	padding: 10px;
+}
+.bottomDiv{
+	font-family: 'PT Sans', sans-serif;
+
+	padding:15px;
+}
+.commentDiv{
+	border:1px solid #efefef;
+	padding: 40px;
+	margin:20px;
+}
+.profileImage{
+	background-color: #333;
+	height: 50px;
+	border-radius: 50%;
+}
+.nameOfYours{
+		font-family: 'PT Sans', sans-serif;
+
+	margin: 15px;
+}
+.customInputBV{
+	border:none !important;
+	font-family: 'PT Sans', sans-serif;
+
+	border-bottom: 1px solid #efefef !important;
+	padding:10px !important;
+	margin-top: 20px;
+	width: 100%;
+}
+.customInputBV:focus{
+	outline: none;
+}
+.publishButton{
+	padding: 10px;
+	color: #fff;
+	font-family: 'PT Sans', sans-serif;
+	margin-top: 20px;
+	text-align: center;
+	cursor: pointer;
+	font-size: 18px;
+	background-color: #00A9CE;
 }

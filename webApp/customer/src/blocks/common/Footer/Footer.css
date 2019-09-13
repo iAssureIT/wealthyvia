@@ -3,7 +3,7 @@
 	padding: 20px;
 }
 .footerDivFirst{
-    font-family: 'PT Sans', sans-serif;
+font-family: 'PT Sans', sans-serif;
 
 }
 .footerDivFirst label{
@@ -36,7 +36,7 @@ color: #007993;
 	border-radius: 0px !important;
     height: 30px !important;
     border: none;
-      font-family: 'PT Sans', sans-serif;
+  font-family: 'PT Sans', sans-serif;
 
 }
 .customInputEH:focus{

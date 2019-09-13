@@ -23,7 +23,7 @@ export default class Banner extends Component {
 
     return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainer">
-              <div className="">
+              <div className="row">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
                     <div className="col-lg-4 col-md-4 col-sm-5 col-xs-5  investButton" >
                       <div className="row">

@@ -32,44 +32,34 @@ width: 100%;
 	padding: 25px !important;
 	text-align: left !important;
 	z-index: 1000;
-	    font-family: 'PT Sans', sans-serif;
+	font-family: 'PT Sans', sans-serif;
 
 	margin-top: -260px;
-	color: #fff;
+	color: #222;
 }
 .caption label{
     transition: all 0s ease 0s;
     line-height: 35px;
     font-size: 29px;
-    font-family: 'PT Sans', sans-serif;
+font-family: 'PT Sans', sans-serif;
     visibility: visible;
     opacity: 1;
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, -33.4375, 0, 1);
 }
 .caption p{
-    font-family: 'PT Sans', sans-serif;
+font-family: 'PT Sans', sans-serif;
     font-size: 13px;
 }
 .readMoreButtonCar{
-	height: 35px;
-	text-align: center;
 	font-size: 15px;
-	padding: 4px;
+
+	padding: 0px !important;
 	cursor: pointer;
 	font-family: 'PT Sans', sans-serif;
 	margin-top: 0px !important;
 	font-weight: bold;
-	background-color: transparent;
-	border:3px solid #201a47;
-	color: #fff;
 }
-.readMoreButtonCar:hover{
-	  box-shadow: inset 100px 0px 1px 0 #201a47;
-    box-shadow: inset 0px 100px 1px 0 #201a47;
-    cursor: pointer;
-    transition: 0.5s all ease-in-out;
 
-}
 .flip-scale-up-hor {
 	        animation: flip-scale-up-hor 0.9s linear both;
 }

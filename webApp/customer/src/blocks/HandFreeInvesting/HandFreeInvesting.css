@@ -70,6 +70,15 @@
 
 }
 .imageContainerHF img{
-  height: 400px;
+  height: 100%;
+  width: 100%;
+}
+
+.handFreeInvestingImgContainer{
+  height: 500px;
+  margin-top: -400px;
+}
+.handFreeInvestingImgContainer img{
+  height: 500px;
   width: 100%;
 }

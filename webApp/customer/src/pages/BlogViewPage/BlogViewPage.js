@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ 				 			from 'jquery';
+import BlogCarousel                        from "../../blocks/BlogCarousel/BlogCarousel.js";
+
 
 
 import "./BlogViewPage.css";
@@ -18,21 +20,23 @@ export default class BlogViewPage extends Component {
   render() {
   		
 		return (
+			<div className="col-lg-12 col-md-10 col-sm-12 col-xs-12 ">
+			 <div className="row">
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 mainBlogView">
 				<div className="row">
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 socialInfoDiv">
 						<div className="row">
-						<div className="col-lg-1 col-md-1 col-sm-1 col-xs-1 ">
-							<div className="col-lg-11 col-md-1 col-sm-1 col-xs-1 userImage">
+						<div className="col-lg-1 col-md-1 col-sm-2 col-xs-2 ">
+							<div className="col-lg-11 col-md-11 col-sm-8 col-xs-12 userImage">
 
 							</div>	
 						</div>	
-						<div className="col-lg-6 col-md-1 col-sm-1 col-xs-1 nameDetailDiv row ">
+						<div className="col-lg-6 col-md-6 col-sm-6 col-xs-10 nameDetailDiv row ">
 								<span>Priyanka Lewade </span>&nbsp;<i className="fa fa-user"></i>&nbsp;&nbsp;
 								<span>. 3 days ago </span>&nbsp;&nbsp;
 								<span>6 min read </span>&nbsp;&nbsp;
 						</div>	
-						<div className="col-lg-2 col-md-1 col-sm-1 col-xs-1 pull-right nameDetailDiv ">
+						<div className="col-lg-2 col-md-2 col-sm-2 col-xs-12 pull-right nameDetailDiv ">
 							<a data-toggle="tooltip" title="Share Post"><img src="/images/share.png"/></a> &nbsp;&nbsp;
 							<a data-toggle="tooltip" title="Follow Post"><img src="/images/plusSquare.png"/></a> &nbsp;&nbsp;
 						</div>	
@@ -143,7 +147,38 @@ export default class BlogViewPage extends Component {
 			  		
 			  		</div>
 				</div>	
+			  		<div className="col-lg-12 col-md-10 col-sm-12 col-xs-12 likeDiv">
+			  			<i className="fa fa-facebook"></i><i className="fa fa-twitter"></i><i class="fa fa-linkedin"></i><i class="fa fa-link"></i>
+			  		
+			  		</div>
+			  		<div className="col-lg-12 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+			  			<span className="countNumberLike">592 views</span><span className="pull-right">1 <i class="fa fa-heart"></i></span>
+			  		
+			  		</div>
+			  		
+			  			
 			</div>
+			<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+			  <span className="countNumberLike">Recent Posts</span><span className="pull-right">See All</span>
+			  		
+			 </div>
+			<BlogCarousel/>		
+			<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 commentDiv">
+				<div className="col-lg-8 col-md-12 col-sm-12 col-xs-12"><div className="col-lg-1 col-md-2 col-sm-2 col-xs-2 profileImage"></div><label className="nameOfYours">Priyanka Lewade</label></div>
+				<div className="col-lg-12 col-md-10 col-sm-12 col-xs-12">
+			  		<input type="text" className="customInputBV" placeholder="Write a comment..."/>
+			  	</div>
+			  		
+			  	<div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 publishButton pull-right">
+			  		Publish
+			  	</div>
+			  		
+				  
+			  		
+			 </div>
+			</div>
+		</div>  		
+
 		);
 	}
 }

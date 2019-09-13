@@ -1,6 +1,9 @@
 /*.App {
   text-align: center;
 }*/
+.*:focus{
+  outline: none;
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -180,3 +183,4 @@ padding:0px !important;
 
   color:#f00 !important;
 }
+/*color #376bff*/

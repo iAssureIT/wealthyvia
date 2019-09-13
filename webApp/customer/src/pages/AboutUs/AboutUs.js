@@ -48,7 +48,55 @@ export default class AboutUs extends Component {
             </div>
             </div>
             <div className="row">
-                <AboutUsCarousel />
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+                  <div className="row">
+                   <label className="headLabelQF">Qualitative Framework</label>
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/sign.png"/>
+                          <p>Corporate Governance : Accounting redflags, promoter track/reputation  records, Third party transactions , tax and dividends</p>
+                    
+                      </div>
+                  </div>        
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1 customMarginHex">
+                        <div className="row">
+                          <img src="/images/team.png"/>
+                          <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>
+                    
+                      </div>
+                  </div>            
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1 marginLeft170">
+                        <div className="row">
+                          <img src="/images/address.png"/>
+                          <p>Consistency in Revenue , EBIDTA , Profit Growth , ROE , ROCE and Margins </p>
+                    
+                      </div>
+                  </div>            
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1 centerSecound">
+                        <div className="row">
+                          <img src="/images/sign.png"/>
+                          <p>Corporate Governance : Accounting redflags, promoter track/reputation  records, Third party transactions , tax and dividends</p>
+                    
+                      </div>
+                  </div>        
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1 lastDiv">
+                        <div className="row">
+                          <img src="/images/team.png"/>
+                          <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>
+                    
+                      </div>
+                  </div>            
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1 marginTop380">
+                        <div className="row">
+                          <img src="/images/address.png"/>
+                          <p>Consistency in Revenue , EBIDTA , Profit Growth , ROE , ROCE and Margins </p>
+                    
+                      </div>
+                  </div>            
+
+
+                  </div>
+              </div>            
             </div>
              <div className="row">
                 <ClientDeliverables />

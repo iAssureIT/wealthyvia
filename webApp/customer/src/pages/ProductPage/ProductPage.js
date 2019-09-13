@@ -435,7 +435,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>4) What is your biggest drawdown on your entire portfolio ?</b></p>
+				                                		<p><b>5) What is your biggest drawdown on your entire portfolio ?</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															 <div className="dropdown">
 															    <button type="button" 
@@ -678,8 +678,8 @@ export default class ProductPage extends Component {
 
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+			  			<div className=" col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -802,7 +802,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>4) What is your biggest drawdown on your entire portfolio ?</b></p>
+				                                		<p><b>5) What is your biggest drawdown on your entire portfolio ?</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															 <div className="dropdown">
 															    <button type="button" 
@@ -1047,8 +1047,8 @@ export default class ProductPage extends Component {
 
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+              <div className="col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -1171,7 +1171,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>4) What is your biggest drawdown on your entire portfolio ?</b></p>
+				                                		<p><b>5) What is your biggest drawdown on your entire portfolio ?</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															 <div className="dropdown">
 															    <button type="button" 
@@ -1427,8 +1427,8 @@ export default class ProductPage extends Component {
 					
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+              <div className=" col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -1551,7 +1551,7 @@ export default class ProductPage extends Component {
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-				                                		<p><b>4) What is your biggest drawdown on your entire portfolio ?</b></p>
+				                                		<p><b>5) What is your biggest drawdown on your entire portfolio ?</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 															 <div className="dropdown">
 															    <button type="button" 
@@ -1591,8 +1591,8 @@ export default class ProductPage extends Component {
 		                              	</div>
 		                              
 			                          </div>
-									</div>
-									<div className="modal fade in " id="kycModal" role="dialog">
+            									</div>
+            									<div className="modal fade in " id="kycModal" role="dialog">
 			                          <div className="modal-dialog customModalRP hight400" >
 		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -1777,8 +1777,8 @@ export default class ProductPage extends Component {
 				
 					
 						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-8"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className="pull-right col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
 			  		
 			  		</div>
 
@@ -1828,7 +1828,7 @@ export default class ProductPage extends Component {
 			  			</ol>
 			  		</div>
 				
-				<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			{/*	<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
 			  				<p>Bank details: </p>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 ">
@@ -1840,7 +1840,7 @@ export default class ProductPage extends Component {
 								     <li>IFSC code :SBI0098329</li>
 								</ul>
 							
-			  		</div>
+			  		</div>*/}
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  lineSpace">
 			  			<label>Bank Account fraud warning,</label>
 			  			<ul className="listStyleNone">

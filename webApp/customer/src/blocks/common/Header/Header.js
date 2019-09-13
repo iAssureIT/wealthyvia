@@ -133,7 +133,7 @@ export default class Header extends Component {
                       </li>
                       <li class="dropdown">
                       {token ?
-                        <a  onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.profile ? this.state.userinfo.profile.firstName:""}</a>
+                        <a  onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.profile ? this.state.userinfo.profile.firstName:"Login/Signup"}</a>
                         :
                         <a href="/login">Login/Signup </a>
                       }

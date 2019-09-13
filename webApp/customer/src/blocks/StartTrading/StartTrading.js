@@ -33,10 +33,10 @@ export default class StartTrading extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 hidden-xs hidden-sm backColorWhite mt20" id="safeHeven">
+            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  backColorWhite mt20" id="safeHeven">
               <div className="row">
 
-                <div className="col-lg-10 col-md-6 col-sm-12 col-xs-12 startTrandingContent backColorGray">
+                <div className="col-lg-10 col-md-6 hidden-xs hidden-sm startTrandingContent backColorGray">
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">MF and safe heaven moats +  </span>alpha</label>
@@ -51,13 +51,19 @@ export default class StartTrading extends Component {
                     </div> 
                   </div>
                 </div>
-               <div className="col-lg-6 col-lg-offset-7 col-md-6  hidden-xs hidden-sm startTrandingImgContainer para2">
+               <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-xs hidden-sm startTrandingImgContainer para2">
+                  <div>
+                    <img src="/images/img4.jpg"/>
+                  </div>
+                </div>
+                  <div className="col-sm-12 col-sm-12 hidden-md hidden-lg  startTrandingImgContainerSmall ">
                   <div>
                     <img src="/images/img4.jpg"/>
                   </div>
                 </div>
                <div className="col-sm-12 col-sm-12 hidden-md hidden-lg startTrandingContent backColorGray">
                   <div className="row">
+
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">MF and safe heaven moats +  </span>alpha</label>
                     <p>Assets can be called assets when they put money in your pocket and not just appreciate in value. Assets have earning power , be it rental income or dividend yields. Similarly we have SHM MF Enhancer which can generate extra returns on top of regular ones. 
@@ -71,11 +77,7 @@ export default class StartTrading extends Component {
                     </div> 
                   </div>
                 </div>
-               <div className="col-sm-12 col-sm-12 hidden-md hidden-lg  startTrandingImgContainer para2">
-                  <div>
-                    <img src="/images/img4.jpg"/>
-                  </div>
-                </div>
+             
               </div>
               </div>
     );

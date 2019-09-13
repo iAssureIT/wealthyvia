@@ -19,7 +19,7 @@ export default class AboutUsCarousel extends Component {
 						    loop
 						    margin={5}
 						    items={1}
-						    autoplay={true}
+						    autoplay={false}
 						>
 						
 						    <div className="item ">

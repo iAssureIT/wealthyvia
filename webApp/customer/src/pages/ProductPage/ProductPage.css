@@ -40,7 +40,10 @@
 .buyNowButtonPP{
 	color: #fff;
 	background-color: #201a47;
-	padding: 8px;
+	padding: 12px;
+  margin-top: 20px;
+  font-size: 16px;
+
 	cursor: pointer;
 }
 .inputContainerRP{
@@ -57,8 +60,11 @@
 	color:#201a47;
 	font-weight: bold;
 	padding: 10px;
+    margin-top: 20px;
+
+  border:2px #201a47 solid;
 	cursor: pointer;
-	font-size: 14px;
+	font-size: 16px;
 }
 .colored{
 		color:#201a47 !important;
@@ -74,10 +80,12 @@
 }
 .chartContainer{
 	height: 560px;
+  padding: 20px;
 }
 .chartContainer img{
 	height: 100%;
 	width: 100%;
+  border:2px solid #aaa;
 }
 .nyscContainer{
 	height: 300px;
