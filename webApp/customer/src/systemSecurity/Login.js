@@ -54,7 +54,7 @@ class Login extends Component {
 
         console.log("localStorage =",localStorage.getItem('admin_ID'));
         // browserHistory.replace('/');
-        this.props.history.push("/BlogViewPage");
+        this.props.history.push("/allblogs");
         window.location.reload();
         // direct.setState({loggedIn:response.data.token})
         if(localStorage==null){
