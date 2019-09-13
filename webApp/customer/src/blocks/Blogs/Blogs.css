@@ -40,19 +40,19 @@
 	opacity: 0;
 	z-index: 1000;
 	transition-duration: 0.5s;
-font-family: 'PT Sans', sans-serif;
+ font-family:'Montserrat',sans-serif;
 	text-align: center;
 	background-color: rgba(0,0,0,0.9);
 	margin-top: -200px;
 	padding: 50px;
     cursor: pointer;
-	color: #222;
+	color: #fff;
 }
 .miniFilterTextDiv label{
     font-size: 20px;
     padding-top: 20px; 
     line-height: 5px;
-    color: #222;
+    color: #fff;
 }
 .miniFilterTextDiv1{
 	position: absolute;
@@ -60,7 +60,7 @@ font-family: 'PT Sans', sans-serif;
 	opacity: 1;
 	z-index: 1000;
 	transition-duration: 0.5s;
-font-family: 'PT Sans', sans-serif;
+ font-family:'Montserrat',sans-serif;
     cursor: pointer;
 
 	text-align: center;
@@ -100,15 +100,14 @@ font-family: 'PT Sans', sans-serif;
 .blogHeading{
     font-size: 22px;
     font-weight: bold;
-    font-family: 'PT Sans', sans-serif;
-        color: #201b47;
+     font-family:'Montserrat',sans-serif;
+        color: #376bff;
 text-align: center;
 padding: 10px;
 }
 .imgContainerBlog{
         height: 180px !important;
-    font-family: 'PT Sans', sans-serif;
-        padding: 15px;
+     font-family:'Montserrat',sans-serif;
         overflow: hidden;
 
 }
@@ -126,7 +125,7 @@ padding: 10px;
 }
 .imgContainerBlog a{
     font-weight: bold;
-    color:#201b47 !important;
+    color:#376bff !important;
 }
 .boxShadow{
         box-shadow:  2px 2px 2px 2px #aaa !important;

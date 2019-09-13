@@ -23,7 +23,7 @@ export default class Carousel extends Component {
 					    <div className="carousel-inner height350">
 					      <div className="item fadding">
 					        <img src="/images/slide1_1.jpg"  />
-					    	 <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					    	 <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
 					    	 	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Capital Protection. Risk Mitigation. Alpha generation</label>
 					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
 				                      Read more → 
@@ -33,7 +33,7 @@ export default class Carousel extends Component {
 
 					      <div className="item fadding">
 				        <img src="/images/slide1_2.jpg"  />
-						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						      <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
 						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create : Profound.Profuse.Precise.</label>
 					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
 				                      Read more → 
@@ -43,7 +43,7 @@ export default class Carousel extends Component {
 					    
 					      <div className="item fadding">
 					        <img src="/images/slide1_1.jpg"  />
-						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						      <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
 						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your  long term best friend and we create that friends circle for you.</label>
 					    	 	  <div className="col-lg-2 col-md-4 col-sm-5 col-xs-5 readMoreButtonCar" >
 				                      Read more → 

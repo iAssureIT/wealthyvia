@@ -30,10 +30,9 @@
   background-image: url("/images/signIn.jpg");
   padding: 0px !important;
   margin-right: -15px !important;
-  height: 540px !important;
+  height: 600px !important;
 }
 .signupPadding{
-  padding-top:2%;
 }
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
   height: 620px;
@@ -928,7 +927,7 @@ input[type=radio]:checked ~ span{
   background: #6CCEF9;
   margin-top: 12px !important;
   border-radius: 4px;
-  /* margin-left: 5%; */
+   margin-left: 15% !important; 
   font-weight: bold;
   border:1px solid #ccc;
 }
@@ -1138,11 +1137,12 @@ input[type="radio"]:checked:before {
   padding-top:4%;
 }*/
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
-  height: 480px!important;
+  height: 520px!important;
   position: absolute;
   box-shadow: 0px 0px 0px;
   border: 1px solid #ccc;
   margin-top: 40px;
+  padding: 20px !important;
   background-color: #fff!important;
   float: right;
 }
@@ -1516,9 +1516,9 @@ input[type="radio"]:checked:before {
 .signInNameTitle{
     font-size: 30px;
     margin-top: 0%;
-    margin-bottom: 13%;
     padding: 8%;
-    /* color: #333333; */
+    margin-bottom: 55%;
+   /* color: #333333; */
     color: #201a47 !important;
     font-weight: bold;
   font-family: 'PT Sans', sans-serif !important;

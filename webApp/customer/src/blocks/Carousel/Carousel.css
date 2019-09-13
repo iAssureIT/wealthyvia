@@ -32,7 +32,7 @@ width: 100%;
 	padding: 25px !important;
 	text-align: left !important;
 	z-index: 1000;
-	font-family: 'PT Sans', sans-serif;
+	 font-family:'Montserrat',sans-serif;
 
 	margin-top: -260px;
 	color: #222;
@@ -41,13 +41,13 @@ width: 100%;
     transition: all 0s ease 0s;
     line-height: 35px;
     font-size: 29px;
-font-family: 'PT Sans', sans-serif;
+ font-family:'Montserrat',sans-serif;
     visibility: visible;
     opacity: 1;
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, -33.4375, 0, 1);
 }
 .caption p{
-font-family: 'PT Sans', sans-serif;
+ font-family:'Montserrat',sans-serif;
     font-size: 13px;
 }
 .readMoreButtonCar{
@@ -55,7 +55,7 @@ font-family: 'PT Sans', sans-serif;
 
 	padding: 0px !important;
 	cursor: pointer;
-	font-family: 'PT Sans', sans-serif;
+	 font-family:'Montserrat',sans-serif;
 	margin-top: 0px !important;
 	font-weight: bold;
 }

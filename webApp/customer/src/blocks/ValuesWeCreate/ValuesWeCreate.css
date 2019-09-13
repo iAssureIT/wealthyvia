@@ -3,7 +3,7 @@
 	background-image:url("/images/backImageAU.jpg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
-	font-family: 'PT Sans', sans-serif;
+	 font-family:'Montserrat',sans-serif;
 }
 .floatingDivContainer{
 		height: 450px;
@@ -23,7 +23,7 @@
 }
 .headingOfValue{
 	padding-top: 20px;
-	font-family: 'PT Sans', sans-serif;
+	 font-family:'Montserrat',sans-serif;
 	font-size: 30px;
 
 }

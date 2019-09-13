@@ -10,7 +10,7 @@ border-radius: 50%;
 	font-size: 2rem;
 	line-height: 1.2;
 	color:#201A47;
-	font-family: 'PT Sans', sans-serif;
+	 font-family:'Montserrat',sans-serif;
 	font-weight: 700;
 	word-spacing:0em;
 	padding:10px;
@@ -33,7 +33,7 @@ border-radius: 50%;
 .investContainerCD{
 	text-align: center;
 	padding: 20px;
-		font-family: 'PT Sans', sans-serif;
+		 font-family:'Montserrat',sans-serif;
 
 }
 .investLabelCD{

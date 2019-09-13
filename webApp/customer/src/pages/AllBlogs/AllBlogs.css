@@ -6,13 +6,15 @@
 	cursor: pointer;
 }
 .customPillsBlogs{
-	font-family: 'PT Sans', sans-serif;
-
+	margin-top: 20px;
+ font-family:'Montserrat',sans-serif;
 }
 .customPillsBlogs li{
 	color: #333 !important;
-	font-size: 22px;
+	font-size: 21px;
 	font-weight: bold;
+	 font-family:'Montserrat',sans-serif;
+
 	margin-right: 15px;
 }
 .customPillsBlogs>li.active>a, .customPillsBlogs>li.active>a:focus, .customPillsBlogs>li.active>a:hover{
@@ -20,8 +22,7 @@
 	color: #201a47 !important;
 }
 .customPillsBlogsSmall{
-	font-family: 'PT Sans', sans-serif;
-
+ font-family:'Montserrat',sans-serif;
 }
 .customPillsBlogsSmall li{
 	color: #333 !important;
@@ -30,6 +31,7 @@
 }
 .customPillsBlogsSmall li>a{
 	padding:0px !important;
+	padding-top:10px !important;
 	margin-right: 15px;
 
 }
@@ -46,10 +48,17 @@
 	height: auto;
 	cursor: pointer;
 	margin-top: 20px;
+	margin-bottom:  20px;
 
 }
+.blogContent{
+	margin-top: 20px;
+
+}
+
 .blogImage{
 	height: 350px;
+	margin-top: 20px;
 
 }
 .blogImage img{

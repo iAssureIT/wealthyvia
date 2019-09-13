@@ -204,10 +204,11 @@ class SignUp extends Component {
 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
         		<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-10 col-xs-offset-1 signupPadding signUpFormWrap">
+				<div className="row">
 					<div className="divLoginInWrap">
 						
 						<form id="signUpUser" onSubmit={this.usersignup.bind(this)}>
-	                    	<h3 className="signUpNameTitle2 margintop0"><span className="bordbt">SIGN UP</span></h3>
+	                    	<h3 className="signUpNameTitle2 "><span className="bordbt">SIGN UP</span></h3>
 							<div className="col-lg-12 col-md-12  signUpInnerWrapperOES signupfrm">
 								<div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd boxMarg">
 							   		<span className="blocking-span noIb">
@@ -253,7 +254,7 @@ class SignUp extends Component {
 									</span>
 							    </div>
 						   		<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent marBtm">
-								    <div className="form-group form-group1 fltlft input-group col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
+								    <div className="form-group form-group1 fltlft input-group col-lg-6 col-md-6 col-xs-12 col-sm-6 inputContent">
 							   			{/*<span className="blocking-span noIb">
 											<input type="password" className="form-control pass oesSignUpForm confirmbtm inputTextPass" ref="signupPassword" name="signupPassword" required/>
 											<span className="floating-label1 lbfloatpass"><i className="fa fa-lock" aria-hidden="true"></i> Password</span>					   			
@@ -278,7 +279,7 @@ class SignUp extends Component {
 						                    <i></i>
 						                  </span>
 									</div>
-							   		<div className="input-group textpdEye fltlft col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
+							   		<div className="input-group textpdEye fltlft col-lg-6 col-md-6 col-xs-12 col-sm-6 inputContent">
 							   			
 					                     <span className="blocking-span noIb">
 						                    <input type="password" className="form-control pass border3 oesSignUpForm confirmbtm inputTextPass tmsLoginTextBox" ref="signupConfirmPassword" name="signupConfirmPassword" required/>
@@ -324,6 +325,7 @@ class SignUp extends Component {
 						    </div> 
 					  	</form>
 				  	</div>
+				  </div>
 				</div>
 			</div>
 		);

@@ -114,7 +114,6 @@ class Login extends Component {
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divLoginInWrap">
               
             <form id="login" onSubmit={this.userlogin.bind(this)}>
-              <br/>
               <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-2 ">
              {/* <h3> hhhh</h3>*/}
               {<h4 className="signInNameTitle "><span className="">Login</span></h4>

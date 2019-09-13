@@ -1,9 +1,9 @@
 .footerContainer{
-	border-top:10px solid #201a47;
+	border-top:10px solid #376bff;
 	padding: 20px;
 }
 .footerDivFirst{
-font-family: 'PT Sans', sans-serif;
+ font-family:'Montserrat',sans-serif;
 
 }
 .footerDivFirst label{
@@ -36,7 +36,7 @@ color: #007993;
 	border-radius: 0px !important;
     height: 30px !important;
     border: none;
-  font-family: 'PT Sans', sans-serif;
+   font-family:'Montserrat',sans-serif;
 
 }
 .customInputEH:focus{
