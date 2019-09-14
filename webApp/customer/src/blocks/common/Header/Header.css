@@ -500,11 +500,12 @@ dropdown-submenu {
     font-size: 14px;
     text-align: left;
     list-style: none;
-    background-color: #201b47 !important;
+    background-color: transparent !important;
     background-clip: padding-box;
+    border:none !important;
     border-radius: 4px;
-    box-shadow: 0 6px 12px rgba(0,0,0,.175);
-
+/*    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+*/
 }
 .listItem{
     background-color: #376bff;

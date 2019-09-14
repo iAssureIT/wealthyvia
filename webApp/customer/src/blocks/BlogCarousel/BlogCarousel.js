@@ -8,6 +8,21 @@ export default class BlogCarousel extends Component {
 	constructor(props){
     super(props);
 	    this.state = {
+	    	 responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:false
+        }
+    }
 	    	
 	    };
   	}  
@@ -22,6 +37,7 @@ export default class BlogCarousel extends Component {
 					    items={4}
 					    nav={0}
 					    dots={0}
+					    responsiveClass={true}
 					    autoplay={false}
 						>
 						
@@ -38,7 +54,7 @@ export default class BlogCarousel extends Component {
 
 											Volume increase of 10% in PNG and 9% in CNG in Q1 FY20 on YoY basis.
 
-											Adani Gas along with its JV partner IOC....<a href="/login"> read more</a></p>
+											...<a href="/login"> read more</a></p>
 									</div>
 								</div>
 							</div>

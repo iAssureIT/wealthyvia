@@ -8,6 +8,21 @@ export default class Blogs extends Component {
 	constructor(props){
     super(props);
 	    this.state = {
+	    		 responsive:{
+        0:{
+            items:1,
+            nav:true
+        },
+        600:{
+            items:3,
+            nav:false
+        },
+        1000:{
+            items:5,
+            nav:true,
+            loop:false
+        }
+    }
 	    	
 	    };
   	}  
@@ -17,16 +32,17 @@ export default class Blogs extends Component {
 			  		<div className="blogHeading  col-md-12 col-lg-12 col-sm-12 col-xs-12"> Blogs </div>
 			  		<OwlCarousel
 						    className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
-						    loop
-						    margin={5}
-						    items={1}
-						    nav={0}
-						    dots={0}
-						    autoplay={true}
-						>
+						     loop
+							    margin={20}
+							    items={1}
+							    nav={0}
+							    dots={0}
+							    responsiveClass={true}
+							    autoplay={false}
+								>
 						
-						    <div className="item ">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+						 	<div className="item">
+								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog  ">
 									<div className="row">
 										<img src="/images/blog1.jpeg"/>
 									</div>
@@ -38,7 +54,7 @@ export default class Blogs extends Component {
 
 											Volume increase of 10% in PNG and 9% in CNG in Q1 FY20 on YoY basis.
 
-											Adani Gas along with its JV partner IOC....<a href="/login"> read more</a></p>
+											...<a href="/login"> read more</a></p>
 									</div>
 								</div>
 							</div>

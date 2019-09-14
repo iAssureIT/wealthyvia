@@ -105,7 +105,7 @@ export default class Header extends Component {
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articulations <span class="caret"></span></a>
                         <ul class="dropdown-menu customDropdown">
                            {token ?
-                          <li className="listItem"><a href="/BlogViewPage">Arthavrudhhi Blogs</a></li>
+                          <li className="listItem"><a href="/allblogs">Arthavrudhhi Blogs</a></li>
                         :
                           <li className="listItem"><a href="/login">Arthavrudhhi Blogs</a></li>
                       }
