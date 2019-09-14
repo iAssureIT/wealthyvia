@@ -677,11 +677,13 @@ export default class ProductPage extends Component {
 			  		</div>
 
 					
-						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-			  			<div className=" col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
-			  		
-			  		</div>
+				  <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+              <div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+            
+            </div>
+
+
 
 
 				</div>	
@@ -1046,11 +1048,12 @@ export default class ProductPage extends Component {
 			  		</div>
 
 					
-						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className="col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
-			  		
-			  		</div>
+					 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+              <div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+            
+            </div>
+
 
 
 				</div>	
@@ -1426,11 +1429,13 @@ export default class ProductPage extends Component {
 			  		</div>
 					
 					
-						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className=" col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
-			  		
-			  		</div>
+					 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+              <div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
+              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+            
+            </div>
+
+
 
 
 				</div>	
