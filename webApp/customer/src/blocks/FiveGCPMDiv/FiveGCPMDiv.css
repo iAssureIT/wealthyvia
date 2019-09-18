@@ -1,0 +1,60 @@
+.investContainer{
+	height: 100%;
+	text-align: center;
+	background-color: #201A47;
+	font-family: 'PT Sans', sans-serif;
+	padding: 40px !important;
+
+}
+.investLabel{
+	color: #FFF !important;
+	font-size: 5.125rem;
+	line-height: 1.2;
+	margin-top: 1.25rem !important;
+}
+.investPara{
+	color: #fff;
+	margin-bottom: 2.5rem !important;
+	margin-top: .75rem !important;
+	font-size: 160%;
+}
+.subDiv1{
+	height: 100%;
+	color:#fff;
+	text-align: left !important;
+	transition-duration: 0.5s;
+}
+.subDiv1 img{
+	
+	transition-duration: 0.5s;
+
+
+}
+.payZero{
+	font-size: 2.875rem;
+	line-height: 1.2;
+	color: #007993 !important;
+	font-weight: 700;
+	word-spacing:0em;
+
+}
+.payZeroDesc{
+	text-align: left;
+	padding-top: 10px !important;
+
+	font-size: 16px;
+
+}
+.iconContainer img{
+	height: 100%;
+	padding:8px;
+	margin:2.6rem;
+}
+.investContainer .investLabel{
+	text-align: center;
+}
+.subDiv1:hover img{
+	transform: scale(1.2);
+	transition-duration: 0.5s;
+	cursor: pointer;
+}

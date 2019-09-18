@@ -1,0 +1,12 @@
+.typesOfGrouth{
+	padding: 40px !important;
+    font-family: 'Montserrat',sans-serif;
+    padding-top: 5% !important;
+}
+.typesOfGrouth p{
+	 font-size: 18px;
+}
+.typesOfGrouth span
+{
+	font-size: 40px;
+}

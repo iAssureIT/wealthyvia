@@ -425,7 +425,7 @@ dropdown-submenu {
 }
 .customNavBar{
   border-radius: 0px !important;
-  background-color: #376bff !important;
+  background-color: #201A47 !important;
   border:none !important;
   min-height: 40px !important;
   padding-left:40px !important;
@@ -455,13 +455,13 @@ dropdown-submenu {
 
   font-weight: bold;
   margin-left: -40px !important;
-  font-size: 30px !important;
+  font-size: 40px !important;
 }
 .webSiteName{
    font-family:'Montserrat',sans-serif;
 
   font-weight: bold;
-  font-size: 30px !important;
+  font-size: 40px !important;
 }
 .investNowButtonHeader{
   background-color: #fff;
@@ -508,12 +508,12 @@ dropdown-submenu {
 */
 }
 .listItem{
-    background-color: #376bff;
+    background-color: #201A47;
     margin-left: -20px;
     padding: 5px;
 }
 .listItem:hover{
-  background-color: #201b47cf !important;
+  background-color: #201b47 !important;
   text-decoration: none !important;
 }
 
@@ -524,7 +524,7 @@ dropdown-submenu {
 .colorP{
    font-family:'Montserrat',sans-serif;
 
-  color: #376bff !important;
+  color: #201A47 !important;
 }
 .colorWhite{
   color:#fff !important;

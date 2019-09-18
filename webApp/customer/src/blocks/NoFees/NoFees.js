@@ -28,7 +28,7 @@ export default class NoFees extends Component {
 
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/img2.gif"/>
+                      <img src="/images/five.jpg"/>
                     </div>
 
                   </div>

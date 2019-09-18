@@ -53,12 +53,12 @@ export default class StartTrading extends Component {
                 </div>
                <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-xs hidden-sm startTrandingImgContainer para2">
                   <div>
-                    <img src="/images/img4.jpg"/>
+                    <img src="/images/MF.jpg"/>
                   </div>
                 </div>
                   <div className="col-sm-12 col-sm-12 hidden-md hidden-lg  startTrandingImgContainerSmall ">
                   <div>
-                    <img src="/images/img4.jpg"/>
+                    <img src="/images/MF.jpg"/>
                   </div>
                 </div>
                <div className="col-sm-12 col-sm-12 hidden-md hidden-lg startTrandingContent backColorGray">
