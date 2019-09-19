@@ -23,41 +23,51 @@ export default class OneAdvice extends Component {
   render() {
 
     return (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite" id="safeHevenMoats">
-                <div className="row">
-                
-                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs oneOnOneAdvice learnMoreST">
-                    <label><span className="iceBlueColor">Safe heaven moats</span></label><br/>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mt20" id="safeHevenMoats">
+              <div className="row">
 
+                <div className="col-lg-10 col-lg-offset-2 col-md-6 hidden-sm hidden-xs startTrandingContent backColorGray">
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6 col-md-offset-6 col-sm-12 col-xs-12 learnMoreST">
+                    <label><span className="iceBlueColor">Safe heaven moats</span> </label>
                     <p >Quality is something that is remembered long after its price paid is gone. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
                     compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
                     How to make consistent wealth with them ?</p>
                      <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
-                   
-                  </div>
-                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs gifContainer">
-                    <div>
-                      <img src="/images/safeHeaven.jpeg"/>
-                    </div>  
-                  </div>
-                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
-                    <div>
-                      <img src="/images/safeHeaven.jpeg
-                      "/>
-                    </div>  
-                  </div>
-                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 oneOnOneAdvice learnMoreST">
-                    <label><span className="iceBlueColor">Safe heaven moats</span></label><br/>
 
-                    <p >Quality is something that is remembered long after its price paid is gone. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
-                    compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
-                    How to make consistent wealth with them ?</p>
-                     <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                    </div>
                    
                   </div>
-                  
                 </div>
+               <div className="col-lg-6 col-md-6  hidden-sm hidden-xs handFreeInvestingImgContainer">
+                  <div>
+                    <img src="/images/safeHe.jpg"/>
+                  </div>
+                </div>
+                  <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
+              <div className="row">
+              <div className="col-sm-12 col-sm-12 hidden-md hidden-lg small">
+                  <div>
+                    <img src="/images/safeHe.jpg"/>
+                  </div>
+                </div>
+                <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContent  backColorGray">
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
+                    <label><span className="iceBlueColor">Safe heaven moats</span> </label>
+                    <p >Quality is something that is remembered long after its price paid is gone. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
+                    compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
+                    How to make consistent wealth with them ?</p>
+                     <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+
+                    </div>
+                  </div>
+                </div>
+               
               </div>
+              </div>
+              </div>
+            </div>
     );
   }
 }

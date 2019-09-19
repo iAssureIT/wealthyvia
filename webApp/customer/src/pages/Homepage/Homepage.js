@@ -12,6 +12,7 @@ import Footer                        from "../../blocks/common/Footer/Footer.js"
 import Carousel                        from "../../blocks/Carousel/Carousel.js";
 import Blogs                        from "../../blocks/Blogs/Blogs.js";
 import BottomDiv                        from "../../blocks/BottomDiv/BottomDiv.js";
+import ReadyToGo                        from "../../blocks/ReadyToGo/ReadyToGo.js";
 
 export default class Homepage extends Component {
 	constructor(props){
@@ -38,7 +39,7 @@ export default class Homepage extends Component {
       				<StartTrading/>
       				<HandFreeInvesting/>
               <UsStocksInvest/>
-      				<GetStarted/>
+      				<ReadyToGo/>
 					</div>
       </div>
 		);

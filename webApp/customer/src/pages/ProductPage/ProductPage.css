@@ -459,11 +459,11 @@ font-family: 'PT Sans', sans-serif;
 .sutableForHead label{
   font-size: 40px;
   padding-top: 10px;
-  color:#376bff;
+  color:#201a47;
 }
 .numberDiv{
   padding: 10px;
-  color: #376bff;
+  color: #201a47;
 }
 .imgInfo{
 /*  background-color: #FED880!important;
@@ -593,7 +593,7 @@ a:hover,a:focus{
 .bannerContainerSH{
     margin-top: -1px;
 
-  background-image: url("/images/safehh.jpg");
+  background-image: url("/images/safeHBack.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 /*  padding: 60px !important;
@@ -633,4 +633,33 @@ a:hover,a:focus{
   padding-top: 100px !important;
   padding: 60px !important;
   background-color: rgba(0,0,0,0.7) !important;
+}
+.riskDivPP{
+  background-size: 100% 100%;
+  height: 600px;
+  background-attachment: fixed;
+  color: #fff;
+  background-image: url("/images/introToSHM.jpg");
+}
+.riskDivPP p{
+
+}
+.rriskDivPPiskDiv label{
+  margin-top:10px;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 47px;
+
+}
+.blogQuate{
+   margin-top:20px;
+  line-height: 70px;
+  font-weight: bolder;
+  font-size: 40px; 
+}
+.nameOfAuther label{
+  font-size:30px;
+}
+.addDiv{
+  height: 100px;
 }

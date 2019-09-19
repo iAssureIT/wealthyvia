@@ -295,7 +295,7 @@ export default class AboutUs extends Component {
             </div>
             </div>
             <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+              <div className="col-lg-10 col-lg-offset-1  col-md-12 col-sm-12 col-xs-12 textAlignCenter">
                   <div className="row">
                    <label className="headLabelQF1 col-lg-12 col-md-12 col-sm-12 col-xs-12">Qualitative Framework</label>
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1Small">
@@ -345,9 +345,9 @@ export default class AboutUs extends Component {
                   </div>
               </div>            
             </div>
-             <div className="row">
+           {/*  <div className="row">
                 <ClientDeliverables />
-            </div>
+            </div>*/}
              <div className="row">
                 <ValuesWeCreate />
             </div>

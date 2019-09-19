@@ -9,6 +9,7 @@ import Practicability                        from "../../blocks/Practicability/P
 import MagicFormula                        from "../../blocks/MagicFormula/MagicFormula.js";
 import swal               from 'sweetalert';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
+import ReadyToGo                        from "../../blocks/ReadyToGo/ReadyToGo.js";
 
 import "./ProductPage.css";
 
@@ -633,7 +634,7 @@ export default class ProductPage extends Component {
                     </div>  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
                       <div className="row">
-                        <p>primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
+                        <p>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
                       </div>
                     </div>
 
@@ -648,23 +649,23 @@ export default class ProductPage extends Component {
             </div>
           
      
-			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgInfo imageContainer">
+			  	{/*	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgInfo imageContainer">
                 <label className="investLabel">Introducting you to SHM</label>
 
 			  			<p>In 2014 , I met an old investor. I had no clue what was his portfolio or profile. We explained him a midcap idea he listened patiently. Asked him what he has.. he didn't say much but said I saw many bull and bear markets but it’s the quality of earnings and quality of management that prevails. Market is like "alawavarach paani" ...water drop on colocasia leaf.</p>
               <p> Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</p>
                  <img src="/images/boat.jpg"/>
-			  		</div>   
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
+			  		</div>   */}
+             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                        <img src="/images/productDesc.jpg"/>
+                        <img src="/images/over.jpg"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
-                    <label><span className="iceBlueColor">Product Description </span></label>
+                    <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
-                          <li>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation”</li>
+                        <li>This portfolio consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
                         <li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
                         <li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
                         <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Preferred companies</a></div><div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Large Caps</li><li>Leaders in the sector</li><li>Quality Management</li><li>Strong Balance sheet</li><li>Decent growth</li><li>Earnings predictability / Non Cyclical stocks</li><li>Linked to Indian growth story</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingTwo"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Companies we don’t invest in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Large Caps</li><li>Leaders in the sector</li><li>Quality Management</li><li>Strong Balance sheet</li><li>Decent growth</li><li>Earnings predictability / Non Cyclical stocks</li><li>Linked to Indian growth story</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
@@ -690,6 +691,17 @@ export default class ProductPage extends Component {
                 
                 </div>
               </div>
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 riskDivPP">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
+                    <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 addDiv"></div>
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12"><blockquote className="blogQuate">"Vessels large may venture more, but little boats should keep near the shore. "</blockquote></p>
+                    <span className="col-lg-10 col-md-12 col-sm-12 col-xs-12 nameOfAuther"><label className="pull-right"> - Benjamin Franklin</label></span>
+                    </div>  
+                </div>  
+            </div>
+
+               
      
 			
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -698,13 +710,18 @@ export default class ProductPage extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
                 <div className="row">
                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
-                              <label>Who is it suitable for?</label>
+                              <label>For whom this product is suitable</label>
 
                             </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
                         <ul className="customOl">
-                          <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy</li>
+                          <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy
+                            <ul>
+                              <li>Disruptions from challenger companies.</li>
+                              <li>Change of consumption patterns and behaviours.</li>
+                            </ul>
+                          </li>
                           <li><span className="numberDiv">2</span> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
                           <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
                         </ul>
@@ -712,13 +729,13 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="/images/suitableFor.png"/>
+                      <img src="/images/suitableFor.jpg"/>
                     </div>
                   </div>
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/suitableFor.gif"/>
+                      <img src="/images/suitableFor.jpg"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
@@ -1454,10 +1471,10 @@ export default class ProductPage extends Component {
             </div>
           
 			  	  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                        <img src="/images/productDesc.jpg"/>
+                        <img src="/images/over.jpg"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
-                    <label><span className="iceBlueColor">Product Description </span></label>
+                    <label><span className="iceBlueColor">Overview</span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
                           <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>

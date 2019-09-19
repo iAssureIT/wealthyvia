@@ -49,14 +49,14 @@ export default class UsStocksInvest extends Component {
                 </div>
                <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-sm hidden-xs startTrandingImgContainer para1">
                   <div>
-                    <img src="/images/US-stocks.jpg"/>
+                    <img src="/images/usMarket.jpg"/>
                   </div>
                 </div>
                   <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
               <div className="row">
               <div className="col-sm-12 col-sm-12 hidden-md hidden-lg small">
                   <div>
-                    <img src="/images/US-stocks.jpg"/>
+                    <img src="/images/usMarket.jpg"/>
                   </div>
                 </div>
                 <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContent  backColorGray">
