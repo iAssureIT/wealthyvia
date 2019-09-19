@@ -7,12 +7,13 @@ border-radius: 50%;
 
 }
 .payZeroCD{
-	font-size: 2rem;
-	line-height: 1.2;
-	color:#201A47;
+	font-size: 17px;
+	line-height: 25px;
+	color:#666;
 	 font-family:'Montserrat',sans-serif;
-	font-weight: 700;
+	font-weight: normal !important;
 	word-spacing:0em;
+	margin-top: 10px;
 	padding:10px;
 }
 .subDivCD{
@@ -33,7 +34,7 @@ border-radius: 50%;
 .investContainerCD{
 	text-align: center;
 	padding: 20px;
-		 font-family:'Montserrat',sans-serif;
+/**/		 font-family:'Montserrat',sans-serif;
 
 }
 .investLabelCD{
@@ -44,4 +45,8 @@ border-radius: 50%;
 }
 .height500{
 	height: 650px;
+}
+.minusMargin{
+		margin-top: -80px;
+
 }

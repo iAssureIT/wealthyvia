@@ -37,12 +37,13 @@ export default class OneAdvice extends Component {
                   </div>
                    <div className="col-lg-6 col-md-6 hidden-sm hidden-xs gifContainer">
                     <div>
-                      <img src="/images/img3.jpg"/>
+                      <img src="/images/safeHeaven.jpeg"/>
                     </div>  
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/img3.jpg"/>
+                      <img src="/images/safeHeaven.jpeg
+                      "/>
                     </div>  
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 oneOnOneAdvice learnMoreST">

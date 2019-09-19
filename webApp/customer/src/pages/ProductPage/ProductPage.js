@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import $ 				 			from 'jquery';
 import Invest        				         from "../../blocks/Invest/Invest.js";
+import ProductPageBanner                        from "../../blocks/ProductPageBanner/ProductPageBanner.js";
+import FiveGCPMDiv                        from "../../blocks/FiveGCPMDiv/FiveGCPMDiv.js";
+import GrowthFactor                        from "../../blocks/GrowthFactor/GrowthFactor.js";
+import CorporateGovernance                        from "../../blocks/CorporateGovernance/CorporateGovernance.js";
+import Practicability                        from "../../blocks/Practicability/Practicability.js";
+import MagicFormula                        from "../../blocks/MagicFormula/MagicFormula.js";
 import swal               from 'sweetalert';
-
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
 import "./ProductPage.css";
@@ -324,9 +329,9 @@ export default class ProductPage extends Component {
 	if(this.state.divID == "safeHevenMoats")
 	{
 		return (
-			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
+			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -616,71 +621,128 @@ export default class ProductPage extends Component {
 									</div>
 								</div>
 							</div>
-			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
-			  			<label>Safe Heaven Moats</label>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
-			  			<p>In 2014 , I met an old investor. I had no clue what was his portfolio or profile. We explained him a midcap idea he listened patiently. Asked him what he has.. he didn't say much but said I saw many bull and bear markets but it’s the quality of earnings and quality of management that prevails. Market is like "alawavarach paani" ...water drop on colocasia leaf.</p>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-			  				<img src="/images/boat.jpg"/>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-		  				<p>primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.
-							Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</p>
-			  		</div>
-			  		
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-			  				<p>our Safe heaven portfolio is designed only with such similar stocks where investors can sleep well and enjoy natural growth for next 5-7-10 years. </p>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications">
-			  			<label>Product Description</label>
-			  			<ol className="customOl">
-			  				<li>
-			  				Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation”</li>
-							<li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
-							<li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
-							<li>Preferred companies:-
-								<ul>
-									<li>Large Caps</li>
-								     <li>Leaders in the sector</li>
-								     <li>Quality Management</li>
-								     <li> Strong Balance sheet</li>
-								     <li> Decent growth</li>
-								     <li>Earnings predictability / Non Cyclical stocks</li>
-								     <li> Linked to Indian growth story </li>
-								</ul>
-							</li>
-							<li>Companies we don’t invest in:-
-								<ul>
-									<li>Micro & Small caps</li>
-								     <li>Cyclical stocks</li>
-								     <li>No earnings predictability</li>
-								     <li> Questionable management</li>
-								     <li> One Trick Pony companies</li>
-								     <li>High debt / Leverage.</li>
-								</ul>
-							</li>
-							<li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
-							<li>Read a detailed blog post about this <span className="colored">here </span></li>
-							
-			  			</ol>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace">
-			  			<label>Who is it suitable for?</label>
-			  			<ol>
-			  				
-							<li>  Risk can be crash like 2008 or recession economy</li>
-							<li> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
-							<li>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
-			  			</ol>
-			  		</div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSH">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      Safe Heaven Moats
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
+                      </div>
+                    </div>
 
-					
-				  <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-              <div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                      <div className="row">
+                      Invest now
+                      </div>
+                    </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          
+     
+			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgInfo imageContainer">
+                <label className="investLabel">Introducting you to SHM</label>
+
+			  			<p>In 2014 , I met an old investor. I had no clue what was his portfolio or profile. We explained him a midcap idea he listened patiently. Asked him what he has.. he didn't say much but said I saw many bull and bear markets but it’s the quality of earnings and quality of management that prevails. Market is like "alawavarach paani" ...water drop on colocasia leaf.</p>
+              <p> Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</p>
+                 <img src="/images/boat.jpg"/>
+			  		</div>   
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
+                        <img src="/images/productDesc.jpg"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Product Description </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation”</li>
+                        <li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
+                        <li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
+                        <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Preferred companies</a></div><div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Large Caps</li><li>Leaders in the sector</li><li>Quality Management</li><li>Strong Balance sheet</li><li>Decent growth</li><li>Earnings predictability / Non Cyclical stocks</li><li>Linked to Indian growth story</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingTwo"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Companies we don’t invest in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Large Caps</li><li>Leaders in the sector</li><li>Quality Management</li><li>Strong Balance sheet</li><li>Decent growth</li><li>Earnings predictability / Non Cyclical stocks</li><li>Linked to Indian growth story</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
+                        <li>Read a detailed blog post about this here</li>
+                        </ul>
+                      </p>                 
+                    </div>
+                  
+               
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">5G : Five types of Growths </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl">
+                          <li>
+                          Sales</li>
+                        <li>Profits</li>
+                        <li>Clients/product volume/value addition/branches/territories (micros of business economics)</li>
+                        <li>Margins :  one should be sure that margin will not decline. Headwinds, sectorial downturns, raw material prices, fierce competition, import duties, tax laws, substitute products , advanced tech makes margin decline.</li>
+                        <li>Market share/demand/ size of opportunity : this defines leadership position. Always no1 or no2 company having considerable and increasing size of opportunity .</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+              </div>
+     
+			
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            </div>
+           
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
+                <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
+                              <label>Who is it suitable for?</label>
+
+                            </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy</li>
+                          <li><span className="numberDiv">2</span> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
+                          <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                      <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
+                    <div>
+                      <img src="/images/suitableFor.png"/>
+                    </div>
+                  </div>
+                
+                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
+                    <div>
+                      <img src="/images/suitableFor.gif"/>
+                    </div>
+                  </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">M : Magic Formula </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy</li>
+                          <li><span className="numberDiv">2</span> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
+                          <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
+                        </ul>
+                      </p>                      
+                    </div>
+                
+                </div>
+              </div>
+
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow">
+             <label>Ready to go?</label><br/>
+             <span>Start making trades the fee-free way in just two minutes</span><br/>
+             <div className="col-lg-6 col-lg-offset-4">
+              <div className="buyNowButtonPP col-lg-4"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+              <div className="col-lg-offset-1 col-lg-4 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
             
+              </div>
             </div>
 
 
@@ -693,9 +755,9 @@ export default class ProductPage extends Component {
 	}
 	else if(this.state.divID == "5gcpm"){
 		return( 
-			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
+			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -985,12 +1047,17 @@ export default class ProductPage extends Component {
                   </div>
 								</div>
 						</div>
-			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
+            <ProductPageBanner/>
+            <FiveGCPMDiv/>
+            <GrowthFactor/>
+            <CorporateGovernance />
+            <Practicability />
+            <MagicFormula/>
+			  	{/*	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
 			  			<label>5GCPM</label>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
-{/*			  			<p> A method based model Portfolio by Arthavruddhi Capital</p>
-*/}			  		</div>
+         		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 ">
 			  			<label className="investBlock">5GCPM  – A method based model Portfolio by Wealthyvia</label>
 			  			<Invest/>
@@ -1048,12 +1115,17 @@ export default class ProductPage extends Component {
 			  		</div>
 
 					
-					 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-              <div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+					
+*/}
+ <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow">
+             <label>Ready to go?</label><br/>
+             <span>Start making trades the fee-free way in just two minutes</span><br/>
+             <div className="col-lg-6 col-lg-offset-4">
+              <div className="buyNowButtonPP col-lg-4"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+              <div className="col-lg-offset-1 col-lg-4 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
             
+              </div>
             </div>
-
 
 
 				</div>	
@@ -1063,9 +1135,9 @@ export default class ProductPage extends Component {
 		);
 	}else if(this.state.divID == "safeHeven"){
 		return( 
-			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
+			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -1355,86 +1427,112 @@ export default class ProductPage extends Component {
                   </div>
 								</div>
 							</div>
-			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
-			  			<label>Safe Heaven Stocks + Alpha</label>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
-{/*			  			<p> As Dhirubhai Ambani aptly given the tagline “Growth is Life” for his Reliance Empire – Our framework first looks for growth opportunities. Over the last many years analyzing the companies & closely tracking the up  & down cycles we had observed that there are 5 different types of Growth drivers for any company to make it BIG into the next league.</p>
-*/}			  		</div>
-			  		
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-			  			<label>Product Description </label>
-			  			<ol className="customOl">
-			  				<li>
-			  				This product is designed to generated Regular income for clients with a limited risk exposure to F&O segment.</li>
-							<li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
-							<li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
-							<li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
-							<li>Strategy will only be implement  on:-
-								<ol>
-									<li>Nifty Future & Options (monthly).</li>
-								    
-								</ol>
-							</li>
-							<li>We don’t indulge in:-
-								<ol>
-									<li>Bank Nifty or Any other indices</li>
-									<li>F&O segment of Individual companies.</li>
-								    
-								</ol>
-							</li>
-							
-							
-			  			</ol>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace" id="cg">
-			  			<label> Risks Involved</label>
-			  			<ol>
-			  				
-							<li> No matter how much we strategize & risk averse we are, they are always risks associated with dealing in F&O markets.  </li>
-							<li> As an advisory, it is our responsibility to bring to your notice & inform you about them:
-							  <ul>
-									<li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses – you may receive margin calls from your broker for additional capital infusion. 
-										 <ul>
-											<li>How can we mitigate this? – In order to mitigate such scenarios, we never use full margin amount which was released after hair cut. We only use up to 70% of total margin amount (after hair cut) to trade in F&O segment. The remaining 30% is the buffer for any rainy days or from receiving any margin call. 
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerUS">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      Safe Heaven Stocks + Alpha
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>This product is designed to generated Regular income for clients with a limited risk exposure to F&O segment.</p>
+                      </div>
+                    </div>
 
-											</li>
-										    
-										</ul>
-									</li>
-								    
-									<li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.
-										 <ul>
-											<li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved. 
-											</li>
-										    
-										</ul>
-									</li>
-								    
-								</ul>
-							</li>
-							
-						</ol>
-			  		</div>
-					<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace" id="practicability">
-			  			<label> Who is it suitable for?</label>
-			  			<ol>
-			  				
-							<li> Investors who are willing at take additional risk for generating risk adjusted Alpha. </li>
-							<li> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
-							<li> Investors who understand & accept the risks involved in F&O.  </li>
-						
-							
-						</ol>
-			  		</div>
-					
-					
-					 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-              <div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
-            
+                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                      <div className="row">
+                      Invest now
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
             </div>
+          
+			  	  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
+                        <img src="/images/productDesc.jpg"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Product Description </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
+                        <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
+                        <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
+                        <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Strategy will only be implement  on</a></div><div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Nifty Future & Options (monthly).</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">We don’t indulge in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Bank Nifty or Any other indices</li><li>F&O segment of Individual companies.</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
+                        <li>Read a detailed blog post about this here</li>
+                        </ul>
+                      </p>                 
+                    </div> 
 
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Risks Involved </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>No matter how much we strategize & risk averse we are, they are always risks associated with dealing in F&O markets.</li>
+                        <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingThree"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">As an advisory, it is our responsibility to bring to your notice & inform you about them</a></div><div id="collapseThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingThree"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses – you may receive margin calls from your broker for additional capital infusion.<ul><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses – you may receive margin calls from your broker for additional capital infusion.</li></ul></li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved.</li></ul></li></ul> </p> </div></div></div></li>
+                        </ul>
+                      </p>                 
+                    </div>
+                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
+                        <img src="/images/risk.jpg"/>
+                    </div>
+			 
+			  	
+				
+             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
+                <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
+                              <label>Who is it suitable for?</label>
+
+                            </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
+                          <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
+                          <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
+                        </ul>
+                      </p>                  
+                    </div>
+                      <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
+                    <div>
+                      <img src="/images/suitableFor.png"/>
+                    </div>
+                  </div>
+                
+                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
+                    <div>
+                      <img src="/images/suitableFor.gif"/>
+                    </div>
+                  </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
+                          <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
+                          <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
+                        </ul>
+                      </p>                     
+                    </div>
+                
+                </div>
+              </div>
+					
+					
+				 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow">
+             <label>Ready to go?</label><br/>
+             <span>Start making trades the fee-free way in just two minutes</span><br/>
+             <div className="col-lg-6 col-lg-offset-4">
+              <div className="buyNowButtonPP col-lg-4"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+              <div className="col-lg-offset-1 col-lg-4 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+            
+              </div>
+            </div>
 
 
 
@@ -1445,9 +1543,9 @@ export default class ProductPage extends Component {
 		);
 	}else if(this.state.divID == "unlistedPre"){
 		return( 
-			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
+			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
-			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imageContainer">
+			  			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 								<div className="row">
 								 	<div className="modal fade in " id="myModal" role="dialog">
 			                          <div className="modal-dialog customModalRP" >
@@ -1458,134 +1556,133 @@ export default class ProductPage extends Component {
 		                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
 			                                		<p><b>1) What is the primary goal for the funds invested through WealthVia?</b></p>
 		                                			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-														<ReactMultiSelectCheckboxes options={options} />
-													</div>
+                														<ReactMultiSelectCheckboxes options={options} />
+                													</div>
 			                                	</div> 
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
 				                                		<p><b>2) Any near term need for the funds invested with us ?</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>Yes after two years</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>Yes after 6 -8 months</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>It’s a separate capital to invest apart from my needs. I want to build good portfolio.</i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
-				                                		
+                															 <div className="dropdown">
+                															    <button type="button" 
+                															      className="btn customDrop btn-select"
+                															      data-toggle="dropdown">Select..</button>
+                															    <ul className="dropdown-menu dropdown-menu-select">
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="001" name="alphabet"/>
+                															        <i>Yes after two years</i>
+                															        </label>
+                															    </li>
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="002" name="alphabet"/>
+                															        <i>Yes after 6 -8 months</i>
+                															        </label>
+                															    </li>
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="003" name="alphabet"/>
+                															        <i>It’s a separate capital to invest apart from my needs. I want to build good portfolio.</i>
+                															        </label>
+                															    </li>
+                															    </ul>
+                															  </div>				                                		
+                															</div>
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
 				                                		<p><b>3) Your investments % exposure of your investable capital can be best described as</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>FD/bonds/gold 80%, MF /direct equity 20% </i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>FD 60% , 30 %Gold, 10% bonds, no direct equity</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>FD 10%, MF 25%, Direct equity 65%.</i>
-															        </label>
-															    </li>
-															      <li><label className="dropdown-radio">
-															        <input type="radio" value="004" name="alphabet"/>
-															        <i>Direct equity 90%, FD 10%. </i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
+                															 <div className="dropdown">
+                															    <button type="button" 
+                															      className="btn customDrop btn-select"
+                															      data-toggle="dropdown">Select..</button>
+                															    <ul className="dropdown-menu dropdown-menu-select">
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="001" name="alphabet"/>
+                															        <i>FD/bonds/gold 80%, MF /direct equity 20% </i>
+                															        </label>
+                															    </li>
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="002" name="alphabet"/>
+                															        <i>FD 60% , 30 %Gold, 10% bonds, no direct equity</i>
+                															        </label>
+                															    </li>
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="003" name="alphabet"/>
+                															        <i>FD 10%, MF 25%, Direct equity 65%.</i>
+                															        </label>
+                															    </li>
+                															      <li><label className="dropdown-radio">
+                															        <input type="radio" value="004" name="alphabet"/>
+                															        <i>Direct equity 90%, FD 10%. </i>
+                															        </label>
+                															    </li>
+                															    </ul>
+                															  </div>				                                		
+                															</div>
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
 				                                		<p><b>4) What is number of years you have spent in stock market investments</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>0-2 years </i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>3-5 years</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>5 years plus</i>
-															        </label>
-															    </li>
-															      <li><label className="dropdown-radio">
-															        <input type="radio" value="004" name="alphabet"/>
-															        <i>12-15 plus years </i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
+              															 <div className="dropdown">
+              															    <button type="button" 
+              															      className="btn customDrop btn-select"
+              															      data-toggle="dropdown">Select..</button>
+              															    <ul className="dropdown-menu dropdown-menu-select">
+              															    <li><label className="dropdown-radio">
+              															        <input type="radio" value="001" name="alphabet"/>
+              															        <i>0-2 years </i>
+              															        </label>
+              															    </li>
+              															    <li><label className="dropdown-radio">
+              															        <input type="radio" value="002" name="alphabet"/>
+              															        <i>3-5 years</i>
+              															        </label>
+              															    </li>
+              															    <li><label className="dropdown-radio">
+              															        <input type="radio" value="003" name="alphabet"/>
+              															        <i>5 years plus</i>
+              															        </label>
+              															    </li>
+              															      <li><label className="dropdown-radio">
+              															        <input type="radio" value="004" name="alphabet"/>
+              															        <i>12-15 plus years </i>
+              															        </label>
+              															    </li>
+              															    </ul>
+              															  </div>				                                		
+              															</div>
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
 				                                		<p><b>5) What is your biggest drawdown on your entire portfolio ?</b></p>
 				                                		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-															 <div className="dropdown">
-															    <button type="button" 
-															      className="btn customDrop btn-select"
-															      data-toggle="dropdown">Select..</button>
-															    <ul className="dropdown-menu dropdown-menu-select">
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="001" name="alphabet"/>
-															        <i>0 to -25% </i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="002" name="alphabet"/>
-															        <i>-25% to -50%</i>
-															        </label>
-															    </li>
-															    <li><label className="dropdown-radio">
-															        <input type="radio" value="003" name="alphabet"/>
-															        <i>-51% to -75%</i>
-															        </label>
-															    </li>
-															      <li><label className="dropdown-radio">
-															        <input type="radio" value="004" name="alphabet"/>
-															        <i>More than -75%</i>
-															        </label>
-															    </li>
-															    </ul>
-															  </div>				                                		
-															</div>
+                															 <div className="dropdown">
+                															    <button type="button" 
+                															      className="btn customDrop btn-select"
+                															      data-toggle="dropdown">Select..</button>
+                															    <ul className="dropdown-menu dropdown-menu-select">
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="001" name="alphabet"/>
+                															        <i>0 to -25% </i>
+                															        </label>
+                															    </li>
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="002" name="alphabet"/>
+                															        <i>-25% to -50%</i>
+                															        </label>
+                															    </li>
+                															    <li><label className="dropdown-radio">
+                															        <input type="radio" value="003" name="alphabet"/>
+                															        <i>-51% to -75%</i>
+                															        </label>
+                															    </li>
+                															      <li><label className="dropdown-radio">
+                															        <input type="radio" value="004" name="alphabet"/>
+                															        <i>More than -75%</i>
+                															        </label>
+                															    </li>
+                															    </ul>
+                															  </div>				                                		
+                															</div>
 				                                		
 			                                	</div>
 			                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
@@ -1602,23 +1699,21 @@ export default class ProductPage extends Component {
 		                                <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
 		                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                                	<form>
-								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
-								              </div>
-								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-								                <div className="row">
-								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
-								                      <label>Name</label>
-								                    </div>
-								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
-								                      <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
-								                     <div className="errorMsg">{this.state.errors.name}</div>
+          								              <div className="col-lg-12   col-md-12 col-sm-12 col-xs-12 textAlignCenter">
+          								                  <h4 className="formNameTitle "><span className="">KYC Collection Form</span></h4>
+          								              </div>
+          								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+          								                <div className="row">
+          								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
+          								                      <label>Name</label>
+          								                    </div>
+          								                     <div className="col-lg-9 col-md-8 col-sm-8 col-xs-8">
+          								                      <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+          								                     <div className="errorMsg">{this.state.errors.name}</div>
+          								                    </div>
+            								                </div>
 
-								                    </div>
-
-								                </div>
-
-								              </div>
+            								              </div>
 								              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
 								                <div className="row"> 
 								                    <div className="col-lg-3 col-md-2 col-sm-2 col-xs-2">
@@ -1737,55 +1832,109 @@ export default class ProductPage extends Component {
                   </div>
 								</div>
 							</div>
-			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
-			  			<label>US Stocks investing</label>
-			  		</div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerStocks">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      US Stocks investing
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>Total US stock Market makes 40% plus of global equity markets. The U.S. stock market is currently $34 trillion plus.</p>
+                      </div>
+                    </div>
+
+                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                      <div className="row">
+                      Invest now
+                      </div>
+                    </div>
+                </div>
+              </div>
+              </div>
+            </div>
+			  	     
+            <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
+                        <img src="/images/productDesc.jpg"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Few Facts on USA market  </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>AThe mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
+                        <li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities.</li>
+                        <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
+                        <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
+                        </ul>
+                      </p>                 
+                    </div> 
 			  	
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-			  			<label>Few Facts on USA market </label>
-			  			<ul className="customOl">
-			  				<li>
-			  				Total US stock Market makes 40% plus of global equity markets. The U.S. stock market is currently $34 trillion plus. The mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
-							<li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities</li>
-							<li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
-							<li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
-							
-							
-			  			</ul>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications chartContainer" id="cg">
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer" id="cg">
 			  			<label> Since 2010 , US market outperformed Indian Market</label>
-			  			<img src="/images/chart1.jpg" className="mt20"/>
+			  			<img src="/images/chart1.jpg" className=""/>
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications chartContainer mt20" id="cg">
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
 			  			<label> Natural Benefit of USD INR increase over longer time</label>
-			  			<img src="/images/usinr.jpg" className="mt20"/>
+			  			<img src="/images/usinr.jpg" className=""/>
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications chartContainer mt20" id="cg">
+			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
 			  			<label> Natural Benefit of USD INR increase over longer time</label>
-			  			<img src="/images/chart3.jpg" className="mt20"/>
-			  		</div>
-					<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace" id="practicability">
-			  			<label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row"> How we can help you invest in US market</label>
-			  			<ul className="col-lg-6 col-md-6 col-sm-6 col-xs-6 mt20">
-			  				
-							<li> Choosing right kind of stocks with research reports  </li>
-							<li> Zero brokerage charges and very low maintenance charges unlike few international brokerages offering high charges </li>
-							<li> Ease of buy sell and amount transfers to your own accounts. </li>
-							<li> Assistance in Liberalized Remittance Scheme </li>
-							
-						</ul>
-						<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 nyscContainer">
-			  				<img src="/images/nysc.jpg"/>
-						</div>
+			  			<img src="/images/chart3.jpg" className=""/>
 			  		</div>
 				
+				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
+                <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
+                              <label>How we can help you invest in US market</label>
+
+                            </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Choosing right kind of stocks with research reports</li>
+                          <li><span className="numberDiv">2</span> Zero brokerage charges and very low maintenance charges unlike few international brokerages offering high charges</li>
+                          <li><span className="numberDiv">3</span>Ease of buy sell and amount transfers to your own accounts.</li>
+                          <li><span className="numberDiv">4</span>Assistance in Liberalized Remittance Scheme</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                      <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
+                    <div>
+                      <img src="/images/help.jpg"/>
+                    </div>
+                  </div>
+                
+                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
+                    <div>
+                      <img src="/images/help.jpg"/>
+                    </div>
+                  </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
+                          <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
+                          <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
+                        </ul>
+                      </p>                     
+                    </div>
+                
+                </div>
+              </div>
 					
-						<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-			  			<div className="buyNowButtonPP col-lg-2 col-lg-offset-3"  data-toggle="modal" data-target="#myModal">Buy Now</div>
-              <div className=" col-lg-offset-1  col-lg-2 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
-			  		
-			  		</div>
+				 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow">
+             <label>Ready to go?</label><br/>
+             <span>Start making trades the fee-free way in just two minutes</span><br/>
+             <div className="col-lg-6 col-lg-offset-4">
+              <div className="buyNowButtonPP col-lg-4"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+              <div className="col-lg-offset-1 col-lg-4 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+            
+              </div>
+            </div>
 
 
 				</div>	
@@ -1795,75 +1944,107 @@ export default class ProductPage extends Component {
 		);
 	}else{
 		return( 
-			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 productContainer">
+			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 				<div className="row">
-			  			
-			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 titleContainer">
-			  			<label>Unlisted shares</label>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
-			  			<p>We are a Mumbai based dealer of Unlisted, Pre IPO shares. Our superiority stems robust systems and processes which provide smooth and hassle-free flow of agreement backed transactions by ensuring timely delivery of shares and money to the clients.
-							Many young companies grow much faster than mature companies due to their lower base hence they tend to significantly outperform the benchmark returns. However, a lot of this growth happens before the company goes public with an IPO. Hence participating in such companies in the Growth / Pre IPO stage can provide superior returns to the investor. Buyers need a safe mechanism that gives them access to high quality shares at the best price, provides matching of trade and enables even retail purchases.
-							While investments in Unlisted/Pre IPO shares have the potential of giving high returns, they are also accompanied by higher risk due to a variety of reasons. Investors need to exercise caution while investing in Unlisted/Pre IPO companies. Generally, they should have a minimum time horizon of 4 years and should not allocate more than 30% of their portfolio in Unlisted/Pre IPO shares.
-							</p>
-			  		</div>
+			  			 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerUS">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent pull-right">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading " >
+                      <div className="row">
+                      Unlisted shares
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara ">
+                      <div className="row">
+                        <p>We not just sell unlisted shares at Wealthyvia.com, but also first analyse the company and it’s shares liquidity and then only we will put on website to purchase for the investors. </p>
+                      </div>
+                    </div>
+
+                </div>
+              </div>
+              </div>
+            </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgInfo imageContainer">
+                <label className="investLabel">What is Unlisted Shares?</label>
+
+              <p>We are a Mumbai based dealer of Unlisted, Pre IPO shares. Our superiority stems robust systems and processes which provide smooth and hassle-free flow of agreement backed transactions by ensuring timely delivery of shares and money to the clients.
+              Many young companies grow much faster than mature companies due to their lower base hence they tend to significantly outperform the benchmark returns.</p>
+              <p>However, a lot of this growth happens before the company goes public with an IPO. Hence participating in such companies in the Growth / Pre IPO stage can provide superior returns to the investor. Buyers need a safe mechanism that gives them access to high quality shares at the best price, provides matching of trade and enables even retail purchases.
+              While investments in Unlisted/Pre IPO shares have the potential of giving high returns, they are also accompanied by higher risk due to a variety of reasons. Investors need to exercise caution while investing in Unlisted/Pre IPO companies. Generally, they should have a minimum time horizon of 4 years and should not allocate more than 30% of their portfolio in Unlisted/Pre IPO shares.
+              </p>
+            </div>   
+			  		<div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
+                      <img src="/images/buyProcess.png"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">The process to buy unlisted shares </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                         <li>As soon as investor will drop details with the name of the unlisted shares name and quantity which you would like to buy from us; we will get in touch with you.</li>
+                          <li> We will share our account number and we will need your CMR copy which you will get from your broker.</li>
+                          <li> Investor needs to then transfer the trade amount to our bank account and within T + 3-4 working days, you will get those shares in your CDSL or NSDL account (depending upon your broker).</li>
+                        
+                        </ul>
+                      </p>                 
+                    </div>
+			  	
+			 
+			  		<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray buyShares">
 			  		
-			  	<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-			  				<p>We not just sell unlisted shares at arthavruddhi.com; but also first analyse the company and it’s shares liquidity and then only we will put on website to purchase for the investors. </p>
-			  		</div> 	
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 specifications">
-			  		
-								<ul className="listStyleNone">
-									<li>How can you buy these unlisted shares online?</li>
-								     <li>You need to drop the mail on unlistedshares@xyz.com</li>
-								     <li>Or contact on 8369508540</li>
-								     <li>*our team will get in touch with you.</li>
-								     <li> One Trick Pony companies</li>
-								     <li>High debt / Leverage.</li>
+									<label>How can you buy these unlisted shares online?</label>
+								<ul className="listStyleNone textAlignCenter">
+								     <li className="col-lg-6 mt20"><i class="fa fa-envelope customIcon" aria-hidden="true"></i>
+                     <p>You need to drop the mail on <br/><span className="blueColor">unlistedshares@xyz.com</span></p></li>
+								     <li className="col-lg-6 mt20"><i class="fa fa-phone customIcon" aria-hidden="true"></i><p>Contact on <br/> <span className="blueColor">8369508540</span></p></li>
 								</ul>
 							
 			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 specifications lineSpace">
-			  			<label>The process to buy unlisted shares</label>
-			  			<ol>
-			  				
-							<li> As soon as investor will drop details with the name of the unlisted shares name and quantity which you would like to buy from us; we will get in touch with you.</li>
-							<li> We will share our account number and we will need your CMR copy which you will get from your broker.</li>
-							<li>Investor needs to then transfer the trade amount to our bank account and within T + 3-4 working days, you will get those shares in your CDSL or NSDL account (depending upon your broker).</li>
-			  			</ol>
-			  		</div>
-				
-			{/*	<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-			  				<p>Bank details: </p>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-10 col-sm-12 col-xs-12 ">
-			  		
-								<ul className="listStyleNone">
-									<li>Bank account name: xyz</li>
-								     <li>Account number 314643132464</li>
-								     <li>Bank : eg.State Bank of India</li>
-								     <li>IFSC code :SBI0098329</li>
-								</ul>
-							
-			  		</div>*/}
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  lineSpace">
-			  			<label>Bank Account fraud warning,</label>
-			  			<ul className="listStyleNone">
-							<li> Our bank account details will not be changed during the course of transaction.</li>
-							<li> If we will ever change the details same will be reflected on our website.</li>
-			  			</ul>
-			  		</div>
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  lineSpace">
-			  			<label>We will not:</label>
-			  			<ul className="listStyleNone">
-							<li> Try to change the details over a phone call or any direct mail.</li>
-							<li> Ask you to send us investor’s bank details by email from any other id.</li>
-			  			</ul>
-			  		</div>
-				
-			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 imageContainer">
-			  				<p><b>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</b> </p>
-			  		</div>
+			  	
+			
+			  	
+			  		 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
+                <div className="row">
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
+                              <label>Beware of following</label>
+
+                            </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>we never try to change the details over a phone call or any direct mail.</li>
+                          <li><span className="numberDiv">2</span>Ask you to send us investor’s bank details by email from any other id.</li>
+                          <li><span className="numberDiv">3</span>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</li>
+                          <li><span className="numberDiv">4</span>We never change our account details during transactions</li>
+                          <li><span className="numberDiv">5</span>If we will ever change the details same will be reflected on our website.</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                      <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  imageContainer">
+                    <div>
+                      <img src="/images/security.png"/>
+                    </div>
+                  </div>
+                
+                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer">
+                    <div>
+                      <img src="/images/security.png"/>
+                    </div>
+                  </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
+                        <ul className="customOl">
+                          <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
+                          <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
+                          <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
+                        </ul>
+                      </p>                     
+                    </div>
+                
+                </div>
+              </div>
+          
 
 				</div>	
 			

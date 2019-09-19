@@ -48,7 +48,6 @@
 
 }
 .iconContainer img{
-	filter:invert(100%);
 	height: 100%;
 	padding:8px;
 	margin-bottom: 2rem;

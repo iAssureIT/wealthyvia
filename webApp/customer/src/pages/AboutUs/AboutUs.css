@@ -54,6 +54,18 @@
 
 }
 .*/
+.bannerAUPara{
+	font-size: 52px;
+	font-weight: bold;
+	line-height: 60px;
+}
+.headingAbout{
+	color: #fff;
+	font-size: 20px;
+	padding: 30px;
+	font-weight: bold;
+
+}
 .aboutUsContainer{
 	background-image: linear-gradient(to right ,#201a47, #25bbf3);
 	height: 100%;
@@ -83,20 +95,26 @@
     border-right: 183px solid transparent
     }
 .hexDiv1{
-	background-image: url("/images/hexaBack.png");
-	background-repeat: no-repeat;
  font-family:'Montserrat',sans-serif;	font-size: 18px;
-	background-size: 100% 100%;
-	height: 380px;
-	padding: 90px !important;
+	height: 280px;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
 	text-align: center;
 	color: #fff;
 }
 .hexDiv1 img{
-	height: 70px;
+	height: 100px;
+	padding: 5px;
+	padding-bottom: 20px;
+	border-bottom: 2px solid #aaa;
+	filter: invert(60%);
 }
 .hexDiv1 p{
-	margin-top: 10px;
+	margin-top: 20px;
+	color: #888;
+	padding-top: 0px !important;
+	padding: 50px;
+	font-size: 17px !important;
 }
 .hexDiv1Small{
 	background-image: url("/images/hexaBack.png");
@@ -144,4 +162,104 @@ margin-left: 170px;
 .lastDiv{
 	margin-top: -185px;
     margin-left: 170px;
+}
+.bannerContainerAU{
+	background-image: url("/images/howWork.jpg");
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	text-align:center;
+	height: auto;
+	color: #fff;
+	padding: 90px;
+}
+.descDivAU{
+	padding: 40px;
+	font-size: 18px;
+}
+.svgContent{
+stroke:rgba(255, 255, 255, 0.45);stroke-width:5;
+height: 10px !important;
+width: 80px !important;
+}
+.qfHead{
+	font-weight: bolder;
+	font-size: 40px;
+	padding: 40px; 
+
+}
+.nineYearImage{
+	background-size: 100% 100%;
+	height: 600px;
+	background-attachment: fixed;
+	color: #fff;
+	background-image: url("/images/nineYear.jpg");
+}
+.nineYearImage p{
+	margin-top:20px;
+	line-height: 70px;
+	font-weight: bolder;
+	font-size: 60px;
+}
+.nineYearImage label{
+	margin-top:10px;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 47px;
+
+}
+.riskDiv{
+	background-size: 100% 100%;
+	height: 600px;
+	background-attachment: fixed;
+	color: #fff;
+	background-image: url("/images/riskBack.jpg");
+}
+.riskDiv p{
+	margin-top:20px;
+	line-height: 70px;
+	font-weight: bolder;
+	font-size: 60px;
+}
+.riskDiv label{
+	margin-top:10px;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 47px;
+
+}
+.blackDiv{
+	height: 600px;
+	padding-top: 100px !important;
+	padding: 60px !important;
+	background-color: rgba(0,0,0,0.7) !important;
+}
+
+.imgContentAU{
+	height: 180px;
+}
+.imgContentAU img{
+	height: 100%;
+	width: 100%;
+}
+.imageContent1{
+	height: 400px;
+	font-size: 20px;
+	color: #666;
+    padding: 40px !important;
+}
+.image1{
+	height: 400px;
+}
+.image1 img{
+	height: 100%;
+	width:  100%;
+}
+.nameOfImageHead{
+	font-size: 40px;
+	color: #201A47;
+}
+.borderBottomDiv{
+	width: 100px;
+		border-bottom: 2px solid #201A47;
+		margin-bottom: 20px;
 }

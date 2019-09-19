@@ -26,9 +26,31 @@ export default class AboutUs extends Component {
     return (
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div className="row">
-
+                <div className="col-lg-12 col-md-6 col-sm-12 col-xs-12 bannerContainerAU">
+                    
+                    <div className="col-lg-10  col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 headingAbout" >
+                      <div className="row">
+                      <svg  className="svgContent" >
+                        <line x1="0" y1="0" x2="100" y2="0"/>
+                      </svg>  HOW IT WORKS   <svg  className="svgContent" >
+                        <line x1="0" y1="0" x2="100" y2="0" />
+                      </svg>
+                      </div>
+                    </div>  
+                    <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 bannerAUPara">
+                      <div className="row">
+                        <p> Know us better by understanding our secrets and work style. </p>
+                      </div>
+                    </div>
+                     <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 descDivAU">
+                      <div className="row">
+                        <p> Wealthyvia takes a unique approach to lending, offering lower interest rates and big savings.<br/>Scroll down and know how. </p>
+                      </div>
+                    </div>
+                </div>
+             
           <div className="col-lg-12 col-md-12 hidden-xs hidden-sm">
-            <div className="row">
+          {/*  <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 aboutUsContainer">
                 <div className="row">
                   <div className="triangle-bottomleft hidden-xs hidden-md hidden-sm col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
@@ -49,12 +71,60 @@ export default class AboutUs extends Component {
                 </div>
                 </div>
             </div>
-            </div>
+            </div>*/}
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
                   <div className="row">
-                   <label className="headLabelQF">Qualitative Framework</label>
+                   <label className="qfHead col-lg-12 col-md-12 col-sm-12 col-xs-12 ">Qualitative Framework</label>
+
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/team.png"/>
+                          <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>
+                    
+                      </div>
+                    </div>
+
+                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/address.png"/>
+                          <p>Consistency in Revenue , EBIDTA , Profit Growth , ROE , ROCE and Margins </p>
+                    
+                      </div>
+                    </div>
+
+                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/diagram.png"/>
+                          <p>Business Scaleability, sustainability, market shares, product pricing powers, Durable competitive advantage </p>
+                    
+                      </div>
+                    </div>
+
+                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/sign.png"/>
+                          <p>Corporate Governance : Accounting redflags, promoter track/reputation  records, Third party transactions , tax and dividends</p>
+                    
+                      </div>
+                    </div>
+
+                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/umbrella.png"/>
+                          <p>Are Big investors, FII , DII interested in these stocks? Buying interest </p>
+                    
+                      </div>
+                    </div>
+
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
+                        <div className="row">
+                          <img src="/images/house.png"/>
+                          <p>Valuations ? Unless attractive price that can give at least 3X in 4years  </p>
+                    
+                      </div>
+                    </div>
+                  {/* <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 hexDiv1">
                         <div className="row">
                           <img src="/images/sign.png"/>
                           <p>Corporate Governance : Accounting redflags, promoter track/reputation  records, Third party transactions , tax and dividends</p>
@@ -96,14 +166,107 @@ export default class AboutUs extends Component {
                     
                       </div>
                   </div>            
+*/}
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nineYearImage">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv"> 
+                    <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 imgContentAU"><img src="/images/exp.png"/></div>
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">9 Years of Experience</p>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">We are the one of experienced organization, we have 9 Years of Research Experience of working for our Institutional clients</label>
+                    </div>  
+                </div>  
+            </div>
+        
 
-
-                  </div>
               </div>            
             </div>
-             <div className="row">
                 <ClientDeliverables />
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="row">
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 imageContent1"> 
+                    <label className="nameOfImageHead">We have</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. </p>
+                    </div>  
+                    <div className="col-lg-8 col-md-4 col-sm-4 col-xs-4 backColorBlack noPadding image1"> 
+                      <img src="/images/books.jpg"/>
+                    </div>  
+                </div>  
+            </div>  
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="row">
+                  <div className="col-lg-8 col-md-4 col-sm-4 col-xs-4 backColorBlack image1 noPadding"> 
+                      <img src="/images/ourTeam.jpg"/>
+                    </div>  
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 imageContent1"> 
+                    <label className="nameOfImageHead">Our team</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Team of 7 Research Analysts .Team mix of Industry specialists, business analysts, Operational and Marketing consultants and Stock Market equity specialists.</p>
+                    </div>  
+                   
+                </div>  
             </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="row">
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 imageContent1"> 
+                    <label className="nameOfImageHead">We are</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Self developed Software tools with 924 hours of hard work and 17000 lines of code  to screen and filter data and algorithm systems to find right trades. </p>
+                    </div>  
+                    <div className="col-lg-8 col-md-4 col-sm-4 col-xs-4 backColorBlack noPadding image1"> 
+                      <img src="/images/weAre.jpg"/>
+                    </div>  
+                </div>  
+            </div>  
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="row">
+                  <div className="col-lg-8 col-md-4 col-sm-4 col-xs-4 backColorBlack image1 noPadding"> 
+                      <img src="/images/clearDirection.jpg"/>
+                    </div>  
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 imageContent1"> 
+                    <label className="nameOfImageHead">Clear direction</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Finding trends direction and early deviations from expected trends. Having Right Direction is a must in journey of Wealth creation</p>
+                    </div>  
+                   
+                </div>  
+            </div>
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 riskDiv">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
+                    <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 imgContentAU"><img src="/images/riskImg.png"/></div>
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
+                    </div>  
+                </div>  
+            </div>
+         
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="row">
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 imageContent1"> 
+                    <label className="nameOfImageHead">Performance</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Out performance and Under performance measurement  of each stock returns  and portfolio returns with benchmarks </p>
+                    </div>  
+                    <div className="col-lg-8 col-md-4 col-sm-4 col-xs-4 backColorBlack noPadding image1"> 
+                      <img src="/images/performance.jpg"/>
+                    </div>  
+                </div>  
+            </div>  
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="row">
+                  <div className="col-lg-8 col-md-4 col-sm-4 col-xs-4 backColorBlack image1 noPadding"> 
+                      <img src="/images/management.jpg"/>
+                    </div>  
+                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 imageContent1"> 
+                    <label className="nameOfImageHead">Management</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Investment Management committee Monthly review and Monitoring</p>
+                    </div>  
+                   
+                </div>  
+            </div>
+
              <div className="row">
                 <ValuesWeCreate />
             </div>
@@ -189,8 +352,11 @@ export default class AboutUs extends Component {
                 <ValuesWeCreate />
             </div>
           </div>
-          </div>
-          </div>
+           </div>
+            </div>
+            </div>
+          
+        
     );
   }
 }
