@@ -10,7 +10,7 @@ import RiskProfilePage                               from "../pages/RiskProfileP
 import KycForm                               from "../pages/KycForm/KycForm.js";
 import BlogViewPage                               from "../pages/BlogViewPage/BlogViewPage.js";
 import AllBlogs                               from "../pages/AllBlogs/AllBlogs.js";
-
+import SingleBlogPage               from "../pages/SingleBlogPage/SingleBlogPage.js";
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
 import EcommerceFooter                           from "../blocks/common/EcommerceFooter/EcommerceFooter.js";
@@ -57,6 +57,8 @@ const WebLayout = () => (
               <Route path="/AllBlogs"              exact strict component={AllBlogs}  />
               <Route path="/BlogViewPage"              exact strict component={BlogViewPage}  />
               <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
+              <Route path="/singleblogpage"              exact strict component={SingleBlogPage}  />
+
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />
               <Route path="/about-us"                 exact strict component={AboutUs}  />

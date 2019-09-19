@@ -1,0 +1,16 @@
+.mapouter{
+	position:relative;
+	text-align:right;
+	height:500px;
+	width:100%;
+	padding: 0px;
+}
+.gmap_canvas{
+	overflow:hidden;
+	background:none!important;
+	height:400px;
+	width:100%;
+}
+.cuMapWall{
+	padding: 0px;
+}

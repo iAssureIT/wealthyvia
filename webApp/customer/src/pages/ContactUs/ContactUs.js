@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
+import $                    from 'jquery';
 
 import "./ContactUs.css";
+
+import ContactUsBanner      from "../../blocks/ContactUsBanner/ContactUsBanner.js";
+import ContactAddress       from "../../blocks/ContactAddress/ContactAddress.js";
+import ContactMap         from "../../blocks/ContactMap/ContactMap.js";
+import ContactUsForm      from "../../blocks/ContactUsForm/ContactUsForm.js";
+
 
 export default class ContactUs extends Component {
 
@@ -22,77 +28,86 @@ export default class ContactUs extends Component {
   render() {
 
     return (
-          <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite contactUsBody">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 LabelContactUs row">
-                <span className="col-lg-12 col-md-12 col-sm-12 col-xs-12 contactspan" >Contact Us</span>
-                <span className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-envelope"></i>&nbsp;&nbsp;wealthyvia@gmail.com</span>
-                <span  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-globe"></i>&nbsp;&nbsp;www.wealthyvia.com</span>
-                <span  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-mobile" aria-hidden="true"></i> &nbsp;&nbsp;+91 9372120785 / +91 7892729130</span>
-              </div>
+          <div className="container-fluid" style={{padding:"0px"}}>
+            <ContactUsBanner/>
+            <ContactAddress/>
+            <ContactMap/>
+            <ContactUsForm/>
 
-                
-              <form className="col-lg-10 col-md-12 col-sm-12 col-xs-12  contactUsForm ">
-                 <div className="row">
-                 <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 sendUsSupport">
-                    <div className="row">
-                      <label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 headingSend">Send us support message </label>
-                      <p>We're here to help! Email us through the secure form below, or log in to see our phone number.
-                        When sending us a message, please share the email address you use for wealthyvia.</p>
-                      
+         
 
-                    </div>
-                  </div>
-                  <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom" >
-                    <div className="row">
-                      <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Topic </label>
-                       <select className="custom-select customSelectContact col-lg-8 ">
-                        <option  className="hidden" >Select an inquiry</option>
-                        <option>Client Inquiry</option>
-                        <option>Linking an account</option>
-                        <option>Other</option>
-                      </select>
-                    </div>
-                  </div>
-                  
-                   <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
-                    <div className="row">
-                      <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Name </label>
-                      <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 "><input type="text" className="customSelectContact col-lg-12 row"  placeholder="First Name"/></div>
-                      <input type="text" className="customSelectContact col-lg-4"  placeholder="Last Name"/>
-
-                    </div>
-                  </div>
-                    <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
-                    <div className="row">
-                      <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Email Address </label>
-                      <input type="text" className="customSelectContact col-lg-8"  placeholder="Enter Address"/>
-
-                    </div>
-                  </div>
-                   <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
-                    <div className="row">
-                      <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Mobile Number </label>
-                      <input type="text" className="customSelectContact col-lg-8"/>
-
-                    </div>
-                  </div>
-                   <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 mt10">
-                    <div className="row">
-                      <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Message </label>
-                      <textarea rows="7"  className="col-lg-8"></textarea>
-
-                    </div>
-                  </div>
-                   <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 mt10">
-                    <div className="row">
-                      <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading"> </label>
-                      <div className="col-lg-1 col-md-2 col-sm-2 col-xs-2  sendButton">Send</div>
-
-                    </div>
-                  </div>
-                 </div>
-              </form>
           </div>
     );
   }
 }
+    {/* <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite contactUsBody">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 LabelContactUs row">
+                    <span className="col-lg-12 col-md-12 col-sm-12 col-xs-12 contactspan" >Contact Us</span>
+                    <span className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-envelope"></i>&nbsp;&nbsp;wealthyvia@gmail.com</span>
+                    <span  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-globe"></i>&nbsp;&nbsp;www.wealthyvia.com</span>
+                    <span  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><i class="fa fa-mobile" aria-hidden="true"></i> &nbsp;&nbsp;+91 9372120785 / +91 7892729130</span>
+                  </div>
+
+                    
+                  <form className="col-lg-10 col-md-12 col-sm-12 col-xs-12  contactUsForm ">
+                     <div className="row">
+                      <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 sendUsSupport">
+                        <div className="row">
+                          <label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 headingSend">Send us support message </label>
+                          <p>We're here to help! Email us through the secure form below, or log in to see our phone number.
+                            When sending us a message, please share the email address you use for wealthyvia.</p>
+                          
+
+                        </div>
+                      </div>
+                      <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom" >
+                        <div className="row">
+                          <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Topic </label>
+                           <select className="custom-select customSelectContact col-lg-8 ">
+                            <option  className="hidden" >Select an inquiry</option>
+                            <option>Client Inquiry</option>
+                            <option>Linking an account</option>
+                            <option>Other</option>
+                          </select>
+                        </div>
+                      </div>
+                      
+                       <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
+                        <div className="row">
+                          <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Name </label>
+                          <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 "><input type="text" className="customSelectContact col-lg-12 row"  placeholder="First Name"/></div>
+                          <input type="text" className="customSelectContact col-lg-4"  placeholder="Last Name"/>
+
+                        </div>
+                      </div>
+                        <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
+                        <div className="row">
+                          <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Email Address </label>
+                          <input type="text" className="customSelectContact col-lg-8"  placeholder="Enter Address"/>
+
+                        </div>
+                      </div>
+                       <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 marginBottom">
+                        <div className="row">
+                          <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Mobile Number </label>
+                          <input type="text" className="customSelectContact col-lg-8"/>
+
+                        </div>
+                      </div>
+                       <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 mt10">
+                        <div className="row">
+                          <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading">Message </label>
+                          <textarea rows="7"  className="col-lg-8"></textarea>
+
+                        </div>
+                      </div>
+                       <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 mt10">
+                        <div className="row">
+                          <label className="col-lg-4 col-md-12 col-sm-12 col-xs-12 heading"> </label>
+                          <div className="col-lg-1 col-md-2 col-sm-2 col-xs-2  sendButton">Send</div>
+
+                        </div>
+                      </div>
+                     </div>
+                  </form>
+              </div>*/}

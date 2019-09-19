@@ -1,0 +1,16 @@
+.cuAddWall{
+	height: 300px;
+	/*background-color: #999;*/
+	text-align: center;
+}
+.cuaBox1{
+	/*border: 1px solid #aaa;*/
+	height: 300px;
+	margin-top: 35px;
+
+}
+.caimg{
+	height: 80px !important;
+    position: relative !important;
+    left: 33% !important;
+}
