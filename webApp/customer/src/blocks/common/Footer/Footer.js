@@ -32,23 +32,7 @@ export default class Footer extends Component {
                    <li> USA Stocks</li>
                    <li> Unlisted Stocks</li>
                    <li> Artha 5GCPM Midcap Large cap Portfolio and small Cases</li>
-                  {/* <li> Parent Student Loans</li>
-                   <li> Personal Loans</li>
-                   <li> Home Loans</li>
-                   <li> Mortgage</li>
-                   <li> Mortgage Refinance</li>
-                   <li> Wealthyvia Invest®</li>
-                   <li> Stock Bits</li>
-                   <li> Active Investing</li>
-                   <li> Automated Investing</li>
-                   <li> ETFs</li>
-                   <li> Wealthyvia Protect</li>
-                   <li> Renters Insurance</li>
-                   <li> Homeowners Insurance</li>
-                   <li> Auto Insurance</li>
-                   <li> Life Insurance</li>
-                   <li> Wealthyvia Money®</li>
-                   <li> Wealthyvia Relay</li>*/}
+                 
                 </ul>
 
 
@@ -105,7 +89,7 @@ export default class Footer extends Component {
                      <input type="text" className="customInput col-lg-10 col-md-10 col-sm-10 col-xs-10" placeholder="Enter Email Address"/>
                       <span className="searchIcon col-lg-2 col-md-2 col-xs-2 col-sm-2"><i class="fa fa-chevron-right iconS"></i></span>
                     </div>
-                  <div className="col-lg-12 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12">
+                 {/* <div className="col-lg-12 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12">
                     <div className="row">
                       <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
                         <i class="fa fa-facebook"></i>
@@ -128,8 +112,8 @@ export default class Footer extends Component {
 
                       </div>
                     </div>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  </div>*/}
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                     <div className="row">
                     <div className="col-lg-5 col-md-5 col-sm-6 col-xs-5 imgContainer row">
                       <img src="/images/appstore.png"/>

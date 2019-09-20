@@ -10,3 +10,13 @@
 {
 	font-size: 40px;
 }
+.suitableForDiv{
+    font-family: 'Montserrat',sans-serif;
+}
+.suitableForDiv p{
+	 font-size: 18px;
+}
+.suitableForDiv span
+{
+	font-size: 40px;
+}

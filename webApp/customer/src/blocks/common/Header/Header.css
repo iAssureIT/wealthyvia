@@ -529,3 +529,15 @@ dropdown-submenu {
 .colorWhite{
   color:#fff !important;
 }
+.faceBook{
+  color: #201b47;
+  padding-top: 15px;
+  margin-right: 10px;
+  font-size: 15px;
+}
+.faceBook:hover{
+  cursor: pointer;
+}
+.iconContainerHeader{
+  margin-left: 15px;
+}

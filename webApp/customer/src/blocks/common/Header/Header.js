@@ -72,7 +72,32 @@ export default class Header extends Component {
                 <div class="container-fluid">
                   <div class="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <a class="navbar-brand webSiteName colorP col-lg-4 col-md-4 col-sm-4 col-xs-4" href="/">Wealthyvia</a>
-                  <div className="col-lg-8 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP">The Value we create : Profound.Profuse.Precise. </a></div>
+                  <div className="col-lg-5 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP">The Value we create : Profound.Profuse.Precise. </a></div>
+                   <div className="col-lg-3 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12 iconContainerHeader">
+                    <div className="row">
+                    
+                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
+                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+
+                      </div> <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook pull-right">
+                        <i class="fa fa-pinterest"></i>
+
+                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
+                        <i class="fa fa-instagram" aria-hidden="true"></i>
+
+                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
+                        <i class="fa fa-twitter" aria-hidden="true"></i>
+
+                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
+                        <i class="fa fa-snapchat" aria-hidden="true"></i>
+
+
+                      </div>
+                        <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
+                        <i class="fa fa-facebook"></i>
+                      </div>
+                    </div>
+                  </div>
                   </div>
 
                  
