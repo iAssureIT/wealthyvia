@@ -41,10 +41,10 @@ export default class Footer extends Component {
                   <label>Company</label>
                   <ul>
                   <a href="/about-us"><li >About Us</li></a>
-                  <li>Blogs</li>
+                {/*  <li>Blogs</li>
                  <li>Disclaimers</li>
                   <li>Numbers</li>
-                  <li>Registrations certifications </li>
+                  <li>Registrations certifications </li>*/}
                   
                  
                   </ul>
@@ -83,36 +83,42 @@ export default class Footer extends Component {
 
 
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-6   col-xs-10 footerDivFirst">
+                <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 footerDivFirst">
                   <label>Hear about wealthyvia tips, experience & more</label>
                    <div className="col-lg-8 col-md-8 col-sm-10 col-xs-12 inputContainerEH ">
                      <input type="text" className="customInput col-lg-10 col-md-10 col-sm-10 col-xs-10" placeholder="Enter Email Address"/>
                       <span className="searchIcon col-lg-2 col-md-2 col-xs-2 col-sm-2"><i class="fa fa-chevron-right iconS"></i></span>
                     </div>
-                 {/* <div className="col-lg-12 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12">
+                  <div className="hidden-lg hidden-md  col-sm-10 col-xs-12">
                     <div className="row">
-                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
-                        <i class="fa fa-facebook"></i>
+                     <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook ">
+{/*                        <i class="fa fa-linkedin" aria-hidden="true"></i>
+*/}
+                            <img src="/images/linkedin1.png"/>
+                      </div> 
+                      <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook ">
+                       {/* <i class="fa fa-pinterest"></i>*/}
+                         <img src="/images/facebook.png"/>
+
+                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
+                       {/* <i class="fa fa-instagram" aria-hidden="true"></i>*/}
+                        <img src="/images/twitter.png"/>
+
+
+                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook ">
+                       {/* <i class="fa fa-twitter" aria-hidden="true"></i>*/}
+                         <img src="/images/snapchat.png"/>
+
+                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
+                        {/*<i class="fa fa-snapchat" aria-hidden="true"></i>*/}
+                        <img src="/images/instagram.png"/>
+
+
                       </div>
-                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
-                        <i class="fa fa-linkedin" aria-hidden="true"></i>
-
-                      </div> <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook">
-                        <i class="fa fa-pinterest"></i>
-
-                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
-                        <i class="fa fa-instagram" aria-hidden="true"></i>
-
-                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
-                        <i class="fa fa-twitter" aria-hidden="true"></i>
-
-                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
-                        <i class="fa fa-snapchat" aria-hidden="true"></i>
-
-
-                      </div>
-                    </div>
-                  </div>*/}
+                        <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
+                         <img src="/images/pinterest.png"/>
+                      </div>                    </div>
+                  </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                     <div className="row">
                     <div className="col-lg-5 col-md-5 col-sm-6 col-xs-5 imgContainer row">

@@ -30,9 +30,9 @@ export default class AboutUs extends Component {
                     
                     <div className="col-lg-10  col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 headingAbout" >
                       <div className="row">
-                      <svg  className="svgContent" >
+                      <svg  className="svgContent hidden-sm hidden-xs" >
                         <line x1="0" y1="0" x2="100" y2="0"/>
-                      </svg>  HOW IT WORKS   <svg  className="svgContent" >
+                      </svg>  HOW IT WORKS   <svg  className="svgContent hidden-sm hidden-xs" >
                         <line x1="0" y1="0" x2="100" y2="0" />
                       </svg>
                       </div>

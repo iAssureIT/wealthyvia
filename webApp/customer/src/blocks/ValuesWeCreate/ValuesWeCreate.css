@@ -1,14 +1,15 @@
 .valuesWeCreateContainer{
-	height: 650px;
+	height: auto;
 	background-image:url("/images/backImageAU.jpg");
 	background-size: 100% 100%;
+	padding:40px;
 	background-repeat: no-repeat;
 	 font-family:'Montserrat',sans-serif;
 }
 .floatingDivContainer{
-		height: 450px;
-		border-radius: 10px;
-		margin-top: 100px;
+/*		height: 450px;
+*/		border-radius: 10px;
+		margin-top: 10px;
 		padding: 40px;
 		text-align: center;
 		color: #fff;
