@@ -23,8 +23,8 @@ export default class ValuesWeCreate extends Component {
 
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 valuesWeCreateContainer">
-            <div className="row">
-              <div className="col-lg-4 col-lg-offset-7 col-md-12 col-sm-12 col-xs-12 floatingDivContainer">
+            <div className="">
+              <div className="col-lg-4 col-lg-offset-6 col-md-12 col-sm-12 col-xs-12 floatingDivContainer">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="iconCircle col-lg-4 col-lg-offset-4">
                     <img src="/images/correct.png"/>

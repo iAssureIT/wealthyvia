@@ -441,9 +441,9 @@ export default class ReadyToGo extends Component {
                                     <button type="button" className="close" data-dismiss="modal" onClick={this.CloseModalTwo.bind(this)}> <i className="fa fa-times"></i></button>
                                     <h4 class="modal-title">Your Investment Profile</h4>
                                   </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                      <form>
-                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                      <form id="riskform">
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
                                             <p><b>3) Your investments % exposure of your investable capital can be best described as</b></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
@@ -484,7 +484,7 @@ export default class ReadyToGo extends Component {
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="two"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">0-2 years  </span>
@@ -492,7 +492,7 @@ export default class ReadyToGo extends Component {
                                           </div>
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="two"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">3-5 years</span>
@@ -500,7 +500,7 @@ export default class ReadyToGo extends Component {
                                           </div>
                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="two"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">5 years plus</span>
@@ -508,7 +508,7 @@ export default class ReadyToGo extends Component {
                                           </div>   
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="two"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">2-15 plus years</span>
@@ -520,7 +520,7 @@ export default class ReadyToGo extends Component {
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="three"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">0 to -25%</span>
@@ -528,7 +528,7 @@ export default class ReadyToGo extends Component {
                                           </div>
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="three"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">-25% to -50%</span>
@@ -536,7 +536,7 @@ export default class ReadyToGo extends Component {
                                           </div>
                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="three"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">-51% to -75%</span>
@@ -544,7 +544,7 @@ export default class ReadyToGo extends Component {
                                           </div>   
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name="three"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">More than -75%</span>

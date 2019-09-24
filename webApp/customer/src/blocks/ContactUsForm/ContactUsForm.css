@@ -1,6 +1,11 @@
 .cuformWall{
 	height: 500px;
+	margin-bottom:40px !important;
 	/*background-color: #aaa;*/
+}
+.bt40{
+		margin-bottom:40px !important;
+
 }
 .bt30{
 		margin-bottom:  10px;

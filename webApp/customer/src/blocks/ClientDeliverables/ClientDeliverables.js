@@ -34,7 +34,7 @@ export default class ClientDeliverables extends Component {
 
                 </div>
                 <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12 subDivCD ">
-                      <i class="fa fa-briefcase iconContainerCD"></i>
+                      <i class="fa fa-briefcase iconContainerCD"></i><br/>
                     <label className="payZeroCD">Idle money in 6% plus liquid bees </label>
                    
 
@@ -59,13 +59,13 @@ export default class ClientDeliverables extends Component {
               <div className="row">
               
                 <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 subDivCD ">
-                      <i class="fa fa-paper-plane iconContainerCD"></i>
+                      <i class="fa fa-paper-plane iconContainerCD"></i><br/>
                     <label className="payZeroCD">Prominent business updates </label>
                     
 
                 </div>
                 <div className="col-lg-3 col-md-4 col-sm-12 col-xs-12 subDivCD ">
-                      <i class="fa fa-map iconContainerCD"></i>
+                      <i class="fa fa-map iconContainerCD"></i><br/>
                     <label className="payZeroCD">Fund ManagersMonthly Newsletter </label>
                    
 

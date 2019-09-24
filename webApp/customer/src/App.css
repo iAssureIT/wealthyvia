@@ -162,6 +162,10 @@ a .active{
 }
 .backColorPurple{
   background-color: #201747;
+  color: #fff !important;
+}
+.backColorPink{
+background-color: #DD7975 !important;
 }
 .ht50{
   height:60px;

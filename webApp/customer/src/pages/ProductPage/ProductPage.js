@@ -32,6 +32,11 @@ export default class ProductPage extends Component {
             "errors1"        : {},
 	    };
   	}  
+      srollDiv(event)
+  {
+        window.scrollTo(0,630);
+
+  }
   	componentDidMount()
   	{
 		      console.log('Selected value=',$('.dropdown-radio').find('input').change())
@@ -269,6 +274,7 @@ export default class ProductPage extends Component {
       });
       return formIsValid;
 }
+
  validateFormModal() {
     let fields = this.state.fields1;
     let errors = {};
@@ -317,6 +323,7 @@ export default class ProductPage extends Component {
     }
   }
 
+
   render() {
   		const options = [
   { label: '15% is fine with me but don’t wanna lose at all . Safety first . Long term.', value: 1},
@@ -333,7 +340,7 @@ export default class ProductPage extends Component {
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						<div className="row">
 			  			
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSH">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSH img-responsive">
               <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
@@ -349,19 +356,20 @@ export default class ProductPage extends Component {
                       </div>
                     </div>
 
-                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                      Invest now
+                          <img src="/images/down.png" /><br/>
+                          <span>Slide down to know more</span>
                       </div>
-                    </div>
                 </div>
                 </div>
               </div>
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
-                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                        <img src="/images/over.jpg"/>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer  ">
+                        <img src="/images/over.jpg" className="img-responsive"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -370,33 +378,118 @@ export default class ProductPage extends Component {
                         <li>This portfolio consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
                         <li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
                         <li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
-                        <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Preferred companies</a></div><div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Large Caps</li><li>Leaders in the sector</li><li>Quality Management</li><li>Strong Balance sheet</li><li>Decent growth</li><li>Earnings predictability / Non Cyclical stocks</li><li>Linked to Indian growth story</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingTwo"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">Companies we don’t invest in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Large Caps</li><li>Leaders in the sector</li><li>Quality Management</li><li>Strong Balance sheet</li><li>Decent growth</li><li>Earnings predictability / Non Cyclical stocks</li><li>Linked to Indian growth story</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
-                        <li>Read a detailed blog post about this here</li>
+
                         </ul>
                       </p>                 
                     </div>
-               
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="/images/over.jpg" className="img-responsive"/>
+                    </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
-                    <label><span className="iceBlueColor">5G : Five types of Growths </span></label>
+                    <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                        <ul className="customOl">
-                          <li>
-                          Sales</li>
-                        <li>Profits</li>
-                        <li>Clients/product volume/value addition/branches/territories (micros of business economics)</li>
-                        <li>Margins :  one should be sure that margin will not decline. Headwinds, sectorial downturns, raw material prices, fierce competition, import duties, tax laws, substitute products , advanced tech makes margin decline.</li>
-                        <li>Market share/demand/ size of opportunity : this defines leadership position. Always no1 or no2 company having considerable and increasing size of opportunity .</li>
+                        <ul className="customOl listStyle">
+                          <li>This portfolio consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
+                        <li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
+                        <li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
+
                         </ul>
                       </p>                  
                     </div>
                 
                 </div>
               </div>
-               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 riskDivPP">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPink onHoverEffect" >
+                <div className="row">
+               
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Preferred companies </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                        <li>Large Caps</li>
+                        <li>Leaders in the sector</li>
+                        <li>Quality Management</li>
+                        <li>Strong Balance sheet</li>
+                        <li>Decent growth</li>
+                        <li>Earnings predictability / Non Cyclical stocks</li>
+                        <li>Linked to Indian growth story</li>
+                        </ul>
+                      </p>                 
+                    </div>
+                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="/images/companiesWeInvest.jpg"/>
+                    </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="/images/companiesWeInvest.jpg"/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Preferred companies </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                          <ul className="customOl listStyle">
+                        <li>Large Caps</li>
+                        <li>Leaders in the sector</li>
+                        <li>Quality Management</li>
+                        <li>Strong Balance sheet</li>
+                        <li>Decent growth</li>
+                        <li>Earnings predictability / Non Cyclical stocks</li>
+                        <li>Linked to Indian growth story</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="/images/companiesWeAvoid.png"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Companies we don’t Prefer</span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                        <li>Micro & Small caps</li>
+                        <li>Cyclical stocks</li>
+                        <li>No earnings predictability</li>
+                        <li>Questionable management</li>
+                        <li>One Trick Pony companies</li>
+                        <li>High debt / Leverage.</li>
+                        </ul>
+                      </p>                 
+                    </div>
+                     
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="/images/companiesWeAvoid.png"/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Companies we don’t Prefer</span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>Micro & Small caps</li>
+                        <li>Cyclical stocks</li>
+                        <li>No earnings predictability</li>
+                        <li>Questionable management</li>
+                        <li>One Trick Pony companies</li>
+                        <li>High debt / Leverage.</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+              </div>
+               <div className="col-lg-12 col-md-12 hidden-xs hidden-sm riskDivPP">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
                     <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 addDiv"></div>
                     <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12"><blockquote className="blogQuate">"Vessels large may venture more, but little boats should keep near the shore. "</blockquote></p>
+                    <span className="col-lg-10 col-md-12 col-sm-12 col-xs-12 nameOfAuther"><label className="pull-right"> - Benjamin Franklin</label></span>
+                    </div>  
+                </div>  
+            </div>
+            <div className="hidden-md hidden-lg col-sm-12 col-xs-12 riskDivPP">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivOther textAlignCenter"> 
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12"><blockquote className="blogQuateSmall">"Vessels large may venture more, but little boats should keep near the shore. "</blockquote></p>
                     <span className="col-lg-10 col-md-12 col-sm-12 col-xs-12 nameOfAuther"><label className="pull-right"> - Benjamin Franklin</label></span>
                     </div>  
                 </div>  
@@ -432,10 +525,14 @@ export default class ProductPage extends Component {
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
-                    <label><span className="iceBlueColor">M : Magic Formula </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
                         <ul className="customOl">
-                          <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy</li>
+                          <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy
+                            <ul>
+                              <li>Disruptions from challenger companies.</li>
+                              <li>Change of consumption patterns and behaviours.</li>
+                            </ul>
+                          </li>
                           <li><span className="numberDiv">2</span> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
                           <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
                         </ul>
@@ -486,43 +583,92 @@ export default class ProductPage extends Component {
                       </div>
                     </div>
 
-                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                      Invest now
+                          <img src="/images/down.png" /><br/>
+                          <span>Slide down to know more</span>
                       </div>
+                </div>
+              </div>
+              </div>
+            </div>
+           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="/images/over.jpg"/>
                     </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Overview </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
+                        <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
+                        <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
+                        <li>Strategy will only be implement on
+                          <ul className="customOl listStyle">
+                            <li>Nifty Future & Options (monthly)</li>
+                          </ul>
+                        </li>
+                        <li>We don’t indulge in
+                          <ul className="customOl listStyle">
+                            <li>Bank Nifty or Any other indices</li>
+                            <li>F&O segment of Individual companies.</li>
+                          </ul>
+                        </li>
+                        </ul>
+                      </p>                 
+                    </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="/images/over.jpg"/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Overview </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                       <ul className="customOl listStyle">
+                          <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
+                        <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
+                        <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
+                        <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Strategy will only be implement  on</a></div><div id="collapseOne" class="panel-collapse collapse in " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Nifty Future & Options (monthly).</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">We don’t indulge in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Bank Nifty or Any other indices</li><li>F&O segment of Individual companies.</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
+                        <li>Read a detailed blog post about this here</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                
                 </div>
-              </div>
-              </div>
-            </div>
-          
-			  	  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                <img src="/images/over.jpg"/>
-            </div>
-            <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
-              <label><span className="iceBlueColor">Overview</span></label>
-                <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                  <ul className="customOl listStyle">
-                    <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
-                  <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
-                  <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
-                  <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Strategy will only be implement  on</a></div><div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Nifty Future & Options (monthly).</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">We don’t indulge in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Bank Nifty or Any other indices</li><li>F&O segment of Individual companies.</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
-                  <li>Read a detailed blog post about this here</li>
-                  </ul>
-                </p>                 
-              </div> 
-              <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
-                <label><span className="iceBlueColor">Risks Involved </span></label>
-                  <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                    <ul className="customOl listStyle">
+           </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPink onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="/images/risk.jpg"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Risks Involved </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                       <ul className="customOl listStyle">
                       <li>No matter how much we strategize & risk averse we are, they are always risks associated with dealing in F&O markets.</li>
-                    <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingThree"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">As an advisory, it is our responsibility to bring to your notice & inform you about them</a></div><div id="collapseThree" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingThree"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses – you may receive margin calls from your broker for additional capital infusion.<ul><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses – you may receive margin calls from your broker for additional capital infusion.</li></ul></li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved.</li></ul></li></ul> </p> </div></div></div></li>
+                    <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default backColorPink customPanelPP"><div class="panel-heading noPadding backColorPink customHead" role="tab" id="headingThree"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">As an advisory, it is our responsibility to bring to your notice & inform you about them</a></div><div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses <ul><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses </li></ul></li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved.</li></ul></li></ul> </p> </div></div></div></li>
                     </ul>
-                  </p>                 
+                      </p>                 
+                    </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="/images/risk.jpg"/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Risks Involved </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                      <li>No matter how much we strategize & risk averse we are, they are always risks associated with dealing in F&O markets.</li>
+                    <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default backColorPink customPanelPP"><div class="panel-heading noPadding  backColorPink customHead" role="tab" id="headingThree"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">As an advisory, it is our responsibility to bring to your notice & inform you about them</a></div><div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses <ul><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses </li></ul></li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved.</li></ul></li></ul> </p> </div></div></div></li>
+                    </ul>
+                      </p>                  
+                    </div>
+                
                 </div>
-                <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                    <img src="/images/risk.jpg"/>
-                </div>
+           </div>
+			  	 
+            
+            
                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
@@ -585,16 +731,50 @@ export default class ProductPage extends Component {
                       </div>
                     </div>
 
-                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                  
+                </div>
+                  <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                      Invest now
+                          <img src="/images/down.png" /><br/>
+                          <span>Slide down to know more</span>
                       </div>
-                    </div>
                 </div>
               </div>
               </div>
             </div>
-			  	     
+			  	   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                      <img src="/images/US-stocks.jpg"/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Few Facts on USA market </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                      <ul className="customOl listStyle">
+                    <li>AThe mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
+                  <li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities.</li>
+                  <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
+                  <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
+                  </ul>
+                      </p>                 
+                    </div>
+                    <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                      <img src="/images/US-stocks.jpg"/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Few Facts on USA market </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                     <ul className="customOl listStyle">
+                    <li>AThe mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
+                  <li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities.</li>
+                  <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
+                  <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
+                  </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+           </div>
             <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
                 <img src="/images/US-stocks.jpg"/>
             </div>
@@ -688,6 +868,12 @@ export default class ProductPage extends Component {
                     </div>
 
                 </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" /><br/>
+                          <span>Slide down to know more</span>
+                      </div>
+                </div>
               </div>
               </div>
             </div>
@@ -746,13 +932,13 @@ export default class ProductPage extends Component {
                         </ul>
                       </p>                  
                     </div>
-                      <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  imageContainer">
+                      <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
                       <img src="/images/security.png"/>
                     </div>
                   </div>
                 
-                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer">
+                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
                       <img src="/images/security.png"/>
                     </div>

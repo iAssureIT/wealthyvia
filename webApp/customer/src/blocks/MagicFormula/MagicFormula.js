@@ -23,9 +23,9 @@ export default class MagicFormula extends Component {
   render() {
 
     return (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPink onHoverEffect">
                 <div className="row">
-                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
+                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  imageContainer">
                     <div>
                       <img src="/images/Magic-Hat.png"/>
                     </div>
@@ -43,7 +43,7 @@ export default class MagicFormula extends Component {
                     </div>
                     
                 
-                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
+                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer">
                     <div>
                       <img src="/images/Magic-Hat.png"/>
                     </div>

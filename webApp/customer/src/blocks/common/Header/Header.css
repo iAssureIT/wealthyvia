@@ -426,6 +426,8 @@ dropdown-submenu {
   margin:5px !important;
 }
 .customNavBar{
+  position: absolute !important;
+  width: 100%;
   border-radius: 0px !important;
   background-color: #201A47 !important;
   border:none !important;

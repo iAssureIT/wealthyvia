@@ -18,6 +18,11 @@ export default class ProductPageBanner extends Component {
   {
  
   } 
+  srollDiv(event)
+  {
+    window.scrollTo(0,630);
+
+  }
 
   render() {
 
@@ -34,16 +39,19 @@ export default class ProductPageBanner extends Component {
                     </div>  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
                       <div className="row">
-                        <p>Get started and grow as an investor without paying Wealthyvia fees. Trade stocks and ETFs yourself with active investing and let us build a portfolio for your long-term goals with automated investing.</p>
-                      </div>
+{/*                        <p>Get started and grow as an investor without paying Wealthyvia fees. Trade stocks and ETFs yourself with active investing and let us build a portfolio for your long-term goals with automated investing.</p>
+*/}                      </div>
                     </div>
-                      <div className="col-lg-3 col-md-4 col-sm-5 col-xs-5  investNowButton" >
+                
+                </div>
+                 <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                      Invest now
+                          <img src="/images/down.png" /><br/>
+                          <span>Slide down to know more</span>
                       </div>
-                    </div>
                 </div>
               </div>
+
               </div>
             </div>
     );

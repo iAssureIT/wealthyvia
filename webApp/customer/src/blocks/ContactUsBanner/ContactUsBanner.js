@@ -8,13 +8,9 @@ export default class ContactUsBanner extends React.Component {
 
 	render() {
 		return (
-          	<div className="container-fluid nopadding cubannerWall" >
-				
-				<div className="col-lg-12 cucentered">
-					<div className="col-lg-12 cutextcentered">
-						<h1 className="fs72">Let's Plan a Project</h1>
-					</div>
-				</div>
+
+          	<div className="container-fluid nopadding cubannerWall col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<div class="centered">Let's Plan a Project</div>
 			</div>
 			
 		);

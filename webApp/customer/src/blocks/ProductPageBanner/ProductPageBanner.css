@@ -75,3 +75,16 @@
     transition: 0.5s all ease-in-out;
 
 }
+.slideDownButton{
+	height: 20px;
+	cursor: pointer;
+	color: #fff !important;
+	font-size: 10px;
+	padding-top: 8%;
+}
+.slideDownButton img{
+	padding-bottom: 5px;
+}
+.slideDownButton span{
+	margin-left: -35px;
+}

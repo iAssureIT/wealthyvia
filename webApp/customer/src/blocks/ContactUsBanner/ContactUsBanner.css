@@ -1,5 +1,6 @@
 .cubannerWall{
-	height: 540px;
+
+	height: 530px;
 	/*background-color:  #444;*/
 	padding: 0px;
 	position: relative;
@@ -9,10 +10,11 @@
   	/*background-size: 100% 100%;*/
   	background-position: bottom;
   	background-attachment: fixed;
-  /*	opacity: 0.8;*/
-  	z-index: 0;
-  	
-  	transform: translate3d(0px, 0px, 0px);
+
+  	opacity: 0.8;
+  	z-index: -1;
+/*  	overflow: hidden;
+*/  	transform: translate3d(0px, 0px, 0px);
 }
 .nopadding{
 	padding: 0px !important;

@@ -160,8 +160,8 @@ handleChange(event){
 									<input className="form-control" name="from" type="text" ref="name" placeholder="Your name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
 								</div>
 							</div>
-							<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  bt30">
-								<div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+							<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  ">
+								<div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 bt30 ">
 									{/*<label class="col-md-12 col-lg-12 col-xs-12 col-sm-12 nopadding">Your Email address</label>*/}
 									<input className="form-control" name="from" type="email" data-text="clientEmail" placeholder="Your@email.com" ref="email" value={this.state.email} onChange={this.handleChange.bind(this)}/>
 									{this.state.formerrors.clientEmail &&(
@@ -170,7 +170,7 @@ handleChange(event){
 								</div>
 							
 								
-								<div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+								<div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 bt30">
 									{/*<label class="col-md-12 col-lg-12 col-xs-12 col-sm-12 nopadding">Phone No</label>*/}
 									<input className="form-control" name="from" type="text" placeholder="Subject" ref="Subject" value={this.state.Subject} onChange={this.handleChange.bind(this)} />
 								</div>
@@ -183,7 +183,7 @@ handleChange(event){
 							        
 								</div>
 							</div>
-							<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  bt30">
+							<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  bt40">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 									<button type="button" className="sbtn col-lg-2 col-lg-offset-5" onClick={this.Submit.bind(this)}>Send Request</button>
 								</div>
