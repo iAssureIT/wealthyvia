@@ -1,7 +1,9 @@
-
+.h1zindex{
+  z-index: 1;
+}
 .subText{
     font-style: italic;
- font-family:'Montserrat',sans-serif;
+    font-family:'Montserrat',sans-serif;
     color:#5f9c30;
 }
 .miniHeaderDesolved{

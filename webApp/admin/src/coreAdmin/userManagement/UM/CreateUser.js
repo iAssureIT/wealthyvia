@@ -7,7 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/js/modal.js';
 import './userManagement.css';
 
-axios.defaults.baseURL = 'http://gangaexpressapi.iassureit.com';
+axios.defaults.baseURL = 'http://gangaapi.iassureit.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const formValid = formerrors=>{
@@ -89,19 +89,18 @@ class CreateUser extends Component {
     createUser(event){
       event.preventDefault();
       const formValues = {
-          "firstName"       : this.state.firstname,
-          "lastName"        : this.state.lastname,
-          "emailId"         : this.state.signupEmail,
-          "countryCode"     : "+91",
-          "mobileNumber"    : this.state.mobNumber,
-          "pwd"             : "user123",
-          
-          "status"          : "Active",
-          "roles"           :  "User",
+          "pwd"           : "user123",
+          "firstName"     : "Mani",
+          "lastName"      : "Kharare",
+          "emailId"       : "mani@gmail.com",
+          "mobileNumber"  : "9049711726",
+          "status"        : "active",
+          "roles"         : "user"
           // "officeLocation"  : this.refs.office.value,
         }
 
         if(this.state.firstname!="" && this.state.lastname !="" && this.state.signupEmail && this.state.mobNumber){
+          console.log("formValues==>",formValues);
            axios.post('/api/users', formValues)
                 .then( (res)=>{
                     swal({

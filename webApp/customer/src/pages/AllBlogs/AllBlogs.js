@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import "./AllBlogs.css";
+import AllBlogsBanner      from "../../blocks/AllBlogsBanner/AllBlogsBanner.js";
+import AllBlogsList      from "../../blocks/AllBlogsList/AllBlogsList.js";
+
+
 
 export default class AllBlogs extends Component {
 	constructor(props){
@@ -10,7 +14,17 @@ export default class AllBlogs extends Component {
   	}  
   render() {
 		return (
-			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  ">
+				<div className="">
+					<AllBlogsBanner/>
+					<AllBlogsList/>	
+
+				</div>	
+		);
+	}
+}
+
+/*
+<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  ">
 				<div className="row">
 			
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -109,8 +123,7 @@ export default class AllBlogs extends Component {
 						</div>
 					</div>
 
-				</div>		
-		);
-	}
-}
+				</div>	
 
+
+*/

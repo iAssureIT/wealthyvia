@@ -1,5 +1,5 @@
 .cubannerWall{
-	height: 435px;
+	height: 540px;
 	/*background-color:  #444;*/
 	padding: 0px;
 	position: relative;
@@ -9,13 +9,13 @@
   	/*background-size: 100% 100%;*/
   	background-position: bottom;
   	background-attachment: fixed;
-  	opacity: 0.8;
-  	z-index: -1;
-  	overflow: hidden;
+  /*	opacity: 0.8;*/
+  	z-index: 0;
+  	
   	transform: translate3d(0px, 0px, 0px);
 }
 .nopadding{
-	padding: 0px;
+	padding: 0px !important;
 }
 .centered {
   position: absolute;
@@ -25,4 +25,14 @@
   font-size: 68px;
   font-weight: 600;
 
+}
+.cucentered{
+   background-color: #191818ba;
+  padding: 0px !important;
+  height: 435px;
+}
+.cutextcentered{
+   position: absolute;
+  top: 22%;
+  left: 0%;
 }

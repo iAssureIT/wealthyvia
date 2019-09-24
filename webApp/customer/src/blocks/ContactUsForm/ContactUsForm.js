@@ -185,7 +185,7 @@ handleChange(event){
 							</div>
 							<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  bt30">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-									<button type="button" className="btn sbtn col-lg-2 col-lg-offset-5" onClick={this.Submit.bind(this)}>Send Request</button>
+									<button type="button" className="sbtn col-lg-2 col-lg-offset-5" onClick={this.Submit.bind(this)}>Send Request</button>
 								</div>
 							</div>
 						</form>
