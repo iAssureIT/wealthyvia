@@ -30,7 +30,7 @@ export default class Carousel extends Component {
 					      </div>
 
 					      <div className="item fadding">
-				        <img src="/images/bannerImg12.jpg"  />
+				        <img src="/images/slide1_1.jpg"  />
 						      <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
 						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create : Profound.Profuse.Precise.</label>
 					    	 	

@@ -118,7 +118,7 @@ export default class Header extends Component {
             <nav class="navbar marginZero customNavBar navbar-default">
                 <div class="container-fluid">
                   <div class="navbar-header">
-                                      <a class="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">Wealthyvia</a>
+                    <a class="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">Wealthyvia</a>
 
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
                       <span class="sr-only">Toggle navigation</span>
@@ -133,19 +133,35 @@ export default class Header extends Component {
                     <ul class="nav navbar-nav navbar-right customUl">
 
                       
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Articulations <span class="caret"></span></a>
-                        <ul class="dropdown-menu customDropdown">
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Articulations <span class="caret"></span>
+                          </a>                       
+                          <ul class="dropdown-menu customDropdown">
                            {token ?
-                          <li className="listItem"><a href="/allblogs">Arthavrudhhi Blogs</a></li>
-                        :
-                          <li className="listItem"><a href="/login">Arthavrudhhi Blogs</a></li>
-                      }
-                          <li className="listItem"><a href="">Communique</a></li>
-                     
+                          <a href="/allblogs">Arthavrudhhi Blogs</a>
+                              :
+                                <a href="/login">Arthavrudhhi Blogs</a>
+                            }
+                               <a href="">Communique</a>
+                           
                         </ul>
                       </li>
-                       <li class="dropdown">
+                       <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Offerings <span class="caret"></span>
+                          </a>
+                          <ul class="dropdown-menu customDropdown" aria-labelledby="navbarDropdownMenuLink">
+                            <a  className="dropdown-item" href="/#5gcpm">5GCPM Portfolio</a>
+                            <a className="dropdown-item" href="/#safeHevenMoats">Safe Heavan Stocks</a>
+                            <a className="dropdown-item" href="/#safeHeven">Safe Heavan Stocks + Alpha</a>
+                            <a className="dropdown-item" href="#">Nifty Algo Tranding</a>
+                            <a className="dropdown-item" href="/#unlistedPre">USA Stocks Portfolio</a>
+                            <a className="dropdown-item" href="/#uslistedStocks">Unlisted Stocks</a>
+                            <a className="dropdown-item" href="#">Multibagger</a>
+                          </ul>
+                        </li>
+                      {/* <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Offerings <span class="caret"></span></a>
                         <ul class="dropdown-menu customDropdown">
                           <li className="listItem"><a href="/#5gcpm">5GCPM Portfolio</a></li>
@@ -158,7 +174,7 @@ export default class Header extends Component {
                      
                         </ul>
                       </li>
-                     
+                     */}
                       <li class="dropdown">
                         <a href="/about-us" >About Us </a>
                         

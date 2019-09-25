@@ -32,9 +32,9 @@ export default class GrowthFactor extends Component {
                           <li>
                           Sales</li>
                         <li>Profits</li>
-                        <li>Clients/product volume/value addition/branches/territories (micros of business economics)</li>
-                        <li>Margins :  one should be sure that margin will not decline. Headwinds, sectorial downturns, raw material prices, fierce competition, import duties, tax laws, substitute products , advanced tech makes margin decline.</li>
-                        <li>Market share/demand/ size of opportunity : this defines leadership position. Always no1 or no2 company having considerable and increasing size of opportunity .</li>
+                        <li>volumes</li>
+                        <li>Margins</li>
+                        <li>Market share</li>
                         </ul>
                       </p>                  
                     </div>
@@ -51,13 +51,13 @@ export default class GrowthFactor extends Component {
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">5G : Five types of Growths </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                        <ul className="customOl">
+                      <ul className="customOl">
                           <li>
                           Sales</li>
                         <li>Profits</li>
-                        <li>Clients/product volume/value addition/branches/territories (micros of business economics)</li>
-                        <li>Margins :  one should be sure that margin will not decline. Headwinds, sectorial downturns, raw material prices, fierce competition, import duties, tax laws, substitute products , advanced tech makes margin decline.</li>
-                        <li>Market share/demand/ size of opportunity : this defines leadership position. Always no1 or no2 company having considerable and increasing size of opportunity .</li>
+                        <li>volumes</li>
+                        <li>Margins</li>
+                        <li>Market share</li>
                         </ul>
                       </p>                  
                     </div>

@@ -1,3 +1,4 @@
+
 .h1zindex{
   z-index: 1;
 }
@@ -116,15 +117,23 @@ background-color: #5f9c30 !important;
     margin-left: -7px;
     margin-top: 30px !important;
 }
-.customDropdown{
+/*.customDropdown{
+  height: auto;
+  background-color: #201b47 !important;
+  color: #fff !important;
     min-width: 250px !important;
     padding-left: 15px !important;
  font-family:'Montserrat',sans-serif;
 
 
-}
-.customDropdown>li>a{
-    color: #666 !important;
+}*/
+.customDropdown>a{
+    padding-left: 20px !important;
+    padding-top: 8px !important;
+    font-size: 14px;
+    text-decoration: none;
+    background-color: transparent !important;
+    color: #fff !important;
 }
 .headLi{
     font-size: 15px;
@@ -432,8 +441,8 @@ dropdown-submenu {
   background-color: #201A47 !important;
   border:none !important;
   min-height: 40px !important;
-  padding-left:40px !important;
-  padding-right:40px !important;
+  padding-left:35px !important;
+  padding-right:2px !important;
 }
 .customNavBarUpper{
   border-radius: 0px !important;
@@ -452,7 +461,7 @@ dropdown-submenu {
   letter-spacing: 0.03em;
 }
 .customUl li:hover{
-  text-decoration: underline;
+  text-decoration: none;
 }
 .webSiteNameOther{
    font-family:'Montserrat',sans-serif;
@@ -490,24 +499,28 @@ dropdown-submenu {
 .headLi{
    color: #333 !important; 
 }
-.customDropdown li{
-}
+
 .customDropdown{
     top: 100%;
     left: 0;
     z-index: 1000;
     display: none;
+     height: auto;
+    min-width: 250px !important;
+    padding-left: 15px !important;
+    font-family:'Montserrat',sans-serif;
     float: left;
     width: 100px;
     padding: 5px 0;
     margin: 2px 0 0;
     font-size: 14px;
     text-align: left;
-    list-style: none;
-    background-color: transparent !important;
+    list-style: circle;
+    background-color: #201A47 !important;
     background-clip: padding-box;
     border:none !important;
     border-radius: 4px;
+    color:#fff !important;
 /*    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 */
 }
@@ -544,4 +557,7 @@ dropdown-submenu {
 }
 .iconContainerHeader{
   margin-left: 15px;
+}
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
+  background-color:transparent !important;
 }

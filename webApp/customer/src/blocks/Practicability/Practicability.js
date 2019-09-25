@@ -29,11 +29,10 @@ export default class Practicability extends Component {
                     <label><span className="iceBlueColor">P : Practicability </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl">
-                          <li>What is probability of entire investment turning profitable?</li>
-                          <li>Feasibility : constraints of net blocks-fixed assets, cash in hand, team capability, demand for sales.</li>
-                          <li>Natural tailwinds</li>
-                          <li>Hurdles in achievement ?</li>
-                          <li>What can go wrong in plan</li>
+                          <li>Probablistic Approach</li>
+                          <li>Feasibility</li>
+                          <li>Headwinds & Tailwinds</li>
+                          <li>What can go wrong?</li>
                         </ul>
                       </p>                  
                     </div>
@@ -50,12 +49,11 @@ export default class Practicability extends Component {
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">P : Practicability </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                        <ul className="customOl">
-                         <li>What is probability of entire investment turning profitable?</li>
-                        <li>Feasibility : constraints of net blocks-fixed assets, cash in hand, team capability, demand for sales.</li>
-                        <li>Natural tailwinds</li>
-                        <li>Hurdles in achievement ?</li>
-                        <li>What can go wrong in plan</li>
+                         <ul className="customOl">
+                          <li>Probablistic Approach</li>
+                          <li>Feasibility</li>
+                          <li>Headwinds & Tailwinds</li>
+                          <li>What can go wrong?</li>
                         </ul>
                       </p>                  
                     </div>

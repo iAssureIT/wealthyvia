@@ -1136,6 +1136,9 @@ input[type="radio"]:checked:before {
 /*.signupPadding{
   padding-top:4%;
 }*/
+.addDiv{
+  height: 20px;
+}
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
   height: 520px!important;
   position: absolute;
@@ -1147,11 +1150,12 @@ input[type="radio"]:checked:before {
   float: right;
 }
 .loginFormWrap{
+  z-index: 0px !important;
   border-radius: 0px;
-  position: absolute;
   border:1px #aaa solid;
   padding:25px;
   margin-top: 5%;
+  margin-bottom:  5%;
   padding-bottom: 5%;
   background-color: #fff!important;
   float: right;

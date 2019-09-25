@@ -35,10 +35,17 @@
 }
 .customOl{
 	    padding-left: 15px !important;
-      list-style: none;
-}
+/*      list-style: none;
+*/}
 .customOl li{
 	padding:5px !important;
+}
+.customOlOther{
+      padding-left: 15px !important;
+     list-style: none;
+}
+.customOlOther li{
+  padding:5px !important;
 }
 .specifications{
 	padding:10px;
@@ -396,9 +403,12 @@ a:hover,a:focus{
   padding: 60px !important;
   background-color: rgba(0,0,0,0.5) !important;
 }
+.blackDivPPSmall{
+  padding-top: 50px !important;
+  background-color: rgba(0,0,0,0.5) !important;
+}
 .riskDivPP{
   background-size: 100% 100%;
-  height: 600px;
   margin-top: 40px;
   background-attachment: fixed;
   color: #fff;
@@ -422,7 +432,6 @@ a:hover,a:focus{
 }
 .blogQuateSmall{
    margin-top:20px;
-  line-height: 70px;
   font-weight: bolder;
   font-size: 35px; 
 }

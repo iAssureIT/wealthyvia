@@ -11,6 +11,11 @@
 	font-size: 5.125rem;
 	line-height: 1.2;
 	margin-top: 1.25rem !important;
+}.investLabel{
+	color: #FFF !important;
+	font-size: 4.125rem;
+	line-height: 1.2;
+	margin-top: 1.25rem !important;
 }
 .investPara{
 	color: #fff;

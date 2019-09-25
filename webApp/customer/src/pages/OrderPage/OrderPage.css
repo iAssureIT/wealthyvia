@@ -1,0 +1,41 @@
+.centreDetaillistItemOP{
+
+}
+.centreDetaillistItemOP{
+  padding-left: 0px !important;
+  padding-bottom:  15px;
+  font-family: 'Montserrat',sans-serif !important;
+  font-weight: bold;
+  font-size: 18px !important;
+}
+.dateDivOP{
+  font-weight: bold;
+  font-size: 20px !important;
+}
+.PlanDetailsOP{
+	height: auto;
+	border-top:10px #201a47 solid;
+	padding: 40px !important;
+	border-radius: 5px;
+	font-family: 'Montserrat',sans-serif !important;
+	margin-bottom: 50px;
+    box-shadow: 1px 1px 10px 2px #ccc;
+}
+.noBold{
+	font-weight: normal !important;
+}
+.orderDetailsDiv{
+	border-bottom: 1px solid #ccc;
+	padding: 0px !important;
+	padding-bottom: 10px !important;
+	padding-top: 10px !important;
+}
+.orderDetailsDiv label{
+		font-weight: normal !important;
+}
+.orderSummaryHead{
+	font-size: 18px;
+}
+.totalDiv{
+	margin-top: 10px;
+}

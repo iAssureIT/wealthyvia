@@ -128,6 +128,7 @@ padding: 10px;
     color:#376bff !important;
 }
 .boxShadow{
-        box-shadow:  2px 2px 2px 2px #aaa !important;
+       z-index: 0 !important;
+       box-shadow:  2px 2px 2px 2px #aaa !important;
 
 }

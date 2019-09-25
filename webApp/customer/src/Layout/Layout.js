@@ -1,16 +1,18 @@
 import React,{Component}                         from 'react';
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
-import Header                           from "../blocks/common/Header/Header.js";
+import Header                                    from "../blocks/common/Header/Header.js";
 import Homepage                                  from "../pages/Homepage/Homepage.js";
-import AboutUs                                  from "../pages/AboutUs/AboutUs.js";
-import ContactUs                                  from "../pages/ContactUs/ContactUs.js";
-import Footer                        from "../blocks/common/Footer/Footer.js";
+import AboutUs                                   from "../pages/AboutUs/AboutUs.js";
+import ContactUs                                 from "../pages/ContactUs/ContactUs.js";
+import Footer                                    from "../blocks/common/Footer/Footer.js";
 import ProductPage                               from "../pages/ProductPage/ProductPage.js";
-import RiskProfilePage                               from "../pages/RiskProfilePage/RiskProfilePage.js";
-import KycForm                               from "../pages/KycForm/KycForm.js";
-import BlogViewPage                               from "../pages/BlogViewPage/BlogViewPage.js";
-import AllBlogs                               from "../pages/AllBlogs/AllBlogs.js";
-import SingleBlogPage               from "../pages/SingleBlogPage/SingleBlogPage.js";
+import RiskProfilePage                           from "../pages/RiskProfilePage/RiskProfilePage.js";
+import KycForm                                   from "../pages/KycForm/KycForm.js";
+import BlogViewPage                              from "../pages/BlogViewPage/BlogViewPage.js";
+import AllBlogs                                  from "../pages/AllBlogs/AllBlogs.js";
+import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
+import InvoicePage                               from "../pages/InvoicePage/InvoicePage.js";
+import OrderPage                                 from "../pages/OrderPage/OrderPage.js";
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
 import EcommerceFooter                           from "../blocks/common/EcommerceFooter/EcommerceFooter.js";
@@ -58,6 +60,8 @@ const WebLayout = () => (
               <Route path="/BlogViewPage"              exact strict component={BlogViewPage}  />
               <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
               <Route path="/singleblogpage"              exact strict component={SingleBlogPage}  />
+              <Route path="/InvoicePage"              exact strict component={InvoicePage}  />
+              <Route path="/OrderPage"              exact strict component={OrderPage}  />
 
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />

@@ -502,7 +502,7 @@ export default class ProductPage extends Component {
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  suitableForDiv learnMoreST">
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
+                        <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy
                             <ul>
                               <li>Disruptions from challenger companies.</li>
@@ -677,7 +677,7 @@ export default class ProductPage extends Component {
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  suitableForDiv learnMoreST">
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
+                        <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
                           <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
                           <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
@@ -810,7 +810,7 @@ export default class ProductPage extends Component {
                   </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  suitableForDiv learnMoreST">
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
+                        <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>Choosing right kind of stocks with research reports</li>
                           <li><span className="numberDiv">2</span> Zero brokerage charges and very low maintenance charges unlike few international brokerages offering high charges</li>
                           <li><span className="numberDiv">3</span>Ease of buy sell and amount transfers to your own accounts.</li>
@@ -831,7 +831,7 @@ export default class ProductPage extends Component {
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
                     <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
+                        <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
                           <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
                           <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
