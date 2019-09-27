@@ -80,11 +80,9 @@ import './SignUp.css';
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
         <div className="col-lg-4 col-lg-offset-7 col-md-4 col-md-offset-7 col-sm-12 signupPadding signUpFormWrap">
           <div className="divConfirmOtpModalWrap">
-              <div className="col-lg-12 text-center marbtm10 ">
-                <img src="/images/Logo.png" height="70px"/>
-              </div>
+        
               <div className="text-center ">
-                <h4 className="signInNameTitle "><span className="bordbt">CONFIRMOTP</span></h4>
+                <h4 className="confirmTitle "><span className="bordbt">Confirm OTP</span></h4>
               </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" className="firstverification">
               <div className="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">

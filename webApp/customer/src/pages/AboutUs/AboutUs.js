@@ -26,7 +26,17 @@ export default class AboutUs extends Component {
     return (
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div className="row">
-                <div className="col-lg-12 col-md-6 col-sm-12 col-xs-12 bannerContainerAU">
+           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nineYearImage">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivRisk"> 
+                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 imgContentAU"><img src="/images/exp.png"/></div>
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">9 Years of Experience</p>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">We are the one of experienced organization, we have 9 Years of Research Experience of working for our Institutional clients</label>
+                    </div>  
+                </div>  
+            </div>
+        
+                {/*<div className="col-lg-12 col-md-6 col-sm-12 col-xs-12 bannerContainerAU">
                     
                     <div className="col-lg-10  col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 headingAbout" >
                       <div className="row">
@@ -44,11 +54,11 @@ export default class AboutUs extends Component {
                     </div>
                      <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 descDivAU">
                       <div className="row">
-                        <p> Wealthyvia takes a unique approach to lending, offering lower interest rates and big savings.<br/>Scroll down and know how. </p>
+                        <p> Wealthyvia has a unique approach to create strategies,investment ideas findings,business analysts,Wealth management and portfolio performance.<br/>Scroll down and know how. </p>
                       </div>
                     </div>
                 </div>
-             
+             */}
           <div className="col-lg-12 col-md-12 hcol-sm-12 col-xs-12">
           {/*  <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 aboutUsContainer">
@@ -125,7 +135,7 @@ export default class AboutUs extends Component {
                       </div>
                     </div>
                
-               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nineYearImage">
+             {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nineYearImage">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivRisk"> 
                     <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 imgContentAU"><img src="/images/exp.png"/></div>
@@ -134,7 +144,25 @@ export default class AboutUs extends Component {
                     </div>  
                 </div>  
             </div>
-        
+        */}
+          <div className="col-lg-12 col-md-12 hidden-sm hidden-xs riskDiv">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
+                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 imgContentAU"><img src="/images/riskImg.png"/></div>
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
+                    </div>  
+                </div>  
+            </div>
+             <div className="hidden-lg hidden-md col-sm-12 col-xs-12 riskDiv1">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv1 textAlignCenter"> 
+                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 imgContentAU"><img src="/images/riskImg.png"/></div>
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
+                    </div>  
+                </div>  
+            </div>
 
               </div>            
             </div>
@@ -221,24 +249,7 @@ export default class AboutUs extends Component {
                    
                 </div>  
             </div>
-            <div className="col-lg-12 col-md-12 hidden-sm hidden-xs riskDiv">
-                <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
-                    <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 imgContentAU"><img src="/images/riskImg.png"/></div>
-                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
-                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
-                    </div>  
-                </div>  
-            </div>
-             <div className="hidden-lg hidden-md col-sm-12 col-xs-12 riskDiv1">
-                <div className="row">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivRisk textAlignCenter"> 
-                    <div className="col-lg-2 col-lg-offset-5 col-md-12 col-sm-12 col-xs-12 imgContentAU"><img src="/images/riskImg.png"/></div>
-                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
-                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
-                    </div>  
-                </div>  
-            </div>
+          
          
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">

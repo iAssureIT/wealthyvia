@@ -1136,7 +1136,7 @@ input[type="radio"]:checked:before {
 /*.signupPadding{
   padding-top:4%;
 }*/
-.addDiv{
+.addDivSignUP{
   height: 20px;
 }
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
@@ -1513,6 +1513,21 @@ input[type="radio"]:checked:before {
 }
 .customFl{
   float: left;
+}
+
+
+
+
+.confirmTitle{
+    font-size: 30px;
+    margin-top: 0%;
+    padding: 8%;
+    margin-bottom: 3%;
+   /* color: #333333; */
+    color: #201a47 !important;
+    font-weight: bold;
+  font-family: 'PT Sans', sans-serif !important;
+
 }
 
 

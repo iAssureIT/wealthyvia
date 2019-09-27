@@ -75,10 +75,10 @@
 }
 
 .handFreeInvestingImgContainer{
-  height: 500px;
-  margin-top: -400px;
+  height: 400px;
+  margin-top: -450px;
 }
 .handFreeInvestingImgContainer img{
-  height: 500px;
+  height: 100%;
   width: 100%;
 }

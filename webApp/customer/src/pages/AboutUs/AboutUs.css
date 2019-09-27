@@ -135,12 +135,14 @@ width: 80px !important;
 .nineYearImage{
 	background-size: 100% 100%;
 	height: 600px;
+
+	text-align: center;
 	background-attachment: fixed;
 	color: #fff;
 	background-image: url("/images/nineYear.jpg");
 }
 .nineYearImage p{
-	margin-top:20px;
+	margin-top:80px;
 	line-height: 70px;
 	font-weight: bolder;
 	font-size: 56px;
@@ -151,6 +153,9 @@ width: 80px !important;
 	font-size: 20px;
 	line-height: 47px;
 
+}
+.nineYearImage img{
+	margin-top: 50px;
 }
 .riskDiv{
 	background-size: 100% 100%;
@@ -195,10 +200,20 @@ width: 80px !important;
 .blackDiv{
 	padding-top: 100px !important;
 	padding: 60px !important;
+		height: 600px;
+
+	background-color: rgba(0,0,0,0.5) !important;
+}
+.blackDiv1{
+	padding-top: 100px !important;
+	padding: 60px !important;
+	height: 700px;
+
 	background-color: rgba(0,0,0,0.5) !important;
 }
 .blackDivRisk{
 	padding-top: 30px !important;
+	height: 600px;
 	background-color: rgba(0,0,0,0.5) !important;
 }
 .blackDivOther{

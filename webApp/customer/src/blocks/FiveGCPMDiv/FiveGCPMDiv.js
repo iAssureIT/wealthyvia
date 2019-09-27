@@ -25,8 +25,7 @@ export default class FiveGCPMDiv extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  investContainer">
               <div className="row">
                 <label className="investLabel">Introducting you to 5GCPM</label>
-                <p className="investPara col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">Unlike some other ways to invest, Wealthyvia gives you more than one option of how to do it. Plus,
-                we’re built to grow with you and your goals—no matter your skill level at the start.</p>
+                <p className="investPara col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">Our proprietory self designed framework puts you ahead in the game of wealth creation. It makes you invest in the best performing companies & provides protection with risk management.</p>
                 <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 subDiv1 ">
                       <div className="iconContainer"><img src="/images/memorize.png"/></div>
                     <label className="payZero">5 Growth Factors</label>

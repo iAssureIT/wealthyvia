@@ -44,11 +44,7 @@ export default class ReadyToGo extends Component {
 
     });
 
-/*  console.log(this.props.match.params.divId);
-  this.setState({
-    divID : this.props.match.params.divId,
-  })*/
-    }
+
      onOptionSelect = (value) => {
     console.log('Selected value=', value) 
   }
@@ -427,9 +423,7 @@ export default class ReadyToGo extends Component {
                                        
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
                                           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Next</div>
-{/*                                          <div className="col-lg-2  col-md-2 col-sm-2 col-xs-2  submitButtonRP" onClick={this.backButton.bind(this)}>Back</div>
-*/}                                            
-                                        </div>
+                                  </div>
                                       </form>
                                     </div>
                                   
@@ -622,7 +616,7 @@ export default class ReadyToGo extends Component {
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                           <div className="row">
                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label>Adress Proof (JPEG/PNG/PDF)</label><span className="asterix">*</span>
+                                                <label>Adress Proof ( Driving Licence/Passport/Aadhaar card )( JPEG/PNG/PDF )</label><span className="asterix">*</span>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                    <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.handleChange.bind(this)} />
@@ -631,6 +625,86 @@ export default class ReadyToGo extends Component {
                                              </div>
                                           </div>
                                         </div>
+                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+                                              <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.Submit.bind(this)}>
+                                                Submit
+                                              </div>
+                                               
+                                        </div>
+                                      </form>
+                                    </div>
+                                </div>
+                             </div>
+                               <div className="modal fade in " id="portfolioReview" role="dialog">
+                                <div className="modal-dialog customModalKYC " >
+                                 <div class="modal-header textAlignCenter modalHeaderCustom">
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
+                                    <h4 class="modal-title">Portfolio Review</h4>
+                                  </div>
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad40">
+                                      <form>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                          <div className="row">
+                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <label>Name</label><span className="asterix">*</span>
+                                              </div>
+                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <input type="text" className="customInputKF inputBox nameParts" id="name" name="name" placeholder="Enter Name" ref="name" value={this.state.name} onChange={this.handleChange.bind(this)}/>
+                                               <div className="errorMsg">{this.state.errors.name}</div>
+
+                                              </div>
+
+                                          </div>
+
+                                        </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                          <div className="row"> 
+                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <label>Mobile Number</label><span className="asterix">*</span>
+                                              </div>
+                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <input type="number" className="customInputKF inputBox nameParts" name="contactNumber" placeholder="Enter Mobile Number" ref="contactNumber" value={this.state.contactNumber} onChange={this.handleChange.bind(this)}/>
+                                              <div className="errorMsg">{this.state.errors.contactNumber}</div>
+
+                                              </div>
+                                          </div>
+                                        </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                          <div className="row">
+                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <label>Email ID</label><span className="asterix">*</span>
+                                              </div>
+                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                   <input type="email" className="customInputKF inputBox nameParts" name="email" placeholder="Enter Email ID" ref="email" value={this.state.email}  onChange={this.handleChange.bind(this)}/>
+                                              <div className="errorMsg">{this.state.errors.email}</div>
+
+                                              </div>
+                                          </div>
+                                        </div>
+                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                          <div className="row">
+                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <label>Upload File </label><span className="asterix">*</span>
+                                              </div>
+                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                   <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.handleChange.bind(this)} />
+                                                 <div className="errorMsg">{this.state.errors.panNumber}</div>
+
+                                              </div>
+                                          </div>
+                                        </div>
+                                      {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                          <div className="row">
+                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <label>Adress Proof ( Driving Licence/Passport/Aadhaar card )( JPEG/PNG/PDF )</label><span className="asterix">*</span>
+                                              </div>
+                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                   <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.handleChange.bind(this)} />
+                                                <div className="errorMsg">{this.state.errors.addressProof}</div>
+           
+                                             </div>
+                                          </div>
+                                        </div>*/}
                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
                                               <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitButton pull-right" onClick={this.Submit.bind(this)}>
                                                 Submit
@@ -703,9 +777,10 @@ export default class ReadyToGo extends Component {
                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow mt20">
                        <label>Ready to go?</label><br/>
                        <span>Start your wealth creation today with us</span><br/>
-                       <div className="col-lg-6 col-lg-offset-4 noPadding">
-                        <div className="buyNowButtonPP col-lg-4"  data-toggle="modal" data-target="#myModal">Invest Now</div>
-                        <div className="col-lg-offset-1 col-lg-4 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                       <div className="col-lg-11 col-lg-offset-1 noPadding">
+                        <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+                        <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                        <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>
                       
                         </div>
                         </div>

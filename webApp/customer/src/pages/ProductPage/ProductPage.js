@@ -360,7 +360,7 @@ export default class ProductPage extends Component {
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
                           <img src="/images/down.png" /><br/>
-                          <span>Slide down to know more</span>
+                          <span>Scroll down to know how</span>
                       </div>
                 </div>
                 </div>
@@ -399,7 +399,7 @@ export default class ProductPage extends Component {
                 
                 </div>
               </div>
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPink onHoverEffect" >
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect" >
                 <div className="row">
                
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
@@ -497,14 +497,14 @@ export default class ProductPage extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 sutableForHead">
-                      <label>For whom this product is suitable</label>
+                      <label>For whom this product is suitable and <br/> risks associated</label>
 
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  suitableForDiv learnMoreST">
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
                         <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>Risk can be crash like 2008 or recession economy
-                            <ul>
+                            <ul className="marginLeft10">
                               <li>Disruptions from challenger companies.</li>
                               <li>Change of consumption patterns and behaviours.</li>
                             </ul>
@@ -587,7 +587,7 @@ export default class ProductPage extends Component {
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
                           <img src="/images/down.png" /><br/>
-                          <span>Slide down to know more</span>
+                          <span>Scroll down to know how</span>
                       </div>
                 </div>
               </div>
@@ -736,7 +736,7 @@ export default class ProductPage extends Component {
                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
                           <img src="/images/down.png" /><br/>
-                          <span>Slide down to know more</span>
+                          <span>Scroll down to know how</span>
                       </div>
                 </div>
               </div>
@@ -775,20 +775,8 @@ export default class ProductPage extends Component {
                 
                 </div>
            </div>
-            <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                <img src="/images/US-stocks.jpg"/>
-            </div>
-            <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
-              <label><span className="iceBlueColor">Few Facts on USA market  </span></label>
-                <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                  <ul className="customOl listStyle">
-                    <li>AThe mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
-                  <li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities.</li>
-                  <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
-                  <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
-                  </ul>
-                </p>                 
-              </div> 
+           
+          
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer" id="cg">
 			  			<label> Since 2010 , US market outperformed Indian Market</label>
 			  			<img src="/images/chart1.jpg" className=""/>
@@ -798,7 +786,7 @@ export default class ProductPage extends Component {
 			  			<img src="/images/usinr.jpg" className=""/>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
-			  			<label> Natural Benefit of USD INR increase over longer time</label>
+			  			<label> Over the period, all currencies have declined against doller</label>
 			  			<img src="/images/chart3.jpg" className=""/>
 			  		</div>
 				
@@ -871,7 +859,7 @@ export default class ProductPage extends Component {
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
                           <img src="/images/down.png" /><br/>
-                          <span>Slide down to know more</span>
+                          <span>Scroll down to know how</span>
                       </div>
                 </div>
               </div>
@@ -907,7 +895,7 @@ export default class ProductPage extends Component {
 									<label>How can you buy these unlisted shares online?</label>
 								<ul className="listStyleNone textAlignCenter">
 								     <li className="col-lg-6 mt20"><i class="fa fa-envelope customIcon" aria-hidden="true"></i>
-                     <p>You need to drop the mail on <br/><span className="blueColor">unlistedshares@xyz.com</span></p></li>
+                     <p>You need to drop the mail on <br/><span className="blueColor">arthavruddhi@gmail.com</span></p></li>
 								     <li className="col-lg-6 mt20"><i class="fa fa-phone customIcon" aria-hidden="true"></i><p>Contact on <br/> <span className="blueColor">8369508540</span></p></li>
 								</ul>
 							
@@ -921,9 +909,9 @@ export default class ProductPage extends Component {
                               <label>Beware of following</label>
 
                             </div>
-                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  suitableForDiv learnMoreST">
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
+                        <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>we never try to change the details over a phone call or any direct mail.</li>
                           <li><span className="numberDiv">2</span>Ask you to send us investor’s bank details by email from any other id.</li>
                           <li><span className="numberDiv">3</span>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</li>

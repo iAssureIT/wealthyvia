@@ -28,7 +28,7 @@ export default class ClientDeliverables extends Component {
                 <label className="investLabelCD col-lg-12 col-md-12 col-sm-12 col-xs-12">What we deliver to our clients </label>
               
                 <div className="col-lg-3 col-md-3 col-sm-12 col-xs-12 subDivCD ">
-                      <i class="fa fa-tachometer iconContainerCD"></i>
+                      <i class="fa fa-tachometer iconContainerCD"></i><br/>
                     <label className="payZeroCD">Monthly reports  24*7 online view of portfolio with 100% transparency </label>
                     
 

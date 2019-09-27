@@ -33,10 +33,20 @@
 
 }
 .fiveG img {
-    height: 500px;
+    height: 400px;
     width: 100%;
 }
 .fiveG {
-    height: 500px;
-    margin-top: -337px;
+    height: 400px;
+    margin-top: -350px;
+}
+.fiveG p{
+        justify-content: center;
+
+}
+.padding40{
+	padding-right: 80px !important;
+}
+.padding40Left{
+	padding-left: 80px !important;
 }

@@ -114,7 +114,7 @@ class Login extends Component {
 
     return(  
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
-          <div className="hidden-lg hidden-md col-sm-12 col-xs-12 addDiv"></div>
+          <div className="hidden-lg hidden-md col-sm-12 col-xs-12 addDivSignUP"></div>
         <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-8 col-xs-offset-2 signupPadding loginFormWrap ">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divLoginInWrap">
               

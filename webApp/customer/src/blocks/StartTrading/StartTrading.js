@@ -38,7 +38,7 @@ export default class StartTrading extends Component {
 
                 <div className="col-lg-10 col-md-6 hidden-xs hidden-sm startTrandingContent backColorGray">
                   <div className="row">
-                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 learnMoreST">
+                    <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">MF and safe heaven moats +  </span>alpha</label>
                     <p>Assets can be called assets when they put money in your pocket and not just appreciate in value. Assets have earning power , be it rental income or dividend yields. Similarly we have SHM MF Enhancer which can generate extra returns on top of regular ones. 
                         What if one gets cherry on cake when expecting only cake or Bun Maska jam too when orders only Chaai. Can this happen also with your stocks or mutual funds ?
@@ -51,7 +51,7 @@ export default class StartTrading extends Component {
                     </div> 
                   </div>
                 </div>
-               <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-xs hidden-sm startTrandingImgContainer para2">
+               <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-xs hidden-sm startTrandingImgContainer padding40 para2">
                   <div>
                     <img src="/images/MF.jpg"/>
                   </div>
