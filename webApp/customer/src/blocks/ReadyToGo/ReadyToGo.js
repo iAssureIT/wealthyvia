@@ -44,7 +44,11 @@ export default class ReadyToGo extends Component {
 
     });
 
-
+/*  console.log(this.props.match.params.divId);
+  this.setState({
+    divID : this.props.match.params.divId,
+  })*/
+    }
      onOptionSelect = (value) => {
     console.log('Selected value=', value) 
   }
