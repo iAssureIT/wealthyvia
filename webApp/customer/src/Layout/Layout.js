@@ -13,6 +13,7 @@ import AllBlogs                                  from "../pages/AllBlogs/AllBlog
 import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
 import InvoicePage                               from "../pages/InvoicePage/InvoicePage.js";
 import OrderPage                                 from "../pages/OrderPage/OrderPage.js";
+import BlogsFormPage               from "../pages/BlogsForm/BlogsFormPage.js";
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
 import EcommerceFooter                           from "../blocks/common/EcommerceFooter/EcommerceFooter.js";
@@ -57,11 +58,17 @@ const WebLayout = () => (
               <Route path="/RiskProfilePage"              exact strict component={RiskProfilePage}  />
               <Route path="/KycForm"              exact strict component={KycForm}  />
               <Route path="/AllBlogs"              exact strict component={AllBlogs}  />
+              <Route path="/blogsform/:blogID"              exact strict component={BlogsFormPage}  />
+
               <Route path="/BlogViewPage"              exact strict component={BlogViewPage}  />
               <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
               <Route path="/singleblogpage"              exact strict component={SingleBlogPage}  />
               <Route path="/InvoicePage"              exact strict component={InvoicePage}  />
               <Route path="/OrderPage"              exact strict component={OrderPage}  />
+              <Route path="/singleblogpage/:selectedID"              exact strict component={SingleBlogPage}  />
+
+              <Route path="/blogsform"              exact strict component={BlogsFormPage}  />
+
 
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />
               <Route path="/contact-us"               exact strict component={ContactUs}  />

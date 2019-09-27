@@ -68,7 +68,7 @@ handleChange(event){
       "message"          : this.refs.message.value,
       } );
     }
-     Submit(event){
+Submit(event){
     event.preventDefault();
     // var adminEmail = this.getAdminEmail();  //Get email id from company settings. Write API for that.
     var adminEmail = "";

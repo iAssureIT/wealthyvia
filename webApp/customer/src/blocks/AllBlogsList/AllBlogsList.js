@@ -1,4 +1,6 @@
 import React from 'react';
+import axios        from 'axios';
+import swal from 'sweetalert';
 import './AllBlogsList.css';
 
 export default class AllBlogsList extends React.Component {
@@ -8,129 +10,75 @@ export default class AllBlogsList extends React.Component {
 		this.state = {
 
 			"Blogs"		: [
+							/*{
+								blogDate:"March 7,2017",
+								blogTitle:"Introducing the Website Wireframes Plugin for Uncode",
+								blogPara:"I was surprised how many people spoke English...",
+								blogwritter:"John Doe",
+								buBlogger:"Blogger",
+								bloggerImg:"/images/user1.png",
+								blogImg:"/images/ceo.png"
+							},*/
 
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"Introducing the Website Wireframes Plugin for Uncode",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/ceo.png"
-							},
-							
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"3 reasons Uncode is a smart choice for your service website",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user.png",
-								blogImg:"/images/blog1.jpeg"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"6 Top-quality marketing websites built with Uncode",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/ceo.png"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"6 Reasons to Use Uncode for Your E-Commerce Site",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/help.jpg"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"Introducing the Website Wireframes Plugin for Uncode",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/ceo.png"
-							},
-							
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"3 reasons Uncode is a smart choice for your service website",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user.png",
-								blogImg:"/images/blog1.jpeg"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"6 Top-quality marketing websites built with Uncode",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/ceo.png"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"6 Reasons to Use Uncode for Your E-Commerce Site",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/help.jpg"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"Introducing the Website Wireframes Plugin for Uncode",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/ceo.png"
-							},
-							
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"3 reasons Uncode is a smart choice for your service website",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user.png",
-								blogImg:"/images/blog1.jpeg"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"6 Top-quality marketing websites built with Uncode",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/ceo.png"
-							},
-							{
-								blogDate:"March 7,2017",
-								blogTitle:"6 Reasons to Use Uncode for Your E-Commerce Site",
-								blogPara:"I was surprised how many people spoke English...",
-								blogwritter:"John Doe",
-								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
-								blogImg:"/images/help.jpg"
-							},
 						  ]
 	};
 	}
-
+deleteBlog(event){
+	event.preventDefault();
+	var id= event.target.id;
+	console.log("id delet",id);
+	 swal({
+          title: "Are you sure you want to delete this Blog?",
+          text: "Once deleted, you will not be able to recover this Blog!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((success) => {
+            if (success) {
+            	axios
+			    .delete("/api/blogs/delete/"+id)
+			    .then((response)=>{
+			     	this.getBlogData();
+			       swal("Your Blog is deleted!");
+			    })
+			    .catch((error)=>{
+			       console.log("error = ", error);              
+			    });
+            
+              
+            } else {
+            swal("Your Blog is safe!");
+          }
+        }); 
+}
+getBlogData(){
+	axios
+      .get('/api/blogs/get/all/list')
+      .then((response)=>{
+       console.log("===>",response.data);
+      	this.setState({
+      			Blogs:response.data
+      		});
+      })
+      .catch(function(error){
+        console.log(error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   /*this.props.history.push("/");*/
+              }
+      })
+}
+componentDidMount(){
+	var Blogs =[];
+	this.getBlogData();
+}
 	render() {
 		var data = this.state.Blogs;
 		return (
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
           		<div className="col-lg-12">
-	          		
-	          		
 	          		{
 		                		data && data.length > 0 ?
 				      				data.map((data, index)=>{
@@ -138,11 +86,17 @@ export default class AllBlogsList extends React.Component {
 							          			<div className="col-lg-3 Allblog">
 							          				
 							          					<div className="All1blog1 z50">
-							          					<a href="/singleblogpage">
-															<img className="img-responsive AllblogImgB" src={data.blogImg} alt="Bannerpng"/>
-															<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
+							          					
+														<img className="img-responsive AllblogImgB" src="/images/ceo.png" alt="Bannerpng"/>
+														<div className="middle">
+														    
+														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
+														    <i className="fa fa-trash rclr hoverbbk" id={data._id} onClick={this.deleteBlog.bind(this)}></i>
+														  </div>
+														<a href={"/singleblogpage/"+data._id}>
+															<p className="blogDate p10 mtop20 graycolor">{data.createdAt}</p>
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-															<p className="blogPara p10 graycolor">{data.blogPara}</p>
+															<p className="blogPara p10 graycolor">{data.summary}</p>
 														</a>
 														</div>
 							          				

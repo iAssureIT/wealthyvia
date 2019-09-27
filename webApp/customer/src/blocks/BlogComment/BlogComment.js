@@ -113,7 +113,7 @@ handleChange(event){
                                 <button className="btn lightbluebg commentBoxbtn buttonhover">Post Comment</button>
                               </div>
                             </div>
-                          </form>
+        </form>
 			</div>
 		);
 	}

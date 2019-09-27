@@ -10,7 +10,11 @@ import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
+<<<<<<< Updated upstream
 axios.defaults.baseURL = 'http://gangaapi.iassureit.com';
+=======
+axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+>>>>>>> Stashed changes
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const formValid = formerrors=>{

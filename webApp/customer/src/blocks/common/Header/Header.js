@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import $         from 'jquery';
 import "./Header.css";
 import axios                from 'axios';
-axios.defaults.baseURL = 'http://gangaexpressapi.iassureit.com';
+
+axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
