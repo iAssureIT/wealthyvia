@@ -1,6 +1,6 @@
 .valuesWeCreateContainer{
 	height: auto;
-	background-image:url("/images/backImageAU.jpg");
+	background-image:url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/backImageAU.jpg");
 	background-size: 100% 100%;
 	padding:40px;
 	background-repeat: no-repeat;

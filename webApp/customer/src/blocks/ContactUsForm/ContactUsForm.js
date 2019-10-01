@@ -1,7 +1,11 @@
 import React from 'react';
 import "./ContactUsForm.css";
 import axios 				from 'axios';
-import swal from 'sweetalert2';
+import swal from 'sweetalert';
+
+axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 const formValid = formerrors=>{
   console.log("formerrors",formerrors);
@@ -41,8 +45,8 @@ handleChange(event){
       const datatype = event.target.getAttribute('data-text');
         const {name,value} = event.target;
         const formerrors = this.state.formerrors;
-      console.log("datatype",datatype);
-      switch (datatype){
+/*      console.log("datatype",datatype);
+*/      switch (datatype){
 
 
       case 'clientName' : 
@@ -71,20 +75,20 @@ handleChange(event){
 Submit(event){
     event.preventDefault();
     // var adminEmail = this.getAdminEmail();  //Get email id from company settings. Write API for that.
-    var adminEmail = "";
+    var adminEmail = "kycwealthyvia@gmail.com";
 
     const formValues1 = {
         "email"         : this.state.email ,
-        "subject"       : "Your Query/Feedback is sent successfully to www..com!",
-        "message"          : "", 
-        "mail"          : 'Dear' + this.state.name + ', <br/><br/>'+
+        "subject"       : "Your Query/Feedback is sent successfully to www.wealthyvia.com!",
+        "text"          : "", 
+        "html"          : 'Dear' + this.state.name + ', <br/><br/>'+
                           
                           "<b>Your Email: </b>"  + this.state.email + '<br/><br/>'+
                           "Your following message has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
                           "===============================  <br/> <br/> " + 
                           "<pre> " + this.state.message+ "</pre>" + 
                           " <br/> <br/> =============================== " + 
-                          "<br/><br/> Thank You, <br/> Support Team, <br/> www..com " ,
+                          "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
       };
       console.log("notification",formValues1); 
@@ -104,8 +108,8 @@ Submit(event){
        const formValues2 = {
         "email"         : adminEmail ,
         "subject"       : "New query/feedback arrived from Website!",
-        "message"          : "",
-        "mail"          : 'Dear Admin, <br/>'+
+        "text"          : "",
+        "html"          : 'Dear Admin, <br/>'+
                           "Following new query/feedback came from website! <br/> <br/> " + 
                           "============================  <br/> <br/> " + 
                           "<b>Client Name: </b>"   + this.state.name + '<br/>'+
@@ -141,7 +145,7 @@ Submit(event){
 		const {formerrors} = this.state;
 		
 		return (
-          	<div className="container-fluid cuformWall">
+          	<div className="container-fluid cuformWall noPadding">
 
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
 						<h1 ><b>Contact Us</b></h1>
@@ -184,8 +188,8 @@ Submit(event){
 								</div>
 							</div>
 							<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  bt40">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-									<button type="button" className="sbtn col-lg-2 col-lg-offset-5" onClick={this.Submit.bind(this)}>Send Request</button>
+								<div className="col-lg-11 col-md-12 col-sm-12 col-xs-12 ">
+									<button type="button" className="sbtn col-lg-3 col-lg-offset-5" onClick={this.Submit.bind(this)}>Send Request</button>
 								</div>
 							</div>
 						</form>

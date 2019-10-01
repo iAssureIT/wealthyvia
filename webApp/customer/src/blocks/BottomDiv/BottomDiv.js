@@ -16,7 +16,7 @@ export default class BottomDiv extends Component {
 
 			  		<a href="#5gcpm" className="scroll"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
-			  			<img src="/images/ceo.png"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">5GCPM</label><br/>
 				          <p>Introducing 5GCPM to you</p>
@@ -31,7 +31,7 @@ export default class BottomDiv extends Component {
 
 					<a href="#safeHevenMoats"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="/images/ab3.jpg"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">Safe Heaven Moats</label><br/>
 				          <p>Spearheaded by renowned financial specialists.</p>
@@ -45,7 +45,7 @@ export default class BottomDiv extends Component {
 				</div></a>
 				<a href="#safeHeven"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="/images/ab1.jpg"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab1.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">SHM and MF alpha</label><br/>
 				          <p>Spearheaded by renowned financial specialists.</p>
@@ -59,7 +59,7 @@ export default class BottomDiv extends Component {
 				</div></a>
 				<a href="#uslistedStocks"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="/images/ab2.jpg"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab2.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">Unlisted Pre Ipo</label><br/>
 				          <p>Spearheaded by renowned financial specialists.</p>
@@ -74,7 +74,7 @@ export default class BottomDiv extends Component {
 					
 				<a href="#unlistedPre"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
-			  			<img src="/images/ceo.png"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">US listed stocks</label><br/>
 				          <p>Get the latest news and updates on ASK Group and its companies.</p>

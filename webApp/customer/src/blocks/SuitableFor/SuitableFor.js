@@ -32,7 +32,7 @@ export default class SuitableFor extends Component {
 
                    <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="/images/Magic-Hat.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Magic-Hat.png"/>
                     </div>
                   </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
@@ -49,7 +49,7 @@ export default class SuitableFor extends Component {
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/img2.gif"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/img2.gif"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">

@@ -14,13 +14,13 @@ export default class BlogComment extends React.Component {
       							date:"May 29, 2015, 5:33 pm",
       							userName:"Joan Doe",
       							comment:"I think the problem for me is the energistically benchmark focused growth strategies via superior supply chains. Compellingly reintermediate mission-critical potentialities whereas cross functional scenarios. Phosfluorescently re-engineer distributed processes without standardized supply chains. Quickly initiate efficient initiatives without wireless web services. Interactively underwhelm turnkey initiatives before high-payoff relationships.",
-      							userImg:"/images/user.png"
+      							userImg:"https://wealthyvia.s3.ap-south-1.amazonaws.com/website/user.png"
      					    },
      					    {
       							date:"May 29, 2015",
       							userName:"Jennifer Freeman",
       							comment:"Very good point which I had quickly initiate efficient initiatives without wireless web services. Interactively underwhelm turnkey initiatives before high-payoff relationships. Holisticly restore superior interfaces before flexible technology. Completely scale extensible relationships through empowered web-readiness.",
-      							userImg:"/images/user1.png"
+      							userImg:"https://wealthyvia.s3.ap-south-1.amazonaws.com/website/user1.png"
      					    },
      					   
      					  ]

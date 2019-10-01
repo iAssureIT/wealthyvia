@@ -23,10 +23,10 @@ export default class OneAdvice extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite padding40Left mt20" id="safeHevenMoats">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite  mt20" id="safeHevenMoats">
               <div className="row">
 
-                <div className="col-lg-10 col-lg-offset-2 col-md-6 hidden-sm hidden-xs startTrandingContent backColorGray">
+                <div className="col-lg-10 col-lg-offset-2 col-md-6 hidden-sm hidden-xs startTrandingContent padding40Left backColorGray">
                   <div className="row">
                     <div className="col-lg-7 col-md-7 col-md-offset-5 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">Safe heaven moats</span> </label>
@@ -39,19 +39,19 @@ export default class OneAdvice extends Component {
                    
                   </div>
                 </div>
-               <div className="col-lg-6 col-md-6  hidden-sm hidden-xs handFreeInvestingImgContainer">
+               <div className="col-lg-6 col-md-6  hidden-sm hidden-xs padding40Left handFreeInvestingImgContainer">
                   <div>
-                    <img src="/images/safeHe.jpg"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/safeHe.jpg"/>
                   </div>
                 </div>
                   <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
               <div className="row">
               <div className="col-sm-12 col-sm-12 hidden-md hidden-lg small">
                   <div>
-                    <img src="/images/safeHe.jpg"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/safeHe.jpg"/>
                   </div>
                 </div>
-                <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContent  backColorGray">
+                <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContentSmall  backColorGray">
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
                     <label><span className="iceBlueColor">Safe heaven moats</span> </label>

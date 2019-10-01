@@ -369,7 +369,7 @@ export default class ProductPage extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer  ">
-                        <img src="/images/over.jpg" className="img-responsive"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -383,7 +383,7 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/over.jpg" className="img-responsive"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -417,10 +417,10 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                        <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="/images/companiesWeInvest.jpg"/>
+                        <img src="/images/workWith.jpg"/>
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/companiesWeInvest.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeInvest.jpg"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Preferred companies </span></label>
@@ -442,7 +442,7 @@ export default class ProductPage extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="/images/companiesWeAvoid.png"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Companies we don’t Prefer</span></label>
@@ -459,7 +459,7 @@ export default class ProductPage extends Component {
                     </div>
                      
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/companiesWeAvoid.png"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Companies we don’t Prefer</span></label>
@@ -516,12 +516,12 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="/images/suitableFor.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.png"/>
                     </div>
                   </div>
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/suitableFor.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.png"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
@@ -567,7 +567,7 @@ export default class ProductPage extends Component {
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
 			  		
-               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerUS">
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSHM">
               <div className="row">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
@@ -595,9 +595,7 @@ export default class ProductPage extends Component {
             </div>
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
-                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="/images/over.jpg"/>
-                    </div>
+               
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
@@ -619,8 +617,11 @@ export default class ProductPage extends Component {
                         </ul>
                       </p>                 
                     </div>
+                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"/>
+                    </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/over.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -637,29 +638,29 @@ export default class ProductPage extends Component {
                 
                 </div>
            </div>
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPink onHoverEffect" >
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="/images/risk.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/risk.jpg"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Risks Involved </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                        <ul className="customOl listStyle">
                       <li>No matter how much we strategize & risk averse we are, they are always risks associated with dealing in F&O markets.</li>
-                    <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default backColorPink customPanelPP"><div class="panel-heading noPadding backColorPink customHead" role="tab" id="headingThree"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">As an advisory, it is our responsibility to bring to your notice & inform you about them</a></div><div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses <ul><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses </li></ul></li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved.</li></ul></li></ul> </p> </div></div></div></li>
+                    <li>As an advisory, it is our responsibility to bring to your notice & inform you about them<ul className="customOl listStyle"><li>Additional Margin – During some black swan days, where our trades got into losses </li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. </li></ul></li></ul></li>
                     </ul>
                       </p>                 
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/risk.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/risk.jpg"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Risks Involved </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
                       <li>No matter how much we strategize & risk averse we are, they are always risks associated with dealing in F&O markets.</li>
-                    <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default backColorPink customPanelPP"><div class="panel-heading noPadding  backColorPink customHead" role="tab" id="headingThree"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">As an advisory, it is our responsibility to bring to your notice & inform you about them</a></div><div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses <ul><li>Additional Margin (Margin Call) – During some black swan days, where our trades got into losses </li></ul></li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. We also never deal with individual companies F&O, which always have high risk of violent moves / high volatility involved.</li></ul></li></ul> </p> </div></div></div></li>
+                    <li>As an advisory, it is our responsibility to bring to your notice & inform you about them<ul className="customOl listStyle"><li>Additional Margin – During some black swan days, where our trades got into losses </li><li>Capital Risk: - By the nature of F&O, there is a risk of capital loss for the investor.<ul><li>How we can mitigate this? – We understand the risks associated with F&O and hence we never take any aggressive positions. We never deal with other indices except Nifty F&O. </li></ul></li></ul></li>
                     </ul>
                       </p>                  
                     </div>
@@ -686,12 +687,12 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="/images/suitableFor.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.jpg"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/suitableFor.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.jpg"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
@@ -745,28 +746,26 @@ export default class ProductPage extends Component {
 			  	   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                      <img src="/images/US-stocks.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/US-stocks.jpg"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Few Facts on USA market </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                       <ul className="customOl listStyle">
-                    <li>AThe mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
-                  <li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities.</li>
-                  <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
+                    <li>The mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
+                 <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
                   <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
                   </ul>
                       </p>                 
                     </div>
                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                      <img src="/images/US-stocks.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/US-stocks.jpg"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Few Facts on USA market </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                      <ul className="customOl listStyle">
-                    <li>AThe mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
-                  <li>Elite group, with familiar names such as the NYSE, Nasdaq, LSE, Deutsche Borse, TMX Group, and Japan Exchange Group, comprise 87% of the world’s total value of equities.</li>
+                    <li>The mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
                   <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
                   <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
                   </ul>
@@ -779,15 +778,15 @@ export default class ProductPage extends Component {
           
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer" id="cg">
 			  			<label> Since 2010 , US market outperformed Indian Market</label>
-			  			<img src="/images/chart1.jpg" className=""/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/chart1.jpg" className=""/>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
 			  			<label> Natural Benefit of USD INR increase over longer time</label>
-			  			<img src="/images/usinr.jpg" className=""/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/usinr.jpg" className=""/>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
 			  			<label> Over the period, all currencies have declined against doller</label>
-			  			<img src="/images/chart3.jpg" className=""/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/chart3.jpg" className=""/>
 			  		</div>
 				
 				    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
@@ -808,13 +807,13 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="/images/help.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/help.jpg"/>
                     </div>
                   </div>
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/help.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/help.jpg"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
@@ -851,7 +850,7 @@ export default class ProductPage extends Component {
                     </div>  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara ">
                       <div className="row">
-                        <p>We not just sell unlisted shares at Wealthyvia.com, but also first analyse the company and it’s shares liquidity and then only we will put on website to purchase for the investors. </p>
+                        <p>Invest before listing to take advantage of being early entrant. We check for detailed financials and enough liquidity before recommending it to you.</p>
                       </div>
                     </div>
 
@@ -875,7 +874,7 @@ export default class ProductPage extends Component {
               </p>
             </div>   
 			  		<div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                      <img src="/images/buyProcess.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/buyProcess.png"/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">The process to buy unlisted shares </span></label>
@@ -894,10 +893,10 @@ export default class ProductPage extends Component {
 			  		
 									<label>How can you buy these unlisted shares online?</label>
 								<ul className="listStyleNone textAlignCenter">
-								     <li className="col-lg-6 mt20"><i class="fa fa-envelope customIcon" aria-hidden="true"></i>
-                     <p>You need to drop the mail on <br/><span className="blueColor">arthavruddhi@gmail.com</span></p></li>
-								     <li className="col-lg-6 mt20"><i class="fa fa-phone customIcon" aria-hidden="true"></i><p>Contact on <br/> <span className="blueColor">8369508540</span></p></li>
-								</ul>
+								     <li className="col-lg-12 mt20"><i class="fa fa-envelope customIcon" aria-hidden="true"></i>
+                     <p>You need to drop the mail on <br/><span className="blueColor">invest@wealthyvia.com</span></p></li>
+{/*								     <li className="col-lg-6 mt20"><i class="fa fa-phone customIcon" aria-hidden="true"></i><p>Contact on <br/> <span className="blueColor">8369508540</span></p></li>
+*/}								</ul>
 							
 			  		</div>
 			  	
@@ -913,7 +912,7 @@ export default class ProductPage extends Component {
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
                         <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>we never try to change the details over a phone call or any direct mail.</li>
-                          <li><span className="numberDiv">2</span>Ask you to send us investor’s bank details by email from any other id.</li>
+                          <li><span className="numberDiv">2</span>We never ask you to send us investor’s bank details from any other id.</li>
                           <li><span className="numberDiv">3</span>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</li>
                           <li><span className="numberDiv">4</span>We never change our account details during transactions</li>
                           <li><span className="numberDiv">5</span>If we will ever change the details same will be reflected on our website.</li>
@@ -922,21 +921,23 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="/images/security.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/security.png"/>
                     </div>
                   </div>
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="/images/security.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/security.png"/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
-                          <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
-                          <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
-                          <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
+                          <ul className="customOlOther">
+                          <li><span className="numberDiv">1</span>we never try to change the details over a phone call or any direct mail.</li>
+                          <li><span className="numberDiv">2</span>We never ask you to send us investor’s bank details from any other id.</li>
+                          <li><span className="numberDiv">3</span>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</li>
+                          <li><span className="numberDiv">4</span>We never change our account details during transactions</li>
+                          <li><span className="numberDiv">5</span>If we will ever change the details same will be reflected on our website.</li>
                         </ul>
                       </p>                     
                     </div>

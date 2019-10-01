@@ -10,7 +10,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://gangaapi.iassureit.com';
+axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -58,16 +58,17 @@ class SignUp extends Component {
     }
  	usersignup(event){
  		event.preventDefault();
- 			console.log("-------this.state.auth------>>",this.state.auth);
- 			var auth={
+/* 			console.log("-------this.state.auth------>>",this.state.auth);
+*/ 			var auth={
 	                firstName       : this.refs.firstname.value,
 	                lastName        : this.refs.lastname.value,
-	                mobileNumber    : this.refs.mobNumber.value,
-	                emailId         : this.refs.signupEmail.value,
+	                email         : this.refs.signupEmail.value,
+	                mobNumber    : this.refs.mobNumber.value,
 	                pwd        		: this.refs.signupPassword.value,
-	                signupPassword  : this.refs.signupConfirmPassword.value,
-	                roles 			: 'users',
-	                status 			: 'Active'
+/*	                signupPassword  : this.refs.signupConfirmPassword.value,
+*/	                role 			: 'user',
+	                status 			: 'Active',
+	                fullName        : this.refs.firstname.value + this.refs.lastname.value,
 	            }
 	            
  			// console.log("-------auth------>>",auth);
@@ -88,11 +89,11 @@ class SignUp extends Component {
                 	 console.log("formValues= ",auth),
 		             document.getElementById("signUpBtn").value = 'Sign Up',
       				// browserHistory.push("/"),
-                	axios.post('/api/users',auth)
+                	axios.post('/api/users/post/signup/user/emailotp',auth)
 			            .then((response)=> {
-			                console.log("-------userData------>>",response.data.user_id);
+			                console.log("-------userData------>>",response.data.ID);
 		            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
-			                this.props.history.push("/confirm-otp/"+response.data.user_id);
+			                this.props.history.push("/confirm-otp/"+response.data.ID);
 			                
 			            })
 			            .catch(function (error) {

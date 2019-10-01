@@ -29,7 +29,7 @@ export default class AboutUs extends Component {
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nineYearImage">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivRisk"> 
-                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 imgContentAU"><img src="/images/exp.png"/></div>
+                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 hidden-sm hidden-xs imgContentAU"></div>
                     <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">9 Years of Experience</p>
                     <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">We are the one of experienced organization, we have 9 Years of Research Experience of working for our Institutional clients</label>
                     </div>  
@@ -89,7 +89,7 @@ export default class AboutUs extends Component {
 
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="/images/team.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/team.png"/>
                           <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>
                     
                       </div>
@@ -97,7 +97,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="/images/address.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/address.png"/>
                           <p>Consistency in Revenue , EBIDTA , Profit Growth , ROE , ROCE and Margins </p>
                     
                       </div>
@@ -105,7 +105,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="/images/diagram.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/diagram.png"/>
                           <p>Business Scaleability, sustainability, market shares, product pricing powers, Durable competitive advantage </p>
                     
                       </div>
@@ -113,7 +113,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="/images/sign.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/sign.png"/>
                           <p>Corporate Governance : Accounting redflags, promoter track/reputation  records, Third party transactions , tax and dividends</p>
                     
                       </div>
@@ -121,7 +121,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="/images/umbrella.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/umbrella.png"/>
                           <p>Are Big investors, FII , DII interested in these stocks? Buying interest </p>
                     
                       </div>
@@ -129,7 +129,7 @@ export default class AboutUs extends Component {
 
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="/images/house.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/house.png"/>
                           <p>We invest only when valuations are right</p>
                     
                       </div>
@@ -148,7 +148,7 @@ export default class AboutUs extends Component {
           <div className="col-lg-12 col-md-12 hidden-sm hidden-xs riskDiv">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
-                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 imgContentAU"><img src="/images/riskImg.png"/></div>
+                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 hidden-xs hidden-sm imgContentAU"></div>
                     <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
                     <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
                     </div>  
@@ -157,7 +157,7 @@ export default class AboutUs extends Component {
              <div className="hidden-lg hidden-md col-sm-12 col-xs-12 riskDiv1">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv1 textAlignCenter"> 
-                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 imgContentAU"><img src="/images/riskImg.png"/></div>
+                    <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 hidden-xs hidden-sm imgContentAU"></div>
                     <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
                     <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
                     </div>  
@@ -175,10 +175,10 @@ export default class AboutUs extends Component {
                     <p>Studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. </p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
-                      <img src="/images/books.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
                     </div> 
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
-                      <img src="/images/books.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
                     </div>   
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">We have</label>
@@ -191,7 +191,7 @@ export default class AboutUs extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack image1 noPadding"> 
-                      <img src="/images/ourTeam.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Our team</label>
@@ -199,7 +199,7 @@ export default class AboutUs extends Component {
                     <p>Team of 7 Research Analysts .Team mix of Industry specialists, business analysts, Operational and Marketing consultants and Stock Market equity specialists.</p>
                     </div>  
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
-                      <img src="/images/ourTeam.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Our team</label>
@@ -216,10 +216,10 @@ export default class AboutUs extends Component {
                     <p>Self developed Software tools with 924 hours of hard work and 17000 lines of code  to screen and filter data and algorithm systems to find right trades. </p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
-                      <img src="/images/weAre.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
                     </div>  
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
-                      <img src="/images/weAre.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">We are</label>
@@ -231,7 +231,7 @@ export default class AboutUs extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
-                      <img src="/images/clearDirection.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Clear direction</label>
@@ -239,7 +239,7 @@ export default class AboutUs extends Component {
                     <p>Finding trends direction and early deviations from expected trends. Having Right Direction is a must in journey of Wealth creation</p>
                     </div>  
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
-                      <img src="/images/clearDirection.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Clear direction</label>
@@ -259,10 +259,10 @@ export default class AboutUs extends Component {
                     <p>Out performance and Under performance measurement  of each stock returns  and portfolio returns with benchmarks </p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
-                      <img src="/images/performance.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
                     </div> 
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
-                      <img src="/images/performance.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Performance</label>
@@ -275,7 +275,7 @@ export default class AboutUs extends Component {
                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
-                      <img src="/images/management.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Management</label>
@@ -283,7 +283,7 @@ export default class AboutUs extends Component {
                     <p>Investment Management committee Monthly review and Monitoring</p>
                     </div>  
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
-                      <img src="/images/management.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Management</label>

@@ -371,7 +371,16 @@ a:hover,a:focus{
 }
 .bannerContainerUS{
   margin-top: -1px;
-  background-image: url("/images/bannerImg1.jpg");
+  background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/bannerImg1.jpg");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+/*  padding: 60px !important;
+*/ font-family:'Montserrat',sans-serif;
+  height: 100%;
+}
+.bannerContainerSHM{
+  margin-top: -1px;
+  background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/bannerImg11.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 /*  padding: 60px !important;
@@ -381,7 +390,7 @@ a:hover,a:focus{
 .bannerContainerFiveG{
     margin-top: -1px;
 
-  background-image: url("/images/safeH.jpg");
+  background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/safeH.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 /*  padding: 60px !important;
@@ -391,7 +400,7 @@ a:hover,a:focus{
 .bannerContainerStocks{
     margin-top: -1px;
 
-  background-image: url("/images/usS.jpg");
+  background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/usS.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
 /*  padding: 60px !important;
@@ -412,7 +421,7 @@ a:hover,a:focus{
   margin-top: 40px;
   background-attachment: fixed;
   color: #fff;
-  background-image: url("/images/introToSHM.jpg");
+  background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/introToSHM.jpg");
 }
 .riskDivPP p{
 

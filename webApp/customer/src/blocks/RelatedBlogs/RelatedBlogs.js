@@ -14,7 +14,7 @@ export default class RelatedBlogs extends React.Component {
 								blogPara:"I was surprised how many people spoke English...",
 								blogwritter:"John Doe",
 								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
+								bloggerImg:"https://wealthyvia.s3.ap-south-1.amazonaws.com/website/user1.png",
 								blogImg:"/images/ceo.png"
 							},
 							{
@@ -23,7 +23,7 @@ export default class RelatedBlogs extends React.Component {
 								blogPara:"I was surprised how many people spoke English...",
 								blogwritter:"John Doe",
 								buBlogger:"Blogger",
-								bloggerImg:"/images/user.png",
+								bloggerImg:"https://wealthyvia.s3.ap-south-1.amazonaws.com/website/user.png",
 								blogImg:"/images/blog1.jpeg"
 							},
 							{
@@ -32,7 +32,7 @@ export default class RelatedBlogs extends React.Component {
 								blogPara:"I was surprised how many people spoke English...",
 								blogwritter:"John Doe",
 								buBlogger:"Blogger",
-								bloggerImg:"/images/user1.png",
+								bloggerImg:"https://wealthyvia.s3.ap-south-1.amazonaws.com/website/user1.png",
 								blogImg:"/images/help.jpg"
 							},
 						  ]

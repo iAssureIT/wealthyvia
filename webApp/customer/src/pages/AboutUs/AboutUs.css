@@ -62,7 +62,7 @@
 	font-size: 17px !important;
 }
 .hexDiv1Small{
-	background-image: url("/images/hexaBack.png");
+	background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/hexaBack.png");
 	background-repeat: no-repeat;
  font-family:'Montserrat',sans-serif;	font-size: 18px;
 	background-size: 100% 100%;
@@ -188,7 +188,7 @@ width: 80px !important;
 	margin-top:20px;
 	line-height: 70px;
 	font-weight: bolder;
-	font-size: 50px;
+	font-size: 40px;
 }
 .riskDiv1 label{
 	margin-top:10px;
@@ -223,7 +223,7 @@ width: 80px !important;
 }
 
 .imgContentAU{
-	height: 180px;
+	height: 120px;
 }
 .imgContentAU img{
 	height: 100%;

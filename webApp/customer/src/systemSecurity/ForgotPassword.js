@@ -101,11 +101,11 @@ class ForgotPassword extends Component {
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
         <div className="col-lg-4 col-lg-offset-7 col-md-4 col-md-offset-7 col-sm-12 signupPadding loginFormWrap">
           <div className="divForgotPasswordWrap">
-              <div className="col-lg-12 text-center">
+             {/* <div className="col-lg-12 text-center">
                 <img src="/images/Logo.png" height="70px"/>
-              </div>
+              </div>*/}
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 verifypd">
-              <h3 className="signInNameTitle"><span className="bordbt">VERIFY EMAIL</span> </h3>
+              <h3 className="confirmTitle col-lg-offset-2"><span className="bordbt">Verify Email</span> </h3>
               <div className="FormWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 forPassWrap">
                 <form id="forgotPassword" onSubmit={this.forgotpassword.bind(this)}>
                   <div className="text-left col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">

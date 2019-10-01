@@ -23,7 +23,7 @@ export default class SingleBlogBanner extends React.Component {
 
 	render() {
 		return (
-			<div className="col-lg-12 nopadding sbbannerWall" style={{backgroundImage:'url("/images/blogBack.jpg")'}}>
+			<div className="col-lg-12 nopadding sbbannerWall" style={{backgroundImage:'url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blogBack.jpg")'}}>
 				<div className="col-lg-12 sbcentered">
 					<div className="col-lg-12 sbbtextcentered">
 						<h1 className="fs72">{this.props.blogTitle}</h1>

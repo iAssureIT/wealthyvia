@@ -87,7 +87,7 @@ componentDidMount(){
 							          				
 							          					<div className="All1blog1 z50">
 							          					
-														<img className="img-responsive AllblogImgB" src="/images/ceo.png" alt="Bannerpng"/>
+														<img className="img-responsive AllblogImgB" src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png" alt="Bannerpng"/>
 														<div className="middle">
 														    
 														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>

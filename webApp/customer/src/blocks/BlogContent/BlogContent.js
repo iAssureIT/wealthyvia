@@ -10,7 +10,7 @@ export default class BlogContent extends React.Component {
 		this.state = {
 			"user": [
 						{
-							userimg:"/images/user1.png",
+							userimg:"https://wealthyvia.s3.ap-south-1.amazonaws.com/website/user1.png",
 							userName:"Joan Doe",
 							UserDes:"Based in New York, Uncode is a blog by John Doe. His posts explore modern web design and development through photos and quotes by influential architects, engineers, and creatives."
 						}
@@ -19,8 +19,8 @@ export default class BlogContent extends React.Component {
 	}
 
 	render() {
-		var data = this.state.Blog;
-		/*console.log("===>",data);*/
+/*		var data = this.state.Blog;
+*/		/*console.log("===>",data);*/
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
 

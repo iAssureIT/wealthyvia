@@ -19,6 +19,27 @@
 .startTrandingContent a{
 	text-decoration: underline;
 }
+
+.startTrandingContentSmall{
+	padding: 45px !important;
+	 font-family:'Montserrat',sans-serif;
+    justify-content: center;
+
+}
+.startTrandingContentSmall label{
+	font-size: 4rem;
+	line-height:1.2;
+	font-weight: bold;
+}
+.startTrandingContentSmall p{
+	margin-top: 1em;
+	font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+.startTrandingContentSmall a{
+	text-decoration: underline;
+}
 .startTrandingImgContainer{
 	height: 400px;
 	margin-top: -500px;

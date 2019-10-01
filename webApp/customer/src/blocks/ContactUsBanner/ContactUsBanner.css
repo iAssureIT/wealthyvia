@@ -6,7 +6,7 @@
 	position: relative;
   	text-align: center;
   	color: white;
-  	background-image: url("/images/cubanner.jpg");
+  	background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/cubanner.jpg");
   	/*background-size: 100% 100%;*/
   	background-position: bottom;
   	background-attachment: fixed;

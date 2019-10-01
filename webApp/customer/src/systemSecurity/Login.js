@@ -151,12 +151,12 @@ class Login extends Component {
                <div className="col-lg-12 col-md-6 col-sm-6 ">
                   <Link to='/signup' className="UMGreyy UMGreyy_l UMcreateacc col-lg-12 col-md-12 col-xs-12 col-sm-12"> Sign Up</Link>
                 </div>
-{/*                <div className="col-lg-6 col-md-6 col-sm-6 offset-lg-1 customFl">
+                <div className="col-lg-6 col-md-6 col-sm-6 offset-lg-1 customFl">
                   <Link to='/forgot-pwd' className="UMGreyy UMGreyy_l UMcreateacc col-lg-12 col-md-12 col-xs-12 col-sm-12">
                     Forgot Password?
                   </Link>
                 </div>
-*/}              </div>
+              </div>
 {/*              <div className="col-lg-12 col-md-12 col-sm-12 pdcls">
                 <div className="col-lg-12 col-md-12 col-sm-12 ">
                   <Link to='/verify-account' className="UMGreyy UMGreyy_l forgotpass emailverify col-lg-12 col-md-12 col-xs-12 col-sm-12">

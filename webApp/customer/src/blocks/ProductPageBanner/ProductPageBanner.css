@@ -1,5 +1,5 @@
 .bannerContainer{
-	background-image: url("/images/5gcpmBack.jpg");
+	background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/5gcpmBack.jpg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	padding: 40px !important;
@@ -9,7 +9,7 @@
 	color:#333;
 }
 .bannerContainerSH{
-	background-image: url("/images/safeHeaven.jpeg");
+	background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/safeHeaven.jpeg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
  	font-family:'Montserrat',sans-serif;

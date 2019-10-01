@@ -1,5 +1,12 @@
 .modalBodyCustom{
 	padding: 40px !important
+
+}
+.modalBodyCustomSmall{
+  padding: 10px !important;
+  height: 900px;
+  background-color:#fff;
+  
 }
 .modalHeaderCustom{
 	background-color: #201a47;
@@ -19,25 +26,25 @@
 .customModalRP{
 	background-color: #fff !important;
 	height: 600px !important;
-  width: 800px !important;
-  z-index: 10000 !important;
+/*  width: 800px !important;
+*/  z-index: 10000 !important;
   margin-top: 10px !important;
   font-family: 'PT Sans', sans-serif;
   border-radius: 3px;
 }
 .customModalKYC{
 	background-color: #fff !important;
-	height: 680px !important;
-  width: 800px !important;
-  margin-top: 10px !important;
+	height: 700px !important;
+/*  width: 800px !important;
+*/  margin-top: 10px !important;
   font-family: 'PT Sans', sans-serif;
   border-radius: 3px;
 }
 .customModalEN{
 	background-color: #fff !important;
 	height: 500px !important;
-  width: 800px !important;
-  margin-top: 10px !important;
+/*  width: 800px !important;
+*/  margin-top: 10px !important;
   font-family: 'PT Sans', sans-serif;
   border-radius: 3px;
 }
@@ -156,7 +163,6 @@
   padding-left: 0px !important;
       font-family: 'PT Sans', sans-serif;
 
-  padding-top: 5px;
   font-size: 14px !important;
 }
 /*other css*/
@@ -235,7 +241,7 @@ font-family: 'PT Sans', sans-serif;
   	outline: none !important;
   }
   .pad40{
-  	padding: 60px !important;
+  	padding: 20px !important;
   	padding-top: 20px !important;
   }
 .customInputKF{

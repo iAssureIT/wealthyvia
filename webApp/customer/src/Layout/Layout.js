@@ -1,4 +1,4 @@
-import React,{Component}                         from 'react';
+import React                         from 'react';
 import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
 import Header                                    from "../blocks/common/Header/Header.js";
 import Homepage                                  from "../pages/Homepage/Homepage.js";

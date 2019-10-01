@@ -44,7 +44,7 @@ export default class BlogCarousel extends Component {
 						    <div className="item">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog  ">
 									<div className="row">
-										<img src="/images/blog1.jpeg"/>
+										<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpeg"/>
 									</div>
 								</div>
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
@@ -61,7 +61,7 @@ export default class BlogCarousel extends Component {
 							 <div className="item ">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
-										<img src="/images/blog1.jpg"/>
+										<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpg"/>
 
 									</div>
 								</div>
@@ -79,7 +79,7 @@ export default class BlogCarousel extends Component {
 							 <div className="item ">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
-										<img src="/images/blog1.jpeg"/>
+										<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpeg"/>
 
 									</div>
 								</div>

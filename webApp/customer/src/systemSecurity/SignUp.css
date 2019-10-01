@@ -27,7 +27,7 @@
   background: #fff;
   display: flex;
   flex-wrap: wrap;
-  background-image: url("/images/signIn.jpg");
+  background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/signIn.jpg");
   padding: 0px !important;
   margin-right: -15px !important;
   height: 600px !important;
@@ -68,7 +68,7 @@
 }
 
 .loginbg{
- background-image: url("/images/signIn.jpg");
+ background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/signIn.jpg");
  background-repeat: no-repeat;
   background-size: 100% 100%;
 }
@@ -680,7 +680,7 @@
 }
 /**********Garima**********/
 .logWrapper{
-  background-image: url(/images/formbg.png);
+  background-image: url(https://wealthyvia.s3.ap-south-1.amazonaws.com/website/formbg.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -976,7 +976,7 @@ input[type="radio"]:checked:before {
 }
 
 .backgroundErrImg,.backgroundErrImgMain{
-    background: url(/images/background.jpg);
+    background: url(https://wealthyvia.s3.ap-south-1.amazonaws.com/website/background.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -988,7 +988,7 @@ input[type="radio"]:checked:before {
     text-align: center;
 }
 .backgroundErrImgMain{
-  background: url(/images/background.jpg);
+  background: url(https://wealthyvia.s3.ap-south-1.amazonaws.com/website/background.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;
@@ -1895,7 +1895,7 @@ input[type="radio"]:checked:before {
 }
 /**********Garima**********/
 .logWrapper{
-  background-image: url(/images/formbg.png);
+  background-image: url(https://wealthyvia.s3.ap-south-1.amazonaws.com/website/formbg.png);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -2199,7 +2199,7 @@ input[type="radio"]:checked:before {
 }
 
 .backgroundErrImg,.backgroundErrImgMain{
-    background: url(/images/background.jpg);
+    background: url(https://wealthyvia.s3.ap-south-1.amazonaws.com/website/background.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -2211,7 +2211,7 @@ input[type="radio"]:checked:before {
     text-align: center;
 }
 .backgroundErrImgMain{
-  background: url(/images/background.jpg);
+  background: url(/https://wealthyvia.s3.ap-south-1.amazonaws.com/website/background.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100%;

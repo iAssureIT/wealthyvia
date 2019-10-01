@@ -21,12 +21,11 @@ import './SignUp.css';
       var url = this.props.match.params;
       console.log('url = ',url);
       var formValues ={
-        "user_ID" :  this.props.match.params.user_ID,
-        "mobOTP"  :  parseInt(this.refs.mobotp.value),
-        "emailOTP":  parseInt(this.refs.emailotp.value)
+        "ID" :  this.props.match.params.user_ID,
+        "emailotp":  parseInt(this.refs.emailotp.value)
       }
       console.log('formValues', formValues);
-      axios.put('/api/users/otpverification', formValues)
+      axios.get('/api/users/get/checkotp/:ID/:emailotp',formValues)
       .then((response)=>{
         swal(response.data.message);
         this.props.history.push('/login');
@@ -91,7 +90,7 @@ import './SignUp.css';
               <form id="OTPMobMail" onSubmit={this.confirmOTP.bind(this)}>
                 <div className="col-lg-12 col-md-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 veriemail">
                   <div className="text-left col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">
-                    <span>Enter six digit verification code received on <b>Email</b>.<br/></span>
+                    <span>Enter four digit verification code received on <b>Email</b>.<br/></span>
                   </div>
                   <div className="input-effect input-group veribtm1">
                     <input type="text" className="effect-21 form-control loginInputs " ref="emailotp" name="emailotp" onBlur={this.inputEffect.bind(this)} aria-describedby="basic-addon1" title="Please enter numbers only!" maxLength="6" pattern="(0|[0-9]*)" required/>
@@ -100,7 +99,7 @@ import './SignUp.css';
                       <i></i>
                     </span>
                   </div>
-                  <div className="text-left col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">
+                 {/* <div className="text-left col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">
                     <span>Enter four digit verification code received on <b>Mobile</b>.<br/></span>
                   </div>
                   <div className="input-effect input-group veribtm1">
@@ -109,7 +108,7 @@ import './SignUp.css';
                     <span className="focus-border">
                       <i></i>
                     </span>
-                  </div>
+                  </div>*/}
                 </div>
                 <div className="submitButtonWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 veriemail">
                   <button type="submit" className="btn btn-info submitBtn col-lg-12 col-md-12 col-sm-12 col-xs-12 UMloginbutton">Submit</button>

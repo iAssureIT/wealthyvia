@@ -7,7 +7,7 @@
 
 }
 .footerDivFirst label{
-color: #007993;
+color: #201A47;
     font-size: 18px;
 }
 .footerDivFirst ul>li{
@@ -46,11 +46,11 @@ color: #007993;
 	height: 30px;
 	padding: 5px;
 	cursor: pointer;
-	background-color: #007993;
+	background-color: #201A47;
 	color: #fff;
 }
 .searchIcon:hover{
-		background-color: #00A9CE;
+		background-color: #333;
 
 }
 .imgContainer{
