@@ -600,7 +600,7 @@ export default class ProductPage extends Component {
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
-                          <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
+                          <li>As your existing Mutual Funds or Wealthyvia – Safe Heaven Moats portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
                         <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
                         <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
                         <li>Strategy will only be implement on
@@ -754,7 +754,7 @@ export default class ProductPage extends Component {
                       <ul className="customOl listStyle">
                     <li>The mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
                  <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
-                  <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
+                  <li>World's  Top 10 companies by market capitalization are from American. Most of these companies are mega-cap companies with market capitalizations above $300 billion</li>
                   </ul>
                       </p>                 
                     </div>
@@ -767,7 +767,7 @@ export default class ProductPage extends Component {
                      <ul className="customOl listStyle">
                     <li>The mighty NYSE, representing $18.5 trillion in market capitalization, or about 27% of the total market for global equities.</li>
                   <li>The value-weighted average capitalization of U.S. companies is $176 billion, whereas the average capitalization of foreign companies is less than a fourth of that at $37 billion. This disparity is most prominent in technology stocks, where relative size has changed over time. U.S. technology stocks were 2.5 times as big as foreign stocks in 2007; U.S. tech stocks had an average capitalization of $138 billion, versus $50 billion for foreign tech.</li>
-                  <li>All of the world's 10 largest companies as measured by market capitalization are American. Most of these companies are mega-cap companies, or those with market capitalizations above $300 billion</li>
+                  <li>World's  Top 10 companies by market capitalization are from American. Most of these companies are mega-cap companies with market capitalizations above $300 billion</li>
                   </ul>
                       </p>                  
                     </div>

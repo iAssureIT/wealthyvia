@@ -26,9 +26,17 @@ export default class CorporateGovernance extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect">
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
+                  {
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance1.jpg"/>
+                    ?
                     <div>
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance.jpg"/>
                     </div>
+                    :
+                    <div>
+                      <img src="/images/loading.gif"/>
+                    </div>
+                  }
                   </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">C : Corporate Governance</span></label>

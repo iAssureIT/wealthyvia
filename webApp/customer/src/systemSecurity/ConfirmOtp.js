@@ -10,9 +10,7 @@ import './SignUp.css';
     constructor(props){
       super(props);
       this.state ={
-        // "subscription" : {
-        //   user         : Meteor.subscribe("userfunction"), 
-        // }
+       
       }
     }
     confirmOTP(event){
@@ -25,7 +23,7 @@ import './SignUp.css';
         "emailotp":  parseInt(this.refs.emailotp.value)
       }
       console.log('formValues', formValues);
-      axios.get('/api/users/get/checkotp/:ID/:emailotp',formValues)
+      axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
       .then((response)=>{
         swal(response.data.message);
         this.props.history.push('/login');

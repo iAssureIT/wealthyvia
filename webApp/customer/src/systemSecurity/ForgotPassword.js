@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import swal from 'sweetalert';
 import $ from "jquery";
+import axios from 'axios';
 
 import 'font-awesome/css/font-awesome.min.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 
 class ForgotPassword extends Component {
@@ -14,9 +14,7 @@ class ForgotPassword extends Component {
       this.state ={
         email  : '',
         mobile  : '',
-        // subscription    : {
-        //   user: Meteor.subscribe("userfunction"), 
-        // }
+       
       }
     }
     componentDidMount(){
@@ -31,54 +29,13 @@ class ForgotPassword extends Component {
       // console.log("email: ",email);
      this.setState({
       email : email,
-      mobile : mobile,
      });
-      var userOtp = 1 /*Meteor.users.findOne({"username":email})*/;
-      // console.log("userOtp: ",userOtp);
+      var userOtp = 1 
      
      if(userOtp==1){
-      var mobileotp = Math.floor(1000 + Math.random() * 9000);
       var emailotp = Math.floor(100000 + Math.random() * 900000);
-  //       // Session.set('mobotp',mobileotp);
-  ///////////////
-  //       // Session.set('mailotp',emailotp);
-        
-  //       var newID = userOtp._id;
-
-  ///////////////
-
-  //       // Session.set('newID',newID);
-
-  //       Meteor.call('addOTP', newID , emailotp, function(error,result){
-  //         if(error){
-  //           Bert.alert(error);
-  //         }else{
-
-  //         }
-  //       });
-      
-  //       // //Send OTP    
-  //       // Meteor.call('sendOtp',mobile,mobileotp,
-  //       // function(error,result){
-  //       //   if(error){
-  //       //     console.log(error.reason);
-  //       //   }else{
-  //       //     swal('Successfully sent the OTP to your mobile number');
-  //       //   }
-  //       // });
-                             
-        // // SEND EMAIL VERIFICATION LINK
-        // Meteor.call('sendVerificationLinkToUser', email, function(error,result){
-        //   if(error){
-        //     Bert.alert(error);
-        //   }else{ 
-        //     swal({text:'Successfully sent the OTP to your Email Address.', showConfirmButton: true,type     : 'success'});                  
-        //   } //end else
-        // }); // send verification mail ends
-        //    FlowRouter.go('/forgotOTPVarification/'+newID);
-        // // $('.confirnModalWrap').addClass('newPassword');
-        // // $('.NewForgotPasswordWrap').css('display','none');
-
+/*      this.props.history.push("/confirm-otp/"+response.data.ID);
+*/
       }else{
         swal('Email Address not found',"Please enter valid Email Id","warning");                  
       }
@@ -120,22 +77,9 @@ class ForgotPassword extends Component {
                       </span>
                     </div>
                   </div>
-                  <div className="text-left col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">
-                    <span>Enter registerd Mobile Number </span>
-                  </div>
-                  <div className="form-group col-lg-12 col-md-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 pdleftclr veribtm">
-                    <div className="input-effect input-group">
-                      <InputMask mask="9999-999-999" maskChar=" " name="enterMobNo" ref="enterMobNo" onChange={this.handleChange} className="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12 inputText"  pattern="^(0|[0-9-+]*)$" title="Enter Mobile Number!" autoComplete="off" required/>
-                      <span className="input-group-addon glyphi-custommm"><i className="fa fa-phone-square" aria-hidden="true"></i></span>
-                      <span className="focus-border">
-                        <i></i>
-                      </span>
-                    </div>
-                  </div>
+                 
                   <div className="submitButtonWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 pdleftclr">
-                    <Link to='/confirm-otp'>
-                      <button type="submit" className="btn col-lg-12 col-md-12 col-sm-12 col-xs-12 submitBtn UMloginbutton">Send Verification Code</button>
-                    </Link>
+                      <button type="submit" onClick={this.forgotpassword.bind(this)} className="btn col-lg-12 col-md-12 col-sm-12 col-xs-12 submitBtn UMloginbutton">Send Verification Code</button>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls">
                     <Link to='/' className="UMGrey UMcreateacc col-lg-12 col-md-12 col-sm-12 col-xs-12">Sign In</Link>   

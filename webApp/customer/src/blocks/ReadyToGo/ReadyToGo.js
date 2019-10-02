@@ -168,7 +168,6 @@ export default class ReadyToGo extends Component {
       "panNumber"      : this.refs.panNumber.value,
       "addressProof"      : this.refs.addressProof.value,
     });
-    console.log("panNumber",this.state.contactNumberModal);
 
        let fields = this.state.fields;
     fields[event.target.name] = event.target.value;
@@ -222,25 +221,78 @@ export default class ReadyToGo extends Component {
     }
   }
   CloseModalTwo(event){
-      $("#riskform2").hide();
+    $("#riskform2").hide();
     $("#riskform2").removeClass('in');
-  $(".modal-backdrop").remove();
-  console.log("In")
-  $("body").removeClass("modal-open");
+    $(".modal-backdrop").remove();
+    console.log("In")
+    $("body").removeClass("modal-open");
   }
 Submit(event){
     event.preventDefault();
 
   if (this.validateForm() && this.validateFormReq()) {
      
-      var dataArray={
+      var dataArray1={
        "name"            : this.refs.name.value,
-      "addressProof"      : this.refs.addressProof.value,
-      "panNumber"      : this.refs.panNumber.value,
+      "addressProof"     : this.refs.addressProof.value,
+      "panNumber"        : this.refs.panNumber.value,
       "email"            : this.refs.email.value,
       "contactNumber"    : this.refs.contactNumber.value,
 
     }
+      var adminEmail = "kycwealthyvia@gmail.com";
+
+      const dataArray = {
+          "email"         : this.state.email ,
+          "subject"       : "Your KYC details is sent successfully.",
+          "message"          : "", 
+          "mail"          : 'Dear  ' + this.state.name + ', <br/><br/>'+
+                            "Congratulations!<br/><br/>Your KYC details has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
+                            "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/><br/>'+
+                            "Contact Number :" + this.state.contactNumber + '<br/>'+
+                            "Email :" + this.state.email + '<br/>'+
+                            "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
+
+      };
+      
+       axios
+        .post('/send-email',dataArray)
+        .then((res)=>{
+                   if(res.status === 200){
+                    swal("Thank you for contacting us. We will get back to you shortly.")
+                    }
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                  
+                });
+       console.log("dataArray",dataArray); 
+       const formValues2 = {
+        "email"         : adminEmail ,
+        "subject"       : "New KYC details arrived from client!",
+        "message"          : "",
+        "mail"          : 'Dear Admin, <br/>'+
+                          "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
+                          "<b> Name: </b>"   + this.state.name + '<br/>'+
+                          "<b> Email: </b>"  + this.state.email + '<br/>'+
+                          "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
+                          "This is a system generated email. Please do not replay. " ,
+
+      };
+      console.log("notification",formValues2); 
+      
+        axios
+        .post('/send-email',formValues2)
+        .then((res)=>{
+                  if(res.status === 200){
+                    console.log("Mail sent to admin successfully!")
+                  }
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                  
+                });
+           
 
       let fields = {};
       fields["panNumber"]     = "";
@@ -273,13 +325,66 @@ Submit(event){
     event.preventDefault();
     if (this.validateFormReview() && this.validateFormReqReview()) {
      
-      var dataArray={
+      var dataArray1={
        "PRname"            : this.refs.PRname.value,
-      "fileUpload"      : this.refs.fileUpload.value,
+      "fileUpload"         : this.refs.fileUpload.value,
       "PRemail"            : this.refs.email1.value,
       "PRcontactNumber"    : this.refs.PRcontactNumber.value,
 
       }
+       var adminEmail = "review.wealthyvia@gmail.com";
+
+      const dataArray = {
+          "email"         : this.state.PRemail ,
+          "subject"       : "Your Portfolio Review is sent successfully.",
+          "message"          : "", 
+          "mail"          : 'Dear  ' + this.state.PRname + ', <br/><br/>'+
+                            "Congratulations!<br/><br/>Your Portfolio Review has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
+                            "<b>Details Submitted - </b><br/> Name: "  + this.state.PRname + '<br/><br/>'+
+                            "Contact Number :" + this.state.PRcontactNumber + '<br/>'+
+                            "Email :" + this.state.PRemail + '<br/>'+
+                            "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
+
+      };
+      
+       axios
+        .post('/send-email',dataArray)
+        .then((res)=>{
+                   if(res.status === 200){
+                    swal("Thank you for contacting us. We will get back to you shortly.")
+                    }
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                  
+                });
+       console.log("dataArray",dataArray); 
+       const formValues2 = {
+        "email"         : adminEmail ,
+        "subject"       : "New Portfolio Review arrived from client!",
+        "message"          : "",
+        "mail"          : 'Dear Admin, <br/>'+
+                          "New Portfolio Review came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
+                          "<b> Name: </b>"   + this.state.PRname + '<br/>'+
+                          "<b> Email: </b>"  + this.state.PRemail + '<br/>'+
+                          "<b> Contact Number: </b>"  + this.state.PRcontactNumber + '<br/><br/>'+
+                          "This is a system generated email. Please do not replay. " ,
+
+      };
+      console.log("notification",formValues2); 
+      
+        axios
+        .post('/send-email',formValues2)
+        .then((res)=>{
+                  if(res.status === 200){
+                    console.log("Mail sent to admin successfully!")
+                  }
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                  
+                });
+           
       let fields = {};
       fields["fileUpload"]     = "";
       fields["name1"]            = "";
@@ -338,12 +443,12 @@ Submit(event){
     var adminEmail = "kycwealthyvia@gmail.com";
 
     const dataArray = {
-        "email"         : this.state.ENemail ,
+        "email"         : this.state.emailModal ,
         "subject"       : "Your Query/Feedback is sent successfully to www.wealthyvia.com!",
         "message"          : "", 
-        "mail"          : 'Dear' + this.state.ENname + ', <br/><br/>'+
+        "mail"          : 'Dear  ' + this.state.nameModal + ', <br/><br/>'+
                           
-                          "<b>Your Email: </b>"  + this.state.ENemail + '<br/><br/>'+
+                          "<b>Your Email: </b>"  + this.state.emailModal + '<br/><br/>'+
                           "Your following message has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
                           "===============================  <br/> <br/> " + 
                           "<pre> " + this.state.message+ "</pre>" + 
@@ -352,7 +457,7 @@ Submit(event){
 
       };
       
-  /*      axios
+       axios
         .post('/send-email',dataArray)
         .then((res)=>{
                    if(res.status === 200){
@@ -362,7 +467,7 @@ Submit(event){
                 .catch((error)=>{
                   console.log("error = ", error);
                   
-                });*/
+                });
        console.log("dataArray",dataArray); 
        const formValues2 = {
         "email"         : adminEmail ,
@@ -371,9 +476,9 @@ Submit(event){
         "mail"          : 'Dear Admin, <br/>'+
                           "Following new query/feedback came from website! <br/> <br/> " + 
                           "============================  <br/> <br/> " + 
-                          "<b>Client Name: </b>"   + this.state.ENname + '<br/>'+
+                          "<b>Client Name: </b>"   + this.state.nameModal + '<br/>'+
                           
-                          "<b>Client Email: </b>"  + this.state.ENemail + '<br/><br/>'+
+                          "<b>Client Email: </b>"  + this.state.emailModal + '<br/><br/>'+
 
                           "<pre> " + this.state.message + "</pre>" + 
                           "<br/><br/> ============================ " + 
@@ -394,8 +499,6 @@ Submit(event){
                   
                 });
            
-        
-
       let fields1 = {};
        fields1["nameModal"]            = "";
        fields1["emailModal"]           = "";
@@ -532,9 +635,7 @@ Submit(event){
           formIsValid = false;
           errors["contactNumber"] = "Please enter valid mobile no.";
         }
-      }
-        
-     
+      }        
       this.setState({
         errors: errors
       });
@@ -586,9 +687,7 @@ validateFormReqReview() {
           formIsValid = false;
           errors["contactNumber1"] = "Please enter valid mobile no.";
         }
-      }
-        
-     
+      }     
       this.setState({
         errors2: errors
       });
@@ -657,69 +756,66 @@ validateFormReqReview() {
                             <form id="riskform">
                                 <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                    <p><b>1) What is the primary goal for the funds invested through WealthyVia?</b><span className="asterix">*</span></p>
-                                    <div className="">
-                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                               <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="checkbox" name="question1" value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
-                                                      <span className="centreDetailCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
-                                            </div>
-                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="checkbox" name="question2" value="I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years" onChange={this.getCheckValue.bind(this)} />
-                                                      <span className="centreDetailCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years</span>
-                                            </div>
-                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="checkbox" name="question3" value="Just strong core portfolio with blue chips or mutual fund but ok to earn something extra." onChange={this.getCheckValue.bind(this)}/>
-                                                      <span className="centreDetailCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.</span>
-                                            </div>
-                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="checkbox" name="question4" value="I wanna allocate some portion to big tech giants like amazon facebook types too." onChange={this.getCheckValue.bind(this)} />
-                                                      <span className="centreDetailCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">I wanna allocate some portion to big tech giants like amazon facebook types too.</span>
-                                            </div>
-                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="checkbox" name="question5" value="I am day trader, daily play with markets. I want continuous smart trades." onChange={this.getCheckValue.bind(this)}/>
-                                                      <span className="centreDetailCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">I am day trader, daily play with markets. I want continuous smart trades.</span>
-                                            </div>
+                                    <p id="Q1">1) What is the primary goal for the funds invested through WealthyVia?</p><span className="asterix">*</span>
+                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                             <div className="centreDetailContainer col-lg-1 row">
+                                                    <input type="checkbox" name="question1" value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
+                                                    <span className="centreDetailCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem">15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
                                           </div>
-                                       </div> 
-                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>2) Any near term need for the funds invested with us ?</b><span className="asterix">*</span></p>
+                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <div className="centreDetailContainer col-lg-1 row">
+                                                    <input type="checkbox" name="question2" value="I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years" onChange={this.getCheckValue.bind(this)} />
+                                                    <span className="centreDetailCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem">I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years</span>
+                                          </div>
+                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <div className="centreDetailContainer col-lg-1 row">
+                                                    <input type="checkbox" name="question3" value="Just strong core portfolio with blue chips or mutual fund but ok to earn something extra." onChange={this.getCheckValue.bind(this)}/>
+                                                    <span className="centreDetailCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem">Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.</span>
+                                          </div>
+                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <div className="centreDetailContainer col-lg-1 row">
+                                                    <input type="checkbox" name="question4" value="I wanna allocate some portion to big tech giants like amazon facebook types too." onChange={this.getCheckValue.bind(this)} />
+                                                    <span className="centreDetailCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem">I wanna allocate some portion to big tech giants like amazon facebook types too.</span>
+                                          </div>
+                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <div className="centreDetailContainer col-lg-1 row">
+                                                    <input type="checkbox" name="question5" value="I am day trader, daily play with markets. I want continuous smart trades." onChange={this.getCheckValue.bind(this)}/>
+                                                    <span className="centreDetailCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem">I am day trader, daily play with markets. I want continuous smart trades.</span>
+                                          </div>
+                                        </div>
+                                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                          <p><b>2) Any near term need for the funds invested with us ?</b><span className="asterix">*</span></p>
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                     
                                               <div className="centreDetailContainer col-lg-1 row">
                                                       <input type="radio" name="price"/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">Yes after two years</span>
-                                          </div>
-                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                              <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="radio" name="price"/>
-                                                      <span className="radioCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">Yes after 6 -8 months</span>
-                                          </div>
-                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                              <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="radio" name="price"/>
-                                                      <span className="radioCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
-                                          </div>                                            
+                                            </div>
+                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                <div className="centreDetailContainer col-lg-1 row">
+                                                        <input type="radio" name="price"/>
+                                                        <span className="radioCheck"></span>
+                                                     </div>
+                                                    <span className="centreDetaillistItem">Yes after 6 -8 months</span>
+                                            </div>
+                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                                <div className="centreDetailContainer col-lg-1 row">
+                                                        <input type="radio" name="price"/>
+                                                        <span className="radioCheck"></span>
+                                                     </div>
+                                                    <span className="centreDetaillistItem">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
+                                            </div>                                            
                                         </div>
                                        
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">

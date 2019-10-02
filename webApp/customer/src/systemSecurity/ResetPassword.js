@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import swal from 'sweetalert';
 import $ from "jquery";
+import axios from 'axios';
 
 import 'font-awesome/css/font-awesome.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -16,6 +17,47 @@ class ResetPassword extends Component {
         
         }
     }
+    changepassword(event) {
+      event.preventDefault();
+      var password        = this.refs.resetPassword.value;
+      var passwordConfirm = this.refs.resetPasswordConfirm.value;
+      var user_id = this.props.match.params;
+
+      if(password==passwordConfirm){
+        if(password.length >= 6){
+        axios
+          .post('/api/users/patch/password/'+user_id,password)
+          .then((response)=> {
+              var responseData = response.data;
+              if(responseData=="Password Changed successfully"){
+                swal("Your password has been updated!","","success");
+                this.props.history.push('/');
+              }
+          })
+          .catch(function (error) {
+              console.log(error);
+              swal("Invalid current password.","","warning");
+          })
+        }else{
+              swal({
+                title: "password should be at least 6 characters long",
+                text: "Please try again",
+                timer: 1700,
+                showConfirmButton: false,
+                type: "error"
+            });
+        }
+      }else{
+         swal({
+                title: 'Passwords does not match',
+                text: 'Please try again',
+                timer: 1700,
+                showConfirmButton: true,
+                type: 'error'
+            });
+      }
+  }
+
 
   showSignPass(){
     $('.showPwd').toggleClass('showPwd1');
@@ -48,7 +90,7 @@ class ResetPassword extends Component {
           <div className="divResetPasswordWrap">
             <h3 className="resetpwdNameTitle"> <span className="bordbt">RESET PASSWORD</span></h3>
             <div className="FormWrapper1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <form id="resetPassword" /*onSubmit={this.changepassword.bind(this)}*/>
+              <form id="resetPassword" onSubmit={this.changepassword.bind(this)}>
                 <div className="form-group loginFormGroup pdleftclr veribtm col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="input-group">
                     <span className="input-group-addon addons glyphi-custommmLeft" id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
@@ -70,7 +112,7 @@ class ResetPassword extends Component {
                   </div>
                 </div>
                 <div className="submitButtonWrapper pdleftclr col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <button type="submit" className="btn col-lg-12 col-md-12 col-sm-12 col-xs-12 submitBtn UMloginbutton">Reset Password</button>
+                  <button type="submit" onClick={this.changepassword.bind(this)} className="btn col-lg-12 col-md-12 col-sm-12 col-xs-12 submitBtn UMloginbutton">Reset Password</button>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls">
                    <Link to='/' className="UMGrey signInbtn col-lg-12 col-md-12 col-sm-12 col-xs-12">Sign In</Link>   

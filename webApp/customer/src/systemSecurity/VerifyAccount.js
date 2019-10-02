@@ -26,7 +26,7 @@ class VerifyAccount extends Component {
           <div className="divVerifyEmailWrap">
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 forgotpwd verifypd">
               <form id="OTPMobMail" /*onSubmit={this.VerifyMobileAOS.bind(this)}*/>
-                <h3 className="signInNameTitle"><span className="bordbt">VERIFY ACCOUNT</span></h3>
+                <h3 className="signInNameTitle"><span className="bordbt">Verify Account</span></h3>
                 <div className="text-center col-lg-12 col-md-12 col-sm-12 col-xs-12 otpHeader">
                     <span>Enter Mobile Number that you used for creating Account </span>
                 </div>

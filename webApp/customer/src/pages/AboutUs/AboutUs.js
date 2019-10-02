@@ -90,8 +90,7 @@ export default class AboutUs extends Component {
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
                           <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/team.png"/>
-                          <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>
-                    
+                          <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>                      
                       </div>
                     </div>
 
