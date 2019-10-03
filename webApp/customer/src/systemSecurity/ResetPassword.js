@@ -22,16 +22,17 @@ class ResetPassword extends Component {
       var password        = this.refs.resetPassword.value;
       var passwordConfirm = this.refs.resetPasswordConfirm.value;
       var user_id = this.props.match.params;
+      console.log("user_id",user_id);
 
       if(password==passwordConfirm){
         if(password.length >= 6){
         axios
-          .post('/api/users/patch/password/'+user_id,password)
+          .patch('/api/users/patch/password/'+user_id.user_ID,{pwd:this.refs.resetPassword.value})
           .then((response)=> {
               var responseData = response.data;
-              if(responseData=="Password Changed successfully"){
+              if(responseData){
                 swal("Your password has been updated!","","success");
-                this.props.history.push('/');
+                this.props.history.push('/login');
               }
           })
           .catch(function (error) {

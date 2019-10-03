@@ -145,8 +145,8 @@ export default class Header extends Component {
       fields["contactNumber"]   = "";
     
         swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
- $("#kycModal").hide();
-    $("#kycModal").removeClass('in');
+ $("#myModalHeader").hide();
+    $("#myModalHeader").removeClass('in');
       $(".modal-backdrop").remove();
   console.log("In")
   $("body").removeClass("modal-open");
@@ -189,24 +189,24 @@ export default class Header extends Component {
     }
       backButton(event){
     event.preventDefault();
-      $("#riskform2").hide();
-    $("#riskform2").removeClass('in');
-    $("#myModal1").show();
-    $("#myModal1").addClass('in'); 
+      $("#riskformHeader").hide();
+    $("#riskformHeader").removeClass('in');
+    $("#myModalHeader").show();
+    $("#myModalHeader").addClass('in'); 
   }
   SubmitFirst(event){
     event.preventDefault();
-      $("#myModal1").hide();
-    $("#myModal1").removeClass('in');
-    $("#riskform2").show();
-    $("#riskform2").addClass('in');
+      $("#myModalHeader").hide();
+    $("#myModalHeader").removeClass('in');
+    $("#riskformHeader").show();
+    $("#riskformHeader").addClass('in');
   }
   SubmitSecondModal(event){
     event.preventDefault();
-      $("#riskform2").hide();
-    $("#riskform2").removeClass('in');
-    $("#kycModal").show();
-    $("#kycModal").addClass('in');
+      $("#riskformHeader").hide();
+    $("#riskformHeader").removeClass('in');
+    $("#myModalHeader").show();
+    $("#myModalHeader").addClass('in');
   }
 
    handleChange(event){
@@ -263,8 +263,8 @@ export default class Header extends Component {
 
       }
   CloseModalTwo(event){
-      $("#riskform2").hide();
-    $("#riskform2").removeClass('in');
+      $("#riskformHeader").hide();
+    $("#riskformHeader").removeClass('in');
   $(".modal-backdrop").remove();
   console.log("In")
   $("body").removeClass("modal-open");
@@ -320,8 +320,8 @@ export default class Header extends Component {
       fields["contactNumber"]   = "";
     
         swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-       $("#kycModal").hide();
-          $("#kycModal").removeClass('in');
+       $("#myModalHeader").hide();
+          $("#myModalHeader").removeClass('in');
             $(".modal-backdrop").remove();
         console.log("In")
         $("body").removeClass("modal-open");
@@ -342,9 +342,9 @@ export default class Header extends Component {
           var conditionaccept = event.target.value;
         console.log("condition",conditionaccept);
       }
-  CloseKycModal(){
-   $("#kycModal").hide();
-    $("#kycModal").removeClass('in');
+  ClosemyModalHeader(){
+   $("#myModalHeader").hide();
+    $("#myModalHeader").removeClass('in');
   $(".modal-backdrop").remove();
   console.log("In")
   $("body").removeClass("modal-open");
@@ -359,7 +359,7 @@ export default class Header extends Component {
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
               <div className="row">
-                  <div className="modal fade in " id="myModal1" role="dialog">
+                  <div className="modal fade in " id="myModalHeader" role="dialog">
                       <div className="modal-dialog modal-lg customModalRP" >
                           <div className="modal-header textAlignCenter modalHeaderCustom">
                             <button type="button" className="close" data-dismiss="modal" > <i className="fa fa-times"></i></button>
@@ -516,7 +516,7 @@ export default class Header extends Component {
                                     </div>  
                                 </div>
                              </div>
-                             <div className="modal fade in " id="riskform2" role="dialog">
+                             <div className="modal fade in " id="riskformHeader" role="dialog">
                                 <div className="modal-dialog modal-lg customModalRP hight400" >
                                   <div className="modal-header textAlignCenter modalHeaderCustom">
                                     <button type="button" className="close" data-dismiss="modal" onClick={this.CloseModalTwo.bind(this)}> <i className="fa fa-times"></i></button>
@@ -760,10 +760,10 @@ export default class Header extends Component {
                                     </div>
                                 </div>
                              </div>
-                             <div className="modal fade in " id="kycModal" role="dialog">
+                             <div className="modal fade in " id="myModalHeader" role="dialog">
                                 <div className="modal-dialog modal-lg customModalKYC " >
                                  <div className="modal-header textAlignCenter modalHeaderCustom">
-                                    <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.ClosemyModalHeader.bind(this)}> <i className="fa fa-times"></i></button>
                                     <h4 className="modal-title">KYC Form</h4>
                                   </div>
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad40">
@@ -947,7 +947,7 @@ export default class Header extends Component {
                       }
                        
                       </li>
-                         <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModal1">
+                         <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
                                 <span >Invest Now</span>
                       </li>
                     </ul>

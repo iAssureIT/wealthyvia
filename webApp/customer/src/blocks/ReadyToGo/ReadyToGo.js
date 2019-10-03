@@ -12,7 +12,7 @@ export default class ReadyToGo extends Component {
   constructor(props){
     super(props);
       this.state = {
-        productDetailsArray:[],
+            "productDetailsArray": [],
             "ENname"             : "",
             "ENcontactNumber"    : "",
             "ENemail"            : "",
@@ -38,138 +38,45 @@ export default class ReadyToGo extends Component {
             "errors1"            : {},
             "fields2"            : {},
             "errors2"            : {},
+            "Question1"          : "1) What is the primary goal for the funds invested through WealthyVia?",
+            "Question2"          : "2) Any near term need for the funds invested with us ?",
+            "Question3"          : "3) Your investments % exposure of your investable capital can be best described as",
+            "Question4"          : "4) What is number of years you have spent in stock market investments",
+            "Question5"          : "5) What is your biggest drawdown on your entire portfolio ?",
       };
     } 
 
-    componentDidMount()
-    {
-      $('.dropdown-radio').find('input').change(function() {
-      var dropdown = $(this).closest('.dropdown');
-      var radioname = $(this).attr('name');
-      var checked = 'input[name=' + radioname + ']:checked';
-      
-      //update the text
-      var checkedtext = $(checked).closest('.dropdown-radio').text();
-      dropdown.find('button').text( checkedtext );
+  componentDidMount()
+  {
+    $('.dropdown-radio').find('input').change(function() {
+    var dropdown = $(this).closest('.dropdown');
+    var radioname = $(this).attr('name');
+    var checked = 'input[name=' + radioname + ']:checked';
+    
+    //update the text
+    var checkedtext = $(checked).closest('.dropdown-radio').text();
+    dropdown.find('button').text( checkedtext );
 
-      //retrieve the checked value, if needed in page 
-      var thisvalue = dropdown.find( checked ).val();
+    //retrieve the checked value, if needed in page 
+    var thisvalue = dropdown.find( checked ).val();
 
     });
+  }
+  checkSize(event)
+  {
+    var file = event.target.files[0];
+    if(file){
+     if(file.size>=2097152)
+     {
+        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+        event.target.value ="";
+     }else{
+        this.setState({
+            "addressProof"      :event.target.value,
+          });
+        }
     }
-    checkSize(event)
-      {
-         var file = event.target.files[0];
-        console.log("file",file);
-        if(file){
-         if(file.size>=2097152)
-         {
-                  swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
-                  event.target.value ="";
-         }else{
-              this.setState({
-                 
-                  "addressProof"      :event.target.value,
-                });
-            }
-          }
-          let fields = this.state.fields;
-        fields[event.target.name] = event.target.value;
-        this.setState({
-          fields
-        });
-        if (this.validateForm() && this.validateFormReq()) {
-          let errors = {};
-          errors[event.target.name] = "";
-          this.setState({
-            errors: errors
-          });
-        }
-
-      }
-       checkSizePAN(event)
-      {
-         var file = event.target.files[0];
-        console.log("file",file);
-        if(file){
-         if(file.size>=2097152)
-         {
-                  swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
-                  event.target.value ="";
-         }else{
-              this.setState({
-                 
-                  "panNumber"      :event.target.value,
-                });
-            }
-          }
-          let fields = this.state.fields;
-        fields[event.target.name] = event.target.value;
-        this.setState({
-          fields
-        });
-        if (this.validateForm() && this.validateFormReq()) {
-          let errors = {};
-          errors[event.target.name] = "";
-          this.setState({
-            errors: errors
-          });
-        }
-
-      }
-      checkSizeFU(event)
-      {
-         var file = event.target.files[0];
-        console.log("file",file);
-        if(file){
-         if(file.size>=2097152)
-         {
-                  swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
-                  event.target.value ="";
-         }else{
-              this.setState({
-                 
-                  "fileUpload"      :event.target.value,
-                });
-            }
-          }
-          let fields2 = this.state.fields2;
-        fields2[event.target.name] = event.target.value;
-        this.setState({
-          fields2
-        });
-        if (this.validateForm() && this.validateFormReq()) {
-          let errors2 = {};
-          errors2[event.target.name] = "";
-          this.setState({
-            errors2: errors2
-          });
-        }
-
-      }
-     
-     onOptionSelect = (value) => {
-    console.log('Selected value=', value) 
-      }
-
-
-  handleChange(event){
-
-    this.setState({
-      "ENname"             : this.refs.ENname.value,
-      "ENcontactNumber"             : this.refs.ENcontactNumber.value,
-      "ENemail"             : this.refs.ENemail.value,
-      "contactNumber"    : this.refs.contactNumber.value,
-      "email"            : this.refs.email.value,
-       "PRname"             : this.refs.PRname.value,
-       "PRcontactNumber"             : this.refs.PRcontactNumber.value,
-      "PRemail"            : this.refs.PRemail.value,
-       "fileUpload"             : this.refs.fileUpload.value,
-      "panNumber"      : this.refs.panNumber.value,
-      "addressProof"      : this.refs.addressProof.value,
-    });
-
-       let fields = this.state.fields;
+    let fields = this.state.fields;
     fields[event.target.name] = event.target.value;
     this.setState({
       fields
@@ -181,8 +88,92 @@ export default class ReadyToGo extends Component {
         errors: errors
       });
     }
-   
+  }
+  checkSizePAN(event)
+  {
+    var file = event.target.files[0];
+    if(file){
+     if(file.size>=2097152)
+     {
+        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+        event.target.value ="";
+     }else{
+        this.setState({
+            "panNumber"      :event.target.value,
+          });
+        }
+      }
+    let fields = this.state.fields;
+    fields[event.target.name] = event.target.value;
+    this.setState({
+      fields
+    });
+    if (this.validateForm() && this.validateFormReq()) {
+      let errors = {};
+      errors[event.target.name] = "";
+      this.setState({
+        errors: errors
+      });
+    }
+  }
+  checkSizeFU(event)
+  {
+     var file = event.target.files[0];
+    console.log("file",file);
+    if(file){
+     if(file.size>=2097152)
+     {
+        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+        event.target.value ="";
+     }else{
+          this.setState({
+              "fileUpload"      :event.target.value,
+            });
+        }
+      }
+      let fields2 = this.state.fields2;
+    fields2[event.target.name] = event.target.value;
+    this.setState({
+      fields2
+    });
+    if (this.validateForm() && this.validateFormReq()) {
+      let errors2 = {};
+      errors2[event.target.name] = "";
+      this.setState({
+        errors2: errors2
+      });
+    }
+  }
+  onOptionSelect = (value) => {
+  }
+  handleChange(event){
 
+    this.setState({
+      "ENname"                    : this.refs.ENname.value,
+      "ENcontactNumber"           : this.refs.ENcontactNumber.value,
+      "ENemail"                   : this.refs.ENemail.value,
+      "contactNumber"             : this.refs.contactNumber.value,
+      "email"                     : this.refs.email.value,
+      "PRname"                    : this.refs.PRname.value,
+      "PRcontactNumber"           : this.refs.PRcontactNumber.value,
+      "PRemail"                   : this.refs.PRemail.value,
+      "fileUpload"                : this.refs.fileUpload.value,
+      "panNumber"                 : this.refs.panNumber.value,
+      "addressProof"              : this.refs.addressProof.value,
+    });
+
+    let fields = this.state.fields;
+    fields[event.target.name] = event.target.value;
+    this.setState({
+      fields
+    });
+    if (this.validateForm() && this.validateFormReq()) {
+      let errors = {};
+      errors[event.target.name] = "";
+      this.setState({
+        errors: errors
+      });
+    }
     let fields2 = this.state.fields2;
     fields2[event.target.name] = event.target.value;
     this.setState({
@@ -195,17 +186,13 @@ export default class ReadyToGo extends Component {
         errors2: errors2
       });
     }
-
   }
-    handleChange1(event){
-
+  handleChange1(event){
     this.setState({
-     
-       "nameModal"             : this.refs.nameModal.value,
+      "nameModal"             : this.refs.nameModal.value,
       "contactNumberModal"    : this.refs.contactNumberModal.value,
       "emailModal"            : this.refs.emailModal.value,
-    });
-
+      });
      
       let fields1 = this.state.fields1;
     fields1[event.target.name] = event.target.value;
@@ -220,67 +207,57 @@ export default class ReadyToGo extends Component {
       });
     }
   }
-  CloseModalTwo(event){
-    $("#riskform2").hide();
-    $("#riskform2").removeClass('in');
-    $(".modal-backdrop").remove();
-    console.log("In")
-    $("body").removeClass("modal-open");
-  }
-Submit(event){
+
+  Submit(event){
     event.preventDefault();
 
-  if (this.validateForm() && this.validateFormReq()) {
-     
-      var dataArray1={
-       "name"            : this.refs.name.value,
-      "addressProof"     : this.refs.addressProof.value,
-      "panNumber"        : this.refs.panNumber.value,
-      "email"            : this.refs.email.value,
-      "contactNumber"    : this.refs.contactNumber.value,
+    if (this.validateForm() && this.validateFormReq()) {
+       
+        var dataArray1={
+          "name"             : this.refs.name.value,
+          "addressProof"     : this.refs.addressProof.value,
+          "panNumber"        : this.refs.panNumber.value,
+          "email"            : this.refs.email.value,
+          "contactNumber"    : this.refs.contactNumber.value,
 
-    }
-      var adminEmail = "kycwealthyvia@gmail.com";
+        }
+        var adminEmail = "kycwealthyvia@gmail.com";
+        const dataArray = {
+            "email"         : this.state.email ,
+            "subject"       : "Your KYC details is sent successfully.",
+            "message"          : "", 
+            "mail"          : 'Dear  ' + this.state.name + ', <br/><br/>'+
+                              "Congratulations!<br/><br/>Your KYC details has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
+                              "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/><br/>'+
+                              "Contact Number :" + this.state.contactNumber + '<br/>'+
+                              "Email :" + this.state.email + '<br/>'+
+                              "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
-      const dataArray = {
-          "email"         : this.state.email ,
-          "subject"       : "Your KYC details is sent successfully.",
-          "message"          : "", 
-          "mail"          : 'Dear  ' + this.state.name + ', <br/><br/>'+
-                            "Congratulations!<br/><br/>Your KYC details has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
-                            "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/><br/>'+
-                            "Contact Number :" + this.state.contactNumber + '<br/>'+
-                            "Email :" + this.state.email + '<br/>'+
-                            "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
+        };
+        
+         axios
+          .post('/send-email',dataArray)
+          .then((res)=>{
+                     if(res.status === 200){
+                      swal("Thank you for contacting us. We will get back to you shortly.")
+                      }
+                  })
+                  .catch((error)=>{
+                    console.log("error = ", error);
+                  });
+         console.log("dataArray",dataArray); 
+         const formValues2 = {
+          "email"         : adminEmail ,
+          "subject"       : "New KYC details arrived from client!",
+          "message"          : "",
+          "mail"          : 'Dear Admin, <br/>'+
+                            "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
+                            "<b> Name: </b>"   + this.state.name + '<br/>'+
+                            "<b> Email: </b>"  + this.state.email + '<br/>'+
+                            "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
+                            "This is a system generated email. Please do not replay. " ,
 
-      };
-      
-       axios
-        .post('/send-email',dataArray)
-        .then((res)=>{
-                   if(res.status === 200){
-                    swal("Thank you for contacting us. We will get back to you shortly.")
-                    }
-                })
-                .catch((error)=>{
-                  console.log("error = ", error);
-                  
-                });
-       console.log("dataArray",dataArray); 
-       const formValues2 = {
-        "email"         : adminEmail ,
-        "subject"       : "New KYC details arrived from client!",
-        "message"          : "",
-        "mail"          : 'Dear Admin, <br/>'+
-                          "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
-                          "<b> Name: </b>"   + this.state.name + '<br/>'+
-                          "<b> Email: </b>"  + this.state.email + '<br/>'+
-                          "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
-                          "This is a system generated email. Please do not replay. " ,
-
-      };
-      console.log("notification",formValues2); 
-      
+        };
         axios
         .post('/send-email',formValues2)
         .then((res)=>{
@@ -292,35 +269,32 @@ Submit(event){
                   console.log("error = ", error);
                   
                 });
-           
-
-      let fields = {};
-      fields["panNumber"]     = "";
-      fields["addressProof"]     = "";
-      fields["name"]            = "";
-      fields["email"]           = "";
-      fields["contactNumber"]   = "";
-    
-        swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-         this.setState({
-        "panNumber"       : "",
-        "addressProof"      : "",
-        "name"             : "",
-        "email"            : "",
-        "contactNumber"    : "",
-       
-        "fields"           : fields
-      });
-       $("#kycModal").hide();
-      $("#kycModal").removeClass('in');
-      $(".modal-backdrop").remove();
-      console.log("In")
-      $("body").removeClass("modal-open");
+        let fields = {};
+        fields["panNumber"]     = "";
+        fields["addressProof"]     = "";
+        fields["name"]            = "";
+        fields["email"]           = "";
+        fields["contactNumber"]   = "";
+      
+          swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+           this.setState({
+          "panNumber"       : "",
+          "addressProof"      : "",
+          "name"             : "",
+          "email"            : "",
+          "contactNumber"    : "",
          
-          console.log("addressProof",this.state.addressProof)
+          "fields"           : fields
+        });
+         $("#kycModal").hide();
+        $("#kycModal").removeClass('in');
+        $(".modal-backdrop").remove();
+        console.log("In")
+        $("body").removeClass("modal-open");
+           
         }
+  }
 
-    }
   SubmitReview(event){
     event.preventDefault();
     if (this.validateFormReview() && this.validateFormReqReview()) {
@@ -332,8 +306,7 @@ Submit(event){
       "PRcontactNumber"    : this.refs.PRcontactNumber.value,
 
       }
-       var adminEmail = "review.wealthyvia@gmail.com";
-
+      var adminEmail = "review.wealthyvia@gmail.com";
       const dataArray = {
           "email"         : this.state.PRemail ,
           "subject"       : "Your Portfolio Review is sent successfully.",
@@ -345,8 +318,7 @@ Submit(event){
                             "Email :" + this.state.PRemail + '<br/>'+
                             "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
-      };
-      
+        };
        axios
         .post('/send-email',dataArray)
         .then((res)=>{
@@ -358,7 +330,6 @@ Submit(event){
                   console.log("error = ", error);
                   
                 });
-       console.log("dataArray",dataArray); 
        const formValues2 = {
         "email"         : adminEmail ,
         "subject"       : "New Portfolio Review arrived from client!",
@@ -371,91 +342,60 @@ Submit(event){
                           "This is a system generated email. Please do not replay. " ,
 
       };
-      console.log("notification",formValues2); 
-      
-        axios
-        .post('/send-email',formValues2)
-        .then((res)=>{
-                  if(res.status === 200){
-                    console.log("Mail sent to admin successfully!")
-                  }
-                })
-                .catch((error)=>{
-                  console.log("error = ", error);
-                  
-                });
-           
+      axios
+      .post('/send-email',formValues2)
+      .then((res)=>{
+                if(res.status === 200){
+                  console.log("Mail sent to admin successfully!")
+                }
+              })
+              .catch((error)=>{
+                console.log("error = ", error);
+                
+              });
       let fields = {};
-      fields["fileUpload"]     = "";
+      fields["fileUpload"]       = "";
       fields["name1"]            = "";
       fields["email1"]           = "";
       fields["contactNumber1"]   = "";
-    
-        swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-           $("#portfolioReview").hide();
-              $("#portfolioReview").removeClass('in');
-                $(".modal-backdrop").remove();
-            console.log("In")
-            $("body").removeClass("modal-open");
-                this.setState({
-                  "fileUpload"      : "",
-                  "PRname"             : "",
-                  "PRemail"            : "",
-                  "PRcontactNumber"    : "",
-                  "fields2"           : fields
-                });
-                
-              }
-
-    }
-
-
-  CloseKycModal(){
-      this.setState({
-        "panNumber"       : "",
-        "addressProof"      : "",
-        "name"             : "",
-        "email"            : "",
-        "contactNumber"    : "",
-       
-      });
-   $("#kycModal").hide();
-    $("#kycModal").removeClass('in');
-  $(".modal-backdrop").remove();
-  console.log("In")
-  $("body").removeClass("modal-open");
-
+      swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+      $("#portfolioReview").hide();
+          $("#portfolioReview").removeClass('in');
+            $(".modal-backdrop").remove();
+        console.log("In")
+        $("body").removeClass("modal-open");
+            this.setState({
+              "fileUpload"         : "",
+              "PRname"             : "",
+              "PRemail"            : "",
+              "PRcontactNumber"    : "",
+              "fields2"            : fields
+            });
+      }
   }
+ 
   SubmitEnquire(event){
-  event.preventDefault();
-    
+    event.preventDefault();
+    if (this.validateFormModal() && this.validateFormReqModal()) {
+       this.setState({
+       
+        "ENname"             : this.refs.ENname.value,
+        "ENcontactNumber"    : this.refs.ENcontactNumber.value,
+        "ENemail"            : this.refs.ENemail.value,
 
-  if (this.validateFormModal() && this.validateFormReqModal()) {
-     
-     this.setState({
-     
-      "ENname"             : this.refs.ENname.value,
-      "ENcontactNumber"    : this.refs.ENcontactNumber.value,
-      "ENemail"            : this.refs.ENemail.value,
-
-    },()=>{console.log("this.state.ENname",this.state.ENname)});
-    
-    var adminEmail = "kycwealthyvia@gmail.com";
-
-    const dataArray = {
-        "email"         : this.state.emailModal ,
-        "subject"       : "Your Query/Feedback is sent successfully to www.wealthyvia.com!",
-        "message"          : "", 
-        "mail"          : 'Dear  ' + this.state.nameModal + ', <br/><br/>'+
-                          
-                          "<b>Your Email: </b>"  + this.state.emailModal + '<br/><br/>'+
-                          "Your following message has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
-                          "===============================  <br/> <br/> " + 
-                          "<pre> " + this.state.message+ "</pre>" + 
-                          " <br/> <br/> =============================== " + 
-                          "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
-
-      };
+      });
+       /* ======================= Send Email to user ==================================*/
+      var adminEmail = "kycwealthyvia@gmail.com";
+      const dataArray = {
+          "email"         : this.state.emailModal ,
+          "subject"       : "Your query is sent successfully!",
+          "message"       : "", 
+          "mail"          : 'Dear  ' + this.state.nameModal + ', <br/><br/>'+
+                            "Your query has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
+                            "  <br/> <br/> " + 
+                            "<pre> " + this.state.message+ "</pre>" + 
+                            "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
+        };
       
        axios
         .post('/send-email',dataArray)
@@ -475,18 +415,13 @@ Submit(event){
         "message"          : "",
         "mail"          : 'Dear Admin, <br/>'+
                           "Following new query/feedback came from website! <br/> <br/> " + 
-                          "============================  <br/> <br/> " + 
+                          "  <br/> <br/> " + 
                           "<b>Client Name: </b>"   + this.state.nameModal + '<br/>'+
-                          
                           "<b>Client Email: </b>"  + this.state.emailModal + '<br/><br/>'+
-
                           "<pre> " + this.state.message + "</pre>" + 
-                          "<br/><br/> ============================ " + 
                           "<br/><br/> This is a system generated email! " ,
 
-      };
-      console.log("notification",formValues2); 
-      
+        };
         axios
         .post('/send-email',formValues2)
         .then((res)=>{
@@ -498,7 +433,7 @@ Submit(event){
                   console.log("error = ", error);
                   
                 });
-           
+       /* ======================= Send Email to user ==================================*/
       let fields1 = {};
        fields1["nameModal"]            = "";
        fields1["emailModal"]           = "";
@@ -507,60 +442,59 @@ Submit(event){
         $("#EnquireModal").hide();
         $("#EnquireModal").removeClass('in');
         $(".modal-backdrop").remove();
-        console.log("In")
         $("body").removeClass("modal-open");
-              
-            this.setState({
-             
-               "nameModal"             : "",
-              "emailModal"            : "",
-              "contactNumberModal"    : "",
-              "fields1"           : fields1
-            });
+          this.setState({
+             "nameModal"             : "",
+            "emailModal"            : "",
+            "contactNumberModal"    : "",
+            "fields1"           : fields1
+          });
       }
+  }
+  CloseModalTwo(event){
+    $("#riskform2").hide();
+    $("#riskform2").removeClass('in');
+    $(".modal-backdrop").remove();
+    console.log("In")
+    $("body").removeClass("modal-open");
   }
   backButton(event){
     event.preventDefault();
-      $("#riskform2").hide();
+    $("#riskform2").hide();
     $("#riskform2").removeClass('in');
     $("#myModal").show();
     $("#myModal").addClass('in'); 
   }
   SubmitFirst(event){
     event.preventDefault();
-      $("#myModal").hide();
+    $("#myModal").hide();
     $("#myModal").removeClass('in');
     $("#riskform2").show();
     $("#riskform2").addClass('in');
   }
   SubmitSecondModal(event){
     event.preventDefault();
-      $("#riskform2").hide();
+    $("#riskform2").hide();
     $("#riskform2").removeClass('in');
+
+
     $("#kycModal").show();
     $("#kycModal").addClass('in');
-    }
-
-  /*get checkbox value*/  
-  getCheckValue(event){
-    var id = event.target.id;
-    var checked = event.target.checked;
-    var name = event.target.name;
-        
-    if(checked){
-      console.log(checked, id, name);
-      var value = event.target.value;
-      this.setState({
-        [event.target.name] : value,
-      },()=>{
-        console.log('question1', this.state.question1,  this.state.question2,this.state.question3);
-      })
-    }else{
-      this.setState({
-        [event.target.name] : "",
-      })
-    }
   }
+  CloseKycModal(){
+    this.setState({
+      "panNumber"        : "",
+      "addressProof"     : "",
+      "name"             : "",
+      "email"            : "",
+      "contactNumber"    : "",
+    });
+    $("#kycModal").hide();
+    $("#kycModal").removeClass('in');
+    $(".modal-backdrop").remove();
+    $("body").removeClass("modal-open");
+  }
+
    validateFormReq() {
     let fields = this.state.fields;
     let errors = {};
@@ -622,53 +556,53 @@ Submit(event){
     let fields = this.state.fields;
     let errors = {};
     let formIsValid = true;
-      if (typeof fields["email"] !== "undefined") {
-        //regular expression for email validation
-        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
-        if (!pattern.test(fields["email"])) {
-          formIsValid = false;
-          errors["email"] = "Please enter valid email-ID.";
-        }
+    if (typeof fields["email"] !== "undefined") {
+      //regular expression for email validation
+      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      if (!pattern.test(fields["email"])) {
+        formIsValid = false;
+        errors["email"] = "Please enter valid email-ID.";
       }
-      if (typeof fields["contactNumber"] !== "undefined") {
-        if (!fields["contactNumber"].match(/^[0-9]{10}$/)) {
-          formIsValid = false;
-          errors["contactNumber"] = "Please enter valid mobile no.";
-        }
-      }        
-      this.setState({
-        errors: errors
-      });
-      return formIsValid;
+    }
+    if (typeof fields["contactNumber"] !== "undefined") {
+      if (!fields["contactNumber"].match(/^[0-9]{10}$/)) {
+        formIsValid = false;
+        errors["contactNumber"] = "Please enter valid mobile no.";
+      }
+    }        
+    this.setState({
+      errors: errors
+    });
+  return formIsValid;
 }
 validateFormReqReview() {
-    let fields = this.state.fields2;
-    let errors = {};
-    let formIsValid = true;
-      
-        if (!fields["name1"]) {
-        formIsValid = false;
-        errors["name1"] = "This field is required.";
-      }     
-     
-        if (!fields["email1"]) {
-        formIsValid = false;
-        errors["email1"] = "This field is required.";
-      }          
-      if (!fields["fileUpload"]) {
-        formIsValid = false;
-        errors["fileUpload"] = "This field is required.";
-      }          
+  let fields = this.state.fields2;
+  let errors = {};
+  let formIsValid = true;
+    
+      if (!fields["name1"]) {
+      formIsValid = false;
+      errors["name1"] = "This field is required.";
+    }     
    
-       if (!fields["contactNumber1"]) {
-        formIsValid = false;
-        errors["contactNumber1"] = "This field is required.";
-      }
-       
-      this.setState({
-        errors2: errors
-      });
-      return formIsValid;
+      if (!fields["email1"]) {
+      formIsValid = false;
+      errors["email1"] = "This field is required.";
+    }          
+    if (!fields["fileUpload"]) {
+      formIsValid = false;
+      errors["fileUpload"] = "This field is required.";
+    }          
+ 
+     if (!fields["contactNumber1"]) {
+      formIsValid = false;
+      errors["contactNumber1"] = "This field is required.";
+    }
+     
+    this.setState({
+      errors2: errors
+    });
+    return formIsValid;
   }
   validateFormReview() {
     let fields = this.state.fields2;
@@ -692,8 +626,8 @@ validateFormReqReview() {
         errors2: errors
       });
       return formIsValid;
-}
- validateFormModal() {
+  }
+  validateFormModal() {
     let fields = this.state.fields1;
     let errors = {};
     let formIsValid = true;
@@ -705,7 +639,6 @@ validateFormReqReview() {
           errors["emailModal"] = "Please enter valid email-ID.";
         }
       }
-    
       if (typeof fields["contactNumberModal"] !== "undefined") {
         if (!fields["contactNumberModal"].match(/^[0-9]{10}$/)) {
           formIsValid = false;
@@ -717,35 +650,31 @@ validateFormReqReview() {
         errors1: errors
       });
       return formIsValid;
-} 
-  isNumberKey(evt){
-    var charCode = (evt.which) ? evt.which : evt.keyCode
-    if (charCode > 31 && (charCode < 48 || charCode > 57)  && (charCode < 96 || charCode > 105))
-    {
-    evt.preventDefault();
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
-  isTextKey(evt)  {
-   var charCode = (evt.which) ? evt.which : evt.keyCode;
-   if (charCode!=189 && charCode > 32 && (charCode < 65 || charCode > 90) )
-   {
-    evt.preventDefault();
-      return false;
-    }
-    else{
-      return true;
+  } 
+   /*get checkbox value*/  
+  getCheckValue(event){
+    var id = event.target.id;
+    var checked = event.target.checked;
+    var name = event.target.name;
+    var value = event.target.value;
+        
+    if(checked){
+      var value = event.target.value;
+        this.setState({
+          [event.target.name] : value,
+        })
+        console.log(name,value);
+    }else{
+      this.setState({
+        [event.target.name] : "",
+      })
     }
   }
-
   render() {
   
     return (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
-                <div className="row">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
+              <div className="row">
                   <div className="modal fade in " id="myModal" role="dialog">
                       <div className="modal-dialog modal-lg customModalRP" >
                           <div className="modal-header textAlignCenter modalHeaderCustom">
@@ -756,62 +685,62 @@ validateFormReqReview() {
                             <form id="riskform">
                                 <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                    <p id="Q1">1) What is the primary goal for the funds invested through WealthyVia?</p><span className="asterix">*</span>
+                                    <p id="Q1">{this.state.Question1} <span className="asterix">*</span></p>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                              <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="checkbox" name="question1" value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
+                                                    <input type="checkbox"  name={this.state.Question1} value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
                                                     <span className="centreDetailCheck"></span>
                                                  </div>
                                                 <span className="centreDetaillistItem">15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                               <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="checkbox" name="question2" value="I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years" onChange={this.getCheckValue.bind(this)} />
+                                                    <input type="checkbox" name={this.state.Question1} value="I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years" onChange={this.getCheckValue.bind(this)} />
                                                     <span className="centreDetailCheck"></span>
                                                  </div>
                                                 <span className="centreDetaillistItem">I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years</span>
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                               <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="checkbox" name="question3" value="Just strong core portfolio with blue chips or mutual fund but ok to earn something extra." onChange={this.getCheckValue.bind(this)}/>
+                                                    <input type="checkbox"  name={this.state.Question1} value="Just strong core portfolio with blue chips or mutual fund but ok to earn something extra." onChange={this.getCheckValue.bind(this)}/>
                                                     <span className="centreDetailCheck"></span>
                                                  </div>
                                                 <span className="centreDetaillistItem">Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.</span>
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                               <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="checkbox" name="question4" value="I wanna allocate some portion to big tech giants like amazon facebook types too." onChange={this.getCheckValue.bind(this)} />
+                                                    <input type="checkbox"  name={this.state.Question1} value="I wanna allocate some portion to big tech giants like amazon facebook types too." onChange={this.getCheckValue.bind(this)} />
                                                     <span className="centreDetailCheck"></span>
                                                  </div>
                                                 <span className="centreDetaillistItem">I wanna allocate some portion to big tech giants like amazon facebook types too.</span>
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                               <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="checkbox" name="question5" value="I am day trader, daily play with markets. I want continuous smart trades." onChange={this.getCheckValue.bind(this)}/>
+                                                    <input type="checkbox" name={this.state.Question1} value="I am day trader, daily play with markets. I want continuous smart trades." onChange={this.getCheckValue.bind(this)}/>
                                                     <span className="centreDetailCheck"></span>
                                                  </div>
                                                 <span className="centreDetaillistItem">I am day trader, daily play with markets. I want continuous smart trades.</span>
                                           </div>
                                         </div>
                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                          <p><b>2) Any near term need for the funds invested with us ?</b><span className="asterix">*</span></p>
+                                          <p><b>{this.state.Question2}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                               <div className="centreDetailContainer col-lg-1 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name={this.state.Question2} value="Yes after two years" onChange={this.getCheckValue.bind(this)} required/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem">Yes after two years</span>
                                             </div>
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                                 <div className="centreDetailContainer col-lg-1 row">
-                                                        <input type="radio" name="price"/>
+                                                        <input type="radio" name={this.state.Question2} value="Yes after  6 -8 months" onChange={this.getCheckValue.bind(this)}/>
                                                         <span className="radioCheck"></span>
                                                      </div>
                                                     <span className="centreDetaillistItem">Yes after 6 -8 months</span>
                                             </div>
                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                                 <div className="centreDetailContainer col-lg-1 row">
-                                                        <input type="radio" name="price"/>
+                                                        <input type="radio" name={this.state.Question2} value="It’s a separate capital to invest apart from my needs. I want to build good portfolio." onChange={this.getCheckValue.bind(this)}/>
                                                         <span className="radioCheck"></span>
                                                      </div>
                                                     <span className="centreDetaillistItem">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
@@ -822,80 +751,78 @@ validateFormReqReview() {
                                           <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Next</div>
                                         </div>
                                     </form>
-                                </div>
+                                 </div>
                                   {/*duplicate*/}
                                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 modalBodyCustomSmall " >
-                              <form id="riskform">
-                                  <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>
-                                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                      <p><b>1) What is the primary goal for the funds invested through WealthyVia?</b><span className="asterix">*</span></p>
+                                    <form id="riskform">
+                                    <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                      <p><b>{this.state.Question1}</b><span className="asterix">*</span></p>
                                       <div className="">
-                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                 <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="checkbox"  name="question1" value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} />
-                                                        <span className="centreDetailCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
-                                              </div>
-                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                                  <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="checkbox" name="question2" value="hgjggk" onChange={this.getCheckValue.bind(this)}/>
-                                                        <span className="centreDetailCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years</span>
-                                              </div>
-                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                                  <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="checkbox" name="question3" value="hgjggkjjnk" onChange={this.getCheckValue.bind(this)} />
-                                                        <span className="centreDetailCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.</span>
-                                              </div>
-                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                                  <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="checkbox" name="question4" value="hgjggkn,n" onChange={this.getCheckValue.bind(this)} />
-                                                        <span className="centreDetailCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">I wanna allocate some portion to big tech giants like amazon facebook types too.</span>
-                                              </div>
-                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                                  <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="checkbox" name="question5" value="hjhghjhgjhggjggk" onChange={this.getCheckValue.bind(this)} />
-                                                        <span className="centreDetailCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">I am day trader, daily play with markets. I want continuous smart trades.</span>
-                                              </div>
-                                            </div>
-                                         </div> 
-                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                                              <p><b>2) Any near term need for the funds invested with us ?</b></p>
-                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt20">
-                                       
-                                                <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="radio" name="price" value="hjhghjhgjhggjggk" onChange={this.getCheckValue.bind(this)}/>
-                                                        <span className="radioCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">Yes after two years</span>
-                                            </div>
-                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                                                <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="radio" name="price"/>
-                                                        <span className="radioCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">Yes after 6 -8 months</span>
-                                            </div>
-                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                                                <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                        <input type="radio" name="price"/>
-                                                        <span className="radioCheck"></span>
-                                                     </div>
-                                                    <span className="centreDetaillistItem col-xs-9">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
-                                            </div>                                            
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                          <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                            <input type="checkbox"  name={this.state.Question1} value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
+                                            <span className="centreDetailCheck"></span>
                                           </div>
-                                         
-                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
-                                            <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Next</div>
-                                          </div>
+                                          <span className="centreDetaillistItem col-xs-9">15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
+                                        </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                            <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                              <input type="checkbox" name={this.state.Question1} value="I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years" onChange={this.getCheckValue.bind(this)} />
+                                                  <span className="centreDetailCheck"></span>
+                                               </div>
+                                              <span className="centreDetaillistItem col-xs-9">I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years</span>
+                                        </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                            <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                              <input type="checkbox"  name={this.state.Question1} value="Just strong core portfolio with blue chips or mutual fund but ok to earn something extra." onChange={this.getCheckValue.bind(this)}/>
+                                                  <span className="centreDetailCheck"></span>
+                                               </div>
+                                              <span className="centreDetaillistItem col-xs-9">Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.</span>
+                                        </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                            <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                                <input type="checkbox"  name={this.state.Question1} value="I wanna allocate some portion to big tech giants like amazon facebook types too." onChange={this.getCheckValue.bind(this)} />
+                                                <span className="centreDetailCheck"></span> 
+                                             </div>
+                                              <span className="centreDetaillistItem col-xs-9">I wanna allocate some portion to big tech giants like amazon facebook types too.</span>
+                                        </div>
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
+                                            <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                              <input type="checkbox" name={this.state.Question1} value="I am day trader, daily play with markets. I want continuous smart trades." onChange={this.getCheckValue.bind(this)}/>
+                                              <span className="centreDetailCheck"></span>
+                                            </div>
+                                            <span className="centreDetaillistItem col-xs-9">I am day trader, daily play with markets. I want continuous smart trades.</span>
+                                        </div>
+                                      </div>
+                                    </div> 
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
+                                      <p><b>{this.state.Question2} </b><span className="asterix">*</span></p>
+                                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt20">
+                                       <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                          <input type="radio" name={this.state.Question2} value="Yes after two years" onChange={this.getCheckValue.bind(this)} required/>
+                                          <span className="radioCheck"></span>
+                                       </div>
+                                      <span className="centreDetaillistItem col-xs-9">Yes after two years</span>
+                                      </div>
+                                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
+                                        <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                          <input type="radio" name={this.state.Question2} value="Yes after  6 -8 months" onChange={this.getCheckValue.bind(this)}/>
+                                          <span className="radioCheck"></span>
+                                        </div>
+                                        <span className="centreDetaillistItem col-xs-9">Yes after 6 -8 months</span>
+                                      </div>
+                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
+                                        <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                          <input type="radio" name={this.state.Question2} value="It’s a separate capital to invest apart from my needs. I want to build good portfolio." onChange={this.getCheckValue.bind(this)}/>
+                                          <span className="radioCheck"></span>
+                                        </div>
+                                        <span className="centreDetaillistItem col-xs-9">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
+                                      </div>                                            
+                                    </div>
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
+                                      <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Next</div>
+                                    </div>
                                       </form>
                                     </div>  
                                 </div>
@@ -909,11 +836,11 @@ validateFormReqReview() {
                                     <div className="col-lg-12 col-md-12 hidden-xs hidden-sm ">
                                       <form id="riskform">
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                                            <p><b>3) Your investments % exposure of your investable capital can be best described as</b><span className="asterix">*</span></p>
+                                            <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-1 col-xs-3 row ">
-                                                      <input type="radio" name="price" value="FD/bonds/gold 80%, MF /direct equity 20%" onChange={this.getCheckValue.bind(this)}/>
+                                                      <input type="radio" name={this.state.Question3} value="FD/bonds/gold 80%, MF /direct equity 20%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9 ">FD/bonds/gold 80%, MF /direct equity 20% </span>
@@ -921,7 +848,7 @@ validateFormReqReview() {
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio" name={this.state.Question3} value="FD 60% , 30 %Gold, 10% bonds, no direct equity" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">FD 60% , 30 %Gold, 10% bonds, no direct equity</span>
@@ -929,27 +856,27 @@ validateFormReqReview() {
                                           </div>
                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio"  name={this.state.Question3} value="FD 10%, MF 25%, Direct equity 65%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
-                                                  <span className="centreDetaillistItem col-xs-9">FD 10%, MF 25%, Direct equity 65%.</span>
+                                                  <span className="centreDetaillistItem col-xs-9">FD 10%, MF 25%, Direct equity 65%</span>
 
                                           </div>   
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                      <input type="radio" name="price"/>
+                                                      <input type="radio"  name={this.state.Question3} value="Direct equity 90%, FD 10%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
-                                                  <span className="centreDetaillistItem col-xs-9">Direct equity 90%, FD 10%.</span>
+                                                  <span className="centreDetaillistItem col-xs-9">Direct equity 90%, FD 10%</span>
 
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>4) What is number of years you have spent in stock market investments</b><span className="asterix">*</span></p>
+                                            <p><b>{this.state.Question4}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="two"/>
+                                                      <input type="radio" name={this.state.Question4} value="0-2 years" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">0-2 years  </span>
@@ -957,7 +884,7 @@ validateFormReqReview() {
                                           </div>
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="two"/>
+                                                      <input type="radio" name={this.state.Question4} value="3-5 years" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">3-5 years</span>
@@ -965,7 +892,7 @@ validateFormReqReview() {
                                           </div>
                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="two"/>
+                                                      <input type="radio" name={this.state.Question4} value="5 years plus" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">5 years plus</span>
@@ -973,7 +900,7 @@ validateFormReqReview() {
                                           </div>   
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="two"/>
+                                                      <input type="radio" name={this.state.Question4} value="2-15 plus years" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">2-15 plus years</span>
@@ -981,11 +908,11 @@ validateFormReqReview() {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>5) What is your biggest drawdown on your entire portfolio ?</b><span className="asterix">*</span></p>
+                                            <p><b>{this.state.Question5}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="three"/>
+                                                      <input type="radio" name={this.state.Question4} value="0 to -25%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9 ">0 to -25%</span>
@@ -993,7 +920,7 @@ validateFormReqReview() {
                                           </div>
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="three"/>
+                                                      <input type="radio" name={this.state.Question5} value="-25% to -50%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem  col-xs-9">-25% to -50%</span>
@@ -1001,7 +928,7 @@ validateFormReqReview() {
                                           </div>
                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="three"/>
+                                                      <input type="radio" name={this.state.Question5} value="-51% to -75%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">-51% to -75%</span>
@@ -1009,7 +936,7 @@ validateFormReqReview() {
                                           </div>   
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name="three"/>
+                                                      <input type="radio" name={this.state.Question5} value="More than -75%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9">More than -75%</span>
@@ -1024,10 +951,11 @@ validateFormReqReview() {
                                         </div>
                                       </form>
                                     </div>
+                                  {/*Duplicate*/}
                                       <div className="hidden-md hidden-lg col-sm-12 col-xs-12 modalBodyCustomSmall">
                                       <form id="riskform">
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                                            <p><b>3) Your investments % exposure of your investable capital can be best described as</b><span className="asterix">*</span></p>
+                                            <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-1 col-xs-3 row">
@@ -1063,7 +991,7 @@ validateFormReqReview() {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>4) What is number of years you have spent in stock market investments</b><span className="asterix">*</span></p>
+                                            <p><b>4) {this.state.Question4}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1099,7 +1027,7 @@ validateFormReqReview() {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>5) What is your biggest drawdown on your entire portfolio ?</b><span className="asterix">*</span></p>
+                                            <p><b>5) {this.state.Question5}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1356,8 +1284,6 @@ validateFormReqReview() {
                         
                                 </div>
                              </div>
-                          
-
                                <div className="modal fade in " id="portfolioReview" role="dialog">
                                 <div className="modal-dialog modal-lg customModalKYC " >
                                  <div className="modal-header textAlignCenter modalHeaderCustom">
@@ -1372,11 +1298,9 @@ validateFormReqReview() {
                                                 <label>Name</label><span className="asterix">*</span>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <input type="text" className="customInputKF inputBox nameParts" id="name" name="name1" placeholder="Enter Name" ref="name1" value={this.state.name1} onChange={this.handleChange.bind(this)}/>
-                                               <div className="errorMsg">{this.state.errors2.name1}</div>
-
+                                                  <input type="text" className="customInputKF inputBox nameParts" id="name" name="name1" placeholder="Enter Name" ref="name1" value={this.state.name1} onChange={this.handleChange.bind(this)}/>
+                                                  <div className="errorMsg">{this.state.errors2.name1}</div>
                                               </div>
-
                                           </div>
 
                                         </div>
@@ -1416,12 +1340,10 @@ validateFormReqReview() {
                                               </div>
                                           </div>
                                         </div>
-                                     
                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
                                               <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6 submitButton pull-right" onClick={this.SubmitReview.bind(this)}>
                                                 Submit
                                               </div>
-                                               
                                         </div>
                                       </form>
                                     </div>
@@ -1445,9 +1367,7 @@ validateFormReqReview() {
                                              <div className="errorMsg">{this.state.errors1.nameModal}</div>
 
                                             </div>
-
                                         </div>
-
                                       </div>
                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                         <div className="row"> 
@@ -1478,26 +1398,24 @@ validateFormReqReview() {
                                             <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
                                               Submit
                                             </div>
-                                             
                                       </div>
                                     </form>
                                   </div>
                        </div>
                   </div>
                 </div>
-                    <div className="row">
-                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow mt20">
-                       <label>Ready to go?</label><br/>
-                       <span>Start your wealth creation today with us</span><br/>
-                       <div className="col-lg-11 col-lg-offset-1 noPadding">
-                        <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
-                        <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
-                        <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>
-                      
-                        </div>
-                        </div>
+                <div className="row">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow mt20">
+                     <label>Ready to go?</label><br/>
+                     <span>Start your wealth creation today with us</span><br/>
+                     <div className="col-lg-11 col-lg-offset-1 noPadding">
+                      <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+                      <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                      <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>
                       </div>
-                </div>
+                  </div>
+              </div>
+      </div>
     );
   }
 }

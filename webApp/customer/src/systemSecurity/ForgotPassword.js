@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import InputMask from 'react-input-mask';
-import swal from 'sweetalert';
-import $ from "jquery";
-import axios from 'axios';
+import React, { Component }  from 'react';
+import { Link }              from 'react-router-dom';
+import InputMask             from 'react-input-mask';
+import swal                  from 'sweetalert';
+import $                     from "jquery";
+import axios                 from 'axios';
 
 import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
@@ -22,23 +22,23 @@ class ForgotPassword extends Component {
       console.log('x',x);
     }
     forgotpassword(event){
-      console.log('forgotpassword');
       event.preventDefault();
-      var email = this.refs.enterEmail.value;
-      var mobile = this.refs.enterMobNo.value;
-      // console.log("email: ",email);
-     this.setState({
-      email : email,
-     });
-      var userOtp = 1 
-     
-     if(userOtp==1){
-      var emailotp = Math.floor(100000 + Math.random() * 900000);
-/*      this.props.history.push("/confirm-otp/"+response.data.ID);
-*/
-      }else{
-        swal('Email Address not found',"Please enter valid Email Id","warning");                  
-      }
+      var emailPbj = this.refs.enterEmail.value;
+           this.setState({
+            email : emailPbj,
+      });
+      var emailObject ={
+            emailId: this.refs.enterEmail.value,
+      }     
+      axios.patch('/api/users/patch/password/email',{emailId:this.refs.enterEmail.value})
+        .then((response)=> {
+          swal("Great","Information submitted successfully and OTP is sent to your registered Email ID");
+          this.props.history.push("/confirm-otp/"+response.data.ID);
+        })
+        .catch(function (error) {
+          console.log(error);
+          swal("Unable to submit data.");
+        })
     }
 
     inputEffect(event){
@@ -58,9 +58,7 @@ class ForgotPassword extends Component {
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
         <div className="col-lg-4 col-lg-offset-7 col-md-4 col-md-offset-7 col-sm-12 signupPadding loginFormWrap">
           <div className="divForgotPasswordWrap">
-             {/* <div className="col-lg-12 text-center">
-                <img src="/images/Logo.png" height="70px"/>
-              </div>*/}
+             
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 verifypd">
               <h3 className="confirmTitle col-lg-offset-2"><span className="bordbt">Verify Email</span> </h3>
               <div className="FormWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 forPassWrap">

@@ -118,7 +118,7 @@ const WebLayout = () => (
               <Route path="/login"          exact strict component={ Login } />
               <Route path="/signup"         exact strict component={ SignUp } />
               <Route path="/forgot-pwd"     exact strict component={ ForgotPassword } />
-              <Route path="/reset-pwd"      exact strict component={ ResetPassword } />
+              <Route path="/reset-pwd/:user_ID"      exact strict component={ ResetPassword } />
               <Route path="/verify-account" exact strict component={ VerifyAccount } />
               <Route path="/confirm-otp/:user_ID"    exact strict component={ ConfirmOtp } />
         </div>
