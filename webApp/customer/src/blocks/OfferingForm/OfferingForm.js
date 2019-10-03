@@ -1,6 +1,7 @@
+
 import React, { Component }      from 'react';
 
-import "./BlogsForm.css";
+import "./OfferingForm.css";
 import {Route, withRouter} from 'react-router-dom';
 import axios        from 'axios';
 import S3FileUpload from 'react-s3';
@@ -9,36 +10,24 @@ import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import CKEditor from 'ckeditor4-react';
 
-/*const formValid = formerrors=>{
-  console.log("formerrors",formerrors);
-  let valid = true;
-  Object.values(formerrors).forEach(val=>{
-  val.length>0 && (valid = false);
-  })
-  return valid;
-  }*/
-
-/*const clientnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const emailRegex = RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-*/
 axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-class BlogsForm extends Component{
+class OfferingForm extends Component{
 	constructor(props) {
 		super(props);
 		 this.state={
-      "blogTitle"      	  : "",
+      "offeringTitle"      	  : "",
       "summary"   	      : "",
       "typeOfBlog"   		  : "",
       "imgArrayWSaws"     : [],
       "config"            : "",
       "uploadedImage"     : [],
       "imgPath"           : "",
-      "imgbPath"           : {},
+      "imgOfferPath"         : {},
 
       "blog1Img"          : [],
-      "blogContent"       : '',
+      "offeringContent"       : '',
       "formerrors"        :{
           "clientName"    : " ",
           "clientEmail"   : " ", 
@@ -51,8 +40,8 @@ class BlogsForm extends Component{
 	}
 
   componentWillReceiveProps(nextProps) {
-      var editId = nextProps.match.params.id;
-      if(nextProps.match.params.id){
+      var editId = nextProps.match.params.selectedID;
+      if(nextProps.match.params.selectedID){
         this.setState({
           editId : editId
         })
@@ -62,20 +51,22 @@ class BlogsForm extends Component{
 
   onEditorChange( evt ) {
       this.setState( {
-          blogContent: evt.editor.getData()
+          offeringContent: evt.editor.getData()
       } );
   }
-  edit(e){
-    var id = this.props.match.params.blogID;
+  edit(selectedID){
+    
+    /*console.log('id mani', selectedID);*/
     axios
-      .get("/api/blogs/get/"+id)
+      .get("/api/offerings/get/"+selectedID)
       .then((response)=>{
         console.log("===>",response.data);
         this.setState({
-          "blogTitle":response.data.blogTitle,
-          "summary":response.data.summary,
-          "typeOfBlog":response.data.typeOfBlog,
-          "blogContent":response.data.blogContent
+          "offeringTitle":response.data.offeringTitle,
+          "imgOfferPath":{
+          	path:response.data.bannerImage.path
+          },
+          "offeringContent":response.data.offeringContent
 
         });
       })
@@ -84,11 +75,9 @@ class BlogsForm extends Component{
       });
 
   }
-  componentWillReceiveProps(){
-    this.edit();
-  }
+  
   componentDidMount(){
-    this.edit();
+    this.edit(this.props.match.params.selectedID);
       axios
         .get('http://wealthyviapi.iassureit.com/api/projectsettings/get/S3')
         .then((response)=>{
@@ -120,9 +109,9 @@ class BlogsForm extends Component{
       event.preventDefault();
       this.setState({
         
-        "blogTitle":this.refs.blogTitle.value,
-        "summary":this.refs.summary.value,
-        "typeOfBlog": this.refs.typeOfBlog.value,
+        "offeringTitle":this.refs.offeringTitle.value,
+        /*"summary":this.refs.summary.value,
+        "typeOfBlog": this.refs.typeOfBlog.value,*/
        
       });
       
@@ -140,7 +129,7 @@ class BlogsForm extends Component{
             .then((Data)=>{
                 console.log('mani', Data);
               this.setState({
-                imgbPath : {
+                imgOfferPath : {
                   "path"    : Data.location,
                 }
               })
@@ -171,7 +160,7 @@ uploadBlogImage(event){
               .then((Data)=>{
                 
                   var obj1={
-                    imgPath : Data.location,
+                    path : Data.location,
                   }
                   var imgArrayWSaws = this.state.imgArrayWSaws;
                   imgArrayWSaws.push(obj1);
@@ -179,24 +168,12 @@ uploadBlogImage(event){
                     // workspaceImages : imgArrayWSaws
                     blog1Img : imgArrayWSaws
                   })
-      console.log("blog1Img1--------------->",imgArrayWSaws);
+      			console.log("blog1Img1--------------->",imgArrayWSaws);
               })
               .catch((error)=>{
                 console.log("formErrors");
                 console.log(error);
               })
-
-            // var objTitle={  
-            //   fileInfo :newFile
-            // }
-            // // var imgTitleArrayWS = [];
-            // imgTitleArrayWS.push(objTitle);
-            // this.setState({
-            //   imageTitleArrayWS : imgTitleArrayWS
-            // })
-            //  console.log('imgArrayWS = ',imgTitleArrayWS);
-
-
           }else{         
             swal("File not uploaded","Something went wrong","error"); 
           }
@@ -220,7 +197,7 @@ uploadBlogImage(event){
             if (success) {
               swal("Your image is deleted!");
               this.setState({
-                imgbPath : ""
+                imgOfferPath : ""
               })
             } else {
             swal("Your image is safe!");
@@ -264,13 +241,11 @@ uploadBlogImage(event){
     var id = this.props.match.params.blogID;
     event.preventDefault();
     const formValues = {
-      "blogContent"         :this.state.blogContent,
-      "typeOfBlog"          :this.state.typeOfBlog,
-      "summary"             :this.state.summary,
-      "blogTitle"           :this.state.blogTitle,
-      "imgbPath"            :this.state.imgbPath,
-
-
+      "offeringContent"         :this.state.offeringContent,
+     /* "typeOfBlog"          : this.state.typeOfBlog,
+      "summary"                 :this.state.summary,*/
+      "offeringTitle"           :this.state.offeringTitle,
+      "imgOfferPath"            :this.state.imgOfferPath,
    };
     axios
           .patch('/api/blogs/patch/'+id,formValues)
@@ -284,24 +259,23 @@ uploadBlogImage(event){
   Submit(event){
     event.preventDefault();
      const formValues = {
-        "blogContent"         :this.state.blogContent,
-        "typeOfBlog"          :this.state.typeOfBlog,
-        "summary"             :this.state.summary,
-        "blogTitle"           :this.state.blogTitle,
-        "bannerImage"         :this.state.imgbPath,
+        "offeringContent"         :this.state.offeringContent,
+        "imgOfferPath"            :this.state.imgOfferPath,
+        "offeringTitle"           :this.state.offeringTitle,
+        "bannerImage"             :this.state.imgOfferPath,
+        "images"                  : this.state.blog1Img,
          };
     axios
-          .post('/api/blogs/post',formValues)
+          .post('/api/offerings/post',formValues)
           .then((res)=>{
                       swal("Thank you .Your Blog Created.");
-                       this.props.history.push("/singleblogpage/"+res.data.ID);
+                       this.props.history.push("/offeringpage/"+res.data.ID);
                        console.log("response = ", res.data);
-
                   })
                   .catch((error)=>{
                     console.log("error = ", error);
                   });
-  }
+    }
 	render() {
     
 		return (
@@ -310,46 +284,25 @@ uploadBlogImage(event){
   				<form id="blogForm" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding blogFormBox">
                 <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label>Blog Tittle<span className="redFont">*</span></label>
+                    <label>Offering Tittle<span className="redFont">*</span></label>
                     <div className="">
-                      <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="blogTitle" type="text" name="blogTitle"  ref="blogTitle" value={this.state.blogTitle}	onChange={this.handleChange.bind(this)} placeholder="" required/>
-                    </div>
-                  </div>
-                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{height:"auto"}}>
-                    <label >Blog Summery<span className="redFont">*</span></label>
-                    <div className="">
-                      <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="blogsummery"  ref="summary" value={this.state.summary} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="comment"></textarea>
-                    </div>
-                  </div>
-                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label htmlFor="email">Blog Type<span className="redFont">*</span></label>
-                    <div className="">
-                    	<div className="dropdown">
-                    		<select className="form-control" id="sel1" ref="typeOfBlog" value={this.state.typeOfBlog} onChange={this.handleChange.bind(this)}>
-  								        <option>Regular</option>
-  								        <option>Premium</option>
-  								      </select>
-                      </div>
+                      <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="offeringTitle" type="text" name="offeringTitle"  ref="offeringTitle" value={this.state.offeringTitle}	onChange={this.handleChange.bind(this)} placeholder="" required/>
                     </div>
                   </div>
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label htmlFor="contactNumber">Banner Image<span className="redFont"></span></label>
-                    <div className="">
-                      {/*<input id="input-b1" name="input-b1" type="file" class="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
-                    </div>
+                    
                     <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                          {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
-                        
                         <input type="file" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding row" title="Please choose image" id="designImg" onChange={this.uploadDesignImg.bind(this)} />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        { this.state.imgbPath!=="" ? 
+                        { this.state.imgOfferPath!=="" ? 
                           <div>
-                            <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
-                            <img alt="selected design" src={this.state.imgbPath.path} width="150" height="100"/>
+                            <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>{/*data-id={this.state.imgOfferPath}*/}
+                            <img alt="selected design" src={this.state.imgOfferPath.path} width="150" height="100"/>
                           </div>
                           : <div> </div>
                         }
@@ -364,7 +317,7 @@ uploadBlogImage(event){
                           return(
                                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row">
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                                      <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Blog Image {index+1}</h5>
+                                      <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Image {index+1}</h5>
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                       <div className="imgcss" key={index}>
@@ -377,7 +330,7 @@ uploadBlogImage(event){
                         })
                       }
                   {this.state.blog1Img.length<=0?
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
+                    <div className="col-lg-5 col-md-4 col-sm-12 col-xs-12 row padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Blog Images <span className="astrick">*</span></h5>
                        
@@ -401,7 +354,7 @@ uploadBlogImage(event){
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Images <span className="astrick">*</span></h5>
                       </div>
-                      <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                         <div className="clr_k" style={{height:"120px"}}>
                           <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon1">
                             <img src="/images/file_upload.png" width="50"/>
@@ -418,10 +371,10 @@ uploadBlogImage(event){
                 </div>
                  
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 ckbox">
-                    <label htmlFor="userName">Blog Content<span className="redFont">*</span></label>
+                    <label htmlFor="userName">Offering Content</label>
                     <div className="">
                       <CKEditor
-                        data={this.state.blogContent}
+                        data={this.state.offeringContent}
                         onChange={this.onEditorChange} />
                       </div>
                   </div>
@@ -440,4 +393,4 @@ uploadBlogImage(event){
 		);
 	}
 }
-export default withRouter(BlogsForm);
+export default withRouter(OfferingForm);

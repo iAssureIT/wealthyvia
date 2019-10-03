@@ -1,29 +1,22 @@
 import React from 'react';
 import "./SingleBlogBanner.css";
 
-
-
 export default class SingleBlogBanner extends React.Component {
-
-
 	constructor(props) {
 		super(props);
 		this.state = {
 			"blogTitle":"",
 		};
-
 	}
 	componentDidMount(){
-		
 		this.setState({
 			/*"blogTitle":  this.props.blogTitle*/
-		
 		})
 	}
-
 	render() {
+		{console.log(" img path ===>", this.props.bannerImage)}
 		return (
-			<div className="col-lg-12 nopadding sbbannerWall" style={{backgroundImage:'url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blogBack.jpg")'}}>
+			<div className="col-lg-12 nopadding sbbannerWall" style={{backgroundImage:'url('+this.props.bannerImage+')'}}>
 				<div className="col-lg-12 sbcentered">
 					<div className="col-lg-12 sbbtextcentered">
 						<h1 className="fs72">{this.props.blogTitle}</h1>

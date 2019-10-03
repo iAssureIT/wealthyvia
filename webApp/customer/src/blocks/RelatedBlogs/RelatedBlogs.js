@@ -60,7 +60,7 @@ export default class RelatedBlogs extends React.Component {
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
 															<p className="blogPara p10 graycolor">{data.blogPara}</p>
 															<hr/>
-															<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mtop10">
+															{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mtop10">
 																<div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 																	<img className="img-responsive imgRoundrb" src={data.bloggerImg}  alt="Bannerpng"/>
 																</div>
@@ -68,7 +68,7 @@ export default class RelatedBlogs extends React.Component {
 																	<p><b>{data.blogwritter}</b></p>
 																	<p className="graycolor">{data.buBlogger}</p>
 																</div>
-															</div>
+															</div>*/}
 														</div>
 							          				</div>
 							          			</div>

@@ -13,7 +13,12 @@ import AllBlogs                                  from "../pages/AllBlogs/AllBlog
 import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
 import InvoicePage                               from "../pages/InvoicePage/InvoicePage.js";
 import OrderPage                                 from "../pages/OrderPage/OrderPage.js";
-import BlogsFormPage               from "../pages/BlogsForm/BlogsFormPage.js";
+import BlogsFormPage                             from "../pages/BlogsForm/BlogsFormPage.js";
+
+import offeringFormPage                          from "../pages/offeringFormPage/offeringFormPage.js";
+import OfferingPage                              from "../pages/OfferingPage/OfferingPage.js";
+
+
 /*
 import EcommerceHomepage                         from "../pages/EcommerceHomepage/EcommerceHomepage.js";
 import EcommerceFooter                           from "../blocks/common/EcommerceFooter/EcommerceFooter.js";
@@ -51,23 +56,30 @@ import VerifyAccount    from '../systemSecurity/VerifyAccount.js';
 const WebLayout = () => (
   <div>
          
-              <Route path="/"                         exact strict component={Homepage}  />
+              <Route path="/"                                 exact strict component={Homepage}  />
               <Route path="/about-us"                         exact strict component={AboutUs}  />
-              <Route path="/contact-us"                         exact strict component={ContactUs}  />
-              <Route path="/ProductPage"              exact strict component={ProductPage}  />
-              <Route path="/RiskProfilePage"              exact strict component={RiskProfilePage}  />
-              <Route path="/KycForm"              exact strict component={KycForm}  />
-              <Route path="/AllBlogs"              exact strict component={AllBlogs}  />
-              <Route path="/blogsform/:blogID"              exact strict component={BlogsFormPage}  />
+              <Route path="/contact-us"                       exact strict component={ContactUs}  />
+              <Route path="/ProductPage"                      exact strict component={ProductPage}  />
+              <Route path="/RiskProfilePage"                  exact strict component={RiskProfilePage}  />
+              <Route path="/KycForm"                          exact strict component={KycForm}  />
+              <Route path="/AllBlogs"                         exact strict component={AllBlogs}  />
+              <Route path="/blogsform/:blogID"                exact strict component={BlogsFormPage}  />
 
-              <Route path="/BlogViewPage"              exact strict component={BlogViewPage}  />
-              <Route path="/ProductPage/:divId"              exact strict component={ProductPage}  />
-              <Route path="/singleblogpage"              exact strict component={SingleBlogPage}  />
-              <Route path="/InvoicePage"              exact strict component={InvoicePage}  />
-              <Route path="/OrderPage"              exact strict component={OrderPage}  />
-              <Route path="/singleblogpage/:selectedID"              exact strict component={SingleBlogPage}  />
+              <Route path="/BlogViewPage"                     exact strict component={BlogViewPage}  />
+              <Route path="/ProductPage/:divId"               exact strict component={ProductPage}  />
+              <Route path="/singleblogpage"                   exact strict component={SingleBlogPage}  />
+              <Route path="/InvoicePage"                      exact strict component={InvoicePage}  />
+              <Route path="/OrderPage"                        exact strict component={OrderPage}  />
+              <Route path="/singleblogpage/:selectedID"       exact strict component={SingleBlogPage}  />
 
-              <Route path="/blogsform"              exact strict component={BlogsFormPage}  />
+              <Route path="/blogsform"                        exact strict component={BlogsFormPage}  />
+
+              <Route path="/offeringformpage"                 exact strict component={offeringFormPage}  />
+              <Route path="/offeringformpage/:selectedID"     exact strict component={offeringFormPage}  />
+              
+              <Route path="/offeringpage"                     exact strict component={OfferingPage}  />
+              <Route path="/offeringpage/:selectedID"         exact strict component={OfferingPage}  />
+
 
 
             {/*  <Route path="/Grocery"          exact strict component={HomePage}  />

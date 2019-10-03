@@ -15,10 +15,11 @@ export default class SingleBlogPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			  "blogTitle"      	  : "",
+			    "blogTitle"      	  : "",
 		      "summary"   	      : "",
-		      "typeOfBlog"   	  : "",
+		      "typeOfBlog"   	    : "",
 		      "blogContent"       : "",
+          "bannerImage"       : {},
 
 		};
 	}
@@ -35,9 +36,10 @@ componentDidMount(){
         this.setState({
 
         "blogTitle"		:response.data.blogTitle,
-        "summary"		:response.data.summary,
+        "summary"		  :response.data.summary,
         "typeOfBlog"	:response.data.typeOfBlog,
-        "blogContent"	:response.data.blogContent
+        "blogContent"	:response.data.blogContent,
+        "bannerImage" :response.data.bannerImage.path
 
           
         })
@@ -54,7 +56,7 @@ componentDidMount(){
 	render() {
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
-          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} />
+          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
           		<BlogContent blogContent={this.state.blogContent}/>
           		<RelatedBlogs/>
           		<BlogComment/>

@@ -19,21 +19,16 @@ export default class BlogContent extends React.Component {
 	}
 
 	render() {
-/*		var data = this.state.Blog;
-*/		/*console.log("===>",data);*/
+
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
 
 				<div className="col-lg-12">
-					
-										<div  className="col-lg-8 col-lg-offset-2 blogBox">
-                        					<div dangerouslySetInnerHTML={ { __html: this.props.blogContent } }></div>
-										</div>
-									
-
+					<div  className="col-lg-8 col-lg-offset-2 blogBox">
+    					<div dangerouslySetInnerHTML={ { __html: this.props.blogContent } }></div>
+					</div>
 				</div>
 
-				
 				<div className="col-lg-8 col-lg-offset-2">
 				<hr/>
 					<div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 NOpadding">
