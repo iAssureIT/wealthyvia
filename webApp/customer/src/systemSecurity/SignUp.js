@@ -15,7 +15,6 @@ axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const formValid = formerrors=>{
-  console.log("formerrors",formerrors);
   let valid = true;
   Object.values(formerrors).forEach(val=>{
   val.length>0 && (valid = false);
@@ -50,7 +49,6 @@ class SignUp extends Component {
 				        	emailIDV		: "",
 					     },
         }
-        console.log("In constructor");
          this.handleChange = this.handleChange.bind(this);
     }
     componentWillMount() {
@@ -58,8 +56,7 @@ class SignUp extends Component {
     }
  	usersignup(event){
  		event.preventDefault();
-/* 			console.log("-------this.state.auth------>>",this.state.auth);
-*/ 			var auth={
+ 			var auth={
 	                firstName       : this.refs.firstname.value,
 	                lastName        : this.refs.lastname.value,
 	                email         : this.refs.signupEmail.value,
@@ -68,10 +65,9 @@ class SignUp extends Component {
 /*	                signupPassword  : this.refs.signupConfirmPassword.value,
 */	                role 			: 'user',
 	                status 			: 'Active',
-	                fullName        : this.refs.firstname.value + this.refs.lastname.value,
+	                fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
 	            }
 	            
- 			// console.log("-------auth------>>",auth);
 
         document.getElementById("signUpBtn").value = 'We are processing. Please Wait...';            
             
@@ -82,16 +78,13 @@ class SignUp extends Component {
         var signupConfirmPasswordVar = this.refs.signupConfirmPassword.value;
  		
             if(formValid(this.state.formerrors)){
-    			console.log('companyName==',this.state.formerrors);
             if (passwordVar === signupConfirmPasswordVar) {
                 return (passwordVar.length >= 6) ? 
                 	(true, 
-                	 console.log("formValues= ",auth),
 		             document.getElementById("signUpBtn").value = 'Sign Up',
       				// browserHistory.push("/"),
                 	axios.post('/api/users/post/signup/user/emailotp',auth)
 			            .then((response)=> {
-			                console.log("-------userData------>>",response.data.ID);
 		            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
 			                this.props.history.push("/confirm-otp/"+response.data.ID);
 			                
@@ -125,7 +118,6 @@ class SignUp extends Component {
 	    const {name,value} = event.target;
 	    let formerrors = this.state.formerrors;
 	    
-	    console.log("datatype",datatype);
 	    switch (datatype){
 	     
 	       case 'firstNameV' : 
@@ -159,7 +151,6 @@ class SignUp extends Component {
 	}
  	acceptcondition(event){
 	    var conditionaccept = event.target.value;
-	    console.log("condition",conditionaccept);
 	    if(conditionaccept=="acceptedconditions"){
 	        $(".acceptinput").removeAttr('disabled');
 	        // if(this.state.roletype=="Student"){

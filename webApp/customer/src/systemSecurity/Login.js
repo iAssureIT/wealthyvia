@@ -35,26 +35,25 @@ class Login extends Component {
 */  }
   userlogin(event){
     event.preventDefault();
-    console.log("in login mode",this.state.auth);
         var auth= {
           email       : this.refs.loginusername.value,
           password    : this.refs.loginpassword.value,
         }
 
-        console.log("auth value",auth);
 
     axios.post('/api/users/post/login',auth)
       .then((response)=> {
         localStorage.setItem("token",response.data.token);
-        localStorage.setItem("admin_ID",response.data.ID);
+        localStorage.setItem("user_ID",response.data.ID);
+
         // localStorage.setItem("admin_email",response.data.email);
         // localStorage.setItem("admin_fullName",response.data.fullName);
 
 /*        console.log("localStorage =",response.data.token);
-*/        console.log("data =",response);
+*/      
         // browserHistory.replace('/');
-       /* this.props.history.push("/");
-        window.location.reload();*/
+        this.props.history.push("/");
+        window.location.reload();
         // direct.setState({loggedIn:response.data.token})
         if(localStorage==null){
           swal("Invalid Email or Password","Please Enter valid email and password");

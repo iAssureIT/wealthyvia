@@ -41,12 +41,11 @@ export default class Header extends Component {
     window.scrollTo(0,0);
   }
   logout(){
-    console.log(localStorage.getItem("token"));
 
-    var token = localStorage.setItem("token", "")
+    var user_ID = localStorage.setItem("user_ID", "")
      window.location.reload();
-    console.log('token', token);
-      if(token!==null){
+    console.log('user_ID', user_ID);
+      if(user_ID!==null){
       // console.log("Header Token = ",token);
       // browserHistory.push("/login");
       // this.props.history.push("/");
@@ -124,6 +123,17 @@ export default class Header extends Component {
       var thisvalue = dropdown.find( checked ).val();
 
     });
+      const userid = localStorage.getItem('user_ID');
+     axios.get("/api/users/get/"+userid)
+      .then((response)=>{ 
+          this.setState({
+              userinfo : response.data
+          })
+      })
+      .catch((error)=>{
+            console.log('error', error);
+      })
+      console.log("userinfo",this.state.userinfo)
   }
   onOptionSelect = (value) => {
   }
@@ -165,7 +175,7 @@ export default class Header extends Component {
   }
   getData(){
     var one =1;
-    const userid = localStorage.getItem('admin_ID');
+    const userid = localStorage.getItem('user_ID');
     axios.get("/api/users/get/"+userid)
       .then((response)=>{ 
           this.setState({
@@ -175,6 +185,7 @@ export default class Header extends Component {
       .catch((error)=>{
             console.log('error', error);
       })
+      console.log("userinfo",this.state.userinfo)
 
     axios.get("/api/carts/get/count/"+userid)
       .then((response)=>{ 
@@ -480,7 +491,7 @@ export default class Header extends Component {
   }
 
   render() {
-    const token = localStorage.getItem("admin_ID");
+    const token = localStorage.getItem("user_ID");
 
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
@@ -1063,13 +1074,13 @@ export default class Header extends Component {
                         <a href="/about-us" >About Us </a>
                         
                       </li>
+                        {console.log("this.state.userinfo",this.state.userinfo)}
                       <li className="dropdown">
-                   {/*   {token ?
-                        <a  onClick={this.logout.bind(this)} className="curserPointer">Logout</a>
+                      {token ?
+                        <a  className="cursorPointer" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? this.state.userinfo.fullName:"Login/Signup"}</a>
                         :
-                      }*/}
                         <a href="/login">Login/Signup </a>
-                       
+                      }
                       </li>
                          <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
                                 <span >Invest Now</span>

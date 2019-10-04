@@ -928,7 +928,6 @@ input[type=radio]:checked ~ span{
   background: #6CCEF9;
   margin-top: 12px !important;
   border-radius: 4px;
-   margin-left: 15% !important; 
   font-weight: bold;
   border:1px solid #ccc;
 }
@@ -1145,7 +1144,7 @@ input[type="radio"]:checked:before {
   position: absolute;
   box-shadow: 0px 0px 0px;
   border: 1px solid #ccc;
-  margin-top: 40px;
+  margin-top: 60px;
   padding: 20px !important;
   background-color: #fff!important;
   float: right;
