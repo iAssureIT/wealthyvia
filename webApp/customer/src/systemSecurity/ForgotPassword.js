@@ -19,7 +19,6 @@ class ForgotPassword extends Component {
     }
     componentDidMount(){
       var x = this.props.match.params;
-      console.log('x',x);
     }
     forgotpassword(event){
       event.preventDefault();

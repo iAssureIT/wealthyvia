@@ -45,20 +45,16 @@ class Login extends Component {
 
     axios.post('/api/users/post/login',auth)
       .then((response)=> {
-        console.log("-------userData------>>",response);
-        // this.setState({
-        //   token : response.data.token
-        // });
-
         localStorage.setItem("token",response.data.token);
-        localStorage.setItem("admin_ID",response.data.user_ID);
+        localStorage.setItem("admin_ID",response.data.ID);
         // localStorage.setItem("admin_email",response.data.email);
         // localStorage.setItem("admin_fullName",response.data.fullName);
 
-        console.log("localStorage =",localStorage.getItem('admin_ID'));
+/*        console.log("localStorage =",response.data.token);
+*/        console.log("data =",response);
         // browserHistory.replace('/');
-        this.props.history.push("/");
-        window.location.reload();
+       /* this.props.history.push("/");
+        window.location.reload();*/
         // direct.setState({loggedIn:response.data.token})
         if(localStorage==null){
           swal("Invalid Email or Password","Please Enter valid email and password");

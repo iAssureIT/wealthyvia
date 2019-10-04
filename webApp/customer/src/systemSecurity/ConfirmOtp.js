@@ -14,9 +14,9 @@ import './SignUp.css';
       }
     }
     confirmOTP(event){
-      // console.log('confirm otp');
       event.preventDefault();
       var url = this.props.match.params;
+      // console.log('confirm otp');
       var formValues ={
         "ID" :  this.props.match.params.user_ID,
         "emailotp":  parseInt(this.refs.emailotp.value)
@@ -96,9 +96,9 @@ import './SignUp.css';
                 <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls">
                   <a href='/' className="UMGrey signInbtn veriemailmr veriemail col-lg-12">Sign In</a>  
                 </div>
-                <div id="resendOtpBtn" className={"col-lg-4 col-md-4 col-sm-4 col-xs-4 resendOtpColor "+resendOtpWrap}>
+               {/* <div id="resendOtpBtn" className={"col-lg-4 col-md-4 col-sm-4 col-xs-4 resendOtpColor "+resendOtpWrap}>
                   {resendOtp}
-                </div>
+                </div>*/}
               </form>
             </div>
           </div>

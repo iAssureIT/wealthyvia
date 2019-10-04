@@ -74,7 +74,7 @@ export default class BottomDiv extends Component {
 					
 				<a href="#unlistedPre"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png"/>
+			  			<img src="/images/ab4.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">US listed stocks</label><br/>
 				          <p>Get the latest news and updates on ASK Group and its companies.</p>

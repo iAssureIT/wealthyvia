@@ -317,7 +317,7 @@ class SignUp extends Component {
 							      </div>
 							    </div>
 
-								<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 form-group1 rrnRegisterBtn">
+								<div className="col-lg-12 col-md-12 col-xs-6 col-sm-6 form-group1 rrnRegisterBtn">
 							    	<input id="signUpBtn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 acceptinput UMloginbutton UMloginbutton1 hvr-sweep-to-right" type="submit" value="Sign Up" disabled/>
 							    </div>		   
 

@@ -89,7 +89,7 @@ class ResetPassword extends Component {
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper">
         <div className="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-12 signupPadding signUpFormWrap bg-success" style={{"height": winHeight}}>
           <div className="divResetPasswordWrap">
-            <h3 className="resetpwdNameTitle"> <span className="bordbt">RESET PASSWORD</span></h3>
+            <h3 className="resetpwdNameTitle"> <span className="bordbt">Reset Password</span></h3>
             <div className="FormWrapper1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <form id="resetPassword" onSubmit={this.changepassword.bind(this)}>
                 <div className="form-group loginFormGroup pdleftclr veribtm col-lg-12 col-md-12 col-sm-12 col-xs-12">

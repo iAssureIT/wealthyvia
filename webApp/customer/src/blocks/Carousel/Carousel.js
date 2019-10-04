@@ -22,31 +22,31 @@ export default class Carousel extends Component {
 					    </ol>
 					    <div className="carousel-inner height350">
 					      <div className="item fadding">
-					        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-					    	 <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+					    	 <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					    	 	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Capital Protection.<br/> Risk Mitigation. <br/> Alpha generation</label>
 					    	 	
 				       		 </div>
 					      </div>
 
 					      <div className="item fadding">
-				        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-						      <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create : Profound.Profuse.Precise.</label>
 					    	 	
 				        </div>
 					      </div>
 					    
 					      <div className="item fadding">
-					        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-						      <div className="caption col-lg-8 col-md-12 col-sm-12 col-xs-12">
-						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your  long term best friend and we create that friends circle for you.</label>
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						       	<label className=" col-lg-8 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your  long term best friend.{/* and we create that friends circle for you.*/}</label>
 					    	 	 
 				          </div>
 					      </div>
 					      
 				    	<div className="item active fadding">
-				        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
 					     <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					      	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Intelligence to identify <br/>
 																Systemized process to execute <br/>
@@ -67,32 +67,32 @@ export default class Carousel extends Component {
 					    </ol>
 					    <div className="carousel-inner height350">
 					      <div className="item fadding">
-					        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-					    	 <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+					    	 <div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					    	 	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Capital Protection. Risk Mitigation. Alpha generation</label>
 					    	 	
 				       		 </div>
 					      </div>
 
 					      <div className="item fadding">
-				        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create : Profound.Profuse.Precise.</label>
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+						      <div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create :<br/> Profound. <br/>Profuse. <br/>Precise.</label>
 					    	 	
 				        </div>
 					      </div>
 					    
 					      <div className="item fadding">
-					        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+						      <div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your  long term best friend and we create that friends circle for you.</label>
 					    	 	
 				          </div>
 					      </div>
 					      
 				    	<div className="item active fadding">
-					        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/slide1_1.jpg"  />
-						     	<div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
+						     	<div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						      		<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Intelligence to identify <br/>
 																	Systemized process to execute <br/>
 																	Courage to capitalise </label>
