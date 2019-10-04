@@ -420,7 +420,7 @@ export default class ProductPage extends Component {
                         <img src="/images/workWith.jpg"/>
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeInvest.jpg"/>
+                        <img src="/images/workWith.jpg"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Preferred companies </span></label>
@@ -569,7 +569,29 @@ export default class ProductPage extends Component {
 			  		
                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSHM">
               <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-12 col-md-12 hidden-xs hidden-sm backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      Safe Heaven Stocks + Alpha
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>This product is designed to generated Regular income for clients with a limited risk exposure to F&O segment.</p>
+                      </div>
+                    </div>
+
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" /><br/>
+                          <span>Scroll down to know how</span>
+                      </div>
+                </div>
+              </div>
+              <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorBlack blackDivPPSmall">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
                     
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
@@ -620,18 +642,27 @@ export default class ProductPage extends Component {
                        <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
                         <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"/>
                     </div>
-                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                    <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
                         <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                       <ul className="customOl listStyle">
-                          <li>As your existing Mutual Funds or Artha – Safe Heaven Stocks portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
+                      <ul className="customOl listStyle">
+                          <li>As your existing Mutual Funds or Wealthyvia – Safe Heaven Moats portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
                         <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
                         <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
-                        <li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" className="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Strategy will only be implement  on</a></div><div id="collapseOne" class="panel-collapse collapse in " role="tabpanel" aria-labelledby="headingOne"><div class="panel-body"><p> <ul className="customOl listStyle"><li>Nifty Future & Options (monthly).</li></ul> </p> </div></div></div></li><li class="panel-group" id="accordion" role="tablist" aria-multiselectable="true"><div class="panel panel-default customPanelPP"><div class="panel-heading noPadding customHead" role="tab" id="headingOne"><a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">We don’t indulge in</a></div><div id="collapseTwo" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingTwo"><div class="panel-body"><p><ul className="customOl listStyle"><li>Bank Nifty or Any other indices</li><li>F&O segment of Individual companies.</li></ul> </p> </div></div></div></li><li>Total number of stocks held in this portfolio at any given point of time will be less than 15.</li>
-                        <li>Read a detailed blog post about this here</li>
+                        <li>Strategy will only be implement on
+                          <ul className="customOl listStyle">
+                            <li>Nifty Future & Options (monthly)</li>
+                          </ul>
+                        </li>
+                        <li>We don’t indulge in
+                          <ul className="customOl listStyle">
+                            <li>Bank Nifty or Any other indices</li>
+                            <li>F&O segment of Individual companies.</li>
+                          </ul>
+                        </li>
                         </ul>
                       </p>                  
                     </div>
@@ -697,7 +728,7 @@ export default class ProductPage extends Component {
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
                     <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
-                        <ul className="customOl">
+                        <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>Investors who are willing at take additional risk for generating risk adjusted Alpha.</li>
                           <li><span className="numberDiv">2</span> Investors who have parked their money in Mutual Funds & wanted to generate regular income without additional capital.</li>
                           <li><span className="numberDiv">3</span>Investors who understand & accept the risks involved in F&O. </li>
@@ -718,7 +749,30 @@ export default class ProductPage extends Component {
 			  		
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerStocks">
               <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-12 col-md-12 hidden-sm hidden-xs backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      US Stocks investing
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>Total US stock Market makes 40% plus of global equity markets. The U.S. stock market is currently $34 trillion plus.</p>
+                      </div>
+                    </div>
+
+                  
+                </div>
+                  <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" /><br/>
+                          <span>Scroll down to know how</span>
+                      </div>
+                </div>
+              </div>
+              <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorBlack blackDivPPSmall">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
                     
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
@@ -840,7 +894,29 @@ export default class ProductPage extends Component {
 				<div className="row">
 			  			 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerUS">
               <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-12 col-md-12 hidden-sm hidden-xs backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent pull-right">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading " >
+                      <div className="row">
+                      Unlisted shares
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara ">
+                      <div className="row">
+                        <p>Invest before listing to take advantage of being early entrant. We check for detailed financials and enough liquidity before recommending it to you.</p>
+                      </div>
+                    </div>
+
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" /><br/>
+                          <span>Scroll down to know how</span>
+                      </div>
+                </div>
+              </div>
+              <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorBlack blackDivPPSmall">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent pull-right">
                     
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading " >
