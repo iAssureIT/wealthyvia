@@ -1035,11 +1035,11 @@ export default class Header extends Component {
                             Articulations <span className="caret"></span>
                           </a>                       
                           <ul className="dropdown-menu customDropdown">
-                           {token ?
-                          <a href="/allblogs">Arthavrudhhi Blogs</a>
+                         {/*  {token ?
                               :
                                 <a href="/login">Arthavrudhhi Blogs</a>
-                            }
+                            }*/}
+                               <a href="/allblogs">Arthavrudhhi Blogs</a>
                                <a href="">Communique</a>
                            
                         </ul>
@@ -1064,11 +1064,11 @@ export default class Header extends Component {
                         
                       </li>
                       <li className="dropdown">
-                      {token ?
+                   {/*   {token ?
                         <a  onClick={this.logout.bind(this)} className="curserPointer">Logout</a>
                         :
+                      }*/}
                         <a href="/login">Login/Signup </a>
-                      }
                        
                       </li>
                          <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">

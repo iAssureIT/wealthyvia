@@ -342,7 +342,29 @@ export default class ProductPage extends Component {
 			  			
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSH img-responsive">
               <div className="row">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivPP">
+                <div className="col-lg-12 col-md-12 hidden-xs hidden-sm backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      Safe Heaven Moats
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
+                      </div>
+                    </div>
+
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" /><br/>
+                          <span>Scroll down to know how</span>
+                      </div>
+                </div>
+                </div>
+                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorBlack blackDivPPSmall">
                 <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
                     
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
