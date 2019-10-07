@@ -996,12 +996,12 @@ export default class Header extends Component {
                                   
                                     <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
             
-                                          <img src="/images/linkedin1.png"/>
+                                    <a href="https://in.linkedin.com/" target="_blank"><img src="/images/linkedin1.png"/></a>
                                     </div> 
                                     <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook pull-right">
-                                       <img src="/images/facebook.png"/>
+                                      <a href="https://www.facebook.com/arthavruddhi" target="_blank">  <img src="/images/facebook.png"/></a>
                                     </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
-                                      <img src="/images/twitter.png"/>
+                                      <a href="https://twitter.com/login?lang=en" target="_blank"><img src="/images/twitter.png"/></a>
                                     </div> 
                                   </div>
                                 </div>

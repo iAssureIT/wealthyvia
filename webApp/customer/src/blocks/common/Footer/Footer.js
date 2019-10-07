@@ -114,13 +114,13 @@ export default class Footer extends Component {
                   <div className="hidden-lg hidden-md  col-sm-10 col-xs-12">
                     <div className="row">
                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook ">
-                            <img src="/images/linkedin1.png"/>
+                                    <a href="https://in.linkedin.com/" target="_blank"><img src="/images/linkedin1.png"/></a>
                       </div> 
                       <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook ">
-                         <img src="/images/facebook.png"/>
+                                      <a href="https://www.facebook.com/arthavruddhi" target="_blank">  <img src="/images/facebook.png"/></a>
                       </div>
                       <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
-                        <img src="/images/twitter.png"/>
+                       <a href="https://twitter.com/login?lang=en" target="_blank"><img src="/images/twitter.png"/></a>
                       </div> 
                           
                     </div>
