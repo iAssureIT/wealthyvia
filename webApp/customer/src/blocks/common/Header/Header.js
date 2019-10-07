@@ -1042,7 +1042,7 @@ export default class Header extends Component {
                               :
                                 <a href="/login">Arthavrudhhi Blogs</a>
                             }*/}
-                               <a href="https://www.arthavruddhi.com/blog">Arthavrudhhi Blogs</a>
+                               <a href="https://www.arthavruddhi.com/blog" target="_blank">Arthavrudhhi Blogs</a>
                                <a href="">Communique</a>
                            
                         </ul>

@@ -47,7 +47,7 @@ export default class UsStocksInvest extends Component {
                   </div>
                 </div>
                <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-sm hidden-xs padding40 usStocksContainer para1">
-                  <div>
+                  <div className="row">
                     <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/usMarket.jpg"/>
                   </div>
                 </div>
