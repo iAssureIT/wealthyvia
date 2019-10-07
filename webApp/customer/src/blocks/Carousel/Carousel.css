@@ -33,12 +33,12 @@ width: 100%;
   text-align: left !important;
   z-index: 1000;
    font-family:'Montserrat',sans-serif;
-   background-color: rgba(0,0,0,0.5);
+   background-color: rgba(0,0,0,0.2);
   margin-top: -380px;
   color: #fff;
 }
 .caption label{
-    margin-top: 100px;
+    margin-top: 170px;
     transition: all 0s ease 0s;
     line-height: 60px;
     font-size: 45px;
@@ -58,7 +58,7 @@ width: 100%;
 	text-align: left !important;
 	z-index: 1000;
 	 font-family:'Montserrat',sans-serif;
-   background-color: rgba(0,0,0,0.6);
+   background-color: rgba(0,0,0,0.2);
 	margin-top: -400px;
 	color: #fff;
 }

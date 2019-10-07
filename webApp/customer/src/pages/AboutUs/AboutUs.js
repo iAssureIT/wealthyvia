@@ -149,7 +149,7 @@ export default class AboutUs extends Component {
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
                     <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 hidden-xs hidden-sm imgContentAU"></div>
                     <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
-                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first. Returns are something dependent on both cleverness of strategies and markets. Our uniquely designed "Risk Management System" measures early deviations from intended outcomes as well as helps us protect your capital & Profits.</label>
                     </div>  
                 </div>  
             </div>
@@ -158,7 +158,7 @@ export default class AboutUs extends Component {
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv1 textAlignCenter"> 
                     <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 hidden-xs hidden-sm imgContentAU"></div>
                     <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Risk Management</p>
-                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first, returns depend on cleverness of strategies and markets.Our uniquely defined “Risk management system” that measures volatility, still left growth potential.  </label>
+                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">Our job to manage the risk first. Returns are something dependent on both cleverness of strategies and markets. Our uniquely designed "Risk Management System" measures early deviations from intended outcomes as well as helps us protect your capital & Profits.</label>
                     </div>  
                 </div>  
             </div>
@@ -166,7 +166,7 @@ export default class AboutUs extends Component {
               </div>            
             </div>
                 <ClientDeliverables />
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+       {/*     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">We have</label>
@@ -186,7 +186,7 @@ export default class AboutUs extends Component {
                     </div>  
                    
                 </div>  
-            </div>  
+            </div>  */}
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack image1 noPadding"> 
@@ -210,9 +210,9 @@ export default class AboutUs extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
-                    <label className="nameOfImageHead">We are</label>
+                    <label className="nameOfImageHead">We have</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Self developed Software tools with 924 hours of hard work and 17000 lines of code  to screen and filter data and algorithm systems to find right trades. </p>
+                    <p>Self developed Software tools with 924 hours of hard work and 17000 lines of code  to screen and filter data and algorithm systems to find right trades. Studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. </p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
@@ -221,9 +221,9 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">We are</label>
+                    <label className="nameOfImageHead">We have</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Self developed Software tools with 924 hours of hard work and 17000 lines of code  to screen and filter data and algorithm systems to find right trades. </p>
+                    <p>Self developed Software tools with 924 hours of hard work and 17000 lines of code  to screen and filter data and algorithm systems to find right trades. Studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. </p>
                     </div>  
                 </div>  
             </div>  
@@ -235,7 +235,7 @@ export default class AboutUs extends Component {
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Clear direction</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Finding trends direction and early deviations from expected trends. Having Right Direction is a must in journey of Wealth creation</p>
+                    <p>We believe in finding trends direction and early deviations from expected trends. Having Right Direction is a must in journey of Wealth creation.</p>
                     </div>  
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
@@ -243,7 +243,7 @@ export default class AboutUs extends Component {
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Clear direction</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Finding trends direction and early deviations from expected trends. Having Right Direction is a must in journey of Wealth creation</p>
+                    <p>We believe in finding trends direction and early deviations from expected trends. Having Right Direction is a must in journey of Wealth creation.</p>
                     </div>  
                    
                 </div>  
@@ -255,7 +255,7 @@ export default class AboutUs extends Component {
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Performance</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Out performance and Under performance measurement  of each stock returns  and portfolio returns with benchmarks </p>
+                    <p>We continuously monitor Out-performance and Under-performance of individual stocks and portfolio composition with respect to benchmarks and indices. </p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm backColorBlack noPadding image1"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
@@ -266,7 +266,7 @@ export default class AboutUs extends Component {
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Performance</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Out performance and Under performance measurement  of each stock returns  and portfolio returns with benchmarks </p>
+                    <p>We continuously monitor Out-performance and Under-performance of individual stocks and portfolio composition with respect to benchmarks and indices. </p>
                     </div>  
                     
                 </div>  
@@ -279,7 +279,7 @@ export default class AboutUs extends Component {
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Management</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Investment Management committee Monthly review and Monitoring</p>
+                    <p>Our investment Management committee reviews the portfolios and investment decision.</p>
                     </div>  
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md backColorBlack noPadding image2"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
@@ -287,7 +287,7 @@ export default class AboutUs extends Component {
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Management</label>
                     <div className="borderBottomDiv"></div>
-                    <p>Investment Management committee Monthly review and Monitoring</p>
+                    <p>Our investment Management committee reviews the portfolios and investment decision.</p>
                     </div>  
                    
                 </div>  

@@ -118,7 +118,7 @@ Submit(event){
 
                           "<pre> " + this.state.message + "</pre>" + 
                           "<br/><br/> ============================ " + 
-                          "<br/><br/> This is a system generated email! " ,
+                          "<br/><br/>" ,
 
       };
       console.log("notification",formValues2); 

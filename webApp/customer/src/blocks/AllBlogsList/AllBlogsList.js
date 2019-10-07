@@ -88,12 +88,12 @@ componentDidMount(){
 							          					<div className="All1blog1 z50">
 							          					
 
-														<img className="img-responsive AllblogImgB" src={data.bannerImage.path} alt="Bannerpng"/>
-														<div className="middle">
+														<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+													{/*	<div className="middle">
 														    
 														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
 														    <i className="fa fa-trash rclr hoverbbk" id={data._id} onClick={this.deleteBlog.bind(this)}></i>
-														  </div>
+														  </div>*/}
 														<a href={"/singleblogpage/"+data._id}>
 															<p className="blogDate p10 mtop20 graycolor">{data.createdAt}</p>
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
@@ -105,7 +105,8 @@ componentDidMount(){
 							          			);
 	                					})
 	                				:
-	                				null
+	                				<h4 className="noBlogs p10 textAlignCenter"><b>No blogs found</b></h4>
+
 		                		}				
 	          		
 	          		

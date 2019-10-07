@@ -43,7 +43,7 @@
  font-family:'Montserrat',sans-serif;
 	text-align: center;
 	background-color: rgba(0,0,0,0.9);
-	margin-top: -200px;
+	margin-top: -198px;
 	padding: 50px;
     cursor: pointer;
 	color: #fff;
@@ -106,18 +106,18 @@ text-align: center;
 padding: 10px;
 }
 .imgContainerBlog{
-        height: 180px !important;
-     font-family:'Montserrat',sans-serif;
-        overflow: hidden;
+    height: 180px !important;
+    font-family:'Montserrat',sans-serif;
+    overflow: hidden;
 
 }
 .imgContainerBlog img {
     border: none !important;
-    height: 150px;
+    height: 100%;
 }
 .imgContainerBlog label{
     font-size: 16px;
-    padding-top: 5px;
+    padding-top: 8px;
 }
 .imgContainerBlog p{
     font-size: 14px;

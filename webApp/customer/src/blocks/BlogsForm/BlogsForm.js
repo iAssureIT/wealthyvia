@@ -276,6 +276,7 @@ uploadBlogImage(event){
           .patch('/api/blogs/patch/'+id,formValues)
           .then((res)=>{
                       swal(" Your Blog Update successfully ");
+                       this.props.history.push("/allblogs");
                   })
                   .catch((error)=>{
                     console.log("error = ", error);

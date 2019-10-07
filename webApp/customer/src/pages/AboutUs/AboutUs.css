@@ -151,7 +151,7 @@ width: 80px !important;
 	margin-top:10px;
 	font-weight: normal;
 	font-size: 20px;
-	line-height: 47px;
+	line-height: 30px;
 
 }
 .nineYearImage img{
@@ -174,7 +174,7 @@ width: 80px !important;
 	margin-top:10px;
 	font-weight: normal;
 	font-size: 20px;
-	line-height: 47px;
+	line-height: 30px;
 
 }
 .riskDiv1{
@@ -194,7 +194,7 @@ width: 80px !important;
 	margin-top:10px;
 	font-weight: normal;
 	font-size: 18px;
-	line-height: 40px;
+	line-height: 30px;
 
 }
 .blackDiv{
@@ -206,7 +206,7 @@ width: 80px !important;
 }
 .blackDiv1{
 	padding-top: 100px !important;
-	padding: 60px !important;
+	padding: 40px !important;
 	height: 700px;
 
 	background-color: rgba(0,0,0,0.5) !important;
@@ -223,7 +223,7 @@ width: 80px !important;
 }
 
 .imgContentAU{
-	height: 120px;
+	height: 80px;
 }
 .imgContentAU img{
 	height: 100%;

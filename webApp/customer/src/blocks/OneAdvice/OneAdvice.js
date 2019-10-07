@@ -33,7 +33,7 @@ export default class OneAdvice extends Component {
                     <p >Quality is something that is remembered long after its price paid is paid. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for a very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
                     compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
                     How to make consistent wealth with them ?</p>
-                     <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                     <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>
                    
@@ -58,7 +58,7 @@ export default class OneAdvice extends Component {
                     <p >Quality is something that is remembered long after its price paid is gone. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
                     compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
                     How to make consistent wealth with them ?</p>
-                     <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                     <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>
                   </div>

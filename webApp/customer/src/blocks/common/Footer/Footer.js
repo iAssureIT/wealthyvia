@@ -58,7 +58,7 @@ export default class Footer extends Component {
         "mail"          : 'Dear Admin, <br/>'+
                           "New query came from client! <br/> <br/> " + 
                           "<b>Client Email: </b>"  + this.state.emailId + '<br/><br/>'+
-                          " This is a system generated email.please do not replay! " ,
+                          "  " ,
 
         };
         axios
@@ -86,10 +86,10 @@ export default class Footer extends Component {
                   <ul>
                       <li><a href="/#5gcpm">5GCPM Portfolio</a></li>
                       <li><a href="/#safeHevenMoats">Safe Heavan Stocks</a></li>
-                      <li> <a href="/#safeHeven">Safe Heavan Stocks + Alpha</a></li>
+                      <li> <a href="/#safeHevenAlpha">Safe Heavan Stocks + Alpha</a></li>
                      <li> <a href="#">Nifty Algo Tranding</a></li>
-                     <li> <a href="/#unlistedPre">USA Stocks Portfolio</a></li>
-                     <li> <a href="/#uslistedStocks">Unlisted Stocks</a></li>
+                     <li> <a href="/#USAStocks">USA Stocks Portfolio</a></li>
+                     <li> <a href="/#unlistedStocks">Unlisted Stocks</a></li>
                      <li> <a href="#">Multibagger</a></li>
                   </ul>
                 </div>
@@ -122,14 +122,7 @@ export default class Footer extends Component {
                       <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
                         <img src="/images/twitter.png"/>
                       </div> 
-                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook ">
-                         <img src="/images/snapchat.png"/>
-                      </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
-                        <img src="/images/instagram.png"/>
-                      </div>
-                        <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
-                         <img src="/images/pinterest.png"/>
-                      </div>                    
+                          
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">

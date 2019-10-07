@@ -112,6 +112,9 @@ a .active{
 .noPadding{
       padding: 0px !important;
 }
+.padding40{
+    padding-right: 80px !important;
+}
 .textAlignRight{
   text-align: right;
 }
@@ -184,8 +187,8 @@ background-color: #DD7975 !important;
 padding:0px !important;
 }
 .errorMsg{
-      font-family: 'PT Sans', sans-serif;
-
+  font-family: 'PT Sans', sans-serif;
+  font-size: 16px;
   color:#f00 !important;
 }
 /*color #376bff*/

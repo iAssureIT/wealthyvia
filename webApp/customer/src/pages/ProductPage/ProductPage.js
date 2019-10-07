@@ -584,7 +584,7 @@ export default class ProductPage extends Component {
 			</div>
 
 		);
-	}else if(this.state.divID == "safeHeven"){
+	}else if(this.state.divID == "safeHevenAlpha"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
@@ -764,7 +764,7 @@ export default class ProductPage extends Component {
 			</div>
 
 		);
-	}else if(this.state.divID == "unlistedPre"){
+	}else if(this.state.divID == "USAStocks"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
@@ -1010,7 +1010,7 @@ export default class ProductPage extends Component {
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" >
                         <ul className="customOlOther">
                           <li><span className="numberDiv">1</span>we never try to change the details over a phone call or any direct mail.</li>
-                          <li><span className="numberDiv">2</span>We never ask you to send us investor’s bank details from any other id.</li>
+                          <li><span className="numberDiv">2</span>We never ask you to send us investor’s bank details from any other email ID.</li>
                           <li><span className="numberDiv">3</span>If you receive any such communication it can be a fraudulent activity. Please notify us in that case.</li>
                           <li><span className="numberDiv">4</span>We never change our account details during transactions</li>
                           <li><span className="numberDiv">5</span>If we will ever change the details same will be reflected on our website.</li>

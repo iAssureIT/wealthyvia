@@ -276,7 +276,7 @@ export default class ReadyToGo extends Component {
                             "Ans : "+this.state.answersofQ4+"<br/><br/>"+
                             ""+this.state.questionsArray[4]+"<br/>"+
                             "Ans : "+this.state.answersofQ5+"<br/><br/>"+
-                            "This is a system generated email. Please do not replay. " ,
+                            "" ,
 
         };
         axios
@@ -361,7 +361,7 @@ export default class ReadyToGo extends Component {
                           "<b> Name: </b>"   + this.state.PRname + '<br/>'+
                           "<b> Email: </b>"  + this.state.PRemail + '<br/>'+
                           "<b> Contact Number: </b>"  + this.state.PRcontactNumber + '<br/><br/>'+
-                          "This is a system generated email. Please do not replay. " ,
+                          "" ,
 
       };
       axios
@@ -442,7 +442,7 @@ export default class ReadyToGo extends Component {
                           "<b>Email: </b>"  + this.state.emailModal + '<br/><br/>'+
                           "<b>Contact Number: </b>"  + this.state.contactNumberModal + '<br/><br/>'+
                           "<pre> " + this.state.message + "</pre>" + 
-                          "<br/><br/> This is a system generated email! " ,
+                          "<br/><br/> " ,
 
         };
         axios
@@ -757,7 +757,8 @@ validateFormReqReview() {
     }
   }
   render() {
-  
+    const token = localStorage.getItem("user_ID");
+    console.log("token",token)
     return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
               <div className="row">
@@ -1497,9 +1498,21 @@ validateFormReqReview() {
                      <label>Ready to go?</label><br/>
                      <span>Start your wealth creation today with us</span><br/>
                      <div className="col-lg-11 col-lg-offset-1 noPadding">
+                     {token == "" ?
+                      <a  href="/login" ><div className="buyNowButtonPP col-lg-3">Invest Now</div></a>
+                        :
                       <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+                      }
+                      {token == "" ?
+                      <a  href="/login" ><div className="col-lg-offset-1 col-lg-3 enquireNow">Enquire Now</div></a>
+                        :
                       <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                      }
+                      {token == "" ?
+                      <a  href="/login" ><div className="col-lg-offset-1 col-lg-3 buyNowButtonPP">Portfolio Review</div></a>
+                        :
                       <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>
+                      }
                       </div>
                   </div>
               </div>

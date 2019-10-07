@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import "./BlogCarousel.css";
 import OwlCarousel 		 from 'react-owl-carousel';
+import axios        from 'axios';
+import swal from 'sweetalert';
+
+
+import "./BlogCarousel.css";
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
@@ -22,11 +26,35 @@ export default class BlogCarousel extends Component {
             nav:true,
             loop:false
         }
-    }
-	    	
+    },
+	  "Blogs"		: [ ] 	
 	    };
-  	}  
+  	} 
+  	getBlogData(){
+	axios
+      .get('/api/blogs/get/all/list')
+      .then((response)=>{
+       console.log("===>",response.data);
+      	this.setState({
+      			Blogs:response.data
+      		});
+      })
+      .catch(function(error){
+        console.log(error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   /*this.props.history.push("/");*/
+              }
+      })
+}
+componentDidMount(){
+	var Blogs =[];
+	this.getBlogData();
+}
   render() {
+  			var data = this.state.Blogs;
+
 		return (
 			<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  blogContainer otherCss ">
 				<div className="row">
@@ -42,24 +70,40 @@ export default class BlogCarousel extends Component {
 						>
 						
 						    <div className="item">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog  ">
-									<div className="row">
-										<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpeg"/>
-									</div>
-								</div>
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-									<div className="row">
-										<label>Earnings Analysis with Wealthyvia</label>
-										<p>The Company has Operationalized 2 New CNG station, Totaling to 84 CNG Stations.
+							
+								{
+		                		data && data.length > 0 ?
+				      				data.map((data, index)=>{
+		                					return(
+							          			<div className="col-lg-3 Allblog">
+							          				
+							          					<div className="All1blog1 z50">
+							          					
 
-											Volume increase of 10% in PNG and 9% in CNG in Q1 FY20 on YoY basis.
+														<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+													{/*	<div className="middle">
+														    
+														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
+														    <i className="fa fa-trash rclr hoverbbk" id={data._id} onClick={this.deleteBlog.bind(this)}></i>
+														  </div>*/}
+														<a href={"/singleblogpage/"+data._id}>
+															<p className="blogDate p10 mtop20 graycolor">{data.createdAt}</p>
+															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+															<p className="blogPara p10 graycolor">{data.summary}</p>
+														</a>
+														</div>
+							          				
+							          			</div>
+							          			);
+	                					})
+	                				:
+	                				<h4 className="noBlogs p10 textAlignCenter"><b>No blogs found</b></h4>
 
-											...<a href="/login"> read more</a></p>
-									</div>
-								</div>
+		                		}				
+	          		
 							</div>
 							 <div className="item ">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+								{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
 										<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpg"/>
 
@@ -74,10 +118,10 @@ export default class BlogCarousel extends Component {
 
 										...<a href="/login"> read more</a></p>
 									</div>
-								</div>
+								</div>*/}
 							</div>
 							 <div className="item ">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+								{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
 										<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpeg"/>
 
@@ -92,7 +136,7 @@ export default class BlogCarousel extends Component {
 
 										...<a href="/login"> read more</a></p>
 									</div>
-								</div>
+								</div>*/}
 							</div>
 							
 						</OwlCarousel>

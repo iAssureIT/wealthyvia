@@ -18,8 +18,7 @@ export default class BottomDiv extends Component {
 						<div className="row">
 			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">5GCPM</label><br/>
-				          <p>Introducing 5GCPM to you</p>
+				          <label className="pad20">5GCPM</label><br/><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				          <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -33,8 +32,7 @@ export default class BottomDiv extends Component {
 						<div className="row">
 			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">Safe Heaven Moats</label><br/>
-				          <p>Spearheaded by renowned financial specialists.</p>
+				          <label className="pad20">Safe Heaven Moats</label><br/><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -43,12 +41,11 @@ export default class BottomDiv extends Component {
 
 			  		</div>
 				</div></a>
-				<a href="#safeHeven"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+				<a href="#safeHevenAlpha"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
 			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab1.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">SHM and MF alpha</label><br/>
-				          <p>Spearheaded by renowned financial specialists.</p>
+				          <label className="pad20">SHM and MF alpha</label><br/><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -57,31 +54,29 @@ export default class BottomDiv extends Component {
 
 			  		</div>
 				</div></a>
-				<a href="#uslistedStocks"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+				<a href="#unlistedStocks"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
 			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab2.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">Unlisted Pre Ipo</label><br/>
-				          <p>Spearheaded by renowned financial specialists.</p>
+				          <label className="pad20">Unlisted Stocks</label><br/><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="margins">Unlisted Pre Ipo</label><br/>
+				          <label className="margins">Unlisted Stocks</label><br/>
 				      	</div>
 
 			  		</div>
 				</div></a>
 					
-				<a href="#unlistedPre"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+				<a href="#USAStocks"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ab4.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">US listed stocks</label><br/>
-				          <p>Get the latest news and updates on ASK Group and its companies.</p>
+				          <label className="pad20">USA Stocks</label><br/><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="margins">US listed stocks</label><br/>
+				          <label className="margins">USA Stocks</label><br/>
 				      	</div>
 
 			  		</div>

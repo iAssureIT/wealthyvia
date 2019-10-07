@@ -8,7 +8,7 @@ export default class StartTrading extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"safeHeven"
+          nameOfDiv:"safeHevenAlpha"
         };
     }
   ScrollTop(event){
@@ -32,7 +32,7 @@ export default class StartTrading extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  backColorWhite mt20" id="safeHeven">
+            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  backColorWhite mt20" id="safeHevenAlpha">
               <div className="row">
 
                 <div className="col-lg-10 col-md-6 hidden-xs hidden-sm startTrandingContent backColorGray">
@@ -41,7 +41,7 @@ export default class StartTrading extends Component {
                     <label><span className="iceBlueColor">MF and safe heaven moats + alpha</span></label>
                     <p>Assets can be called assets when they put money in your pocket and not just appreciate in value. Assets have earning power, be it rental income or dividend yields. Similarly we have SHM MF Enhancer which can generate extra returns on top of regular ones. 
                         What if one can have the cake & eat it too. Can this happen also with your stocks or mutual funds ?
-                        </p> <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                        </p> <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad50">
@@ -67,7 +67,7 @@ export default class StartTrading extends Component {
                     <label><span className="iceBlueColor">MF and safe heaven moats + alpha</span></label>
                     <p>Assets can be called assets when they put money in your pocket and not just appreciate in value. Assets have earning power , be it rental income or dividend yields. Similarly we have SHM MF Enhancer which can generate extra returns on top of regular ones. 
                         What if one gets cherry on cake when expecting only cake or Bun Maska jam too when orders only Chaai. Can this happen also with your stocks or mutual funds ?
-                        </p> <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                        </p> <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad50">

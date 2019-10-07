@@ -98,3 +98,8 @@ position: relative;
 	    background-color: #111;
     border-radius: 12px;
 }
+.noBlogs{
+	margin-top: 10%;
+	margin-bottom: 10%;
+	font-size:30px !important;
+}

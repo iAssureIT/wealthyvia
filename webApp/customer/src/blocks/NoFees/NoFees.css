@@ -39,6 +39,8 @@
 .fiveG {
     height: 400px;
     margin-top: -350px;
+    background-image: url("/images/loading.gif");
+    background-repeat: no-repeat;
 }
 .fiveG p{
         justify-content: center;

@@ -370,7 +370,7 @@ export default class Header extends Component {
                               "Ans : "+this.state.answersofQ4+"<br/><br/>"+
                               ""+this.state.questionsArray[4]+"<br/>"+
                               "Ans : "+this.state.answersofQ5+"<br/><br/>"+
-                              "This is a system generated email. Please do not replay. " ,
+                              "" ,
 
           };
           axios
@@ -1002,15 +1002,7 @@ export default class Header extends Component {
                                        <img src="/images/facebook.png"/>
                                     </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
                                       <img src="/images/twitter.png"/>
-                                    </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
-                                       <img src="/images/snapchat.png"/>
-
-                                    </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
-                                      <img src="/images/instagram.png"/>
-                                    </div>
-                                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
-                                       <img src="/images/pinterest.png"/>
-                                    </div>
+                                    </div> 
                                   </div>
                                 </div>
                                 </div>
@@ -1038,7 +1030,7 @@ export default class Header extends Component {
                   </div>
 
                   <div className="collapse navbar-collapse" id="navBar">
-                    <ul className="nav navbar-nav navbar-right customUl">
+                    <ul className="nav navbar-nav navbar-right customUl width50">
 
                       
                       <li className="nav-item dropdown">
@@ -1050,7 +1042,7 @@ export default class Header extends Component {
                               :
                                 <a href="/login">Arthavrudhhi Blogs</a>
                             }*/}
-                               <a href="/allblogs">Arthavrudhhi Blogs</a>
+                               <a href="https://www.arthavruddhi.com/blog">Arthavrudhhi Blogs</a>
                                <a href="">Communique</a>
                            
                         </ul>
@@ -1059,13 +1051,13 @@ export default class Header extends Component {
                           <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Offerings <span className="caret"></span>
                           </a>
-                          <ul className="dropdown-menu customDropdown" aria-labelledby="navbarDropdownMenuLink">
+                          <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
                             <a  className="dropdown-item" href="/#5gcpm">5GCPM Portfolio</a>
                             <a className="dropdown-item" href="/#safeHevenMoats">Safe Heavan Stocks</a>
-                            <a className="dropdown-item" href="/#safeHeven">Safe Heavan Stocks + Alpha</a>
+                            <a className="dropdown-item" href="/#safeHevenAlpha">Safe Heavan Stocks + Alpha</a>
                             <a className="dropdown-item" href="#">Nifty Algo Tranding</a>
-                            <a className="dropdown-item" href="/#unlistedPre">USA Stocks Portfolio</a>
-                            <a className="dropdown-item" href="/#uslistedStocks">Unlisted Stocks</a>
+                            <a className="dropdown-item" href="/#USAStocks">USA Stocks Portfolio</a>
+                            <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
                             <a className="dropdown-item" href="#">Multibagger</a>
                           </ul>
                         </li>
@@ -1074,17 +1066,25 @@ export default class Header extends Component {
                         <a href="/about-us" >About Us </a>
                         
                       </li>
-                        {console.log("this.state.userinfo",this.state.userinfo)}
                       <li className="dropdown">
                       {token ?
-                        <a  className="cursorPointer" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? this.state.userinfo.fullName:"Login/Signup"}</a>
+                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? this.state.userinfo.fullName:"Login/Signup"}</a>
                         :
                         <a href="/login">Login/Signup </a>
                       }
                       </li>
-                         <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
-                                <span >Invest Now</span>
-                      </li>
+                      {
+                          token == "" ?
+                            <a  href="/login" ><li className="dropdown investNowHeadBefore">
+                              <span >Invest Now</span>
+                            </li>   
+                            </a>                    
+                          :
+                            <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
+                                    <span >Invest Now</span>
+                            </li>                     
+                      }
+                  
                     </ul>
                 
                    

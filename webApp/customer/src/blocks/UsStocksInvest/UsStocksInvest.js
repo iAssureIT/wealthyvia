@@ -8,7 +8,7 @@ export default class UsStocksInvest extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"unlistedPre",
+          nameOfDiv:"USAStocks",
         };
     }
   ScrollTop(event){
@@ -32,7 +32,7 @@ export default class UsStocksInvest extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mt20" id="unlistedPre">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mt20" id="USAStocks">
               <div className="row">
 
                 <div className="col-lg-10 col-md-6 hidden-sm hidden-xs startTrandingContent backColorGray">
@@ -40,7 +40,7 @@ export default class UsStocksInvest extends Component {
                     <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">US stocks investments simplified </span></label>
                     <p>One can unleash global growth potential by Investing in the largest economy and 40% market of the world equities – USA. It is also a geographical diversification along with opportunity to be part of High Tech global giants’ growth and that too with zero brokerage. Wanna know more?</p>
-                     <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                     <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>
                    
@@ -63,7 +63,7 @@ export default class UsStocksInvest extends Component {
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
                    <label><span className="iceBlueColor">US stocks investments simplified  </span></label>
                     <p>One can unleash global growth potential by Investing in the largest economy and 40% market of the world equities – USA. It is also a geographical diversification along with opportunity to be part of High Tech global giants’ growth and that too with zero brokerage. Wanna know more?</p>
-                     <a href={"/ProductPage/"+this.state.nameOfDiv} className="">Read More </a>
+                     <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
                     </div>
                   </div>
                 </div>

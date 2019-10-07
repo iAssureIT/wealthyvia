@@ -59,8 +59,8 @@ componentDidMount(){
           		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
           		<BlogContent blogContent={this.state.blogContent}/>
           		<RelatedBlogs/>
-          		<BlogComment/>
-
+{/*          		<BlogComment/>
+*/}
           		
 			</div>
 		);

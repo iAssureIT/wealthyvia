@@ -88,24 +88,24 @@ handleChange(event){
                               </div>
                               <div class="commentBox col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label htmlFor="comment">Add Comment<span className="redFont"></span></label>
-                                <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="5" id="comment"></textarea>
+                                <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="5" id="comment" disabled></textarea>
                               </div>
                               <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label htmlFor="userName">Name<span className="redFont">*</span></label>
                                 <div className="">
-                                  <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="userName" type="text" name="userName"  ref="userName" value={this.state.userName}	 placeholder=""/>
+                                  <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="userName" type="text" name="userName"  ref="userName" value={this.state.userName}	 placeholder="" disabled/>
                                 </div>
                               </div>
                               <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label htmlFor="email">Email<span className="redFont">*</span></label>
                                 <div className="">
-                                  <input className="form-control" id="email" type="text" name="email" ref="email"  value={this.state.email} placeholder=""/>
+                                  <input className="form-control" id="email" type="text" name="email" ref="email"  value={this.state.email} placeholder="" disabled/>
                                 </div>
                               </div>
                               <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label htmlFor="contactNumber">Website<span className="redFont"></span></label>
                                 <div className="">
-                                  <input className="form-control" id="contactNumber" type="text" name="contactNumber" value={this.state.contactNumber} maxLength={10}   ref="contactNumber" placeholder=""/>
+                                  <input className="form-control" id="contactNumber" type="text" name="contactNumber" value={this.state.contactNumber} maxLength={10}   ref="contactNumber" placeholder="" disabled/>
                                 </div>
                               </div>
                              
