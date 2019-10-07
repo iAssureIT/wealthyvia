@@ -14,7 +14,7 @@ import './SignUp.css';
 import axios from 'axios';
 
 
-axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+axios.defaults.baseURL = 'api.wealthyvia.com';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 

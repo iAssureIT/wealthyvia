@@ -7,7 +7,7 @@ import axios                              from 'axios';
 import "./Header.css";
 var array =[];
 var answersarray =[];
-axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+axios.defaults.baseURL = 'api.wealthyvia.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export default class Header extends Component {

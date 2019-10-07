@@ -21,7 +21,7 @@ import CKEditor from 'ckeditor4-react';
 /*const clientnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
 const emailRegex = RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 */
-axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+axios.defaults.baseURL = 'api.wealthyvia.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class BlogsForm extends Component{
@@ -90,7 +90,7 @@ class BlogsForm extends Component{
   componentDidMount(){
     this.edit();
       axios
-        .get('http://wealthyviapi.iassureit.com/api/projectsettings/get/S3')
+        .get('api.wealthyvia.com/api/projectsettings/get/S3')
         .then((response)=>{
           
           const config = {

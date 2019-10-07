@@ -10,7 +10,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+axios.defaults.baseURL = 'api.wealthyvia.com';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
@@ -91,7 +91,7 @@ class SignUp extends Component {
 			            })
 			            .catch(function (error) {
 			                console.log(error);
-        					swal("Unable to submit data.");
+        					swal("Something went wrong..","Unable to submit data.","warning");
 			            })
                 	)
                 :
