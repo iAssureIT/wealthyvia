@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import CKEditor from 'ckeditor4-react';
 
-axios.defaults.baseURL = 'api.wealthyvia.com';
+axios.defaults.baseURL = 'http://api.wealthyvia.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class OfferingForm extends Component{
@@ -79,7 +79,7 @@ class OfferingForm extends Component{
   componentDidMount(){
     this.edit(this.props.match.params.selectedID);
       axios
-        .get('api.wealthyvia.com/api/projectsettings/get/S3')
+        .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
         .then((response)=>{
           
           const config = {

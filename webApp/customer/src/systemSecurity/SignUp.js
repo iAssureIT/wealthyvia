@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom';
 import {browserHistory} from 'react-router';
 import swal from 'sweetalert';
 import $ from "jquery";
-/*import 'bootstrap/js/modal.js';
-*/import 'bootstrap/js/tab.js';
+import 'bootstrap/js/tab.js';
 import 'font-awesome/css/font-awesome.min.css';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'api.wealthyvia.com';
-
+axios.defaults.baseURL = 'http://api.wealthyvia.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const formValid = formerrors=>{

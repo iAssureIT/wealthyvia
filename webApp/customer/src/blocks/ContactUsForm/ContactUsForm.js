@@ -3,7 +3,8 @@ import "./ContactUsForm.css";
 import axios 				from 'axios';
 import swal from 'sweetalert';
 
-axios.defaults.baseURL = 'api.wealthyvia.com';
+axios.defaults.baseURL = 'http://api.wealthyvia.com';
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 
