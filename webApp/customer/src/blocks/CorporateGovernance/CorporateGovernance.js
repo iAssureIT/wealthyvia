@@ -42,13 +42,14 @@ export default class CorporateGovernance extends Component {
                     <label><span className="iceBlueColor">C : Corporate Governance</span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl">
-                        <li>High Promoter Holding</li>
-                        <li>Nil/Low Pledging</li>
-                        <li>Consistent Dividends</li>
-                        <li>Tax Paying</li>
-                        <li>Free Cash flows</li>
-                        <li>Related party transactions</li>
-                        <li>Management Reputation</li>
+                        <li>We prefer -</li>
+                        <li>High Promoter Holding and constant or increasing % </li>
+                        <li>Nil/Low Pledged shares by promoters</li>
+                        <li>Consistent & increasing Dividends payouts</li>
+                        <li>Regular and industry standard Tax Paying </li>
+                        <li>Generation of high Free Cash flows</li>
+                        <li>No or neglible non suspcious Related party transactions</li>
+                        <li>Trustworthy Management Reputation</li>
                         </ul>
                       </p>                  
                     </div>
@@ -61,14 +62,15 @@ export default class CorporateGovernance extends Component {
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">C : Corporate Governance </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
-                       <ul className="customOl">
-                        <li>High Promoter Holding</li>
-                        <li>Nil/Low Pledging</li>
-                        <li>Consistent Dividends</li>
-                        <li>Tax Paying</li>
-                        <li>Free Cash flows</li>
-                        <li>Related party transactions</li>
-                        <li>Management Reputation</li>
+                      <ul className="customOl">
+                        <li>We prefer -</li>
+                        <li>High Promoter Holding and constant or increasing % </li>
+                        <li>Nil/Low Pledged shares by promoters</li>
+                        <li>Consistent & increasing Dividends payouts</li>
+                        <li>Regular and industry standard Tax Paying </li>
+                        <li>Generation of high Free Cash flows</li>
+                        <li>No or neglible non suspcious Related party transactions</li>
+                        <li>Trustworthy Management Reputation</li>
                         </ul>
                       </p>                  
                     </div>

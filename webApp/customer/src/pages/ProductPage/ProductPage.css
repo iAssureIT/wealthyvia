@@ -40,6 +40,8 @@
 .customOl li{
 	padding:5px !important;
 }
+.customOl li>a{
+text-decoration: none !important}
 .customOlOther{
       padding-left: 15px !important;
      list-style: none;

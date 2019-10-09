@@ -122,7 +122,7 @@ class Login extends Component {
                   <span className="blocking-span noIb">
                     <input type="email" className="col-lg-12 col-md-12 col-xs-12 col-sm-12 oesSignUpForm tmsLoginTextBox" onChange={this.handleChange} ref="loginusername" id="loginusername" name="loginusername" placeholder="" required/>
                     <span className="floating-label"><i className="fa fa-envelope signupIconFont" aria-hidden="true"/>Email ID</span>   
-                  </span>
+                  </span> 
                 </div>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12 marBtm30">
@@ -148,11 +148,11 @@ class Login extends Component {
                <div className="col-lg-12 col-md-6 col-sm-6 ">
                   <Link to='/signup' className="UMGreyy UMGreyy_l UMcreateacc col-lg-12 col-md-12 col-xs-12 col-sm-12"> Sign Up</Link>
                 </div>
-           {/*     <div className="col-lg-6 col-md-6 col-sm-6 offset-lg-1 customFl">
+                <div className="col-lg-6 col-md-6 col-sm-6 offset-lg-1 customFl">
                   <Link to='/forgot-pwd' className="UMGreyy UMGreyy_l UMcreateacc col-lg-12 col-md-12 col-xs-12 col-sm-12">
                     Forgot Password?
                   </Link>
-                </div>*/}
+                </div>
               </div>
 {/*              <div className="col-lg-12 col-md-12 col-sm-12 pdcls">
                 <div className="col-lg-12 col-md-12 col-sm-12 ">

@@ -1,6 +1,7 @@
 
 .startTrandingContent{
 	padding: 80px !important;
+	margin-top: 40px !important;
 	 font-family:'Montserrat',sans-serif;
     justify-content: center;
 
@@ -51,7 +52,7 @@
 }
 .usStocksContainer{
 	height: 400px;
-	margin-top: -450px;
+	margin-top: -502px;
 	  background-image: url("/images/loading.gif");
   background-repeat: no-repeat;
 }

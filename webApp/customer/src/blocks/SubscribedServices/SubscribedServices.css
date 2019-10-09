@@ -1,0 +1,86 @@
+.headerServices{
+	padding: 10px;
+	font-size: 25px;
+}
+.blogContainCD{
+	border: 1px solid #aaa;
+	padding: 50px !important;
+	padding-top: 20px !important;
+}
+.blogContainCD h4{
+
+	text-align: center;
+}
+.headerBlogCD{
+	font-size: 20px;
+	padding-bottom: 20px;
+	font-weight: bold !important;
+}
+.customTabContent{
+	padding: 20px !important;
+	background-color: #fff;
+}
+.customStack{
+}
+.customStack>li.active>a, .customStack>li.active>a:focus, .customStack>li.active>a:hover{
+	border-radius: 3px !important;
+	background-color:#201a47 !important;
+	color:#fff !important;
+}
+.customStack>li.active>a:hover{
+
+}
+.planContainer{
+padding: 20px !important;
+margin-bottom: 40px;
+ font-family:'Montserrat',sans-serif;
+	color: #666 ;
+
+}
+.planContainer label{
+	text-align: center;
+		color: #333 !important;
+
+}
+.customStack li>a{
+	font-size: 16px;
+	border:1px solid #aaa;
+	padding: 18px !important;
+	color: #666 !important;
+	margin-bottom:10px !important; 
+}
+.customTabContent h3,h5{
+ text-align: center;
+}
+.clickToPlan{
+	color: #00f;
+	font-size: 12px;
+	cursor: pointer;
+}
+.myULCD li{
+	cursor: pointer;
+	font-size: 15px;
+}
+.myULCD li>a:hover{
+	color: #00f !important;
+	text-decoration: none !important;
+}
+.myULCDSP{
+
+	padding-left:0px !important;
+}
+.myULCDSP li{
+	font-size: 15px;
+	color: #666  !important;
+	padding-bottom: 0px !important;
+	list-style: none !important;
+}
+.myULCDSP li>a{
+	color: #666  !important;
+}
+.myULCDSP li>a:hover{
+	text-decoration: none !important;
+}
+.priBlogHead{
+	font-size: 16px;
+}

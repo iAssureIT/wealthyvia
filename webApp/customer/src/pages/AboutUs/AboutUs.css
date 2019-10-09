@@ -230,11 +230,16 @@ width: 80px !important;
 	width: 100%;
 }
 .imageContent1{
-	height: 600px;
+	height: 500px;
 	font-size: 20px;
 	color: #666;
-    padding: 70px !important;
-    padding-top: 40px !important;
+
+    padding: 30px !important;
+/*    padding-left: 120px !important;
+*/    padding-top: 20px !important;
+}
+.imageContent1 p{
+    text-align: justify;	
 }
 .imageContent2{
 	height: auto;
@@ -244,7 +249,10 @@ width: 80px !important;
     padding-top: 40px !important;
 }
 .image1{
-	height: 600px;
+	height: 400px;
+	margin-top: 30px !important;
+	 background-image: url("/images/loading.gif");
+  background-repeat: no-repeat;
 }
 .image2{
 	height: 350px;
@@ -265,4 +273,7 @@ width: 80px !important;
 	width: 100px;
 		border-bottom: 2px solid #201A47;
 		margin-bottom: 20px;
+}
+.padding40inDiv{
+	padding: 90px !important;
 }

@@ -29,10 +29,11 @@ export default class Practicability extends Component {
                     <label><span className="iceBlueColor">P : Practicability </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl">
-                          <li>Probablistic Approach</li>
-                          <li>Feasibility</li>
-                          <li>Headwinds & Tailwinds</li>
-                          <li>What can go wrong?</li>
+                          <li>Investments are game of 6 dimensional chess and is a game theory and probablity </li>
+                          <li>Probablistic Approach to better judge upcoming outcomes. </li>
+                          <li>Feasibility : about contraints, resources , "have it" factors, opportunities and its encashments. </li>
+                          <li>Headwinds & Tailwinds: check on them from sector, company, regions and dependencies point of view. </li>
+                          <li>Cross checks and verifications, thesis validation : 90% confidence but 10% skepticism gives better results.</li>
                         </ul>
                       </p>                  
                     </div>
@@ -50,10 +51,11 @@ export default class Practicability extends Component {
                     <label><span className="iceBlueColor">P : Practicability </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                          <ul className="customOl">
-                          <li>Probablistic Approach</li>
-                          <li>Feasibility</li>
-                          <li>Headwinds & Tailwinds</li>
-                          <li>What can go wrong?</li>
+                          <li>Investments are game of 6 dimensional chess and is a game theory and probablity </li>
+                          <li>Probablistic Approach to better judge upcoming outcomes. </li>
+                          <li>Feasibility : about contraints, resources , "have it" factors, opportunities and its encashments. </li>
+                          <li>Headwinds & Tailwinds: check on them from sector, company, regions and dependencies point of view. </li>
+                          <li>Cross checks and verifications, thesis validation : 90% confidence but 10% skepticism gives better results.</li>
                         </ul>
                       </p>                  
                     </div>

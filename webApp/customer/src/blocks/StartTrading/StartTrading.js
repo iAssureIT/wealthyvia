@@ -8,7 +8,7 @@ export default class StartTrading extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"safeHevenAlpha"
+          nameOfDiv:"safeHeavenAlpha"
         };
     }
   ScrollTop(event){
@@ -32,7 +32,7 @@ export default class StartTrading extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  backColorWhite mt20" id="safeHevenAlpha">
+            <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12  backColorWhite mt20" id="safeHeavenAlpha">
               <div className="row">
 
                 <div className="col-lg-10 col-md-6 hidden-xs hidden-sm startTrandingContent backColorGray">

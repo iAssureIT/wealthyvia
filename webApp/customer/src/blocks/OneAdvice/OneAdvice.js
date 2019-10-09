@@ -8,7 +8,7 @@ export default class OneAdvice extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"safeHevenMoats"
+          nameOfDiv:"safeHeavenMoats"
         };
     }
   ScrollTop(event){
@@ -23,16 +23,14 @@ export default class OneAdvice extends Component {
   render() {
 
     return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite  mt20" id="safeHevenMoats">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite  mt20" id="safeHeavenMoats">
               <div className="row">
 
                 <div className="col-lg-10 col-lg-offset-2 col-md-6 hidden-sm hidden-xs startTrandingContent padding40Left backColorGray">
                   <div className="row">
                     <div className="col-lg-7 col-md-7 col-md-offset-5 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">Safe heaven moats</span> </label>
-                    <p >Quality is something that is remembered long after its price paid is paid. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for a very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
-                    compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
-                    How to make consistent wealth with them ?</p>
+                    <p >Quality is something that is remembered long after it's price is paid. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for a very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to compete or fetch market shares from such giants but these behemoth elephants continue to march North. How to make consistent wealth with them ?</p>
                      <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>
@@ -55,9 +53,8 @@ export default class OneAdvice extends Component {
                   <div className="row">
                     <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
                     <label><span className="iceBlueColor">Safe heaven moats</span> </label>
-                    <p >Quality is something that is remembered long after its price paid is gone. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to 
-                    compete or fetch market shares from such giants but these behemoth elephants continue to march North. 
-                    How to make consistent wealth with them ?</p>
+                     <p >Quality is something that is remembered long after it's price is paid. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for a very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to compete or fetch market shares from such giants but these behemoth elephants continue to march North. How to make consistent wealth with them ?</p>
+
                      <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>

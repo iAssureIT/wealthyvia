@@ -145,7 +145,6 @@ class Layout extends Component{
                 <Router>
                   <Switch>
                     {/*<Route path="/" component={Dashboard} exact />*/}
-                    <Route path="/dashboard" component={Dashboard} exact />
                   {/*Admin Routes*/}
                     <Route path="/umlistofusers"        component={UMListOfUsers}   exact />
                     <Route path="/umroleslist"          component={UMRolesList}     exact />
@@ -210,6 +209,8 @@ class Layout extends Component{
         <div>
           <Router>
             <Switch>
+            
+                    <Route path="/dashboard" component={Dashboard} exact />
               <Route path="/"               exact strict component={ Login } />
               <Route path="/login"          exact strict component={ Login } />
               <Route path="/signup"         exact strict component={ SignUp } />

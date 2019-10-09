@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://gangaapi.iassureit.com';
+axios.defaults.baseURL = 'http://api.wealthyvia.com';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class Login extends Component {
@@ -38,7 +38,7 @@ class Login extends Component {
 
         console.log("auth value",auth);
 
-    axios.post('/api/users/login',auth)
+    axios.post('/api/users/post/login',auth)
       .then((response)=> {
         console.log("-------userData------>>",response);
         // this.setState({

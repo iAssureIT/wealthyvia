@@ -334,7 +334,7 @@ export default class ProductPage extends Component {
   { label: 'I am day trader, daily play with markets. I want continuous smart trades.', value: 6},
 
 ];
-	if(this.state.divID == "safeHevenMoats")
+	if(this.state.divID == "safeHeavenMoats")
 	{
 		return (
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -584,7 +584,7 @@ export default class ProductPage extends Component {
 			</div>
 
 		);
-	}else if(this.state.divID == "safeHevenAlpha"){
+	}else if(this.state.divID == "safeHeavenAlpha"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
