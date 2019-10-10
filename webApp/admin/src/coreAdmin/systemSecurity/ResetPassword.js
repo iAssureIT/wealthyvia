@@ -7,14 +7,27 @@ import $ from "jquery";
 import 'font-awesome/css/font-awesome.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
+import axios from 'axios';
 
 class ResetPassword extends Component {
 
   constructor(){
       super();
-        this.state = {           
+        this.state = {  
+          'resetPassword' : "",         
+          'resetPasswordConfirm' : "",         
         
         }
+        this.changepassword = this.changepassword.bind(this);
+    }
+
+    handleChange=(event)=>{
+      event.preventDefault();
+      var name = event.target.name;
+      this.setState({
+        [name] : event.target.value
+      })
+
     }
 
   showSignPass(){
@@ -37,6 +50,20 @@ class ResetPassword extends Component {
     $('.hidePwdC').toggleClass('hidePwd1C');
     return $('.inputTextPassC').attr('type', 'password');
   }
+  changepassword(){
+    // var body = {
+    //   pwd : this.state.resetPassword ,
+    // }
+    //  axios
+    //   .post('/api/users/put/one/resetpwd/'+localStorage.getItem('userId'),body)
+    //   .then((response)=> {       
+    //   })
+    //   .catch(function (error) {
+    //       console.log(error);
+       
+    //   });
+
+  }
 
   render(){
     var winHeight = window.innerHeight;
@@ -48,11 +75,11 @@ class ResetPassword extends Component {
           <div className="divResetPasswordWrap">
             <h3 className="resetpwdNameTitle"> <span className="bordbt">RESET PASSWORD</span></h3>
             <div className="FormWrapper1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <form id="resetPassword" /*onSubmit={this.changepassword.bind(this)}*/>
+              <form id="resetPassword" onSubmit={this.changepassword.bind(this)}>
                 <div className="form-group loginFormGroup pdleftclr veribtm col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="input-group">
                     <span className="input-group-addon addons glyphi-custommmLeft" id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
-                    <input type="password" className="form-control loginInputs inputTextPass" ref="resetPassword" name="resetPassword" placeholder="New Password" aria-label="Password" aria-describedby="basic-addon1" title="Password should be at least 6 characters long!" pattern=".{6,}" required/>
+                    <input type="password" className="form-control loginInputs inputTextPass" ref="resetPassword" name="resetPassword" value={this.state.resetPassword} onChange={this.handleChange} placeholder="New Password" aria-label="Password" aria-describedby="basic-addon1" title="Password should be at least 6 characters long!" pattern=".{6,}" required/>
                     <span className="input-group-addon addons glyphi-custommm padBoth" id="basic-addon1">
                       <i className="fa fa-eye Pass showPwd" aria-hidden="true" onClick={this.showSignPass.bind(this)}></i>
                       <i className="fa fa-eye-slash Pass hidePwd" aria-hidden="true" onClick={this.hideSignPass.bind(this)}></i>
@@ -62,7 +89,7 @@ class ResetPassword extends Component {
                 <div className="form-group loginFormGroup pdleftclr veribtm col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="input-group">
                     <span className="input-group-addon addons glyphi-custommmLeft" id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
-                    <input type="password" className="form-control loginInputs inputTextPassC" ref="resetPasswordConfirm" name="resetPasswordConfirm" placeholder="Confirm New Password" aria-label="Confirm Password" aria-describedby="basic-addon1" title="Password should be at least 6 characters long!" pattern=".{6,}" required/>
+                    <input type="password" className="form-control loginInputs inputTextPassC" ref="resetPasswordConfirm" value={this.state.resetPasswordConfirm}  name="resetPasswordConfirm" placeholder="Confirm New Password" aria-label="Confirm Password" aria-describedby="basic-addon1" title="Password should be at least 6 characters long!" pattern=".{6,}" required/>
                     <span className="input-group-addon addons glyphi-custommm padBoth" id="basic-addon1">
                       <i className="fa fa-eye Pass showPwdC" aria-hidden="true" onClick={this.showSignPassC.bind(this)}></i>
                       <i className="fa fa-eye-slash Pass hidePwdC" aria-hidden="true" onClick={this.hideSignPassC.bind(this)}></i>

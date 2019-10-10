@@ -1,9 +1,9 @@
 import React, { Component } 		from 'react';
 // import { render } 					from 'react-dom';
 // import TrackerReact 				from 'meteor/ultimatejs:tracker-react';
-import swal                       from 'sweetalert';
-
   import UMaddRoles 					from './UMaddRoles.jsx';
+  import UMadd_role 					from './UMadd_role.jsx';
+import swal                 	  		from 'sweetalert';
 // import { UserManagementMaster }  	from '/imports/admin/userManagement/UM/UserManagementMaster.js';
 /*import './userManagement.css';
 */
@@ -23,19 +23,14 @@ export default class UMRolesList extends Component {
 	}
 
 	componentDidMount(){
-		this.getdata();
 
-				
-
-	}
-  		getdata(){
-  			axios
+		axios
 			.get('/api/roles/list')
 			.then(
 				(res)=>{
-					// console.log('res', res);
+					console.log('res', res);
 					const postsdata = res.data;
-					// console.log('postsdata',postsdata);
+					console.log('postsdata',postsdata);
 					this.setState({
 						allPosts : postsdata,
 					});
@@ -44,16 +39,31 @@ export default class UMRolesList extends Component {
 			.catch((error)=>{
 
 				console.log("error = ",error);
+				  if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
 				// alert("Something went wrong! Please check Get URL.");
-				 });		
-		}
+				 });				
+
+	}
+  		getdata(data){
+  			console.log("getdata",data);
+  			var allPosts = this.state.allPosts;
+  			allPosts.push(data);
+  			this.setState({
+  				allPosts:allPosts
+  			})
+
+  		}
 
   		deleteRole(event){
   			event.preventDefault();
 			var id = event.target.id;
-			// console.log("id",id);
+			console.log("id",id);
 			const token = '';
-			const url = '/api/roles/'+id ;
+			const url = '/api/role/'+id ;
 			const headers = {
 				    "Authorization" : token,
 				    "Content-Type" 	: "application/json",
@@ -66,43 +76,22 @@ export default class UMRolesList extends Component {
 					timeout: 3000,
 					data: null,
 				})
-
 				.then((response)=> {
-			    	//console.log('delete response',response);
-			    	 swal("Role deleted successfully");
-			    	 		this.getdata();
+			    	console.log('delete response',response);
+			    	// swal("Role deleted successfully","", "success");
+
 				}).catch((error)=> {
 				    // handle error
 				    console.log(error);
+				      if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
 				});
   		}
 
   		editRole(event){
-			var id = event.target.id;
-			// console.log("userid-----------------------------------------",id, this.refs["roleName"+id].value);
-			var formvalues = {
-				"id"		: id,
-				"role"		: this.refs["roleName"+id].value,
-			}
-			console.log("formvalues",formvalues);
-				axios.put('/api/roles', formvalues)
-				.then((response)=> {		
-					swal("Role updated successfully",);	
-					 this.getdata();
-					 this.props.history.push('/umroleslist');	
-					// console.log('response --==',response);
-				})
-				.catch(function (error) {
-					console.log('error============',error);
-			});
-	
-
-  		}
-  		handleedit(event){
-  			event.preventDefault();
-  			this.setState({
-
-  			});
 
   		}
 	render(){
@@ -133,6 +122,7 @@ export default class UMRolesList extends Component {
 												</thead>
 												<tbody>
 												{this.state.allPosts.map( (roleData, index)=>{
+													console.log('roleData',roleData);
 												   return( 
 													<tr>
 														<td className="textAlignLeft">{roleData.role}</td>		
@@ -155,7 +145,7 @@ export default class UMRolesList extends Component {
 															      		</div>
 										                              <div className="modal-body adminModal-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-										                                 <h4 className="blackFont textAlignCenter col-lg-12 col-md-12 col-sm-12 col-xs-12 examDeleteFont">Are you sure you want to delete this role?</h4>
+										                                 <h4 className="blackFont textAlignCenter col-lg-12 col-md-12 col-sm-12 col-xs-12 examDeleteFont">Are you sure you want to delete this template?</h4>
 										                              </div>
 										                              
 										                              <div className="modal-footer adminModal-footer col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -185,7 +175,7 @@ export default class UMRolesList extends Component {
 										                              <div className="modal-body adminModal-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										                              
 										                              <label className="textAlignLeft">Role Name</label>
-																			<input type="text" ref={"roleName"+roleData._id} name={"roleName"+roleData._id} value={this.state["roleName"+roleData._id]} onChange={this.handleedit.bind(this)} className="form-control rolesField" required/>
+																			<input type="text" ref="roleName" className="form-control rolesField" required/>
 																		
 										                              </div>
 										                              

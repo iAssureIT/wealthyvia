@@ -1,11 +1,11 @@
 /*****SignUp.css*****/
 @font-face{
-  font-family: 'Roboto', sans-serif !important;
-  src: url("/fonts/Raleway-Regular.ttf");
-  font-family: 'Roboto', sans-serif !important;
-  src: url("/fonts/Poppins-Regular.ttf");
-  font-family: 'Roboto', sans-serif !important;
-  src: url("/fonts/Roboto-Regular.ttf");
+  font-family: 'Montserrat-Regular' !important;
+  src: url("/fonts/Montserrat-Regular.ttf");
+  font-family: 'Montserrat-SemiBold' !important;
+  src: url("/fonts/Montserrat-SemiBold.ttf");
+
+
 }
 
 .signUpBackground{
@@ -25,22 +25,20 @@
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
   border-radius: 10px;
   height: 650px;
-  position: absolute;
-  box-shadow: 0px 0px 0px;
-  border: 1px solid #ccc;
+  /*position: absolute;*/
+  /*box-shadow: 0px 0px 0px;*/
+  /*border: 1px solid #ccc;*/
   margin-top: 80px;
-  background-color: rgb(0, 0, 0, 0.5);
-  float: right;
+  /*background-color: rgb(0, 0, 0, 0.5);*/
+  /*float: right;*/
 }
 .signUpWrapper{
-  background: #fff;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0px !important;
-  margin-right: -15px !important;
+
+  position:absolute;
+  top: 10%;
 }
 .signupPadding{
-  padding-top:4%;
+  /*padding-top:4%;*/
 }
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
   border-radius: 10px;
@@ -55,22 +53,17 @@
   padding-right: 0px;
   padding-bottom: 0px;
 }
-.signInNameTitle{
-  font-size: 20px;
-  margin-top: 13%;
-  margin-bottom: 10%;
-  color: #333333;
-}
+
 .signT{
   margin-top: 30%;
 }
-.OESSubTitle2, .signUpNameTitle,.signInNameTitle,.resetpwdNameTitle{
-  text-align: center;
-  font-family:'Roboto', sans-serif !important;
+.OESSubTitle2, .signUpNameTitle,.resetpwdNameTitle{
+  text-align: left;
+  font-family:'Montserrat-Regular' !important;
 }
-.bordbt{
+/*.bordbt{
   border-bottom: 2px solid #1d109d;
-}
+}*/
 .marBtm30{
   margin-bottom: 30px;
 }
@@ -80,36 +73,6 @@
 .boxMarg{
   margin-bottom: 20px !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .firstverification{
   margin-top: 32%;
 }
@@ -158,7 +121,7 @@
   font-size: 34px;
     color: #337ab7;
     margin-top: 10px !important;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Montserrat-Regular' !important;
     padding: 0px;
     text-align: center;
 }
@@ -167,7 +130,7 @@
   margin-top: 2px !important;
   color: #337ab7;
   font-size: 20px;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular'!important;
   text-align: center;
 }
 .ETESignTit{
@@ -181,22 +144,11 @@
     border: 0 !important;
     box-shadow: none;
     border-bottom: 1px solid #efefef !important;
-    border-radius: 4px;
+    border-radius: 50px;
     height: 35px !important;
     font-size: 16px;
     background: #d8d8d8;
-    font-family: 'Roboto', sans-serif !important;
-}
-.tmsLoginTextBox{
-  height: 35px !important;
-  margin-bottom: 30px;
-  border: 0 !important;
-  box-shadow: none;
-  border-bottom: 1px solid #efefef !important;
-  border-radius: 4px;
-  font-size: 16px;
-  background: #d8d8d8;
-  font-family: 'Roboto', sans-serif !important;
+    font-family: 'Montserrat-Regular' !important;
 }
 .glyphi-custommm{
   border-left: 0px solid; 
@@ -216,7 +168,7 @@
 .floating-label {
   position: absolute;
   pointer-events: none;
-  left: 25px;
+  left: 16px;
   top: 8px;
   color: #555;
   font-weight: 600;
@@ -287,7 +239,7 @@
 .loginPageTit,.loginPageTitsub{
   font-size: 40px;
     color: #fff;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Montserrat-Regular' !important;
     margin-top: 35px !important;
 
 }
@@ -298,7 +250,7 @@
   color: #fff;
     margin-top: 10px !important;
     font-size: 20px;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Montserrat-Regular' !important;
 }
 .boxed-view__form  .btn{
   margin-top: 20px !important;
@@ -363,7 +315,7 @@
 
 .viewNDDel{
   border-radius: 0px !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   padding: 2px 6px;
 }
 
@@ -374,7 +326,7 @@
 }
 .offeredBtnWrap button{
   border-radius: 0px;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   font-weight: bold;
   font-size: 16px;
 }
@@ -403,25 +355,16 @@
   margin-top: 8px; 
   /*margin-left: 17px;*/
 }
-.UMcreateacc{
-  /*font-family: Poppins-Regular;*/
-  background:#d8d8d8;
-  font-size: 16px;
-  text-align: center;
-  padding: 3px;
-  border-radius:4px;
-  margin-top: 12px !important;
-  margin-bottom: 3% !important; 
-  /*margin-left: 17px;*/
-  font-weight: bold;
-}
+
 .signupp{
   padding-top: 5%;
   background: #fff;
   padding-bottom: 5%;
 }
 .customFl{
-  float: left;
+  background-color: #fff;
+  margin-top: 20px;
+  border-radius: 50px;
 }
 
 
@@ -542,7 +485,7 @@
   color: #333 !important;
   font-size: 16px;
   text-align: center;
-  font-family:'Roboto', sans-serif !important;
+  font-family:'Montserrat-Regular' !important;
 }
 .award_ModalBody{
   padding: 5% 0px !important;
@@ -551,7 +494,7 @@
   margin-right: 15px;
   /*background: #38678f !important;*/
   color: #fff !important;
-  font-family:'Roboto', sans-serif !important;
+  font-family:'Montserrat-Regular' !important;
   padding: 2px 10px;
   font-size: 16px;
   border-radius: 0px!important;
@@ -564,26 +507,6 @@
 }
 .awardCancelBtn{
   display: none;
-}
-.UMloginbutton{
-  background: #1d109d;
-  padding: 4px 0;
-  color: #fff;
-  border: 0;
-  text-transform: uppercase;
-  font-size: 15px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  border-radius: 4px !important; 
-}
-
-.UMloginbutton:hover{
-  color: #fff;
-}
-.UMloginbutton:focus{
-  outline: none;
-  background: #54Aff3;
-  color: #fff;
 }
 
 
@@ -723,7 +646,7 @@
   
   margin-bottom: 5%;
   /*text-align: left;*/
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   font-size: 14px;
   padding-left: 0px;
   padding-right: 15px;
@@ -777,7 +700,7 @@
   background-repeat: no-repeat;
 }
 .oesSignUpForm:focus ~ .floating-label, .oesSignUpForm:not(:focus):valid ~ .floating-label {
-    top: -16px;
+    top: -19px;
     font-size: 13px;
     color: #4183D7;
     left: 18px !important;
@@ -795,7 +718,7 @@
     transition: 0.2s ease all;
 }
 .oesSignUpForm:focus ~ .floating-label1, .oesSignUpForm:not(:focus):valid ~ .floating-label1 {
-    top: -16px;
+    top: -19px;
     font-size: 13px;
     color: #4183D7;
     left: 5px !important;
@@ -821,7 +744,7 @@
 
 .modalbg {
   position: fixed;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   top: 0;
   right: 0;
   bottom: 0;
@@ -898,7 +821,7 @@
   font-size: 10px;
   color: #646;
 }
-/*a { color: #333; text-decoration: none; }*/
+a { color: #333; text-decoration: none; }
 .modaltext{
   color:#666;
 }
@@ -1009,7 +932,7 @@ input[type=radio]:checked ~ span{
   margin-bottom: 8%;
   color: #333333;
   text-align: center;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
 }
 .signInbtn1{
   text-align: center;
@@ -1048,7 +971,7 @@ input[type="radio"]:checked:before {
   height: 35px !important;
   font-size: 16px;
   background: #d8d8d8;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
 }
 
 .userCreateWrap{
@@ -1143,27 +1066,6 @@ input[type="radio"]:checked:before {
   background: #D8D8D8;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@font-face{
-  font-family:'Roboto', sans-serif !important;
-  src: url("/fonts/Roboto-BoldCondensed.ttf");
-  font-style: normal;
-}
 .imageSize{
   font-size: 12px!important;
   padding-right: 35px;
@@ -1225,34 +1127,19 @@ input[type="radio"]:checked:before {
 /*modal bck css*/
 
 /*****SignUp.css*****/
-@font-face{
-  font-family: 'Roboto', sans-serif !important;
-  src: url("/fonts/Raleway-Regular.ttf");
-  font-family: 'Roboto', sans-serif !important;
-  src: url("/fonts/Poppins-Regular.ttf");
-  font-family: 'Roboto', sans-serif !important;
-  src: url("/fonts/Roboto-Regular.ttf");
-}
-.signUpWrapper{
-  background-color:#fff;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0px !important;
-  margin-right: -15px !important;
-  font-family: 'Roboto', sans-serif !important;
-}
+
 /*.signupPadding{
   padding-top:4%;
 }*/
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
   border-radius: 10px;
   height: 650px;
-  position: absolute;
-  box-shadow: 0px 0px 0px;
-  border: 1px solid #ccc;
+  /*position: absolute;*/
+  /*box-shadow: 0px 0px 0px;*/
+  /*border: 1px solid #ccc;*/
   margin-top: 80px;
-  background-color: rgb(0, 0, 0, 0.5);
-  float: right;
+  /*background-color: rgb(0, 0, 0, 0.5);*/
+  /*float: right;*/
 }
 .divLoginInWrap{
   z-index: 111;
@@ -1262,17 +1149,17 @@ input[type="radio"]:checked:before {
 }
 .signInNameTitle{
   font-size: 20px;
-  margin-top: 8%;
-  margin-bottom: 10%;
+/*  margin-top: 8%;
+  margin-bottom: 10%;*/
   /*color: #333333;*/
-  color: #DAA520;
-  font-weight: bold;
-  font-family:'Roboto', sans-serif !important;
+  /*color: #DAA520;*/
+  /*font-weight: bold;*/
+  font-family:'Montserrat-SemiBold' !important;
 }
 .signT{
   margin-top: 8%;
 }
-.OESSubTitle2, .signUpNameTitle,.signInNameTitle,.resetpwdNameTitle{
+.OESSubTitle2, .signUpNameTitle,.resetpwdNameTitle{
   text-align: center;
   /*font-family:'Roboto-BoldCondensed';*/
 }
@@ -1339,7 +1226,7 @@ input[type="radio"]:checked:before {
   font-size: 34px;
     color: #337ab7;
     margin-top: 10px !important;
-    font-family:'Roboto', sans-serif !important;
+    font-family:'Montserrat-Regular' !important;
     padding: 0px;
     text-align: center;
 }
@@ -1348,7 +1235,7 @@ input[type="radio"]:checked:before {
   margin-top: 2px !important;
   color: #337ab7;
   font-size: 20px;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   text-align: center;
 }
 .ETESignTit{
@@ -1368,17 +1255,21 @@ input[type="radio"]:checked:before {
     font-size: 16px;
     /*background: #d8d8d8;*/
     background-color: #fff;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Montserrat-Regular' !important;
 }
 .tmsLoginTextBox{
   height: 35px !important;
   margin-bottom: 30px;
-  border: 1px solid #ccc;
+  border: 1px solid #ccc !important;
   box-shadow: none;
-  border-radius: 4px;
+  border-radius: 50px;
   font-size: 16px;
   background: #fff;
-  font-family: 'Roboto', sans-serif !important;
+  font-size: 14px;
+  font-family: 'Montserrat-Regular' !important;
+}
+.input:focus, textarea:focus, select:focus{
+  outline: none;
 }
 .glyphi-custommm{
   border-left: 0px solid; 
@@ -1398,18 +1289,13 @@ input[type="radio"]:checked:before {
 .floating-label {
   position: absolute;
   pointer-events: none;
-  left: 25px;
+  left: 16px;
   top: 8px;
-  color: #333;
-  color: #333;
+  color: #333 !important;
   font-weight: 100;
   font-size: 13px;
   transition: 0.2s ease all;
 }
-
-
-
-
 .floating-label-Date{
   display: none;
 }
@@ -1435,7 +1321,7 @@ input[type="radio"]:checked:before {
 .inputTextSearch:focus ~ .floating-label{
   top: -22px;
   /*font-size: 15px;*/
-  color: #fff;
+  color: #333;
   /*left: 17px;*/
   font-weight: 100;
   display: block;
@@ -1446,16 +1332,6 @@ input[type="radio"]:checked:before {
   display: inline-block;
   width: 85%;
 }
-
-.oesSignUpForm:focus ~, .floating-label,.oesSignUpForm:not(:focus):valid ~, .floating-label{
-  top: -16px;
-  font-size: 15px;
-  color: #fff !important;
-  left: 10px;
-  display: block;
-  font-weight: 100;
-}
-
 .UMsignup{
   background: #fff;
 }
@@ -1474,7 +1350,7 @@ input[type="radio"]:checked:before {
 .loginPageTit,.loginPageTitsub{
   font-size: 40px;
     color: #fff;
-    font-family:'Roboto', sans-serif !important;
+    font-family:'Montserrat-Regular' !important;
     margin-top: 35px !important;
 
 }
@@ -1485,7 +1361,7 @@ input[type="radio"]:checked:before {
   color: #fff;
     margin-top: 10px !important;
     font-size: 20px;
-    font-family: 'Roboto', sans-serif !important;
+    font-family: 'Montserrat-Regular' !important;
 }
 .boxed-view__form  .btn{
   margin-top: 20px !important;
@@ -1550,7 +1426,7 @@ input[type="radio"]:checked:before {
 
 .viewNDDel{
   border-radius: 0px !important;
-  font-family:'Roboto', sans-serif !important;
+  font-family:'Montserrat-Regular' !important;
   padding: 2px 6px;
 }
 
@@ -1561,7 +1437,7 @@ input[type="radio"]:checked:before {
 }
 .offeredBtnWrap button{
   border-radius: 0px;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   font-weight: bold;
   font-size: 16px;
 }
@@ -1593,22 +1469,21 @@ input[type="radio"]:checked:before {
 }
 .UMcreateacc{
   /*font-family: Poppins-Regular;*/
-  background:#fff;
+  /*background:#fff;*/
   font-size: 16px;
   text-align: center;
   padding: 7px;
   border-radius:4px;
-  margin-top: 12px !important;
-  margin-bottom: 3% !important; 
+
   /*margin-left: 17px;*/
   font-weight: bold;
-  border: 1px solid #ccc;
+  /*border: 1px solid #ccc;*/
 }
-/*.UMGreyy a, a:hover, a:focus {
+.UMGreyy a, a:hover, a:focus {
     color: #333 ;
-    text-decoration: none;
+    text-decoration: underline;
 
-}*/
+}
 .signupp{
   padding-top: 5%;
   background: #fff;
@@ -1617,6 +1492,7 @@ input[type="radio"]:checked:before {
 .customFl{
   float: left;
 }
+
 
 
 
@@ -1736,7 +1612,7 @@ input[type="radio"]:checked:before {
   color: #333 !important;
   font-size: 16px;
   text-align: center;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
 }
 .award_ModalBody{
   padding: 5% 0px !important;
@@ -1745,7 +1621,7 @@ input[type="radio"]:checked:before {
   margin-right: 15px;
   /*background: #38678f !important;*/
   color: #fff !important;
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   padding: 2px 10px;
   font-size: 16px;
   border-radius: 0px!important;
@@ -1759,17 +1635,20 @@ input[type="radio"]:checked:before {
 .awardCancelBtn{
   display: none;
 }
+.lockIcon{
+  font-size: 18px;
+}
 .UMloginbutton{
-  background: #DAA520;
+  background: #a2632c;
   padding: 7px 0;
   color: #fff;
   border: 0;
   text-transform: uppercase;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
-  margin-bottom: 20px;
-  border-radius: 4px !important; 
-  font-family:'Roboto', sans-serif !important;
+  /*margin-bottom: 20px;*/
+  border-radius: 50px !important; 
+  font-family:'Montserrat-SemiBold' !important;
 }
 
 .UMloginbutton:hover{
@@ -1777,7 +1656,7 @@ input[type="radio"]:checked:before {
 }
 .UMloginbutton:focus{
   outline: none;
-  background: #54Aff3;
+  background: #a2632c;
   color: #fff;
 }
 
@@ -1927,7 +1806,7 @@ input[type="radio"]:checked:before {
   color: #fff;
   margin-bottom: 1%;
   /*text-align: left;*/
-  font-family: 'Roboto', sans-serif !important;
+  font-family: 'Montserrat-Regular' !important;
   font-size: 14px;
   padding-left: 0px;
   padding-right: 15px;
@@ -1980,10 +1859,35 @@ input[type="radio"]:checked:before {
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
+
+.headerbackgroundimg {
+/*  background-image: url(/images/Coffee-Beans-Wallpaper.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;*/
+    background: url('/images/1.png') no-repeat; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+      height: 129px;
+}
+.mainBackgroundImg{
+/*background-image: url(/images/7.png);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;*/
+      background: url(/images/7.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height:540px;
+height: auto;
+display: flex;
+}
 .oesSignUpForm:focus ~ .floating-label, .oesSignUpForm:not(:focus):valid ~ .floating-label {
-    top: -16px;
+    top: -19px;
     font-size: 13px;
-    color: #fff;
+    color: #333;
     left: 18px !important;
     display: block;
     font-weight: 100;
@@ -1993,21 +1897,21 @@ input[type="radio"]:checked:before {
     pointer-events: none;
     left: 17.5px;
     top: 8px;
-    color: #333;
+    color: #333 !important;
     font-weight: 100;
     font-size: 13px;
     transition: 0.2s ease all;
 }
 .oesSignUpForm:focus ~ .floating-label1, .oesSignUpForm:not(:focus):valid ~ .floating-label1 {
-    top: -16px;
+    top: -19px;
     font-size: 13px;
-    color: #fff;
+    color: #333;
     left: 5px !important;
     display: block;
     font-weight: 100;
 }
 .lbfloatpass{
-  left: 10px !important;
+  left: 16px !important;
 }
 .form-group1{
   float:left;
@@ -2021,11 +1925,14 @@ input[type="radio"]:checked:before {
 .UMloginbutton1{
   margin-bottom:5px!important;
 }
+.paddingZero{
+  padding: 0;
+}
 
 
 .modalbg {
   position: fixed;
-  font-family:'Roboto', sans-serif !important;
+  font-family:'Montserrat-Regular' !important;
   top: 0;
   right: 0;
   bottom: 0;
@@ -2102,7 +2009,7 @@ input[type="radio"]:checked:before {
   font-size: 10px;
   color: #646;
 }
-/*a { color: #333; text-decoration: none; }*/
+a { color: #333; text-decoration: none; }
 .modaltext{
   color:#666;
 }
@@ -2214,7 +2121,7 @@ input[type=radio]:checked ~ span{
   color: #DAA520;
   font-weight: bold;
   text-align: center;
-  font-family:'Roboto', sans-serif !important;
+  font-family:'Montserrat-Regular' !important;
   /*font-family: 'Roboto-BoldCondensed';*/
 }
 .signInbtn1{
@@ -2257,7 +2164,7 @@ input[type="radio"]:checked:before {
   font-size: 16px;
   /*background: #d8d8d8;*/
   background-color: #fff;
-  font-family:'Roboto', sans-serif !important;
+  font-family:'Montserrat-Regular' !important;
 }
 
 .userCreateWrap{
@@ -2356,7 +2263,13 @@ input[type="radio"]:checked:before {
 .form-control:focus{
   background: #fff;
 }
+.signupimg{
+  /*width: 100%;*/
+  text-align: center;
+  padding:0;
 
+
+}
 
 
 
@@ -2372,11 +2285,11 @@ input[type="radio"]:checked:before {
 
 
 .marbtm10{
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .border3{
-  border-radius: 3px !important;
+  border-radius: 50px !important;
 }
 @font-face{
   /*font-family:'Roboto-BoldCondensed';*/
@@ -2450,7 +2363,7 @@ input[type="radio"]:checked:before {
 }*/
 
 .showHideSignDiv{
-    top:-28px;
+    top:-26px;
     float: right;
     margin-right: 9px;
     z-index: 999;

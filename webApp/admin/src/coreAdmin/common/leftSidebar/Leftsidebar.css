@@ -2,25 +2,12 @@
 	height: 500px;
 }
 */
-.slidlogo{
-  height: 30px;
-}
-.slidlogo1{
-  height: 30px;
-  margin-top : -6px;
-}
-
 a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
 }
-.sidebarMenuSubText{
-  font-size: 13px;
-}
-.sidebarMenuText{
-  font-size: 14px;
-}
+
 .navbar {
     /*padding: 15px 10px;*/
     background: #fff;
@@ -60,10 +47,10 @@ i, span {
 }
 
 #sidebar {
-    min-width: 228px;
-    max-width: 250px;
-    background: #333;
-    color: #fff;
+    /*min-width: 228px;*/
+    max-width: 235px;
+    background: #fff;
+    color: #333;
     transition: all 0.80s;
 }
 
@@ -112,9 +99,8 @@ i, span {
 }
 
 #sidebar .sidebar-header {
-    padding: 10px;
-    background: #fff;
-    height: 50px;
+  padding: 0px;
+    /*background: #222;*/
 }
 
 #sidebar .sidebar-header strong {
@@ -123,18 +109,27 @@ i, span {
 }
 
 #sidebar ul.components {
-    padding: 0px 0;
-    border-bottom: 1px solid #333;
+    padding: 00px 0;
+    /*border-bottom: 1px solid #333;*/
+  font-family: Montserrat-Regular;
+  font-size: smaller;
 }
-
+.marLeft25{
+  margin-left: 25%;
+}
+.custm1{
+  padding: 10px 0px;
+  margin-left: 08% !important;
+}
 #sidebar ul li a {
-    padding: 15px;
+    padding: 10px;
     font-size: 1.1em;
     display: block;
+    /*color: #fff;*/
 }
 #sidebar ul li a:hover {
-    color: #555;
-    background: #fff;
+    color: #fff;
+    background: #A2622D;
 }
 #sidebar ul li a i {
     margin-right: 10px;
@@ -142,7 +137,9 @@ i, span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #222;
+    background: #A2622D;
+    border-left: 3px solid #2c1910;
+    margin-bottom: 1px;
 }
 
 
@@ -165,8 +162,12 @@ a[aria-expanded="true"]::before {
 
 ul ul a {
     font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #222;
+    padding-left: 36px !important;
+    /*background: #DFDFDF;*/
+    /*margin-bottom: 1px;*/
+    color:#333;
+      font-family: Montserrat-Regular;
+      padding-left: 5px;
 }
 
 ul.CTAs {
@@ -235,6 +236,7 @@ a.article, a.article:hover {
 
     #sidebar ul li a {
         padding: 20px 10px;
+
     }
 
     #sidebar ul li a span {
@@ -259,6 +261,8 @@ a.article, a.article:hover {
         display: none;
     }
 }
+
+
 
 
 
@@ -348,14 +352,20 @@ a.article, a.article:hover {
   /*
    * Content Wrapper - contains the main content
    */
-  .content-wrapper,
-  .main-footer {
+  .content-wrapper{
     -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
     -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
     -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
     transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
-/*    margin-left: 230px;
-*/    z-index: 820;
+    /*margin-left: 230px;*/
+    z-index: 820;
+  }
+   .main-footer {
+    -webkit-transition: -webkit-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    -moz-transition: -moz-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    -o-transition: -o-transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, margin 0.3s ease-in-out;
+    z-index: 820;
   }
   .layout-top-nav .content-wrapper,
   .layout-top-nav .main-footer {
@@ -384,15 +394,16 @@ a.article, a.article:hover {
   }
   .content-wrapper {
     min-height: 100%;
-    background-color: #f2f2f2 !important;
+    background-color: #f4f4f4  !important;
     z-index: 800;
   }
   .main-footer {
     /*text-align: center;*/
-    margin: 0px;
+    /*margin: 0px;*/
     background: #fff;
-    padding: 15px;
+    padding: 10px 0px 10px 0px;
     color: #444;
+    /*position: fixed;*/
     border-top: 1px solid #d2d6de;
   }
   /* Fixed layout */
@@ -465,7 +476,7 @@ a.article, a.article:hover {
   /* Content */
   .content {
     min-height: calc(100vh - 50px);
-    background: #f2f2f2;
+    background: #f4f4f4 ;
     padding: 2%;
   /*  margin-right: auto;
     margin-left: auto;
@@ -1727,9 +1738,9 @@ a.article, a.article:hover {
     float: right;
   }
   /* Remove margins from progress bars when put in a table */
-  /*.table tr > td .progress {
+  .table tr > td .progress {
     margin: 0;
-  }*/
+  }
   .progress-bar-light-blue,
   .progress-bar-primary {
     background-color: #3c8dbc;
@@ -2061,7 +2072,7 @@ a.article, a.article:hover {
     /*padding-left: 28px;*/
   }
   .box-header.with-border {
-    border-bottom: 1px solid #f2f2f2;
+    border-bottom: 1px solid #f4f4f4;
   }
   .collapsed-box .box-header.with-border {
     border-bottom: none;
@@ -2354,10 +2365,13 @@ a.article, a.article:hover {
     min-height: 105px;
     background: #fff;
     width: 100%;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
     margin-bottom: 15px;
     padding: 12.5px 0px 5px 5px;
+  }
+  .bxSdwGraph{
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
   }
   .info-box small {
     font-size: 14px;
@@ -2395,18 +2409,20 @@ a.article, a.article:hover {
     margin-left: 2px;
   }
   .info-box-content {
-    padding: 5px 10px;
+    padding: 5px 0px;
     margin-left: 90px;
   }
   .info-box-number {
     display: block;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
+    margin-bottom: 8%;
   }
   .progress-description,
   .info-box-text {
     display: block;
-    font-size: 14px;
+    font-size: 11px;
+    margin-bottom: 4%;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2627,7 +2643,7 @@ a.article, a.article:hover {
   .nav-pills > li.active > a,
   .nav-pills > li.active > a:hover,
   .nav-pills > li.active > a:focus {
-    border-top-color: #3c8dbc;
+    border-top-color: #ff0;
   
   }
   .nav-pills > li.active > a {
@@ -2835,7 +2851,7 @@ a.article, a.article:hover {
    * Component: Table
    * ----------------
    */
-  /*.table > thead > tr > th,
+  .table > thead > tr > th,
   .table > tbody > tr > th,
   .table > tfoot > tr > th,
   .table > thead > tr > td,
@@ -2869,7 +2885,7 @@ a.article, a.article:hover {
   .table.no-border th {
     border: 0;
   }
- 
+  /* .text-center in tables */
   table.text-center,
   table.text-center td,
   table.text-center th {
@@ -2880,7 +2896,7 @@ a.article, a.article:hover {
   }
   .table.align td {
     text-align: right;
-  }*/
+  }
   /*
    * Component: Label
    * ----------------
@@ -5163,13 +5179,13 @@ a.article, a.article:hover {
       float: left;
       width: 33.3333333%;
     }
-   /* .table-responsive {
+    .table-responsive {
       overflow: auto;
     }
     .table-responsive > .table tr th,
     .table-responsive > .table tr td {
       white-space: normal !important;
-    }*/
+    }
   }
   /*
    * Skin: Blue
@@ -5312,7 +5328,15 @@ a.article, a.article:hover {
        text-decoration: none; 
   }
 
-
-.jgjg{
-  color: #333;
+.versiontxt{
+  text-align: center;
+  font-family:'Montserrat-SemiBold';
+  font-size: 13px;
+  margin-top: 120%;
 }
+
+
+
+
+
+

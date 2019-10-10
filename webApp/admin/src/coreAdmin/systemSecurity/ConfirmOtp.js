@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import $ from "jquery";
 
+import axios from 'axios';
 
 import './SignUp.css';
 
@@ -15,11 +16,43 @@ import './SignUp.css';
         // }
       }
     }
-    confirmOTP(event){
-      console.log('confirm otp');
+
+    componentDidMount(){
+      
+      console.log('url in confirm----------------------> ',localStorage);
+    }
+     confirmOTP(event){
+      // console.log('confirm otp');
       event.preventDefault();
-      var url = this.props.match.params;
-      console.log('url = ',url);
+      // var url = this.props.match.params;
+
+      var body = {
+        mobileotp: this.refs.mobileotp.value,
+        emailotp: this.refs.emailotp.value,
+        mobileNumber : localStorage.getItem('mobileNumber')
+      }
+
+      axios
+        .post('/api/users/confirmOTP ',body)
+        .then((response)=> {
+        console.log('url in confirm----------------------> ',response);
+
+        if(response.data.message=="Matched"){
+            swal("Great","OTP verified","success");
+          this.props.history.push("/login");
+          window.location.reload();
+        }
+      })
+      .catch(function (error) {
+          console.log(error);
+      swal("Unable to submit data ",error);
+        if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+      })
+    }
 
       // var checkUserExist = FlowRouter.getParam("mailId");
       // var userData = Meteor.users.findOne({"_id":checkUserExist});
@@ -110,7 +143,7 @@ import './SignUp.css';
       //         'warning');
       // }
     // $('#assureIDModal').show();
-    }
+    
 
 
 
@@ -201,7 +234,7 @@ import './SignUp.css';
                     <span>Enter four digit verification code received on <b>Mobile</b>.<br/></span>
                   </div>
                   <div className="input-effect input-group veribtm1">
-                    <input type="text" className="effect-21 form-control loginInputs " ref="emailotp" name="emailotp" onBlur={this.inputEffect.bind(this)} aria-describedby="basic-addon1" title="Please enter numbers only!" maxLength="4" pattern="(0|[0-9]*)" required/>
+                    <input type="text" className="effect-21 form-control loginInputs " ref="mobileotp" name="mobileotp" onBlur={this.inputEffect.bind(this)} aria-describedby="basic-addon1" title="Please enter numbers only!" maxLength="4" pattern="(0|[0-9]*)" required/>
                     <span className="input-group-addon glyphi-custommm"><i className="fa fa-key" aria-hidden="true"></i></span>
                     <span className="focus-border">
                       <i></i>

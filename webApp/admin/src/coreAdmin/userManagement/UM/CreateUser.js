@@ -1,3 +1,4 @@
+
 import React, { Component }      from 'react';
 import InputMask                 from 'react-input-mask';
 import $ from "jquery";
@@ -6,9 +7,6 @@ import swal                      from 'sweetalert';
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/js/modal.js';
 import './userManagement.css';
-
-axios.defaults.baseURL = 'http://gangaapi.iassureit.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const formValid = formerrors=>{
   // console.log("formerrors",formerrors);
@@ -78,65 +76,134 @@ class CreateUser extends Component {
       
       default :
       break;
-
     }
-    
     this.setState({ formerrors,
       [name]:value
     } );
   }
 
+
+    componentDidMount() {
+
+      axios
+      .get('/api/users/list')
+      .then(
+        (res)=>{
+          // console.log('res', res);
+          const postsdata = res.data;
+          // console.log('postsdata',postsdata);
+          this.setState({
+            allPosts : postsdata,
+          });
+          // console.log("allPosts___________________",this.state.allPosts);
+          let locationArray =[];
+          if(this.state.allPosts!=null){
+            locationArray = this.state.allPosts.map(function(item) { return item.companyLocationsInfo });
+          }else{
+             locationArray = "no data";
+          }
+          this.setState({
+            office : locationArray,
+          });
+          
+        // here for list
+                  var data = {
+                                    "startRange"        : this.state.startRange,
+                                    "limitRange"        : this.state.limitRange, 
+                            }
+                      axios.get('/api/users/get/list/1')
+                      .then( (res)=>{      
+                        // console.log("herer",res);
+                        var tableData = res.data.map((a, i)=>{
+                          return {
+                                    _id             : a._id,
+                                    fullName        : a.fullName,
+                                    email         : a.email,
+                                    mobNumber       : a.mobNumber, 
+                                    status          : a.status, 
+                                    role           : a.role,
+                          }
+                        })
+                        this.setState({
+                              completeDataCount : res.data.length,
+                              tableData     : tableData,          
+                            },()=>{
+                              console.log('tableData', this.state.tableData);
+                            })
+                      })
+                      .catch((error)=>{
+                        console.log("error = ",error);
+                          if(error.message === "Request failed with status code 401")
+                            {
+                                 swal("Your session is expired! Please login again.","", "error");
+                                 this.props.history.push("/");
+                            }
+                        // alert("Something went wrong! Please check Get URL.");
+                      });
+
+
+        }
+      )
+      .catch((error)=>{
+
+        console.log("error = ",error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+        // alert("Something went wrong! Please check Get URL.");
+         });  
+    }  
+
     createUser(event){
       event.preventDefault();
       const formValues = {
-          "pwd"           : "user123",
-          "firstName"     : "Mani",
-          "lastName"      : "Kharare",
-          "emailId"       : "mani@gmail.com",
-          "mobileNumber"  : "9049711726",
-          "status"        : "active",
-          "roles"         : "user"
-          // "officeLocation"  : this.refs.office.value,
+          "firstname"       : this.state.firstname,
+          "lastname"        : this.state.lastname,
+          "email"           : this.state.signupEmail,
+          /*"countryCode"     : "+91",*/
+          "mobNumber"       : this.state.mobNumber,
+          "pwd"             : "user123",
+          
+          "status"          : "Active",
+          "role"            :  this.state.role,
         }
 
-        if(this.state.firstname!="" && this.state.lastname !="" && this.state.signupEmail && this.state.mobNumber){
-          console.log("formValues==>",formValues);
-           axios.post('/api/users', formValues)
+        if(this.state.firstname!="" && this.state.lastname !="" && this.state.signupEmail && this.state.mobNumber && this.state.role != "--select--"){
+           axios.post('/api/users/post/signup/user', formValues)
                 .then( (res)=>{
-                    swal({
-                      title: "User added successfully",
-                      text: "User added successfully",
-                    });
-
+                  console.log("result",res.data);
+                    swal("User added successfully", "", "success");
                     this.refs.firstname.value = '';
                     this.refs.lastname.value  = '';
                     this.refs.signupEmail.value  = '';
                     this.refs.mobNumber.value = '';
-                    // this.setState({show: false})
+                    this.setState({show: false})
+
+                    var data = {
+                      "startRange"        : this.state.startRange,
+                      "limitRange"        : this.state.limitRange, 
+                    }
                                   
-                    this.props.getData(this.state.startRange, this.state.limitRange);
-
-                    // $("#CreateUserModal").modal({ backdrop: 'static', keyboard: false })
-
-                    // ========// Because of this we are facing problems 
+                    this.props.getData(0, 10);
                     var modal = document.getElementById("CreateUserModal");
                     modal.style.display = "none";
                     $('.modal-backdrop').remove();
-                    //==========//
-
-
                     // this.props.history.push("/umlistofusers");       
                     window.location.reload();
                 })
               .catch((error)=>{
                 console.log("error = ",error);
                 this.setState({show: false})
+                  if(error.message === "Request failed with status code 401")
+                  {
+                       swal("Your session is expired! Please login again.","", "error");
+                       this.props.history.push("/");
+                  }
               });
         }else{
-          swal({
-            title: "Please enter mandatory fields",
-            text: "Please enter mandatory fields"
-          });
+          swal("Please enter mandatory fields", "", "warning");
           console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
         }
 
@@ -163,33 +230,27 @@ class CreateUser extends Component {
                                       <div className="">
                                           <div className="">                                        
                                             <section className="">                                          
-                                                    <div className="box-body">
-                                                        <div className="">
-
-                                                          <form id="signUpUser">
+                                              <div className="box-body">
+                                                <div className="">
+                                                  <form id="signUpUser">
                                                     <div className="signuppp col-lg-12 col-md-12 col-sm-12 col-xs-12 createusr ">
-
                                                      <div className=" col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
-                                                          <label className="formLable col-lg-12 col-md-12">First Name <label className="requiredsign">*</label></label>
-                                                          <span className="blocking-span">
-                                                           <div className="input-group inputBox-main  new_inputbx " >
-                                                             <div className="input-group-addon remove_brdr inputIcon">
-                                                             <i className="fa fa-user-circle fa "></i>
-                                                            </div>  
-                                                              <input type="text" style={{textTransform:'capitalize'}}
-                                                               className="form-control UMname inputText form-control  has-content"
-                                                                id="firstname" ref="firstname" name="firstname" data-text="firstname" placeholder="First Name"  onChange={this.handleChange} 
-                                                                value={this.state.firstname}/>
-                                                                 
+                                                      <label className="formLable col-lg-12 col-md-12">First Name <label className="requiredsign">*</label></label>
+                                                       <span className="blocking-span">
+                                                         <div className="input-group inputBox-main  new_inputbx " >
+                                                          <div className="input-group-addon remove_brdr inputIcon">
+                                                            <i className="fa fa-user-circle fa "></i>
+                                                           </div>  
+                                                            <input type="text" style={{textTransform:'capitalize'}}
+                                                             className="form-control UMname inputText form-control  has-content"
+                                                              id="firstname" ref="firstname" name="firstname" data-text="firstname" placeholder="First Name"  onChange={this.handleChange} 
+                                                              value={this.state.firstname}/>      
                                                            </div>   
                                                           </span>
                                                           {this.state.formerrors.firstname &&(
                                                                   <span className="text-danger">{this.state.formerrors.firstname}</span> 
                                                                 )}
                                                       </div>
-                                                        
-
-
                                                       <div className=" col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
                                                           <label className="formLable col-lg-12 col-md-12">Last Name <label className="requiredsign">*</label></label>
                                                           <span className="blocking-span ">
@@ -200,16 +261,12 @@ class CreateUser extends Component {
                                                              <input type="text"className="form-control UMname inputText form-control  has-content" 
                                                              id="lastname" ref="lastname" name="lastname" data-text="lastname" onChange={this.handleChange} 
                                                              value={this.state.lastname} placeholder="Last Name" />
-                                                             
-
                                                           </div>   
                                                           </span>
                                                           {this.state.formerrors.lastname &&(
                                                                   <span className="text-danger">{this.state.formerrors.lastname}</span> 
                                                                 )}
-
-                                                      </div>
-                                                      
+                                                      </div>       
                                                     </div>
                                                     <div className="signuppp col-lg-12 col-md-12 col-sm-12 col-xs-12 createusr">
                                                      <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -219,19 +276,16 @@ class CreateUser extends Component {
                                                            <div className="input-group-addon remove_brdr inputIcon">
                                                             <i className="fa fa-envelope-square"></i>
                                                           </div> 
-
                                                             <input type="text" className="formFloatingLabels form-control  newinputbox" 
                                                             ref="signupEmail" name="signupEmail" id="signupEmail" data-text="signupEmail" onChange={this.handleChange}  value={this.state.signupEmail}
-                                                             placeholder="Email"/>
-                                                              
+                                                             placeholder="Email"/>    
                                                          </div>   
                                                           </span>
                                                            {this.state.formerrors.signupEmail &&(
                                                                   <span className="text-danger">{this.state.formerrors.signupEmail}</span> 
                                                                 )}
 
-                                                      </div>
-                                                     
+                                                      </div>  
                                                       <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-6 inputContent">
                                                           <label className="formLable col-lg-12 col-md-12">Mobile Number <label className="requiredsign">*</label></label>
                                                           <span className="blocking-span ">
@@ -253,30 +307,23 @@ class CreateUser extends Component {
                                                       </div>
                                                       
                                                     </div>
-
-
-{/*                                                     <div className="signuppp col-lg-12 col-md-12 col-sm-12 col-xs-12 createusr">
-                                                         <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
-                                                           <label className="formLable col-lg-12 col-md-12">Role <label className="requiredsign">*</label></label>
-                                                              <span className="blocking-span col-lg-12 col-md-12 col-xs-12 col-sm-12 emailfixdomain">
-                                                             
-                                                               <select className="form-control" value={this.state.role} onChange={this.handleChange} ref ="role" id="role" name="role" data-text="role">
-                                                                    <option  hidden> --Select-- </option>
-                                                                    <option value="Technical Admin" > Technical Admin </option>
-                                                                    <option value="Executive Admin" > Executive Admin </option>
-                                                                    <option value="Sales Manager" > Sales Manager </option>
-                                                                    <option value="Sales Agent" > Sales Agent </option>
-                                                                    <option value="Field Manager" > Field Manager </option>
-                                                                    <option value=" Field Agent" >  Field Agent </option>
-                                                                    </select>
-
-                                                              </span>
+                                                    <div className="signuppp col-lg-12 col-md-12 col-sm-12 col-xs-12 createusr">
+                                                      <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
+                                                        <label className="formLable col-lg-12 col-md-12">Role <label className="requiredsign">*</label></label>
+                                                          <span className="blocking-span col-lg-12 col-md-12 col-xs-12 col-sm-12 emailfixdomain">   
+                                                            <select className="form-control" value={this.state.role} onChange={this.handleChange} ref ="role" id="role" name="role" data-text="role">
+                                                              <option  hidden> --Select-- </option>
+                                                             {/* <option value="vendor" > vendor </option>*/}
+                                                              <option value="admin" > admin </option>
+                                                             {/* <option value="user" > user </option>*/}
+                                                             </select>
+                                                            </span>
                                                                {this.state.formerrors.role &&(
                                                                   <span className="text-danger">{ this.state.formerrors.role}</span> 
                                                                 )}
                                                           </div>
 
-                                                          <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent" >
+{/*                                                          <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent" >
                                                               <label className="formLable col-lg-12 col-md-12 mrgtop6">Office Location <label className="requiredsign"></label></label>
                                                                   <span className="blocking-span col-lg-12 col-md-12 col-xs-12 col-sm-12 emailfixdomain">
                                                                     <select className="form-control" value={this.state.officeid} ref ="office" id="office" name="office" data-text="office">
@@ -300,12 +347,12 @@ class CreateUser extends Component {
                                                                     </select>
 
                                                                   </span>
-                                                           </div>
+                                                           </div>*/}
                                                      </div>
 
-*/}
+
                                                     <div className=" col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
-                                                      <button data-toggle="modal" className="col-lg-2 col-md-2 col-xs-12 col-sm-12 col-xs-12 pull-right btn btnSubmit topMargin outlinebox" type="submit" onClick={this.createUser.bind(this)} id="CreateUserModal" >Register</button>
+                                                      <button className="col-lg-2 col-md-2 col-xs-12 col-sm-12 col-xs-12 pull-right btn btnSubmit topMargin outlinebox" type="submit" onClick={this.createUser.bind(this)} id="CreateUserModal" >Register</button>
                                                      </div>    
                                                 </form>
 

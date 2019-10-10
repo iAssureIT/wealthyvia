@@ -1,0 +1,190 @@
+.workHeader{
+	padding-left: 2em;
+	border-bottom: 1px solid #eee;
+}
+.h5lettersp{
+	margin-left: 1px;
+	border:none;
+  font-family: 'Montserrat-Regular';
+}
+.noborder{
+	border:none !important;
+}
+.Facilities{
+	margin-top: 9px;
+}
+.addlabelprop{
+	margin-left: 46px;
+}
+.take_top{
+  margin-top: 20px;
+}
+.clr_k{
+	height:80px;
+	background-color: #f2f2f2;
+	font-family:'Montserrat-Regular';
+	cursor: pointer;
+	border: 2px dotted #ccc;
+}
+.click_input{
+	width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  margin-left: -15px;
+}
+.hand_icon{
+	margin-left: 38%;
+  margin-top: 10px;
+}
+.hand_icon1{
+  margin-left: 26%;
+  margin-top: 10px;
+}
+.subtitle{
+	margin-left: 36px
+}
+.take_top{
+	margin-top: 20px;
+}
+.clr_k1{
+	margin-left: 51px;
+}
+.imgdetails3{
+	margin-top: 22px;
+}
+.dashboardModImg{
+	background-image: url('/images/modalimg.png');
+	background-repeat: no-repeat;
+	background-size: auto;
+  height: 500px;
+}
+@font-face {
+	font-family: 'Jenna Sue';
+  src: url(/fonts/JennaSue.ttf);
+}
+.dashboardModImg p{
+	font-family: 'Jenna Sue', arial !important;
+	font-size: 28px !important;
+	font-weight: 500 !important;
+	color: #a2632c !important;
+}
+.closeBtn{
+	cursor: pointer;
+	font-size: 20px;
+  top: 75px;
+  color: rgb(162, 99, 44);
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background-color: #fff;
+  border: 1px solid black;
+  margin-left: 38%;
+  margin-top: 4%;
+  padding: 0;
+  /*padding-left: 9px;*/
+  padding-top: 2px;
+}
+.marBtm0{
+	margin-bottom: 0px !important;
+}
+.marTop16{
+	margin-top: 16% !important;
+}
+.custFaTimesC{
+	position: absolute;
+	margin-top: 10px;
+	margin-left: 0%;
+	z-index: 1;
+	font-size: 18px;
+  cursor: pointer;
+}
+.custFaTimes{
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 81%;
+  z-index: 1;
+  font-size: 18px;
+  cursor: pointer;
+}
+.custFaTimes1{
+  position: absolute;
+  margin-top: 45px;
+  margin-left: 1%;
+  z-index: 1;
+  font-size: 18px;
+  cursor: pointer;
+}
+.custFaTimesComp{
+  position: absolute;
+  margin-top: 5px;
+  margin-left: 79%;
+  z-index: 1;
+  font-size: 18px;
+  cursor: pointer;
+}
+.containerC {
+/*  position: relative;
+  width: 50%;*/
+}
+.imageC {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+.middleC {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+.containerC:hover .imagCe {
+  opacity: 0.3;
+}
+.containerC:hover .middleC {
+  opacity: 1;
+}
+.textC {
+  background-color: #666666;
+  color: white;
+  opacity: 0.5;
+  font-size: 16px;
+  padding: 16px 32px;
+}
+.vertAlgn{
+  vertical-align: middle;
+}
+.companyNamechkbx1{
+    margin-right: 8px !important;
+}
+.rc-time-picker-input {
+  padding: 0px 0px !important; 
+  height: 22px !important;
+  border: 0px solid #d9d9d9 !important;
+}
+.rc-time-picker-input:focus{
+  outline: none !important;
+}
+.rc-time-picker-panel-inner{
+  margin-top: 3px;
+  margin-left: 5px;
+  width: 100%;
+}
+.rc-time-picker-clear {
+  line-height: 25px !important;
+}
+.fnt12{
+  font-size:12px;
+}
+.fnt12b{
+  font-size:12px;
+  color:blue;
+}

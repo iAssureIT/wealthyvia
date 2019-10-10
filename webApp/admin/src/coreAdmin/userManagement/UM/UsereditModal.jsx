@@ -146,6 +146,11 @@ class UsereditModal extends Component{
 				})
 				.catch(function (error) {
 				console.log('error============',error);
+				  if(error.message === "Request failed with status code 401")
+			              {
+			                   swal("Your session is expired! Please login again.","", "error");
+			                   this.props.history.push("/");
+			              }
 				})
 				.finally(function () {
 				// always executed

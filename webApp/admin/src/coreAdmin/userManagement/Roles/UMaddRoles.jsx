@@ -18,13 +18,16 @@ export default class UMaddRoles extends Component {
     axios.post('/api/roles', formValues)
       .then( (res)=>{
           console.log("submit ");
-          swal("Role added successfully"
-           );
+          swal("Role added successfully", "", "success");
           this.refs.role.value = '';        
-          this.props.getdata();
       })
       .catch((error)=>{
         console.log("error = ",error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
         // alert("Something went wrong! Please check Get URL.");
       });
   

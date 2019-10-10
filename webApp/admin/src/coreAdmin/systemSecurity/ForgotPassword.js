@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 import swal from 'sweetalert';
 import $ from "jquery";
+import axios from 'axios';
 
 import 'font-awesome/css/font-awesome.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,6 +29,13 @@ class ForgotPassword extends Component {
       event.preventDefault();
       var email = this.refs.enterEmail.value;
       var mobile = this.refs.enterMobNo.value;
+
+
+      var body =
+      {
+        emailId  : this.refs.enterEmail.value,
+        mobileNumber : this.refs.enterMobNo.value,
+      }
       // console.log("email: ",email);
      this.setState({
       email : email,
@@ -39,6 +47,20 @@ class ForgotPassword extends Component {
      if(userOtp==1){
       var mobileotp = Math.floor(1000 + Math.random() * 9000);
       var emailotp = Math.floor(100000 + Math.random() * 900000);
+
+
+
+      //  axios
+      // .post('/api/users/forgot-pwd',body)
+      // .then((response)=> {       
+      // })
+      // .catch(function (error) {
+      //     console.log(error);
+       
+      // });
+
+
+
   //       // Session.set('mobotp',mobileotp);
   ///////////////
   //       // Session.set('mailotp',emailotp);

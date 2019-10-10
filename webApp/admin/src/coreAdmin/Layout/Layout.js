@@ -1,44 +1,12 @@
-import React,{Component}                          from 'react';
-import { render }                                 from 'react-dom';
-import { BrowserRouter as Router, Route,Switch }  from 'react-router-dom';
-import $                                          from "jquery";
-
-import Header                                     from '../common/header/Header.js';
-import Footer                                     from '../common/footer/Footer.js'
-import Dashboard                                  from '../dashboard/Dashboard.js'
-import Leftsidebar                                from '../common/leftSidebar/Leftsidebar.js'
-import Rightsidebar                               from '../common/rightSidebar/Rightsidebar.js'
-
-import UMListOfUsers                              from '../userManagement/UM/UMListOfUsers.js';
-import EditUserProfile                            from '../userManagement/UM/EditUserProfile.js';
-import UMRolesList                                from '../userManagement/Roles/UMRolesList.js';
-import CompanySetting                             from '../companysetting/Components/CompanySetting.js';
-import ViewTemplates                              from '../NotificationManagement/ViewTemplates.jsx';
-
-
-
-//============== Product Management ==============//
-import AddNewShopProduct                          from '../../storeAdmin/product/addNewProduct/AddNewShopProduct/AddNewShopProduct.js';
-import AddNewProductImages                        from '../../storeAdmin/product/addNewProduct/AddNewProductImages/AddNewProductImages.js';
-import CategoryManagement                         from '../../storeAdmin/product/categoryManagement/component/CategoryManagement.js';
-import AddNewBulkProduct                          from '../../storeAdmin/product/productBulkUpload/component/ProductBulkUpload.js';
-import ProductList                                from '../../StoreManagement/product/productList/component/ProductList.js';
-import BulkProductImageUpload                     from '../../StoreManagement/bulkimageUpload/BulkProductImageUpload.js'
-import FileWiseProductList                        from '../../StoreManagement/product/fileproductList/component/fileproductList.js';
-import AdminOrdersList                            from '../../StoreManagement/orders/component/AdminOrdersList.js';
-import BaList                                     from '../../storeAdmin/baManagement/listOfBAs/components/BusinessAssociateList.js';
-
-import AddNewBA                                   from '../../storeAdmin/baManagement/BAOnboarding/basicInfo/basicInfo.js';
-
-
-import ProductDetails                             from '../../StoreManagement/product/ProductDetails/ProductDetails.js';
-
-//================== Reports ===============//
-import Reports                                    from '../../admin/Reports/Reports.js';
-
-import ImageUpload from '../../ImageUpload/ImageUpload.js';
-
-
+import React,{Component} from 'react';
+// import TrackerReact from 'meteor/ultimatejs:tracker-react';
+import { render } from 'react-dom';
+import { Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route,Switch } from 'react-router-dom';
+// import {browserHistory} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.min.css';
+import $ from "jquery";
 // Section: 1 - SystemSecurity ******************************************************
 import Login            from '../systemSecurity/Login.js';
 import ConfirmOtp       from '../systemSecurity/ConfirmOtp.js';
@@ -46,165 +14,170 @@ import ForgotPassword   from '../systemSecurity/ForgotPassword.js';
 import ResetPassword    from '../systemSecurity/ResetPassword.js';
 import SignUp           from '../systemSecurity/SignUp.js';
 import VerifyAccount    from '../systemSecurity/VerifyAccount.js';
+import Header           from '../common/header/Header.js'
+import Footer           from '../common/footer/Footer.js'
+import Dashboard        from '../dashboard/Dashboard.js'
+import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js'
+import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js'
+import UMListOfUsers    from '../userManagement/UM/UMListOfUsers.js';
+import UMListOfUsers2   from '../userManagement/UM/UMListOfUsers2.js';
+import EditUserProfile  from '../userManagement/UM/EditUserProfile.js';
+import UMRolesList      from '../userManagement/Roles/UMRolesList.js';
+import CompanySetting   from '../companysetting/Components/CompanySetting.js';
+import ViewTemplates    from '../NotificationManagement/ViewTemplates.js';
+import addWorkspace     from '../../cofficAdmin/WorkspaceManagement/addWorkspace.js';
+import WorkInProgressPage from "../../cofficAdmin/WorkspaceManagement/WorkInProgressPage.js";
+import addSubscription    from '../../cofficAdmin/Subscription/addSubscription.js';
+import editSubscription   from '../../cofficAdmin/Subscription/editSubscription.js';
+import Amenities          from '../../cofficAdmin/Amenities/Amenities.js';
+import cafeMenu           from '../../cofficAdmin/CafeMenu/cafeMenu.js';
+import AdminContent       from '../dashboard/DashboardNew.js';
+/*============================ /Blog==============================================*/
 
-//============ Vendor Management =============
-import VendorOnboardingForm   from '../../storeAdmin/vendorManagement/VendorOnboarding/VendorOnboardingForm/VendorOnboardingForm.jsx';
-import BasicInfo              from '../../storeAdmin/vendorManagement/VendorOnboarding/basicInfo/BasicInfo.jsx';
-import LocationDetails        from '../../storeAdmin/vendorManagement/VendorOnboarding/locationDetails/LocationDetails.jsx';
-import ContactDetails         from '../../storeAdmin/vendorManagement/VendorOnboarding/contactDetails/ContactDetails.jsx';
-import ListOfAllVendors       from '../../storeAdmin/vendorManagement/listOfVendors/components/ListOfAllVendors.jsx';
-import ListOfVendor           from '../../storeAdmin/vendorManagement/listOfVendors/components/ListOfVendor.jsx';
-import VendorCategory         from '../../storeAdmin/vendorManagement/MasterData/VendorCategory/VendorCategory.jsx';
-import VendorLocationType     from '../../storeAdmin/vendorManagement/MasterData/VendorLocationType/VendorLocationType.jsx';
+/*import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js';*/
+/*import BlogsFormPage    from "../Blog/BlogsForm/BlogsFormPage.js";*/
 
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
+/*******************************Dashboard Reports*****************************/
+
+
+
+import BankReport             from '../dashboardReports/bankReport/BankReport.js';
+import CafewiseCheckIns       from '../dashboardReports/cafeWiseCheck-Ins/CafeWiseCheck-Ins.js';
+import CafeWiseCheckInD       from '../dashboardReports/cafeWiseCheck-Ins/CafeWiseCheckInD.js';
+import CafeWiseCheckOut       from '../dashboardReports/cafeWiseCheck-Out/CafeWiseCheck-Out.js';
+import CafeWiseCheckOutD      from '../dashboardReports/cafeWiseCheck-Out/CafeWiseCheckOutD.js';
+import CafeWiseSeatBookingS   from '../dashboardReports/cafeWiseSeatBookingS/CafeWiseSeatBookingS.js';
+import CafeWiseSeatBookingD   from '../dashboardReports/cafeWiseSeatBookingD/CafeWiseSeatBookingD.js';
+import SalesTransactionReport from '../dashboardReports/salesTransactionReport/SalesTransactionReport.js';
+import SettlementReportD      from '../dashboardReports/settlementReportD/SettlementReportD.js';
+import SettlementReportS      from '../dashboardReports/settlementReportS/SettlementReportS.js';
+import AllCafeUsersSeatBooking     from '../dashboardReports/cafeWiseSeatBookingD/AllCafeUsersSeatBooking.js';
 
 class Layout extends Component{
-  
   constructor(props) {
-   super(props);
+    super();
     this.state = {
-      loggedIn : false,
+          loggedIn  : false, 
+          logout    : true
     }
+      this.updateState = this.updateState.bind(this);
   }
    
-  componentDidMount(){
-    $(document).ready(function () {
-      $('#sidebarCollapse').on('click', function () {
-        $('#sidebar').toggleClass('active');
-      });
-    });
+componentDidMount(){
+    console.log('this.props',this.props);
 
     $(document).ready(function () {
-      $('#sidebarCollapse').on('click', function () {
-        $('#headerid').toggleClass('headereffect');
+       $('#sidebarCollapse').on('click', function () {
+           $('#sidebar').toggleClass('active');
+           $('#imgSidebar').toggleClass('custm1');
        });
     });
     $(document).ready(function () {
-      $('#sidebarCollapse').on('click', function () {
-        $('#dashbordid').toggleClass('dashboardeffect');
-      });
+       $('#sidebarCollapse').on('click', function () {
+           $('#headerid').toggleClass('headereffect');
+       });
     });
-
-
+    $(document).ready(function () {
+       $('#sidebarCollapse').on('click', function () {
+           $('#dashbordid').toggleClass('dashboardeffect');
+       });
+    });
     const token = localStorage.getItem("token");
-     // console.log("Dashboard Token = ",token);
+    // console.log("Dashboard Token = ",token);
     if(token!==null){
     // console.log("*********===***********imin ",token);
       this.setState({
-        loggedIn : true
+        loggedIn : true,
+        logout   : false
       })
-    }else{
-      // console.log("token is not available");
-    }
-
+    }        
   }
 
-    logout(){
+  updateState(data){
+    this.setState({
+      "logout"    : data,
+      "loggedIn"  : false
+    })
+  }
+
+  logout(){
     var token = localStorage.removeItem("token");
       if(token!==null){
-      // console.log("Header Token = ",token);
+      console.log("Header Token = ",token);
       this.setState({
         loggedIn : false
       })
       // browserHistory.push("/login");
-      // this.props.history.push("/login");
+      this.props.history.push("/login");
     }
   }
 
-
-
   render(){
-    if(this.state.loggedIn===true){
-      // console.log('if');
-      window.onscroll = function() {scrollFunction()};
-
-      function scrollFunction() {
-        if( document.getElementById("mySidenav"))
-        {
-            if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-              document.getElementById("mySidenav").style.top = "0";
-            } else {
-              document.getElementById("mySidenav").style.top = "50px";
-            }
-
-        }
-        
-      }
-
-    return(
-      <div className="App container-fluid">
-          <div className="row">
-            <div id="headerid" className="headerbackgroundcolor ">
-              <Header />
-            </div>
-            <div className="">
-              <div id="dashbordid" className="">
-                <Router>
-                  <Switch>
-                    {/*<Route path="/" component={Dashboard} exact />*/}
-                  {/*Admin Routes*/}
-                    <Route path="/umlistofusers"        component={UMListOfUsers}   exact />
-                    <Route path="/umroleslist"          component={UMRolesList}     exact />
-                    <Route path="/edituserprofile/:userID"      component={EditUserProfile} exact />
-                    <Route path="/ViewTemplates"        component={ViewTemplates}   exact />
-                    <Route path="/companysetting"       component={CompanySetting}  exact />
-                 
-
-                   {/* Product Management */}
-                    <Route path="/product-details/:productID"                                   exact strict component={ ProductDetails } />
-                    <Route path="/add-product"                                                  exact strict component={ AddNewShopProduct } />
-                    <Route path="/add-product/:productID"                                       exact strict component={ AddNewShopProduct } />
-                    <Route path="/add-product/image/:productID"                                 exact strict component={ AddNewProductImages } />
-                    <Route path="/category-management"                                          exact strict component={ CategoryManagement } />
-                    <Route path="/category-management/:categoryID"                              exact strict component={ CategoryManagement } />
-                    <Route path="/product-upload"                                               exact strict component={ AddNewBulkProduct } />
-                    <Route path="/product-list"                                                 exact strict component={ ProductList } />
-                    <Route path="/product-image-bulk-upload"                                    exact strict component={ BulkProductImageUpload } />
-                    <Route path="/file-wise-product-list"                                       exact strict component={ FileWiseProductList } />
-                    <Route path="/image"                                                        exact strict component={ ImageUpload } />
-                    
-                    {/* Vendor Management */}
-                    <Route path="/vendor-onboarding"                                            exact strict component={ BasicInfo } />
-                    <Route path="/location-details/:vendor_ID"                                  exact strict component={ LocationDetails } />
-                    <Route path="/contact-details/:vendor_ID"                                   exact strict component={ ContactDetails } />
-                    <Route path="/vendor-list"                                                  exact strict component={ ListOfVendor } />
-                    <Route path="/vendor-category"                                              exact strict component={ VendorCategory } />
-                    <Route path="/vendor-location-type"                                                  exact strict component={ VendorLocationType } />
-
-                    { /*Order List*/}
-                    <Route path="/orders-list"                                                  exact strict component={ AdminOrdersList } />
-                    { /*Ba List*/ }
-                    <Route path="/ba-list"                                                      exact strict component={ BaList } />
-                    
-                    <Route path="/editBA/:BaId"                                                 exact strict component={ AddNewBA } />
-                    <Route path="/BA/locationDetails/:locationEdit/:BaId"                       exact strict component={ AddNewBA } />
-                    <Route path="/BA/contactDetails/:contactEdit/:BaId"                         exact strict component={ AddNewBA } />
-                    
-                    <Route path="/addNewBA"                                                     exact strict component={ AddNewBA } />
-                    
-
-                    {/*Report*/}
-                    <Route path="/report"                                                       exact strict component={ Reports } />
-                  </Switch>        
-                </Router>
-              </div>
-            </div>
-            <div className="leftsidebarbackgroundcolor">
+    if(this.state.loggedIn && !this.state.logout){
+      return(
+          <Router>
+            <div className="App container-fluid">
               <div className="row">
-                 <Leftsidebar />
+                <div id="headerid" className="headerbackgroundcolor">
+                  <div className="">
+                    <Header systemlogout={this.updateState} />
+                 </div>
+                </div>
+                <div id="dashbordid" className="col-lg-10 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 NOpadding">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContentBottom">
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mainContentBackground">                  
+                        <Switch>
+                          <Route path="/" component={AdminContent} exact />                
+                          <Route path="/dashboard" component={AdminContent} exact />                
+                          <Route path="/umlistofusers" component={UMListOfUsers2} exact />
+                          <Route path="/umroleslist" component={UMRolesList} exact />
+                          <Route path="/edituserprofile/:id" component={EditUserProfile} exact />
+                          <Route path="/ViewTemplates" component={ViewTemplates} exact />
+                          <Route path="/dashboard" component={Dashboard} exact />
+                          <Route path="/companysetting" component={CompanySetting} exact />
+                          <Route path="/addWorkspace" component={addWorkspace} exact />
+                          <Route path="/addWorkspace/:id" component={addWorkspace} exact />
+                          <Route path="/reports" component={WorkInProgressPage} exact />
+                          <Route path="/addSubscription" component={addSubscription} exact />
+                          <Route path="/addSubscription/:id" component={addSubscription} exact />
+                          <Route path="/editSubscription" component={editSubscription} exact />
+                          <Route path="/amenities" component={Amenities} exact />
+                          <Route path="/amenities/:id" component={Amenities} exact />
+                          <Route path="/cafeMenu" component={cafeMenu} exact />
+                          <Route path="/cafeMenu/:id" component={cafeMenu} exact />
+                          <Route path="/bankReport" component={BankReport} exact />
+
+                          <Route path="/cafeWiseCheck-In/:workspace_ID" component={CafeWiseCheckInD} exact />
+                          <Route path="/cafeWiseCheckIn" component={CafewiseCheckIns} exact />
+                          <Route path="/cafeWiseCheck-Out/:workspace_ID" component={CafeWiseCheckOutD} exact />
+                          <Route path="/cafeWiseCheckOut" component={CafeWiseCheckOut} exact />
+                          <Route path="/dashboard/cafeWiseSeatBookingDetailed/:workspace_ID" component={CafeWiseSeatBookingD} exact />
+                          <Route path="/dashboard/cafeWiseSeatBookingDetailed" component={CafeWiseSeatBookingD} exact />
+                          <Route path="/dashboard/allCafeUsersSeatBooking" component={AllCafeUsersSeatBooking} exact />
+                          <Route path="/dashboard/cafeWiseSeatBookingSummary" component={CafeWiseSeatBookingS} exact />
+                          <Route path="/dashboard/salesTransactionReport" component={SalesTransactionReport} exact />
+                          <Route path="/settlementReportDetailed/:vendor_ID" component={SettlementReportD} exact />
+                          <Route path="/settlementReportSummary" component={SettlementReportS} exact />
+                        </Switch>        
+                      </div>
+                    </div>
+                  </div>
+                  <div className="footerCSS col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">
+                    <Footer />
+                  </div>
+                </div>
+                <div className="leftsidebarbackgroundcolor">
+                  <div className="row">
+                    <Leftsidebar />
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="col-lg-10 col-md-10 col-sm-10 col-xs-10 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-     
-            </div>
-          </div>
-        </div>
-    );
+            </div> 
+          </Router>
+        );
     }else{
-      console.log('else');
        return(
         <div>
           <Router>
@@ -223,7 +196,6 @@ class Layout extends Component{
         </div>
       );
     }
-  
   }
 }
 export default Layout;

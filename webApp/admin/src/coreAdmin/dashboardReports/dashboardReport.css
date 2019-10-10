@@ -1,0 +1,24 @@
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+   background-color: #FCD69F;
+}
+.custTableHead{
+	font-size: 20px; 
+	font-family: 'Montserrat-SemiBold';
+	font-weight: 700;
+	padding: 15px 15px;
+}
+.custTableFoot{
+	font-size: 16px; 
+	font-family: 'Montserrat-SemiBold';
+	font-weight: 600;
+}
+.bgThead{
+	background: #a2632c !important;
+	color: #ffffff !important;
+}
+.noPad{
+	padding: 0px !important;
+	font-size: 16px;
+	font-weight: normal;
+	font-style: italic;
+}

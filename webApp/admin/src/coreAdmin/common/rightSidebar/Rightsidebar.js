@@ -1,51 +1,42 @@
 import React,{Component} from 'react';
-// import TrackerReact from 'meteor/ultimatejs:tracker-react';
-// import { render } from 'react-dom';
-import {BrowserRouter as Router, Route,Link } from 'react-router-dom';
-
+import {BrowserRouter as Router,Link } from 'react-router-dom';
+import $ from "jquery";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
-import $ from "jquery";
 
 
 import './Rightsidebar.css';
 
 export default class Rightsidebar extends Component{
-  
-  constructor(props) {
-   super(props);
-    this.state = {}
-  }
-   
-componentDidMount(){
-                 
-          }    
-  
+	
+	constructor(props) {
+	 super(props);
+		this.state = {
 
-  render(){
-    return(
-      <Router>
-    <div>
-        <div className="sidebar-header">
-            <h4>Admin Tasks</h4>
-        </div>
-          
-          <li>
-              <a href="#rightsidebar" data-toggle="collapse" aria-expanded="false">
-                  
-                  User Management
-              </a>
-              <ul className="collapse list-unstyled" id="rightsidebar">
-                  <li><a href="/umlistofusers">List of Users</a></li>
-                
-              </ul>
-
-          </li>
-          {/* <a href="ViewTemplates">NotificationManagement</a> */}
-          <a href="/companysetting">Store Configuration System</a>
-          <a href="/ViewTemplates">Notification Management</a>
-      </div>
-      </Router>
-    );
-  }
+		}
+	}
+	 
+	componentDidMount(){
+								 
+					}    
+	
+	render(){
+		return(
+			<Router>
+				<div>
+					<div className="sidebar-header">
+						<h4>Admin Sidebar</h4>
+					</div>
+					<ul className="list-unstyled components">
+						<li className="active">
+							<span className="sideheader">Support Sidebar</span>
+							<a href="/companysetting"> <i class="fa fa-cogs"></i><span className="sidebartext">Company Settings</span></a>
+							<a href="/ViewTemplates" ><i class="fa fa-bell"></i><span className="sidebartext">Notification Management</span></a>
+							<a href="/umlistofusers"><i class="fa fa-users"></i><span className="sidebartext"></span>User Management</a>
+						</li>
+					</ul>
+				</div>
+			</Router>
+		);
+	}
 }

@@ -11,9 +11,9 @@ import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
-
-axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.baseURL = 'http://apitgk3t.iassureit.com/';
+// axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
+// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 const formValid = formerrors=>{
   console.log("formerrors",formerrors);
@@ -58,20 +58,18 @@ class SignUp extends Component {
 
     }
  	usersignup(event){
- 		event.preventDefault();
- 			console.log("-------this.state.auth------>>",this.state.auth);
- 			var auth={
-	                firstName       : this.refs.firstname.value,
-	                lastName        : this.refs.lastname.value,
-	                mobileNumber    : this.refs.mobNumber.value,
-	                emailId         : this.refs.signupEmail.value,
-	                pwd        		: this.refs.signupPassword.value,
-	                signupPassword  : this.refs.signupConfirmPassword.value,
-	                roles 			: 'users',
-	                status 			: 'Active'
-	            }
+ 		event.preventDefault(); 			
+		var auth={
+            firstName       : this.refs.firstname.value,
+            lastName        : this.refs.lastname.value,
+            mobileNumber    : this.refs.mobNumber.value,
+            emailId         : this.refs.signupEmail.value,
+            pwd        		: this.refs.signupPassword.value,
+            signupPassword  : this.refs.signupConfirmPassword.value,
+            roles 			: 'admin'
+        }
 	            
- 			// console.log("-------auth------>>",auth);
+ 			
 
         document.getElementById("signUpBtn").value = 'We are processing. Please Wait...';            
             
@@ -84,33 +82,42 @@ class SignUp extends Component {
             if(formValid(this.state.formerrors)){
     			console.log('companyName==',this.state.formerrors);
             if (passwordVar === signupConfirmPasswordVar) {
+            	localStorage.setItem('mobileNumber',this.refs.mobNumber.value);
                 return (passwordVar.length >= 6) ? 
                 	(true, 
                 	 console.log("formValues= ",auth),
 		             document.getElementById("signUpBtn").value = 'Sign Up',
       				// browserHistory.push("/"),
                 	axios
-                	 	.post('/api/users',auth)
+                	 	.post('/api/users/verify_mobileOTP',auth)
 			            .then((response)=> {
-			                console.log("-------userData------>>",response);
-		            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
-			                // this.props.history.push("/confirm-otp");
-			                this.props.history.push("/login");
+			               console.log("signup res--->",response);
+			               if(response.data.message=="MOBILE-NUMBER-EXISTS"){
+		            		swal("Oops...","Mobile number already Exist, try with another number","warning");
+			               }else{
+		            		swal("SignUp Sucessfully","OTP sent to your mobile number","success");
+			                this.props.history.push("/confirm-otp");
+			               }
 			            })
 			            .catch(function (error) {
 			                console.log(error);
-        					swal("Unable to submit data.");
+        					swal("Unable to submit data ",error);
+        					  if(error.message === "Request failed with status code 401")
+					              {
+					                   swal("Your session is expired! Please login again.","", "error");
+					                   this.props.history.push("/");
+					              }
 			            })
                 	)
                 :
 	                (
 		                document.getElementById("signUpBtn").value = 'Sign Up',
-		                swal("Password should be at least 6 Characters Long","Please try again or create an Account")       
+		                swal("Password should be at least 6 Characters Long","Please try again or create an Account","warning")       
 	                )
                 
             } else {
                 document.getElementById("signUpBtn").value = 'Sign Up';
-		        return swal("Passwords does not match","Please Try Again")
+		        return swal("Passwords does not match","Please Try Again","warning")
             }
             }else{
                 document.getElementById("signUpBtn").value = 'Sign Up';
@@ -126,7 +133,7 @@ class SignUp extends Component {
 	    const {name,value} = event.target;
 	    let formerrors = this.state.formerrors;
 	    
-	    console.log("datatype",datatype);
+	    // console.log("datatype",datatype);
 	    switch (datatype){
 	     
 	       case 'firstNameV' : 
@@ -160,7 +167,7 @@ class SignUp extends Component {
 	}
  	acceptcondition(event){
 	    var conditionaccept = event.target.value;
-	    console.log("condition",conditionaccept);
+	    // console.log("condition",conditionaccept);
 	    if(conditionaccept=="acceptedconditions"){
 	        $(".acceptinput").removeAttr('disabled');
 	        // if(this.state.roletype=="Student"){
@@ -203,7 +210,7 @@ class SignUp extends Component {
 		// var winHeight = window.innerHeight;
   //       var divHeight = winHeight/4.5+'px';
 		const {formerrors} = this.state;
-		console.log("formerrors====?>>>",formerrors);
+		// console.log("formerrors====?>>>",formerrors);
 
 
 		  var windowWidth = $(window).width();
@@ -218,7 +225,7 @@ class SignUp extends Component {
     var winHeight = window.innerHeight;
     var boxHeight = 520;
     var divHeight = 450 +'px';
-      console.log("-------------------------------",this.state.loggedIn)
+      // console.log("-------------------------------",this.state.loggedIn)
     
 		return(
 
@@ -339,7 +346,7 @@ class SignUp extends Component {
 							    </div>		   
 
 						    	<div className="col-lg-4 col-lg-offset-4 col-md-4 col-sm-4 col-xs-4 pdcls">
-							    	<a href='/login' className="UMGrey signInbtn1 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">Sign In</a> 	
+							    	<Link to='/' className="UMGrey signInbtn1 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">Sign In</Link> 	
 						    	</div>
 						    </div> 
 					  	</form>
