@@ -23,10 +23,16 @@ import './SignUp.css';
       }
       axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
       .then((response)=>{
-        swal(response.data.message);
+        const token = localStorage.getItem("verify");
+        console.log("token",token);
+        if(token == "true")
+        {
+          this.props.history.push('/reset-pwd/'+formValues.ID);
+        }else{
+        swal("Account Created.","Please Login to continue.","sucess");
         this.props.history.push('/login');
-/*        this.props.history.push('/reset-pwd/'+formValues.ID);
-*/      })
+        }
+      })
       .catch((error)=>{
         console.log('error', error);
       })

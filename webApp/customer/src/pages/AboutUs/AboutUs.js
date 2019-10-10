@@ -171,7 +171,7 @@ export default class AboutUs extends Component {
                 <div className="row">
                   
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1 backColorGray"> 
-                    <label className="nameOfImageHead">Our team</label>
+                    <label className="nameOfImageHead">Our Team</label>
                     <div className="borderBottomDiv"></div>
                     <p>We have team of great mixture and different strengths and expertise working together but with equal commitment. Our Team Comprises of Research Analysts from Industry specialists, business analysts, Operational and Marketing consultants and Stock Market equity specialists.</p>
                     </div>
@@ -182,7 +182,7 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Our team</label>
+                    <label className="nameOfImageHead">Our Team</label>
                     <div className="borderBottomDiv"></div>
                     <p>We have team of great mixture and different strengths and expertise working together but with equal commitment. Our Team Comprises of Research Analysts from Industry specialists, business analysts, Operational and Marketing consultants and Stock Market equity specialists.</p>
                     </div>  
@@ -194,7 +194,7 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
                     </div> 
                     <div className="col-lg-6  col-md-6 hidden-xs hidden-sm imageContent1"> 
-                    <label className="nameOfImageHead">Fondness for reading</label>
+                    <label className="nameOfImageHead">Fondness For Reading</label>
                     <div className="borderBottomDiv"></div>
                     <p>We happily studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. We still consider it less and will be life long students</p>
                     </div>  
@@ -202,7 +202,7 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
                     </div>   
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Fondness for reading</label>
+                    <label className="nameOfImageHead">Fondness For Reading</label>
                     <div className="borderBottomDiv"></div>
                     <p>We happily studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. We still consider it less and will be life long students</p>
                     </div>  
@@ -212,7 +212,7 @@ export default class AboutUs extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray padding40inDiv">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1 "> 
-                    <label className="nameOfImageHead">Our equipments & tools </label>
+                    <label className="nameOfImageHead">Our Equipments & Tools </label>
                     <div className="borderBottomDiv"></div>
                     <p>self developed screening Software tools to scan Fundamentals and Technicals. It took 924 hours of hard work and 17000 lines of code to reach it to our requirements. These Systems help us a lot in being alert to find opportunities and direct our time to right efforts.</p>
                     </div>  
@@ -223,7 +223,7 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Our equipments & tools</label>
+                    <label className="nameOfImageHead">Our Equipments & Tools</label>
                     <div className="borderBottomDiv"></div>
                     <p>self developed screening Software tools to scan Fundamentals and Technicals. It took 924 hours of hard work and 17000 lines of code to reach it to our requirements. These Systems help us a lot in being alert to find opportunities and direct our time to right efforts.</p>
                     </div>  
@@ -235,7 +235,7 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
-                    <label className="nameOfImageHead">Clear roadmap</label>
+                    <label className="nameOfImageHead">Clear Roadmap</label>
                     <div className="borderBottomDiv"></div>
                     <p>In the journey of wealth creation, right direction is everything. Like without roadmap one can not know where is he heading , without carved out plan one can not know whether Wealth is growing in anticipated manner.</p>
                     </div>  
@@ -243,7 +243,7 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Clear roadmap</label>
+                    <label className="nameOfImageHead">Clear Roadmap</label>
                     <div className="borderBottomDiv"></div>
                     <p>In the journey of wealth creation, right direction is everything. Like without roadmap one can not know where is he heading , without carved out plan one can not know whether Wealth is growing in anticipated manner.</p>
                     </div>  
@@ -255,9 +255,9 @@ export default class AboutUs extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray padding40inDiv">
                 <div className="row">
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
-                    <label className="nameOfImageHead">Performance measurement</label>
+                    <label className="nameOfImageHead">Performance Measurement</label>
                     <div className="borderBottomDiv"></div>
-                    <p> unless we measure, we can not know where we stand viz others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
+                    <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  noPadding image1"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
@@ -266,9 +266,9 @@ export default class AboutUs extends Component {
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Performance measurement</label>
+                    <label className="nameOfImageHead">Performance Measurement</label>
                     <div className="borderBottomDiv"></div>
-                    <p> unless we measure, we can not know where we stand viz others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
+                    <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
                     </div>  
                     
                 </div>  

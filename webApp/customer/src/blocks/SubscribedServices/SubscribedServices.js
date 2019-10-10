@@ -87,7 +87,7 @@ export default class SubscribedServices extends Component {
                         <ul className="myULCDSP">
                             <li><a href="">3 Month Subsription  <span className="pull-right"> Rs 600 </span></a></li>
                             <li><a href="">Subscribed on <span className="pull-right">02-10-2019 </span></a></li>
-                            <li><a href="">Remaining  <span className="pull-right"> 88 days </span></a></li>
+                            <li><a href="">Subscription end date  <span className="pull-right">02-02-2019 </span></a></li>
 
                         </ul>
                         <label className="mt40 priBlogHead">Premium Blogs Read so far</label>

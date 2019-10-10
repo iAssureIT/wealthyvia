@@ -251,8 +251,9 @@ width: 80px !important;
 .image1{
 	height: 400px;
 	margin-top: 30px !important;
-	 background-image: url("/images/loading.gif");
-  background-repeat: no-repeat;
+	padding: 10px;
+	background-image: url("/images/loading.gif");
+ 	background-repeat: no-repeat;
 }
 .image2{
 	height: 350px;

@@ -38,6 +38,7 @@
 	position: absolute;
 	height: 200px;
 	opacity: 0;
+    border:1px solid #333;
 	z-index: 1000;
 	transition-duration: 0.5s;
  font-family:'Montserrat',sans-serif;

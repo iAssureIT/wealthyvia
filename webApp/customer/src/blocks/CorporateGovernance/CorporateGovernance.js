@@ -17,7 +17,6 @@ export default class CorporateGovernance extends Component {
 
   componentDidMount()
   {
- 
   } 
 
   render() {
@@ -42,7 +41,7 @@ export default class CorporateGovernance extends Component {
                     <label><span className="iceBlueColor">C : Corporate Governance</span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl">
-                        <li>We prefer -</li>
+                        <li className="customstyle">We prefer -</li>
                         <li>High Promoter Holding and constant or increasing % </li>
                         <li>Nil/Low Pledged shares by promoters</li>
                         <li>Consistent & increasing Dividends payouts</li>
@@ -63,7 +62,7 @@ export default class CorporateGovernance extends Component {
                     <label><span className="iceBlueColor">C : Corporate Governance </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                       <ul className="customOl">
-                        <li>We prefer -</li>
+                        <li className="customstyle">We prefer -</li>
                         <li>High Promoter Holding and constant or increasing % </li>
                         <li>Nil/Low Pledged shares by promoters</li>
                         <li>Consistent & increasing Dividends payouts</li>

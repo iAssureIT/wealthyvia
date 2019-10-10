@@ -32,6 +32,7 @@ class ResetPassword extends Component {
               var responseData = response.data;
               if(responseData){
                 swal("Your password has been updated!","","success");
+                localStorage.setItem("verify","");
                 this.props.history.push('/login');
               }
           })

@@ -19,6 +19,7 @@
 .customTabContent{
 	padding: 20px !important;
 	background-color: #fff;
+    min-height: 365px !important;
 }
 .customStack{
 }

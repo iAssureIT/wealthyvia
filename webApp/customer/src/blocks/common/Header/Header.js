@@ -129,11 +129,11 @@ export default class Header extends Component {
           this.setState({
               userinfo : response.data
           })
+      console.log("userinfo",response.data)
       })
       .catch((error)=>{
             console.log('error', error);
       })
-      console.log("userinfo",this.state.userinfo)
   }
   onOptionSelect = (value) => {
   }
@@ -359,6 +359,7 @@ export default class Header extends Component {
                               "<b> Email: </b>"  + this.state.email + '<br/>'+
                               "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
                               "<b> Address Proof: </b>"  + this.state.addressProof + '<br/><br/>'+
+                              "<b> PAN Details: </b>"  + this.state.panNumber + '<br/><br/>'+
                               "<b> Investment Profile details </b> <br/><br/>"+
                               ""+this.state.questionsArray[0]+"<br/>"+
                               "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
@@ -492,6 +493,7 @@ export default class Header extends Component {
 
   render() {
     const token = localStorage.getItem("user_ID");
+    console.log(token);
 
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
@@ -986,7 +988,7 @@ export default class Header extends Component {
                                     <div className="container-fluid">
                                       <div className="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <a className="navbar-brand webSiteName colorP col-lg-4 col-md-4 col-sm-4 col-xs-4" href="/">Wealthyvia</a>
-                                      <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP">SEBI Registration No. INH000005397</a></div>
+                                      <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP"><b>SEBI Registration No. INH000005397</b></a></div>
                                       <div className="col-lg-3 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12 iconContainerHeader">
                                         <div className="row">
                                         
@@ -995,7 +997,7 @@ export default class Header extends Component {
                                           <a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><img src="/images/linkedin1.png"/></a>
                                           </div> 
                                           <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook pull-right">
-                                            <a href="https://www.facebook.com/arthavruddhi" target="_blank">  <img src="/images/facebook.png"/></a>
+                                            <a href="https://www.facebook.com/wealthy.via" target="_blank">  <img src="/images/facebook.png"/></a>
                                           </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
                                             <a href=" https://twitter.com/ViaWealthy" target="_blank"><img src="/images/twitter.png"/></a>
                                           </div> 
@@ -1048,11 +1050,11 @@ export default class Header extends Component {
                                             <a  className="dropdown-item" href="/#5gcpm">5GCPM Portfolio</a>
                                             <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
                                             <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
-{/*                                            <a className="dropdown-item" href="#">Nifty Algo Tranding</a>
-*/}                                            <a className="dropdown-item" href="/#USAStocks">USA Stocks Portfolio</a>
+                                           <a className="dropdown-item" href="#">Nifty Algo Trading</a>
+                                            <a className="dropdown-item" href="/#USAStocks">USA Stocks Portfolio</a>
                                             <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
-{/*                                            <a className="dropdown-item" href="#">Multibagger</a>
-*/}                                          </ul>
+                                            <a className="dropdown-item" href="#">Multibagger</a>
+                                          </ul>
                                         </li>
                                      
                                       <li className="dropdown">
@@ -1061,21 +1063,21 @@ export default class Header extends Component {
                                       </li>
                                       <li className="dropdown">
                                       {token ?
-                                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? this.state.userinfo.fullName:"Login/Signup"}</a>
+                                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}</a>
                                         :
                                         <a href="/login">Login/Signup </a>
                                       }
                                       </li>
                                       {
-                                          token == "" ?
+                                          token ?
+                                            <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
+                                                    <span >Invest Now</span>
+                                            </li>                     
+                                          :
                                             <a  href="/login" ><li className="dropdown investNowHeadBefore">
                                               <span >Invest Now</span>
                                             </li>   
                                             </a>                    
-                                          :
-                                            <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
-                                                    <span >Invest Now</span>
-                                            </li>                     
                                       }
                                   
                                     </ul>

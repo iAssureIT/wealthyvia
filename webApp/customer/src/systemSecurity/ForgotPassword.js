@@ -36,6 +36,8 @@ class ForgotPassword extends Component {
             if(response.data.ID != undefined && response.data.ID != "undefined"){
               swal("Great","Information submitted successfully and OTP is sent to your registered Email ID");
               this.props.history.push("/confirm-otp/"+response.data.ID);
+              localStorage.setItem("verify", true)
+
             }else{
               swal("Warning","Please check your email and try again.");
             }
@@ -88,7 +90,7 @@ class ForgotPassword extends Component {
                       <button type="submit" onClick={this.forgotpassword.bind(this)} className="btn col-lg-12 col-md-12 col-sm-12 col-xs-12 submitBtn UMloginbutton">Send Verification Code</button>
                   </div>
                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls">
-                    <Link to='/' className="UMGrey UMcreateacc col-lg-12 col-md-12 col-sm-12 col-xs-12">Sign In</Link>   
+                    <Link to='/login' className="UMGrey UMcreateacc col-lg-12 col-md-12 col-sm-12 col-xs-12">Sign In</Link>   
                   </div>
                 </form>
               </div>

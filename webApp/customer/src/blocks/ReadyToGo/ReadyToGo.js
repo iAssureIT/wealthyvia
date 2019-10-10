@@ -2,10 +2,16 @@ import React, { Component }       from 'react';
 import $                          from 'jquery';
 import swal                       from 'sweetalert';
 import axios                      from 'axios';
+import S3FileUpload               from 'react-s3';
+import { deleteFile }             from 'react-s3';
 import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
-
 import "./ReadyToGo.css";
+
+axios.defaults.baseURL = 'http://api.wealthyvia.com';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+
 var array =[];
 var answersarray =[];
 export default class ReadyToGo extends Component {
@@ -66,6 +72,30 @@ export default class ReadyToGo extends Component {
     var thisvalue = dropdown.find( checked ).val();
 
     });
+    axios
+      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+      .then((response)=>{
+        console.log("response",response.data);
+        const config = 
+                       {
+                          "key"         : response.data.key,
+                          "secret"      : response.data.secret,
+                          "bucket"      : response.data.bucket,
+                          "region"      : response.data.region,
+                      }
+        this.setState({
+          config : config
+        })
+      })
+      .catch(function(error){
+        console.log(error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+      })
+  
   }
   checkSize(event)
   {
@@ -248,7 +278,7 @@ export default class ReadyToGo extends Component {
           .post('/send-email',dataArray)
           .then((res)=>{
                      if(res.status === 200){
-                      swal("Thank you for contacting us. We will get back to you shortly.")
+                        swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
                       }
                   })
                   .catch((error)=>{
@@ -265,6 +295,7 @@ export default class ReadyToGo extends Component {
                             "<b> Email: </b>"  + this.state.email + '<br/>'+
                             "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
                             "<b> Address Proof: </b>"  + this.state.addressProof + '<br/><br/>'+
+                            "<b> PAN Details: </b>"  + this.state.panNumber + '<br/><br/>'+
                             "<b> Investment Profile details </b> <br/><br/>"+
                             ""+this.state.questionsArray[0]+"<br/>"+
                             "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
@@ -297,7 +328,6 @@ export default class ReadyToGo extends Component {
         fields["email"]           = "";
         fields["contactNumber"]   = "";
       
-          swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
            this.setState({
           "panNumber"       : "",
           "addressProof"      : "",
@@ -414,8 +444,6 @@ export default class ReadyToGo extends Component {
           "message"       : "", 
           "mail"          : 'Dear  ' + this.state.nameModal + ', <br/><br/>'+
                             "Your query has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
-                            "  <br/> <br/> " + 
-                            "<pre> " + this.state.message+ "</pre>" + 
                             "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
         };
       
@@ -423,7 +451,7 @@ export default class ReadyToGo extends Component {
         .post('/send-email',dataArray)
         .then((res)=>{
                    if(res.status === 200){
-                    swal("Thank you for contacting us. We will get back to you shortly.")
+                      swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
                     }
                 })
                 .catch((error)=>{
@@ -434,12 +462,12 @@ export default class ReadyToGo extends Component {
        const formValues2 = {
         "email"         : adminEmail ,
         "subject"       : "New query/feedback arrived from Website!",
-        "message"          : "",
+        "message"       : "",
         "mail"          : 'Dear Admin, <br/>'+
                           "Following new query/feedback came from website! <br/> <br/> " + 
-                          "  <br/> <br/> " + 
+                          "<br/>User Details <br/> " + 
                           "<b>Name: </b>"   + this.state.nameModal + '<br/>'+
-                          "<b>Email: </b>"  + this.state.emailModal + '<br/><br/>'+
+                          "<b>Email: </b>"  + this.state.emailModal + '<br/>'+
                           "<b>Contact Number: </b>"  + this.state.contactNumberModal + '<br/><br/>'+
                           "<pre> " + this.state.message + "</pre>" + 
                           "<br/><br/> " ,
@@ -756,6 +784,89 @@ validateFormReqReview() {
       })
     }
   }
+  uploadLogoImage(event){
+   event.preventDefault();
+    var index = event.target.getAttribute('id');
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      console.log("file",newFile);
+      if (newFile) {
+      // console.log("config--------------->",this.state.config);
+        var ext = newFile.name.split('.').pop();
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+          if (newFile) {
+            if(this.state.fileUpload==""){
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{
+                  console.log("Data = ",Data);
+                  this.setState({
+                    fileUpload : Data.location
+                  })
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            console.log("Data = ",Data);
+                            this.setState({
+                              fileUpload : Data.location
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log("formErrors");
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+        }
+      }
+    }
+  }
+
+  deleteimageLogo(index){
+    var data = index.split("/");
+    var imageName = data[4];
+    console.log("index1--------------->",imageName);
+      if(index){
+        S3FileUpload
+          .deleteFile(imageName,this.state.config)
+          .then((response) =>{
+            console.log("Deletedddd...",response)
+            swal("Image deleted successfully");
+          })
+          .catch((err) => {
+            console.error("Not-Deletedddd...",err)
+          })
+      }
+  }
+ 
   render() {
     const token = localStorage.getItem("user_ID");
     console.log("token",token)
@@ -1298,8 +1409,9 @@ validateFormReqReview() {
                                                 <label>Upload File </label><span className="asterix">*</span>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                   <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" onChange={this.checkSizeFU.bind(this)} />
-                                                 <div className="errorMsg">{this.state.errors2.fileUpload}</div>
+                                                   <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" onChange={this.uploadLogoImage.bind(this)} id="upload-file2" />
+{/*                                                   <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" onChange={this.checkSizeFU.bind(this)} />
+*/}                                                 <div className="errorMsg">{this.state.errors2.fileUpload}</div>
 
                                               </div>
                                           </div>
@@ -1326,7 +1438,7 @@ validateFormReqReview() {
                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                         <div className="row">
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                              <label>Name</label>
+                                              <label>Name <span className="asterix">*</span></label>
                                             </div>
                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                               <input type="text" className="customInputKF inputBox nameParts" id="nameModal" name="nameModal" placeholder="Enter here" ref="nameModal" value={this.state.nameModal} onChange={this.handleChange1.bind(this)}/>
@@ -1340,7 +1452,7 @@ validateFormReqReview() {
                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                         <div className="row"> 
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                              <label>Mobile Number</label>
+                                              <label>Mobile Number <span className="asterix">*</span></label>
                                             </div>
                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                               <input type="number" className="customInputKF inputBox nameParts" name="contactNumberModal" placeholder="Enter here" ref="contactNumberModal" value={this.state.contactNumberModal} onChange={this.handleChange1.bind(this)}/>
@@ -1352,7 +1464,7 @@ validateFormReqReview() {
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                         <div className="row">
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                              <label>Email ID</label>
+                                              <label>Email ID <span className="asterix">*</span></label>
                                             </div>
                                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                  <input type="email" className="customInputKF inputBox nameParts" name="emailModal" placeholder="Enter here" ref="emailModal" value={this.state.emailModal}  onChange={this.handleChange1.bind(this)}/>
@@ -1373,7 +1485,7 @@ validateFormReqReview() {
                         
                                 </div>
                              </div>
-                               <div className="modal fade in " id="portfolioReview" role="dialog">
+                             {/*  <div className="modal fade in " id="portfolioReview" role="dialog">
                                 <div className="modal-dialog modal-lg customModalKYC " >
                                  <div className="modal-header textAlignCenter modalHeaderCustom">
                                     <button type="button" className="close" data-dismiss="modal" onClick={this.CloseKycModal.bind(this)}> <i className="fa fa-times"></i></button>
@@ -1437,7 +1549,7 @@ validateFormReqReview() {
                                       </form>
                                     </div>
                                 </div>
-                             </div>
+                             </div>*/}
                             <div className="modal fade in " id="EnquireModal" role="dialog">
                                 <div className="modal-dialog modal-lg  customModalEN" >
                                  <div className="modal-header textAlignCenter modalHeaderCustom">
@@ -1495,8 +1607,8 @@ validateFormReqReview() {
                 </div>
                 <div className="row">
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow mt20">
-                     <label>Ready to go?</label><br/>
-                     <span>Start your wealth creation today with us</span><br/>
+                     <label className="readyTo">Ready to go?</label><br/>
+                     <span className="logoText"><b><i>Start your Wealth Creation with us, Today!!</i> </b></span><br/>
                      <div className="col-lg-11 col-lg-offset-1 noPadding">
                      {token == "" ?
                       <a  href="/login" ><div className="buyNowButtonPP col-lg-3">Invest Now</div></a>

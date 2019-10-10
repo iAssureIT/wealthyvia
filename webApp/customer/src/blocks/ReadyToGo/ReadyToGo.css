@@ -292,5 +292,11 @@ font-family: 'PT Sans', sans-serif;
 .inputContainerRP label{
 	color:#333 ;
 	font-size: 18px;
-
+}
+.logoText{
+  font-size: 30px !important;
+}
+.readyTo{
+  font-size: 45px !important;
+  color: #201a47;
 }
