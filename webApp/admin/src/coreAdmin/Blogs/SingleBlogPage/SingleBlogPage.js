@@ -1,9 +1,9 @@
 import React from 'react';
-import SingleBlogBanner      from "../../blocks/SingleBlogBanner/SingleBlogBanner.js";
-import BlogContent      from "../../blocks/BlogContent/BlogContent.js";
-import RelatedBlogs      from "../../blocks/RelatedBlogs/RelatedBlogs.js";
+import SingleBlogBanner      from "../Componant/SingleBlogBanner/SingleBlogBanner.js";
+import BlogContent      from "../Componant/BlogContent/BlogContent.js";
+import RelatedBlogs      from "../Componant/RelatedBlogs/RelatedBlogs.js";
 
-import BlogComment      from "../../blocks/BlogComment/BlogComment.js";
+import BlogComment      from "../Componant/BlogComment/BlogComment.js";
 
 import axios        from 'axios';
 import swal from 'sweetalert2';
@@ -56,7 +56,7 @@ componentDidMount(){
 	render() {
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
-          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
+          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage} selectedID={this.props.match.params.selectedID}/>
           		<BlogContent blogContent={this.state.blogContent}/>
           		<RelatedBlogs/>
           		<BlogComment/>

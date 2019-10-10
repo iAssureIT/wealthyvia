@@ -7,7 +7,11 @@ a, a:hover, a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
-
+.logoTxt{
+  color: #333;
+  font-size: 23px;
+  padding: 10px 8px 8px 18px;
+}
 .navbar {
     /*padding: 15px 10px;*/
     background: #fff;
@@ -115,7 +119,10 @@ i, span {
   font-size: smaller;
 }
 .marLeft25{
-  margin-left: 25%;
+ margin-left: 0%;
+    height: 50px;
+    width: 100%;
+    padding: 0px 3%;
 }
 .custm1{
   padding: 10px 0px;

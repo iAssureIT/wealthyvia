@@ -88,7 +88,7 @@ componentDidMount(){
 							          					<div className="All1blog1 z50">
 							          					
 
-														<img className="img-responsive AllblogImgB" src={data.bannerImage.path} alt="Bannerpng"/>
+														<img className="img-responsive AllblogImgB" src={data.bannerImage?data.bannerImage.path:" "} alt="Bannerpng"/>
 														<div className="middle">
 														    
 														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>

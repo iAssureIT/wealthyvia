@@ -3,7 +3,7 @@
 	margin: 25px 0px;
 }
 .ckbox{
-	height: 375px;
+	height: 375px !important;
 }
 .boxform1{
 	position: relative;

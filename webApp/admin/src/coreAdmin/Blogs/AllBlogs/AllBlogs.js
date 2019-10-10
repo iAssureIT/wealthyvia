@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import "./AllBlogs.css";
-import AllBlogsBanner      from "../../blocks/AllBlogsBanner/AllBlogsBanner.js";
-import AllBlogsList      from "../../blocks/AllBlogsList/AllBlogsList.js";
+import AllBlogsBanner      from "../Componant/AllBlogsBanner/AllBlogsBanner.js";
+import AllBlogsList      from "../Componant/AllBlogsList/AllBlogsList.js";
 
 
 

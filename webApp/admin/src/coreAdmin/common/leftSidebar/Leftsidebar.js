@@ -66,8 +66,8 @@ export default class Leftsidebar extends Component{
             <div className="wrapper">
               <nav id="sidebar">
                 <div className="sidebar-header">
-                   {/* <h4>ProjectAdmin Sidebar</h4>*/}
-                    <img id="imgSidebar" className="marLeft25" src="/images/c.png" alt="Logo_img" height="50%" width="50%"/>
+                   <div className="logoTxt"> Wealthivia Admin</div>
+                   {/* <img id="imgSidebar" className="marLeft25" src="/images/logoW.jpg" alt="Logo_img" height="50%" width="50%"/>*/}
                 </div>
                 <ul className="list-unstyled components">
                     <li className="add active" onClick={this.eventclk.bind(this)}>
@@ -88,40 +88,13 @@ export default class Leftsidebar extends Component{
                             Blog
                         </Link>
                         <ul className="collapse list-unstyled treeview-menu" id="submenu1">
-                            <li><Link to="/bankReport"><i className="fa fa-database"></i>Create Blog</Link></li>
-                            <li><Link to="/cafeWiseCheckIn"><i className="fa fa-database"></i>CafeWise Check-In Report</Link></li>
-                            <li><Link to="/cafeWiseCheckOut"><i className="fa fa-database"></i>CafeWise Check-Out Report</Link></li>
-                            <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>
+                            <li><Link to="/blogsform"><i className="fa fa-database"></i>Create Blog</Link></li>
+                            <li><Link to="/allblogs"><i className="fa fa-database"></i>All Blogs</Link></li>
+                            {/*<li><Link to="/cafeWiseCheckOut"><i className="fa fa-database"></i>CafeWise Check-Out Report</Link></li>
+                            <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>*/}
                         </ul>
                     </li>
-                    <li  className="add " onClick={this.eventclk.bind(this)}>
-                      <Link to="/addSubscription" aria-expanded="false">
-                        <i className="fa fa-file"></i>
-                        Subscription
-                      </Link>
-                    </li>
-                    <li  className="add " onClick={this.eventclk.bind(this)}>
-                      <Link to="/amenities"  aria-expanded="false">
-                          <i className="fa fa-file"></i>
-                          Amenities
-                      </Link>
-                      <ul className="collapse list-unstyled" id="submenu2">
-                          {/*<li><a href="/cafeMenu"><i className="fa fa-database"></i>Cafe Menu</a></li>*/}
-                          <li><a href="/amenities"><i className="fa fa-database"></i>Amenities Details</a></li>
-                      </ul>
-                    </li>
-                    <li  className="add " onClick={this.eventclk1.bind(this)}>
-                        <Link aria-expanded="false">
-                            <i className="fa fa-file"></i>
-                            Reports
-                        </Link>
-                        <ul className="collapse list-unstyled treeview-menu" id="submenu1">
-                            <li><Link to="/bankReport"><i className="fa fa-database"></i>Bank Report</Link></li>
-                            <li><Link to="/cafeWiseCheckIn"><i className="fa fa-database"></i>CafeWise Check-In Report</Link></li>
-                            <li><Link to="/cafeWiseCheckOut"><i className="fa fa-database"></i>CafeWise Check-Out Report</Link></li>
-                            <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>
-                        </ul>
-                    </li>                
+                                 
                 </ul>
 
 

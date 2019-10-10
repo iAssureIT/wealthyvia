@@ -21,8 +21,8 @@ import CKEditor from 'ckeditor4-react';
 /*const clientnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
 const emailRegex = RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 */
-axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+/*axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
+axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 class BlogsForm extends Component{
 	constructor(props) {
@@ -90,7 +90,7 @@ class BlogsForm extends Component{
   componentDidMount(){
     this.edit();
       axios
-        .get('http://wealthyviapi.iassureit.com/api/projectsettings/get/S3')
+        .get('/api/projectsettings/get/S3')
         .then((response)=>{
           
           const config = {
@@ -268,7 +268,7 @@ uploadBlogImage(event){
       "typeOfBlog"          :this.state.typeOfBlog,
       "summary"             :this.state.summary,
       "blogTitle"           :this.state.blogTitle,
-      "imgbPath"            :this.state.imgbPath,
+      "bannerImage"            :this.state.imgbPath,
 
 
    };
@@ -276,6 +276,8 @@ uploadBlogImage(event){
           .patch('/api/blogs/patch/'+id,formValues)
           .then((res)=>{
                       swal(" Your Blog Update successfully ");
+                       this.props.history.push("/allblogs");
+
                   })
                   .catch((error)=>{
                     console.log("error = ", error);
@@ -308,7 +310,7 @@ uploadBlogImage(event){
 			<div>
   			<div className=" boxform1">
   				<form id="blogForm" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding blogFormBox">
-                <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12">
+                <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label>Blog Tittle<span className="redFont">*</span></label>
                     <div className="">
@@ -346,17 +348,17 @@ uploadBlogImage(event){
                     </div>
                     <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        { this.state.imgbPath!=="" ? 
+                        { this.state.imgbPath!=="" && this.state.imgbPath.path ? 
                           <div>
                             <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
-                            <img alt="selected design" src={this.state.imgbPath.path} width="150" height="100"/>
+                            <img src={this.state.imgbPath.path} width="150" height="100"/>
                           </div>
                           : <div> </div>
                         }
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
+                  {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                       {this.state.blog1Img==null?
                         null
                       :
@@ -415,7 +417,7 @@ uploadBlogImage(event){
                       </div>
                     </div>
                 }
-                </div>
+                </div>*/}
                  
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 ckbox">
                     <label htmlFor="userName">Blog Content<span className="redFont">*</span></label>
