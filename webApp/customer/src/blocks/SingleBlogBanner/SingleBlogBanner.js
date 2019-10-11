@@ -16,7 +16,7 @@ export default class SingleBlogBanner extends React.Component {
 	render() {
 		{console.log(" img path ===>", this.props.bannerImage)}
 		return (
-			<div className="col-lg-12 nopadding sbbannerWall" style={{backgroundImage:'url('+this.props.bannerImage+')'}}>
+			<div className="col-lg-12 nopadding sbbannerWall" style={{backgroundImage:'url('+this.props.bannerImage+')',backgroundSize:"100% 100%"}}>
 				<div className="col-lg-12 sbcentered">
 					<div className="col-lg-12 sbbtextcentered">
 						<div className="col-lg-12 col-md-12 hidden-xs hidden-md ht100"></div>

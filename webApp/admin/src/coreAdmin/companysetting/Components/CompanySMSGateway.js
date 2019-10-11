@@ -8,14 +8,10 @@ import swal from 'sweetalert';
 
 class CompanySMSGateway extends Component{
   
-
   componentWillReceiveProps(nextProps) {
-
     
   }
   componentDidMount() {
-  
-    
   
   }
  

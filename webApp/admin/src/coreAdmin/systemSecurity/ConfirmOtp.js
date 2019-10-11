@@ -22,130 +22,29 @@ import './SignUp.css';
       console.log('url in confirm----------------------> ',localStorage);
     }
      confirmOTP(event){
+       event.preventDefault();
+      var url = this.props.match.params;
       // console.log('confirm otp');
-      event.preventDefault();
-      // var url = this.props.match.params;
-
-      var body = {
-        mobileotp: this.refs.mobileotp.value,
-        emailotp: this.refs.emailotp.value,
-        mobileNumber : localStorage.getItem('mobileNumber')
+      var formValues ={
+        "ID" :  this.props.match.params.user_ID,
+        "emailotp":  parseInt(this.refs.emailotp.value)
       }
-
-      axios
-        .post('/api/users/confirmOTP ',body)
-        .then((response)=> {
-        console.log('url in confirm----------------------> ',response);
-
-        if(response.data.message=="Matched"){
-            swal("Great","OTP verified","success");
-          this.props.history.push("/login");
-          window.location.reload();
-        }
-      })
-      .catch(function (error) {
-          console.log(error);
-      swal("Unable to submit data ",error);
-        if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-      })
+      axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
+      .then((response)=>{
+        swal(response.data.message);
+        this.props.history.push('/login');
+/*        this.props.history.push('/reset-pwd/'+formValues.ID);
+*/      })
+      .catch((error)=>{
+           console.log(error);
+            swal("Unable to submit data ",error);
+          if(error.message === "Request failed with status code 401")
+                {
+                     swal("Your session is expired! Please login again.","", "error");
+                     this.props.history.push("/");
+                }
+        })
     }
-
-      // var checkUserExist = FlowRouter.getParam("mailId");
-      // var userData = Meteor.users.findOne({"_id":checkUserExist});
-      // if(userData){
-      //   var userProfile = userData.profile;    
-      //   var roles = userData.roles;
-
-      //   if(userProfile){
-      //     var sessionValue2 = userProfile.sentEmailOTP;
-
-      //   }
-      // }
-
-      // if(sessionValue2){
-        
-      //   var mailotp = sessionValue2;
-      //   var newID = userData._id;
-      //   var userData = Meteor.users.findOne({"_id":newID});
-      //   if(userData){
-
-      //     var userEmail = userData.username;
-      //     var profile = userData.profile;
-      //     if(profile){
-      //       if(profile.userCode){
-      //       var password = profile.userCode.split("").reverse().join(""); 
-      //       }
-      //     }
-      //   }
-      // }else{
-
-      //   var username = $('input[name="loginusername"]').val();
-      //   var userOtp = Meteor.users.findOne({"username":username});
-      //   if(userOtp){
-      //     var mailotp = userOtp.profile.sentEmailOTP;
-      //     if(userOtp.profile.userCode){
-      //       var usercode = userOtp.profile.userCode.split("").reverse().join("");
-      //       var newID = userOtp._id;
-
-      //     }
-      //   }
-      // }
-      // var emailotp = this.refs.emailotp.value;
-      // if(mailotp == emailotp){
-      //   Meteor.call('createUserByAdminSetEmailToTrue',newID,
-      //   function(error,result){
-      //     if(error){
-      //       // console.log(error.reason,"danger","growl-top-right");
-      //     }else{
-      //       if($('#OTPMobMail').hasClass('newPassword')){
-             
-      //       }else{
-             
-      //         if(userEmail && password){
-      //           var email = userEmail;
-      //           var passwordVar = password;
-      //         }else{
-      //           var email = username;
-      //           var passwordVar = usercode;
-      //         }
-      //       }  
-      //     }
-      //   });
-
-      //   Meteor.call('updateOTP', newID , mailotp ,roles, function(error,result){
-      //     if(error){
-      //       swal("error");
-      //     }else{
-      //       var curUrl = location.pathname;
-      //       var urlArray = curUrl.split('/');
-      //       var isFirstOTPurl = urlArray[1];
-      //       if(isFirstOTPurl != 'otpFirstVarification'){
-      //       FlowRouter.go('/resetPassword/'+newID);
-      //       }else{
-              
-      //            Meteor.logout();
-      //            swal("OTP Verified Successfully",
-      //                 // 'Please complete your registration process by completing your profile after login. ',
-      //                 'To continue filling registration form please contact admin first to make your account active.',
-      //               'success');
-      //               FlowRouter.go('/');
-               
-      //       }
-      //     }
-      //   });
-      // }else{
-      //   swal('OTP is Incorrect',
-      //         '',
-      //         'warning');
-      // }
-    // $('#assureIDModal').show();
-    
-
-
 
     inputEffect(event){
       event.preventDefault();
@@ -157,42 +56,22 @@ import './SignUp.css';
     }
 
     resendOtp(event){
-      event.preventDefault();
+
+       event.preventDefault();
       var element = document.getElementById("resendOtpBtn");
       element.classList.add("btn-success");
       element.classList.remove("resendOtpColor");
-      // var checkUserExist = FlowRouter.getParam("mailId");
-      // var userData = Meteor.users.findOne({"_id":checkUserExist});
-      // if(userData){
-      //   var userProfile = userData.profile;    
-      //   if(userProfile){
-      //     var sessionValue2 = userProfile.sentEmailOTP;
-      //     var mobNumber = userProfile.mobNumber;
-      //     var firstName  = userProfile.firstname;
 
-      //   }
-      //    var emailotp = Math.floor(100000 + Math.random() * 900000);
-
-      //   Meteor.call('addOTP', userData._id, emailotp, function(error,result){
-      //     if(error){
-      //       console.log(error);
-      //     }else{
-
-      //       Meteor.call("sendSMSMsg",firstName,mobNumber,emailotp,(error,result)=>{
-      //         if(error){
-
-      //         }else{
-      //           swal("We have sent OTP to your registered mobile number","","success");
-      //              $("input[name=emailotp]").val('');   
-      //           element.classList.add("resendOtpColor");
-      //           element.classList.remove("btn-success");
-      //         }
-      //       });
-      //     }
-      //   });
-      // }else{
-      //   swal("You are not registered","","warning");
-      // }
+            const userid = this.props.match.params.user_ID;
+          axios.patch('/api/users/patch/optEmail',userid)
+          .then((response)=>{
+            // console.log('response', response);
+            swal(response.data.message)
+          })
+          .catch((error)=>{
+            console.log('error', error);
+          }) 
+   
 
     }
 

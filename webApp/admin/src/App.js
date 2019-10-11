@@ -11,8 +11,6 @@ import './App.css';
 // axios.defaults.baseURL = 'http://cofficapi.iassureit.com/';api.wealthyvia.com
 /*axios.defaults.baseURL = 'http://prodapi.coffic.com/';*/
 axios.defaults.baseURL = 'http://api.wealthyvia.com';
-
-
 // axios.defaults.baseURL = 'http://localhost:5012/';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 

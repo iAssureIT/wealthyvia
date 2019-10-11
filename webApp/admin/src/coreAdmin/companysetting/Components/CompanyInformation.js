@@ -9,7 +9,7 @@ import swal                 from 'sweetalert';
 import $                    from "jquery";
 
 const formValid = formerrors=>{
-  console.log("formerrors",formerrors);
+  /*console.log("formerrors",formerrors);*/
   let valid = true;
   Object.values(formerrors).forEach(val=>{
   val.length>0 && (valid = false);
@@ -67,15 +67,15 @@ class CompanyInformation extends Component{
   
   componentDidMount() {
     axios
-      .get('/api/projectSettings/get/one/S3')
+      .get('/api/projectsettings/get/S3')
       .then((response)=>{
         // console.log("s3_response.............",response);
         const config = {
-                          bucketName      : response.data.bucket,
-                          dirName         : 'photos',
-                          region          : response.data.region,
-                          accessKeyId     : response.data.key,
-                          secretAccessKey : response.data.secret,
+                            bucketName      : response.data.bucket,
+                            dirName         : "wealthyvia",
+                            region          : response.data.region,
+                            accessKeyId     : response.data.key,
+                            secretAccessKey : response.data.secret,
                        }
         this.setState({
           config : config
@@ -220,7 +220,6 @@ console.log("innnuuu");
 
   submitCompanyInformation=(event)=>{
     event.preventDefault();
-   
     var companyInfoFormValue = {
                                 companyName             : this.state.companyName,
                                 companyContactNumber    : this.state.companyContactNumber,
