@@ -3,7 +3,8 @@ import $                                  from 'jquery';
 import swal                               from 'sweetalert';
 import ReactMultiSelectCheckboxes         from 'react-multiselect-checkboxes';
 import axios                              from 'axios';
-
+import S3FileUpload                       from 'react-s3';
+import { deleteFile }                     from 'react-s3';
 import "./Header.css";
 var array =[];
 var answersarray =[];
@@ -19,8 +20,10 @@ export default class Header extends Component {
             "productDetailsArray" : [],
             "name"                : "",
             "panNumber"           : "",
+            "panNumberName"       : "",
             "email"               : "",
             "addressProof"        : "",
+            "addressProofName"    : "",
             "contactNumber"       : "",
             "fields"              : {},
             "errors"              : {},  
@@ -41,15 +44,8 @@ export default class Header extends Component {
     window.scrollTo(0,0);
   }
   logout(){
-
     var user_ID = localStorage.setItem("user_ID", "")
-     window.location.reload();
-    console.log('user_ID', user_ID);
-      if(user_ID!==null){
-      // console.log("Header Token = ",token);
-      // browserHistory.push("/login");
-      // this.props.history.push("/");
-    }
+     window.location.reload();    
   }
 
   validateFormReq() {
@@ -129,50 +125,73 @@ export default class Header extends Component {
           this.setState({
               userinfo : response.data
           })
-      console.log("userinfo",response.data)
       })
       .catch((error)=>{
             console.log('error', error);
       })
+        axios
+      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+      .then((response)=>{
+        const config = 
+                       {
+                          
+                          bucketName      : response.data.bucket,
+                          dirName         : response.data.bucket,
+                          region          : response.data.region,
+                          accessKeyId     : response.data.key,
+                          secretAccessKey : response.data.secret,
+                      }
+        this.setState({
+          config : config
+        })
+      })
+      .catch(function(error){
+        console.log(error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+      })
   }
-  onOptionSelect = (value) => {
-  }
-  Submit(event){
-    event.preventDefault();
 
-    if (this.validateForm() && this.validateFormReq()) {
+  // Submit(event){
+  //   event.preventDefault();
+
+  //   if (this.validateForm() && this.validateFormReq()) {
      
-      var dataArray={
-       "name"            : this.refs.name.value,
-      "addressProof"      : this.refs.addressProof.value,
-      "panNumber"      : this.refs.panNumber.value,
-      "email"            : this.refs.email.value,
-      "contactNumber"    : this.refs.contactNumber.value,
+  //     var dataArray={
+  //      "name"            : this.refs.name.value,
+  //     "addressProof"      : this.refs.addressProof.value,
+  //     "panNumber"      : this.refs.panNumber.value,
+  //     "email"            : this.refs.email.value,
+  //     "contactNumber"    : this.refs.contactNumber.value,
 
-      }
-      let fields = {};
-      fields["panNumber"]       = "";
-      fields["addressProof"]     = "";
-      fields["name"]            = "";
-      fields["email"]           = "";
-      fields["contactNumber"]   = "";
+  //     }
+
+  //     let fields = {};
+  //     fields["panNumber"]       = "";
+  //     fields["addressProof"]     = "";
+  //     fields["name"]            = "";
+  //     fields["email"]           = "";
+  //     fields["contactNumber"]   = "";
     
-    swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-    $("#myModalHeader").hide();
-    $("#myModalHeader").removeClass('in');
-    $(".modal-backdrop").remove();
-    $("body").removeClass("modal-open");
-      this.setState({
-        "panNumber"       : "",
-        "addressProof"      : "",
-        "name"             : "",
-        "email"            : "",
-        "contactNumber"    : "",
-        "fields"           : fields
-      });
-    }
-    window.location.reload();
-  }
+  //   swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+  //   $("#myModalHeader").hide();
+  //   $("#myModalHeader").removeClass('in');
+  //   $(".modal-backdrop").remove();
+  //   $("body").removeClass("modal-open");
+  //     this.setState({
+  //       "panNumber"       : "",
+  //       "addressProof"      : "",
+  //       "name"             : "",
+  //       "email"            : "",
+  //       "contactNumber"    : "",
+  //       "fields"           : fields
+  //     });
+  //   }
+  //   window.location.reload();
+  // }
   getData(){
     var one =1;
     const userid = localStorage.getItem('user_ID');
@@ -214,7 +233,7 @@ export default class Header extends Component {
   }
   SubmitSecondModal(event){
     event.preventDefault();
-  event.preventDefault();
+    event.preventDefault();
     if(this.state.questionsArray.length<5)
     {
       this.setState({
@@ -274,6 +293,67 @@ export default class Header extends Component {
         errors: errors
       });
     }
+       var index = event.target.getAttribute('id');
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+          panNumberName : newFile.name,
+      })
+      console.log("file",newFile);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+          if (newFile) {
+            if(this.state.panNumber==""){
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{ 
+                  this.setState({
+                    panNumber : Data.location,
+                  },()=>{console.log(this.state.panNumber)})
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            this.setState({
+                              panNumber : Data.location,
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+        }
+      }
+    }
   }
   CloseModalTwo(event){
     $("#riskformHeader").hide();
@@ -306,6 +386,68 @@ export default class Header extends Component {
         errors: errors
       });
     }
+    
+     var index = event.target.getAttribute('id');
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+          addressProofName : newFile.name,
+      })
+      console.log("file",newFile);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+          if (newFile) {
+            if(this.state.addressProof==""){
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{ 
+                  this.setState({
+                    addressProof : Data.location,
+                  })
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            this.setState({
+                              addressProof : Data.location,
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+        }
+      }
+    }
   }
 
   Submit(event){
@@ -330,10 +472,9 @@ export default class Header extends Component {
               "message"          : "", 
               "mail"          : 'Dear  ' + this.state.name + ', <br/><br/>'+
                                 "Congratulations!<br/><br/>Your KYC details has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
-                                "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/><br/>'+
+                                "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/>'+
                                 "Contact Number :" + this.state.contactNumber + '<br/>'+
                                 "Email :" + this.state.email + '<br/>'+
-                                "addressProof :" + this.state.addressProof + '<br/>'+
                                 "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
           };
@@ -342,49 +483,57 @@ export default class Header extends Component {
             .post('/send-email',dataArray)
             .then((res)=>{
                        if(res.status === 200){
-                        swal("Thank you for contacting us. We will get back to you shortly.")
+
+                        const formValues2 = {
+                          "email"         : adminEmail ,
+                          "subject"       : "New KYC/Investment Profile details arrived from client!",
+                          "mail"          : 'Dear Admin, <br/>'+
+                                            "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
+                                            "<b> Name: </b>"   + this.state.name + '<br/>'+
+                                            "<b> Email: </b>"  + this.state.email + '<br/>'+
+                                            "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
+                                        
+                                            "<b> Investment Profile details </b> <br/><br/>"+
+                                            ""+this.state.questionsArray[0]+"<br/>"+
+                                            "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
+                                            ""+this.state.questionsArray[1]+"<br/>"+
+                                            "Ans : "+this.state.answersofQ2+"<br/><br/>"+ 
+                                            ""+this.state.questionsArray[2]+"<br/>"+
+                                            "Ans : "+this.state.answersofQ3+"<br/><br/>"+
+                                             ""+this.state.questionsArray[3]+"<br/>"+
+                                            "Ans : "+this.state.answersofQ4+"<br/><br/>"+
+                                            ""+this.state.questionsArray[4]+"<br/>"+
+                                            "Ans : "+this.state.answersofQ5+"<br/><br/>"+
+                                            "" ,
+                           "attachments" : [{
+                            "name" : this.state.panNumberName,
+                            "path" : this.state.panNumber
+                              },
+                              {
+                            "name" : this.state.addressProofName,
+                            "path" : this.state.addressProof
+                              },
+                            ]
+
+                        };
+                        axios
+                        .post('/send-email',formValues2)
+                        .then((res)=>{
+                                  if(res.status === 200){
+                                       swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+                                  }
+                                })
+                                .catch((error)=>{
+                                  console.log("error = ", error);
+                                  
+                                });
                         }
                     })
                     .catch((error)=>{
                       console.log("error = ", error);
                     });
            console.log("dataArray",dataArray); 
-           const formValues2 = {
-            "email"         : adminEmail ,
-            "subject"       : "New KYC/Investment Profile details arrived from client!",
-            "message"          : "",
-            "mail"          : 'Dear Admin, <br/>'+
-                              "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
-                              "<b> Name: </b>"   + this.state.name + '<br/>'+
-                              "<b> Email: </b>"  + this.state.email + '<br/>'+
-                              "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
-                              "<b> Address Proof: </b>"  + this.state.addressProof + '<br/><br/>'+
-                              "<b> PAN Details: </b>"  + this.state.panNumber + '<br/><br/>'+
-                              "<b> Investment Profile details </b> <br/><br/>"+
-                              ""+this.state.questionsArray[0]+"<br/>"+
-                              "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
-                              ""+this.state.questionsArray[1]+"<br/>"+
-                              "Ans : "+this.state.answersofQ2+"<br/><br/>"+ 
-                              ""+this.state.questionsArray[2]+"<br/>"+
-                              "Ans : "+this.state.answersofQ3+"<br/><br/>"+
-                               ""+this.state.questionsArray[3]+"<br/>"+
-                              "Ans : "+this.state.answersofQ4+"<br/><br/>"+
-                              ""+this.state.questionsArray[4]+"<br/>"+
-                              "Ans : "+this.state.answersofQ5+"<br/><br/>"+
-                              "" ,
-
-          };
-          axios
-          .post('/send-email',formValues2)
-          .then((res)=>{
-                    if(res.status === 200){
-                      console.log("Mail sent to admin successfully!")
-                    }
-                  })
-                  .catch((error)=>{
-                    console.log("error = ", error);
-                    
-                  });
+         
           let fields = {};
           fields["panNumber"]     = "";
           fields["addressProof"]     = "";
@@ -392,7 +541,6 @@ export default class Header extends Component {
           fields["email"]           = "";
           fields["contactNumber"]   = "";
         
-            swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
              this.setState({
             "panNumber"       : "",
             "addressProof"      : "",
@@ -490,7 +638,22 @@ export default class Header extends Component {
     $(".modal-backdrop").remove();
     $("body").removeClass("modal-open");
   }
-
+  deleteimageLogo(index){
+    var data = index.split("/");
+    var imageName = data[4];
+    console.log("index1--------------->",imageName);
+      if(index){
+        S3FileUpload
+          .deleteFile(imageName,this.state.config)
+          .then((response) =>{
+            console.log("Deletedddd...",response)
+            swal("Image deleted successfully");
+          })
+          .catch((err) => {
+            console.error("Not-Deletedddd...",err)
+          })
+      }
+  }
   render() {
     const token = localStorage.getItem("user_ID");
     console.log(token);
@@ -1063,13 +1226,25 @@ export default class Header extends Component {
                                         <a href="/about-us" >About Us </a>
                                         
                                       </li>
-                                      <li className="dropdown">
+                                      {console.log(this.state.userinfo)}
                                       {token ?
-                                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}</a>
-                                        :
+                                          <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}
+                                          </a>
+                                          <ul className="dropdown-menu customDropdownLogOut " aria-labelledby="navbarDropdownMenuLink">
+                                            <a  className="dropdown-item" href="/#5gcpm"><img src="/images/man.png" alt="img1"/>&nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span>{this.state.userinfo.fullName}</span>:null}</a>
+                                            <hr/>
+                                            // <a className="dropdown-item  col-lg-7 " href="/clientDashboard"><span className="myprofileButton">My Profile</span></a><a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton">Logout</span></a>
+                                            
+                                          </ul>
+                                        </li>
+/*                                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}</a>
+*/                                        :
+                                      <li className="dropdown">
                                         <a href="/login">Login/Signup </a>
-                                      }
                                       </li>
+                                      }
                                       {
                                           token ?
                                             <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">

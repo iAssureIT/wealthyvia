@@ -51,7 +51,7 @@ i, span {
 }
 
 #sidebar {
-    /*min-width: 228px;*/
+    min-width: 228px;
     max-width: 235px;
     background: #fff;
     color: #333;
@@ -136,7 +136,7 @@ i, span {
 }
 #sidebar ul li a:hover {
     color: #fff;
-    background: #A2622D;
+    background: #201b47;
 }
 #sidebar ul li a i {
     margin-right: 10px;
@@ -144,7 +144,7 @@ i, span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #A2622D;
+    background: #201b47;
     border-left: 3px solid #2c1910;
     margin-bottom: 1px;
 }

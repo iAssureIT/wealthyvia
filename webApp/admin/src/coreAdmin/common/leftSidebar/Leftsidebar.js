@@ -66,7 +66,7 @@ export default class Leftsidebar extends Component{
             <div className="wrapper">
               <nav id="sidebar">
                 <div className="sidebar-header">
-                   <div className="logoTxt"> Wealthivia Admin</div>
+                   <div className="logoTxt"> Wealthivia</div>
                    {/* <img id="imgSidebar" className="marLeft25" src="/images/logoW.jpg" alt="Logo_img" height="50%" width="50%"/>*/}
                 </div>
                 <ul className="list-unstyled components">
@@ -93,6 +93,13 @@ export default class Leftsidebar extends Component{
                             {/*<li><Link to="/cafeWiseCheckOut"><i className="fa fa-database"></i>CafeWise Check-Out Report</Link></li>
                             <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>*/}
                         </ul>
+                    </li>
+                    <li  className="add " >
+                        <Link aria-expanded="false" to="/Amenities">
+                            <i className="fa fa-file"></i>
+                            Statements
+                        </Link>
+                        
                     </li>
                                  
                 </ul>

@@ -182,19 +182,7 @@ background-color: #5f9c30 !important;
 
 
 }*/
-.customDropdown>a{
-    padding-left: 20px !important;
-    padding-top: 8px !important;
-    font-size: 14px;
-    margin-left: -15px !important;
-    text-decoration: none;
-    background-color: transparent !important;
-    color: #fff !important;
-}
-.customDropdown a:hover{
-      background-color:#25bbf3!important;
 
-}
 .headLi{
     font-size: 15px;
     font-weight:bold;
@@ -560,7 +548,19 @@ dropdown-submenu {
 .headLi{
    color: #333 !important; 
 }
+.customDropdown>a{
+    padding-left: 20px !important;
+    padding-top: 8px !important;
+    font-size: 14px;
+    margin-left: -15px !important;
+    text-decoration: none;
+    background-color: transparent !important;
+    color: #fff !important;
+}
+.customDropdown a:hover{
+      background-color:#25bbf3!important;
 
+}
 .customDropdown{
     top: 100%;
     left: 0;
@@ -578,6 +578,43 @@ dropdown-submenu {
     text-align: left;
     list-style: circle;
     background-color: #201A47 !important;
+    background-clip: padding-box;
+    border:none !important;
+    border-radius: 4px;
+    color:#fff !important;
+/*    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+*/
+}
+.customDropdownLogOut>a{
+    padding-left: 20px !important;
+    padding-top: 8px !important;
+    font-size: 14px;
+    margin-left: -15px !important;
+    text-decoration: none;
+    background-color: transparent !important;
+    color: #333 !important;
+}
+.customDropdownLogOut a:hover{
+      background-color:transparent!important;
+
+}
+.customDropdownLogOut{
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+     height: auto;
+    min-width: 220px !important;
+    padding-left: 15px !important;
+    font-family:'Montserrat',sans-serif;
+    float: left;
+    width: 100px;
+    padding: 5px 0;
+    margin: 4px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: circle;
+    background-color: #fff !important;
     background-clip: padding-box;
     border:none !important;
     border-radius: 4px;
@@ -624,4 +661,20 @@ dropdown-submenu {
 }
 .cursorPointer{
   cursor: pointer;
+}
+hr{
+  margin:5px !important;
+}
+.myprofileButton{
+  background-color: #201b47;
+  padding: 10px;
+  border-radius: 3px;
+  color: #fff;
+}
+.logOutButton{
+   background-color: #f00;
+  color: #fff;
+    border-radius: 3px;
+
+  padding: 10px;
 }

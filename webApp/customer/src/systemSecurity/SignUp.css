@@ -600,10 +600,11 @@
 }
 .resetpwdNameTitle{
   /*margin-bottom: 30px;*/
-  font-size: 20px;
-  margin-top: 21%;
+  font-size: 25px;
+  margin-top: 11%;
   margin-bottom: 10%;
-  color: #333333;
+  font-weight: bold;
+  color: #201a47;
 }
 
 .OESSubTitle{
@@ -1054,7 +1055,9 @@ input[type="radio"]:checked:before {
 }
 
 
-
+.input-group-addon{
+  background-color: transparent !important;
+}
 
 
 
@@ -1786,6 +1789,20 @@ input[type="radio"]:checked:before {
   /*border: 1px solid #ccc;*/
   margin-left: -27px;
 }
+.signInbtnReset{
+  text-align: center;
+  color: #fff;
+  padding: 4px;
+text-align: center;
+  color: #333333;
+  padding: 4px;
+  background: #d8d8d8;
+ /* margin-top: 15px !important;*/
+  border-radius: 4px;
+  /*margin-left: 5%;*/
+  font-weight: bold;
+  font-weight: bold;
+}
 .signInbtn a{
     color: #fff !important;
     /* text-decoration: none; */
@@ -1811,13 +1828,7 @@ input[type="radio"]:checked:before {
   margin-bottom: 5%;
   color: #333333;
 }
-.resetpwdNameTitle{
-  /*margin-bottom: 30px;*/
-  font-size: 20px;
-  margin-top: 21%;
-  margin-bottom: 10%;
-  color: #333333;
-}
+/**/
 
 .OESSubTitle{
   font-weight: normal;

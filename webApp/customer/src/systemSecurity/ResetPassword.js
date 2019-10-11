@@ -30,9 +30,10 @@ class ResetPassword extends Component {
           .patch('/api/users/patch/password/'+user_id.user_ID,{pwd:this.refs.resetPassword.value})
           .then((response)=> {
               var responseData = response.data;
+
+
               if(responseData){
                 swal("Your password has been updated!","","success");
-                localStorage.setItem("verify","");
                 this.props.history.push('/login');
               }
           })
@@ -85,17 +86,18 @@ class ResetPassword extends Component {
   render(){
     var winHeight = window.innerHeight;
     var divHeight = winHeight/4.5+'px';
-
+  localStorage.setItem("verify","false");
+                console.log("verify",localStorage.verify);
     return(
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper">
         <div className="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-12 signupPadding signUpFormWrap bg-success" style={{"height": winHeight}}>
           <div className="divResetPasswordWrap">
-            <h3 className="resetpwdNameTitle"> <span className="bordbt">Reset Password</span></h3>
+            <h3 className="resetpwdNameTitle"> <span className="">Reset Password</span></h3>
             <div className="FormWrapper1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <form id="resetPassword" onSubmit={this.changepassword.bind(this)}>
                 <div className="form-group loginFormGroup pdleftclr veribtm col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="input-group">
-                    <span className="input-group-addon addons glyphi-custommmLeft" id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
+                    <span className="input-group-addon addons " id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
                     <input type="password" className="form-control loginInputs inputTextPass" ref="resetPassword" name="resetPassword" placeholder="New Password" aria-label="Password" aria-describedby="basic-addon1" title="Password should be at least 6 characters long!" pattern=".{6,}" required/>
                     <span className="input-group-addon addons glyphi-custommm padBoth" id="basic-addon1">
                       <i className="fa fa-eye Pass showPwd" aria-hidden="true" onClick={this.showSignPass.bind(this)}></i>
@@ -105,7 +107,7 @@ class ResetPassword extends Component {
                 </div>
                 <div className="form-group loginFormGroup pdleftclr veribtm col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div className="input-group">
-                    <span className="input-group-addon addons glyphi-custommmLeft" id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
+                    <span className="input-group-addon addons " id="basic-addon1"><i className="fa fa-lock" aria-hidden="true"></i></span>
                     <input type="password" className="form-control loginInputs inputTextPassC" ref="resetPasswordConfirm" name="resetPasswordConfirm" placeholder="Confirm New Password" aria-label="Confirm Password" aria-describedby="basic-addon1" title="Password should be at least 6 characters long!" pattern=".{6,}" required/>
                     <span className="input-group-addon addons glyphi-custommm padBoth" id="basic-addon1">
                       <i className="fa fa-eye Pass showPwdC" aria-hidden="true" onClick={this.showSignPassC.bind(this)}></i>
@@ -116,8 +118,8 @@ class ResetPassword extends Component {
                 <div className="submitButtonWrapper pdleftclr col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <button type="submit" onClick={this.changepassword.bind(this)} className="btn col-lg-12 col-md-12 col-sm-12 col-xs-12 submitBtn UMloginbutton">Reset Password</button>
                 </div>
-                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls">
-                   <Link to='/' className="UMGrey signInbtn col-lg-12 col-md-12 col-sm-12 col-xs-12">Sign In</Link>   
+                <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls mt20">
+                   <Link to='/' className="UMGrey signInbtnReset col-lg-12 col-md-12 col-sm-12 col-xs-12">Sign In</Link>   
                 </div>
               </form>
             </div>

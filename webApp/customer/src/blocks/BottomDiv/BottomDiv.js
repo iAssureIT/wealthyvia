@@ -16,9 +16,9 @@ export default class BottomDiv extends Component {
 
 			  		<a href="#5gcpm" className="scroll"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
+			  			<img src="/images/ab4.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">5GCPM</label><br/><br/><br/>
+				          <label className="pad20">5GCPM</label><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				          <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -32,7 +32,7 @@ export default class BottomDiv extends Component {
 						<div className="row">
 			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">Safe Heaven Moats</label><br/><br/><br/>
+				          <label className="pad20">Safe Heaven Moats</label><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -43,9 +43,9 @@ export default class BottomDiv extends Component {
 				</div></a>
 				<a href="#safeHeavenAlpha"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab1.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">SHM and MF alpha</label><br/><br/><br/>
+				          <label className="pad20">SHM and MF alpha</label><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,9 +56,9 @@ export default class BottomDiv extends Component {
 				</div></a>
 				<a href="#unlistedStocks"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab2.jpg"/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">Unlisted Stocks</label><br/><br/><br/>
+				          <label className="pad20">Unlisted Stocks</label><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -70,9 +70,9 @@ export default class BottomDiv extends Component {
 					
 				<a href="#USAStocks"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ab3.jpg"/>
+			  			<img src="/images/ab4.jpg"/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">USA Stocks</label><br/><br/><br/>
+				          <label className="pad20">USA Stocks</label><br/><br/>
 				          <span className="shopNowButtonFilters">Read More</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">

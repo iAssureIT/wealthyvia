@@ -226,105 +226,137 @@ class Amenities extends Component{
       <div className="row">
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
-          <h4 className="h5lettersp MasterBudgetTitle">Amenities Details</h4>
-         </div>
-         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noborder">
-          <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Create Amenities</h5>
+          <h4 className="h5lettersp MasterBudgetTitle">Subscribed Users for Offerings</h4>
          </div>
           <hr className="compySettingHr" />
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <form id="CompanySMSGatewayForm"  >
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div className="">
-                      <label className="control-label statelabel locationlabel" >Amenity Name</label>
+                      <label className="control-label statelabel locationlabel" >Select Offering</label>
                       <span className="astrick">*</span>
-                      <div className="input-group inputBox-main  new_inputbx " >
-                        <div className="input-group-addon remove_brdr inputIcon">
-                          <i className="fa fa-building"></i>
-                        </div>
-                        <input id="amenitiesName" placeholder="Amenities Name" onChange={this.handleChange}
-                          type="text" name="amenitiesName" data-text="amenitiesName" ref="amenitiesName" value={this.state.amenitiesName}
-                          className="form-control areaStaes newinputbox" title="Amenities Name" autoComplete="off"  />
-                      </div>
-                      {this.state.formerrors.amenitiesName &&
-                        (<span className="text-danger errorMessage">{formerrors.amenitiesName}</span>)
-                      }
+                      <select  ref="planName"
+                             type="text" name="planName" placeholder="Enter Subscription Name" 
+                             className="selectbox" title="Please enter package Name">
+                              <option >---- Select ----</option>
+                              <option>5GCPM</option>
+                              <option>Safe Heaven</option>
+                              <option>Safe Heaven Stocks & Alpha</option>
+                              <option>USA Stocks Portfolio</option>
+                              <option>Unlisted Stocks</option>     
+                          </select>
+                    
                     </div>                     
                   </div> 
                   </div>
-                 </div>          
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  marginBtmDiv">
-                <button className="btn buttontAddEdit pull-right" id="btnCheck" onClick={this.submitAmenityInfo.bind(this)}>{this.state.editId==null?"Submit":"Update"}</button>
-              </div>
-              <div className="col-lg-12">
-                <table className="table tableCustom table-striped">
-                  <thead className="bgThead">
-                    <tr>
-                      <th>Sr.No.</th>
-                      <th>Amenity Name</th>
-                      <th className="text-center">Amenity Icon</th>
-                      <th className="text-left">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1.</td>
-                      <td>Wi-Fi</td>
-                      <td className="text-center"><i className="material-icons">wifi</i></td>
-                      <td className="text-left"></td>
-                    </tr>                     
-                    <tr>
-                      <td>2.</td>
-                      <td>AC</td>
-                      <td className="text-center"><i className="material-icons">toys</i>{/*<img src="https://img.icons8.com/material/20/000000/air-conditioner.png"/>*/}</td>
-                      <td className="text-left"></td>
-                    </tr>
-                     <tr>
-                      <td>3.</td>
-                      <td>Restroom</td>
-                      <td className="text-center"><i className="material-icons">wc</i></td>
-                      <td className="text-left"></td>
-                    </tr>
-                     <tr>
-                      <td>4.</td>
-                      <td>Printer</td>
-                      <td className="text-center"><i className="material-icons">print</i></td>
-                      <td className="text-left"></td>
-                    </tr>
-                    <tr>
-                      <td>5.</td>
-                      <td>Power Plug</td>
-                      <td className="text-center"><i className="material-icons">power</i></td>
-                      <td className="text-left"></td>
-                    </tr>
-                      <tr>
-                        <td colSpan="4" className="text-left"><b>Custom Amenities</b></td>                
-                      </tr>
-                  {this.state.AmenitiesList.length>5?
-                      this.state.AmenitiesList.map((itemData,index)=>{
-                          return (
-                        index>4?        
-                              <tr key={index}>
-                                <td>{index+1}.</td>
-                                <td>{itemData.amenityName}</td>
-                                <td className="text-center"><i className="material-icons">flag</i></td>
-                                <td className="text-left"><i className="fa fa-pencil cptr" title="Edit" data-id={itemData._id} onClick={this.editItem}></i>&nbsp;&nbsp;&nbsp;&nbsp;<i className="fa fa-trash cptr" title="Delete" data-id={itemData._id} onClick={this.deleteItem} data-toggle="modal" aria-labelledby="myModal" data-target={"myModal"+itemData._id} aria-hidden="true"></i></td>
-                              </tr>
-                        :
-                          null
-                            )
-                        })
+                
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray planContainer mt40 NOpadding">
+                    <ul class="nav nav-pills customStack textAlignCenter">
+                      <li class="active col-lg-3"><a data-toggle="pill" href="#home">Active User</a></li>
+                       <li className=" col-lg-3"><a data-toggle="pill" href="#menu1">Inactive User</a></li>
                       
-                    :
-                      <tr>
-                        <td colSpan="4" className="text-center">Your custom amenities will appear here...</td>                
-                      </tr>
-                  }
-                  </tbody>
-                </table>
-              </div>
+                    </ul>
+
+                      <div class="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div id="home" class="tab-pane fade in active">
+                          <div className="col-lg-12 NOpadding">
+                              <table className="table tableCustom table-striped">
+                                <thead className="bgThead">
+                                  <tr>
+                                    <th>Sr.</th>
+                                    <th>Name</th>
+                                    <th className="text-center">Mobile</th>
+                                    <th className="text-center">Mail </th>
+                                    <th className="text-center">Start Date</th>
+                                    <th className="text-center">End Date</th>
+                                    <th className="text-center">Action</th>
+                                 </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1.</td>
+                                    <td>Priyanka Lewade</td>
+                                    <td className="text-center">8208066599</td>
+                                    <td className="text-center">priyankalewade96@gmail.com</td>
+                                    <td className="text-center">11-10-2019</td>
+                                    <td className="text-center">11-02-2019</td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                  </tr>
+                                   <tr>
+                                    <td>2.</td>
+                                    <td>Ashish Chavan</td>
+                                    <td className="text-center">9156507131</td>
+                                    <td className="text-center">ashish.chavan@iassureit.com</td>
+                                    <td className="text-center">21-9-2019</td>
+                                    <td className="text-center">21-11-2019</td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                  </tr> 
+                                   <tr>
+                                    <td>3.</td>
+                                    <td>Priyanka Lewade</td>
+                                    <td className="text-center">8208066599</td>
+                                    <td className="text-center">priyankalewade96@gmail.com</td>
+                                    <td className="text-center">11-10-2019</td>
+                                    <td className="text-center">11-02-2019</td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                  </tr>                                                  
+                                 
+                                </tbody>
+                              </table>
+                          </div>    
+                        </div>
+                          <div id="menu1" class="tab-pane fade">
+                          <div className="col-lg-12 NOpadding">
+                              <table className="table tableCustom table-striped">
+                                <thead className="bgThead">
+                                  <tr>
+                                    <th>Sr.</th>
+                                    <th>Name</th>
+                                    <th className="text-center">Mobile</th>
+                                    <th className="text-center">Mail </th>
+                                    <th className="text-center">Start Date</th>
+                                    <th className="text-center">End Date</th>
+                                    <th className="text-center">Action</th>
+                                 </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>1.</td>
+                                    <td>Priyanka Lewade</td>
+                                    <td className="text-center">8208066599</td>
+                                    <td className="text-center">priyankalewade96@gmail.com</td>
+                                    <td className="text-center">11-10-2019</td>
+                                    <td className="text-center">11-02-2019</td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                  </tr>
+                                   <tr>
+                                    <td>2.</td>
+                                    <td>Ashish Chavan</td>
+                                    <td className="text-center">9156507131</td>
+                                    <td className="text-center">ashish.chavan@iassureit.com</td>
+                                    <td className="text-center">21-9-2019</td>
+                                    <td className="text-center">21-11-2019</td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                  </tr> 
+                                   <tr>
+                                    <td>3.</td>
+                                    <td>Priyanka Lewade</td>
+                                    <td className="text-center">8208066599</td>
+                                    <td className="text-center">priyankalewade96@gmail.com</td>
+                                    <td className="text-center">11-10-2019</td>
+                                    <td className="text-center">11-02-2019</td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                  </tr>                                                  
+                                 
+                                </tbody>
+                              </table>
+                          </div>     
+                          </div>
+                        
+                        </div>  
+                    </div>
+             
             </form>
           </div>
         </div>

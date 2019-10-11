@@ -28,6 +28,7 @@ export default class ReadyToGo extends Component {
             "PRcontactNumber"    : "",
             "PRemail"            : "",
             "message"            : "",
+            "portfolioImage"     : "",
             "panNumber"          : "",
             "email"              : "",
             "nameModal"          : "",
@@ -75,13 +76,14 @@ export default class ReadyToGo extends Component {
     axios
       .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
       .then((response)=>{
-        console.log("response",response.data);
         const config = 
                        {
-                          "key"         : response.data.key,
-                          "secret"      : response.data.secret,
-                          "bucket"      : response.data.bucket,
-                          "region"      : response.data.region,
+                          
+                          bucketName      : response.data.bucket,
+                          dirName         : response.data.bucket,
+                          region          : response.data.region,
+                          accessKeyId     : response.data.key,
+                          secretAccessKey : response.data.secret,
                       }
         this.setState({
           config : config
@@ -123,6 +125,68 @@ export default class ReadyToGo extends Component {
         errors: errors
       });
     }
+     var index = event.target.getAttribute('id');
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+          addressProofName : newFile.name,
+      })
+      console.log("file",newFile);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+          if (newFile) {
+            if(this.state.addressProof==""){
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{ 
+                  this.setState({
+                    addressProof : Data.location,
+                  })
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            this.setState({
+                              addressProof : Data.location,
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log("formErrors");
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+        }
+      }
+    }
   }
   checkSizePAN(event)
   {
@@ -134,7 +198,7 @@ export default class ReadyToGo extends Component {
         event.target.value ="";
      }else{
         this.setState({
-            "panNumber"      :event.target.value,
+            "panNumber" : event.target.value,
           });
         }
       }
@@ -150,43 +214,78 @@ export default class ReadyToGo extends Component {
         errors: errors
       });
     }
-  }
-  checkSizeFU(event)
-  {
-     var file = event.target.files[0];
-    console.log("file",file);
-    if(file){
-     if(file.size>=2097152)
-     {
-        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
-        event.target.value ="";
-     }else{
-          this.setState({
-              "fileUpload"      :event.target.value,
-            });
+    
+    var index = event.target.getAttribute('id');
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+          panNumberName : newFile.name,
+      })
+      console.log("file",newFile);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+          if (newFile) {
+            if(this.state.panNumber==""){
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{ 
+                  this.setState({
+                    panNumber : Data.location,
+                  },()=>{console.log(this.state.panNumber)})
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            this.setState({
+                              panNumber : Data.location,
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log("formErrors");
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
         }
       }
-      let fields2 = this.state.fields2;
-    fields2[event.target.name] = event.target.value;
-    this.setState({
-      fields2
-    });
-    if (this.validateForm() && this.validateFormReq()) {
-      let errors2 = {};
-      errors2[event.target.name] = "";
-      this.setState({
-        errors2: errors2
-      });
     }
   }
-  onOptionSelect = (value) => {
-  }
+
   handleChange(event){
 
     this.setState({
       "ENname"                    : this.refs.ENname.value,
       "ENcontactNumber"           : this.refs.ENcontactNumber.value,
       "ENemail"                   : this.refs.ENemail.value,
+      "name"                      : this.refs.name.value,
       "contactNumber"             : this.refs.contactNumber.value,
       "email"                     : this.refs.email.value,
       "PRname"                    : this.refs.PRname.value,
@@ -251,15 +350,14 @@ export default class ReadyToGo extends Component {
         var dataArray1={
           "name"             : this.refs.name.value,
           "addressProof"     : this.refs.addressProof.value,
-          "panNumber"        : this.refs.panNumber.value,
+          "panNumber"        : this.state.panNumber,
           "email"            : this.refs.email.value,
           "contactNumber"    : this.refs.contactNumber.value,
 
         }
-        console.log("questionsArray",this.state.questionsArray);
+        console.log("dataArray1",dataArray1);
 
 
-        var adminEmail = "kycwealthyvia@gmail.com";
         const dataArray = {
             "email"         : this.state.email ,
             "subject"       : "Your KYC details is sent successfully.",
@@ -269,7 +367,6 @@ export default class ReadyToGo extends Component {
                               "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/><br/>'+
                               "Contact Number :" + this.state.contactNumber + '<br/>'+
                               "Email :" + this.state.email + '<br/>'+
-                              "addressProof :" + this.state.addressProof + '<br/>'+
                               "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
         };
@@ -284,18 +381,16 @@ export default class ReadyToGo extends Component {
                   .catch((error)=>{
                     console.log("error = ", error);
                   });
+         var adminEmail = "kycwealthyvia@gmail.com";
          console.log("dataArray",dataArray); 
          const formValues2 = {
           "email"         : adminEmail ,
           "subject"       : "New KYC/Investment Profile details arrived from client!",
-          "message"          : "",
           "mail"          : 'Dear Admin, <br/>'+
                             "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
                             "<b> Name: </b>"   + this.state.name + '<br/>'+
                             "<b> Email: </b>"  + this.state.email + '<br/>'+
                             "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
-                            "<b> Address Proof: </b>"  + this.state.addressProof + '<br/><br/>'+
-                            "<b> PAN Details: </b>"  + this.state.panNumber + '<br/><br/>'+
                             "<b> Investment Profile details </b> <br/><br/>"+
                             ""+this.state.questionsArray[0]+"<br/>"+
                             "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
@@ -308,6 +403,15 @@ export default class ReadyToGo extends Component {
                             ""+this.state.questionsArray[4]+"<br/>"+
                             "Ans : "+this.state.answersofQ5+"<br/><br/>"+
                             "" ,
+          "attachments" : [{
+                      "name" : this.state.panNumberName,
+                      "path" : this.state.panNumber
+                        },
+                        {
+                      "name" : this.state.addressProofName,
+                      "path" : this.state.addressProof
+                        },
+                      ]
 
         };
         axios
@@ -330,7 +434,7 @@ export default class ReadyToGo extends Component {
       
            this.setState({
           "panNumber"       : "",
-          "addressProof"      : "",
+          "addressProof"     : "",
           "name"             : "",
           "email"            : "",
           "contactNumber"    : "",
@@ -349,15 +453,17 @@ export default class ReadyToGo extends Component {
 
   SubmitReview(event){
     event.preventDefault();
+                console.log("this.state.portfolioImage",this.state.portfolioImage)
     if (this.validateFormReview() && this.validateFormReqReview()) {
      
       var dataArray1={
        "PRname"            : this.refs.PRname.value,
-      "fileUpload"         : this.refs.fileUpload.value,
-      "PRemail"            : this.refs.email1.value,
+      "fileUpload"         : this.state.portfolioImage,
+      "PRemail"            : this.refs.PRemail.value,
       "PRcontactNumber"    : this.refs.PRcontactNumber.value,
 
       }
+      console.log("dataArray1",dataArray1);
       var adminEmail = "review.wealthyvia@gmail.com";
       const dataArray = {
           "email"         : this.state.PRemail ,
@@ -365,7 +471,7 @@ export default class ReadyToGo extends Component {
           "message"          : "", 
           "mail"          : 'Dear  ' + this.state.PRname + ', <br/><br/>'+
                             "Congratulations!<br/><br/>Your Portfolio Review has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
-                            "<b>Details Submitted - </b><br/> Name: "  + this.state.PRname + '<br/><br/>'+
+                            "<b>Details Submitted - </b><br/> Name: "  + this.state.PRname + '<br/>'+
                             "Contact Number :" + this.state.PRcontactNumber + '<br/>'+
                             "Email :" + this.state.PRemail + '<br/>'+
                             "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
@@ -375,7 +481,7 @@ export default class ReadyToGo extends Component {
         .post('/send-email',dataArray)
         .then((res)=>{
                    if(res.status === 200){
-                    swal("Thank you for contacting us. We will get back to you shortly.")
+                    swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
                     }
                 })
                 .catch((error)=>{
@@ -385,14 +491,17 @@ export default class ReadyToGo extends Component {
        const formValues2 = {
         "email"         : adminEmail ,
         "subject"       : "New Portfolio Review arrived from client!",
-        "message"          : "",
         "mail"          : 'Dear Admin, <br/>'+
                           "New Portfolio Review came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
                           "<b> Name: </b>"   + this.state.PRname + '<br/>'+
                           "<b> Email: </b>"  + this.state.PRemail + '<br/>'+
                           "<b> Contact Number: </b>"  + this.state.PRcontactNumber + '<br/><br/>'+
                           "" ,
-
+        "attachments" : [{
+                      "name" : this.state.fileUploadName,
+                      "path" : this.state.portfolioImage
+                        },
+                      ]
       };
       axios
       .post('/send-email',formValues2)
@@ -410,7 +519,6 @@ export default class ReadyToGo extends Component {
       fields["name1"]            = "";
       fields["email1"]           = "";
       fields["contactNumber1"]   = "";
-      swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
       $("#portfolioReview").hide();
           $("#portfolioReview").removeClass('in');
             $(".modal-backdrop").remove();
@@ -477,7 +585,7 @@ export default class ReadyToGo extends Component {
         .post('/send-email',formValues2)
         .then((res)=>{
                   if(res.status === 200){
-                    console.log("Mail sent to admin successfully!")
+                   swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
                   }
                 })
                 .catch((error)=>{
@@ -490,7 +598,6 @@ export default class ReadyToGo extends Component {
        fields1["emailModal"]           = "";
        fields1["contactNumberModal"]   = "";
 
-        swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
 
         $("#EnquireModal").hide();
         $("#EnquireModal").removeClass('in');
@@ -786,6 +893,31 @@ validateFormReqReview() {
   }
   uploadLogoImage(event){
    event.preventDefault();
+    var file = event.target.files[0];
+    console.log("file",file);
+    if(file){
+     if(file.size>=2097152)
+     {
+        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+        event.target.value ="";
+     }else{
+          this.setState({
+              "fileUpload"      :event.target.value,
+            });
+        }
+      }
+      let fields2 = this.state.fields2;
+    fields2[event.target.name] = event.target.value;
+    this.setState({
+      fields2
+    });
+    if (this.validateForm() && this.validateFormReq()) {
+      let errors2 = {};
+      errors2[event.target.name] = "";
+      this.setState({
+        errors2: errors2
+      });
+    }
     var index = event.target.getAttribute('id');
     console.log("index--------------->",index);
     let self = this;
@@ -793,20 +925,21 @@ validateFormReqReview() {
       var file = event.currentTarget.files[0];
       var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
       var newFile = new File([file],newFileName);
+      this.setState({
+        fileUploadName : newFile.name,
+      })
       console.log("file",newFile);
       if (newFile) {
-      // console.log("config--------------->",this.state.config);
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
           if (newFile) {
             if(this.state.fileUpload==""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
-                .then((Data)=>{
-                  console.log("Data = ",Data);
+                .then((Data)=>{ 
                   this.setState({
-                    fileUpload : Data.location
-                  })
+                    portfolioImage : Data.location,
+                  },()=>{console.log(this.state.portfolioImage)})
                   this.deleteimageLogo(index)
                 })
                 .catch((error)=>{
@@ -825,9 +958,8 @@ validateFormReqReview() {
                         S3FileUpload
                           .uploadFile(newFile,this.state.config)
                           .then((Data)=>{
-                            console.log("Data = ",Data);
                             this.setState({
-                              fileUpload : Data.location
+                              portfolioImage : Data.location,
                             })
                             this.deleteimageLogo(index)
                           })
@@ -869,7 +1001,6 @@ validateFormReqReview() {
  
   render() {
     const token = localStorage.getItem("user_ID");
-    console.log("token",token)
     return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite">
               <div className="row">

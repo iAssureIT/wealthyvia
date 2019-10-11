@@ -17,6 +17,7 @@ import VerifyAccount    from '../systemSecurity/VerifyAccount.js';
 import Header           from '../common/header/Header.js'
 import Footer           from '../common/footer/Footer.js'
 import Dashboard        from '../dashboard/Dashboard.js'
+import UploadStatement        from '../dashboard/UploadStatement/UploadStatement.js'
 import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js'
 import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js'
 import UMListOfUsers    from '../userManagement/UM/UMListOfUsers.js';
@@ -119,8 +120,8 @@ componentDidMount(){
   }
 
   render(){
-    if(this.state.loggedIn && !this.state.logout){
-      return(
+/*    if(this.state.loggedIn && !this.state.logout){
+*/      return(
           <Router>
             <div className="App container-fluid">
               <div className="row">
@@ -141,6 +142,7 @@ componentDidMount(){
                           <Route path="/edituserprofile/:id" component={EditUserProfile} exact />
                           <Route path="/ViewTemplates" component={ViewTemplates} exact />
                           <Route path="/dashboard" component={Dashboard} exact />
+                          <Route path="/uploadStatement" component={UploadStatement} exact />
                           <Route path="/companysetting" component={CompanySetting} exact />
                           <Route path="/addWorkspace" component={addWorkspace} exact />
                           <Route path="/addWorkspace/:id" component={addWorkspace} exact />
@@ -173,6 +175,14 @@ componentDidMount(){
                           <Route path="/dashboard/salesTransactionReport" component={SalesTransactionReport} exact />
                           <Route path="/settlementReportDetailed/:vendor_ID" component={SettlementReportD} exact />
                           <Route path="/settlementReportSummary" component={SettlementReportS} exact />
+                            <Route path="/dashboard" component={Dashboard} exact />
+                          <Route path="/"               exact strict component={ Login } />
+                          <Route path="/login"          exact strict component={ Login } />
+                          <Route path="/signup"         exact strict component={ SignUp } />
+                          <Route path="/forgot-pwd"     exact strict component={ ForgotPassword } />
+                          <Route path="/reset-pwd"      exact strict component={ ResetPassword } />
+                          <Route path="/verify-account" exact strict component={ VerifyAccount } />
+                          <Route path="/confirm-otp"    exact strict component={ ConfirmOtp } />
                         </Switch>        
                       </div>
                     </div>
@@ -189,26 +199,9 @@ componentDidMount(){
               </div>
             </div> 
           </Router>
-        );
-    }else{
-       return(
-        <div>
-          <Router>
-            <Switch>
-            
-                    <Route path="/dashboard" component={Dashboard} exact />
-              <Route path="/"               exact strict component={ Login } />
-              <Route path="/login"          exact strict component={ Login } />
-              <Route path="/signup"         exact strict component={ SignUp } />
-              <Route path="/forgot-pwd"     exact strict component={ ForgotPassword } />
-              <Route path="/reset-pwd"      exact strict component={ ResetPassword } />
-              <Route path="/verify-account" exact strict component={ VerifyAccount } />
-              <Route path="/confirm-otp"    exact strict component={ ConfirmOtp } />
-            </Switch>        
-          </Router>
-        </div>
-      );
-    }
+      
+         );   
+           
   }
 }
 export default Layout;
