@@ -1,0 +1,57 @@
+.userDetailsDiv label{
+	font-size: 15px !important;
+	font-weight: normal !important;
+}
+.userDetailsDiv{
+
+	padding: 40px;
+	padding-top:10px !important;
+
+}
+.userDetailsDiv1 label{
+	font-size: 15px !important;
+	font-weight: normal !important;
+}
+.userDetailsDiv1{
+
+	padding: 40px;
+	padding-top:10px !important;
+	padding-bottom:10px !important;
+
+}
+.customStack li>a{
+ border:1px solid #aaa;
+}
+.customStack>li.active>a, .customStack>li.active>a:focus, .customStack>li.active>a:hover{
+	border-radius: 3px !important;
+	background-color:#201a47 !important;
+	color:#fff !important;
+}
+.customStack>li.active>a:hover{
+
+}
+.tableCustom>tbody>tr>td{
+	padding: 20px;
+}
+.MasterBudgetTitle{
+	font-size: 25px !important;
+}
+.backColorUserDetails{
+	background-color: #201a47;
+	color: #fff;
+}
+.padding40{
+	padding: 40px;
+	padding-top: 10px !important;
+}
+.imagesDivUploaded{
+	height: 100px;
+	width: 20%;
+	margin-top: 10px;
+	margin-bottom: 40px;
+
+}
+.imagesDivUploaded img{
+	height: 100%;
+	width: 100%;
+}
