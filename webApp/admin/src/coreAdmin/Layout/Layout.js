@@ -35,7 +35,12 @@ import AdminContent       from '../dashboard/DashboardNew.js';
 /*============================ /Blog==============================================*/
 
 /*import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js';*/
-/*import BlogsFormPage    from "../Blog/BlogsForm/BlogsFormPage.js";*/
+import BlogsFormPage    from "../Blogs/BlogsForm/BlogsFormPage.js";
+import AllBlogs                                  from "../Blogs/AllBlogs/AllBlogs.js";
+
+
+import SingleBlogPage      from "../Blogs/SingleBlogPage/SingleBlogPage.js";
+
 
 
 /*******************************Dashboard Reports*****************************/
@@ -148,6 +153,14 @@ componentDidMount(){
                           <Route path="/cafeMenu" component={cafeMenu} exact />
                           <Route path="/cafeMenu/:id" component={cafeMenu} exact />
                           <Route path="/bankReport" component={BankReport} exact />
+                        {/* Blog  */}
+                          <Route path="/blogsform/:blogID"                exact strict component={BlogsFormPage}  />
+                          <Route path="/allblogs" component={AllBlogs} exact />
+
+                          <Route path="/blogsform" component={BlogsFormPage} exact />
+                          <Route path="/singleblogpage"                   exact strict component={SingleBlogPage}  />
+                          <Route path="/singleblogpage/:selectedID"       exact strict component={SingleBlogPage}  />
+
 
                           <Route path="/cafeWiseCheck-In/:workspace_ID" component={CafeWiseCheckInD} exact />
                           <Route path="/cafeWiseCheckIn" component={CafewiseCheckIns} exact />

@@ -174,15 +174,15 @@ class UMListOfUsers2 extends Component{
           {
             var selectedId = checkedUsersList[i];
             var formValues ={
-              userID : selectedId,
+             /* userID : selectedId,*/
               status : 'Blocked',
             }
             // console.log("selected i",selectedId);
              axios
-              .post('/api/users/post/statusaction',formValues)
+              .patch('/api/users/patch/status/'+selectedId,formValues)
               .then(
                 (res)=>{
-                  // console.log('res', res);
+                  console.log('res xxx', res);
                   this.setState({
                     blockswal : true,
                     checkedUser : null,
@@ -198,9 +198,9 @@ class UMListOfUsers2 extends Component{
                       "startRange"        : this.state.startRange,
                             "limitRange"        : this.state.limitRange, 
                     }
-                    axios.post('/api/users/post/userslist', data)
+                    axios.get('/api/users/get/list/1')
                     .then( (res)=>{      
-                      // console.log("herer",res);
+                      console.log("here yyyyyyr",res);
                       var tableData = res.data.map((a, i)=>{
                         return {
                           _id       : a._id,
@@ -257,13 +257,13 @@ class UMListOfUsers2 extends Component{
           {
             var selectedId = checkedUsersList[i];
             var formValues ={
-              userID : selectedId,
+              /*userID : selectedId,*/
               status : 'Active',
             }
-            // console.log("selected i",selectedId);
+            console.log("selected i",selectedId);
 
              axios
-              .post('/api/users/post/statusaction',formValues)
+              .patch('/api/users/patch/status/'+selectedId,formValues)
               .then(
                 (res)=>{
                   // console.log('res', res);
@@ -279,7 +279,7 @@ class UMListOfUsers2 extends Component{
                       "startRange"        : this.state.startRange,
                             "limitRange"        : this.state.limitRange, 
                     }
-                    axios.post('/api/users/post/userslist', data)
+                    axios.post('/api/users/get/list/1')
                     .then( (res)=>{      
                       // console.log("herer",res);
                       var tableData = res.data.map((a, i)=>{
@@ -523,19 +523,19 @@ class UMListOfUsers2 extends Component{
                 "startRange"        : this.state.startRange,
                       "limitRange"        : this.state.limitRange, 
               }
-              axios.post('/api/users/get/list/1')
+              axios.get('/api/users/get/list/role/user/1')
               .then( (res)=>{      
                 // console.log("herer",res);
                 // swal("Success! Showing "+selectedValue,"","success");
                 var tableData = res.data.map((a, i)=>{
                   return {
-                          _id       : a._id,
-                          fullName        : a.fullName ? a.fullName : "-",
-                                  email       : a.email ? a.email : "-",
-                                  mobNumber    : a.mobNumber ? a.mobNumber : "-", 
-                                  status          : a.status ? a.status : "-",  
-                                  role       : a.role ? a.role : "-",
-                                  checked         : false,
+                          _id           : a._id,
+                          fullName      : a.fullName ? a.fullName : "-",
+                          email         : a.email ? a.email : "-",
+                          mobNumber     : a.mobNumber ? a.mobNumber : "-", 
+                          status        : a.status ? a.status : "-",  
+                          role          : a.role ? a.role : "-",
+                          checked       : false,
                   }
                 })
                 this.setState({

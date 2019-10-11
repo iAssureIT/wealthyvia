@@ -19,7 +19,7 @@ export default class BlogContent extends React.Component {
 	}
 
 	render() {
-
+		console.log("dat a in chaild comp",this.props.blogContent)
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
 

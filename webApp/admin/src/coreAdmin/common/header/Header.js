@@ -25,7 +25,8 @@ class Header extends Component{
    
   componentDidMount() {
    var Uid = localStorage.getItem("admin_id");
-    // console.log("_id",id);
+   
+    console.log("_id",Uid);
     // axios
     //   .get('/api/users/get/single/'+Uid)
     //   .then((response)=> {
@@ -86,7 +87,7 @@ class Header extends Component{
                       <i className="fa fa-bars headicon"></i>
                     </div>
                     <div  className="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                     <h3 className="LogoTitle">Coffic</h3>
+                     <h3 className="LogoTitle">Wealthiviya</h3>
                     </div>
                   </div>
                 </div>
@@ -97,13 +98,13 @@ class Header extends Component{
                   </div>
                   <div className="col-lg-7 col-md-7 col-sm-9 col-xs-12 pull-right logoutAct">
                     <div className="row">
-                      <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
+                      {/*<div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 ">
                         <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6 pull-right">
-                          <img src="../images/cofficLogo.png" className="img"/>
+                          {/*<img src="../images/cofficLogo.png" className="img"/>
                         </div>
-                      </div>
-                      <div className="col-lg-6 col-md-6 col-xs-8 col-sm-12 pull-right hover" onClick={this.LogoutSectionHover.bind(this)}>
-                        <div className="headiconName pull-right">Coffic Admin&nbsp;&nbsp;<i className="fa fa-angle-down"></i></div>
+                      </div>*/}
+                      <div className="col-lg-10 col-md-10 col-xs-8 col-sm-12 pull-right hover" onClick={this.LogoutSectionHover.bind(this)}>
+                        <div className="headiconName pull-right">Wealthiviya Admin&nbsp;&nbsp;<i className="fa fa-angle-down"></i></div>
                       </div>
                       <div className="arrow-up showme"></div>
                       <div className="col-lg-12 user-footer showme">

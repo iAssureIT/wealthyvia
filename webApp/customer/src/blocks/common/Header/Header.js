@@ -1033,12 +1033,14 @@ export default class Header extends Component {
                                             Articulations <span className="caret"></span>
                                           </a>                       
                                           <ul className="dropdown-menu customDropdown">
-                                         {/*  {token ?
+                                           {token ?
+                                            <a href="/AllBlogs">Arthavrudhhi Blogs</a>
+                                               
                                               :
                                                 <a href="/login">Arthavrudhhi Blogs</a>
-                                            }*/}
-                                               <a href="https://www.arthavruddhi.com/blog" target="_blank">Arthavrudhhi Blogs</a>
-                                               <a href="">Communique</a>
+                                            }<a href="">Communique</a>
+                                              {/* <a href="https://www.arthavruddhi.com/blog" target="_blank">Arthavrudhhi Blogs</a>
+                                               <a href="">Communique</a>*/}
                                            
                                         </ul>
                                       </li>
