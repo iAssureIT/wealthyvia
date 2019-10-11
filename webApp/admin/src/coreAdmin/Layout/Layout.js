@@ -153,7 +153,7 @@ componentDidMount(){
                           <Route path="/cafeMenu" component={cafeMenu} exact />
                           <Route path="/cafeMenu/:id" component={cafeMenu} exact />
                           <Route path="/bankReport" component={BankReport} exact />
-                        {/* Blog  */}AllBlogs
+                        {/* Blog  */}
                           <Route path="/blogsform/:blogID"                exact strict component={BlogsFormPage}  />
                           <Route path="/allblogs" component={AllBlogs} exact />
 

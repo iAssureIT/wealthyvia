@@ -58,8 +58,8 @@ componentDidMount(){
           	<div className="container-fluid" style={{padding:"0px"}}>
           		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage} selectedID={this.props.match.params.selectedID}/>
           		<BlogContent blogContent={this.state.blogContent}/>
-          		<RelatedBlogs/>
-          		<BlogComment/>
+          		{/*<RelatedBlogs/>
+          		<BlogComment/>*/}
 
           		
 			</div>

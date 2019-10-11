@@ -523,7 +523,7 @@ class UMListOfUsers2 extends Component{
                 "startRange"        : this.state.startRange,
                       "limitRange"        : this.state.limitRange, 
               }
-              axios.post('/api/users/get/list/role/user/1')
+              axios.get('/api/users/get/list/role/user/1')
               .then( (res)=>{      
                 // console.log("herer",res);
                 // swal("Success! Showing "+selectedValue,"","success");

@@ -75,7 +75,8 @@ class BlogsForm extends Component{
           "blogTitle":response.data.blogTitle,
           "summary":response.data.summary,
           "typeOfBlog":response.data.typeOfBlog,
-          "blogContent":response.data.blogContent
+          "blogContent":response.data.blogContent,
+          "imgbPath":response.data.bannerImage
 
         });
       })

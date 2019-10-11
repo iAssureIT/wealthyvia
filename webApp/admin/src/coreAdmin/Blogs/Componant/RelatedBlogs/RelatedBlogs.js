@@ -50,7 +50,7 @@ export default class RelatedBlogs extends React.Component {
 	          		<div className="col-lg-12">
 	          		{
 		                		data && data.length > 0 ?
-				      				data.map((data, index)=>{
+				      				data.map((data, index=1)=>{
 		                					return(
 							          			<div className="col-lg-4">
 							          				<div className="col-lg-12 rblog">
