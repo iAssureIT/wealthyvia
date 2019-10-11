@@ -25,7 +25,32 @@ class ForgotPassword extends Component {
       console.log('x',x);
     }
     forgotpassword(event){
-      console.log('forgotpassword');
+      event.preventDefault();
+      var emailPbj = this.refs.enterEmail.value;
+           this.setState({
+            email : emailPbj,
+      });
+      var emailObject ={
+            emailId: this.refs.enterEmail.value,
+      }   
+    
+           axios.patch('/api/users/patch/password/email',{emailId:this.refs.enterEmail.value})
+          .then((response)=> {
+            console.log("response.data.ID",response.data.ID);
+            if(response.data.ID != undefined && response.data.ID != "undefined"){
+              swal("Great","Information submitted successfully and OTP is sent to your registered Email ID");
+              this.props.history.push("/confirm-otp/"+response.data.ID);
+            }else{
+              swal("Warning","Please check your email and try again.");
+            }
+           
+          })
+          .catch(function (error) {
+            console.log(error);
+            swal("Warning","Please check your email and try again.");
+          })
+
+     /* console.log('forgotpassword');
       event.preventDefault();
       var email = this.refs.enterEmail.value;
       var mobile = this.refs.enterMobNo.value;
@@ -44,9 +69,9 @@ class ForgotPassword extends Component {
       var userOtp = 1 /*Meteor.users.findOne({"username":email})*/;
       // console.log("userOtp: ",userOtp);
      
-     if(userOtp==1){
+   /*  if(userOtp==1){
       var mobileotp = Math.floor(1000 + Math.random() * 9000);
-      var emailotp = Math.floor(100000 + Math.random() * 900000);
+      var emailotp = Math.floor(100000 + Math.random() * 900000);*/
 
 
 
@@ -101,13 +126,13 @@ class ForgotPassword extends Component {
         // // $('.confirnModalWrap').addClass('newPassword');
         // // $('.NewForgotPasswordWrap').css('display','none');
 
-      }else{
+    {/*  }else{
         swal('Email Address not found',"Please enter valid Email Id","warning");                  
-      }
+      }*/}
     }
 
     inputEffect(event){
-      event.preventDefault();
+     event.preventDefault();
       if($(event.target).val() != ""){
         $(event.target).addClass("has-content");
       }else{

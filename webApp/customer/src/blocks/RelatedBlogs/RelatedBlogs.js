@@ -68,7 +68,8 @@ componentDidMount(){
 
 																<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
 																<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-																<p className="blogPara p10 graycolor">{data.blogPara}</p>
+																<p className="blogPara p10 graycolor">{data.summary}
+																</p>
 															</a>
 																<hr/>
 															{/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mtop10">

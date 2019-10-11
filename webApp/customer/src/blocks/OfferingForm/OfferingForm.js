@@ -309,7 +309,7 @@ uploadBlogImage(event){
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
+                  {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                       {this.state.blog1Img==null?
                         null
                       :
@@ -368,7 +368,7 @@ uploadBlogImage(event){
                       </div>
                     </div>
                 }
-                </div>
+                </div>*/}
                  
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 ckbox">
                     <label htmlFor="userName">Offering Content</label>

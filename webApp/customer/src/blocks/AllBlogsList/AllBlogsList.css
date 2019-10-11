@@ -24,12 +24,12 @@
 }
 .blogPara{
 	overflow: hidden;
-	height: 100px;
+	height: 80px;
 	text-overflow: ellipsis;
 }
 .All1blog1{
 position: relative;
-	height: 375px;
+	height: 390px;
 	margin-bottom: 50px;
 	background-color: #fff;
 	box-shadow: 0px 11px 15px 1px #ccc;
