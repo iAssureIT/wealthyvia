@@ -126,7 +126,6 @@ export default class ReadyToGo extends Component {
       });
     }
      var index = event.target.getAttribute('id');
-    console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -135,7 +134,6 @@ export default class ReadyToGo extends Component {
       this.setState({
           addressProofName : newFile.name,
       })
-      console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
@@ -171,7 +169,6 @@ export default class ReadyToGo extends Component {
                             this.deleteimageLogo(index)
                           })
                           .catch((error)=>{
-                            console.log("formErrors");
                             console.log(error);
                           })
                       } else {
@@ -216,7 +213,6 @@ export default class ReadyToGo extends Component {
     }
     
     var index = event.target.getAttribute('id');
-    console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -225,7 +221,6 @@ export default class ReadyToGo extends Component {
       this.setState({
           panNumberName : newFile.name,
       })
-      console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
@@ -236,7 +231,7 @@ export default class ReadyToGo extends Component {
                 .then((Data)=>{ 
                   this.setState({
                     panNumber : Data.location,
-                  },()=>{console.log(this.state.panNumber)})
+                  })
                   this.deleteimageLogo(index)
                 })
                 .catch((error)=>{
@@ -261,7 +256,6 @@ export default class ReadyToGo extends Component {
                             this.deleteimageLogo(index)
                           })
                           .catch((error)=>{
-                            console.log("formErrors");
                             console.log(error);
                           })
                       } else {
@@ -355,7 +349,6 @@ export default class ReadyToGo extends Component {
           "contactNumber"    : this.refs.contactNumber.value,
 
         }
-        console.log("dataArray1",dataArray1);
 
 
         const dataArray = {
@@ -382,7 +375,6 @@ export default class ReadyToGo extends Component {
                     console.log("error = ", error);
                   });
          var adminEmail = "kycwealthyvia@gmail.com";
-         console.log("dataArray",dataArray); 
          const formValues2 = {
           "email"         : adminEmail ,
           "subject"       : "New KYC/Investment Profile details arrived from client!",
@@ -444,7 +436,6 @@ export default class ReadyToGo extends Component {
          $("#kycModal").hide();
         $("#kycModal").removeClass('in');
         $(".modal-backdrop").remove();
-        console.log("In")
         $("body").removeClass("modal-open");
 /*        window.location.reload(true);
 */           
@@ -453,7 +444,6 @@ export default class ReadyToGo extends Component {
 
   SubmitReview(event){
     event.preventDefault();
-                console.log("this.state.portfolioImage",this.state.portfolioImage)
     if (this.validateFormReview() && this.validateFormReqReview()) {
      
       var dataArray1={
@@ -463,7 +453,6 @@ export default class ReadyToGo extends Component {
       "PRcontactNumber"    : this.refs.PRcontactNumber.value,
 
       }
-      console.log("dataArray1",dataArray1);
       var adminEmail = "review.wealthyvia@gmail.com";
       const dataArray = {
           "email"         : this.state.PRemail ,
@@ -522,7 +511,6 @@ export default class ReadyToGo extends Component {
       $("#portfolioReview").hide();
           $("#portfolioReview").removeClass('in');
             $(".modal-backdrop").remove();
-        console.log("In")
         $("body").removeClass("modal-open");
             this.setState({
               "fileUpload"         : "",
@@ -566,7 +554,6 @@ export default class ReadyToGo extends Component {
                   console.log("error = ", error);
                   
                 });
-       console.log("dataArray",dataArray); 
        const formValues2 = {
         "email"         : adminEmail ,
         "subject"       : "New query/feedback arrived from Website!",
@@ -834,7 +821,6 @@ validateFormReqReview() {
          array = this.state.questionsArray;
         if(array){
 
-          console.log(array.indexOf(event.target.name));
           
           if(this.state.questionsArray.indexOf(event.target.name)== -1)
           {
@@ -843,7 +829,6 @@ validateFormReqReview() {
             this.setState({
               questionsArray  :array,
             },()=>{
-           console.log("questionsArray----->",this.state.questionsArray);
             })
           }
             answersarray.push(event.target.value);
@@ -852,13 +837,11 @@ validateFormReqReview() {
             this.setState({
               answersofQ1    : answersarray,
             },()=>{
-           console.log("answersofQ1----->",this.state.answersofQ1);
             })
           }else  if(event.target.name == "2) Any near term need for the funds invested with us ?"){
             this.setState({
               answersofQ2    : event.target.value,
             },()=>{
-           console.log("answersofQ2----->",this.state.answersofQ2);
           
           })
           }
@@ -866,21 +849,18 @@ validateFormReqReview() {
             this.setState({
               answersofQ3    : event.target.value,
             },()=>{
-           console.log("answersofQ3----->",this.state.answersofQ3);
           })
           }
            else  if(event.target.name == "4) What is number of years you have spent in stock market investments"){
             this.setState({
               answersofQ4    : event.target.value,
             },()=>{
-           console.log("answersofQ4----->",this.state.answersofQ4);
         })
           }
           else {
             this.setState({
               answersofQ5    : event.target.value,
             },()=>{
-           console.log("answersofQ5----->",this.state.answersofQ5);
           })
           }
        
@@ -894,7 +874,6 @@ validateFormReqReview() {
   uploadLogoImage(event){
    event.preventDefault();
     var file = event.target.files[0];
-    console.log("file",file);
     if(file){
      if(file.size>=2097152)
      {
@@ -964,7 +943,6 @@ validateFormReqReview() {
                             this.deleteimageLogo(index)
                           })
                           .catch((error)=>{
-                            console.log("formErrors");
                             console.log(error);
                           })
                       } else {
@@ -985,7 +963,6 @@ validateFormReqReview() {
   deleteimageLogo(index){
     var data = index.split("/");
     var imageName = data[4];
-    console.log("index1--------------->",imageName);
       if(index){
         S3FileUpload
           .deleteFile(imageName,this.state.config)

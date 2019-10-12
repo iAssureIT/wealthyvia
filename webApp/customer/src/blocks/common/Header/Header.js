@@ -204,7 +204,6 @@ export default class Header extends Component {
       .catch((error)=>{
             console.log('error', error);
       })
-      console.log("userinfo",this.state.userinfo)
 
     axios.get("/api/carts/get/count/"+userid)
       .then((response)=>{ 
@@ -294,7 +293,6 @@ export default class Header extends Component {
       });
     }
        var index = event.target.getAttribute('id');
-    console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -462,7 +460,6 @@ export default class Header extends Component {
           "contactNumber"    : this.refs.contactNumber.value,
 
         }
-        console.log("name",this.state.name);
 
         if(dataArray1){
           var adminEmail = "kycwealthyvia@gmail.com";
@@ -532,7 +529,6 @@ export default class Header extends Component {
                     .catch((error)=>{
                       console.log("error = ", error);
                     });
-           console.log("dataArray",dataArray); 
          
           let fields = {};
           fields["panNumber"]     = "";
@@ -567,7 +563,6 @@ export default class Header extends Component {
     var checked = event.target.checked;
     var name = event.target.name;
     var value = event.target.value;
-    console.log("name"+name+"value"+value);
     if(checked){
       var value = event.target.value;
        /* this.setState({
@@ -576,7 +571,6 @@ export default class Header extends Component {
          array = this.state.questionsArray;
         if(array){
 
-          console.log(array.indexOf(event.target.name));
           
           if(this.state.questionsArray.indexOf(event.target.name)== -1)
           {
@@ -585,7 +579,6 @@ export default class Header extends Component {
             this.setState({
               questionsArray  :array,
             },()=>{
-           console.log("questionsArray----->",this.state.questionsArray);
             })
           }
             answersarray.push(event.target.value);
@@ -594,13 +587,11 @@ export default class Header extends Component {
             this.setState({
               answersofQ1    : answersarray,
             },()=>{
-           console.log("answersofQ1----->",this.state.answersofQ1);
             })
           }else  if(event.target.name == "2) Any near term need for the funds invested with us ?"){
             this.setState({
               answersofQ2    : event.target.value,
             },()=>{
-           console.log("answersofQ2----->",this.state.answersofQ2);
           
           })
           }
@@ -608,21 +599,18 @@ export default class Header extends Component {
             this.setState({
               answersofQ3    : event.target.value,
             },()=>{
-           console.log("answersofQ3----->",this.state.answersofQ3);
           })
           }
            else  if(event.target.name == "4) What is number of years you have spent in stock market investments"){
             this.setState({
               answersofQ4    : event.target.value,
             },()=>{
-           console.log("answersofQ4----->",this.state.answersofQ4);
         })
           }
           else {
             this.setState({
               answersofQ5    : event.target.value,
             },()=>{
-           console.log("answersofQ5----->",this.state.answersofQ5);
           })
         }
       }
@@ -641,7 +629,6 @@ export default class Header extends Component {
   deleteimageLogo(index){
     var data = index.split("/");
     var imageName = data[4];
-    console.log("index1--------------->",imageName);
       if(index){
         S3FileUpload
           .deleteFile(imageName,this.state.config)
@@ -656,7 +643,6 @@ export default class Header extends Component {
   }
   render() {
     const token = localStorage.getItem("user_ID");
-    console.log(token);
 
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
@@ -1226,7 +1212,6 @@ export default class Header extends Component {
                                         <a href="/about-us" >About Us </a>
                                         
                                       </li>
-                                      {console.log(this.state.userinfo)}
                                       {token ?
                                           <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
