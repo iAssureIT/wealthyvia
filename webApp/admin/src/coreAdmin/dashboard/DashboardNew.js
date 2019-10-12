@@ -270,8 +270,9 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
           <section className="content-header">
             <h1>Dashboard</h1>
             {/*<ol className="breadcrumb"></ol>*/}
+            
           </section>
-          <section className="content">
+     {/*     <section className="content">
             <div className="row">
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
@@ -338,88 +339,11 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                 </div>
               </div>              
             </div>
-{/*            <div className="row">
-              <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div className="info-box">
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-8 col-md-8 col-sm-8 boxTitleOS">
-                      Total Students  
-                    </span>
-                    <span className="subBoxTitleOS"> : {this.props.allstudentCount}</span>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-8 col-md-8 col-sm-8 boxTitleOS boxTitleOSGreen">
-                      Online Students 
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGreen"> : {this.props.onlineStudentCount}</span>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-8 col-md-8 col-sm-8 boxTitleOS boxTitleOSGray">
-                      Offline Students  
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGray"> : {parseInt(this.props.allstudentCount)-parseInt(this.props.onlineStudentCount)}</span>
-                  </div>
-                </div>
-               
-              </div>
 
-              <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-             
-                <div className="info-box">
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-8 col-md-8 col-sm-8 boxTitleOS">
-                      Total Franchises  
-                    </span>
-                    <span className="subBoxTitleOS"> : {this.props.allFranchiseCount}</span>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-8 col-md-8 col-sm-8 boxTitleOS boxTitleOSGreen">
-                      Online Franchises
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGreen"> : {this.props.onlineFranchiseCount}</span>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-8 col-md-8 col-sm-8 boxTitleOS boxTitleOSGray">
-                      Offline Franchises  
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGray"> : {parseInt(this.props.allFranchiseCount)-parseInt(this.props.onlineFranchiseCount)}</span>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <div className="info-box">
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                   { <div className="col-lg-12 col-md-12 col-sm-12">
-                      <i className="fa fa-trophy compTrofy"></i>
-                      <span className="subBoxTitleOSs"><span><label className="greenCol" title="This competition is started"></label> <span className="startCompNm"></span></span></span>
-                    </div>}
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12 comStartText">
-                    <span className="col-lg-9 col-md-9 col-sm-9 boxTitleOS boxTitleOSGray">
-                      Total Students   
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGray"> : {this.state.CompStudentCnt}</span>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-">
-                    <span className="col-lg-9 col-md-9 col-sm-9 boxTitleOS boxTitleOSGreen">
-                      Appearing Students 
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGreen"> : {this.state.appearingStudent}</span>
-                  </div>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                    <span className="col-lg-9 col-md-9 col-sm-9 boxTitleOS boxTitleOSGray">
-                      Attempted Students   
-                    </span>
-                    <span className="subBoxTitleOS boxTitleOSGray"> : {parseInt(this.state.attemptedStudent)}</span>
-                  </div>
-                </div>
-              </div>
-            </div>*/}
             <div className="row">
               <div className="col-lg-8 col-md-8 col-sm-6 col-xs-12 graphWrapper">
                 <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap">
                   <h4>Gross Earning <i className="fnt12">(Last 12 months)</i></h4>
-                  {/*<canvas id="myChart" width="400" height="170"></canvas>*/}
                   {this.state.dataColumnChart!=="" ?
                   <div className="newCssBar">
                   <Chart
@@ -442,7 +366,6 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 row graphWrapper">
                 <div className="col-lg-12 col-md-12 col-sm-12 row innerGraphWrap">
                   <h4>Subscription Details <i className="fnt12">(Last 12 months)</i></h4>
-                  {/*<canvas id="myChart" width="400" height="170"></canvas>*/}
                   {this.state.pieData!=="" ?
                   <div className="col-lg-12 col-md-12 col-sm-12 newCssPie innerGraphWrap">
                       {console.log("1234",this.state.pieData)}
@@ -487,22 +410,9 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                   <DashboardCWSBS />
                 </div>
               </div>
-              {/*<div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 graphWrapper">
-                <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap">
-                <h4>Competition wise Registrations</h4>
-                <canvas id="competitionRegChart" width="400" height="170"></canvas>
-                </div>
-              </div>
-              <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 boxWrapDashboardPack graphWrapper">
-                <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap">
-                  <div className="pckgBarChart">
-                    <h4>Package wise Sale</h4>
-                    <canvas id="packagePurchageChart" width="400" height="170"></canvas>
-                  </div>
-               </div>
-              </div>*/}
+            
             </div>
-          </section>
+          </section>*/}
         </div>
       </div>
     );

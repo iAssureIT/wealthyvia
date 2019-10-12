@@ -70,18 +70,25 @@ export default class Leftsidebar extends Component{
                    {/* <img id="imgSidebar" className="marLeft25" src="/images/logoW.jpg" alt="Logo_img" height="50%" width="50%"/>*/}
                 </div>
                 <ul className="list-unstyled components">
-                    <li className="add active" onClick={this.eventclk.bind(this)}>
+                   {/* <li className="add active" onClick={this.eventclk.bind(this)}>
                       <Link to="/dashboard">
                         <i className="glyphicon glyphicon-briefcase"></i>
                           Admin Dashboard
                       </Link>
-                    </li>
+                    </li>*/}
                     {/*<li className="add " onClick={this.eventclk.bind(this)}>
                       <Link to="/addWorkspace"  aria-expanded="false">
                         <i className="fa fa-file"></i>
                           Workspace Management
                       </Link>
                     </li>*/}
+                      <li  className="add active" >
+                        <Link aria-expanded="false" to="/statement">
+                            <i className="fa fa-file"></i>
+                            Statements
+                        </Link>
+                        
+                    </li>
                     <li  className="add " onClick={this.eventclk1.bind(this)}>
                         <Link aria-expanded="false">
                             <i className="fa fa-file"></i>
@@ -94,13 +101,7 @@ export default class Leftsidebar extends Component{
                             <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>*/}
                         </ul>
                     </li>
-                    <li  className="add " >
-                        <Link aria-expanded="false" to="/Amenities">
-                            <i className="fa fa-file"></i>
-                            Statements
-                        </Link>
-                        
-                    </li>
+                  
                                  
                 </ul>
 

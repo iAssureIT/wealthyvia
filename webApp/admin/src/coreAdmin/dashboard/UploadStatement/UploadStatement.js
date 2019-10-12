@@ -202,7 +202,7 @@ class UploadStatement extends Component{
                           </div>
                           <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
                            <b className="text_k11"></b>
-                           <span className="under_ln">Upload Statement</span>
+                           <span className="under_ln">Upload Document</span>
                           </div>      
                           <input  type="file" title="Click to attach file" name="userPic" ref="statementImg"  className="form-control click_input"  onChange={this.uploadImg.bind(this)} id="upload-file2" />
                         </div> 
@@ -216,7 +216,7 @@ class UploadStatement extends Component{
                   { this.state.uploadStatement ?
                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Banner Image</h5>
+                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Statement</h5>
                       </div>
                       <div className="containerC">
                         <label id="" className="pull-right custFaTimes1" title="Delete image" onClick={this.deleteimageLogo.bind(this)}>X</label>

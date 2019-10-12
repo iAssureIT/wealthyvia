@@ -150,7 +150,7 @@ componentDidMount(){
                           <Route path="/addSubscription" component={addSubscription} exact />
                           <Route path="/addSubscription/:id" component={addSubscription} exact />
                           <Route path="/editSubscription" component={editSubscription} exact />
-                          <Route path="/amenities" component={Amenities} exact />
+                          <Route path="/statement" component={Amenities} exact />
                           <Route path="/amenities/:id" component={Amenities} exact />
                           <Route path="/cafeMenu" component={cafeMenu} exact />
                           <Route path="/cafeMenu/:id" component={cafeMenu} exact />

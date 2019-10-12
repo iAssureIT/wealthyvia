@@ -25,8 +25,9 @@
 .blogPara{
 	overflow: hidden;
 	height: 80px;
-	text-overflow: ellipsis;
-}
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;}
 .All1blog1{
 position: relative;
 	height: 390px;
