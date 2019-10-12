@@ -21,10 +21,13 @@ export default class Header extends Component {
             "name"                : "",
             "panNumber"           : "",
             "panNumberName"       : "",
+            "panNumberLocation"       : "",
             "email"               : "",
             "addressProof"        : "",
             "addressProofName"    : "",
             "contactNumber"       : "",
+            "addressProofLocation"       : "",
+
             "fields"              : {},
             "errors"              : {},  
             "fields1"             : {},
@@ -304,14 +307,14 @@ export default class Header extends Component {
       console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
           if (newFile) {
             if(this.state.panNumber==""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
-                    panNumber : Data.location,
+                    panNumberLocation : Data.location,
                   },()=>{console.log(this.state.panNumber)})
                   this.deleteimageLogo(index)
                 })
@@ -332,7 +335,7 @@ export default class Header extends Component {
                           .uploadFile(newFile,this.state.config)
                           .then((Data)=>{
                             this.setState({
-                              panNumber : Data.location,
+                              panNumberLocation : Data.location,
                             })
                             this.deleteimageLogo(index)
                           })
@@ -398,14 +401,14 @@ export default class Header extends Component {
       console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
           if (newFile) {
             if(this.state.addressProof==""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
-                    addressProof : Data.location,
+                    addressProofLocation : Data.location,
                   })
                   this.deleteimageLogo(index)
                 })
@@ -426,7 +429,7 @@ export default class Header extends Component {
                           .uploadFile(newFile,this.state.config)
                           .then((Data)=>{
                             this.setState({
-                              addressProof : Data.location,
+                              addressProofLocation : Data.location,
                             })
                             this.deleteimageLogo(index)
                           })
@@ -460,6 +463,7 @@ export default class Header extends Component {
           "contactNumber"    : this.refs.contactNumber.value,
 
         }
+        console.log("dataArray1",dataArray1);
 
         if(dataArray1){
           var adminEmail = "kycwealthyvia@gmail.com";
@@ -480,15 +484,16 @@ export default class Header extends Component {
             .post('/send-email',dataArray)
             .then((res)=>{
                        if(res.status === 200){
+        console.log("dataArray1",dataArray1);
 
                         const formValues2 = {
                           "email"         : adminEmail ,
                           "subject"       : "New KYC/Investment Profile details arrived from client!",
                           "mail"          : 'Dear Admin, <br/>'+
                                             "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
-                                            "<b> Name: </b>"   + this.state.name + '<br/>'+
-                                            "<b> Email: </b>"  + this.state.email + '<br/>'+
-                                            "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
+                                            "<b> Name: </b>"   + dataArray1.name + '<br/>'+
+                                            "<b> Email: </b>"  + dataArray1.email + '<br/>'+
+                                            "<b> Contact Number: </b>"  + dataArray1.contactNumber + '<br/><br/>'+
                                         
                                             "<b> Investment Profile details </b> <br/><br/>"+
                                             ""+this.state.questionsArray[0]+"<br/>"+
@@ -504,11 +509,11 @@ export default class Header extends Component {
                                             "" ,
                            "attachments" : [{
                             "name" : this.state.panNumberName,
-                            "path" : this.state.panNumber
+                            "path" : this.state.panNumberLocation
                               },
                               {
                             "name" : this.state.addressProofName,
-                            "path" : this.state.addressProof
+                            "path" : this.state.addressProofLocation
                               },
                             ]
 

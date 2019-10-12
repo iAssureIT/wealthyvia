@@ -26,9 +26,12 @@ export default class ReadyToGo extends Component {
             "ENemail"            : "",
             "PRname"             : "",
             "PRcontactNumber"    : "",
+            "panNumberLocationRTG"       : "",
+            "addressProofLocationRTG"       : "",
+
             "PRemail"            : "",
             "message"            : "",
-            "portfolioImage"     : "",
+            "portfolioImage1"     : "",
             "panNumber"          : "",
             "email"              : "",
             "nameModal"          : "",
@@ -136,14 +139,14 @@ export default class ReadyToGo extends Component {
       })
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
           if (newFile) {
             if(this.state.addressProof==""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
-                    addressProof : Data.location,
+                    addressProofLocationRTG : Data.location,
                   })
                   this.deleteimageLogo(index)
                 })
@@ -164,7 +167,7 @@ export default class ReadyToGo extends Component {
                           .uploadFile(newFile,this.state.config)
                           .then((Data)=>{
                             this.setState({
-                              addressProof : Data.location,
+                              addressProofLocationRTG : Data.location,
                             })
                             this.deleteimageLogo(index)
                           })
@@ -223,14 +226,14 @@ export default class ReadyToGo extends Component {
       })
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
           if (newFile) {
             if(this.state.panNumber==""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
-                    panNumber : Data.location,
+                    panNumberLocationRTG : Data.location,
                   })
                   this.deleteimageLogo(index)
                 })
@@ -251,7 +254,7 @@ export default class ReadyToGo extends Component {
                           .uploadFile(newFile,this.state.config)
                           .then((Data)=>{
                             this.setState({
-                              panNumber : Data.location,
+                              panNumberLocationRTG : Data.location,
                             })
                             this.deleteimageLogo(index)
                           })
@@ -343,21 +346,21 @@ export default class ReadyToGo extends Component {
        
         var dataArray1={
           "name"             : this.refs.name.value,
-          "addressProof"     : this.refs.addressProof.value,
-          "panNumber"        : this.state.panNumber,
+          "addressProof"     : this.state.addressProofLocation,
+          "panNumber"        : this.state.panNumberLocation,
           "email"            : this.refs.email.value,
           "contactNumber"    : this.refs.contactNumber.value,
 
         }
 
-
+        console.log("dataArray1",dataArray1);
         const dataArray = {
             "email"         : this.state.email ,
             "subject"       : "Your KYC details is sent successfully.",
             "message"          : "", 
             "mail"          : 'Dear  ' + this.state.name + ', <br/><br/>'+
                               "Congratulations!<br/><br/>Your KYC details has been successfully delivered to the admin! <br/> We will get back to you shortly. <br/> <br/> " + 
-                              "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/><br/>'+
+                              "<b>Details Submitted - </b><br/> Name: "  + this.state.name + '<br/>'+
                               "Contact Number :" + this.state.contactNumber + '<br/>'+
                               "Email :" + this.state.email + '<br/>'+
                               "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
@@ -369,43 +372,39 @@ export default class ReadyToGo extends Component {
           .then((res)=>{
                      if(res.status === 200){
                         swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-                      }
-                  })
-                  .catch((error)=>{
-                    console.log("error = ", error);
-                  });
-         var adminEmail = "kycwealthyvia@gmail.com";
-         const formValues2 = {
-          "email"         : adminEmail ,
-          "subject"       : "New KYC/Investment Profile details arrived from client!",
-          "mail"          : 'Dear Admin, <br/>'+
-                            "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
-                            "<b> Name: </b>"   + this.state.name + '<br/>'+
-                            "<b> Email: </b>"  + this.state.email + '<br/>'+
-                            "<b> Contact Number: </b>"  + this.state.contactNumber + '<br/><br/>'+
-                            "<b> Investment Profile details </b> <br/><br/>"+
-                            ""+this.state.questionsArray[0]+"<br/>"+
-                            "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
-                            ""+this.state.questionsArray[1]+"<br/>"+
-                            "Ans : "+this.state.answersofQ2+"<br/><br/>"+ 
-                            ""+this.state.questionsArray[2]+"<br/>"+
-                            "Ans : "+this.state.answersofQ3+"<br/><br/>"+
-                             ""+this.state.questionsArray[3]+"<br/>"+
-                            "Ans : "+this.state.answersofQ4+"<br/><br/>"+
-                            ""+this.state.questionsArray[4]+"<br/>"+
-                            "Ans : "+this.state.answersofQ5+"<br/><br/>"+
-                            "" ,
-          "attachments" : [{
-                      "name" : this.state.panNumberName,
-                      "path" : this.state.panNumber
-                        },
-                        {
-                      "name" : this.state.addressProofName,
-                      "path" : this.state.addressProof
-                        },
-                      ]
+                           var adminEmail = "kycwealthyvia@gmail.com";
+                           const formValues2 = {
+                            "email"         : adminEmail ,
+                            "subject"       : "New KYC/Investment Profile details arrived from client!",
+                            "mail"          : 'Dear Admin, <br/>'+
+                                              "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
+                                              "<b> Name: </b>"   + dataArray1.name + '<br/>'+
+                                              "<b> Email: </b>"  + dataArray1.email + '<br/>'+
+                                              "<b> Contact Number: </b>"  + dataArray1.contactNumber + '<br/><br/>'+
+                                              "<b> Investment Profile details </b> <br/><br/>"+
+                                              ""+this.state.questionsArray[0]+"<br/>"+
+                                              "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
+                                              ""+this.state.questionsArray[1]+"<br/>"+
+                                              "Ans : "+this.state.answersofQ2+"<br/><br/>"+ 
+                                              ""+this.state.questionsArray[2]+"<br/>"+
+                                              "Ans : "+this.state.answersofQ3+"<br/><br/>"+
+                                               ""+this.state.questionsArray[3]+"<br/>"+
+                                              "Ans : "+this.state.answersofQ4+"<br/><br/>"+
+                                              ""+this.state.questionsArray[4]+"<br/>"+
+                                              "Ans : "+this.state.answersofQ5+"<br/><br/>"+
+                                              "" ,
+                            "attachments" : [{
+                                        "name" : this.state.panNumberName,
+                                        "path" : this.state.panNumberLocationRTG
+                                          },
+                                          {
+                                        "name" : this.state.addressProofName,
+                                        "path" : this.state.addressProofLocationRTG
+                                          },
+                                        ]
 
-        };
+                          };
+                          console.log("formValues2",formValues2);
         axios
         .post('/send-email',formValues2)
         .then((res)=>{
@@ -417,6 +416,12 @@ export default class ReadyToGo extends Component {
                   console.log("error = ", error);
                   
                 });
+                      }
+                  })
+                  .catch((error)=>{
+                    console.log("error = ", error);
+                  });
+      
         let fields = {};
         fields["panNumber"]     = "";
         fields["addressProof"]     = "";
@@ -448,11 +453,12 @@ export default class ReadyToGo extends Component {
      
       var dataArray1={
        "PRname"            : this.refs.PRname.value,
-      "fileUpload"         : this.state.portfolioImage,
+      "fileUpload"         : this.state.portfolioImage1,
       "PRemail"            : this.refs.PRemail.value,
       "PRcontactNumber"    : this.refs.PRcontactNumber.value,
 
       }
+      console.log("dataArray1",dataArray1);
       var adminEmail = "review.wealthyvia@gmail.com";
       const dataArray = {
           "email"         : this.state.PRemail ,
@@ -488,7 +494,7 @@ export default class ReadyToGo extends Component {
                           "" ,
         "attachments" : [{
                       "name" : this.state.fileUploadName,
-                      "path" : this.state.portfolioImage
+                      "path" : this.state.portfolioImage1
                         },
                       ]
       };
@@ -812,7 +818,6 @@ validateFormReqReview() {
     var checked = event.target.checked;
     var name = event.target.name;
     var value = event.target.value;
-    console.log("name"+name+"value"+value);
     if(checked){
       var value = event.target.value;
        /* this.setState({
@@ -910,15 +915,15 @@ validateFormReqReview() {
       console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
           if (newFile) {
             if(this.state.fileUpload==""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
-                    portfolioImage : Data.location,
-                  },()=>{console.log(this.state.portfolioImage)})
+                    portfolioImage1 : Data.location,
+                  },()=>{console.log(this.state.portfolioImage1)})
                   this.deleteimageLogo(index)
                 })
                 .catch((error)=>{
@@ -938,7 +943,7 @@ validateFormReqReview() {
                           .uploadFile(newFile,this.state.config)
                           .then((Data)=>{
                             this.setState({
-                              portfolioImage : Data.location,
+                              portfolioImage1 : Data.location,
                             })
                             this.deleteimageLogo(index)
                           })

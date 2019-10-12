@@ -167,7 +167,7 @@ export default class AboutUs extends Component {
             </div>
                 <ClientDeliverables />
          
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray padding40inDiv">
+            <div className="col-lg-12 col-md-12 hidden-xs hidden-sm  backColorGray padding40inDiv">
                 <div className="row">
                   
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1 backColorGray"> 
@@ -178,6 +178,11 @@ export default class AboutUs extends Component {
                       <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  image1 noPadding"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
                     </div>  
+                     
+                </div>  
+            </div>
+            <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray">
+                <div className="row">
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
                     </div>  
@@ -188,9 +193,10 @@ export default class AboutUs extends Component {
                     </div>  
                 </div>  
             </div>
-             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding40inDiv">
+             <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv">
                 <div className="row">
-                    <div className="col-lg-6   col-md-5 hidden-xs hidden-sm  noPadding image1"> 
+                  
+                  <div className="col-lg-6   col-md-5 hidden-xs hidden-sm  noPadding image1"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
                     </div> 
                     <div className="col-lg-6  col-md-6 hidden-xs hidden-sm imageContent1"> 
@@ -198,7 +204,12 @@ export default class AboutUs extends Component {
                     <div className="borderBottomDiv"></div>
                     <p>We happily studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. We still consider it less and will be life long students</p>
                     </div>  
-                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
+                     
+                </div>  
+            </div>
+            <div className="hidden-lg hidden-md col-sm-12 col-xs-12 ">
+                <div className="row">
+                       <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
                     </div>   
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
@@ -206,11 +217,11 @@ export default class AboutUs extends Component {
                     <div className="borderBottomDiv"></div>
                     <p>We happily studied 324 books on stock market investment approaches & strategies alone along with 478 business success and failure case studies. We still consider it less and will be life long students</p>
                     </div>  
-                   
                 </div>  
-            </div> 
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray padding40inDiv">
+            </div>
+            <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv backColorGray">
                 <div className="row">
+                  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1 "> 
                     <label className="nameOfImageHead">Our Equipments & Tools </label>
                     <div className="borderBottomDiv"></div>
@@ -219,8 +230,12 @@ export default class AboutUs extends Component {
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  noPadding image1"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
                     </div>  
-                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
+                </div>  
+            </div>
+            <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray ">
+                <div className="row">
+                    <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Our Equipments & Tools</label>
@@ -228,10 +243,10 @@ export default class AboutUs extends Component {
                     <p>self developed screening Software tools to scan Fundamentals and Technicals. It took 924 hours of hard work and 17000 lines of code to reach it to our requirements. These Systems help us a lot in being alert to find opportunities and direct our time to right efforts.</p>
                     </div>  
                 </div>  
-            </div>  
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding40inDiv ">
+            </div>
+            <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv ">
                 <div className="row">
-                    <div className="col-lg-6   col-md-5 hidden-xs hidden-sm  noPadding image1 "> 
+                  <div className="col-lg-6   col-md-5 hidden-xs hidden-sm  noPadding image1 "> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
@@ -239,7 +254,11 @@ export default class AboutUs extends Component {
                     <div className="borderBottomDiv"></div>
                     <p>In the journey of wealth creation, right direction is everything. Like without roadmap one can not know where is he heading , without carved out plan one can not know whether Wealth is growing in anticipated manner.</p>
                     </div>  
-                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
+                </div>  
+            </div>
+            <div className="hidden-lg hidden-md col-sm-12 col-xs-12  ">
+                <div className="row">
+                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
                       <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
@@ -247,54 +266,60 @@ export default class AboutUs extends Component {
                     <div className="borderBottomDiv"></div>
                     <p>In the journey of wealth creation, right direction is everything. Like without roadmap one can not know where is he heading , without carved out plan one can not know whether Wealth is growing in anticipated manner.</p>
                     </div>  
-                   
                 </div>  
             </div>
+     
+            <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv backColorGray">
+                  <div className="row">
+                    <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
+                      <label className="nameOfImageHead">Performance Measurement</label>
+                      <div className="borderBottomDiv"></div>
+                      <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
+                      </div>  
+                      <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  noPadding image1"> 
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
+                      </div> 
+                  </div>  
+                </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray ">
+                    <div className="row">
+                           <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
+                        </div>  
+                        <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
+                        <label className="nameOfImageHead">Performance Measurement</label>
+                        <div className="borderBottomDiv"></div>
+                        <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
+                        </div>  
+                    </div>  
+                </div>
+                <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv ">
+                  <div className="row">
+                     <div className="col-lg-6  col-md-5 hidden-xs hidden-sm  noPadding image1"> 
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
+                    </div>  
+                    <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
+                    <label className="nameOfImageHead">Management</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Our investment Management committee reviews the portfolios and investment decision.</p>
+                    </div>  
+                  </div>  
+                </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12  ">
+                    <div className="row">
+                        <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
+                    </div>  
+                    <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
+                    <label className="nameOfImageHead">Management</label>
+                    <div className="borderBottomDiv"></div>
+                    <p>Our investment Management committee reviews the portfolios and investment decision.</p>
+                    </div>  
+                    </div>  
+                </div>
+    
           
-         
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray padding40inDiv">
-                <div className="row">
-                    <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
-                    <label className="nameOfImageHead">Performance Measurement</label>
-                    <div className="borderBottomDiv"></div>
-                    <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
-                    </div>  
-                    <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  noPadding image1"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
-                    </div> 
-                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
-                    </div>  
-                    <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Performance Measurement</label>
-                    <div className="borderBottomDiv"></div>
-                    <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
-                    </div>  
-                    
-                </div>  
-            </div>  
-               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding40inDiv">
-                <div className="row">
-                    <div className="col-lg-6  col-md-5 hidden-xs hidden-sm  noPadding image1"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
-                    </div>  
-                    <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
-                    <label className="nameOfImageHead">Management</label>
-                    <div className="borderBottomDiv"></div>
-                    <p>Our investment Management committee reviews the portfolios and investment decision.</p>
-                    </div>  
-                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
-                    </div>  
-                    <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
-                    <label className="nameOfImageHead">Management</label>
-                    <div className="borderBottomDiv"></div>
-                    <p>Our investment Management committee reviews the portfolios and investment decision.</p>
-                    </div>  
-                   
-                </div>  
-            </div>
-
+            
              <div className="">
                 <ValuesWeCreate />
             </div>
