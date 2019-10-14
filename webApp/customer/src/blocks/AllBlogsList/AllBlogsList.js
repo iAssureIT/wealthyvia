@@ -1,6 +1,8 @@
-import React from 'react';
-import axios        from 'axios';
-import swal from 'sweetalert';
+import React 			 from 'react';
+import axios       		 from 'axios';
+import swal              from 'sweetalert';
+import Moment 			 from 'react-moment';
+
 import './AllBlogsList.css';
 
 export default class AllBlogsList extends React.Component {
@@ -66,7 +68,7 @@ getBlogData(){
           if(error.message === "Request failed with status code 401")
               {
                    swal("Your session is expired! Please login again.","", "error");
-                   /*this.props.history.push("/");*/
+                   this.props.history.push("/");
               }
       })
 }
@@ -76,6 +78,7 @@ componentDidMount(){
 }
 	render() {
 		var data = this.state.Blogs;
+   		const token = localStorage.getItem("user_ID");
 		return (
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
           		<div className="col-lg-12">
@@ -85,22 +88,25 @@ componentDidMount(){
 		                					return(
 							          			<div className="col-lg-3 Allblog">
 							          				
-							          					<div className="All1blog1 z50">
-							          					
-
+							          				<div className="All1blog1 z50">
 														<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
-													{/*	<div className="middle">
-														    
-														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
-														    <i className="fa fa-trash rclr hoverbbk" id={data._id} onClick={this.deleteBlog.bind(this)}></i>
-														  </div>*/}
+														{ token ?
 														<a href={"/singleblogpage/"+data._id}>
-															<p className="blogDate p10 mtop20 graycolor">{data.createdAt}</p>
+															<p className="blogDate p10 mtop20 graycolor"><Moment format="YYYY/MM/DD HH:mm">{data.createdAt}</Moment></p>
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
 															<p className="blogPara p10 graycolor">{data.summary}</p>
 														</a>
-														</div>
+														:
+														<a href="/login">
+															<p className="blogDate p10 mtop20 graycolor"><Moment format="YYYY/MM/DD HH:mm">{data.createdAt}</Moment></p>
+															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+															<p className="blogPara p10 graycolor">{data.summary}</p>
+														</a>
+
+												}
 							          				
+													</div>
+
 							          			</div>
 							          			);
 	                					})

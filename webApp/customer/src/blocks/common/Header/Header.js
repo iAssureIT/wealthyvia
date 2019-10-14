@@ -570,9 +570,7 @@ export default class Header extends Component {
     var value = event.target.value;
     if(checked){
       var value = event.target.value;
-       /* this.setState({
-          [event.target.name] : value,
-        })*/
+      
          array = this.state.questionsArray;
         if(array){
 
@@ -648,8 +646,16 @@ export default class Header extends Component {
   }
   render() {
     const token = localStorage.getItem("user_ID");
-
-    return (
+/*  var intials = $('#firstName').text().charAt(0) + $('#lastName').text().charAt(0);
+*/  console.log("userinfo",this.state.userinfo);
+  if( this.state.userinfo.fullName){
+    const var1 =  this.state.userinfo.fullName.split(' ');
+    console.log("var1",var1)
+    var firstLetterF = var1[0].charAt(0);
+    var firstLetterL = var1[1].charAt(0);
+    console.log("firstLetterL"+firstLetterL+"firstLetterF"+firstLetterF);
+  }
+      return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
               <div className="row">
                   <div className="modal fade in " id="myModalHeader" role="dialog">
@@ -1187,12 +1193,8 @@ export default class Header extends Component {
                                             Articulations <span className="caret"></span>
                                           </a>                       
                                           <ul className="dropdown-menu customDropdown">
-                                           {token ?
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
-                                               
-                                              :
-                                                <a href="/login">Arthavrudhhi Blogs</a>
-                                            }<a href="">Communique</a>
+                                            <a href="">Communique</a>
                                               {/* <a href="https://www.arthavruddhi.com/blog" target="_blank">Arthavrudhhi Blogs</a>
                                                <a href="">Communique</a>*/}
                                            
@@ -1223,9 +1225,9 @@ export default class Header extends Component {
                                             {this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut " aria-labelledby="navbarDropdownMenuLink">
-                                            <a  className="dropdown-item" href="/#5gcpm"><img src="/images/man.png" alt="img1"/>&nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span>{this.state.userinfo.fullName}</span>:null}</a>
+                                            <a  className="dropdown-item" href="/#5gcpm"><div className="ImgDiv col-lg-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
-                                            // <a className="dropdown-item  col-lg-7 " href="/clientDashboard"><span className="myprofileButton">My Profile</span></a><a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton">Logout</span></a>
+                                             <a className="dropdown-item  col-lg-7 " href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a><a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
                                             
                                           </ul>
                                         </li>

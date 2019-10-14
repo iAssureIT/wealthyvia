@@ -9,7 +9,7 @@ export default class DashboardHeader extends Component {
     super(props);
         this.state = {
           nameOfDiv:"5gcpm",
-          date:"09-10-2019",
+          date:"14-10-2019",
         };
     }
   ScrollTop(event){
@@ -36,10 +36,10 @@ getDate() {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt40">
                 <div className="row">
                   <div className="col-lg-4  col-md-8 col-sm-8 col-xs-12 textAlignCenter">   
-                   <form class="form-inline mt40 row">
+                {/*   <form class="form-inline mt40 row">
                       <div class=" col-lg-1  col-md-2  col-sm-1 col-xs-2   SearchIN pull-right "><i className="fa fa-search"></i></div>
                       <input class="customInputBV col-lg-8 col-md-8  col-sm-11  col-xs-10 margin0 pull-right " type="text" placeholder="Search" aria-label="Search"/>
-                    </form>                  
+                    </form>*/}                  
                   </div>  
                   <div className="col-lg-4  col-md-8 col-sm-8 col-xs-12 textAlignCenter">   
                     <label className="headingofdashboard">Welcome to Wealthyvia</label>

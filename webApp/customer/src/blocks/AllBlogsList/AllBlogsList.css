@@ -3,40 +3,42 @@
 	border: 1px solid #eaeaea;
 	padding: 20px;
 }
-/*.mtop75{
-	margin-top: 75px; 
-
-}*/
-
 .All1blog1{
 
 }
 .blogTitle{
 	margin: 5px 0px;
+	  overflow: hidden;
+  white-space: pre;
+  text-overflow: ellipsis;
 }
 .AllblogImgB{
 	height: 173px!important;
 	width: 100%;
 }
-.Allblog{
-	/*background-color: #888;*/
-	
+.Allblog a:hover{
+	text-decoration: none;
+}
+.Allblog:hover .blogTitle{
+	color: #1db1f1;
 }
 .blogPara{
 	overflow: hidden;
-	height: 80px;
+	height: 125px;
+	text-align: justify;
 	text-overflow: ellipsis;
+	padding-top: 10px;
 }
 .All1blog1{
-position: relative;
-	height: 390px;
+	position: relative;
+	height: 400px;
 	margin-bottom: 50px;
 	background-color: #fff;
 	box-shadow: 0px 11px 15px 1px #ccc;
 }
 .p10{
-	padding-left:  25px;
-	padding-right: 10px;
+	padding-left:  20px;
+	padding-right: 20px;
 }
 .imgRoundrb{
 	border-radius: 100%;

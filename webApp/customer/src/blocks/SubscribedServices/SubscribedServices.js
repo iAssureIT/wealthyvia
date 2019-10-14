@@ -26,7 +26,7 @@ export default class SubscribedServices extends Component {
     var date = "09-10-2019  5:30PM";
 
     return (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding100">
                 <div className="row">
                   <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 mt40 ">  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray planContainer ">

@@ -587,7 +587,9 @@ dropdown-submenu {
 }
 .customDropdownLogOut>a{
     padding-left: 20px !important;
-    padding-top: 8px !important;
+    padding-top: 14px !important;
+    margin-bottom: 18px;
+
     font-size: 14px;
     margin-left: -15px !important;
     text-decoration: none;
@@ -604,7 +606,7 @@ dropdown-submenu {
     z-index: 1000;
     display: none;
      height: auto;
-    min-width: 220px !important;
+    min-width: 300px !important;
     padding-left: 15px !important;
     font-family:'Montserrat',sans-serif;
     float: left;
@@ -649,9 +651,15 @@ dropdown-submenu {
   padding-top: 15px;
   margin-right: 10px;
   font-size: 15px;
+  transform: scale(1);
+  transition-duration: 0.5s;
+
 }
 .faceBook:hover{
   cursor: pointer;
+  transform: scale(1.1);
+    transition-duration: 0.5s;
+
 }
 .iconContainerHeader{
   margin-left: 15px;
@@ -672,9 +680,17 @@ hr{
   color: #fff;
 }
 .logOutButton{
-   background-color: #f00;
+  background-color: #f00;
   color: #fff;
-    border-radius: 3px;
-
-  padding: 10px;
+  border-radius: 3px;
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.ImgDiv{
+  height: 45px;
+  text-align: center;
+  padding-top: 5px;
+  border-radius: 50%;
+  background-color: #1db1f1;
 }

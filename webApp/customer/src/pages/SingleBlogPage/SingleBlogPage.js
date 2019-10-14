@@ -54,15 +54,23 @@ componentDidMount(){
 	}
 
 	render() {
+    const token = localStorage.getItem("user_ID");
+    if(token){
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
           		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
           		<BlogContent blogContent={this.state.blogContent}/>
           		<RelatedBlogs/>
 {/*          		<BlogComment/>
-*/}
-          		
-			</div>
+*/} 
+
+			       </div>
 		);
+  }else{
+     this.props.history.push("/login");
+      window.location.reload();
+    }
+
+
 	}
 }

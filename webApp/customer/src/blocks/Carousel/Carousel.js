@@ -23,7 +23,7 @@ export default class Carousel extends Component {
 					     <div className="item fadding">
 					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
 						      <div className="caption col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your long term best friend' and we create that friends circle for you.</label>
+						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your long term best friend and we create such friends' circle for you. </label>
 					    	 	 
 				          </div>
 					      </div>

@@ -97,6 +97,7 @@ export default class Footer extends Component {
                   <label>Company</label>
                   <ul>
                     <a href="/about-us"><li >About Us</li></a>
+                    <a href="/AllBlogs"><li >Blogs</li></a>
                   </ul>
                 </div>
                 <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6 footerDivFirst">

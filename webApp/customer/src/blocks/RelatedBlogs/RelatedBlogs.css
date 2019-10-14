@@ -4,10 +4,20 @@
 	padding: 20px;
 }
 .mtop75{
-	margin-top: 75px; 
+	margin-top: 85px; 
+
+}
+.r1blog1:hover .blogTitle{
+
+	color: #1db1f1;
+
+}
+.r1blog1 a:hover{
+		text-decoration: none;
 
 }
 .blogTitle{
+	font-size: 20px;
 	margin: 5px 0px;
 }
 .blogImgB{

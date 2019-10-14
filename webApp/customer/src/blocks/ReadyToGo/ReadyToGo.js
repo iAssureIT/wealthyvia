@@ -915,7 +915,7 @@ validateFormReqReview() {
       console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
+        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ||  ext=="xlsx"||  ext=="xls"||  ext=="csv"){ 
           if (newFile) {
             if(this.state.fileUpload==""){
               S3FileUpload
@@ -1523,9 +1523,8 @@ validateFormReqReview() {
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                    <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" onChange={this.uploadLogoImage.bind(this)} id="upload-file2" />
-{/*                                                   <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" onChange={this.checkSizeFU.bind(this)} />
-*/}                                                 <div className="errorMsg">{this.state.errors2.fileUpload}</div>
-
+{/*                                               <div className="errorMsg">{this.state.errors2.fileUpload}</div>
+*/}
                                               </div>
                                           </div>
                                         </div>
