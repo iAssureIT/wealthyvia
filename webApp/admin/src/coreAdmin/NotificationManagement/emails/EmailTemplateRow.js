@@ -24,7 +24,7 @@ class EmailTemplateRow extends Component{
 	deleteEmailTemplate(event){
 		event.preventDefault();
 		var id = event.target.id;
-		axios.delete('/api/masternotifications/'+id)
+		axios.delete('/api/masternotifications/delete/'+id)
 		.then((response)=> {
 	    	// console.log('delete response',response);
 		}).catch((error)=> {

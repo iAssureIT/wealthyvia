@@ -142,7 +142,7 @@ class EditNotificationModal extends Component{
 				}
 				// console.log('formValues edit',formValues)
 				
-				axios.put('/api/masternotifications/'+editId, formValues)
+				axios.put('/api/masternotifications/put/'+editId, formValues)
 				.then((response)=> {	
 					// console.log('response edit',response)				
 					if(templateType =='Email'){
@@ -189,7 +189,7 @@ class EditNotificationModal extends Component{
 				  if(error.message === "Request failed with status code 401")
 		              {
 		                   swal("Your session is expired! Please login again.","", "error");
-		                   this.props.history.push("/");
+		                   // this.props.history.push("/");
 		              }
 				})
 				.finally(function () {

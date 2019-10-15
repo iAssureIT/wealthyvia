@@ -48,12 +48,12 @@ class Login extends Component {
         var auth= {
           email       : this.state.email,
           password    : this.state.pwd,
-          role        : "Admin",
+          
         }
         console.log("auth value",auth);
 
     axios
-      .post('/api/users/post/admin',auth)
+      .post('/api/users/post/login/admin',auth)
       .then((response)=> {
           console.log("-------userData------>>",response);
         if(response.data.message == "Error and Result Auth failed"){

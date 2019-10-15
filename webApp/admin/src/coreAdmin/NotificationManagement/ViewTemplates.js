@@ -43,7 +43,7 @@ class ViewTemplates extends Component{
 	componentWillMount(){
 		axios({
 			method: 'get',
-			url: '/api/masternotifications/list',
+			url: '/api/masternotifications/get/list',
 		}).then((response)=> {
 			var emailTemplatesList = response.data.filter((a)=>{ return a.templateType == "Email"});	   	    
 			var notificationTemplatesList = response.data.filter((a)=>{ return a.templateType == "Notification"});	   	    
@@ -109,7 +109,7 @@ class ViewTemplates extends Component{
     getId(id){
     	axios({
 			method: 'get',
-			url: '/api/masternotifications/'+id,
+			url: '/api/masternotifications/get/'+id,
 		}).then((response)=> {
 		    this.setState({
 				emailTemplates : response.data
@@ -119,7 +119,7 @@ class ViewTemplates extends Component{
     getNotificationId(id){
     	axios({
 			method: 'get',
-			url: '/api/masternotifications/'+id,
+			url: '/api/masternotifications/get/'+id,
 		}).then((response)=> {
 			console.log("notify data",response.data);
 			this.setState({
@@ -166,33 +166,33 @@ class ViewTemplates extends Component{
  				}
 				
 				
-				axios.post('/api/masternotifications', formValues)
+				axios.post('/api/masternotifications/post', formValues)
 				.then((response)=> {	
-				console.log('response',response);	
-				axios({
-				method: 'get',
-				url: '/api/masternotifications/list',
-				}).then((response)=> {
-				var emailTemplatesList = response.data.filter((a)=>{ return a.templateType == "Email"});	     
-				var notificationTemplatesList = response.data.filter((a)=>{ return a.templateType == "Notification"});	     
-				var smsTemplatesList = response.data.filter((a)=>{ return a.templateType == "SMS"});	     
-				   this.setState({
-				   	emailTemplatesList : emailTemplatesList,
-				   	notificationTemplatesList : notificationTemplatesList,
-				   	smsTemplatesList : smsTemplatesList
-				   });
-				   console.log(emailTemplatesList);
+					console.log('response',response);	
+					axios({
+					method: 'get',
+					url: '/api/masternotifications/get/list',
+					}).then((response)=> {
+					var emailTemplatesList = response.data.filter((a)=>{ return a.templateType == "Email"});	     
+					var notificationTemplatesList = response.data.filter((a)=>{ return a.templateType == "Notification"});	     
+					var smsTemplatesList = response.data.filter((a)=>{ return a.templateType == "SMS"});	     
+					   this.setState({
+					   	emailTemplatesList : emailTemplatesList,
+					   	notificationTemplatesList : notificationTemplatesList,
+					   	smsTemplatesList : smsTemplatesList
+					   });
+					   console.log("xxx",emailTemplatesList);
 
-				   this.setState({
-				   	 "templateType"  : "",
-					 "templateName"  : "",
-					 "subject"       : "",
-					 "content"       : "",
-					 "createdBy"     : null,
+					   this.setState({
+					   	 "templateType"  : "",
+						 "templateName"  : "",
+						 "subject"       : "",
+						 "content"       : "",
+						 "createdBy"     : null,
 
-				   })
-				   
-				}).catch(function (error) {
+					   })
+					   
+					}).catch(function (error) {
 					  if(error.message === "Request failed with status code 401")
 			              {
 			                   swal("Your session is expired! Please login again.","", "error");

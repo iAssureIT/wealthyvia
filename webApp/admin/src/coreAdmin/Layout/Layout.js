@@ -120,8 +120,8 @@ componentDidMount(){
   }
 
   render(){
-/*    if(this.state.loggedIn && !this.state.logout){
-*/      return(
+    if(this.state.loggedIn && !this.state.logout){
+      return(
           <Router>
             <div className="App container-fluid">
               <div className="row">
@@ -144,6 +144,10 @@ componentDidMount(){
                           <Route path="/dashboard" component={Dashboard} exact />
                           <Route path="/uploadStatement" component={UploadStatement} exact />
                           <Route path="/companysetting" component={CompanySetting} exact />
+                          <Route path="/companysetting/:id" component={CompanySetting} exact />
+
+
+
                           <Route path="/addWorkspace" component={addWorkspace} exact />
                           <Route path="/addWorkspace/:id" component={addWorkspace} exact />
                           <Route path="/reports" component={WorkInProgressPage} exact />
@@ -200,7 +204,26 @@ componentDidMount(){
             </div> 
           </Router>
       
-         );   
+         ); 
+         }else{
+       return(
+        <div>
+          <Router>
+            <Switch>
+            
+                    <Route path="/dashboard" component={Dashboard} exact />
+              <Route path="/"               exact strict component={ Login } />
+              <Route path="/login"          exact strict component={ Login } />
+              <Route path="/signup"         exact strict component={ SignUp } />
+              <Route path="/forgot-pwd"     exact strict component={ ForgotPassword } />
+              <Route path="/reset-pwd"      exact strict component={ ResetPassword } />
+              <Route path="/verify-account" exact strict component={ VerifyAccount } />
+              <Route path="/confirm-otp"    exact strict component={ ConfirmOtp } />
+            </Switch>        
+          </Router>
+        </div>
+      );
+    }  
            
   }
 }

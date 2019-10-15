@@ -24,7 +24,7 @@ export default class AllSMSTemplateRow extends Component{
 		event.preventDefault();
 		var id = event.target.id;
 		// console.log('id',id);
-		axios.get(' /api/masternotifications/list'+id)
+		axios.get(' /api/masternotifications/list/get'+id)
 		.then((response)=> {
 	    	// console.log('delete response',response);
 	    	this.setState({
@@ -47,7 +47,7 @@ export default class AllSMSTemplateRow extends Component{
 		event.preventDefault();
 		var id = event.target.id;
 		// console.log('id',id);
-		axios.delete('/api/masternotifications/'+id)
+		axios.delete('/api/masternotifications/delete/'+id)
 		.then((response)=> {
 	    	// console.log('delete response',response);
 		}).catch((error)=> {
