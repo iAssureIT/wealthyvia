@@ -1732,11 +1732,8 @@ validateFormReqReview() {
                         :
                       <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
                       }
-                      {token == "" ?
-                      <a  href="/login" ><div className="col-lg-offset-1 col-lg-3 buyNowButtonPP">Portfolio Review</div></a>
-                        :
+                      
                       <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>
-                      }
                       </div>
                   </div>
               </div>

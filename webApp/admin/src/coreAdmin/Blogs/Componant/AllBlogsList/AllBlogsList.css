@@ -13,6 +13,9 @@
 }
 .blogTitle{
 	margin: 5px 0px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .AllblogImgB{
 	height: 173px!important;
@@ -25,11 +28,12 @@
 .blogPara{
 	overflow: hidden;
 	height: 80px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;}
+}
+.All1blog1:hover .blogTitle{
+	color:#25bbf3!important;
+}
 .All1blog1{
-position: relative;
+	position: relative;
 	height: 390px;
 	margin-bottom: 50px;
 	background-color: #fff;

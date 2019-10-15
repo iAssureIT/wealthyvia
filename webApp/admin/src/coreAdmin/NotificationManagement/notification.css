@@ -229,7 +229,7 @@
 
 .tempactive {
     width: 104% !important;
-    box-shadow: 0px 8px 40px #a2632c;
+    box-shadow: 0px 8px 40px #201a47;
     color: #666;
     font-size: 13px;
     z-index: 2 !important;
@@ -237,7 +237,7 @@
 }
 .tempactive .iconCss {
     border-radius: 18px;
-    background: #a2632c !important;
+    background: #201a47 !important;
     padding: 0.7em;
     color: #fff;
 }
@@ -435,7 +435,7 @@
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
 }
 .tempCategory{
-    background: #ccab83 !important;
+    background: #839ccc !important;
     /* height: 40px; */
     /* padding: 3%; */
     text-align: left;
@@ -540,7 +540,7 @@
 }
 .iconCss {
     border-radius: 18px;
-    background: #a2632c;
+    background: #201a47;
     padding: 0.7em;
     color: #fff;
     margin-top: 8px;
@@ -815,8 +815,8 @@
 .nav-pillss>li>a {
     color: #ffffff;
     white-space: nowrap;
-    box-shadow: 2px 2px 5px 0 #a2632c;
-    background: #a2632c;
+    box-shadow: 2px 2px 5px 0 #201a47;
+    background: #201a47;
     border-radius: 4px;
     font-family:'Montserrat-Regular';
     font-size: 14px;
@@ -824,8 +824,8 @@
 .nav-pillss>li>a:hover{
     color: #ffffff;
     white-space: nowrap;
-    box-shadow: 4px 4px 10px 0 #a2632c;
-    background: #a2632c;
+    box-shadow: 4px 4px 10px 0 #201a47;
+    background: #201a47;
     border-radius: 4px;
     font-family:'Montserrat-Regular';
     font-size: 14px;
@@ -934,7 +934,7 @@
       text-align: right!important;
   }
   .addexamform {
-    background: #a2632c;
+    background: #201a47;
     cursor: pointer;
     font-size: 14px;
     padding: 3px;

@@ -311,7 +311,7 @@ uploadBlogImage(event){
                       <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="blogsummery"  ref="summary" value={this.state.summary} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="comment"></textarea>
                     </div>
                   </div>
-                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                     <label htmlFor="email">Blog Type<span className="redFont">*</span></label>
                     <div className="">
                     	<div className="dropdown">

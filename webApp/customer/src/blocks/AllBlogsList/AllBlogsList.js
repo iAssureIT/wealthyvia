@@ -92,13 +92,13 @@ componentDidMount(){
 														<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
 														{ token ?
 														<a href={"/singleblogpage/"+data._id}>
-															<p className="blogDate p10 mtop20 graycolor"><Moment format="YYYY/MM/DD HH:mm">{data.createdAt}</Moment></p>
+															<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
 															<p className="blogPara p10 graycolor">{data.summary}</p>
 														</a>
 														:
 														<a href="/login">
-															<p className="blogDate p10 mtop20 graycolor"><Moment format="YYYY/MM/DD HH:mm">{data.createdAt}</Moment></p>
+															<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
 															<p className="blogPara p10 graycolor">{data.summary}</p>
 														</a>

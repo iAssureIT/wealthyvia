@@ -8,6 +8,7 @@
 }
 .blogBox p{
 	color: #444;
+	text-align: justify;
 }
 .sCont{
 	font-size: 14px;
@@ -15,14 +16,18 @@
 .userbtn{
 	padding: 8px 30px;
     width: 155px;
-    margin-top: 20px;
     margin-bottom: 25px;
     cursor: pointer;
 	border: 1px solid #dddddd;
-	background-color: #fff;
+	background-color: #201A47;
 	columns: #111;
 }
 .userbtn:hover{
 	background-color: #dddddd;
 	color: #fff;
+}
+.blogDateSBP{
+  font-size: 20px;
+  font-weight: normal;
+  font-family: 'Montserrat',sans-serif;
 }

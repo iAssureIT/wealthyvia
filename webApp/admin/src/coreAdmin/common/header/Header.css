@@ -64,7 +64,7 @@
 
 .sidenav a:hover {
   color: #f1f1f1;
-  background-color: #A2622D;
+  background-color: #201a47;
   border-left: 3px solid #2c1910;
 }
 
@@ -100,7 +100,8 @@
 
 #headerid{
   position: absolute;
-  width: 82%;
+  height: 50px;
+  width: 90%;
   right: 0px;
   transition: all 0.8s;
 }
@@ -149,15 +150,15 @@
   margin-bottom: 35px;
 }
 .btn-Profile{
-    background-color: #A2622D;
-    border-color:#A2622D;
+    background-color: #201a47;
+    border-color:#201a47;
     color: #fff;
     border-radius: 3px;
     font-family: 'Montserrat-Regular';
 }
 .btn-logout{
-    background-color: #A2622D;
-    border-color: #A2622D;
+    background-color: #201a47;
+    border-color: #201a47;
     color: #fff;
     border-radius: 3px;
     font-family: 'Montserrat-Regular';

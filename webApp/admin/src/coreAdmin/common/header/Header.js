@@ -83,12 +83,12 @@ class Header extends Component{
               <div className=""> 
                 <div className="col-lg-6 col-md-4 col-sm-4 col-xs-4  ">
                   <div className="">
-                    <div id="sidebarCollapse" className="col-lg-1 col-md-1 col-sm-1 col-xs-1 hover ">
+                  {/*  <div id="sidebarCollapse" className="col-lg-1 col-md-1 col-sm-1 col-xs-1 hover ">
                       <i className="fa fa-bars headicon"></i>
-                    </div>
-                    <div  className="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-                     <h3 className="LogoTitle">Wealthiviya</h3>
-                    </div>
+                    </div>*/}
+                 {/*   <div  className="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                     <h3 className="LogoTitle" id="LName">Wealthivia</h3>
+                    </div>*/}
                   </div>
                 </div>
                 <div className="col-lg-6 col-md-8 col-sm-8 col-xs-8 ">

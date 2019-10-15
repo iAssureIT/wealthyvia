@@ -478,8 +478,8 @@
   padding: 4px 0;
   color: #fff;
   border: 0;
-  text-transform: uppercase;
   font-size: 15px;
+  text-align: center !important;
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 12px;
@@ -1686,7 +1686,6 @@ input[type="radio"]:checked:before {
   padding: 7px 0;
   color: #fff;
   border: 0;
-  text-transform: uppercase;
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 20px;

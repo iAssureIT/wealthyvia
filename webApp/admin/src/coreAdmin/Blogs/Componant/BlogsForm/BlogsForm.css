@@ -1,5 +1,6 @@
 .blogFormBox{
-	
+	    font-family:'Montserrat-Regular';
+
 	margin: 25px 0px;
 }
 .ckbox{
@@ -8,4 +9,7 @@
 .boxform1{
 	position: relative;
 	top: 25px;
+}
+.createBlogLabel{
+	font-size: 20px;
 }

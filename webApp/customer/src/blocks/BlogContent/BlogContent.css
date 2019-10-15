@@ -3,10 +3,10 @@
     padding: 0px 0px 0px 27px;
     background-color: #f4f4f4;
     border-left: 5px solid #201A47 !important;
-
-    /*border-color: #0cb4ce !important;*/
 }
 .blogBox p{
+	font-family: 'Montserrat',sans-serif;
+	text-align: justify !important;
 	color: #444;
 }
 .sCont{

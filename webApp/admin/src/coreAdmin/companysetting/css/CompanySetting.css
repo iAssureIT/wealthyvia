@@ -130,7 +130,7 @@
       }
   .buttontAddEdit, .buttontAddEdit:hover, .buttontAddEdit:focus{
     padding: 6px 54px !important;
-    background-color: #A2622D;
+    background-color: #201a47;
     font-family:'Montserrat-Regular';
     color: #fff !important;
 }
@@ -203,11 +203,11 @@
 
   .sideways>li.active>a, .sideways>li.active>a:focus, .sideways>li>a{
     cursor: pointer;
-    background-color: #a2632c;
+    background-color: #201a47;
     border: 1px solid #ddd;
     border-bottom-color: transparent;
     font-family:'Montserrat-Regular';
-    color: #000 ! important;
+    color: #fff ! important;
     font-size: 13px;
     border-radius: 0px !important;
 
@@ -366,7 +366,7 @@
   }
   .buttontAddEdit, .buttontAddEdit:hover, .buttontAddEdit:focus{
     padding: 6px 54px !important;
-    background-color: #A2622D;
+    background-color: #201a47;
     font-family:'Montserrat-Regular';
     color: #fff !important;
 }

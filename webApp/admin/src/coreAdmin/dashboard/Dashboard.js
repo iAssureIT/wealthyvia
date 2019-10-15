@@ -9,14 +9,11 @@ import 'font-awesome/css/font-awesome.min.css';
 import StatusComponent from './StatusComponent/StatusComponent.js'
 import UpdateComponent from './UpdateComponent/UpdateComponent.js'
 import TableComponent  from './TableComponent/TableComponent.js'
+import ClientTable  from './ClientTable/ClientTable.js'
 import Productlist     from './productlist/Productlist.js'
 import Visitorreport   from './Visitorreport/Visitorreport.js'
 import Infocomponent   from './Infocomponent/Infocomponent.js'
 import './Dashboard.css';
-
-// import {StudentMaster} from '/imports/admin/forms/student/api/studentMaster.js';
-// import { FranchiseDetails }  from '/imports/admin/companySetting/api/CompanySettingMaster.js';
-// import { FlowRouter }   from 'meteor/ostrio:flow-router-extra';
 
 export default class Dashboard extends Component{
   
@@ -35,7 +32,7 @@ export default class Dashboard extends Component{
               <h3>Dashboard</h3>
             </div>
           </div>
-         {/* <div className="">
+          <div className="">
             <StatusComponent stats={{color:"#2FC0EF", icon:"cog",heading:"CPU TRAFFIC",value:"90%"}} />
             <StatusComponent stats={{color:"#DD4B39", icon:"thumbs-o-up",heading:"LIKES",value:"41,410"}} />
             <StatusComponent stats={{color:"#4CA75A", icon:"shopping-cart",heading:"SALES",value:"760"}} />
@@ -48,7 +45,7 @@ export default class Dashboard extends Component{
             <Infocomponent stats={{color:"#B23B2C",contcolor:"#DD4B39", icon:"cloud-download",heading:"DOWNLOADS",value:"114,381",per:"70%"}} />
             <Infocomponent stats={{color:"#249AC1",contcolor:"#2FC0EF", icon:"comment",heading:"DIRECT MESSAGES",value:"163,921",per:"40%"}} />
             <TableComponent />
-          <Productlist />*/}
+          <Productlist />
       </div>     
     );
   }

@@ -1,5 +1,7 @@
-import React, { Component } from 'react';
-import $         from 'jquery';
+import React, { Component }   from 'react';
+import $                      from 'jquery';
+import Moment                 from 'react-moment';
+
 
 import "./DashboardHeader.css";
 
@@ -8,7 +10,7 @@ export default class DashboardHeader extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"5gcpm",
+          nameOfDiv     :"5gcpm",
           date:"14-10-2019",
         };
     }
@@ -30,7 +32,7 @@ getDate() {
   } 
 
   render() {
-    
+    var date = new Date();
 
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt40">
@@ -44,8 +46,9 @@ getDate() {
                   <div className="col-lg-4  col-md-8 col-sm-8 col-xs-12 textAlignCenter">   
                     <label className="headingofdashboard">Welcome to Wealthyvia</label>
                   </div>  
-                  <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">   
-                    <label className="dateondashboard pull-right">Date : {this.state.date} </label>
+                  <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 ">  
+
+                    <label className="dateondashboard pull-right">Date : <Moment format="DD/MM/YYYY">{date}</Moment> </label>
                   </div>
                 </div>
               </div>

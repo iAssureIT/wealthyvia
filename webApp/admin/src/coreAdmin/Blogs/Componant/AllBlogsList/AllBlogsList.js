@@ -83,7 +83,7 @@ componentDidMount(){
 		                		data && data.length > 0 ?
 				      				data.map((data, index)=>{
 		                					return(
-							          			<div className="col-lg-3 Allblog">
+							          			<div className="col-lg-4 Allblog">
 							          				
 							          					<div className="All1blog1 z50">
 							          					

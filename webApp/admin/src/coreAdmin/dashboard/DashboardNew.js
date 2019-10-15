@@ -4,6 +4,8 @@ import {Link}             from 'react-router-dom';
 import moment             from 'moment';
 import axios              from 'axios';
 import $                  from 'jquery';
+import ClientTable  from './ClientTable/ClientTable.js'
+
 import { Chart }          from "react-google-charts";
 import DashboardCWSBS     from "../dashboardReports/cafeWiseSeatBookingS/DashboardCWSBS.js";
 import SalesTransactionReportDashB from '../dashboardReports/salesTransactionReport/SalesTransactionReportDashB.js';
@@ -272,7 +274,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
             {/*<ol className="breadcrumb"></ol>*/}
             
           </section>
-     {/*     <section className="content">
+          <section className="content">
             <div className="row">
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
@@ -339,80 +341,17 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                 </div>
               </div>              
             </div>
-
-            <div className="row">
-              <div className="col-lg-8 col-md-8 col-sm-6 col-xs-12 graphWrapper">
-                <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap">
-                  <h4>Gross Earning <i className="fnt12">(Last 12 months)</i></h4>
-                  {this.state.dataColumnChart!=="" ?
-                  <div className="newCssBar">
-                  <Chart
-                      chartType="ColumnChart"
-                      data={this.state.dataColumnChart}
-                      width="100%"
-                      height="300px"
-                      legendToggle
-                    />
-                    </div>
-                    :
-                    <div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center bgImgWt">
-                          <img src="/images/cofficLoader.gif" alt="Logo_img" height="21%" width="21%" className="imgHt"/>
-                        </div>
-                    </div>
-                  }
-                </div>
-              </div> 
-              <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 row graphWrapper">
-                <div className="col-lg-12 col-md-12 col-sm-12 row innerGraphWrap">
-                  <h4>Subscription Details <i className="fnt12">(Last 12 months)</i></h4>
-                  {this.state.pieData!=="" ?
-                  <div className="col-lg-12 col-md-12 col-sm-12 newCssPie innerGraphWrap">
-                      {console.log("1234",this.state.pieData)}
-                      <Chart
-                        chartType="PieChart"
-                        data={this.state.pieData}
-                        options={this.state.pieOptions}
-                        graph_id="PieChart"
-                        width={"100%"}
-                        height={"230px"}
-                        legend_toggle
-                      />
-                  </div>
-                    :
-                    <div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 row text-center ">
-                        <img src="/images/cofficLoader.gif" alt="Logo_img" height="50%" width="50%" className="imgHt"/>
-                      </div>
-                    </div>
-                  }
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 dashboardDivider"></div>
-            <div className="row">
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  boxWrapDashboard graphWrapperTab">
-                <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap innerGraphWraptbl tableClrPdg" >
-                  <h4>Cafewise current check-ins and check-outs <i className="fnt12b"><Link to="/dashboard/allCafeUsersSeatBooking">(See More)</Link></i></h4>
-                </div>
-              </div>
-            </div>
+           
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  boxWrapDashboard graphWrapperTab">
                 <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap innerGraphWraptbl tableClrPdg" style={{padding:"0px 0px"}}>
-                  <h4 style={{padding:"0px 15px"}}>Latest Active Subscriptions <i className="fnt12b"><Link to="/dashboard/salesTransactionReport">(See More)</Link></i></h4>
-                  <SalesTransactionReportDashB/>
-                </div>
-              </div>              
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  boxWrapDashboard graphWrapperTab">
-                <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap innerGraphWraptbl tableClrPdg" style={{padding:"0px 0px"}}>
-                  <h4 style={{padding:"0px 15px"}}>Cafewise Seat Booking <i className="fnt12b"><Link to="/dashboard/cafeWiseSeatBookingSummary">(See More)</Link></i></h4>
-                  <DashboardCWSBS />
+                  <h4 style={{padding:"0px 15px"}}>Customer List </h4>
+                  <ClientTable />
                 </div>
               </div>
             
             </div>
-          </section>*/}
+          </section>
         </div>
       </div>
     );

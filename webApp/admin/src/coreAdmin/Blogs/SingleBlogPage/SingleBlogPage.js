@@ -1,12 +1,13 @@
 import React from 'react';
-import SingleBlogBanner      from "../Componant/SingleBlogBanner/SingleBlogBanner.js";
-import BlogContent      from "../Componant/BlogContent/BlogContent.js";
-import RelatedBlogs      from "../Componant/RelatedBlogs/RelatedBlogs.js";
+import SingleBlogBanner          from "../Componant/SingleBlogBanner/SingleBlogBanner.js";
+import BlogContent               from "../Componant/BlogContent/BlogContent.js";
+import RelatedBlogs              from "../Componant/RelatedBlogs/RelatedBlogs.js";
 
-import BlogComment      from "../Componant/BlogComment/BlogComment.js";
+import BlogComment              from "../Componant/BlogComment/BlogComment.js";
+import Moment                   from 'react-moment';
 
-import axios        from 'axios';
-import swal from 'sweetalert2';
+import axios                    from 'axios';
+import swal                     from 'sweetalert2';
 
 
 
@@ -57,7 +58,9 @@ componentDidMount(){
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
           		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage} selectedID={this.props.match.params.selectedID}/>
-          		<BlogContent blogContent={this.state.blogContent}/>
+          	  <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
+
+            	<BlogContent blogContent={this.state.blogContent}/>
           		{/*<RelatedBlogs/>
           		<BlogComment/>*/}
 
