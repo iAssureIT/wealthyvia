@@ -103,9 +103,9 @@ class Header extends Component{
                           <p className="pull-right fntC" style={{"cursor":"pointer"}} onClick={this.LogoutSectionHover.bind(this)} title="Close">X</p>
                         </div>
                         <div className="profiledetails">
-                          <p>Name: {this.state.firstname}</p>
-                          <p>Mobile: {this.state.mobile}</p>
-                          <p>EmailId: {this.state.email}</p>
+                          <p>Name: {this.state.userinfo ?this.state.userinfo.fullName :null}</p>
+                          <p>Mobile: {this.state.userinfo ?this.state.userinfo.mobNumber :null}</p>
+                          <p>Email: {this.state.userinfo ?this.state.userinfo.email :null}</p>
                         </div>
                         <div className="logoutDiv">
                       {/*    <div className="pull-left" data-toggle="modal" aria-labelledby="myModals" data-target="#myModals" aria-hidden="true">
