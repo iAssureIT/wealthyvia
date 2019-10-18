@@ -272,3 +272,24 @@ padding: 20px;
 .mt20{
   margin-top: 20px;
 }
+.likeDiv{
+  border-bottom: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 30px;
+
+}
+.likeDiv i{
+  padding: 10px;
+}
+.bottomDiv{
+  font-family: 'PT Sans', sans-serif;
+
+  padding:15px;
+}
+.commentDiv{
+  border:1px solid #efefef;
+  padding: 40px;
+  margin:20px;
+}

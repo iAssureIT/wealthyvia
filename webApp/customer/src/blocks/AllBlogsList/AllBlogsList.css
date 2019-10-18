@@ -105,3 +105,11 @@
 	margin-bottom: 10%;
 	font-size:30px !important;
 }
+.premiumBlogIndicate{
+	  position: absolute;
+	  left: 5px;
+	  top:5px;
+	  color: #f5d26e;
+	  font-size: 16px;
+
+}

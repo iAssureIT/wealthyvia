@@ -139,7 +139,7 @@ class BlogsForm extends Component{
            S3FileUpload
             .uploadFile(file,this.state.config)
             .then((Data)=>{
-                console.log('mani', Data);
+                console.log('Data.location', Data.location);
               this.setState({
                 imgbPath : {
                   "path"    : Data.location,
@@ -346,7 +346,7 @@ uploadBlogImage(event){
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                           {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
                         
-                        <input type="file" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding row" title="Please choose image" id="designImg" onChange={this.uploadDesignImg.bind(this)} />
+                        <input type="file" className="noPadding" title="Please choose image" id="designImg" onChange={this.uploadDesignImg.bind(this)} />
                       </div>
                     </div>
                     <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
@@ -422,7 +422,7 @@ uploadBlogImage(event){
                 }
                 </div>*/}
                  
-                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 ckbox">
+                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 ckbox mt20">
                     <label htmlFor="userName">Blog Content<span className="redFont">*</span></label>
                     <div className="">
                       <CKEditor

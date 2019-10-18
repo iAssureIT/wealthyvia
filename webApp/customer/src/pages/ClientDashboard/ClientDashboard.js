@@ -14,7 +14,8 @@ export default class ClientDashboard extends Component {
   	}  
 	
   render() {
-  	
+  	 const token = localStorage.getItem("user_ID");
+    if(token){
 		return (
 				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mb50">
 					<div className="row">
@@ -23,5 +24,9 @@ export default class ClientDashboard extends Component {
 					</div>
       </div>
 		);
+		  }else{
+     this.props.history.push("/login");
+      window.location.reload();
+    }
 	}
 }

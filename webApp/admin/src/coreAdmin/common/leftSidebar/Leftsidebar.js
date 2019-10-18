@@ -82,14 +82,25 @@ export default class Leftsidebar extends Component{
                           Workspace Management
                       </Link>
                     </li>*/}
-                      <li  className="add"  onClick={this.eventclk1.bind(this)} >
+                     {/* <li  className="add"  onClick={this.eventclk1.bind(this)} >
                         <Link aria-expanded="false" to="/statement">
                             <i className="fa fa-file"></i>
                             Statements
                         </Link>
                         
+                    </li>*/}
+                   <li  className="add " onClick={this.eventclk1.bind(this)}>
+                        <Link aria-expanded="false">
+                            <i className="fa fa-file"></i>
+                            Statements
+                        </Link>
+                        <ul className="collapse list-unstyled treeview-menu" id="submenu1">
+                            <li><Link to="/statement"><i className="fa fa-database"></i>List of Users</Link></li>
+                            <li><Link to="/uploadStatement"><i className="fa fa-database"></i>Bulk Upload</Link></li>
+                           
+                        </ul>
                     </li>
-                    <li  className="add " onClick={this.eventclk1.bind(this)}>
+                     <li  className="add " onClick={this.eventclk1.bind(this)}>
                         <Link aria-expanded="false">
                             <i className="fa fa-file"></i>
                             Blog

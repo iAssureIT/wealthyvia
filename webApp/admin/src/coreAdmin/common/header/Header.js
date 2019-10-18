@@ -27,28 +27,19 @@ class Header extends Component{
    var Uid = localStorage.getItem("admin_id");
    
     console.log("_id",Uid);
-    // axios
-    //   .get('/api/users/get/single/'+Uid)
-    //   .then((response)=> {
-    //     var vendorDetails = response.data;
-    //     console.log("vendorDetails///////////",vendorDetails);
-    //     this.setState({
-    //                     vendorId                : vendorDetails._id,
-    //                     cafeName                : vendorDetails.nameOfCafe,
-    //                     name                    : vendorDetails.name,
-    //                     email                   : vendorDetails.email,
-    //                     mobile                  : vendorDetails.mobile,
-    //                     logo                    : vendorDetails.logo,
-    //                   })
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //     if(error.message === "Request failed with status code 401")
-    //       {
-    //            swal("Your session is expired! Please login again.","", "error");
-    //            this.props.history.push("/");
-    //       }
-    //   })
+    axios.get("/api/users/get/"+Uid)
+      .then((response)=>{ 
+          this.setState({
+              userinfo : response.data
+          },()=>console.log("userinfo",this.state.userinfo)
+)
+
+      })
+      .catch((error)=>{
+            console.log('error', error);
+      })
+   
+      console.log("userinfo",this.state.userinfo);
   }
   openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -112,14 +103,14 @@ class Header extends Component{
                           <p className="pull-right fntC" style={{"cursor":"pointer"}} onClick={this.LogoutSectionHover.bind(this)} title="Close">X</p>
                         </div>
                         <div className="profiledetails">
-                          <p>Name: {this.state.name}</p>
+                          <p>Name: {this.state.firstname}</p>
                           <p>Mobile: {this.state.mobile}</p>
                           <p>EmailId: {this.state.email}</p>
                         </div>
                         <div className="logoutDiv">
-                          <div className="pull-left" data-toggle="modal" aria-labelledby="myModals" data-target="#myModals" aria-hidden="true">
+                      {/*    <div className="pull-left" data-toggle="modal" aria-labelledby="myModals" data-target="#myModals" aria-hidden="true">
                             <p className="btn btnhvr btn-Profile ">Reset Password</p>
-                          </div>
+                          </div>*/}
                           <div className="pull-right">
                             <a href="/login" className="btn btnhvr btn-logout" onClick={this.logout.bind(this)}>
                               Logout

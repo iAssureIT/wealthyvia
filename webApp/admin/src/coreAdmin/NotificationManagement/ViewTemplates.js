@@ -326,7 +326,7 @@ class ViewTemplates extends Component{
 																	      	<option value="Not Selected"> --Select-- </option>
 																			<option> Email </option>
 																			<option> Notification </option>
-																			<option> SMS </option>
+																			{/*<option> SMS </option>*/}
 																      	</select> 
 																	</div>	
 																</div>
@@ -391,11 +391,11 @@ class ViewTemplates extends Component{
 											    	<a data-toggle="pill" href="#emailTemplates" > <i class="fa fa-envelope-square"></i> Email 
 											    	</a>
 											    </li>
-											    <li className="col-lg-2 col-md-3 col-sm-3 col-xs-12 notifTab">
+											   {/* <li className="col-lg-2 col-md-3 col-sm-3 col-xs-12 notifTab">
 											    	<a data-toggle="pill" href="#smsTemplates">
 											    		SMS
 											    	</a>
-											    </li>
+											    </li>*/}
 											    <li className="col-lg-2 col-md-3 col-sm-4 col-xs-12 notifTab">
 											    	<a data-toggle="pill" href="#notificationTemplates">
 											    		In-App 

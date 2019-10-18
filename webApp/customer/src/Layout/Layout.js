@@ -12,6 +12,7 @@ import BlogViewPage                              from "../pages/BlogViewPage/Blo
 import AllBlogs                                  from "../pages/AllBlogs/AllBlogs.js";
 import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
 import InvoicePage                               from "../pages/InvoicePage/InvoicePage.js";
+import PlanPage                               from "../pages/PlanPage/PlanPage.js";
 import OrderPage                                 from "../pages/OrderPage/OrderPage.js";
 import BlogsFormPage                             from "../pages/BlogsForm/BlogsFormPage.js";
 
@@ -46,7 +47,8 @@ const WebLayout = () => (
               <Route path="/BlogViewPage"                     exact strict component={BlogViewPage}  />
               <Route path="/offerings/:divId"                 exact strict component={ProductPage}  />
               <Route path="/singleblogpage"                   exact strict component={SingleBlogPage}  />
-              <Route path="/InvoicePage"                      exact strict component={InvoicePage}  />
+              <Route path="/InvoicePage/:validityPeriod"       exact strict component={InvoicePage}  />
+              <Route path="/PlanPage"                         exact strict component={PlanPage}  />
               <Route path="/OrderPage"                        exact strict component={OrderPage}  />
               <Route path="/singleblogpage/:selectedID"       exact strict component={SingleBlogPage}  />
               <Route path="/blogsform"                        exact strict component={BlogsFormPage}  />

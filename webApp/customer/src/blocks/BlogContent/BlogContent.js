@@ -27,6 +27,7 @@ export default class BlogContent extends React.Component {
 					<div  className="col-lg-8 col-lg-offset-2 blogBox">
     					<div dangerouslySetInnerHTML={ { __html: this.props.blogContent } }></div>
 					</div>
+					
 				</div>
 
 				{/*<div className="col-lg-8 col-lg-offset-2">

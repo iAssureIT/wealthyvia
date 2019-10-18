@@ -284,7 +284,23 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                   <div className="info-box-content">
                     <span className="info-box-number">Users<small></small></span>
                     <span className="info-box-text">
-                      Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalUsers}</b>
+                      Blog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalUsers}</b>
+                    </span>
+                    <span className="info-box-text">
+                      Subscribed&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.subUsers}</b>
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div className="info-box">
+                  <span className="info-box-icon bg-green">
+                    <i className="fa fa-users"></i>
+                  </span>
+                  <div className="info-box-content">
+                    <span className="info-box-number">Users<small></small></span>
+                    <span className="info-box-text">
+                      Offering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalUsers}</b>
                     </span>
                     <span className="info-box-text">
                       Subscribed&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.subUsers}</b>
@@ -298,7 +314,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                     <i className="fa fa-users" />
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">Vendors<small></small></span>
+                    <span className="info-box-number">Users<small></small></span>
                     <span className="info-box-text">
                       Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalVendor}</b>
                     </span>
@@ -311,35 +327,20 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
                   <span className="info-box-icon bg-red">
-                    <i className="fa fa-rupee" />
+                    <i className="fa fa-users"></i>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">Total Earning<small></small></span>
+                    <span className="info-box-number">Users<small></small></span>
                     <span className="info-box-text">
-                      YTD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningYTD} <i className="fa fa-rupee"></i></b>
+                      Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningYTD}</b>
                     </span>
                     <span className="info-box-text">
-                      MTD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningMTD} <i className="fa fa-rupee"></i></b>
+                      Inactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningMTD}</b>
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div className="info-box">
-                  <span className="info-box-icon bg-green">
-                    <i className="fa fa-bars"></i>
-                  </span>
-                  <div className="info-box-content">
-                    <span className="info-box-number">Menu Orders<small></small></span>
-                    <span className="info-box-text">
-                      YTD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.menuYTD}</b>
-                    </span>
-                    <span className="info-box-text">
-                      MTD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.menuMTD}</b>
-                    </span>
-                  </div>
-                </div>
-              </div>              
+          
             </div>
            
             <div className="row">

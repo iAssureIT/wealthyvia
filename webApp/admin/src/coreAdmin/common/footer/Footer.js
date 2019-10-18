@@ -24,13 +24,12 @@ export default class Footer extends Component{
     return(
       <footer  className="main-footer col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 footerLeftCss"><span className="footerLeftCss">Copyright © 2019</span> <a href="/" className="footerLeftCss">Coffic</a><span className="footclr">&nbsp;&nbsp;All rights
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 footerLeftCss"><span className="footerLeftCss">Copyright © 2019</span> <a href="/" className="footerLeftCss">Wealthyvia</a><span className="footclr">&nbsp;&nbsp;All rights
             reserved.</span>
           </div>
         </div>
         <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-          <p className="pull-right footerRightCss">Version 2.2</p>
-          <p className="footerRightCss1">Design & Developed by <a href="http://iassureit.com">iAssure International Technology Pvt Ltd</a>&nbsp;&nbsp;</p>
+          <p className="footerRightCss1 pull-right">Design & Developed by <a href="http://iassureit.com">iAssure International Technology Pvt Ltd</a>&nbsp;&nbsp;</p>
         </div>
       </footer>
     );

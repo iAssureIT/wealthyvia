@@ -1861,21 +1861,20 @@ input[type="radio"]:checked:before {
 }
 
 .headerbackgroundimg {
+  background-image: url(/images/ab4.jpg);
+
 /*  background-image: url(/images/Coffee-Beans-Wallpaper.jpg);
   background-size: 100% 100%;
   background-repeat: no-repeat;*/
-    background: url('/images/1.png') no-repeat; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-      height: 129px;
+      height: 100px;
 }
 .mainBackgroundImg{
-/*background-image: url(/images/7.png);
-  background-size: 100% 100%;
+/*  background-size: 100% 100%;
   background-repeat: no-repeat;*/
-      background: url(/images/7.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -2293,7 +2292,6 @@ input[type="radio"]:checked:before {
 }
 @font-face{
   /*font-family:'Roboto-BoldCondensed';*/
-  src: url("/fonts/Roboto-BoldCondensed.ttf");
   font-style: normal;
 }
 .imageSize{
@@ -2395,4 +2393,12 @@ input[type="radio"]:checked:before {
 }
 .modal{
   overflow-y: auto !important;
+}
+.headerName{
+  font-size: 40px !important;
+    font-family:'Montserrat-Regular' !important;
+padding-top: 20px;
+font-weight: bolder;
+color: #fff;
+border-bottom: 10px solid #201A47;
 }

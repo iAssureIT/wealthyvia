@@ -29,7 +29,7 @@ export default class Blogs extends Component {
   render() {
 		return (
 			<div className="col-lg-3 col-md-12 col-sm-12 col-xs-12  blogContainer ">
-			  		<div className="blogHeading  col-md-12 col-lg-12 col-sm-12 col-xs-12"> Blogs </div>
+			  	<div className="blogHeading  col-md-12 col-lg-12 col-sm-12 col-xs-12"> Blogs </div>
 			  		<OwlCarousel
 						    className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
 						     loop

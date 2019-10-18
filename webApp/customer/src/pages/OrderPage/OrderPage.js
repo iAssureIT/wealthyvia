@@ -26,7 +26,7 @@ export default class OrderPage extends Component {
     return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite  ">
                 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan noPadding">
-                    <label> Your Orders</label>
+                    <label> My Orders</label>
                 </div>
                 <div className="col-lg-7 col-lg-offset-1  col-md-12 col-sm-12 col-xs-12 ">
                     <div className="row">

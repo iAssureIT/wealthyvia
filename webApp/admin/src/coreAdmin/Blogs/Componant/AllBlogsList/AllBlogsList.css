@@ -28,6 +28,7 @@
 .blogPara{
 	overflow: hidden;
 	height: 80px;
+	text-align: justify;
 }
 .All1blog1:hover .blogTitle{
 	color:#25bbf3!important;
@@ -40,8 +41,8 @@
 	box-shadow: 0px 11px 15px 1px #ccc;
 }
 .p10{
-	padding-left:  25px;
-	padding-right: 10px;
+	padding-left:  15px !important;
+	padding-right: 15px;
 }
 .imgRoundrb{
 	border-radius: 100%;
@@ -104,4 +105,12 @@
 .hoverbk{
 	    background-color: #111;
     border-radius: 12px;
+}
+.premiumBlogIndicate{
+	  position: absolute;
+	  left: 5px;
+	  top:5px;
+	  color: #f5d26e;
+	  font-size: 16px;
+
 }

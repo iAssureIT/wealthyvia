@@ -20,6 +20,7 @@ export default class SingleBlogPage extends React.Component {
 		      "typeOfBlog"   	    : "",
 		      "blogContent"       : "",
           "bannerImage"       : {},
+          "viewCount"         : "",
 
 		};
 	}
@@ -52,6 +53,22 @@ componentDidMount(){
                    swal("Your session is expired! Please login again.","", "error");
               }
       })
+      axios
+      .get('/api/blogs/get/count/'+id)
+      .then((response)=>{
+        console.log("Count ==",response.data.count);
+        this.setState({
+            viewCount: response.data.count,
+        })
+        
+      })
+      .catch(function(error){
+        console.log(error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+              }
+      })
 	}
 
 	render() {
@@ -62,6 +79,12 @@ componentDidMount(){
           		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
               <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
           		<BlogContent blogContent={this.state.blogContent}/>
+              <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
+               <a href=" https://www.facebook.com/wealthy.via" target="_blank"><i className="fa fa-facebook" href=""></i></a><a href=" https://twitter.com/ViaWealthy" target="_blank"><i className="fa fa-twitter" ></i></a><a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><i class="fa fa-linkedin"></i></a>
+              </div>
+              <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+                <span className="countNumberLike">{this.state.viewCount} views</span>
+              </div>
           		<RelatedBlogs/>
 {/*          		<BlogComment/>
 */} 

@@ -155,19 +155,7 @@ class UploadStatement extends Component{
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
           <h4 className="h5lettersp MasterBudgetTitle">User Statement Upload</h4>
          </div>
-        <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 backColorUserDetails userDetailsDiv1 NOPadding">
-            <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6  ">
-                <label className="mt20 "><b>Name - </b>Priyanka Lewade</label><br/>
-                <label  className="mt20"><b>Email - </b>priyankalewade96@gmail.com</label><br/>
-                <label  className="mt20"><b>Mobile - </b>8208066599</label><br/>
-                        
-              </div>
-           <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6  ">
-               
-                <label  className="mt20"><b>Start Date - </b> 11-10-2019</label><br/>
-                <label  className="mt20"><b>End Date - </b> 11-02-2019</label><br/>             
-              </div>
-        </div>
+      
           <hr className="compySettingHr" />
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
            
@@ -212,7 +200,6 @@ class UploadStatement extends Component{
                  </div>          
           
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
-                  <label  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 "><b>Date : 11-10-2019</b></label>
                   { this.state.uploadStatement ?
                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">

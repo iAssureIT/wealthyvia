@@ -63,12 +63,12 @@ class Login extends Component {
         }else{
           document.getElementById("logInBtn").value = 'We are processing...Please wait';
           localStorage.setItem("token",response.data.token);
-          localStorage.setItem("admin_id",response.data.user_ID);
-          console.log("admin_id =",response.data.user_ID);
+          localStorage.setItem("admin_id",response.data.ID);
+          console.log("admin_id =",response.data.ID);
           // browserHistory.replace('/');
-          this.props.history.push("/dashboard");
+         this.props.history.push("/dashboard");
           window.location.reload();
-          this.setState({
+         this.setState({
             loggedIn  :   true
           })
         }
@@ -112,8 +112,10 @@ class Login extends Component {
     
     return(
       <div>
-        <div className="headerbackgroundimg col-lg-12 col-md-12 col-sm-12 col-xs-12" ></div> 
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBackgroundImg"></div>
+        <div className="headerbackgroundimg col-lg-12 col-md-12 col-sm-12 col-xs-12 headerName" >Wealthyvia</div> 
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBackgroundImg">
+
+        </div>
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper">
           <div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-12 signupPadding signUpFormWrap " style={{"height": divHeight}}>
             <div className="divLoginInWrap">
@@ -152,11 +154,11 @@ class Login extends Component {
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls paddingZero">
                   <div className="col-lg-6 col-md-6 col-sm-6 ">
                   </div>
-                  <div className="col-lg-6 col-md-6 col-sm-6 offset-lg-1 customFl">
+             {/*     <div className="col-lg-6 col-md-6 col-sm-6 offset-lg-1 customFl">
                     <Link to='/forgot-pwd' className="UMGreyy UMGreyy_l UMcreateacc col-lg-12 col-md-12 col-xs-12 col-sm-12">
                       Forgot Password?
                     </Link>
-                  </div>
+                  </div>*/}
                 </div>
               </form>
             </div>

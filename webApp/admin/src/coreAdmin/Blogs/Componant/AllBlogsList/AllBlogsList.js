@@ -86,9 +86,12 @@ componentDidMount(){
 							          			<div className="col-lg-4 Allblog">
 							          				
 							          					<div className="All1blog1 z50">
-							          					
-
-														<img className="img-responsive AllblogImgB" src={data.bannerImage?data.bannerImage.path:" "} alt="Bannerpng"/>
+							          					{data.typeOfBlog == "Premium" ?
+							          					<p className="premiumBlogIndicate"><i class="fa fa-star"></i></p>
+														
+														:
+														null
+													}<img className="img-responsive AllblogImgB" src={data.bannerImage?data.bannerImage.path:" "} alt="Bannerpng"/>
 														<div className="middle">
 														    
 														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>

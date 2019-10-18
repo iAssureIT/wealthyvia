@@ -75,9 +75,11 @@ getBlogData(){
 componentDidMount(){
 	var Blogs =[];
 	this.getBlogData();
+
 }
-	render() {
+render() {
 		var data = this.state.Blogs;
+		var subscribed = false;
    		const token = localStorage.getItem("user_ID");
 		return (
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
@@ -89,21 +91,44 @@ componentDidMount(){
 							          			<div className="col-lg-3 Allblog">
 							          				
 							          				<div className="All1blog1 z50">
+							          				{data.typeOfBlog == "Premium" ?
+							          					<p className="premiumBlogIndicate"><i class="fa fa-star"></i></p>
+														
+														:
+														null
+													}
 														<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
 														{ token ?
-														<a href={"/singleblogpage/"+data._id}>
-															<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-															<p className="blogPara p10 graycolor">{data.summary}</p>
-														</a>
+															(data.typeOfBlog == "Premium" ?
+																(subscribed ?
+																		<a href={"/singleblogpage/"+data._id}>
+																			<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																			<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																			<p className="blogPara p10 graycolor">{data.summary}</p>
+																		</a>
+																	
+																		:
+																		<a href={"/planPage"}>
+																			<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																			<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																			<p className="blogPara p10 graycolor">{data.summary}</p>
+																		</a>
+																	
+																	)
+															:
+															<a href={"/singleblogpage/"+data._id}>
+																<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																<p className="blogPara p10 graycolor">{data.summary}</p>
+															</a>
+															)
 														:
-														<a href="/login">
-															<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-															<p className="blogPara p10 graycolor">{data.summary}</p>
-														</a>
-
-												}
+															<a href="/login">
+																<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																<p className="blogPara p10 graycolor">{data.summary}</p>
+															</a>
+														}
 							          				
 													</div>
 

@@ -63,9 +63,9 @@ import '../css/CompanySetting.css';
                                     {/*<li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyBankDetails" data-toggle="tab">Bank Details</a></li>*/}
                                     <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyTaxDetails" data-toggle="tab">Tax Information</a></li>
                                     <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyPaymentGateway" data-toggle="tab">Payment Gateway</a></li>
-                                    <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanySMSGateway" data-toggle="tab">SMS Gateway</a></li>
+                                    {/*<li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanySMSGateway" data-toggle="tab">SMS Gateway</a></li>
                                     <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyAmazons3" data-toggle="tab">Amazon S3</a></li>
-                                </ul>
+                                */}</ul>
                               </div>
                               <div className="tab-content col-lg-9 col-md-9 col-xs-12 col-sm-12">
                                 <div className="tab-pane active" id="companyInformation"> <CompanyInformation/> </div>

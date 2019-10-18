@@ -12,7 +12,7 @@
 	text-align: center;
 }
 .headerBlogCD{
-	font-size: 20px;
+	font-size: 25px;
 	padding-bottom: 20px;
 	font-weight: bold !important;
 }
@@ -83,7 +83,8 @@ margin-bottom: 40px;
 	text-decoration: none !important;
 }
 .priBlogHead{
-	font-size: 16px;
+	font-size: 20px;
+	color: #201a47;
 }
 .padding100{
 	padding-bottom: 250px;
