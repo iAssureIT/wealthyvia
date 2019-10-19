@@ -2,7 +2,7 @@ import React from 'react';
 import SingleBlogBanner      from "../../blocks/SingleBlogBanner/SingleBlogBanner.js";
 import BlogContent           from "../../blocks/BlogContent/BlogContent.js";
 import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
-import Moment                 from 'react-moment';
+import Moment                from 'react-moment';
 
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
 
@@ -87,7 +87,7 @@ componentDidMount(){
               <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
           		<BlogContent blogContent={this.state.blogContent}/>
               <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
-               <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href=" https://twitter.com/ViaWealthy" target="_blank"><i className="fa fa-twitter" ></i></a><a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><i class="fa fa-linkedin"></i></a>
+               <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrectUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrectUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
               </div>
               <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
                 <span className="countNumberLike">{this.state.viewCount} views</span>
