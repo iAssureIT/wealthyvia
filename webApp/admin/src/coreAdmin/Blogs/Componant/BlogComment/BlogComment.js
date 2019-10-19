@@ -86,9 +86,9 @@ handleChange(event){
                                 <div className="">
                                 </div>
                               </div>
-                              <div class="commentBox col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                              <div className="commentBox col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label htmlFor="comment">Add Comment<span className="redFont"></span></label>
-                                <textarea class="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="5" id="comment"></textarea>
+                                <textarea className="form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" rows="5" id="comment"></textarea>
                               </div>
                               <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <label htmlFor="userName">Name<span className="redFont">*</span></label>

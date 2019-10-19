@@ -369,7 +369,7 @@ class ViewTemplates extends Component{
 																<div className="form-group">
 																 <label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 label-category">Message <span className="astrick">*</span></label> 
 																 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">  
-																	<CKEditor activeClass="p15" id="editor"  className="templateName" content={this.state.content} events={{"change": this.onChange}}/>
+																	<CKEditor activeclassName="p15" id="editor"  className="templateName" content={this.state.content} events={{"change": this.onChange}}/>
 																	<label className="error">{this.state.contentError}</label>
 																 </div> 						
 																</div>	
@@ -388,7 +388,7 @@ class ViewTemplates extends Component{
 										<div className="notifTabs col-lg-10 col-lg-offset-3 col-md-10 col-md-offset-3 col-sm-12 col-xs-12">
 										  	 <ul className="nav nav-pills nav-pillss">
 											    <li className="active notifTab col-lg-2 col-md-3 col-sm-4 col-xs-12">
-											    	<a data-toggle="pill" href="#emailTemplates" > <i class="fa fa-envelope-square"></i> Email 
+											    	<a data-toggle="pill" href="#emailTemplates" > <i className="fa fa-envelope-square"></i> Email 
 											    	</a>
 											    </li>
 											   {/* <li className="col-lg-2 col-md-3 col-sm-3 col-xs-12 notifTab">

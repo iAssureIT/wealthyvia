@@ -30,9 +30,9 @@ export default class Rightsidebar extends Component{
 					<ul className="list-unstyled components">
 						<li className="active">
 							<span className="sideheader">Support Sidebar</span>
-							<a href="/companysetting"> <i class="fa fa-cogs"></i><span className="sidebartext">Company Settings</span></a>
-							<a href="/ViewTemplates" ><i class="fa fa-bell"></i><span className="sidebartext">Notification Management</span></a>
-							<a href="/umlistofusers"><i class="fa fa-users"></i><span className="sidebartext"></span>User Management</a>
+							<a href="/companysetting"> <i className="fa fa-cogs"></i><span className="sidebartext">Company Settings</span></a>
+							<a href="/ViewTemplates" ><i className="fa fa-bell"></i><span className="sidebartext">Notification Management</span></a>
+							<a href="/umlistofusers"><i className="fa fa-users"></i><span className="sidebartext"></span>User Management</a>
 						</li>
 					</ul>
 				</div>

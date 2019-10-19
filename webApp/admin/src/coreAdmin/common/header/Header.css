@@ -44,7 +44,7 @@
   height: 100%;
   width: 0;
   position: fixed;
-  z-index: 3;
+  z-index: 1000;
   top: 50px;
   right: 0;
   background-color: #fff;

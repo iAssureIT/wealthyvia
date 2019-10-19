@@ -10,9 +10,6 @@ import PropTypes from 'prop-types';
 import CKEditor from 'ckeditor4-react';
 
 
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 class BlogsForm extends Component{
 	constructor(props) {
 		super(props);
@@ -79,7 +76,7 @@ class BlogsForm extends Component{
   componentDidMount(){
     this.edit();
       axios
-        .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+        .get('/api/projectsettings/get/S3')
         .then((response)=>{
           
           const config = {

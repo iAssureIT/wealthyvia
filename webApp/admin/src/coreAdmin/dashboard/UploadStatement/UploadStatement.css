@@ -45,13 +45,14 @@
 	padding-top: 10px !important;
 }
 .imagesDivUploaded{
-	height: 100px;
-	width: 20%;
+	height: 80px;
+	width: 27%;
 	margin-top: 10px;
 	margin-bottom: 40px;
 
 }
 .imagesDivUploaded img{
 	height: 100%;
-	width: 100%;
+	width: 40%;
+	margin-left: 10%;
 }

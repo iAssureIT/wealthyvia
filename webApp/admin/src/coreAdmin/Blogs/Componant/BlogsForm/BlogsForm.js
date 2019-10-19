@@ -340,7 +340,7 @@ uploadBlogImage(event){
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <label htmlFor="contactNumber">Banner Image<span className="redFont"></span></label>
                     <div className="">
-                      {/*<input id="input-b1" name="input-b1" type="file" class="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
+                      {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
                     </div>
                     <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">

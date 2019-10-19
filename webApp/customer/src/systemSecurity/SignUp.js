@@ -8,8 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
 import axios from 'axios';
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 const formValid = formerrors=>{
   let valid = true;
@@ -59,8 +58,7 @@ class SignUp extends Component {
 	                email         : this.refs.signupEmail.value,
 	                mobNumber    : this.refs.mobNumber.value,
 	                pwd        		: this.refs.signupPassword.value,
-/*	                signupPassword  : this.refs.signupConfirmPassword.value,
-*/	                role 			: 'user',
+	                role 			: 'user',
 	                status 			: 'Active',
 	                fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
 	            }

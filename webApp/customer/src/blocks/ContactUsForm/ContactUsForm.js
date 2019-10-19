@@ -3,11 +3,6 @@ import "./ContactUsForm.css";
 import axios 				from 'axios';
 import swal from 'sweetalert';
 
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
-
 const formValid = formerrors=>{
   console.log("formerrors",formerrors);
   let valid = true;

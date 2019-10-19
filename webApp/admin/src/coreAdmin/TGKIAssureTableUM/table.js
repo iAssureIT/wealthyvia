@@ -841,7 +841,7 @@ render(){
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Delete"><i className="fa fa-trash"></i></a></td>
                                   </tr>
                                    <tr>
                                     <td>PB001</td>
@@ -856,7 +856,7 @@ render(){
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Delete"><i className="fa fa-trash"></i></a></td>
 
                                   </tr> 
                                    <tr>
@@ -872,7 +872,7 @@ render(){
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
                                     <td className="text-center"><input type="checkbox" name="name1" />&nbsp;</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Delete"><i className="fa fa-trash"></i></a></td>
                                   </tr>                                                  
                                  
                                 </tbody>

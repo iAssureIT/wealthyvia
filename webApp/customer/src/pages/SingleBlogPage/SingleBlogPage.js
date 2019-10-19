@@ -8,7 +8,12 @@ import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
 
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
-
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  WhatsappShareButton,
+  } from 'react-share';
 
 export default class SingleBlogPage extends React.Component {
 
@@ -28,7 +33,9 @@ export default class SingleBlogPage extends React.Component {
 
 componentDidMount(){
   var id = this.props.match.params.selectedID;
-  
+  this.setState({
+    CurrectUrl:window.location.href
+  })
 
 		axios
       .get('/api/blogs/get/'+id)
@@ -80,7 +87,7 @@ componentDidMount(){
               <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
           		<BlogContent blogContent={this.state.blogContent}/>
               <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
-               <a href=" https://www.facebook.com/wealthy.via" target="_blank"><i className="fa fa-facebook" href=""></i></a><a href=" https://twitter.com/ViaWealthy" target="_blank"><i className="fa fa-twitter" ></i></a><a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><i class="fa fa-linkedin"></i></a>
+               <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href=" https://twitter.com/ViaWealthy" target="_blank"><i className="fa fa-twitter" ></i></a><a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><i class="fa fa-linkedin"></i></a>
               </div>
               <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
                 <span className="countNumberLike">{this.state.viewCount} views</span>

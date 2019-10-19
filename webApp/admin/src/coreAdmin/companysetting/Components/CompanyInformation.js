@@ -785,7 +785,7 @@ console.log("innnuuu");
                           <span className="astrick">*</span>
                           <div className="input-group inputBox-main  new_inputbx " >
                            <div className="input-group-addon inputIcon">
-                           <i class="fa fa-crosshairs"></i>
+                           <i className="fa fa-crosshairs"></i>
                          </div>    
                           <input
                             onChange={this.handleChange} 
@@ -812,7 +812,7 @@ console.log("innnuuu");
                           <span className="astrick">*</span>
                           <div className="input-group inputBox-main  new_inputbx " >
                            <div className="input-group-addon inputIcon">
-                           <i class="fa fa-crosshairs"></i>
+                           <i className="fa fa-crosshairs"></i>
                          </div> 
                           
                           <input
@@ -869,7 +869,7 @@ console.log("innnuuu");
                           <span className="astrick">*</span>
                           <div className="input-group inputBox-main  new_inputbx " >
                            <div className="input-group-addon inputIcon">
-                            <i class="fa fa-crosshairs InputAddOn fa"></i>
+                            <i className="fa fa-crosshairs InputAddOn fa"></i>
                          </div> 
                           
                           <input
@@ -896,7 +896,7 @@ console.log("innnuuu");
                           <span className="astrick">*</span>
                           <div className="input-group inputBox-main  new_inputbx " >
                            <div className="input-group-addon inputIcon">
-                           <i class="fa fa-crosshairs"></i>
+                           <i className="fa fa-crosshairs"></i>
                          </div>  
                           <input
                             onChange={this.handleChange} 

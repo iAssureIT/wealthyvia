@@ -37,7 +37,7 @@ export default class BlogCarousel extends Component {
 					    items={4}
 					    nav={0}
 					    dots={0}
-					    responsiveClass={true}
+					    responsiveclassName={true}
 					    autoplay={false}
 						>
 						

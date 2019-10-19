@@ -50,7 +50,7 @@ export default class Blogs extends Component {
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
 										<label>“Knock Knock” Who is it ? - Perception !</label>
-										<p>Perceptions are good and helps us to avoid big accidents. They are in our genetics & investing is not above it...<br/><a href="https://www.arthavruddhi.com/blog" target="_blank"> read more</a></p>
+										<p>Perceptions are good and helps us to avoid big accidents. They are in our genetics & investing is not above it...<br/><a href="/allblogs"> read more</a></p>
 									</div>
 								</div>
 							</div>
@@ -64,7 +64,7 @@ export default class Blogs extends Component {
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
 										<label>Monthly Communique : Effect of tax reforms and opportunity one can’t afford to miss!</label>
-										<p>This is one of major reforms in Indian business ecosystem after 1991...<br/><a href="https://www.arthavruddhi.com/blog" target="_blank"> read more</a></p>
+										<p>This is one of major reforms in Indian business ecosystem after 1991...<br/><a href="/allblogs"> read more</a></p>
 									</div>
 								</div>
 							</div>
@@ -78,7 +78,7 @@ export default class Blogs extends Component {
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 									<div className="row">
 										<label>Safe Heaven Stocks</label>
-										<p>In 2014 , I met an old investor. I had no clue what was his portfolio or profile. We explained him a midcap idea he listened patiently...<a href="https://www.arthavruddhi.com/blog" target="_blank"> read more</a></p>
+										<p>In 2014 , I met an old investor. I had no clue what was his portfolio or profile. We explained him a midcap idea he listened patiently...<a href="/allblogs"> read more</a></p>
 									</div>
 								</div>
 							</div>

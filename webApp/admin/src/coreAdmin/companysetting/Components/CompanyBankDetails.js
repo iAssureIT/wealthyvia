@@ -293,7 +293,7 @@ handleChange(event){
                                 <label className="control-label statelabel locationlabel" >Enter Bank Name</label><span className="astrick">*</span>
                                 <div className="input-group inputBox-main  new_inputbx " >
                                  <div className="input-group-addon remove_brdr inputIcon">
-                                  <i class="fa fa-university"></i>
+                                  <i className="fa fa-university"></i>
                                </div>  
                                 <input id="bankName" value={this.state.bankName}  data-text="bankname"
                                  onChange={this.handleChange.bind(this)} type="text" name="bankName" placeholder="Bank Name"
@@ -329,7 +329,7 @@ handleChange(event){
                                 <span className="astrick">*</span>
                                 <div className="input-group inputBox-main  new_inputbx " >
                                    <div className="input-group-addon remove_brdr inputIcon">
-                                   <i class="fa fa-university"></i>
+                                   <i className="fa fa-university"></i>
                                  </div> 
                                 <input id="branchName" value={this.state.branchName} data-text="branchname" 
                                 onChange={this.handleChange.bind(this)} type="text" name="branchName" placeholder="Branch Name"

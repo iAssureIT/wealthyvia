@@ -8,8 +8,6 @@ import { deleteFile }                     from 'react-s3';
 import "./Header.css";
 var array =[];
 var answersarray =[];
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 export default class Header extends Component {
 
@@ -48,7 +46,9 @@ export default class Header extends Component {
   }
   logout(){
     var user_ID = localStorage.setItem("user_ID", "")
-     window.location.reload();    
+    
+     window.location.reload();  
+
   }
 
   validateFormReq() {
@@ -133,7 +133,7 @@ export default class Header extends Component {
             console.log('error', error);
       })
         axios
-      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+      .get('/api/projectsettings/get/S3')
       .then((response)=>{
         const config = 
                        {

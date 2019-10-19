@@ -252,14 +252,14 @@ class Amenities extends Component{
                   </div>
                 
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray planContainer mt40 NOpadding">
-                    <ul class="nav nav-pills customStack textAlignCenter">
-                      <li class="active col-lg-3"><a data-toggle="pill" href="#home">Active User</a></li>
+                    <ul className="nav nav-pills customStack textAlignCenter">
+                      <li className="active col-lg-3"><a data-toggle="pill" href="#home">Active User</a></li>
                        <li className=" col-lg-3"><a data-toggle="pill" href="#menu1">Inactive User</a></li>
                       
                     </ul>
 
-                      <div class="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                        <div id="home" class="tab-pane fade in active">
+                      <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <div id="home" className="tab-pane fade in active">
                           <div className="col-lg-12 NOpadding">
                               <table className="table tableCustom table-striped">
                                 <thead className="bgThead">
@@ -281,7 +281,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                   </tr>
                                    <tr>
                                     <td>2.</td>
@@ -290,7 +290,7 @@ class Amenities extends Component{
                                     <td className="text-center">ashish.chavan@iassureit.com</td>
                                     <td className="text-center">21-9-2019</td>
                                     <td className="text-center">21-11-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                   </tr> 
                                    <tr>
                                     <td>3.</td>
@@ -299,14 +299,14 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                   </tr>                                                  
                                  
                                 </tbody>
                               </table>
                           </div>    
                         </div>
-                          <div id="menu1" class="tab-pane fade">
+                          <div id="menu1" className="tab-pane fade">
                           <div className="col-lg-12 NOpadding">
                               <table className="table tableCustom table-striped">
                                 <thead className="bgThead">
@@ -328,7 +328,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                   </tr>
                                    <tr>
                                     <td>2.</td>
@@ -337,7 +337,7 @@ class Amenities extends Component{
                                     <td className="text-center">ashish.chavan@iassureit.com</td>
                                     <td className="text-center">21-9-2019</td>
                                     <td className="text-center">21-11-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                   </tr> 
                                    <tr>
                                     <td>3.</td>
@@ -346,7 +346,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i class="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                   </tr>                                                  
                                  
                                 </tbody>

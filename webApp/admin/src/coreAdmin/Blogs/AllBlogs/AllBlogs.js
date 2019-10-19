@@ -39,9 +39,9 @@ export default class AllBlogs extends Component {
 						    <li><a data-toggle="pill" href="#menu2">Earings Season Update</a></li>
 						    <li><a data-toggle="pill" href="#menu3">Important Changes: Ecosystem</a></li>
 						  </ul>
-						  <form class="form-inline col-lg-3 mt20 row">
-					      <div class=" col-lg-2  col-md-2  col-sm-1 col-xs-2   SearchIN pull-right "><i className="fa fa-search"></i></div>
-					      <input class="customInputBV col-lg-8 col-md-8  col-sm-11  col-xs-10 margin0 pull-right " type="text" placeholder="Search" aria-label="Search"/>
+						  <form className="form-inline col-lg-3 mt20 row">
+					      <div className=" col-lg-2  col-md-2  col-sm-1 col-xs-2   SearchIN pull-right "><i className="fa fa-search"></i></div>
+					      <input className="customInputBV col-lg-8 col-md-8  col-sm-11  col-xs-10 margin0 pull-right " type="text" placeholder="Search" aria-label="Search"/>
 					    </form>
 						  
 						  <div className="tab-content">
@@ -57,12 +57,12 @@ export default class AllBlogs extends Component {
 							      		 	<label className="nameOfBoggerAB">Priyanka Lewade</label>&nbsp;<i className="fa fa-user"></i><br/>
 							      		 	<span className="nameOfBoggerAB">4 days ago </span>&nbsp;<span>3 min</span>
 							      		 	</div>
-							      		 	<div class="dropdown col-lg-4 col-md-4 col-sm-12 col-xs-12">
-											  <i class="fa fa-ellipsis-v pull-right btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							      		 	<div className="dropdown col-lg-4 col-md-4 col-sm-12 col-xs-12">
+											  <i className="fa fa-ellipsis-v pull-right btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  </i>
-											  <div class="dropdown-menu dropDownMenuDiv" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item col-lg-12 col-md-12 col-xs-12 col-sm-12" href="#">Follow Post</a>
-											    <a class="dropdown-item col-lg-12 col-xs-12 col-sm-12" href="#">Share Post</a>
+											  <div className="dropdown-menu dropDownMenuDiv" aria-labelledby="dropdownMenuButton">
+											    <a className="dropdown-item col-lg-12 col-md-12 col-xs-12 col-sm-12" href="#">Follow Post</a>
+											    <a className="dropdown-item col-lg-12 col-xs-12 col-sm-12" href="#">Share Post</a>
 											  </div>
 											</div>
 											<a href="/BlogViewPage"><div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 blogContantDiv">
@@ -90,12 +90,12 @@ export default class AllBlogs extends Component {
 							      		 	<label className="nameOfBoggerAB">Priyanka Lewade</label>&nbsp;<i className="fa fa-user"></i><br/>
 							      		 	<span className="nameOfBoggerAB">4 days ago </span>&nbsp;<span>3 min</span>
 							      		 	</div>
-							      		 	<div class="dropdown col-lg-4 col-md-4 col-sm-12 col-xs-12">
-											  <i class="fa fa-ellipsis-v pull-right btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							      		 	<div className="dropdown col-lg-4 col-md-4 col-sm-12 col-xs-12">
+											  <i className="fa fa-ellipsis-v pull-right btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											  </i>
-											  <div class="dropdown-menu dropDownMenuDiv" aria-labelledby="dropdownMenuButton">
-											    <a class="dropdown-item col-lg-12 col-md-12 col-xs-12 col-sm-12" href="#">Follow Post</a>
-											    <a class="dropdown-item col-lg-12 col-xs-12 col-sm-12" href="#">Share Post</a>
+											  <div className="dropdown-menu dropDownMenuDiv" aria-labelledby="dropdownMenuButton">
+											    <a className="dropdown-item col-lg-12 col-md-12 col-xs-12 col-sm-12" href="#">Follow Post</a>
+											    <a className="dropdown-item col-lg-12 col-xs-12 col-sm-12" href="#">Share Post</a>
 											  </div>
 											</div>
 											<a href="/BlogViewPage"><div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 blogContantDiv">

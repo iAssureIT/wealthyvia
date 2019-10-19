@@ -13,11 +13,6 @@ import './SignUp.css';
 
 import axios from 'axios';
 
-
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-
-axios.defaults.headers.post['Content-Type'] = 'application/json';
-
 class Login extends Component {
 
   constructor(){
@@ -46,14 +41,16 @@ class Login extends Component {
         localStorage.setItem("token",response.data.token);
         localStorage.setItem("user_ID",response.data.ID);
 
-        // localStorage.setItem("admin_email",response.data.email);
-        // localStorage.setItem("admin_fullName",response.data.fullName);
+    
+          if( localStorage.getItem("lastUrl")){
+            console.log("-->",localStorage.getItem("lastUrl"))
+             this.props.history.push(localStorage.getItem("lastUrl"));
+            window.location.reload();
+          }else{
+              this.props.history.push("/");
+            window.location.reload();
 
-/*        console.log("localStorage =",response.data.token);
-*/      
-        // browserHistory.replace('/');
-        this.props.history.push("/");
-        window.location.reload();
+          }
         // direct.setState({loggedIn:response.data.token})
         if(localStorage==null){
           swal("Invalid Email or Password","Please Enter valid email and password");

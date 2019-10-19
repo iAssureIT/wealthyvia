@@ -475,7 +475,7 @@ class addSubscription extends Component{
                         className="form-control areaStaes newinputbox" title="Please enter alphanumeric only" />
                        */}
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">  
-                      <CKEditor activeClass="p15" id="editor" className="templateName" content={this.state.description} events={{"change": this.onChange}}/>
+                      <CKEditor activeclassName="p15" id="editor" className="templateName" content={this.state.description} events={{"change": this.onChange}}/>
                     </div> 
                        {/* {this.state.formerrors.companytaxtype &&(
                           <span className="text-danger">{this.state.formerrors.companytaxtype}</span> 

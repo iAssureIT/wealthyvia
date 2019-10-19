@@ -317,7 +317,7 @@ class EditNotificationModal extends Component{
 												<div className="form-group">
 												 <label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 label-category">Message <span className="astrick">*</span></label> 
 												 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">  
-												 	<CKEditor activeClass="p15" id="editor"  className="templateName" content={this.state.content} events={{"change": this.onChange}}/>
+												 	<CKEditor activeclassName="p15" id="editor"  className="templateName" content={this.state.content} events={{"change": this.onChange}}/>
 												 </div> 
 												 			
 												</div>	

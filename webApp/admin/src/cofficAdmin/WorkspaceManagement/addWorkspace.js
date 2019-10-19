@@ -1752,7 +1752,7 @@ class addWorkspace extends Component{
                                     <div className="modal-dialog modal-md">
                                       <div className="modal-body dashboardModImg" style={{marginLeft:"90px"}}>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 closeBtn" data-dismiss="modal">
-                                          <i class="fa fa-times"></i>
+                                          <i className="fa fa-times"></i>
                                         </div>
                                         <div className="col-lg-10 col-md-10 col-sm-10 col-xs-10" style={{top:'17%'}}>
                                           <p className="text-center" style={{lineHeight:1}}>QR Code of <b>: {itemData.nameOfCafe}</b></p>

@@ -87,7 +87,7 @@ componentDidMount(){
 							          				
 							          					<div className="All1blog1 z50">
 							          					{data.typeOfBlog == "Premium" ?
-							          					<p className="premiumBlogIndicate"><i class="fa fa-star"></i></p>
+							          					<p className="premiumBlogIndicate"><i className="fa fa-star"></i></p>
 														
 														:
 														null

@@ -7,10 +7,10 @@ import $                    from "jquery";
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
 import './UploadStatement.css';
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+/*axios.defaults.baseURL = 'http://api.wealthyvia.com';
+axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
-
+var location ="";
 class UploadStatement extends Component{
 
   constructor(props) {
@@ -19,6 +19,33 @@ class UploadStatement extends Component{
       "uploadStatement":"",
     
     };
+  
+  }
+  componentDidMount() {
+  axios
+      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+      .then((response)=>{
+        const config = 
+                       {
+                          bucketName      : response.data.bucket,
+                          dirName         : response.data.bucket,
+                          region          : response.data.region,
+                          accessKeyId     : response.data.key,
+                          secretAccessKey : response.data.secret,
+                      }
+        this.setState({
+          config : config
+        })
+        console.log("config ====>",this.state.config);
+      })
+      .catch(function(error){
+        console.log(error);
+          if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+      })
   
   }
   uploadImg (event){
@@ -35,26 +62,27 @@ class UploadStatement extends Component{
       console.log("fileNamePAN",this.state.fileName);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="pdf" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (newFile) {
             if(this.state.uploadStatement==""){
+              console.log("config,config",this.state.config);
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{
                   this.setState({
-                    uploadStatement : Data.location
+                    uploadStatement : Data.location,
                   },()=>{                
                     console.log("uploadStatement",this.state.uploadStatement)})
-                  this.deleteimageLogo(index)
-                })
+                console.log("uploadStatement--->",Data.location)
+/*                  this.deleteimageLogo(index)
+*/                })
                 .catch((error)=>{
                   console.log(error);
                 })
-                console.log("uploadStatement--->",this.state.uploadStatement)
             }else{
               swal({
-                    title: "Are you sure you want to replace this image?",
-                    text: "Once replaced, you will not be able to recover this image!",
+                    title: "Are you sure you want to replace this file?",
+                    text: "Once replaced, you will not be able to recover this file!",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -82,53 +110,14 @@ class UploadStatement extends Component{
             swal("File not uploaded","Something went wrong","error"); 
           }    
         }else{
-          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+          swal("Format is incorrect","Only Upload file format (pdf)","warning");  
         }
       }
     }
   }
 
-  componentDidMount() {
-  axios
-      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
-      .then((response)=>{
-        const config = 
-                       {
-                          bucketName      : response.data.bucket,
-                          dirName         : response.data.bucket,
-                          region          : response.data.region,
-                          accessKeyId     : response.data.key,
-                          secretAccessKey : response.data.secret,
-                      }
-        this.setState({
-          config : config
-        })
-      })
-      .catch(function(error){
-        console.log(error);
-          if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-      })
-  
-  }
    deleteimageLogo(index){
-   /* var data = index.split("/");
-    var imageName = data[4];
-    console.log("index1--------------->",imageName);
-      if(index){
-        S3FileUpload
-          .deleteFile(imageName,this.state.config)
-          .then((response) =>{
-            console.log("Deletedddd...",response)
-            swal("Image deleted successfully");
-          })
-          .catch((err) => {
-            console.error("Not-Deletedddd...",err)
-          })
-      }*/
+  
        swal({
           title: "Are you sure you want to delete this image?",
           text: "Once deleted, you will not be able to recover this image!",
@@ -192,7 +181,7 @@ class UploadStatement extends Component{
                            <b className="text_k11"></b>
                            <span className="under_ln">Upload Document</span>
                           </div>      
-                          <input  type="file" title="Click to attach file" name="userPic" ref="statementImg"  className="form-control click_input"  onChange={this.uploadImg.bind(this)} id="upload-file2" />
+                          <input  type="file" title="Click to attach file" name="userPic" ref="statementImg" className="form-control click_input"  onChange={this.uploadImg.bind(this)} id="upload-file2" />
                         </div> 
                       </div>
                      
@@ -200,7 +189,7 @@ class UploadStatement extends Component{
                  </div>          
           
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
-                  { this.state.uploadStatement ?
+                 {/* { this.state.uploadStatement ?
                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Statement</h5>
@@ -219,10 +208,17 @@ class UploadStatement extends Component{
                     </div>
                     :
                     null
-                  }      
-               {/*   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  imagesDivUploaded">
-                    <img src={this.state.uploadStatement} alt=""/>
-                  </div>*/}
+                  }      */}
+                  {this.state.uploadStatement
+                    ?
+                  <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  imagesDivUploaded">
+                      <img src="/images/pdf.png"/>
+                      <label className="mt20">{this.state.uploadStatementName}</label>
+{/*                       <embed src={this.state.uploadStatement} type="application/pdf" className="" />
+*/}                 </div>
+                  :null
+                }
+
               </div>
 
             </form>

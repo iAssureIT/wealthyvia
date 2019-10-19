@@ -22,7 +22,11 @@ export default class ContactUs extends Component {
 
   componentDidMount()
   {
- 
+     var url = this.props.location.pathname;
+     console.log("lastUrl",url);
+      localStorage.setItem("lastUrl",url);
+      console.log( "localStorage.setItem(url)",localStorage.getItem("lastUrl"));
+
   } 
 
   render() {

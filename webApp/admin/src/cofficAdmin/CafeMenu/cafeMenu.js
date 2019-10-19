@@ -250,9 +250,9 @@
 //         <div className="modal fade in" id={"myModalcafe"+this.state.deleteId} role="dialog">
 //           <div className="modal-dialog modal-xs">
 //             <div className="modal-body cafemodal">
-//              <div class="modal-header">
-//                <button type="button" class="close" data-dismiss="modal">&times;</button>
-//                  <h4 class="modal-title text-center">Are you sure you want to delete?</h4>
+//              <div className="modal-header">
+//                <button type="button" className="close" data-dismiss="modal">&times;</button>
+//                  <h4 className="modal-title text-center">Are you sure you want to delete?</h4>
 //             </div>
               
 //               <div className="col-lg-12 ol-md-12 col-sm-12 col-xs-12 pstn btnCntnr modalbtn">

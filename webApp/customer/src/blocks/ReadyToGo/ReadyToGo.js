@@ -8,8 +8,7 @@ import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
 import "./ReadyToGo.css";
 
-axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
 
 var array =[];
@@ -77,7 +76,7 @@ export default class ReadyToGo extends Component {
 
     });
     axios
-      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+      .get('/api/projectsettings/get/S3')
       .then((response)=>{
         const config = 
                        {

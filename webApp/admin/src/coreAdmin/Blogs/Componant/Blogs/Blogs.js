@@ -37,7 +37,7 @@ export default class Blogs extends Component {
 							    items={1}
 							    nav={0}
 							    dots={0}
-							    responsiveClass={true}
+							    responsiveclassName={true}
 							    autoplay={true}
 								>
 						

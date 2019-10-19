@@ -18,6 +18,9 @@ export default class AboutUs extends Component {
 
   componentDidMount()
   {
+      var url = this.props.location.pathname;
+       console.log("lastUrl",url);
+        localStorage.setItem("lastUrl",url);
  
   } 
 

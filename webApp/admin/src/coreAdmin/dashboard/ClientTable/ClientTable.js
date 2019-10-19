@@ -20,10 +20,36 @@ class ClientTable extends Component {
       tableData :[],
       checkValueCT :"",
       checkedOfferings : [],
+      userSubscriptions : [],
     }
       
   }
     
+  componentDidMount(){
+    this.getUsersData();
+  }
+
+  getUsersData(){
+    //==========  Get User List   ============
+    axios.get('/api/users/get/list/role/user/1')
+    .then( (users)=>{         
+      if(users.data.length > 0){
+        console.log("users.data.length = ", users.data);
+        this.setState({
+              completeDataCount : users.data.length,
+              tableData         : users.data,          
+            },()=>{
+              // console.log('tableData', this.state.tableData);
+              this.getCheckOfferingData(users.data);
+        })        
+      }
+    })
+    .catch((error)=>{
+        if(error.message === "Request failed with status code 401"){
+           swal("","", "error");
+        }
+    });    
+  }
 
   handleChange(event){
     var checkValue = event.target.checked;
@@ -35,11 +61,11 @@ class ClientTable extends Component {
 
 
     if(checkValue){
-       var offeringValues={
+      var offeringValues={
           "userID"      : userID, 
           "planID"      : offeringID,
           "btnStatus"   : "checked",      
-    }
+      }
         swal({
           title: 'Hello!',
           text: 'Are you sure you want to subscribe this offering!',
@@ -47,23 +73,25 @@ class ClientTable extends Component {
             'No, cancel it!',
             'Yes, I am sure!'
         ],
-        }).then(function() {
-           axios.post('/api/subscriptionorders/post/offering',offeringValues)
-          .then( (res)=>{      
-              console.log('res', res);
-          })
-          .catch((error)=>{
-             console.log("error = ",error);
-          });
-
+        }).then((option)=> { 
+          if(option){
+            axios.post('/api/subscriptionorders/post/offering',offeringValues)
+            .then( (res)=>{      
+              this.getUsersData();
+              // console.log('res', res);
+            })
+            .catch((error)=>{
+               console.log("error = ",error);
+            });
+          }
         });
       }
       else{
-         var offeringValues={
+        var offeringValues={
           "userID"      : userID, 
           "planID"      : offeringID,
-          "btnStatus"     :"unchecked" ,      
-    }
+          "btnStatus"   : "unchecked" ,      
+        }
         swal({
           title: 'Hello!',
           text: 'Are you sure you want to unsubscribe this offering!',
@@ -74,82 +102,75 @@ class ClientTable extends Component {
         ],
         dangerMode: true,
 
-        }).then(function() {
+        }).then((option)=> { 
+          if(option){
            axios.post('/api/subscriptionorders/post/offering',offeringValues)
-          .then( (res)=>{      
-              console.log('res', res);            
-          })
-          .catch((error)=>{
+           .then( (res)=>{      
+              // console.log('res', res);            
+              this.getUsersData();
+            })
+           .catch((error)=>{
              console.log("error = ",error);
-          });
+            });
+        }
         });
+
       }
   }
 
-  componentDidMount(){
-    var data = {
-      "startRange"        : this.state.startRange,
-      "limitRange"        : this.state.limitRange, 
-    }
+
+getCheckOfferingData(usersData){
     var checkedOfferings = [];
     var userSubscription = [];
-    //==========  Get User List   ============
-    axios.get('/api/users/get/list/1')
-    .then( (users)=>{         
-      this.setState({
-            completeDataCount : users.data.length,
-            tableData         : users.data,          
-          },()=>{
-            console.log('tableData', this.state.tableData);
-          })
+      //==========  Get Offerings List   ============
+      axios.get('/api/offerings/get/all/list/1')
+      .then( (offerings)=>{      
+        // console.log("offerings = ",offerings.data);   
+        this.setState({
+              offeringTitle : offerings.data,
+            },()=>{
+              // console.log("offeringTitle",this.state.offeringTitle);
+            })
+            if(usersData && offerings.data){
+              // console.log("usersData = ",usersData.length);
+              for (var i=0; i < usersData.length; i++) {
+                  axios.get("/api/subscriptionorders/get/type/offering/"+usersData[i]._id)
+                       .then((userSubscriptions)=>{
+                           console.log(i+" userSubscriptions = "+JSON.stringify(userSubscriptions.data,4,null));
+                           this.setState({
+                              userSubscriptions : userSubscriptions.data,
+                           });
+                        })
+                       .catch((error)=>{
+                          console.log("Error!","Something went wrong!!", "error");
+                        });
 
+                for(var j=0; j<offerings.data.length; j++) {
+                  // console.log("offerings.data["+j+"] = ",offerings.data[j]);
+                  checkedOfferings
+                    .push({
+                            id      : usersData[i]._id + "-" + offerings.data[j]._id,  
+                            value   : usersData[i]._id + "-" + offerings.data[j]._id + "-" + offerings.data[j].offeringTitle,
+                            offeringTitle   : usersData[i].offeringTitle,
+                            checked : this.state.userSubscriptions.find(function(elem){return elem.offeringDetails.status === "Active";}) ? "checked" : "",
+                         }); 
 
-          //==========  Get Offerings List   ============
-
-          axios.get('/api/offerings/get/all/list/1')
-          .then( (offerings)=>{      
-            console.log("offerings = ",offerings.data);   
-            this.setState({
-                  offeringTitle : offerings.data,
-                },()=>{console.log("offeringTitle",this.state.offeringTitle);
-                })
-                if(users.data && offerings.data){
-                console.log("users.data = ",users.data.length);
-                  var i = 0; //users.data.length
-                  for (i=0; i < 2; i++) {
-                    console.log("users.data["+i+"] = ",users.data[i]);
-                    for (var j=0; j<offerings.data.length; j++) {
-/*                        console.log("offerings.data["+j+"] = ",users.data[i]._id + "-" + offerings.data[j]._id);
-*/                       checkedOfferings.push({
-                       // console.log({
-                                                id      : users.data[i]._id + "-" + offerings.data[j]._id,  
-                                                value   : users.data[i]._id + "-" + offerings.data[j]._id + "-" + offerings.data[j].offeringTitle,
-                                                checked : userSubscription.find(function(elem){return elem.offeringDetails.status === "Active";}) ? "checked" : "",
-                                             }); 
-                    }
-                    // console.log("checkedOfferings[i] = ", checkedOfferings[i]) ;
-                  }
-
-                 /* if(i >= users.data.length){
-                    console.log("checkedOfferings = ", checkedOfferings);
-                  }
-*/
                 }
-          })
-          .catch((error)=>{
-              if(error.message === "Request failed with status code 401"){
-                swal("","", "error");
               }
-          });
-    })
-    .catch((error)=>{
-        if(error.message === "Request failed with status code 401"){
-           swal("","", "error");
-        }
-    });
-  
 
-  }
+             if(i >= usersData.length){
+                console.log("checkedOfferings = ", checkedOfferings);
+                this.setState({checkedOfferings : checkedOfferings});
+              }
+
+            }
+      })
+      .catch((error)=>{
+          if(error.message === "Request failed with status code 401"){
+            swal("Error!","Something went wrong!!", "error");
+          }
+      });  
+}
 
 render(){
   // console.log('this.state.completeDataCount', this.state.completeDataCount);
@@ -178,32 +199,34 @@ render(){
                         </thead>
                         <tbody>
                             {
-                              this.state.tableData.map((a, i)=>{
-
-                              return(
-                                  <tr>
-                                    <td>PL001</td>
-
-                                    <td className="">
-                                      <p><b>{a.fullName}</b></p>
-                                      <p>{a.mobNumber}</p>
-                                      <p>{a.email}</p>
-
-                                    </td>
-                                      {
-                                        this.state.offeringTitle.map((b, j)=>{
-                                          return(
-                                                <td className="text-center">
-                                                  <input type="checkbox" id={a._id+"-"+b._id} value={a._id+"-"+b._id+"-"+b.offeringTitle}  name={b.offeringTitle}  onChange={this.handleChange.bind(this)} checked={this.state.checked}/>&nbsp;
-                                                </td>                                                  
-                                              )
+                              this.state.tableData.length > 0 
+                              ? 
+                                this.state.tableData.map((a, i)=>{
+                                return(
+                                    <tr>
+                                        <td>PL001</td>
+                                        <td className="">
+                                          <p><b>{a.fullName}</b></p>
+                                          <p>{a.mobNumber}</p>
+                                          <p>{a.email}</p>
+                                        </td>
+                                        {
+                                          this.state.checkedOfferings.map((chkoff, j)=>{
+                                            return(
+                                               <td className="text-center">
+                                                   <div className="centreDetailContainer col-lg-1 col-xs-3">
+                                                    <input type="checkbox" id={chkoff.id} value={chkoff.value}  name={chkoff.offeringTitle}  onChange={this.handleChange.bind(this)} checked={chkoff.checked}/>&nbsp;
+                                                    <span className="centreDetailCheck"></span>
+                                                  </div>
+                                                </td>
+                                            )
                                           })
-                                      } 
-
-                             </tr>
-                              )
-                            })
-                           }
+                                        } 
+                                    </tr>
+                                  )
+                                })
+                              : "<div> Loading... </div>"
+                            }
                   
                           </tbody>
                       </table>

@@ -21,7 +21,9 @@ export default class Homepage extends Component {
 	    };
   	}  
   	componentDidMount() {
-  	
+  	  var url = this.props.location.pathname;
+       console.log("lastUrl",url);
+        localStorage.setItem("lastUrl",url);
   	}  
 	
   render() {

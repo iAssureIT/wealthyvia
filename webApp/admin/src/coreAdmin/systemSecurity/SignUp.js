@@ -324,18 +324,18 @@ class SignUp extends Component {
 					                <input  id="idacceptcondition" type="checkbox"  value="acceptedconditions" onClick={this.acceptcondition.bind(this)}/><Link data-toggle="modal" data-target="#myModal" className="form-checkbox UMGrey1 modalbutton fontbold terms1" onClick={this.showModal.bind(this)}>&nbsp;I agree to the <span className="under"> terms & conditions</span><label className="sign">*</label></Link>
 					                <span className="checkmark1"></span>
 					            </div>
-							    <div class="modal fade" id="myModal" role="dialog">
-							      <div class="modal-dialog">
-							        <div class="modal-content">
-							          <div class="modal-header">
-							            <button type="button" class="close" data-dismiss="modal">&times;</button>
+							    <div className="modal fade" id="myModal" role="dialog">
+							      <div className="modal-dialog">
+							        <div className="modal-content">
+							          <div className="modal-header">
+							            <button type="button" className="close" data-dismiss="modal">&times;</button>
 							            <h2 className="modaltext">Terms & Conditions</h2>
 							          </div>
-							          <div class="modal-body">
+							          <div className="modal-body">
 							            <p className="modaltext modalpara modalparascroll">{this.state.termsCondition?this.state.termsCondition.instruction:null}</p>
 							          </div>
-							          <div class="modal-footer">
-							            <button type="button" class="btn btn-default" data-dismiss="modal">Proceed</button>
+							          <div className="modal-footer">
+							            <button type="button" className="btn btn-default" data-dismiss="modal">Proceed</button>
 							          </div>
 							        </div>
 							      </div>
