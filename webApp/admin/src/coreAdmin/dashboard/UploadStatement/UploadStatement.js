@@ -36,7 +36,6 @@ class UploadStatement extends Component{
         this.setState({
           config : config
         })
-        console.log("config ====>",this.state.config);
       })
       .catch(function(error){
         console.log(error);

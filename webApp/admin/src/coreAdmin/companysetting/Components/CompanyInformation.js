@@ -391,8 +391,6 @@ console.log("innnuuu");
       // console.log("file",file);
       if (file) {
       var fileName = file.name; 
-      console.log("fileName--------------->",fileName);
-      console.log("config--------------->",this.state.config);
         var ext = fileName.split('.').pop(); 
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){  
           if (file) {

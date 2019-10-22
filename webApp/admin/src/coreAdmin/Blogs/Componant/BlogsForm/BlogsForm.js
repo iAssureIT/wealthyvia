@@ -68,7 +68,6 @@ class BlogsForm extends Component{
   }
   edit(e){
     var blogURL = this.props.match.params.blogURL;
-    console.log("blogURL = ",blogURL);
     axios
       .get("/api/blogs/get/"+blogURL)
       .then((response)=>{
@@ -139,8 +138,6 @@ class BlogsForm extends Component{
         this.setState({
           uploadedImage: e.target.files[0]
         },()=>{
-          console.log("uploadToS3 =",this.state.uploadedImage);
-          console.log("config",this.state.config);
            S3FileUpload
             .uploadFile(file,this.state.config)
             .then((Data)=>{
