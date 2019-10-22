@@ -28,9 +28,11 @@ export default class SingleBlogPage extends React.Component {
 
 
 componentDidMount(){
-  var id = this.props.match.params.selectedID;
+  var blogURL = this.props.match.params.selectedUrl;
+  console.log("blogURL  ==",blogURL);
+  // var blogURL = this.pro
   axios
-      .get('/api/blogs/get/count/'+id)
+      .get('/api/blogs/get/count/url/'+blogURL)
       .then((response)=>{
         console.log("Count ==",response.data.count);
         this.setState({
@@ -47,18 +49,15 @@ componentDidMount(){
       })
 
 		axios
-      .get('/api/blogs/get/'+id)
+      .get('/api/blogs/get/'+blogURL)
       .then((response)=>{
-      	console.log("response blogs==",response.data);
+      	console.log("response blogs mani==",response.data);
         this.setState({
-
-        "blogTitle"		:response.data.blogTitle,
-        "summary"		  :response.data.summary,
-        "typeOfBlog"	:response.data.typeOfBlog,
-        "blogContent"	:response.data.blogContent,
-        "bannerImage" :response.data.bannerImage.path
-
-          
+          "blogTitle"		:response.data.blogTitle,
+          "summary"		  :response.data.summary,
+          "typeOfBlog"	:response.data.typeOfBlog,
+          "blogContent"	:response.data.blogContent,
+          "bannerImage" :response.data.bannerImage.path          
         })
       })
       .catch(function(error){
@@ -71,9 +70,10 @@ componentDidMount(){
 	}
 
 	render() {
+    console.log(this.props.match.params);
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
-          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage} selectedID={this.props.match.params.selectedID}/>
+          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage} blogURL={this.props.match.params.selectedUrl}/>
           	  <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
 
             	<BlogContent blogContent={this.state.blogContent}/>

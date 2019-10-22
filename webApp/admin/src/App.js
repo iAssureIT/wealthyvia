@@ -9,7 +9,7 @@ import './lib/router.js';
 import './App.css';
 
 axios.defaults.baseURL = 'http://api.wealthyvia.com';
-//axios.defaults.baseURL = 'http://localhost:3006';
+// axios.defaults.baseURL = 'http://localhost:3003';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {

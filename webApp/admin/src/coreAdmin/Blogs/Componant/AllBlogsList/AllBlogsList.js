@@ -25,8 +25,8 @@ export default class AllBlogsList extends React.Component {
 	}
 deleteBlog(event){
 	event.preventDefault();
-	var id= event.target.id;
-	console.log("id delet",id);
+	var URL= event.target.url;
+	console.log("id delet",URL);
 	 swal({
           title: "Are you sure you want to delete this Blog?",
           text: "Once deleted, you will not be able to recover this Blog!",
@@ -37,7 +37,7 @@ deleteBlog(event){
         .then((success) => {
             if (success) {
             	axios
-			    .delete("/api/blogs/delete/"+id)
+			    .delete("/api/blogs/delete/url/"+URL)
 			    .then((response)=>{
 			     	this.getBlogData();
 			       swal("Your Blog is deleted!");
@@ -94,10 +94,10 @@ componentDidMount(){
 													}<img className="img-responsive AllblogImgB" src={data.bannerImage?data.bannerImage.path:" "} alt="Bannerpng"/>
 														<div className="middle">
 														    
-														    <a href={"/blogsform/"+data._id} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
-														    <i className="fa fa-trash rclr hoverbbk" id={data._id} onClick={this.deleteBlog.bind(this)}></i>
+														    <a href={"/blogsform/url/"+data.blogURL} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
+														    <i className="fa fa-trash rclr hoverbbk" url={data.blogURL} onClick={this.deleteBlog.bind(this)}></i>
 														  </div>
-														<a href={"/singleblogpage/"+data._id}>
+														<a href={"/"+data.blogURL}>
 															<p className="blogDate p10 mtop20 graycolor">{data.createdAt}</p>
 															<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
 															<p className="blogPara p10 graycolor">{data.summary}</p>

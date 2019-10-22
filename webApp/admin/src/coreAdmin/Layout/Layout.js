@@ -160,12 +160,13 @@ componentDidMount(){
                           <Route path="/cafeMenu/:id" component={cafeMenu} exact />
                           <Route path="/bankReport" component={BankReport} exact />
                         {/* Blog  */}
-                          <Route path="/blogsform/:blogID"                exact strict component={BlogsFormPage}  />
+                          <Route path="/blogsform/id/:blogID"                exact strict component={BlogsFormPage}  />
                           <Route path="/allblogs" component={AllBlogs} exact />
 
                           <Route path="/blogsform" component={BlogsFormPage} exact />
+                          <Route path="/blogsform/url/:blogURL" component={BlogsFormPage} exact />
                           <Route path="/singleblogpage"                   exact strict component={SingleBlogPage}  />
-                          <Route path="/singleblogpage/:selectedID"       exact strict component={SingleBlogPage}  />
+                          <Route path="/:selectedUrl"       exact strict component={SingleBlogPage}  />
 
 
                           <Route path="/cafeWiseCheck-In/:workspace_ID" component={CafeWiseCheckInD} exact />
