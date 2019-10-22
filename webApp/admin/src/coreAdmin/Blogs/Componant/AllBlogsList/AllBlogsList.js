@@ -25,7 +25,7 @@ export default class AllBlogsList extends React.Component {
 	}
 deleteBlog(event){
 	event.preventDefault();
-	var URL= event.target.url;
+	var URL= event.target.id;
 	console.log("id delet",URL);
 	 swal({
           title: "Are you sure you want to delete this Blog?",
@@ -95,7 +95,7 @@ componentDidMount(){
 														<div className="middle">
 														    
 														    <a href={"/blogsform/url/"+data.blogURL} className="hoverbk"><i className="fa fa-pencil wclr"></i></a>
-														    <i className="fa fa-trash rclr hoverbbk" url={data.blogURL} onClick={this.deleteBlog.bind(this)}></i>
+														    <i className="fa fa-trash rclr hoverbbk" id={data.blogURL} onClick={this.deleteBlog.bind(this)}></i>
 														  </div>
 														<a href={"/"+data.blogURL}>
 															<p className="blogDate p10 mtop20 graycolor">{data.createdAt}</p>

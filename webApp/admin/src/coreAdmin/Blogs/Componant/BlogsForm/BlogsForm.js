@@ -29,6 +29,7 @@ class BlogsForm extends Component{
 		super(props);
 		 this.state={
       "blogTitle"      	  : "",
+      "updateID"          : "",
       "pageUrl"           : "",
       "summary"   	      : "",
       "typeOfBlog"   		  : "",
@@ -44,7 +45,7 @@ class BlogsForm extends Component{
           "clientName"    : " ",
           "clientEmail"   : " ", 
         },
-        "editId"          : this.props.match.params ? this.props.match.params.blogID : ''
+        "editId"          : this.props.match.params ? this.props.match.params.blogURL : ''
 
       };
       this.handleChange = this.handleChange.bind( this );
@@ -78,9 +79,11 @@ class BlogsForm extends Component{
           "summary":response.data.summary,
           "typeOfBlog":response.data.typeOfBlog,
           "blogContent":response.data.blogContent,
+          "updateID":response.data._id,
+
           "imgbPath":{
-            path:response.data.bannerImage.path
-          },
+            path:response.data.bannerImage.path,
+          },         
         });
       })
       .catch((error)=>{
@@ -261,10 +264,12 @@ uploadBlogImage(event){
           });
     }
   }
-
-
   update(event){
-    var id = this.props.match.params.blogID;
+    var id =this.state.updateID;
+  var blogURL = this.props.match.params.selectedUrl;
+  console.log("blogURL===",blogURL);
+  console.log("up id  ",this.state.updateID);
+
     event.preventDefault();
     const formValues = {
       "blogContent"         :this.state.blogContent,
