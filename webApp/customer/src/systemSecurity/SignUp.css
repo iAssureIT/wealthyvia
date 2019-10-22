@@ -30,12 +30,12 @@
   background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/signIn.jpg");
   padding: 0px !important;
   margin-right: -15px !important;
-  height: 600px !important;
+  height: 650px !important;
 }
 .signupPadding{
 }
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
-  height: 620px;
+  height: 680px;
   position: absolute;
   box-shadow: 0px 0px 0px;
 
@@ -1143,7 +1143,7 @@ input[type="radio"]:checked:before {
   height: 20px;
 }
 .signUpFormWrap, .forgetpassFormWrap, .confirmModalFormWrap{
-  height: 520px!important;
+  height: 550px!important;
   position: absolute;
   box-shadow: 0px 0px 0px;
   border: 1px solid #ccc;

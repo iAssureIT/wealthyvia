@@ -13,6 +13,14 @@ import './SignUp.css';
        
       }
     }
+    componentDidMount(){
+      if(!this.props.match.params.user_ID){
+        return(
+          <div className="col-lg-12"> Hello</div>
+
+          )
+      }
+    }
     confirmOTP(event){
       event.preventDefault();
       var url = this.props.match.params;
@@ -29,8 +37,8 @@ import './SignUp.css';
         {
           this.props.history.push('/reset-pwd/'+formValues.ID);
         }else{
-        swal("Account Created.","Please Login to continue.","sucess");
-        this.props.history.push('/login');
+        swal("Account Created.","Please Login to continue.","success");
+        this.props.history.push('/');
         }
       })
       .catch((error)=>{

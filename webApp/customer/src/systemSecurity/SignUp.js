@@ -77,12 +77,17 @@ class SignUp extends Component {
                 return (passwordVar.length >= 6) ? 
                 	(true, 
 		             document.getElementById("signUpBtn").value = 'Sign Up',
-      				// browserHistory.push("/"),
+      				//browserHistory.push("/"),
                 	axios.post('/api/users/post/signup/user/emailotp',auth)
 			            .then((response)=> {
+			            	if(response)
+			            	{
 		            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
 			                this.props.history.push("/confirm-otp/"+response.data.ID);
-			                
+			                }else{
+			                	console.log("loadding")
+
+			                }
 			            })
 			            .catch(function (error) {
 			                console.log(error);

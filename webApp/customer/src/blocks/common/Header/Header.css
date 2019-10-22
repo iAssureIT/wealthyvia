@@ -692,6 +692,7 @@ hr{
   text-align: center;
   font-size: 16px;
   padding-top: 5px;
+  padding-left: 12px !important;
   border-radius: 50%;
   background-color: #1db1f1;
 }

@@ -281,7 +281,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr>
                                    <tr>
                                     <td>2.</td>
@@ -290,7 +290,7 @@ class Amenities extends Component{
                                     <td className="text-center">ashish.chavan@iassureit.com</td>
                                     <td className="text-center">21-9-2019</td>
                                     <td className="text-center">21-11-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr> 
                                    <tr>
                                     <td>3.</td>
@@ -299,7 +299,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr>                                                  
                                  
                                 </tbody>
@@ -328,7 +328,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr>
                                    <tr>
                                     <td>2.</td>
@@ -337,7 +337,7 @@ class Amenities extends Component{
                                     <td className="text-center">ashish.chavan@iassureit.com</td>
                                     <td className="text-center">21-9-2019</td>
                                     <td className="text-center">21-11-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr> 
                                    <tr>
                                     <td>3.</td>
@@ -346,7 +346,7 @@ class Amenities extends Component{
                                     <td className="text-center">priyankalewade96@gmail.com</td>
                                     <td className="text-center">11-10-2019</td>
                                     <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr>                                                  
                                  
                                 </tbody>

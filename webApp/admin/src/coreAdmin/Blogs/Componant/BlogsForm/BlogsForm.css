@@ -14,3 +14,7 @@
 .createBlogLabel{
 	font-size: 20px;
 }
+.noBorder{
+	height: 22px;
+	width: 400px;
+}

@@ -1,28 +1,12 @@
 import React, { Component }      from 'react';
+import {Route, withRouter}       from 'react-router-dom';
+import axios                     from 'axios';
+import S3FileUpload              from 'react-s3';
+import swal                      from 'sweetalert';
+import PropTypes                 from 'prop-types';
+import CKEditor                  from 'ckeditor4-react';
 
 import "./BlogsForm.css";
-import {Route, withRouter} from 'react-router-dom';
-import axios        from 'axios';
-import S3FileUpload from 'react-s3';
-
-import swal from 'sweetalert';
-import PropTypes from 'prop-types';
-import CKEditor from 'ckeditor4-react';
-
-/*const formValid = formerrors=>{
-  console.log("formerrors",formerrors);
-  let valid = true;
-  Object.values(formerrors).forEach(val=>{
-  val.length>0 && (valid = false);
-  })
-  return valid;
-  }*/
-
-/*const clientnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const emailRegex = RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-*/
-/*axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 class BlogsForm extends Component{
 	constructor(props) {
@@ -35,15 +19,16 @@ class BlogsForm extends Component{
       "config"            : "",
       "uploadedImage"     : [],
       "imgPath"           : "",
-      "imgbPath"           : {},
-
+      "imgInTextPath"     : {},
+      "imgbPath"          : {},
       "blog1Img"          : [],
       "blogContent"       : '',
-      "formerrors"        :{
+      "formerrors"        :
+      {
           "clientName"    : " ",
           "clientEmail"   : " ", 
-        },
-        "editId"          : this.props.match.params ? this.props.match.params.blogID : ''
+      },
+      "editId"          : this.props.match.params ? this.props.match.params.blogID : ''
 
       };
       this.handleChange = this.handleChange.bind( this );
@@ -100,7 +85,6 @@ class BlogsForm extends Component{
                             region          : response.data.region,
                             accessKeyId     : response.data.key,
                             secretAccessKey : response.data.secret,
-
                          }
           this.setState({
             config : config
@@ -120,38 +104,57 @@ class BlogsForm extends Component{
   handleChange(event){
       event.preventDefault();
       this.setState({
-        
         "blogTitle":this.refs.blogTitle.value,
         "summary":this.refs.summary.value,
         "typeOfBlog": this.refs.typeOfBlog.value,
-       
       });
-      
   }
   uploadDesignImg(e){
-          console.log("upload =",e.target.files[0]);
-          var file = e.target.files[0];
-        this.setState({
-          uploadedImage: e.target.files[0]
-        },()=>{
+    console.log("upload =",e.target.files[0]);
+    var file = e.target.files[0];
+    this.setState({
+      uploadedImage: e.target.files[0]
+    },()=>{
           console.log("uploadToS3 =",this.state.uploadedImage);
           console.log("config",this.state.config);
-           S3FileUpload
-            .uploadFile(file,this.state.config)
-            .then((Data)=>{
-                console.log('Data.location', Data.location);
-              this.setState({
-                imgbPath : {
-                  "path"    : Data.location,
-                }
-              })
-          })
-          .catch((error)=>{
-            console.log(error);
-          })
-        })
-
-      }
+     S3FileUpload
+      .uploadFile(file,this.state.config)
+      .then((Data)=>{
+          console.log('Data.location', Data.location);
+        this.setState({
+          imgbPath : {
+            "path"    : Data.location,
+          }
+      })
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  })
+ }
+   uploadInTextImg(e){
+    console.log("upload =",e.target.files[0]);
+    var file = e.target.files[0];
+    this.setState({
+      uploadedImage: e.target.files[0]
+    },()=>{
+          console.log("uploadToS3 =",this.state.uploadedImage);
+          console.log("config",this.state.config);
+     S3FileUpload
+      .uploadFile(file,this.state.config)
+      .then((Data)=>{
+          console.log('Data.location', Data.location);
+        this.setState({
+          imgInTextPath : {
+            "path"    : Data.location,
+          }
+      })
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  })
+ }
 
 uploadBlogImage(event){
    event.preventDefault();
@@ -180,7 +183,7 @@ uploadBlogImage(event){
                     // workspaceImages : imgArrayWSaws
                     blog1Img : imgArrayWSaws
                   })
-      console.log("blog1Img1--------------->",imgArrayWSaws);
+                console.log("blog1Img1--------------->",imgArrayWSaws);
               })
               .catch((error)=>{
                 console.log("formErrors");
@@ -221,7 +224,30 @@ uploadBlogImage(event){
             if (success) {
               swal("Your image is deleted!");
               this.setState({
-                imgbPath : ""
+                 imgbPath : {
+                    "path"    :"",
+                  }
+              })
+            } else {
+            swal("Your image is safe!");
+          }
+        });
+  }  deleteBlogTextimage(event){
+    event.preventDefault();
+    swal({
+          title: "Are you sure you want to delete this image?",
+          text: "Once deleted, you will not be able to recover this image!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((success) => {
+            if (success) {
+              swal("Your image is deleted!");
+              this.setState({
+                imgInTextPath : {
+                  path:"",
+                }
               })
             } else {
             swal("Your image is safe!");
@@ -338,7 +364,7 @@ uploadBlogImage(event){
                     </div>
                   </div>
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label htmlFor="contactNumber">Banner Image<span className="redFont"></span></label>
+                    <label htmlFor="contactNumber">Banner Image<span className="redFont">*</span></label>
                     <div className="">
                       {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
                     </div>
@@ -349,7 +375,7 @@ uploadBlogImage(event){
                         <input type="file" className="noPadding" title="Please choose image" id="designImg" onChange={this.uploadDesignImg.bind(this)} />
                       </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                    <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         { this.state.imgbPath!=="" && this.state.imgbPath.path ? 
                           <div>
@@ -359,6 +385,33 @@ uploadBlogImage(event){
                           : <div> </div>
                         }
                         </div>
+                      </div>
+                    </div>
+                    <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 mt40">
+                      <label htmlFor="contactNumber">Insert Image<span className="redFont">*</span></label>
+                      <div className="">
+                        {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                        <div className="col-lg-4  col-md-12 col-sm-12 col-xs-12 row">
+                            {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
+                          
+                          <input type="file" className="noPadding" title="Please choose image" id="designImg" onChange={this.uploadInTextImg.bind(this)} /> 
+                        </div>
+                         <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 row ">
+                          <input type="text" className="noBorder" value={this.state.imgInTextPath.path?this.state.imgInTextPath.path : "No file chosen"}/>
+                        </div>
+                      </div>
+                      <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                          { this.state.imgInTextPath!=="" && this.state.imgInTextPath.path ? 
+                            <div>
+                              <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteBlogTextimage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
+                              <img src={this.state.imgInTextPath.path} width="150" height="100"/>
+                            </div>
+                            : <div> </div>
+                          }
+                          </div>
                       </div>
                     </div>
                   {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">

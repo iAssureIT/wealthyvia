@@ -19,17 +19,16 @@
 .customTabContent{
 	padding: 20px !important;
 	background-color: #fff;
-    min-height: 400px !important;
+    min-height: 480px !important;
 }
 .customStack{
 }
 .customStack>li.active>a, .customStack>li.active>a:focus, .customStack>li.active>a:hover{
 	border-radius: 3px !important;
-	background-color:#201a47 !important;
-	color:#fff !important;
+	background-color:#00BAF2 !important;
 }
 .customStack>li.active>a:hover{
-
+ color: #666 !important;
 }
 .planContainer{
 padding: 20px !important;
@@ -47,7 +46,7 @@ margin-bottom: 40px;
 	font-size: 16px;
 	border:1px solid #aaa;
 	padding: 18px !important;
-	color: #666 !important;
+	color: #666;
 	margin-bottom:10px !important; 
 }
 .customTabContent h3,h5{
@@ -81,6 +80,7 @@ margin-bottom: 40px;
 }
 .myULCDSP li>a:hover{
 	text-decoration: none !important;
+	color: #666 !important;
 }
 .priBlogHead{
 	font-size: 20px;
@@ -88,4 +88,12 @@ margin-bottom: 40px;
 }
 .padding100{
 	padding-bottom: 250px;
+}
+.activeSubscription{
+	background-color: #201a47;
+	color: #fff !important;
+}
+.customStack>li>a:hover{
+	background-color: transparent !important;
+    color: #666 !important;
 }

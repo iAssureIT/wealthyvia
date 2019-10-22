@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
-import $         from 'jquery';
-import Blogs                        from "../../blocks/Blogs/Blogs.js";
-import OwlCarousel     from 'react-owl-carousel';
+import React, { Component }       from 'react';
+import $                          from 'jquery';
+import Blogs                      from "../../blocks/Blogs/Blogs.js";
+import OwlCarousel                from 'react-owl-carousel';
+import axios                      from "axios";
+import swal                       from 'sweetalert';
+
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 
@@ -12,9 +15,10 @@ export default class SubscribedServices extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"5gcpm",
-          date : "09-10-2019",
-          date1 : "08-10-2019 9:30PM",
+          nameOfDiv    : "5gcpm",
+          date         : "09-10-2019",
+          date1        : "08-10-2019 9:30PM",
+          offeringTitle: "",
 
         };
     }
@@ -24,12 +28,36 @@ export default class SubscribedServices extends Component {
 
   componentDidMount()
   {
+    axios.get('http://api.wealthyvia.com/api/offerings/get/all/list/1')
+    .then((res)=>{      
+      console.log("offerings",res.data);
 
+   
+      this.setState({
+            offeringTitle : res.data,
+          },()=>{console.log("offeringTitle",this.state.offeringTitle);
+          })
+    })
+    .catch((error)=>{
+      // console.log("error = ",error);
+      // alert("Something went wrong! Please check Get URL.");
+        if(error.message === "Request failed with status code 401")
+              {
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+    });
   } 
+  checkSubscribe(event)
+  {
+    event.preventDefault();
+    console.log("in checkSubscribe");
+   swal("You are not subscribed to this offering","", "error");
 
+  }
   render() {
     var date = "09-10-2019  5:30PM";
-
+    var subscribed =false;
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding100">
                 <div className="row">
@@ -39,11 +67,22 @@ export default class SubscribedServices extends Component {
                       <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt40 "> 
                           <ul class="nav nav-pills nav-stacked customStack textAlignCenter">
                             <li ><a data-toggle="pill" href="#performance">Performance</a></li>
-                            <li class="active"><a data-toggle="pill" href="#home">5GCPM</a></li>
-                             <li><a data-toggle="pill" href="#menu1">Safe Heavan Moats</a></li>
-                              <li><a data-toggle="pill" href="#menu2">Safe Heavan Stocks + Alpha</a></li>
-                              <li><a data-toggle="pill" href="#menu3">USA Stocks Portfolio</a></li>
-                              <li><a data-toggle="pill" href="#menu4">Unlisted Stocks</a></li>
+                           {this.state.offeringTitle?
+                             this.state.offeringTitle.map((a, i)=>{
+                                return(
+                                  <li>
+                                    {subscribed == true ?
+                                    <a data-toggle="pill" className="activeSubscription" href="#home">{a.offeringTitle}</a>
+                                    :
+                                    <a  className="disabled" onClick={this.checkSubscribe.bind(this)}>{a.offeringTitle}</a>
+
+                                    }
+                                  </li>
+                               
+                                )
+                              })
+                              :null
+                            }
                           </ul>
 
                       </div>

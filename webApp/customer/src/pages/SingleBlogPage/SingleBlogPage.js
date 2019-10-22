@@ -29,13 +29,13 @@ export default class SingleBlogPage extends React.Component {
 
 		};
 	}
-
-
-componentDidMount(){
-  var id = this.props.match.params.selectedID;
-  this.setState({
-    CurrectUrl:window.location.href
-  })
+  componentDidMount(){
+    var url = this.props.location.pathname;
+    localStorage.setItem("lastUrl",url);
+    var id = this.props.match.params.selectedID;
+    this.setState({
+      CurrectUrl:window.location.href
+    })
 
 		axios
       .get('/api/blogs/get/'+id)
@@ -71,38 +71,33 @@ componentDidMount(){
       })
       .catch(function(error){
         console.log(error);
-          if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-              }
-      })
+        if(error.message === "Request failed with status code 401")
+            {
+                 swal("Your session is expired! Please login again.","", "error");
+            }
+        })
 	}
 
 	render() {
     const token = localStorage.getItem("user_ID");
     if(token){
 		return (
-          	<div className="container-fluid" style={{padding:"0px"}}>
-          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
-              <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
-          		<BlogContent blogContent={this.state.blogContent}/>
-              <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
-               <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrectUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrectUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
-              </div>
-              <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
-                <span className="countNumberLike">{this.state.viewCount} views</span>
-              </div>
-          		<RelatedBlogs/>
-{/*          		<BlogComment/>
-*/} 
-
-			       </div>
-		);
-  }else{
-     this.props.history.push("/login");
-      window.location.reload();
+      	<div className="container-fluid" style={{padding:"0px"}}>
+      		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
+          <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
+      		  <BlogContent blogContent={this.state.blogContent}/>
+            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
+              <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrectUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrectUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+            </div>
+            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+              <span className="countNumberLike">{this.state.viewCount} views</span>
+            </div>
+      		<RelatedBlogs/>
+			 </div>
+	   	);
+    }else{
+       this.props.history.push("/login");
+        window.location.reload();
     }
-
-
 	}
 }

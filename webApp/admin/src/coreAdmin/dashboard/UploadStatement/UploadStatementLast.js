@@ -52,16 +52,16 @@ class ClientTable extends Component {
   }
 
   handleChange(event){
-    var checkValue      = event.target.checked;
-    const valueOfCheck  = event.target.value.split("-");
+    var checkValue = event.target.checked;
+    const valueOfCheck = event.target.value.split("-");
 
-    const offeringID    = valueOfCheck[1];
-    const offeringName  = valueOfCheck[2];
-    const userID        = valueOfCheck[0];
+    const offeringID = valueOfCheck[1];
+    const offeringName = valueOfCheck[2];
+    const userID = valueOfCheck[0];
 
 
     if(checkValue){
-      var offeringValues = {
+      var offeringValues={
           "userID"      : userID, 
           "planID"      : offeringID,
           "btnStatus"   : "checked",      
