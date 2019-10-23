@@ -108,9 +108,13 @@
 }
 .premiumBlogIndicate{
 	  position: absolute;
-	  left: 5px;
-	  top:5px;
-	  color: #f5d26e;
+	  left: -20px;
+	  top:14px;
+	  padding-left: 18px;
+	  padding-right:  20px;
+	  transform: rotate(-40deg);
+	  background-color:#f5d26e;
+	  color: #333;
 	  font-size: 16px;
 
 }

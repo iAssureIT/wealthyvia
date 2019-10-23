@@ -1,9 +1,9 @@
-import React, { Component }       from 'react';
-import { render }                 from 'react-dom';
-import SimpleReactValidator       from 'simple-react-validator';
-import axios                      from 'axios';
-import swal                       from 'sweetalert';
-import $                          from "jquery";
+import React, { Component } from 'react';
+import { render }           from 'react-dom';
+import SimpleReactValidator from 'simple-react-validator';
+import axios                from 'axios';
+import swal                 from 'sweetalert';
+import $                    from "jquery";
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
 import './UploadStatement.css';
@@ -11,14 +11,12 @@ import './UploadStatement.css';
 axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 var location ="";
-class UploadStatement extends Component{
+class UploadPerformanceStatement extends Component{
 
   constructor(props) {
     super(props);
     this.state = {
       "uploadStatement":"",
-            "imgArrayWSaws"           : [],
-
     
     };
   
@@ -28,13 +26,13 @@ class UploadStatement extends Component{
       .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
       .then((response)=>{
         const config = 
-          {
-              bucketName      : response.data.bucket,
-              dirName         : response.data.bucket,
-              region          : response.data.region,
-              accessKeyId     : response.data.key,
-              secretAccessKey : response.data.secret,
-          }
+                       {
+                          bucketName      : response.data.bucket,
+                          dirName         : response.data.bucket,
+                          region          : response.data.region,
+                          accessKeyId     : response.data.key,
+                          secretAccessKey : response.data.secret,
+                      }
         this.setState({
           config : config
         })
@@ -117,24 +115,24 @@ class UploadStatement extends Component{
   }
 
    deleteimageLogo(index){
-     swal({
-        title: "Are you sure you want to delete this image?",
-        text: "Once deleted, you will not be able to recover this image!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((success) => {
-          if (success) {
-            swal("Your image is deleted!");
-            this.setState({
-              uploadStatement : ""
-            })
-          } else {
-          swal("Your image is safe!");
-        }
-      }
-    );
+  
+       swal({
+          title: "Are you sure you want to delete this image?",
+          text: "Once deleted, you will not be able to recover this image!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((success) => {
+            if (success) {
+              swal("Your image is deleted!");
+              this.setState({
+                uploadStatement : ""
+              })
+            } else {
+            swal("Your image is safe!");
+          }
+        });
   }
 
   render(){
@@ -144,8 +142,10 @@ class UploadStatement extends Component{
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
           <h4 className="h5lettersp MasterBudgetTitle">User Statement Upload</h4>
          </div>
-          <hr className="compySettingHr"/>
+      
+          <hr className="compySettingHr" />
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+           
              <form id="CompanySMSGatewayForm"  >
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
@@ -154,19 +154,20 @@ class UploadStatement extends Component{
                       <label className="control-label statelabel locationlabel" >Select Offering</label>
                       <span className="astrick">*</span>
                       <select  ref="planName"
-                         type="text" name="planName" placeholder="Enter Subscription Name" 
-                         className="selectbox" title="Please enter package Name">
-                          <option >---- Select ----</option>
-                          <option>5GCPM</option>
-                          <option>Safe Heaven</option>
-                          <option>Safe Heaven Stocks & Alpha</option>
-                          <option>USA Stocks Portfolio</option>
-                          <option>Unlisted Stocks</option>     
-                      </select>
+                             type="text" name="planName" placeholder="Enter Subscription Name" 
+                             className="selectbox" title="Please enter package Name">
+                              <option >---- Select ----</option>
+                              <option>5GCPM</option>
+                              <option>Safe Heaven</option>
+                              <option>Safe Heaven Stocks & Alpha</option>
+                              <option>USA Stocks Portfolio</option>
+                              <option>Unlisted Stocks</option>     
+                          </select>
+                    
                     </div>                     
                   </div> 
-                </div>
-                </div>     
+                  </div>
+                 </div>     
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
                       <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12 padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
@@ -185,7 +186,7 @@ class UploadStatement extends Component{
                     </div>
                  </div>          
           
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt40">
                  {/* { this.state.uploadStatement ?
                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
@@ -206,75 +207,15 @@ class UploadStatement extends Component{
                     :
                     null
                   }      */}
-                {
-                  this.state.uploadStatement !==""?
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  imagesDivUploaded">
+                  {this.state.uploadStatement!== ""
+                    ?
+                  <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  imagesDivUploaded">
                       <img src="/images/pdf.png"/>
                       <label className="mt20">{this.state.uploadStatementName}</label>
-                    </div>
-                    : 
-                    <div className="loadingImage"><img src="/images/loading.gif"/></div>
+{/*                       <embed src={this.state.uploadStatement} type="application/pdf" className="" />
+*/}                </div>
+                  :null
                 }
-                {/*     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
-                  {this.state.imgArrayWSaws==null?
-                    null
-                  :
-                    this.state.imgArrayWSaws.map((data,index)=>{
-                      return(
-                              <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row">
-                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                                  <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Workspace Image {index+1}</h5>
-                                </div>
-                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                  <div className="imgcss" key={index}>
-                                    <label id={index} className="pull-right custFaTimes" title="Delete image" data-id={data.imgPath} onClick={this.deleteimageWS.bind(this)}>X</label>
-                                    <img className="img-responsive" src={data.imgPath}/>
-                                  </div>
-                                </div>
-                              </div>
-                            )
-                    })
-                  }
-                  {this.state.imgArrayWSaws.length<=0?
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Workspace Images <span className="astrick">*</span></h5>
-                       
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                        <div className="clr_k ">
-                          <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon">
-                            <img src="/images/Upload-Icon.png"/>
-                          </div>
-                          <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
-                           <b className="text_k11"></b>
-                           <span className="under_ln">Choose Workspace Images</span>
-                          </div>     
-                          <input  type="file" title="Click to attach file" multiple name="userPic" onChange={this.uploadworkspaceImage.bind(this)} ref="workspaceImg"  className="form-control click_input" id="upload-file2" />
-                        </div>
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgdetails">(max size: 1 Mb, Format: JPEG, jpg, png)</div>
-                    </div>
-                  :
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Images <span className="astrick">*</span></h5>
-                      </div>
-                      <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                        <div className="clr_k" style={{height:"120px"}}>
-                          <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon1">
-                            <img src="/images/Upload-Icon.png"/>
-                          </div>
-                          <div  className= "col-lg-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 below_text">
-                           <b className="text_k11"></b>
-                           <span className="text-center under_ln">Choose another image</span>
-                          </div>     
-                          <input  type="file" title="Click to attach file" multiple name="userPic" onChange={this.uploadworkspaceImage.bind(this)} ref="workspaceImg"  className="form-control click_input" id="upload-file2" />
-                        </div>
-                      </div>
-                    </div>
-                }
-                </div>*/}
 
               </div>
 
@@ -288,4 +229,4 @@ class UploadStatement extends Component{
 
 }
 
-export default UploadStatement;
+export default UploadPerformanceStatement;

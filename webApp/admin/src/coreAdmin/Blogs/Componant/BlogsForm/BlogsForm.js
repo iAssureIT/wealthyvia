@@ -29,15 +29,17 @@ class BlogsForm extends Component{
 		super(props);
 		 this.state={
       "blogTitle"      	  : "",
-      "updateID"          : "",
       "pageUrl"           : "",
+      "updateID"          : "",
       "summary"   	      : "",
       "typeOfBlog"   		  : "",
       "imgArrayWSaws"     : [],
       "config"            : "",
       "uploadedImage"     : [],
       "imgPath"           : "",
-      "imgbPath"           : {},
+      "imgbPath"          : {},
+      "imgInTextPath"     : {},
+
 
       "blog1Img"          : [],
       "blogContent"       : '',
@@ -69,6 +71,7 @@ class BlogsForm extends Component{
   }
   edit(e){
     var blogURL = this.props.match.params.blogURL;
+    console.log("blogURL = ",blogURL);
     axios
       .get("/api/blogs/get/"+blogURL)
       .then((response)=>{
@@ -79,11 +82,10 @@ class BlogsForm extends Component{
           "summary":response.data.summary,
           "typeOfBlog":response.data.typeOfBlog,
           "blogContent":response.data.blogContent,
-          "updateID":response.data._id,
-
+          "updateID": response.data._id,
           "imgbPath":{
-            path:response.data.bannerImage.path,
-          },         
+            path:response.data.bannerImage.path
+          },
         });
       })
       .catch((error)=>{
@@ -141,6 +143,8 @@ class BlogsForm extends Component{
         this.setState({
           uploadedImage: e.target.files[0]
         },()=>{
+          console.log("uploadToS3 =",this.state.uploadedImage);
+          console.log("config",this.state.config);
            S3FileUpload
             .uploadFile(file,this.state.config)
             .then((Data)=>{
@@ -264,12 +268,10 @@ uploadBlogImage(event){
           });
     }
   }
-  update(event){
-    var id =this.state.updateID;
-  var blogURL = this.props.match.params.selectedUrl;
-  console.log("blogURL===",blogURL);
-  console.log("up id  ",this.state.updateID);
 
+
+  update(event){
+    var id = this.state.updateID;
     event.preventDefault();
     const formValues = {
       "blogContent"         :this.state.blogContent,
@@ -315,6 +317,52 @@ uploadBlogImage(event){
                     console.log("error = ", error);
                   });
   }
+   deleteBlogTextimage(event){
+    event.preventDefault();
+    swal({
+          title: "Are you sure you want to delete this image?",
+          text: "Once deleted, you will not be able to recover this image!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((success) => {
+            if (success) {
+              swal("Your image is deleted!");
+              this.setState({
+                imgInTextPath : {
+                  path:"",
+                }
+              })
+            } else {
+            swal("Your image is safe!");
+          }
+        });
+  }
+  uploadInTextImg(e){
+    console.log("upload =",e.target.files[0]);
+    var file = e.target.files[0];
+    this.setState({
+      uploadedImage: e.target.files[0]
+    },()=>{
+          console.log("uploadToS3 =",this.state.uploadedImage);
+          console.log("config",this.state.config);
+     S3FileUpload
+      .uploadFile(file,this.state.config)
+      .then((Data)=>{
+          console.log('Data.location', Data.location);
+        this.setState({
+          imgInTextPath : {
+            "path"    : Data.location,
+          }
+      })
+    })
+    .catch((error)=>{
+      console.log(error);
+    })
+  })
+ }
+
 	render() {
     
 		return (
@@ -368,7 +416,7 @@ uploadBlogImage(event){
                         <input type="file" className="noPadding" title="Please choose image" id="designImg" onChange={this.uploadDesignImg.bind(this)} />
                       </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                    <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         { this.state.imgbPath!=="" && this.state.imgbPath.path ? 
                           <div>
@@ -378,6 +426,33 @@ uploadBlogImage(event){
                           : <div> </div>
                         }
                         </div>
+                      </div>
+                    </div>
+                     <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 mt40">
+                      <label htmlFor="contactNumber">Insert Image<span className="redFont">*</span></label>
+                      <div className="">
+                        {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
+                      </div>
+                      <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                        <div className="col-lg-4  col-md-12 col-sm-12 col-xs-12 row">
+                            {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
+                          
+                          <input type="file" className="noPadding" title="Please choose image" id="designImg" onChange={this.uploadInTextImg.bind(this)} /> 
+                        </div>
+                         <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 row ">
+                          <input type="text" className="noBorder" value={this.state.imgInTextPath.path?this.state.imgInTextPath.path : "No file chosen"}/>
+                        </div>
+                      </div>
+                      <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                          { this.state.imgInTextPath!=="" && this.state.imgInTextPath.path ? 
+                            <div>
+                              <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteBlogTextimage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
+                              <img src={this.state.imgInTextPath.path} width="150" height="100"/>
+                            </div>
+                            : <div> </div>
+                          }
+                          </div>
                       </div>
                     </div>
                   {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">

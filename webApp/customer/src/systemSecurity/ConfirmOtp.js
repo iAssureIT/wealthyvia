@@ -6,71 +6,70 @@ import axios from 'axios';
 
 import './SignUp.css';
 
- class ConfirmOtp extends Component {
+class ConfirmOtp extends Component {
     constructor(props){
       super(props);
       this.state ={
        
       }
     }
-    componentDidMount(){
-      if(!this.props.match.params.user_ID){
-        return(
-          <div className="col-lg-12"> Hello</div>
+  componentDidMount(){
+    if(!this.props.match.params.user_ID){
+      return(
+        <div className="col-lg-12"> Hello</div>
 
-          )
-      }
+        )
     }
-    confirmOTP(event){
-      event.preventDefault();
-      var url = this.props.match.params;
-      // console.log('confirm otp');
-      var formValues ={
-        "ID" :  this.props.match.params.user_ID,
-        "emailotp":  parseInt(this.refs.emailotp.value)
-      }
-      axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
-      .then((response)=>{
-        const token = localStorage.getItem("verify");
-        console.log("token",token);
-        if(token == "true")
-        {
-          this.props.history.push('/reset-pwd/'+formValues.ID);
-        }else{
-        swal("Account Created.","Please Login to continue.","success");
-        this.props.history.push('/');
-        }
-      })
-      .catch((error)=>{
-        console.log('error', error);
-      })
+  }
+  confirmOTP(event){
+    event.preventDefault();
+    var url = this.props.match.params;
+    // console.log('confirm otp');
+    var formValues ={
+      "ID" :  this.props.match.params.user_ID,
+      "emailotp":  parseInt(this.refs.emailotp.value)
     }
-
-    inputEffect(event){
-      event.preventDefault();
-      if($(event.target).val() != ""){
-        $(event.target).addClass("has-content");
+    axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
+    .then((response)=>{
+      const token = localStorage.getItem("verify");
+      console.log("token",token);
+      if(token == "true")
+      {
+        this.props.history.push('/reset-pwd/'+formValues.ID);
       }else{
-        $(event.target).removeClass("has-content");
+      swal("Account Created.","Please Login to continue.","success");
+      this.props.history.push('/');
       }
-    }
+    })
+    .catch((error)=>{
+      console.log('error', error);
+    })
+  }
 
-    resendOtp(event){
-      event.preventDefault();
-      var element = document.getElementById("resendOtpBtn");
-      element.classList.add("btn-success");
-      element.classList.remove("resendOtpColor");
-
-            const userid = this.props.match.params.user_ID;
-          axios.patch('/api/users/patch/optEmail',userid)
-          .then((response)=>{
-            // console.log('response', response);
-            swal(response.data.message)
-          })
-          .catch((error)=>{
-            console.log('error', error);
-          })    
+  inputEffect(event){
+    event.preventDefault();
+    if($(event.target).val() != ""){
+      $(event.target).addClass("has-content");
+    }else{
+      $(event.target).removeClass("has-content");
     }
+  }
+
+  resendOtp(event){
+    event.preventDefault();
+    var element = document.getElementById("resendOtpBtn");
+    element.classList.add("btn-success");
+    element.classList.remove("resendOtpColor");
+    const userid = this.props.match.params.user_ID;
+    axios.patch('/api/users/patch/optEmail',userid)
+    .then((response)=>{
+      // console.log('response', response);
+      swal(response.data.message)
+    })
+    .catch((error)=>{
+      console.log('error', error);
+    })    
+  }
 
 
   render(){

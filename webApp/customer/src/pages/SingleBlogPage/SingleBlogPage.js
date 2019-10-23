@@ -14,7 +14,7 @@ import {
   TwitterShareButton,
   WhatsappShareButton,
   } from 'react-share';
-
+var id;
 export default class SingleBlogPage extends React.Component {
 
 	constructor(props) {
@@ -32,15 +32,14 @@ export default class SingleBlogPage extends React.Component {
   componentDidMount(){
     var url = this.props.location.pathname;
     localStorage.setItem("lastUrl",url);
-    var id = this.props.match.params.selectedID;
     this.setState({
       CurrectUrl:window.location.href
     })
+    id = this.props.match.params.selectedUrl;
 
 		axios
       .get('/api/blogs/get/'+id)
       .then((response)=>{
-      	console.log("response blogs==",response.data);
         this.setState({
 
         "blogTitle"		:response.data.blogTitle,
@@ -54,23 +53,20 @@ export default class SingleBlogPage extends React.Component {
         })
       })
       .catch(function(error){
-        console.log(error);
           if(error.message === "Request failed with status code 401")
               {
-                   swal("Your session is expired! Please login again.","", "error");
+                swal("Your session is expired! Please login again.","", "error");
               }
       })
       axios
       .get('/api/blogs/get/count/'+id)
       .then((response)=>{
-        console.log("Count ==",response.data.count);
         this.setState({
             viewCount: response.data.count,
         })
         
       })
       .catch(function(error){
-        console.log(error);
         if(error.message === "Request failed with status code 401")
             {
                  swal("Your session is expired! Please login again.","", "error");
@@ -81,6 +77,7 @@ export default class SingleBlogPage extends React.Component {
 	render() {
     const token = localStorage.getItem("user_ID");
     if(token){
+
 		return (
       	<div className="container-fluid" style={{padding:"0px"}}>
       		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
@@ -94,6 +91,7 @@ export default class SingleBlogPage extends React.Component {
             </div>
       		<RelatedBlogs/>
 			 </div>
+      
 	   	);
     }else{
        this.props.history.push("/login");

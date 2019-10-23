@@ -85,61 +85,59 @@ render() {
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
           		<div className="col-lg-12">
 	          		{
-		                		data && data.length > 0 ?
-				      				data.map((data, index)=>{
-		                					return(
-							          			<div className="col-lg-3 Allblog">
-							          				
-							          				<div className="All1blog1 z50">
-							          				{data.typeOfBlog == "Premium" ?
-							          					<p className="premiumBlogIndicate"><i class="fa fa-star"></i></p>
+            		data && data.length > 0 ?
+	      				data.map((data, index)=>{
+            					return(
+				          			<div className="col-lg-3 Allblog">
+				          				
+				          				<div className="All1blog1 z50">
+				          				{data.typeOfBlog == "Premium" ?
+				          					<div className="premiumBlogIndicate">Premium</div>
+											
+											:
+											null
+										}
+											<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+											{ token ?
+												(data.typeOfBlog == "Premium" ?
+													(subscribed ?
+															<a href={"/blog/"+data.blogURL}>
+																<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																<p className="blogPara p10 graycolor">{data.summary}</p>
+															</a>
 														
-														:
-														null
-													}
-														<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
-														{ token ?
-															(data.typeOfBlog == "Premium" ?
-																(subscribed ?
-																		<a href={"/singleblogpage/"+data._id}>
-																			<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-																			<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-																			<p className="blogPara p10 graycolor">{data.summary}</p>
-																		</a>
-																	
-																		:
-																		<a href={"/planPage"}>
-																			<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-																			<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-																			<p className="blogPara p10 graycolor">{data.summary}</p>
-																		</a>
-																	
-																	)
 															:
-															<a href={"/singleblogpage/"+data._id}>
+															<a href={"/planPage"}>
 																<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
 																<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
 																<p className="blogPara p10 graycolor">{data.summary}</p>
 															</a>
-															)
-														:
-															<a href="/login">
-																<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-																<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-																<p className="blogPara p10 graycolor">{data.summary}</p>
-															</a>
-														}
-							          				
-													</div>
+														
+														)
+												:
+												<a href={"/blog/"+data.blogURL}>
+													<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+													<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+													<p className="blogPara p10 graycolor">{data.summary}</p>
+												</a>
+												)
+											:
+											<a href="/login">
+												<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+												<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+												<p className="blogPara p10 graycolor">{data.summary}</p>
+											</a>
+											}
+				          				
+										</div>
 
-							          			</div>
-							          			);
-	                					})
-	                				:
-	                				<h4 className="noBlogs p10 textAlignCenter"><b>No blogs found</b></h4>
-
-		                		}				
-	          		
+				          			</div>
+				          			);
+        					})
+        				:
+        				<h4 className="noBlogs p10 textAlignCenter"><b>No blogs found</b></h4>
+            		}				
 	          		
           		</div>
 			</div>

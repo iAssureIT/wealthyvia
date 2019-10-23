@@ -28,13 +28,11 @@ getBlogData(){
 	axios
       .get('/api/blogs/get/all/list')
       .then((response)=>{
-       console.log("===>",response.data);
       	this.setState({
       			Blogs:response.data
       		});
       })
       .catch(function(error){
-        console.log(error);
           if(error.message === "Request failed with status code 401")
               {
                    swal("Your session is expired! Please login again.","", "error");
@@ -64,7 +62,7 @@ componentDidMount(){
 							          				<div className="col-lg-12 rblog">
 							          					<div className="r1blog1">
 															<img className="img-responsive blogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
-															<a href={"/singleblogpage/"+data._id}>
+															<a href={"/blog/"+data.blogURL}>
 
 																<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
 																<h4 className="blogTitle p10 mt40"><b>{data.blogTitle}</b></h4>

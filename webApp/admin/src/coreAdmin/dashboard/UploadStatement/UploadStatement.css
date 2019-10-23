@@ -56,3 +56,15 @@
 	width: 40%;
 	margin-left: 10%;
 }
+.loadingImage{
+	height: 120px;
+	width: 30%;
+	margin-top: 10px;
+	margin-bottom: 40px;
+
+}
+.loadingImage img{
+	height: 100%;
+	width: 40%;
+	margin-left: 10%;
+}

@@ -17,7 +17,8 @@ import VerifyAccount    from '../systemSecurity/VerifyAccount.js';
 import Header           from '../common/header/Header.js'
 import Footer           from '../common/footer/Footer.js'
 import Dashboard        from '../dashboard/Dashboard.js'
-import UploadStatement        from '../dashboard/UploadStatement/UploadStatement.js'
+import UploadStatement  from '../dashboard/UploadStatement/UploadStatement.js'
+import UploadPerformanceStatement  from '../dashboard/UploadStatement/UploadPerformanceStatement.js'
 import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js'
 import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js'
 import UMListOfUsers    from '../userManagement/UM/UMListOfUsers.js';
@@ -143,6 +144,7 @@ componentDidMount(){
                           <Route path="/ViewTemplates" component={ViewTemplates} exact />
                           <Route path="/dashboard" component={Dashboard} exact />
                           <Route path="/uploadStatement" component={UploadStatement} exact />
+                          <Route path="/UploadPerformanceStatement" component={UploadPerformanceStatement} exact />
                           <Route path="/companysetting" component={CompanySetting} exact />
                           <Route path="/companysetting/:id" component={CompanySetting} exact />
 
