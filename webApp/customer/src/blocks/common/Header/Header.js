@@ -636,7 +636,6 @@ export default class Header extends Component {
         S3FileUpload
           .deleteFile(imageName,this.state.config)
           .then((response) =>{
-            console.log("Deletedddd...",response)
             swal("Image deleted successfully");
           })
           .catch((err) => {

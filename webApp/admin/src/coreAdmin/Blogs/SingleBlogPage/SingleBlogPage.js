@@ -24,7 +24,7 @@ export default class SingleBlogPage extends React.Component {
           "viewCount"         : "",
 
 		};
-	}
+	} 
 
 
 componentDidMount(){

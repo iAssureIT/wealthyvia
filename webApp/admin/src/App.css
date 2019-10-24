@@ -294,3 +294,9 @@ padding: 20px;
   padding: 40px;
   margin:20px;
 }
+.errorMsg{
+  color: #f00;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}

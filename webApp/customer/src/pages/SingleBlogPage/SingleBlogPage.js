@@ -5,6 +5,7 @@ import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
 import Moment                from 'react-moment';
 
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
+import { FacebookProvider, ShareButton } from 'react-facebook';
 
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
@@ -58,8 +59,10 @@ export default class SingleBlogPage extends React.Component {
                 swal("Your session is expired! Please login again.","", "error");
               }
       })
+      var blogURL = this.props.match.params.selectedUrl;
+
       axios
-      .get('/api/blogs/get/count/'+id)
+      .get('/api/blogs/get/count/url/'+blogURL)
       .then((response)=>{
         this.setState({
             viewCount: response.data.count,
@@ -86,6 +89,15 @@ export default class SingleBlogPage extends React.Component {
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
               <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrectUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrectUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
             </div>
+              <FacebookProvider appId="409175303314400">
+                  <ShareButton className="fbBtn" href="http://www.facebook.com">
+                <i class="facebook col-lg-12 fa fa-facebook" aria-hidden="true"></i>
+                  </ShareButton>
+                </FacebookProvider>
+             <div class="fb-share-button" 
+                data-href={this.state.CurrectUrl} 
+                data-layout="button_count">
+              </div>
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
               <span className="countNumberLike">{this.state.viewCount} views</span>
             </div>
@@ -99,3 +111,4 @@ export default class SingleBlogPage extends React.Component {
     }
 	}
 }
+

@@ -28,10 +28,13 @@ class BlogsForm extends Component{
 	constructor(props) {
 		super(props);
 		 this.state={
+      "fields"            : {},
+      "errors"            : {},  
       "blogTitle"      	  : "",
       "pageUrl"           : "",
       "updateID"          : "",
       "summary"   	      : "",
+      "bannerImg"         : "",
       "typeOfBlog"   		  : "",
       "imgArrayWSaws"     : [],
       "config"            : "",
@@ -39,8 +42,6 @@ class BlogsForm extends Component{
       "imgPath"           : "",
       "imgbPath"          : {},
       "imgInTextPath"     : {},
-
-
       "blog1Img"          : [],
       "blogContent"       : '',
       "formerrors"        :{
@@ -48,7 +49,6 @@ class BlogsForm extends Component{
           "clientEmail"   : " ", 
         },
         "editId"          : this.props.match.params ? this.props.match.params.blogURL : ''
-
       };
       this.handleChange = this.handleChange.bind( this );
       this.onEditorChange = this.onEditorChange.bind( this );
@@ -135,16 +135,30 @@ class BlogsForm extends Component{
         "pageUrl"         : this.refs.blogTitle.value.toLowerCase().split(" ").join("-"),
        
       });
+      let fields = this.state.fields;
+      fields[event.target.name] = event.target.value;
+      this.setState({
+        fields
+      });
+      if (this.validateForm() && this.validateFormReq()) {
+        let errors = {};
+        errors[event.target.name] = "";
+        this.setState({
+          errors: errors
+      });
+    }
       
   }
-  uploadDesignImg(e){
-          console.log("upload =",e.target.files[0]);
-          var file = e.target.files[0];
+  uploadDesignImg(event){
+    console.log("upload =",event.target.files[0]);
+    var file = event.target.files[0];
+    if(file){
+      var ext = file.name.split('.').pop();
+      if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
         this.setState({
-          uploadedImage: e.target.files[0]
-        },()=>{
+          uploadedImage: event.target.files[0]
+          },()=>{
           console.log("uploadToS3 =",this.state.uploadedImage);
-          console.log("config",this.state.config);
            S3FileUpload
             .uploadFile(file,this.state.config)
             .then((Data)=>{
@@ -159,8 +173,32 @@ class BlogsForm extends Component{
             console.log(error);
           })
         })
+      }else{
+        swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning"); 
+         this.setState({
+              imgbPath : {
+                "path"    : "",
+              }
+          }) 
+        }
+      }else{         
+            swal("","Something went wrong","error"); 
+          }
+       let fields = this.state.fields;
+    fields[event.target.name] = event.target.value;
+    this.setState({
+      fields
+    });
+    if (this.validateForm() && this.validateFormReq()) {
+      let errors = {};
+      errors[event.target.name] = "";
+      this.setState({
+        errors: errors
+      });
+    }
+    
 
-      }
+  }
 
 uploadBlogImage(event){
    event.preventDefault();
@@ -175,7 +213,6 @@ uploadBlogImage(event){
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
           if (newFile) {
-      console.log("blog1Img--------------->",newFile);
             S3FileUpload
               .uploadFile(newFile,this.state.config)
               .then((Data)=>{
@@ -189,7 +226,6 @@ uploadBlogImage(event){
                     // workspaceImages : imgArrayWSaws
                     blog1Img : imgArrayWSaws
                   })
-      console.log("blog1Img1--------------->",imgArrayWSaws);
               })
               .catch((error)=>{
                 console.log("formErrors");
@@ -295,8 +331,8 @@ uploadBlogImage(event){
                   });
   }
   Submit(event){
-    event.preventDefault();
-     const formValues = {
+      event.preventDefault();
+      const formValues = {
         "blogContent"         :this.state.blogContent,
         "typeOfBlog"          :this.state.typeOfBlog,
         "summary"             :this.state.summary,
@@ -304,18 +340,34 @@ uploadBlogImage(event){
         "bannerImage"         :this.state.imgbPath,
         "blogURL"             :this.state.pageUrl,
          };
-    axios
-          .post('/api/blogs/post',formValues)
-          .then((res)=>{
-            console.log('res', res.data);
-                      swal("Thank you .Your Blog Created.");
-                       this.props.history.push("/"+this.state.pageUrl);
-                       console.log("response = ", res.data);
+     if (this.validateForm() && this.validateFormReq()) {
+      axios
+        .post('/api/blogs/post',formValues)
+        .then((res)=>{
+          console.log('res', res.data);
+                    swal("Thank you .Your Blog Created.");
+                     this.props.history.push("/"+this.state.pageUrl);
+                     console.log("response = ", res.data);
 
-                  })
-                  .catch((error)=>{
-                    console.log("error = ", error);
-                  });
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                });
+
+          let fields = {};
+          fields["blogTitle"]        = "";         
+          fields["summary"]          = "";         
+          fields["bannerImg"]        = "";         
+        
+             this.setState({
+          
+            "summary"          : "",
+            "blogTitle"        : "",
+            "bannerImg"        : "",
+            "fields"           : fields
+          });
+      }
+
   }
    deleteBlogTextimage(event){
     event.preventDefault();
@@ -362,6 +414,61 @@ uploadBlogImage(event){
     })
   })
  }
+  validateFormReq() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+    if (!fields["blogTitle"]) {
+      formIsValid = false;
+      errors["blogTitle"] = "This field is required.";
+    }  
+     if (!fields["summary"]) {
+      formIsValid = false;
+      errors["summary"] = "This field is required.";
+    }    
+    if (!fields["bannerImg"]) {
+      formIsValid = false;
+      errors["bannerImg"] = "This field is required.";
+    }   
+   /* if (!fields["panNumber"]) {
+      formIsValid = false;
+      errors["panNumber"] = "This field is required.";
+    }
+    if (!fields["addressProof"]) {
+      formIsValid = false;
+      errors["addressProof"] = "This field is required.";
+    }
+ */
+    this.setState({
+      errors: errors
+    });
+    return formIsValid;
+  }
+ 
+  validateForm() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+    if (typeof fields["blogTitle"] !== "undefined") {
+      //regular expression for email validation
+      var pattern = new RegExp(/^[a-zA-Z0-9~,.?: -]+$/);
+      if (!pattern.test(fields["blogTitle"])) {
+        formIsValid = false;
+        errors["blogTitle"] = "Please enter valid blog title.";
+      }
+    }
+  /*  if (typeof fields["blogTitle"] !== "undefined") {
+      if (!fields["blogTitle"].match(/^[a-zA-Z0-9]$/)) {
+        formIsValid = false;
+        errors["blogTitle"] = "Please .";
+      }
+    }*/
+   
+    this.setState({
+      errors: errors
+    });
+    return formIsValid;
+  }
 
 	render() {
     
@@ -376,6 +483,8 @@ uploadBlogImage(event){
                     <label>Blog Tittle<span className="redFont">*</span></label>
                     <div className="">
                       <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="blogTitle" type="text" name="blogTitle"  ref="blogTitle" value={this.state.blogTitle}	onChange={this.handleChange.bind(this)} placeholder="" required/>
+                      <div className="errorMsg">{this.state.errors.blogTitle}</div>
+
                     </div>
                   </div>
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -390,7 +499,8 @@ uploadBlogImage(event){
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{height:"auto"}}>
                     <label >Blog Summary<span className="redFont">*</span></label>
                     <div className="">
-                      <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="blogsummery"  ref="summary" value={this.state.summary} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="comment"></textarea>
+                      <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="summary"  ref="summary" value={this.state.summary} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="comment"></textarea>
+                      <div className="errorMsg">{this.state.errors.summary}</div>
                     </div>
                   </div>
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
@@ -405,7 +515,7 @@ uploadBlogImage(event){
                     </div>
                   </div>
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <label htmlFor="contactNumber">Banner Image<span className="redFont"></span></label>
+                    <label htmlFor="contactNumber">Banner Image<span className="redFont">*</span></label>
                     <div className="">
                       {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
                     </div>
@@ -413,7 +523,9 @@ uploadBlogImage(event){
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                           {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
                         
-                        <input type="file" className="noPadding" title="Please choose image" id="designImg" onChange={this.uploadDesignImg.bind(this)} />
+                        <input type="file" className="noPadding" title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadDesignImg.bind(this)} />
+                        <div className="errorMsg">{this.state.errors.bannerImg}</div>
+
                       </div>
                     </div>
                     <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
@@ -429,7 +541,7 @@ uploadBlogImage(event){
                       </div>
                     </div>
                      <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 mt40">
-                      <label htmlFor="contactNumber">Insert Image<span className="redFont">*</span></label>
+                      <label htmlFor="contactNumber">Insert Image</label>
                       <div className="">
                         {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
                       </div>
