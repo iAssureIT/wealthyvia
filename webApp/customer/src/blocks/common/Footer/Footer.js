@@ -136,7 +136,15 @@ export default class Footer extends Component {
                       </div>
                     </div>
                 </div>
+              
               </div>
+              <div className="row">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorPurple mt20">
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 footerLeftCss"><span className="footerLeftCss">Copyright © 2019</span>Wealthyvia<span className="footclr">&nbsp;&nbsp;All rights
+                        reserved.</span>
+                      </div>
+                    </div>
+                </div>
             </div>
     );
   }

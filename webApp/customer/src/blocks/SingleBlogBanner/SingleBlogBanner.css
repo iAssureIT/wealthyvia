@@ -19,9 +19,12 @@
 
 }
 .sbbtextcentered{
-  
-  top: 8%;
-  
+  top: 15%;
+}
+.fs40{
+  font-size: 40px;
+  margin-top: 40px;
+
 }
 
 .fs72{

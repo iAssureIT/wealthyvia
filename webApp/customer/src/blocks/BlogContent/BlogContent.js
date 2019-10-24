@@ -23,9 +23,12 @@ export default class BlogContent extends React.Component {
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
 
-				<div className="col-lg-12 mt40">
-					<div  className="col-lg-8 col-lg-offset-2 blogBox">
+				<div className="col-lg-12  mt40">
+					<div  className="col-lg-8 col-lg-offset-2 hidden-xs hidden-sm blogBox">
     					<div dangerouslySetInnerHTML={ { __html: this.props.blogContent } }></div>
+					</div>
+					<div  className="col-sm-12 col-xs-12 hidden-lg hidden-md ">
+    					<div className="blogBoxSmall" dangerouslySetInnerHTML={ { __html: this.props.blogContent } }></div>
 					</div>
 					
 				</div>

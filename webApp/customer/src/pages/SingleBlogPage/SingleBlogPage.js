@@ -3,9 +3,11 @@ import SingleBlogBanner      from "../../blocks/SingleBlogBanner/SingleBlogBanne
 import BlogContent           from "../../blocks/BlogContent/BlogContent.js";
 import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
 import Moment                from 'react-moment';
+import MetaTags              from 'react-meta-tags';
+import ShareLink             from 'react-facebook-share-link'
 
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
-import { FacebookProvider, ShareButton } from 'react-facebook';
+import { FacebookProvider, Share } from 'react-facebook';
 
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
@@ -34,7 +36,7 @@ export default class SingleBlogPage extends React.Component {
     var url = this.props.location.pathname;
     localStorage.setItem("lastUrl",url);
     this.setState({
-      CurrectUrl:window.location.href
+      CurrentUrl:window.location.href
     })
     id = this.props.match.params.selectedUrl;
 
@@ -77,28 +79,61 @@ export default class SingleBlogPage extends React.Component {
         })
 	}
 
+
+  handleClick(){
+    return true;
+  }
+
 	render() {
+    console.log('CurrentUrl',this.state.CurrentUrl);
     const token = localStorage.getItem("user_ID");
     if(token){
 
 		return (
       	<div className="container-fluid" style={{padding:"0px"}}>
+       {/*  <MetaTags>
+            <meta property="og:url"                 content={this.state.CurrentUrl}  />
+            <meta property="og:type"               content="Blog" />
+            <meta property="og:title"              content={this.state.blogTitle} />
+            <meta property="og:description"        content={this.state.blogContent} />
+            <meta property="og:image"              content="http://static01.nyt.com/images/2015/02/19/arts/international/19iht-btnumbers19A/19iht-btnumbers19A-facebookJumbo-v2.jpg" />
+          </MetaTags>*/}
       		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
           <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
       		  <BlogContent blogContent={this.state.blogContent}/>
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
-              <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrectUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrectUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrectUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+              <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrentUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
             </div>
+
+{/*
               <FacebookProvider appId="409175303314400">
-                  <ShareButton className="fbBtn" href="http://www.facebook.com">
-                <i class="facebook col-lg-12 fa fa-facebook" aria-hidden="true"></i>
-                  </ShareButton>
-                </FacebookProvider>
-             <div class="fb-share-button" 
-                data-href={this.state.CurrectUrl} 
+                <Share href="http://www.facebook.com">
+                  {({ handleClick, loading }) => (
+                    <button type="button"  onClick={handleClick}>Share</buttx on>
+                  )}                
+                </Share>
+              </FacebookProvider>*/}
+         {/*     <ShareLink link='http://wealthyvia.iassureit.com/blog/why-you-need-5gcpm-like-framework-to-succeed-in-stock-investments'>
+                 {link => (
+                    <a href={link} target='_blank'>Share this on Facebook</a>
+                 )}
+              </ShareLink>*/}
+             {/* <FacebookShareCount url={this.state.CurrentUrl}>
+                {shareCount => (
+                  <span className="myShareCountWrapper">{shareCount}</span>
+                )}
+              </FacebookShareCount>
+            */}
+
+            {/* <div class="fb-share-button" 
+                data-href={this.state.CurrentUrl} 
                 data-layout="button_count">
-              </div>
-            <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+              </div>*/}
+             {/* <a href="https://twitter.com/iOGSolutions?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="true">
+                   <i class="col-lg-12 fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="https://twitter.com/intent/tweet?screen_name=ViaWealthy&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-show-count="false">Tweet to @ViaWealthy</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            */}<div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
               <span className="countNumberLike">{this.state.viewCount} views</span>
             </div>
       		<RelatedBlogs/>

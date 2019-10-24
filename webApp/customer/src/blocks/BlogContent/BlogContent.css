@@ -8,7 +8,30 @@
 	font-family: 'Montserrat',sans-serif;
 	text-align: justify !important;
 	color: #444;
+	margin-top: 40px;
 }
+
+.blogBoxSmall p>big>img{
+	height: 100% !important;
+	width: 100% !important;
+	margin:0px !important;
+}
+
+.blogBox p>big>img{
+	height: 100% !important;
+	width: 100% !important;
+	margin:0px !important;
+}
+
+.blogBoxSmall p{
+	font-family: 'Montserrat',sans-serif;
+	text-align: justify !important;
+	color: #444;
+}
+.blogBoxSmall p>big>a{
+	overflow-wrap: break-word;
+}
+
 .sCont{
 	font-size: 14px;
 }
