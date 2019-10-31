@@ -521,13 +521,13 @@ class UMListOfUsers extends Component{
                 // swal("Success! Showing "+selectedValue,"","success");
                 var tableData = res.data.map((a, i)=>{
                   return {
-                          _id           : a._id,
-                          fullName      : a.fullName ? a.fullName : "-",
-                          email         : a.email ? a.email : "-",
-                          mobNumber     : a.mobNumber ? a.mobNumber : "-", 
-                          status        : a.status ? a.status : "-",  
-                          role          : a.role ? a.role : "-",
-                          checked       : false,
+                         _id             : a._id,
+                        fullName        : a.fullName ? a.fullName : "-",
+                        email           : a.email ? a.email : "-",
+                        mobNumber       : a.mobNumber ? a.mobNumber : "-", 
+                        status          : a.status ? a.status : "-",  
+                        role            : a.role[0] ? a.role[0] : "-",
+                        checked         : false,
                   }
                 })
                 this.setState({
@@ -548,23 +548,21 @@ class UMListOfUsers extends Component{
               });
 
           }else{
-
              axios
-                .post('/api/users/post/searchValue',formValues)
+                .get('/api/users/get/list/role/'+formValues.searchText+'/1')
                 .then(
                   (res)=>{
-                    // console.log('res', res);
+                    console.log('res', res);
                     // swal("Success! Showing only "+selectedValue,"","success");
-                    var data = res.data.data;
-                    var tableData = data.map((a, i)=>{
+                    var tableData = res.data.map((a, i)=>{
                   return {
-                    _id       : a._id ? a._id : '-' ,
-                    fullName        : a.profile.fullName ? a.profile.fullName : '-',
-                            email       : a.emails[0].address ? a.emails[0].address : '-',
-                            mobNumber    : a.profile.mobNumber ? a.profile.mobNumber : '-', 
-                            status          : a.profile.status ? a.profile.status : "-",  
-                            role       : ((a.roles.map((b, i)=>{return '<p>'+b+'</p>'})).toString()).replace(/,/g, " "),
-                     checked        : false,
+                      _id             : a._id,
+                      fullName        : a.fullName ? a.fullName : "-",
+                      email           : a.email ? a.email : "-",
+                      mobNumber       : a.mobNumber ? a.mobNumber : "-", 
+                      status          : a.status ? a.status : "-",  
+                      role            : a.role[0] ? a.role[0] : "-",
+                      checked         : false,
                   }
                 })
                       this.setState({
@@ -572,7 +570,7 @@ class UMListOfUsers extends Component{
                       },()=>{
                       }) 
                   }).catch((error)=>{ 
-                      swal("Sorry there is no data of "+selectedValue,"","error");
+                      swal("Sorry there is no data of "+selectedValue +error,"","error");
                         if(error.message === "Request failed with status code 401")
                         {
                              swal("Your session is expired! Please login again.","", "error");
@@ -603,6 +601,7 @@ class UMListOfUsers extends Component{
                 "startRange"        : this.state.startRange,
                       "limitRange"        : this.state.limitRange, 
               }
+            
               axios.post('/api/users/post/userslist', data)
               .then( (res)=>{      
                 // console.log("herer",res);
@@ -638,36 +637,36 @@ class UMListOfUsers extends Component{
 
           }else{
 
-             axios
-              .post('/api/users/post/searchValue',formValues)
-              .then(
-                (res)=>{
-                  // console.log('res', res);
-                  // swal("Success! only "+selectedValue+" users are shown in the list", "","success");
-                  var data = res.data.data;
-                  var tableData = data.map((a, i)=>{
-                return {
-                    _id       : a._id ? a._id : '-' ,
-                    fullName        : a.profile.fullName ? a.profile.fullName : '-',
-                            email       : a.emails[0].address ? a.emails[0].address : '-',
-                            mobNumber    : a.profile.mobNumber ? a.profile.mobNumber : '-', 
-                            status          : a.profile.status ? a.profile.status : "-",  
-                            roles       : ((a.roles.map((b, i)=>{return '<p>'+b+'</p>'})).toString()).replace(/,/g, " "),
-                     checked        : false,
+               axios
+                .post('/api/users/post/searchValue',formValues)
+                .then(
+                  (res)=>{
+                    // console.log('res', res);
+                    // swal("Success! only "+selectedValue+" users are shown in the list", "","success");
+                    var data = res.data.data;
+                    var tableData = data.map((a, i)=>{
+                  return {
+                      _id       : a._id ? a._id : '-' ,
+                      fullName        : a.profile.fullName ? a.profile.fullName : '-',
+                              email       : a.emails[0].address ? a.emails[0].address : '-',
+                              mobNumber    : a.profile.mobNumber ? a.profile.mobNumber : '-', 
+                              status          : a.profile.status ? a.profile.status : "-",  
+                              roles       : ((a.roles.map((b, i)=>{return '<p>'+b+'</p>'})).toString()).replace(/,/g, " "),
+                       checked        : false,
+                  }
+                })
+                      this.setState({
+                        tableData     : tableData,          
+                      },()=>{
+                      })
+                  }).catch((error)=>{ 
+                    swal("Sorry there are no "+selectedValue+"users", "","error");
+                      if(error.message === "Request failed with status code 401")
+                {
+                     swal("Your session is expired! Please login again.","", "error");
+                     this.props.history.push("/");
                 }
-              })
-                    this.setState({
-                      tableData     : tableData,          
-                    },()=>{
-                    })
-                }).catch((error)=>{ 
-                  swal("Sorry there are no "+selectedValue+"users", "","error");
-                    if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-              });
+                });
           }
 
             
