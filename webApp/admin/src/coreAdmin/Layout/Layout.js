@@ -18,21 +18,16 @@ import Header           from '../common/header/Header.js'
 import Footer           from '../common/footer/Footer.js'
 import Dashboard        from '../dashboard/Dashboard.js'
 import UploadStatement  from '../dashboard/UploadStatement/UploadStatement.js'
+import Statements       from '../dashboard/Statements/Statements.js'
 import UploadPerformanceStatement  from '../dashboard/UploadStatement/UploadPerformanceStatement.js'
 import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js'
 import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js'
 import UMListOfUsers    from '../userManagement/UM/UMListOfUsers.js';
-import UMListOfUsers2   from '../userManagement/UM/UMListOfUsers2.js';
 import EditUserProfile  from '../userManagement/UM/EditUserProfile.js';
 import UMRolesList      from '../userManagement/Roles/UMRolesList.js';
 import CompanySetting   from '../companysetting/Components/CompanySetting.js';
 import ViewTemplates    from '../NotificationManagement/ViewTemplates.js';
-import addWorkspace     from '../../cofficAdmin/WorkspaceManagement/addWorkspace.js';
-import WorkInProgressPage from "../../cofficAdmin/WorkspaceManagement/WorkInProgressPage.js";
-import addSubscription    from '../../cofficAdmin/Subscription/addSubscription.js';
-import editSubscription   from '../../cofficAdmin/Subscription/editSubscription.js';
-import Amenities          from '../../cofficAdmin/Amenities/Amenities.js';
-import cafeMenu           from '../../cofficAdmin/CafeMenu/cafeMenu.js';
+
 import AdminContent       from '../dashboard/DashboardNew.js';
 /*============================ /Blog==============================================*/
 
@@ -138,7 +133,7 @@ componentDidMount(){
                         <Switch>
                           <Route path="/" component={AdminContent} exact />                
                           <Route path="/dashboard" component={AdminContent} exact />                
-                          <Route path="/umlistofusers" component={UMListOfUsers2} exact />
+                          <Route path="/umlistofusers" component={UMListOfUsers} exact />
                           <Route path="/umroleslist" component={UMRolesList} exact />
                           <Route path="/edituserprofile/:id" component={EditUserProfile} exact />
                           <Route path="/ViewTemplates" component={ViewTemplates} exact />
@@ -147,20 +142,8 @@ componentDidMount(){
                           <Route path="/UploadPerformanceStatement" component={UploadPerformanceStatement} exact />
                           <Route path="/companysetting" component={CompanySetting} exact />
                           <Route path="/companysetting/:id" component={CompanySetting} exact />
-
-
-
-                          <Route path="/addWorkspace" component={addWorkspace} exact />
-                          <Route path="/addWorkspace/:id" component={addWorkspace} exact />
-                          <Route path="/reports" component={WorkInProgressPage} exact />
-                          <Route path="/addSubscription" component={addSubscription} exact />
-                          <Route path="/addSubscription/:id" component={addSubscription} exact />
-                          <Route path="/editSubscription" component={editSubscription} exact />
-                          <Route path="/statement" component={Amenities} exact />
-                          <Route path="/amenities/:id" component={Amenities} exact />
-                          <Route path="/cafeMenu" component={cafeMenu} exact />
-                          <Route path="/cafeMenu/:id" component={cafeMenu} exact />
-                          <Route path="/bankReport" component={BankReport} exact />
+                          <Route path="/statement" component={Statements} exact />
+                         <Route path="/bankReport" component={BankReport} exact />
                         {/* Blog  */}
                           <Route path="/blogsform/id/:blogID"                exact strict component={BlogsFormPage}  />
                           <Route path="/allblogs" component={AllBlogs} exact />

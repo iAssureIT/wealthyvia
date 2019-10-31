@@ -304,7 +304,6 @@ export default class Header extends Component {
       this.setState({
           panNumberName : newFile.name,
       })
-      console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
@@ -315,7 +314,7 @@ export default class Header extends Component {
                 .then((Data)=>{ 
                   this.setState({
                     panNumberLocation : Data.location,
-                  },()=>{console.log(this.state.panNumber)})
+                  })
                   this.deleteimageLogo(index)
                 })
                 .catch((error)=>{
@@ -389,7 +388,6 @@ export default class Header extends Component {
     }
     
      var index = event.target.getAttribute('id');
-    console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -398,7 +396,6 @@ export default class Header extends Component {
       this.setState({
           addressProofName : newFile.name,
       })
-      console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
@@ -463,7 +460,6 @@ export default class Header extends Component {
           "contactNumber"    : this.refs.contactNumber.value,
 
         }
-        console.log("dataArray1",dataArray1);
 
         if(dataArray1){
           var adminEmail = "kycwealthyvia@gmail.com";
@@ -484,7 +480,6 @@ export default class Header extends Component {
             .post('/send-email',dataArray)
             .then((res)=>{
                        if(res.status === 200){
-        console.log("dataArray1",dataArray1);
 
                         const formValues2 = {
                           "email"         : adminEmail ,
@@ -652,7 +647,6 @@ export default class Header extends Component {
     console.log("var1",var1)
     var firstLetterF = var1[0].charAt(0);
     var firstLetterL = var1[1].charAt(0);
-    console.log("firstLetterL"+firstLetterL+"firstLetterF"+firstLetterF);
   }
       return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">

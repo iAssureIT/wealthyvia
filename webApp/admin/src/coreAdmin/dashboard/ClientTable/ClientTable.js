@@ -4,7 +4,6 @@ import { BrowserRouter,Route }  from 'react-router-dom';
 import { Switch,Link,location } from 'react-router-dom';
 import moment                   from "moment";
 import swal                     from 'sweetalert';
-
 import axios                    from "axios";
 import $                        from "jquery";
 
@@ -34,7 +33,7 @@ class ClientTable extends Component {
     axios.get('/api/users/get/list/role/user/1')
     .then( (users)=>{         
       if(users.data.length > 0){
-        console.log("users.data.length = ", users.data);
+          console.log("users.data.length = ", users.data);
         this.setState({
               completeDataCount : users.data.length,
               tableData         : users.data,          
@@ -136,9 +135,9 @@ getCheckOfferingData(usersData){
               for (var i=0; i < usersData.length; i++) {
                   axios.get("/api/subscriptionorders/get/type/offering/"+usersData[i]._id)
                        .then((userSubscriptions)=>{
-                           console.log(i+" userSubscriptions = "+JSON.stringify(userSubscriptions.data,4,null));
-                           this.setState({
-                              userSubscriptions : userSubscriptions.data,
+/*                           console.log(i+" userSubscriptions = "+JSON.stringify(userSubscriptions.data,4,null));
+*/                        this.setState({
+                            userSubscriptions : userSubscriptions.data,
                            });
                         })
                        .catch((error)=>{
@@ -159,7 +158,7 @@ getCheckOfferingData(usersData){
               }
 
              if(i >= usersData.length){
-                console.log("checkedOfferings = ", checkedOfferings);
+                // console.log("checkedOfferings = ", checkedOfferings);
                 this.setState({checkedOfferings : checkedOfferings});
               }
 

@@ -4,7 +4,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import axios                from 'axios';
 import swal                 from 'sweetalert';
 import $                    from "jquery";
-import './Amenities.css';
+import './Statements.css';
 
 const formValid = formerrors=>{
   let valid = true;
@@ -15,7 +15,7 @@ const formValid = formerrors=>{
   }
 const amenitiesNameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
 
-class Amenities extends Component{
+class Statements extends Component{
 
   constructor(props) {
     super(props);
@@ -30,7 +30,9 @@ class Amenities extends Component{
       amenitiesName                : '',
       totalCount                   : '',
       id                           : '',
+      ActiveList                   : '',
       editId                       : "",
+      offeringTitle                : [],
       AmenitiesList                : [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -42,7 +44,37 @@ class Amenities extends Component{
     this.setState({
       editId : this.props.match.params.id
     })
-    // console.log("editId0",this.props.match.params.id);
+     axios
+      .get('/api/subscriptionorders/get/all/1')
+      .then((response)=> {
+          if(response.data){            
+                this.setState({
+                  ActiveList : response.data,
+              });
+            }
+            console.log("ActiveList",this.state.ActiveList);
+      })
+      .catch(function (error) {
+          console.log(error);
+          if(error.message === "Request failed with status code 401")
+            {
+                 swal("Your session is expired! Please login again.","", "error");
+                 this.props.history.push("/");
+            }
+      });
+       axios.get('/api/offerings/get/all/list/1')
+      .then( (offerings)=>{      
+        // console.log("offerings = ",offerings.data);   
+        this.setState({
+              offeringTitle : offerings.data,
+            })
+         
+      })
+      .catch((error)=>{
+          if(error.message === "Request failed with status code 401"){
+            swal("Error!","Something went wrong!!", "error");
+          }
+      });  
   }
 
   submitAmenityInfo=(event)=>{
@@ -237,16 +269,17 @@ class Amenities extends Component{
                       <label className="control-label statelabel locationlabel" >Select Offering</label>
                       <span className="astrick">*</span>
                       <select  ref="planName"
-                             type="text" name="planName" placeholder="Enter Subscription Name" 
-                             className="selectbox" title="Please enter package Name">
-                              <option >---- Select ----</option>
-                              <option>5GCPM</option>
-                              <option>Safe Heaven</option>
-                              <option>Safe Heaven Stocks & Alpha</option>
-                              <option>USA Stocks Portfolio</option>
-                              <option>Unlisted Stocks</option>     
-                          </select>
-                    
+                         type="text" name="planName" placeholder="Enter Subscription Name" 
+                         className="selectbox" title="Please enter package Name">
+                             {
+                              this.state.offeringTitle.map((a, i)=>{
+                                return(
+                                  <option id={a._id}>{a.offeringTitle}</option>
+                                )
+                              })
+                            }
+                        
+                      </select>
                     </div>                     
                   </div> 
                   </div>
@@ -264,7 +297,7 @@ class Amenities extends Component{
                               <table className="table tableCustom table-striped">
                                 <thead className="bgThead">
                                   <tr>
-                                    <th>Sr.</th>
+                                    <th>Client ID</th>
                                     <th>Name</th>
                                     <th className="text-center">Mobile</th>
                                     <th className="text-center">Mail </th>
@@ -275,7 +308,7 @@ class Amenities extends Component{
                                 </thead>
                                 <tbody>
                                   <tr>
-                                    <td>1.</td>
+                                    <td>PL0001</td>
                                     <td>Priyanka Lewade</td>
                                     <td className="text-center">8208066599</td>
                                     <td className="text-center">priyankalewade96@gmail.com</td>
@@ -283,25 +316,6 @@ class Amenities extends Component{
                                     <td className="text-center">11-02-2019</td>
                                     <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr>
-                                   <tr>
-                                    <td>2.</td>
-                                    <td>Ashish Chavan</td>
-                                    <td className="text-center">9156507131</td>
-                                    <td className="text-center">ashish.chavan@iassureit.com</td>
-                                    <td className="text-center">21-9-2019</td>
-                                    <td className="text-center">21-11-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
-                                  </tr> 
-                                   <tr>
-                                    <td>3.</td>
-                                    <td>Priyanka Lewade</td>
-                                    <td className="text-center">8208066599</td>
-                                    <td className="text-center">priyankalewade96@gmail.com</td>
-                                    <td className="text-center">11-10-2019</td>
-                                    <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
-                                  </tr>                                                  
-                                 
                                 </tbody>
                               </table>
                           </div>    
@@ -330,24 +344,7 @@ class Amenities extends Component{
                                     <td className="text-center">11-02-2019</td>
                                     <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
                                   </tr>
-                                   <tr>
-                                    <td>2.</td>
-                                    <td>Ashish Chavan</td>
-                                    <td className="text-center">9156507131</td>
-                                    <td className="text-center">ashish.chavan@iassureit.com</td>
-                                    <td className="text-center">21-9-2019</td>
-                                    <td className="text-center">21-11-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
-                                  </tr> 
-                                   <tr>
-                                    <td>3.</td>
-                                    <td>Priyanka Lewade</td>
-                                    <td className="text-center">8208066599</td>
-                                    <td className="text-center">priyankalewade96@gmail.com</td>
-                                    <td className="text-center">11-10-2019</td>
-                                    <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
-                                  </tr>                                                  
+                                                                       
                                  
                                 </tbody>
                               </table>
@@ -367,4 +364,4 @@ class Amenities extends Component{
 
 }
 
-export default Amenities;
+export default Statements;

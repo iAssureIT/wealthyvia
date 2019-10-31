@@ -28,14 +28,13 @@ export default class SubscribedServices extends Component {
 
   componentDidMount()
   {
-    axios.get('http://api.wealthyvia.com/api/offerings/get/all/list/1')
+    axios.get('/api/offerings/get/all/list/1')
     .then((res)=>{      
       console.log("offerings",res.data);
 
    
       this.setState({
             offeringTitle : res.data,
-          },()=>{console.log("offeringTitle",this.state.offeringTitle);
           })
     })
     .catch((error)=>{
@@ -51,7 +50,6 @@ export default class SubscribedServices extends Component {
   checkSubscribe(event)
   {
     event.preventDefault();
-    console.log("in checkSubscribe");
    swal("You are not subscribed to this offering","", "error");
 
   }
@@ -87,13 +85,13 @@ export default class SubscribedServices extends Component {
 
                       </div>
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                          <div id="home" class="tab-pane fade in active">
+                          <div id="home" class="tab-pane fade in ">
                             <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
                             <h3>5GCPM Reports & Statement</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt20">{this.state.date1}</label>
                           </div>
-                          <div id="performance" class="tab-pane fade">
+                          <div id="performance" class="tab-pane fade in active">
                             <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
                             <h3>Performance Reports</h3>
                             <h5>Last update date : {this.state.date} </h5>
@@ -128,19 +126,19 @@ export default class SubscribedServices extends Component {
                   </div>  
                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt40 ">   
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD">
-                      {/*<h4 className="headerBlogCD"> Blog Subscription Plan</h4>
+                      <h4 className="headerBlogCD"> Blog Subscription Plan</h4>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                         <ul className="customOl myULCD">
-                            <li><a href="#">6 Months at   <span className="pull-right"> Rs 999 . &nbsp; <strike>Rs 1499 </strike></span></a></li>
-                            <li><a href="#">1 Year at <span className="pull-right"> Rs 1499 . &nbsp;<strike> Rs 1999</strike></span></a></li>
-                            <li><a href="#">2 Years at  <span className="pull-right"> Rs 1999 . &nbsp;<strike> Rs 2599</strike></span></a></li>
+                            <li><a href="/InvoicePage/999">6 Months at   <span className="pull-right"> Rs 999 . &nbsp; <strike>Rs 1499 </strike></span></a></li>
+                            <li><a href="/InvoicePage/1499">1 Year at <span className="pull-right"> Rs 1499 . &nbsp;<strike> Rs 1999</strike></span></a></li>
+                            <li><a href="/InvoicePage/1999">2 Years at  <span className="pull-right"> Rs 1999 . &nbsp;<strike> Rs 2599</strike></span></a></li>
 
                         </ul>
                         <label className="clickToPlan pull-right">Click on plan name to subscribe.</label>
-                      </div>            */}
-                      <h4 className="headerBlogCD"> Your Blog Subscription</h4>
+                      </div>            
+                      {/*<h4 className="headerBlogCD"> Your Blog Subscription</h4>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
-                        <ul className="myULCDSP">
+                        <ul classN  ame="myULCDSP">
                             <li><a href="">6 Month Subsription  <span className="pull-right"> Rs 999 </span></a></li>
                             <li><a href="">Subscribed on <span className="pull-right">02-10-2019 </span></a></li>
                             <li><a href="">Subscription end date  <span className="pull-right">02-02-2020 </span></a></li>
@@ -205,7 +203,7 @@ export default class SubscribedServices extends Component {
                         </div>
 
                         <label className="clickToPlan pull-right mt20">Read more premium blog >></label>
-                      </div>                    
+                      </div> */}                   
                      </div>                    
                   </div>
                 </div>

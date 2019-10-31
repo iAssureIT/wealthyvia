@@ -315,6 +315,7 @@ class CreateUser extends Component {
                                                               <option  hidden> --Select-- </option>
                                                              {/* <option value="vendor" > vendor </option>*/}
                                                               <option value="admin" > admin </option>
+                                                              <option value="user" > user </option>
                                                              {/* <option value="user" > user </option>*/}
                                                              </select>
                                                             </span>

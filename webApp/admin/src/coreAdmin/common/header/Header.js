@@ -26,20 +26,17 @@ class Header extends Component{
   componentDidMount() {
    var Uid = localStorage.getItem("admin_id");
    
-    console.log("_id",Uid);
     axios.get("/api/users/get/"+Uid)
       .then((response)=>{ 
           this.setState({
               userinfo : response.data
-          },()=>console.log("userinfo",this.state.userinfo)
-)
+          })
 
       })
       .catch((error)=>{
             console.log('error', error);
       })
    
-      console.log("userinfo",this.state.userinfo);
   }
   openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -52,14 +49,12 @@ class Header extends Component{
   logout(){
       var token = localStorage.removeItem("token");
       if(token!==null){
-      console.log("Header Token = ",token);
       this.setState({
         loggedIn : false,
         
       },()=>{
         this.props.systemlogout(true)
       })
-      // browserHistory.push("/login");
       this.props.history.push("/login");
     }
   }

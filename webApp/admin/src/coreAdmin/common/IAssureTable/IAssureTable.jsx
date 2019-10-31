@@ -27,7 +27,7 @@ class IAssureTableUM extends Component {
 		    "examMasterData2" 			: '',
 		    "paginationArray" 			: [],
 		    "startRange" 				: 0,
-		    "limitRange" 				: 10,
+		    "limitRange" 				: 20,
 		    "activeClass" 				: 'activeQueDataCircle', 
 		    "completeDataCount" 		: props && props.completeDataCount ? props.completeDataCount : 0,
 		    "normalData" 				: true,
@@ -817,7 +817,7 @@ class IAssureTableUM extends Component {
 		// var z = 2;
         return (
 	       	<div id="tableComponent" className="col-lg-12 col-sm-12 col-md-12 col-xs-12">	
-	       		<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 NOpadding">
+	       		{/*<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 NOpadding">
 					<label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 marginTop17 NOpadding">Users Per Page</label>
 					<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">
 						<select onChange={this.setLimit.bind(this)} value={this.state.limitRange} id="limitRange" ref="limitRange" name="limitRange" className="col-lg-12 col-md-12 col-sm-6 col-xs-12  noPadding  form-control">
@@ -829,14 +829,14 @@ class IAssureTableUM extends Component {
 							<option value={500}>500</option>
 						</select>
 					</div>
-				</div>           
-				<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-12 col-sm-12 marginTop17 NOpadding">
+				</div>           */}
+				{/*<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-4 col-xs-12 col-sm-12 marginTop17 NOpadding">
 	        		<label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">Search</label>
 	        		<div className="input-group">
 				        <input type="text" onChange={this.tableSearch.bind(this)} placeholder="Search by user name" className="NOpadding-right zzero form-control" ref="tableSearch" id="tableSearch" name="tableSearch"/>
 				    	<span className="input-group-addon" onClick={this.finalSearch.bind(this)}><i className="fa fa-search"></i> </span>
 				    </div>
-	        	</div>		
+	        	</div>		*/}
 	            <div className="col-lg-12 col-sm-12 col-md-12 col-xs-12 NOpadding marginTop17">			            	        
 	                <div className="table-responsive  ">
 	                	<div className="scrolltbl">

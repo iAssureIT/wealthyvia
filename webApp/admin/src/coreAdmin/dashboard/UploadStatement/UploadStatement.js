@@ -16,10 +16,9 @@ class UploadStatement extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      "uploadStatement":"",
-            "imgArrayWSaws"           : [],
-
-    
+      uploadStatement  :"",
+      imgArrayWSaws    : [],
+      offeringTitle    : [],
     };
   
   }
@@ -47,6 +46,19 @@ class UploadStatement extends Component{
                    this.props.history.push("/");
               }
       })
+       axios.get('/api/offerings/get/all/list/1')
+      .then( (offerings)=>{      
+        // console.log("offerings = ",offerings.data);   
+        this.setState({
+              offeringTitle : offerings.data,
+            })
+         
+      })
+      .catch((error)=>{
+          if(error.message === "Request failed with status code 401"){
+            swal("Error!","Something went wrong!!", "error");
+          }
+      });  
   
   }
   uploadImg (event){
@@ -156,12 +168,13 @@ class UploadStatement extends Component{
                       <select  ref="planName"
                          type="text" name="planName" placeholder="Enter Subscription Name" 
                          className="selectbox" title="Please enter package Name">
-                          <option >---- Select ----</option>
-                          <option>5GCPM</option>
-                          <option>Safe Heaven</option>
-                          <option>Safe Heaven Stocks & Alpha</option>
-                          <option>USA Stocks Portfolio</option>
-                          <option>Unlisted Stocks</option>     
+                         {
+                            this.state.offeringTitle.map((a, i)=>{
+                              return(
+                                <option id={a._id}>{a.offeringTitle}</option>
+                              )
+                            })
+                          }  
                       </select>
                     </div>                     
                   </div> 
