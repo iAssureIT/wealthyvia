@@ -6,9 +6,8 @@ import swal                       from 'sweetalert';
 import $                          from "jquery";
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
+
 import './UploadStatement.css';
-/*axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 var location ="";
 class UploadStatement extends Component{
@@ -16,37 +15,40 @@ class UploadStatement extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      uploadStatement  :"",
+      uploadStatement  : "",
       imgArrayWSaws    : [],
       offeringTitle    : [],
+      fileArray        : [],
+      filenames        : [],
+      fileType        : "File",
+
     };
-  
   }
   componentDidMount() {
-  axios
-      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
-      .then((response)=>{
-        const config = 
-          {
-              bucketName      : response.data.bucket,
-              dirName         : response.data.bucket,
-              region          : response.data.region,
-              accessKeyId     : response.data.key,
-              secretAccessKey : response.data.secret,
-          }
+    axios
+    .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+    .then((response)=>{
+      const config = 
+        {
+            bucketName      : response.data.bucket,
+            dirName         : response.data.bucket,
+            region          : response.data.region,
+            accessKeyId     : response.data.key,
+            secretAccessKey : response.data.secret,
+        }
         this.setState({
           config : config
         })
       })
       .catch(function(error){
         console.log(error);
-          if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
+        if(error.message === "Request failed with status code 401")
+            {
+                 swal("Your session is expired! Please login again.","", "error");
+                 this.props.history.push("/");
+            }
       })
-       axios.get('/api/offerings/get/all/list/1')
+      axios.get('/api/offerings/get/all/list/1')
       .then( (offerings)=>{      
         // console.log("offerings = ",offerings.data);   
         this.setState({
@@ -59,11 +61,9 @@ class UploadStatement extends Component{
             swal("Error!","Something went wrong!!", "error");
           }
       });  
-  
   }
   uploadImg (event){
-     var index = event.target.getAttribute('id');
-    console.log("index--------------->",index);
+    var index = event.target.getAttribute('id');
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -77,21 +77,37 @@ class UploadStatement extends Component{
         var ext = newFile.name.split('.').pop();
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (newFile) {
-            if(this.state.uploadStatement==""){
-              S3FileUpload
+/*            if(this.state.uploadStatement.lenght<0){
+*/              S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{
                   this.setState({
                     uploadStatement : Data.location,
-                  },()=>{                
-                    console.log("uploadStatement",this.state.uploadStatement)})
-                console.log("uploadStatement--->",Data.location)
-/*                  this.deleteimageLogo(index)
-*/                })
+                  })
+               
+                  var obj2={
+                    fileName : this.state.uploadStatementName,
+                  }
+                  var obj1={
+                    filePath : Data.location,
+                  }
+                  var filenames = this.state.filenames;
+                  var fileArray = this.state.fileArray;
+                  filenames.push(obj2);
+                  fileArray.push(obj1);
+                  this.setState({
+                    filenames : filenames,
+                    fileArray : fileArray
+                  },()=>{
+                  var fileLocation = this.state.fileArray;
+                  localStorage.setItem("fileLocation",fileLocation);
+                  console.log("fileLocation",fileLocation);
+                  })
+                })
                 .catch((error)=>{
                   console.log(error);
                 })
-            }else{
+            /*}else{
               swal({
                     title: "Are you sure you want to replace this file?",
                     text: "Once replaced, you will not be able to recover this file!",
@@ -117,7 +133,7 @@ class UploadStatement extends Component{
                       swal("Your information is safe!");
                     }
                   });
-            }         
+            }      */   
           }else{         
             swal("File not uploaded","Something went wrong","error"); 
           }    
@@ -127,7 +143,9 @@ class UploadStatement extends Component{
       }
     }
   }
+  Submit(){
 
+  }
    deleteimageLogo(index){
      swal({
         title: "Are you sure you want to delete this image?",
@@ -219,7 +237,39 @@ class UploadStatement extends Component{
                     :
                     null
                   }      */}
-                {
+                  {console.log("fileArray",this.state.fileArray.length)}
+              {
+              this.state.fileArray.length<=0?
+              null         
+              :
+              <div>
+                  <div>
+                    {
+                      this.state.fileType ==="File" ?
+                      <div  className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
+                        <p className="fileName">File Uploaded</p>
+                        {
+                          this.state.filenames && this.state.filenames.length > 0 ?
+                          this.state.filenames.map((a, index)=>{
+                            return(
+                              <div  key={index}>
+                                <img src="/images/pdf.png"/>
+                                <p  className="">{a.fileName}</p>
+                              </div>
+                            )
+                          })
+                        :
+                          null
+                        }
+                      </div>
+                    :
+                      null
+                    }
+                  </div>
+             
+              </div>
+            }
+               {/* {
                   this.state.uploadStatement !==""?
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  imagesDivUploaded">
                       <img src="/images/pdf.png"/>
@@ -227,7 +277,7 @@ class UploadStatement extends Component{
                     </div>
                     : 
                     <div className="loadingImage"><img src="/images/loading.gif"/></div>
-                }
+                }*/}
                 {/*     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                   {this.state.imgArrayWSaws==null?
                     null
@@ -288,6 +338,9 @@ class UploadStatement extends Component{
                     </div>
                 }
                 </div>*/}
+                <div className="formcontent col-lg-offset-9 col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                  <button onClick={this.Submit.bind(this)} className="btn bg-primary">Submit</button>
+                </div>
 
               </div>
 

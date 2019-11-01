@@ -8,7 +8,7 @@ export default class Blogs extends Component {
 	constructor(props){
     super(props);
 	    this.state = {
-	    		 responsive:{
+	    responsive:{
         0:{
             items:1,
             nav:true

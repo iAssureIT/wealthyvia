@@ -14,7 +14,7 @@ const formValid = formerrors=>{
   return valid;
   }
 const amenitiesNameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-
+var ActiveArrayUser =[];
 class Statements extends Component{
 
   constructor(props) {
@@ -30,45 +30,73 @@ class Statements extends Component{
       amenitiesName                : '',
       totalCount                   : '',
       id                           : '',
-      ActiveList                   : '',
+      ActiveList                   : [],
+      InactiveUsers                : [],
+      ActiveArray                  : [],
       editId                       : "",
       offeringTitle                : [],
       AmenitiesList                : [],
     };
     this.handleChange = this.handleChange.bind(this);
-    this.getAmenitiesList = this.getAmenitiesList.bind(this);
   }
 
   componentDidMount() {
-    this.getAmenitiesList();   
     this.setState({
       editId : this.props.match.params.id
     })
      axios
-      .get('/api/subscriptionorders/get/all/1')
+      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
       .then((response)=> {
           if(response.data){            
                 this.setState({
                   ActiveList : response.data,
               });
+          }
+         /* if(ActiveArrayUser)
+          {
+            for(var i=0;i<this.state.ActiveList.length;i++){
+             if(ActiveArrayUser[i].indexOf(this.state.ActiveList[i].userID)== -1)
+              {
+                ActiveArrayUser.push(this.state.ActiveList[i].userID);
+
+                this.setState({
+                  ActiveArray  :ActiveArrayUser[i],
+                },()=>{
+                })
+              }
+              console.log("ActiveArray",ActiveArrayUser[i].indexOf(this.state.ActiveList[i].userID)== -1);
             }
-            console.log("ActiveList",this.state.ActiveList);
-      })
+          }
+          else{
+           console.log("ActiveArray",ActiveArrayUser);
+
+          }*/
+        })
       .catch(function (error) {
-          console.log(error);
-          if(error.message === "Request failed with status code 401")
-            {
-                 swal("Your session is expired! Please login again.","", "error");
-                 this.props.history.push("/");
-            }
+        console.log(error);
+        if(error.message === "Request failed with status code 401")
+          {
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+          }
       });
-       axios.get('/api/offerings/get/all/list/1')
+      axios.get('/api/offerings/get/all/list/1')
       .then( (offerings)=>{      
         // console.log("offerings = ",offerings.data);   
         this.setState({
               offeringTitle : offerings.data,
             })
-         
+      })
+      .catch((error)=>{
+          if(error.message === "Request failed with status code 401"){
+            swal("Error!","Something went wrong!!", "error");
+          }
+      });  
+      axios.get('/api/subscriptionorders/get/usersOfferingStatus/all/Inactive')
+      .then( (inactiveUser)=>{      
+        this.setState({
+            InactiveUsers : inactiveUser.data,
+          })
       })
       .catch((error)=>{
           if(error.message === "Request failed with status code 401"){
@@ -77,183 +105,44 @@ class Statements extends Component{
       });  
   }
 
-  submitAmenityInfo=(event)=>{
-    event.preventDefault();  
-    var amenitiesValue = {
-        amenityName               : this.state.amenitiesName,
-        icon                      : "flag",
-      }    
-      if(this.state.amenitiesName){
-        if(!this.state.editId==''){
-             axios.patch('/api/workAmenities/patch/update/'+this.state.id,amenitiesValue)
-                .then( (response)=> {
-                  swal("Good job!", "Amenities details updated!", "success");
-                  this.getAmenitiesList();
-                  this.props.history.push('/amenities');
-                  this.setState({
-                      amenitiesIcon       : '',
-                      amenitiesName       : '',
-                      editId              : null,
-                  })
-                })
-                .catch(function (error) {
-                  console.log(error);
-                  swal("Oops...", "Amenities details updation failed!", "error");
-                  if(error.message === "Request failed with status code 401")
-                    {
-                         swal("Your session is expired! Please login again.","", "error");
-                         this.props.history.push("/");
-                    }
-                })
-        }else{
-          axios.post('/api/workAmenities/post',amenitiesValue)
-            .then( (response)=> {
-              if(response.data=="Record Exists"){
-                swal("Sorry", "Record Exists", "warning");
-              }else{
-                swal("Good job!", "Amenities details submitted!", "success");
-                this.getAmenitiesList();
-                this.setState({
-                      amenitiesIcon       : '',
-                      amenitiesName       : '',
-                  })
-              }
-            })
-            .catch(function (error) {
-              console.log(error);
-              swal("Oops...", "Amenities details submition failed!", "error");
-              if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-            })
-        
+  handleChange=(event)=>{
+    const target = event.target.value;
+    console.log("target",target);
+    if(target != "all")
+    {
+     axios.get('/api/subscriptionorders/get/usersOfferingStatus/'+target+'/Active')
+      .then( (Active)=>{      
+        this.setState({
+            ActiveList : Active.data,
+          })
+      })
+      .catch((error)=>{
+          if(error.message === "Request failed with status code 401"){
+            swal("Error!","Something went wrong!!", "error");
           }
-      }else{
-        swal("", "Please fill mandatory fields", "warning");
-      }
-  }
-
-  getAmenitiesList(){
-    axios
-      .get('/api/workAmenities/get/list')
+      });
+    }else{
+      axios
+      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
       .then((response)=> {
           if(response.data){            
-                var count = (response.data).length;
                 this.setState({
-                  AmenitiesList : response.data,
-                  totalCount : count
+                  ActiveList : response.data,
               });
-            }
+          }
       })
-      .catch(function (error) {
-          console.log(error);
-          if(error.message === "Request failed with status code 401")
-            {
-                 swal("Your session is expired! Please login again.","", "error");
-                 this.props.history.push("/");
-            }
-      });
-  }
+      .catch((error)=>{
+          if(error.message === "Request failed with status code 401"){
+            swal("Error!","Something went wrong!!", "error");
+          }
+      });  
 
-  handleChange=(event)=>{
-    const target = event.target;
-    const {name,value} = event.target;
-    let formerrors = this.state.formerrors;
-    this.setState({
-      [name]: event.target.value,
-    });
-
-    // const datatype = event.target.getAttribute('data-text');
-    // switch (datatype){
-    //        case 'amenitiesName' :
-    //                              formerrors.amenitiesName = amenitiesNameRegex.test(value)  && value.length>0 ? '' : "Please Enter Only Alphabates";
-    //        break;
-    //        default :
-    //        break;
-    // }
-
-     // this.setState({formerrors,})
-
-  }
-
-
-
-  deleteItem=(event)=>{
-    event.preventDefault();
-    var id = event.target.getAttribute('data-id');
-    if(id){
-      swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this information!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          })
-          .then((willDelete) => {
-              if (willDelete) {
-                 axios
-                      .delete('/api/workAmenities/delete/'+id)
-                      .then((response)=> {
-                        if(response.data=='Deleted Successfully'){
-                          swal("Amenity deleted successfully");
-                          this.getAmenitiesList();
-                          // $('#myModal'+this.state.deleteId).css('display','none');                  
-                        }
-                      })
-                      .catch(function (error) {
-                          console.log(error);
-                          if(error.message === "Request failed with status code 401")
-                            {
-                                 swal("Your session is expired! Please login again.","", "error");
-                                 this.props.history.push("/");
-                            }
-                      });
-
-            } else {
-              swal("Your information is safe!");
-            }
-          });
     }
-  }
 
-  editItem=(event)=>{
-    event.preventDefault();
-    var id = event.target.getAttribute('data-id');
-    this.setState({
-      id : id,
-      editId: id
-    })
-    this.props.history.push('/amenities/'+id);
-     axios
-        .get('/api/workAmenities/get/'+id)
-        .then((response)=> {
-          this.setState({
-            'amenitiesName'     : response.data.amenityName,
-            'amenitiesIcon'     : response.data.icon,
-          })
-           
-        })
-        .catch(function (error) {
-            console.log(error);
-            if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-        });
-    $("html,body").scrollTop(0);
-  }
-
-  componentWillReceiveProps(nextProps) {
-
-   
   }
 
   render(){
     const {formerrors} = this.state;
-    // console.log("editId",this.state.editId);
     return(
       <div className="row">
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -268,13 +157,14 @@ class Statements extends Component{
                     <div className="">
                       <label className="control-label statelabel locationlabel" >Select Offering</label>
                       <span className="astrick">*</span>
-                      <select  ref="planName"
+                      <select 
                          type="text" name="planName" placeholder="Enter Subscription Name" 
-                         className="selectbox" title="Please enter package Name">
+                         className="selectbox" thisitle="Please enter package Name" ref="offeringTitle" onChange={this.handleChange}>
+                            <option value="all">All</option>
                              {
                               this.state.offeringTitle.map((a, i)=>{
                                 return(
-                                  <option id={a._id}>{a.offeringTitle}</option>
+                                  <option value={a._id} id={a._id}>{a.offeringTitle}</option>
                                 )
                               })
                             }
@@ -307,20 +197,26 @@ class Statements extends Component{
                                  </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>PL0001</td>
-                                    <td>Priyanka Lewade</td>
-                                    <td className="text-center">8208066599</td>
-                                    <td className="text-center">priyankalewade96@gmail.com</td>
-                                    <td className="text-center">11-10-2019</td>
-                                    <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
-                                  </tr>
+                                {
+                                  this.state.ActiveList.map((ActiveList, j)=>{
+                                  return(
+                                    <tr>
+                                      <td>{"WL0"+(j+1)}</td>
+                                      <td>{ActiveList.userName}</td>
+                                      <td className="text-center">{ActiveList.MobileNumber}</td>
+                                      <td className="text-center">{ActiveList.userEmail}</td>
+                                      <td className="text-center">{ActiveList.startDate}</td>
+                                      <td className="text-center">{ActiveList.endDate}</td>
+                                      <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
+                                    </tr>
+                                    )
+                                  })
+                                } 
                                 </tbody>
                               </table>
                           </div>    
                         </div>
-                          <div id="menu1" className="tab-pane fade">
+                        <div id="menu1" className="tab-pane fade">
                           <div className="col-lg-12 NOpadding">
                               <table className="table tableCustom table-striped">
                                 <thead className="bgThead">
@@ -335,23 +231,29 @@ class Statements extends Component{
                                  </tr>
                                 </thead>
                                 <tbody>
-                                  <tr>
-                                    <td>1.</td>
-                                    <td>Priyanka Lewade</td>
-                                    <td className="text-center">8208066599</td>
-                                    <td className="text-center">priyankalewade96@gmail.com</td>
-                                    <td className="text-center">11-10-2019</td>
-                                    <td className="text-center">11-02-2019</td>
-                                    <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
-                                  </tr>
+                                  {
+                                  this.state.InactiveUsers.map((InactiveList, k)=>{
+                                  return(
+                                    <tr>
+                                      <td>{"WL0"+k+1}</td>
+                                      <td>{InactiveList.userName}</td>
+                                      <td className="text-center">{InactiveList.MobileNumber}</td>
+                                      <td className="text-center">{InactiveList.userEmail}</td>
+                                      <td className="text-center">{InactiveList.startDate}</td>
+                                      <td className="text-center">{InactiveList.endDate}</td>
+                                      <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
+                                    </tr>
+                                    )
+                                  })
+                                } 
                                                                        
                                  
                                 </tbody>
                               </table>
                           </div>     
-                          </div>
+                        </div>
                         
-                        </div>  
+                      </div>  
                     </div>
              
             </form>

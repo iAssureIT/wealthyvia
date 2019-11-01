@@ -96,8 +96,8 @@ export default class Leftsidebar extends Component{
                         </Link>
                         <ul className="collapse list-unstyled treeview-menu" id="submenu1">
                             <li><Link to="/statement"><i className="fa fa-database"></i>List of Users</Link></li>
-                            <li><Link to="/uploadStatement"><i className="fa fa-database"></i>Bulk Upload</Link></li>
-                           
+{/*                            <li><Link to="/uploadStatement"><i className="fa fa-database"></i>Bulk Upload</Link></li>
+*/}                           
                         </ul>
                     </li>
                      <li  className="add " onClick={this.eventclk1.bind(this)}>

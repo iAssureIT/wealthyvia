@@ -6,7 +6,6 @@ import moment                   from "moment";
 import swal                     from 'sweetalert';
 import axios                    from "axios";
 import $                        from "jquery";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './ClientTable.css';
@@ -33,7 +32,7 @@ class ClientTable extends Component {
     axios.get('/api/users/get/list/role/user/1')
     .then( (users)=>{         
       if(users.data.length > 0){
-          console.log("users.data.length = ", users.data);
+          // console.log("users.data.length = ", users.data);
         this.setState({
               completeDataCount : users.data.length,
               tableData         : users.data,          
@@ -54,9 +53,9 @@ class ClientTable extends Component {
     var checkValue      = event.target.checked;
     const valueOfCheck  = event.target.value.split("-");
 
+    const userID        = valueOfCheck[0];
     const offeringID    = valueOfCheck[1];
     const offeringName  = valueOfCheck[2];
-    const userID        = valueOfCheck[0];
 
 
     if(checkValue){
@@ -65,6 +64,8 @@ class ClientTable extends Component {
           "planID"      : offeringID,
           "btnStatus"   : "checked",      
       }
+      console.log("offeringValues = ", offeringValues);
+
         swal({
           title: 'Hello!',
           text: 'Are you sure you want to subscribe this offering!',
@@ -131,34 +132,90 @@ getCheckOfferingData(usersData){
               // console.log("offeringTitle",this.state.offeringTitle);
             })
             if(usersData && offerings.data){
-              // console.log("usersData = ",usersData.length);
               for (var i=0; i < usersData.length; i++) {
-                  axios.get("/api/subscriptionorders/get/type/offering/"+usersData[i]._id)
+                  axios.get("/api/subscriptionorders/get/all/"+usersData[i]._id+"/1")
                        .then((userSubscriptions)=>{
-/*                           console.log(i+" userSubscriptions = "+JSON.stringify(userSubscriptions.data,4,null));
-*/                        this.setState({
-                            userSubscriptions : userSubscriptions.data,
-                           });
+                        console.log(i+"usersData"+usersData[i]._id)
+                        if(userSubscriptions.data){
+                          for(var k=0; k<userSubscriptions.data.length; k++){
+
+                            if(userSubscriptions.data[k].planStatus == "Active"){
+
+                              var offeringDetails = userSubscriptions.data[k].offeringDetails;
+                              console.log("offeringDetails = ",offeringDetails);
+
+                              for(var j=0; j<offerings.data.length; j++) {
+                                 console.log("checkedOfferings 4 = ", usersData[i]._id);
+                                var checked = "";
+                                for(var l=0; l<offeringDetails.length; l++){
+                                  console.log(l," = offering_ID",offeringDetails[l].offering_ID);
+                                  console.log(j," = offerings.data[j]._id",offerings.data[j]._id);
+                                  if(offeringDetails[l].offering_ID == offerings.data[j]._id){
+                                    if(offeringDetails[l].offeringStatus == "Active"){
+                                      checked = "checked";
+                                      break;
+                                    }else{
+                                      checked = "";
+                                    }
+                                  }
+                                }
+                                checkedOfferings.push({
+                                          id              : usersData[i]._id + "-" + offerings.data[j]._id,  
+                                          value           : usersData[i]._id + "-" + offerings.data[j]._id + "-" + offerings.data[j].offeringTitle,
+                                          offeringTitle   : usersData[i].offeringTitle,
+                                          checked         : checked,
+                                       }); 
+                              }
+
+
+                              // this.setState({
+                              //   userSubscriptions : offeringDetails,
+                              //  });
+                            }
+                          }
+                        }
+
+                           // ,()=>{console.log(" this.state.userSubscriptions", this.state.userSubscriptions)}
                         })
                        .catch((error)=>{
-                          console.log("Error!","Something went wrong!!", "error");
+                          console.log("Error!","Something went wrong for user!!", error);
                         });
 
-                for(var j=0; j<offerings.data.length; j++) {
-                  // console.log("offerings.data["+j+"] = ",offerings.data[j]);
-                  checkedOfferings
-                    .push({
-                            id      : usersData[i]._id + "-" + offerings.data[j]._id,  
-                            value   : usersData[i]._id + "-" + offerings.data[j]._id + "-" + offerings.data[j].offeringTitle,
-                            offeringTitle   : usersData[i].offeringTitle,
-                            checked : this.state.userSubscriptions.find(function(elem){return elem.offeringDetails.status === "Active";}) ? "checked" : "",
-                         }); 
 
-                }
+                        // for(var j=0; j<offerings.data.length; j++) {
+                        //   // console.log("checkedOfferings 1 = ", checkedOfferings.length);
+                        //   var checked = "";
+                        //   for(var l=0; l<this.state.userSubscriptions.length; l++){
+                        //     console.log(l," = offering_ID",this.state.userSubscriptions[l].offering_ID);
+                        //     console.log(j," = offerings.data[j]._id",offerings.data[j]._id);
+                        //     if(this.state.userSubscriptions[l].offering_ID == offerings.data[j]._id){
+                        //       if(this.state.userSubscriptions[l].offeringStatus == "Active"){
+                        //         checked = "checked";
+                        //         break;
+                        //       }else{
+                        //         checked = "";
+                        //       }
+                        //     }
+                        //   }
+                        //   checkedOfferings.push({
+                        //             id      : usersData[i]._id + "-" + offerings.data[j]._id,  
+                        //             value   : usersData[i]._id + "-" + offerings.data[j]._id + "-" + offerings.data[j].offeringTitle,
+                        //             offeringTitle   : usersData[i].offeringTitle,
+                        //             checked : checked,
+                        //          }); 
+
+                        //   if(this.state.userSubscriptions.length>0){
+
+                        //   }
+                        //   // console.log("checkedOfferings 2 = ", checkedOfferings.length);
+
+                        //   // console.log("checkedOfferings.id"+checkedOfferings.id+"checkedOfferings.checked"+checkedOfferings.checked)
+                        // }
+
               }
 
              if(i >= usersData.length){
-                // console.log("checkedOfferings = ", checkedOfferings);
+                console.log("checkedOfferings = ", checkedOfferings);
                 this.setState({checkedOfferings : checkedOfferings});
               }
 
@@ -168,8 +225,9 @@ getCheckOfferingData(usersData){
           if(error.message === "Request failed with status code 401"){
             swal("Error!","Something went wrong!!", "error");
           }
-      });  
+      });   
 }
+
 
 render(){
   // console.log('this.state.completeDataCount', this.state.completeDataCount);
@@ -203,18 +261,22 @@ render(){
                                 this.state.tableData.map((a, i)=>{
                                 return(
                                     <tr>
-                                        <td>PL001</td>
+                                        <td>{i<100 ? i<10 ? "PL00"+i : "PL0"+i : "PL"+i}</td>
                                         <td className="">
-                                          <p><b>{a.fullName}</b></p>
+                                          <p><b>{a.fullName}</b>=  {a._id}</p>
                                           <p>{a.mobNumber}</p>
                                           <p>{a.email}</p>
                                         </td>
                                         {
-                                          this.state.checkedOfferings.map((chkoff, j)=>{
+                                          this.state.offeringTitle.map((offTitle, j)=>{
                                             return(
                                                <td className="text-center">
                                                    <div className="centreDetailContainer col-lg-1 col-xs-3">
-                                                    <input type="checkbox" id={chkoff.id} value={chkoff.value}  name={chkoff.offeringTitle}  onChange={this.handleChange.bind(this)} checked={chkoff.checked}/>&nbsp;
+                                                    <input type="checkbox" id={this.state.checkedOfferings[i*this.state.offeringTitle.length + j] ? this.state.checkedOfferings[i*this.state.offeringTitle.length + j].id : ""} 
+                                                           value={this.state.checkedOfferings[i*this.state.offeringTitle.length + j] ? this.state.checkedOfferings[i*this.state.offeringTitle.length + j].value : ""}  
+                                                           name={this.state.checkedOfferings[i*this.state.offeringTitle.length + j] ? this.state.checkedOfferings[i*this.state.offeringTitle.length + j].offeringTitle : ""}  
+                                                           onChange={this.handleChange.bind(this)} 
+                                                           checked={this.state.checkedOfferings[i*this.state.offeringTitle.length + j] ? this.state.checkedOfferings[i*this.state.offeringTitle.length + j].checked : ""}/>&nbsp;
                                                     <span className="centreDetailCheck"></span>
                                                   </div>
                                                 </td>
@@ -223,8 +285,10 @@ render(){
                                         } 
                                     </tr>
                                   )
-                                })
-                              : "<div> Loading... </div>"
+                                
+                              })
+                              : 
+                                "<div> Loading... </div>"
                             }
                   
                           </tbody>
