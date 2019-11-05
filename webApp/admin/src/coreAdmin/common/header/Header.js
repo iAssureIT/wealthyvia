@@ -54,6 +54,7 @@ class Header extends Component{
         
       },()=>{
         this.props.systemlogout(true)
+
       })
       this.props.history.push("/login");
     }

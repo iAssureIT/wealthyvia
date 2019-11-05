@@ -198,10 +198,11 @@ class Statements extends Component{
                                 </thead>
                                 <tbody>
                                 {
+                                  
                                   this.state.ActiveList.map((ActiveList, j)=>{
                                   return(
                                     <tr>
-                                      <td>{"WL0"+(j+1)}</td>
+                                      <td>{j<99 ? j<9 ? "WL00"+(j+1) : "WL0"+(j+1) : "WL"+(j+1)}</td>
                                       <td>{ActiveList.userName}</td>
                                       <td className="text-center">{ActiveList.MobileNumber}</td>
                                       <td className="text-center">{ActiveList.userEmail}</td>
@@ -211,6 +212,7 @@ class Statements extends Component{
                                     </tr>
                                     )
                                   })
+
                                 } 
                                 </tbody>
                               </table>
@@ -232,10 +234,11 @@ class Statements extends Component{
                                 </thead>
                                 <tbody>
                                   {
+                                  this.state.InactiveUsers.length>0?
                                   this.state.InactiveUsers.map((InactiveList, k)=>{
                                   return(
                                     <tr>
-                                      <td>{"WL0"+k+1}</td>
+                                      <td>{k<99 ? k<9 ? "WL00"+(k+1) : "WL0"+(k+1) : "WL"+(k+1)}</td>
                                       <td>{InactiveList.userName}</td>
                                       <td className="text-center">{InactiveList.MobileNumber}</td>
                                       <td className="text-center">{InactiveList.userEmail}</td>
@@ -245,6 +248,10 @@ class Statements extends Component{
                                     </tr>
                                     )
                                   })
+                                  :
+                                  <tr>
+                                    <td className="text-center">No data found.</td>
+                                  </tr>
                                 } 
                                                                        
                                  

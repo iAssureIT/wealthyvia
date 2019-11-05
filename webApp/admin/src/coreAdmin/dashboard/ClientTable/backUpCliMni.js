@@ -32,7 +32,7 @@ class ClientTable extends Component {
       "startRange"        : this.state.startRange,
       "limitRange"        : this.state.limitRange, 
     }
-    axios.get('/api/users/get/list/1')
+    axios.get('/api/subscriptionorders/get/showchart/'+ 2019)
     .then( (res)=>{      
       this.setState({
             completeDataCount : res.data.length,
@@ -48,7 +48,7 @@ class ClientTable extends Component {
              this.props.history.push("/");
         }
     });
-    axios.get('http://api.wealthyvia.com/api/offerings/get/all/list/1')
+    axios.get('/api/offerings/get/all/list/1')
     .then((res)=>{      
       this.setState({
         offeringTitle : res.data,
@@ -66,25 +66,37 @@ class ClientTable extends Component {
   changeAttribute(event){
     event.preventDefault();
     // console.log('this', this.state.startRange, this.state.limitRange);
-    var attribute = event.target.getAttribute('data-attribute');
-    var attributeValue = event.target.getAttribute('data-attributeValue');
-    var product_ID  = event.currentTarget.getAttribute('data-ID');
-    // console.log('attribute', attribute, attributeValue, product_ID);
-        if(product_ID){
-            if(attributeValue=="true"){
-                attributeValue = false;
+    var offering_id = "";
+    var offering_Name = event.target.getAttribute('data-attribute');
+    var attributeCheckedValue = event.target.getAttribute('data-attributeValue');
+    var user_id  = event.currentTarget.getAttribute('data-ID');
+    console.log('attribute', offering_Name, attributeCheckedValue, user_id);
+     axios.get('/api/offerings/get/name/',offering_Name)
+      .then((response)=>{
+        console.log("response",response);
+        offering_id = response._id;
+
+      })
+      .catch((error)=>{
+        console.log('error', error);
+      })
+        if(user_id){
+            if(attributeCheckedValue=="Active"){
+                attributeCheckedValue = "Inactive";
             } else {
-                attributeValue = true;
+                attributeCheckedValue = "Active";
             }
-             var offeringValues={
-        "userID"      : "userID", 
-        "planID"      : product_ID,
-        "btnStatus"   : "checked",      
-      }
+           var offeringValues={
+              "userID"      : user_id, 
+              "planID"      : offering_id,
+              "btnStatus"   : "checked",      
+            }
+      console.log("offeringValues",offeringValues);
       axios.post('/api/subscriptionorders/post/offering',offeringValues)
       .then((response)=>{
+        console.log("response",response);
         // console.log('this', this.state.startRange, this.state.limitRange);
-        this.props.getData(this.state.startRange, this.state.limitRange);
+        // this.props.getData(this.state.startRange, this.state.limitRange);
       })
       .catch((error)=>{
         console.log('error', error);
@@ -92,9 +104,7 @@ class ClientTable extends Component {
     }
   }
 render(){
-  // console.log('this.state.completeDataCount', this.state.completeDataCount);
   var adminRolesListDataList = this.state.adminRolesListData;
-  // console.log("adminRolesListDataList",adminRolesListDataList);
      return(
       <div className="">
         <section className="">
@@ -115,29 +125,45 @@ render(){
                             </tr>
                           </thead>
                           <tbody>
+                          {console.log("this.state.tableData",this.state.tableData)}
                           {
                             this.state.tableData.map((a, i)=>{
-                            console.log('a',a);
+/*                               console.log(i+"a"+a.offering[i]?a.offering[i].offeringStatus:"");*/
                                 return(
                                     <tr>
-                                      <td>Wl01212819</td>
-
+                                      <td>{i<99 ? i<9 ? "WL00"+(i+1) : "WL0"+(i+1) : "WL"+(i+1)}</td>
+                                        
                                       <td className="">
-                                        <p>{a.fullName}</p>
-                                        <p>{a.mobNumber}</p>
-                                        <p>{a.email}</p>
+                                        <p>{a.userName}</p>
+                                        <p>{a.userMobile}</p>
+                                        <p>{a.userEmail}</p>
+                                     
 
                                       </td>
-                                        {
-                                          this.state.offeringTitle.map((value, j)=>{
-                                              console.log("value ",value);
-                                            return(
-                                                 <td className="col-lg-1 textAlignCenter">
-                                                   <i onClick={this.changeAttribute.bind(this)} data-attribute={value.offeringTitle} data-ID={value._id} data-attributeValue={value.featured} title={ (value.featured == true )? "Disable It" : "Enable It" } className={'fa fa-check-circle prodCheckboxDim ' + ( value.featured == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
-                                                </td>                                           
-                                                )
-                                            })
-                                        } 
+                           
+                                  {/*  <td className="col-lg-1 textAlignCenter">
+                                       <i onClick={this.changeAttribute.bind(this)} data-attribute={a.user_id} data-ID={b._id} className={'fa fa-check-circle prodCheckboxDim ' + (a.offering[j].offeringStatus == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                    </td> */ }
+                                      <td className="col-lg-1 textAlignCenter">
+                                            <i onClick={this.changeAttribute.bind(this)} data-attribute="5GCPM" data-ID={a.user_id} data-attributeValue={a.featured} className={'fa fa-check-circle prodCheckboxDim ' + ( a.user_id == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                        </td>
+                                        <td className="col-lg-1 textAlignCenter">
+                                            <i onClick={this.changeAttribute.bind(this)} data-attribute="Safe Heavan" data-ID={a.user_id} data-attributeValue={a.exclusive}   className={'fa fa-check-circle prodCheckboxDim ' + ( a.user_id == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                        </td>
+                                        <td className="col-lg-1 textAlignCenter">
+                                            <i onClick={this.changeAttribute.bind(this)} data-attribute="SHM Alpha Enhancer" data-ID={a.user_id} data-attributeValue={a.newProduct}  className={'fa fa-check-circle prodCheckboxDim ' + ( a.user_id == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                        </td>
+                                        <td className="col-lg-1 textAlignCenter">
+                                            <i onClick={this.changeAttribute.bind(this)} data-attribute="US Stocks" data-ID={a.user_id} data-attributeValue={a.bestSeller}   className={'fa fa-check-circle prodCheckboxDim ' + ( a.user_id == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                        </td>    
+                                        <td className="col-lg-1 textAlignCenter">
+                                            <i onClick={this.changeAttribute.bind(this)} data-attribute="Fly Nifty" data-ID={a.user_id} data-attributeValue={a.bestSeller}  className={'fa fa-check-circle prodCheckboxDim ' + ( a.user_id == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                        </td> 
+                                        <td className="col-lg-1 textAlignCenter">
+                                            <i onClick={this.changeAttribute.bind(this)} data-attribute="Multibagger" data-ID={a._id} data-attributeValue={a.bestSeller}   className={'fa fa-check-circle prodCheckboxDim ' + ( a.user_id == true ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                        </td>                                         
+                               
+                                     
 
                                </tr>
                                 )

@@ -128,6 +128,7 @@ export default class Header extends Component {
           this.setState({
               userinfo : response.data
           })
+
       })
       .catch((error)=>{
             console.log('error', error);

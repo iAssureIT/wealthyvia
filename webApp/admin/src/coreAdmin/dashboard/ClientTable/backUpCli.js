@@ -226,13 +226,11 @@ render(){
 
                                     </td>
                                       {
-                                        this.state.offeringTitle ?
-
                                           this.state.offeringTitle.map((b, j)=>{
                                             // console.log("bbbb",b)
 
 
-                                           var selectedData = activeData.filter((element)=>{return element.offering_ID==b._id});
+                                          /* var selectedData = activeData.filter((element)=>{return element.offering_ID==b._id});
                                             // var index = data.map(element=>element._id).indexOf(offeringID);
                                             // data[index].checked = true;
                                             var chk = false;
@@ -242,7 +240,7 @@ render(){
                                               chk=false
                                             }
 
-                                            console.log("chk",chk)
+                                            console.log("chk",chk)*/
                                            return(
                                                 <td className="text-center">
                                                  <div className="centreDetailContainer col-lg-1 col-xs-3">

@@ -77,7 +77,6 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               })
         })
         .catch(function (error) {
-          console.log(error);
         })
   }
 

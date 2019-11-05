@@ -15,11 +15,12 @@ export default class SubscribedServices extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv    : "5gcpm",
-          date         : "09-10-2019",
-          date1        : "08-10-2019 9:30PM",
-          offeringTitle: "",
-
+          nameOfDiv             : "5gcpm",
+          date                  : "09-10-2019",
+          date1                 : "08-10-2019 9:30PM",
+          offeringTitle         : "",
+          userOfferingsChecked  : "",
+          subscribed            : false,
         };
     }
   ScrollTop(event){
@@ -28,23 +29,35 @@ export default class SubscribedServices extends Component {
 
   componentDidMount()
   {
+    var userInfo = localStorage.getItem("user_ID");
+    console.log("userInfo",userInfo);
     axios.get('/api/offerings/get/all/list/1')
     .then((res)=>{      
       console.log("offerings",res.data);
-
-   
       this.setState({
             offeringTitle : res.data,
           })
     })
     .catch((error)=>{
-      // console.log("error = ",error);
-      // alert("Something went wrong! Please check Get URL.");
-        if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
+      if(error.message === "Request failed with status code 401")
+      {
+           swal("Your session is expired! Please login again.","", "error");
+           this.props.history.push("/");
+      }
+    });
+    axios.get('/api/subscriptionorders/get/all/'+userInfo+'/1')
+    .then((res)=>{      
+      this.setState({
+            userOfferingsChecked : res.data[0].offeringDetails,
+          })
+      console.log("userOfferingsChecked",this.state.userOfferingsChecked);
+    })
+    .catch((error)=>{
+      if(error.message === "Request failed with status code 401")
+      {
+           swal("Your session is expired! Please login again.","", "error");
+           this.props.history.push("/");
+      }
     });
   } 
   checkSubscribe(event)
@@ -55,7 +68,6 @@ export default class SubscribedServices extends Component {
   }
   render() {
     var date = "09-10-2019  5:30PM";
-    var subscribed =false;
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding100">
                 <div className="row">
@@ -69,11 +81,11 @@ export default class SubscribedServices extends Component {
                              this.state.offeringTitle.map((a, i)=>{
                                 return(
                                   <li>
-                                    {subscribed == true ?
-                                    <a data-toggle="pill" className="activeSubscription" href="#home">{a.offeringTitle}</a>
-                                    :
-                                    <a  className="disabled" onClick={this.checkSubscribe.bind(this)}>{a.offeringTitle}</a>
-
+                                    { 
+                                      this.state.subscribed == false ?
+                                        <a data-toggle="pill" className="activeSubscription" href="#home">{a.offeringTitle}</a>
+                                      :
+                                        <a  className="disabled" onClick={this.checkSubscribe.bind(this)}>{a.offeringTitle}</a>
                                     }
                                   </li>
                                
