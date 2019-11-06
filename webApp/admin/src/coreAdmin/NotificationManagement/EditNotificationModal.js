@@ -140,11 +140,11 @@ class EditNotificationModal extends Component{
 					"content": cketext,
 					"subject":subject
 				}
-				// console.log('formValues edit',formValues)
+				console.log('formValues edit',formValues)
 				
-				axios.put('/api/masternotifications/put/'+editId, formValues)
+				axios.put('/api/masternotifications/put/'+editId,formValues)
 				.then((response)=> {	
-					// console.log('response edit',response)				
+					 console.log('response edit',response)				
 					if(templateType =='Email'){
 						var emailTemplatesList = this.state.emailTemplatesList;
 						emailTemplatesList.push(response.data.dataBody);
@@ -185,7 +185,7 @@ class EditNotificationModal extends Component{
 						confirmButtonColor: '#666',
 						confirmButtonText: 'Ok'
 					});
-				// console.log('error============',error);
+				 console.log('error============',error);
 				  if(error.message === "Request failed with status code 401")
 		              {
 		                   swal("Your session is expired! Please login again.","", "error");
@@ -206,10 +206,10 @@ class EditNotificationModal extends Component{
 	selectType(event){
 		event.preventDefault();
 		const target = event.target;
-	  const name   = target.name;
-	  this.setState({
-	  	[name]: event.target.value,
-	  });
+		  const name   = target.name;
+		  this.setState({
+		  	[name]: event.target.value,
+		  });
 		// if(this.refs.templateType.value  == 'Notification' || this.refs.templateType.value  == 'SMS' ){
 		// 	$('.subjectRow').css({'display':'none'});
 		// }else if(this.refs.templateType.value  == 'Email'){
@@ -269,7 +269,6 @@ class EditNotificationModal extends Component{
 													      	<option> -- Select --	</option>
 															<option> Email 			</option>
 															<option> Notification 	</option>
-															<option> SMS 			</option>
 												      	</select> 
 													</div>	
 												</div>
@@ -284,12 +283,7 @@ class EditNotificationModal extends Component{
 														  <option value="Admin-Purchase Subscription">	Admin-Purchase Subscription	</option>
 														  <option value="Admin-Check-in">				Admin-Check-in				</option>
 														  <option value="Admin-Check-out">				Admin-Check-out				</option>
-														  <option value="Admin-Vendor Profile Changes">	Admin-Vendor Profile Changes</option>
 														  <option value="Admin-Menu Order">				Admin-Menu Order			</option>
-														  <option value="Vendor-Check-in">				Vendor-Check-in				</option>
-														  <option value="Vendor-Check-out">				Vendor-Check-out			</option>
-														  <option value="Vendor-Vendor Profile Changes">Vendor-Vendor Profile Changes</option>
-														  <option value="Vendor-Menu Order">			Vendor-Menu Order			</option>
 														  <option value="User-Signup">					User-Signup 				</option>
 														  <option value="User-Purchase Subscription">	User-Purchase Subscription	</option>
 														  <option value="User-Check-in">				User-Check-in				</option>

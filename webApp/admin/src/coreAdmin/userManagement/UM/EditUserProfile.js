@@ -5,10 +5,9 @@ import swal      from 'sweetalert';
 import "./userManagement.css";
 class EditUserProfile extends Component{
 	constructor(props) {
-	  super(props);
-	 		    var UserId = this.props.match.params.id;
-    		 	// console.log("UserId ----------------------",UserId);
-	  this.state = {
+	  	super(props);
+	 	var UserId = this.props.match.params.id;
+	  	this.state = {
 	  		UserId    : UserId,
 	  		fullname  : "",
 	  		username  : "",
@@ -18,9 +17,9 @@ class EditUserProfile extends Component{
 	  		firstName : "",
 	  		lastName  : "",
 	  		role 		:"",
-			}	  	
-			 this.handleChange = this.handleChange.bind(this);
-	  }
+		}	  	
+		this.handleChange = this.handleChange.bind(this);
+	}
 	    
 	handleSubmit(event) {
 		var userid = this.state.UserId;
@@ -30,11 +29,11 @@ class EditUserProfile extends Component{
 			"firstname"		: this.state.firstName,
 			"lastname" 		: this.state.lastName,
 			"email"  		: this.state.email,
-			"mobNumber"  : this.state.mobNumber,
-			"role"		: this.state.role,
+			"mobNumber"     : this.state.mobNumber,
+		//	"role"		: this.state.role,
           // "officeLocation"  : this.refs.office.value,
 		}
-		// console.log("formvalues",formvalues);
+		console.log("formvalues",formvalues);
 				/*axios.patch('/api/users/patch/one/'+userid, formvalues)*/
 				axios.patch('/api/users/patch/'+userid, formvalues)
 
@@ -58,7 +57,7 @@ class EditUserProfile extends Component{
 					                email    		: a.email,
 					                mobNumber       : a.mobNumber, 
 					                status        	: a.status,	
-					                role 			: a.role,
+					              //  role 			: a.role,
 								}
 							})
 							this.setState({
@@ -99,13 +98,13 @@ class EditUserProfile extends Component{
 
 			var Email=  this.refs.username.value 
 			var Mnob= this.refs.mobNumber.value 
-			var role = this.refs.role.value
+			//var role = this.refs.role.value
 	         this.setState({
 		          "firstName":FirstName,
 		          "lastName":LastName,
 		          "email":Email,
 		          "mobNumber":Mnob,
-		          "role":role
+		     //     "role":role
 
 		        });
 	}
@@ -135,20 +134,24 @@ class EditUserProfile extends Component{
 		  	mobNumber : Mnob,
 		  });
 		  */
-		   var FName = res.data.fullName.split(' ');
-	        var FirstName = FName[0];
-	        var LastName = FName[1];
-	        var Email = res.data.email;
-	        var Mnob  = res.data.mobNumber;
-	       
-	        console.log("f name", FirstName);
-	        console.log("L name", LastName);
+	        var FirstName = res.data.firstname;
+	        var LastName  = res.data.lastname;
+	        var Email 	  = res.data.email;
+	        var Mnob  	  = res.data.mobNumber;
 
-	      this.refs.firstName.value = FirstName 
+	        console.log("Mnob", Mnob);
+	        console.log("L name", LastName);
+	        this.setState({
+	        	  "firstName"	: FirstName,
+		          "lastName"	: LastName,
+		          "email"		: Email,
+		          "mobNumber"	: Mnob,
+	        })
+
+	     /* this.refs.firstName.value = FirstName 
 	      this.refs.lastName.value = LastName  
-	     /* this.refs.fullname.value = FName */
 		  this.refs.username.value = Email
-		  this.refs.mobNumber.value = Mnob
+		  this.refs.mobNumber.value = Mnob*/
 
 		 
 	      })
@@ -223,7 +226,7 @@ class EditUserProfile extends Component{
                                                             </div>  
                                                               <input type="text" style={{textTransform:'capitalize'}}
                                                                className="form-control UMname inputText form-control  has-content"
-                                                                id="firstName" ref="firstName" name="firstName" onChange={this.handleChange}  placeholder="First Name"/>
+                                                                id="firstName" ref="firstName" name="firstName" value={this.state.firstName} onChange={this.handleChange}  placeholder="First Name"/>
                                                            </div>   
                                                           </span>
                                                       </div>
@@ -235,7 +238,7 @@ class EditUserProfile extends Component{
                                                               <i className="fa fa-user-circle fa "></i>
                                                             </div>  
                                                              <input type="text"className="form-control UMname inputText form-control  has-content indexcls" 
-                                                             id="lastName" ref="lastName" name="lastName" onChange={this.handleChange}  placeholder="Last Name" />
+                                                             id="lastName" ref="lastName" name="lastName" value={this.state.lastName} onChange={this.handleChange}  placeholder="Last Name" />
                                                           </div>   
                                                           </span>
                                                       </div>
@@ -243,7 +246,7 @@ class EditUserProfile extends Component{
 
 														<div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent">
 															<label className="formLable">Username/Email <label className="requiredsign">*</label></label>
-                                                          	<input type="text" disabled  onChange={this.handleChange} className="disableInput inputMaterial form-control inputText" ref="username" name="username" required/>
+                                                          	<input type="text" disabled  onChange={this.handleChange} className="disableInput inputMaterial form-control inputText" ref="username" value={this.state.email} name="username" required/>
 														</div>
 														<div className="col-lg-6 col-sm-6 col-xs-6 col-md-6 group btmmargin inputContent">
 															<label className="formLable">Mobile Number <label className="requiredsign">*</label></label>
@@ -252,14 +255,14 @@ class EditUserProfile extends Component{
 	                                                             <div className="input-group-addon remove_brdr inputIcon">
 	                                                            <i className="fa fa-mobile"></i>
 	                                                            </div>  
-	                                                              <InputMask  mask="9999999999"  type="text" style={{textTransform:'capitalize'}}
+	                                                              <InputMask  mask="9999999999"  type="text" 
 	                                                               className="form-control UMname inputText form-control  has-content"
 	                                                                id="mobNumber" ref="mobNumber" name="mobNumber" value={this.state.mobNumber} onChange={this.handleChange} placeholder="mobile number"/>
 	                                                           </div>   
 	                                                          </span>
 														</div>	
 
-														  <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 btmmargin inputContent">
+													{/*	  <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 btmmargin inputContent">
                                                            <label className="formLable col-lg-12 col-md-12 padd0 btmmargin">Role <label className="requiredsign"></label></label>
                                                               <span className="blocking-span col-lg-12 col-md-12 col-xs-12 col-sm-12 emailfixdomain">
                                                              	
@@ -272,7 +275,7 @@ class EditUserProfile extends Component{
 
                                                               </span>
                                                                
-                                                          </div>
+                                                          </div>*/}
 
 													</div>
 {/*														<div className="signuppp col-lg-12 col-md-12 col-sm-12 col-xs-12 createusr">

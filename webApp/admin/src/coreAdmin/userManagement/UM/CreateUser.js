@@ -162,10 +162,8 @@ class CreateUser extends Component {
           "firstname"       : this.state.firstname,
           "lastname"        : this.state.lastname,
           "email"           : this.state.signupEmail,
-          /*"countryCode"     : "+91",*/
           "mobNumber"       : this.state.mobNumber,
           "pwd"             : "user123",
-          
           "status"          : "Active",
           "role"            :  this.state.role,
         }
@@ -175,10 +173,10 @@ class CreateUser extends Component {
                 .then( (res)=>{
                   console.log("result",res.data);
                     swal("User added successfully", "", "success");
-                    this.refs.firstname.value = '';
-                    this.refs.lastname.value  = '';
-                    this.refs.signupEmail.value  = '';
-                    this.refs.mobNumber.value = '';
+                    this.refs.firstname.value     = '';
+                    this.refs.lastname.value      = '';
+                    this.refs.signupEmail.value   = '';
+                    this.refs.mobNumber.value     = '';
                     this.setState({show: false})
 
                     var data = {
@@ -193,15 +191,17 @@ class CreateUser extends Component {
                     // this.props.history.push("/umlistofusers");       
                     window.location.reload();
                 })
-              .catch((error)=>{
-                console.log("error = ",error);
-                this.setState({show: false})
-                  if(error.message === "Request failed with status code 401")
-                  {
-                       swal("Your session is expired! Please login again.","", "error");
-                       this.props.history.push("/");
-                  }
-              });
+                .catch((error)=>{
+                  console.log("error = ",error);
+                  swal("Email id already exist.","", "error");
+
+                  this.setState({show: false})
+                    if(error.message === "Request failed with status code 401")
+                    {
+                     swal("Your session is expired! Please login again.","", "error");
+                     this.props.history.push("/");
+                    }
+                });
         }else{
           swal("Please enter mandatory fields", "", "warning");
           console.error("FORM INVALID - DISPLAY ERROR MESSAGE");

@@ -845,7 +845,7 @@ export default class Header extends Component {
                                                       <input type="radio"  name={this.state.Question3} value="Direct equity 90%, FD 10%" onChange={this.getCheckValue.bind(this)}/>
                                                       <span className="radioCheck"></span>
                                                    </div>
-                                                  <span className="centreDetaillistItem col-xs-9">Direct equity 90%, FD 10%</span>
+                                                  <span className= "centreDetaillistItem col-xs-9">Direct equity 90%, FD 10%</span>
 
                                           </div>            
                                         </div>

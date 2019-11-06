@@ -55,11 +55,7 @@ class ViewTemplates extends Component{
 		    });
 			console.log("list",response.data);
 		}).catch(function (error) {
-			  if(error.message === "Request failed with status code 401")
-              {
-               swal("Your session is expired! Please login again.","", "error");
-               this.props.history.push("/");
-              }
+			  console.log("error",error);
 		    
 		});
 	}

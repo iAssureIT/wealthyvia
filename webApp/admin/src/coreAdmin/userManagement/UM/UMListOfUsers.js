@@ -14,7 +14,7 @@ import UMSelectRoleUsers            from './UMSelectRoleUsers.jsx';
 
 class UMListOfUsers extends Component{
 
-     constructor(props) {
+  constructor(props) {
     super(props);
     this.state = {
             allPosts : [],
@@ -42,21 +42,20 @@ class UMListOfUsers extends Component{
                 
             ],
 
-            checkedUser  : [],
-            activeswal : false,
-            blockswal : false,
-            confirmDel : false,
+            checkedUser   : [],
+            activeswal    : false,
+            blockswal     : false,
+            confirmDel    : false,
             unCheckedUser : [],
     };
-   
-    // this.handleChange = this.handleChange.bind(this);
-    // this.getSubscriptionList = this.getSubscriptionList.bind(this);
   }
+
   handleChange(event){
-      event.preventDefault();
-        const target = event.target;
-        const name   = target.name;  
-    }
+    event.preventDefault();
+    const target = event.target;
+    const name   = target.name;  
+  }
+
  componentDidMount() {
       var data = {
       "startRange"        : this.state.startRange,
@@ -77,20 +76,18 @@ class UMListOfUsers extends Component{
         }
       })
       this.setState({
-            completeDataCount : res.data.length,
-            tableData         : tableData,          
-          },()=>{
-            console.log('tableData', this.state.tableData);
-          })
+          completeDataCount : res.data.length,
+          tableData         : tableData,          
+        },()=>{
+          console.log('tableData', this.state.tableData);
+        })
     })
     .catch((error)=>{
-      // console.log("error = ",error);
-      // alert("Something went wrong! Please check Get URL.");
-        if(error.message === "Request failed with status code 401")
-              {
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
+      if(error.message === "Request failed with status code 401")
+        {
+             swal("Your session is expired! Please login again.","", "error");
+             this.props.history.push("/");
+        }
     });
     this.getData(this.state.startRange, this.state.limitRange)
   }
@@ -113,7 +110,7 @@ class UMListOfUsers extends Component{
             checked     : false,
           }
       })
-          // console.log('res============', res.data);
+       // console.log('res============', res.data);
             this.setState({
               completeDataCount : res.data.length,
               tableData     : tableData,          
@@ -127,7 +124,6 @@ class UMListOfUsers extends Component{
                    swal("Your session is expired! Please login again.","", "error");
                    this.props.history.push("/");
               }
-        // alert("Something went wrong! Please check Get URL.");
       }); 
     }
     getSearchText(searchText, startRange, limitRange){
@@ -197,11 +193,11 @@ class UMListOfUsers extends Component{
                         return {
                           _id       : a._id,
                           fullName        : a.fullName ? a.fullName : "-",
-                                  email       : a.email ? a.email : "-",
-                                  mobNumber    : a.mobNumber ? a.mobNumber : "-", 
-                                  status          : a.status ? a.status : "-",  
-                                  role       : a.role ? a.role : "-",
-                                  checked        : false,
+                          email       : a.email ? a.email : "-",
+                          mobNumber    : a.mobNumber ? a.mobNumber : "-", 
+                          status          : a.status ? a.status : "-",  
+                          role       : a.role ? a.role : "-",
+                          checked        : false,
                         }
                       })
                       this.setState({
@@ -503,19 +499,19 @@ class UMListOfUsers extends Component{
         event.preventDefault();
         var selectedValue        = this.refs.roleListDropdown.value;
         var keywordSelectedValue = selectedValue.split('$')[0];
-        // console.log("selectedValue",selectedValue);     
-        // console.log("keywordSelectedValue ------------------",keywordSelectedValue);
-          var formValues ={
-            searchText : selectedValue,
-          }
+        var formValues ={
+           searchText : selectedValue,
+        }
+
 
           if(selectedValue == "all"){
 
             var data = {
                 "startRange"        : this.state.startRange,
-                      "limitRange"        : this.state.limitRange, 
+                "limitRange"        : this.state.limitRange, 
               }
-              axios.get('/api/users/get/list/role/user/1')
+
+              axios.get('/api/users/get/list/'+data.limitRange)
               .then( (res)=>{      
                 // console.log("herer",res);
                 // swal("Success! Showing "+selectedValue,"","success");
@@ -584,37 +580,31 @@ class UMListOfUsers extends Component{
   }
 
   selectedStatus(event){
-      event.preventDefault();
+    event.preventDefault();
 
-      var selectedValue        = this.refs.blockActive.value;
-        var keywordSelectedValue = selectedValue.split('$')[0];
-        // console.log("selectedValue status",selectedValue);     
-        // console.log("keywordSelectedValue status",keywordSelectedValue);
-          var formValues ={
-            searchText : selectedValue,
-          }
-
-          if(selectedValue == "all"){
-            // console.log("here all data");
-
-              var data = {
-                "startRange"        : this.state.startRange,
-                      "limitRange"        : this.state.limitRange, 
-              }
-            
-              axios.post('/api/users/post/userslist', data)
+    var selectedValue        = this.refs.blockActive.value;
+    var keywordSelectedValue = selectedValue.split('$')[0];
+    var formValues ={
+        searchText : selectedValue,
+    }
+      if(selectedValue == "all"){
+        var data = {
+          "startRange"        : this.state.startRange,
+          "limitRange"        : this.state.limitRange, 
+        }
+        
+         axios.get('/api/users/get/list/'+data.limitRange)
               .then( (res)=>{      
-                // console.log("herer",res);
-                // swal("Success! Showing "+selectedValue,"","success");
+               
                 var tableData = res.data.map((a, i)=>{
                   return {
-                          _id       : a._id,
-                          fullName        : a.fullName ? a.fullName : "-",
-                                  email       : a.email ? a.email : "-",
-                                  mobNumber    : a.mobNumber ? a.mobNumber : "-", 
-                                  status          : a.status ? a.status : "-",  
-                                  role       : a.role ? a.role : "-",
-                                  checked         : false,
+                         _id             : a._id,
+                        fullName        : a.fullName ? a.fullName : "-",
+                        email           : a.email ? a.email : "-",
+                        mobNumber       : a.mobNumber ? a.mobNumber : "-", 
+                        status          : a.status ? a.status : "-",  
+                        role            : a.role[0] ? a.role[0] : "-",
+                        checked         : false,
                   }
                 })
                 this.setState({
@@ -635,39 +625,42 @@ class UMListOfUsers extends Component{
               });
 
 
-          }else{
+      }else{
 
-               axios
-                .post('/api/users/post/searchValue',formValues)
-                .then(
-                  (res)=>{
-                    // console.log('res', res);
-                    // swal("Success! only "+selectedValue+" users are shown in the list", "","success");
-                    var data = res.data.data;
-                    var tableData = data.map((a, i)=>{
-                  return {
-                      _id       : a._id ? a._id : '-' ,
-                      fullName        : a.profile.fullName ? a.profile.fullName : '-',
-                              email       : a.emails[0].address ? a.emails[0].address : '-',
-                              mobNumber    : a.profile.mobNumber ? a.profile.mobNumber : '-', 
-                              status          : a.profile.status ? a.profile.status : "-",  
-                              roles       : ((a.roles.map((b, i)=>{return '<p>'+b+'</p>'})).toString()).replace(/,/g, " "),
-                       checked        : false,
-                  }
-                })
-                      this.setState({
-                        tableData     : tableData,          
-                      },()=>{
-                      })
-                  }).catch((error)=>{ 
-                    swal("Sorry there are no "+selectedValue+"users", "","error");
-                      if(error.message === "Request failed with status code 401")
-                {
-                     swal("Your session is expired! Please login again.","", "error");
-                     this.props.history.push("/");
+           axios
+            .get('/api/users/get/list/status/'+selectedValue+'/1')
+            .then(
+              (res)=>{
+                // console.log('res', res);
+                // swal("Success! only "+selectedValue+" users are shown in the list", "","success");
+                var data = res.data;
+                console.log("data",data);
+                var tableData = data.map((a, i)=>{
+                console.log("data",a.role[0]);
+
+                return {
+                    _id             : a._id ? a._id : '-' ,
+                    fullName        : a.fullName ? a.fullName : '-',
+                    email           : a.email ? a.email : '-',
+                    mobNumber       : a.mobNumber ? a.mobNumber : '-', 
+                    status          : a.status ? a.status : "-",  
+                    role            : a.role[0] ? a.role[0] : "-",
+                    checked         : false,
                 }
-                });
-          }
+            })
+                  this.setState({
+                    tableData     : tableData,          
+                  },()=>{
+                  })
+              }).catch((error)=>{ 
+                swal("Sorry there are no "+selectedValue+"users", "","error");
+                  if(error.message === "Request failed with status code 401")
+            {
+                 swal("Your session is expired! Please login again.","", "error");
+                 this.props.history.push("/");
+            }
+            });
+      }
 
             
 
@@ -710,7 +703,7 @@ class UMListOfUsers extends Component{
                   // update table here
                         var data = {
                         "startRange"        : this.state.startRange,
-                              "limitRange"        : this.state.limitRange, 
+                        "limitRange"        : this.state.limitRange, 
                       }
                       axios.post('/api/users/post/userslist', data)
                       .then( (res)=>{      
@@ -800,8 +793,8 @@ class UMListOfUsers extends Component{
                             <option className="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-limit='37' value="-" name="userListDDOption">-- Select --</option> 
                             <option className="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-limit='37' value="block_selected" name="userListDDOption">Block Selected</option>  
                             <option className="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-limit='37' value="active_selected" name="userListDDOption">Active Selected</option>
-                            <option className="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-limit='37' value="cancel_selected" name="userListDDOption">Delete Selected Acccounts</option>  
-                          {/*  {   adminRolesListDataList.map( (rolesData,index)=>{
+{/*                            <option className="col-lg-12 col-md-12 col-sm-12 col-xs-12" data-limit='37' value="cancel_selected" name="userListDDOption">Delete Selected Acccounts</option>  
+*/}                          {/*  {   adminRolesListDataList.map( (rolesData,index)=>{
                                 return <UMAddRolRow key={index} roleDataVales={rolesData.roleName}/>
                                 })
                             }
@@ -814,7 +807,6 @@ class UMListOfUsers extends Component{
                         <div className="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">                
                           <label className="col-lg-12 col-md-12 col-xs-12 col-sm-12 NOpadding-left">Select Role</label>
                           <select className="col-lg-12 col-md-12 col-sm-12 col-xs-12  noPadding  form-control" ref="roleListDropdown" name="roleListDropdown" onChange={this.selectedRole.bind(this)} >
-                            <option name="roleListDDOption">-- Select --</option>
                             <option value="all" name="roleListDDOption">Show All</option>   
                             { adminRolesListDataList.map( (rolesData,index)=>{
                               return <UMSelectRoleUsers  key={index} roleDataVales={rolesData.roleName}/>
@@ -825,7 +817,6 @@ class UMListOfUsers extends Component{
                         <div className="form-group col-lg-4 col-md-4 col-sm-6 col-xs-6">
                           <label className="col-lg-12 col-md-12 col-xs-12 col-sm-12 NOpadding-left">Select Status</label>
                           <select className=" col-col-lg-12  col-md-12 col-sm-12 col-xs-12 noPadding  form-control " ref="blockActive"  name="blockActive" onChange={this.selectedStatus.bind(this)}>
-                            <option>-- Select --</option> 
                             <option value="all" >Show All</option>  
                             <option value="Blocked">Blocked</option>  
                             <option value="Active">Active </option> 
