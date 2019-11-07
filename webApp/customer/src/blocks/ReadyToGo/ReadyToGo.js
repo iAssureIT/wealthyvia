@@ -8,9 +8,6 @@ import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
 import "./ReadyToGo.css";
 
-
-
-
 var array =[];
 var answersarray =[];
 export default class ReadyToGo extends Component {
@@ -1130,7 +1127,7 @@ validateFormReqReview() {
                                         <span className="centreDetaillistItem col-xs-9">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
                                       </div>                                            
                                     </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  textAlignCenter">
                                       <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Next</div>
                                     </div>
                                       </form>
@@ -1435,7 +1432,7 @@ validateFormReqReview() {
                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                           <div className="row">
                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label>PAN (JPEG/PNG/PDF) </label><span className="asterix">*</span>
+                                                <label>PAN <span className="fs10"> (JPEG/PNG/PDF) </span></label><span className="asterix">*</span>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                    <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.checkSizePAN.bind(this)} />
@@ -1447,7 +1444,7 @@ validateFormReqReview() {
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                           <div className="row">
                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label>Adress Proof (Driving Licence/Passport/Aadhaar card)(JPEG/PNG/PDF)</label><span className="asterix">*</span>
+                                                <label>Adress Proof <span className="fs10">(Driving Licence/Passport/Aadhaar card)(JPEG/PNG/PDF)</span></label><span className="asterix">*</span>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                    <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.checkSize.bind(this)} />

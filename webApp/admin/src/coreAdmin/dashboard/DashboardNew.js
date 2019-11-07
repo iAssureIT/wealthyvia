@@ -4,7 +4,7 @@ import {Link}             from 'react-router-dom';
 import moment             from 'moment';
 import axios              from 'axios';
 import $                  from 'jquery';
-import ClientTable  from './ClientTable/ClientTable.js'
+import OfferingCheckForm  from './OfferingCheckForm/OfferingCheckForm.js'
 
 import { Chart }          from "react-google-charts";
 import DashboardCWSBS     from "../dashboardReports/cafeWiseSeatBookingS/DashboardCWSBS.js";
@@ -345,8 +345,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  boxWrapDashboard graphWrapperTab">
                 <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap innerGraphWraptbl tableClrPdg" style={{padding:"0px 0px"}}>
-                  <h4 style={{padding:"0px 15px"}}>Customer List </h4>
-                  <ClientTable />
+                  <OfferingCheckForm />
                 </div>
               </div>
             

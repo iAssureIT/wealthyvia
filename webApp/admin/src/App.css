@@ -164,7 +164,7 @@ body{
 .mainContentBackground{
   margin-top: 30px;
   margin-bottom: 30px;
-  min-height: 500px;
+  min-height: 600px;
   background-color: "#fff";
 }
 .mngAssessmentLink,.mngAssessmentLink:focus,.mngAssessmentLink:hover,

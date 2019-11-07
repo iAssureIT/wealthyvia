@@ -57,9 +57,9 @@ class UMListOfUsers extends Component{
   }
 
  componentDidMount() {
-      var data = {
-      "startRange"        : this.state.startRange,
-      "limitRange"        : this.state.limitRange, 
+    var data = {
+    "startRange"        : this.state.startRange,
+    "limitRange"        : this.state.limitRange, 
     }
     axios.get('/api/users/get/list/'+data.limitRange)
     .then( (res)=>{      

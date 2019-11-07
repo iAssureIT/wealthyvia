@@ -147,10 +147,10 @@ class EditNotificationModal extends Component{
 					 console.log('response edit',response)				
 					if(templateType =='Email'){
 						var emailTemplatesList = this.state.emailTemplatesList;
-						emailTemplatesList.push(response.data.dataBody);
+						/*emailTemplatesList.push(response.data.dataBody);
 						this.setState({
 							emailTemplatesList : emailTemplatesList
-						});
+						});*/
 					}
 					else if(templateType =='SMS'){
 						var smsTemplatesList = this.state.smsTemplatesList;
@@ -160,22 +160,28 @@ class EditNotificationModal extends Component{
 						});
 					}else if(templateType =='Notification'){
 						var notificationTemplatesList = this.state.notificationTemplatesList;
-						notificationTemplatesList.push(response.data.dataBody);
+						/*notificationTemplatesList.push(response.data.dataBody);
 						this.setState({
 							notificationTemplatesList : notificationTemplatesList
-						});
+						});*/
 					}
-					swal({
-						title:'swal',
-						text: response.data.message ,
-						type: 'success',
-						showCancelButton: false,
+					  swal({
+				         title: 'Hello!',
+				        text: response.data.message,
+				        showCancelButton: false,
 						confirmButtonColor: '#666',
 						confirmButtonText: 'Ok'
-					});
-					$('#createNotifyModal').hide();
-					$('.modal-backdrop').remove();
-					// console.log('response --==',response);
+				        
+				        }).then((option)=> {
+				          console.log("option---->",option)
+				          if(option == true)
+				          {
+         					window.location.reload();
+				          }
+				           
+
+				     });
+					
 				})
 				.catch(function (error) {
 					swal({
@@ -336,3 +342,6 @@ class EditNotificationModal extends Component{
 
 }
 export default EditNotificationModal;
+
+
+

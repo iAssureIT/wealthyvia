@@ -11,7 +11,6 @@ import UpdateComponent from './UpdateComponent/UpdateComponent.js'
 import TableComponent  from './TableComponent/TableComponent.js'
 import ClientTable  from './ClientTable/ClientTable.js'
 import Productlist     from './productlist/Productlist.js'
-import Visitorreport   from './Visitorreport/Visitorreport.js'
 import Infocomponent   from './Infocomponent/Infocomponent.js'
 import './Dashboard.css';
 
@@ -39,7 +38,6 @@ export default class Dashboard extends Component{
             <StatusComponent stats={{color:"#F39C2F", icon:"users",heading:"NEW MEMBERS",value:"2,000"}} /> 
           </div>
           <UpdateComponent />
-          <Visitorreport />
             <Infocomponent stats={{color:"#C47D24",contcolor:"#F39C2F", icon:"tag",heading:"INVENTORY",value:"5,200",per:"50%"}} />
             <Infocomponent stats={{color:"#3B8547",contcolor:"#4CA75A", icon:"heart",heading:"MENTIONS",value:"92,050",per:"20%"}} />
             <Infocomponent stats={{color:"#B23B2C",contcolor:"#DD4B39", icon:"cloud-download",heading:"DOWNLOADS",value:"114,381",per:"70%"}} />

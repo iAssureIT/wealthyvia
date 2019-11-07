@@ -82,7 +82,7 @@ export default class SubscribedServices extends Component {
                                 return(
                                   <li>
                                     { 
-                                      this.state.subscribed == false ?
+                                      this.state.subscribed == true ?
                                         <a data-toggle="pill" className="activeSubscription" href="#home">{a.offeringTitle}</a>
                                       :
                                         <a  className="disabled" onClick={this.checkSubscribe.bind(this)}>{a.offeringTitle}</a>

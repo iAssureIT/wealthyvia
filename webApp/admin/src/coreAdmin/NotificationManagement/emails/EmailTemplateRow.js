@@ -27,6 +27,10 @@ class EmailTemplateRow extends Component{
 		axios.delete('/api/masternotifications/delete/'+id)
 		.then((response)=> {
 	    	// console.log('delete response',response);
+	    	if(response){
+	    		window.location.reload();
+
+	    	}
 		}).catch((error)=> {
 		    // handle error
 		    // console.log(error);

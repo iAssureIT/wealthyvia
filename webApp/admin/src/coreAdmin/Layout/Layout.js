@@ -14,14 +14,16 @@ import ForgotPassword   from '../systemSecurity/ForgotPassword.js';
 import ResetPassword    from '../systemSecurity/ResetPassword.js';
 import SignUp           from '../systemSecurity/SignUp.js';
 import VerifyAccount    from '../systemSecurity/VerifyAccount.js';
-import Header           from '../common/header/Header.js'
-import Footer           from '../common/footer/Footer.js'
-import Dashboard        from '../dashboard/Dashboard.js'
-import UploadStatement  from '../dashboard/UploadStatement/UploadStatement.js'
-import Statements       from '../dashboard/Statements/Statements.js'
-import UploadPerformanceStatement  from '../dashboard/UploadStatement/UploadPerformanceStatement.js'
-import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js'
-import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js'
+import Header           from '../common/header/Header.js';
+import Footer           from '../common/footer/Footer.js';
+import Dashboard        from '../dashboard/Dashboard.js';
+import UploadStatement  from '../dashboard/UploadStatement/UploadStatement.js';
+import OfferingCheckForm  from '../dashboard/OfferingCheckForm/OfferingCheckForm.js';
+import Statements       from '../dashboard/Statements/Statements.js';
+// import OfferingCheckForm       from '../dashboard/OfferingCheckForm/OfferingCheckForm.js';
+import UploadPerformanceStatement  from '../dashboard/UploadStatement/UploadPerformanceStatement.js';
+import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js';
+import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js';
 import UMListOfUsers    from '../userManagement/UM/UMListOfUsers.js';
 import EditUserProfile  from '../userManagement/UM/EditUserProfile.js';
 import UMRolesList      from '../userManagement/Roles/UMRolesList.js';
@@ -143,6 +145,7 @@ componentDidMount(){
                           <Route path="/companysetting" component={CompanySetting} exact />
                           <Route path="/companysetting/:id" component={CompanySetting} exact />
                           <Route path="/statement" component={Statements} exact />
+                          <Route path="/OfferingCheckForm" component={OfferingCheckForm} exact />
                          <Route path="/bankReport" component={BankReport} exact />
                         {/* Blog  */}
                           <Route path="/blogsform/id/:blogID"                exact strict component={BlogsFormPage}  />

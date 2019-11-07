@@ -53,7 +53,7 @@ class ViewTemplates extends Component{
 		    	notificationTemplatesList 	: notificationTemplatesList,
 		    	smsTemplatesList 			: smsTemplatesList
 		    });
-			console.log("list",response.data);
+			console.log("list",notificationTemplatesList);
 		}).catch(function (error) {
 			  console.log("error",error);
 		    

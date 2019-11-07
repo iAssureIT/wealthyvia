@@ -32,8 +32,9 @@
       border: 0px solid #ccc !important;
   }
  .statelabel{
-  font-weight: 300!important;
-      font-size: 13px;
+    font-weight: 300!important;
+    font-size: 15px;
+    font-weight: bold !important;
     font-family: 'Montserrat-Regular';
   }
   .formht{

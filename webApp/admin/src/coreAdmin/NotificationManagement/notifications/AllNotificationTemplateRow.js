@@ -55,6 +55,10 @@ class AllNotificationTemplateRow extends Component{
 		console.log('id',id);
 		axios.delete('/api/masternotifications/delete/'+id)
 		.then((response)=> {
+			if(response)
+			{
+	    		window.location.reload();
+			}
 	    	// console.log('delete response',response);
 		}).catch((error)=> {
 		    // handle error

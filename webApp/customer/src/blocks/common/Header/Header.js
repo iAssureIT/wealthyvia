@@ -620,8 +620,8 @@ export default class Header extends Component {
     }
   }
   ClosemyModalHeader(){
-    $("#myModalHeader").hide();
-    $("#myModalHeader").removeClass('in');
+    $("#kycModalHeader").hide();
+    $("#kycModalHeader").removeClass('in');
     $(".modal-backdrop").remove();
     $("body").removeClass("modal-open");
   }
@@ -797,7 +797,7 @@ export default class Header extends Component {
                                         <span className="centreDetaillistItem col-xs-9">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
                                       </div>                                            
                                     </div>
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt8 textAlignCenter">
                                       <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 pull-right submitButtonRP" onClick={this.SubmitFirst.bind(this)}>Next</div>
                                     </div>
                                       </form>
@@ -970,7 +970,7 @@ export default class Header extends Component {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>4) {this.state.Question4}</b><span className="asterix">*</span></p>
+                                            <p><b> {this.state.Question4}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1006,7 +1006,7 @@ export default class Header extends Component {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>5) {this.state.Question5}</b><span className="asterix">*</span></p>
+                                            <p><b>{this.state.Question5}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1041,7 +1041,7 @@ export default class Header extends Component {
 
                                           </div> 
                                         </div>
-                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt50 inputContainerRP textAlignCenter">
                                              <div className="col-lg-2 col-md-2 col-sm-4 col-xs-4 pull-right submitButtonRP" onClick={this.SubmitSecondModal.bind(this)}>Submit</div>
                                           <div className="col-lg-2  col-md-2 col-sm-4 col-xs-4  submitButtonRP" onClick={this.backButton.bind(this)}>Back</div>
                                             
@@ -1102,7 +1102,7 @@ export default class Header extends Component {
                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                           <div className="row">
                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label>PAN (JPEG/PNG/PDF) </label><span className="asterix">*</span>
+                                                <label>PAN <span className="fs10">(JPEG/PNG/PDF) </span></label><span className="asterix">*</span>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                    <input type="file" className="customInputKF inputBox nameParts" name="panNumber"  ref="panNumber" onChange={this.checkSizePAN.bind(this)} />
@@ -1114,7 +1114,7 @@ export default class Header extends Component {
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                                           <div className="row">
                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                <label>Adress Proof ( Driving Licence/Passport/Aadhaar card )(JPEG/PNG/PDF)</label><span className="asterix">*</span>
+                                                <label>Adress Proof <span className="fs10">( Driving Licen/Passport/Aadhaar)(JPEG/PNG/PDF)</span> <span className="asterix">*</span></label>
                                               </div>
                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                    <input type="file" className="customInputKF inputBox nameParts" name="addressProof" placeholder="Enter Name" ref="addressProof" onChange={this.checkSize.bind(this)} />
@@ -1127,7 +1127,7 @@ export default class Header extends Component {
                                               <div className="col-lg-2 col-md-2 hidden-sm hidden-xs submitButton pull-right" onClick={this.Submit.bind(this)}>
                                                 Submit
                                               </div>
-                                               <div className="hidden-lg hidden-md col-sm-4 col-xs-4 submitButton  pull-right" onClick={this.Submit.bind(this)}>
+                                               <div className="hidden-lg hidden-md col-sm-4 col-xs-4 submitButton mt50 pull-right" onClick={this.Submit.bind(this)}>
                                                 Submit
                                               </div>
                                                
@@ -1218,11 +1218,17 @@ export default class Header extends Component {
                                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}
                                           </a>
-                                          <ul className="dropdown-menu customDropdownLogOut " aria-labelledby="navbarDropdownMenuLink">
+                                          <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item" href=""><div className="ImgDiv col-lg-2 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
                                              <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a><a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
                                             
+                                          </ul>
+                                          <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
+                                              <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                             <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
+                                             <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
+                                           
                                           </ul>
                                         </li>
 /*                                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}</a>
@@ -1233,8 +1239,9 @@ export default class Header extends Component {
                                       }
                                       {
                                           token ?
-                                            <li className="dropdown investNowHead" data-toggle="modal" data-target="#myModalHeader">
-                                                    <span >Invest Now</span>
+                                            <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
+                                                    <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
+                                                    <span  className="investNowHead hidden-sm hidden-xs" >Invest Now</span>
                                             </li>                     
                                           :
                                             <a  href="/login" ><li className="dropdown investNowHeadBefore">

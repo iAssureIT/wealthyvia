@@ -428,6 +428,7 @@
     width: 100%;
     padding: 6px 12px;
     font-size: 14px;
+    word-break: break-word;
     line-height: 1.42857143;
     color: #555;
     background-color: #fff;
