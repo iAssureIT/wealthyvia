@@ -18,6 +18,7 @@ const formValid = formerrors=>{
   } 
 const amenitiesNameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
 var ActiveArrayUser =[];
+var result = [];
 class OfferingCheckForm extends Component{
 
   constructor(props) {
@@ -40,6 +41,7 @@ class OfferingCheckForm extends Component{
       userDetailsDisplay           : "",
       userIdG                      : "",
       subscriptionData             : "",
+      usersOfferingStatus          : "",
       startDate                    : new Date(),
 
 
@@ -59,16 +61,15 @@ class OfferingCheckForm extends Component{
             subscriptionData        : res.data,          
           },()=>{
           })
-      for(var i=0;i<res.data.length;i++)
+      for(var i=0;i<res.data.length-1;i++)
       {
-            console.log("subscriptionData",res.data[i].user_id);
         if(res.data[i].user_id == this.state.userIdG)
         {
+          result = res.data[i].offering;
           this.setState({
             usersOfferingStatus       :res.data[i].offering,
-          });
-          break;
-          console.log("usersOfferingStatus",this.state.usersOfferingStatus);
+          },()=>{});
+          console.log("result",result);
         }
       }
     })
@@ -356,7 +357,8 @@ class OfferingCheckForm extends Component{
                             this.state.offeringTitle.map((b, j)=>{
                                 return(
                                        <td className="col-lg-1 textAlignCenter">
-                                           <i  data-ID={b._id} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.offeringTitle == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                         {console.log("result.offering[j]",this.state.usersOfferingStatus)}
+                                           <i  data-ID={b._id} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.usersOfferingStatus ? this.state.usersOfferingStatus[j].offeringStatus   == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
                                         </td>  
                                                                                  
                                       )
