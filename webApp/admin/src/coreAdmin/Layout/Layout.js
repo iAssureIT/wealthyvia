@@ -19,6 +19,7 @@ import Footer           from '../common/footer/Footer.js';
 import Dashboard        from '../dashboard/Dashboard.js';
 import UploadStatement  from '../dashboard/UploadStatement/UploadStatement.js';
 import OfferingCheckForm  from '../dashboard/OfferingCheckForm/OfferingCheckForm.js';
+import ClientTable        from '../dashboard/ClientTable/ClientTable.js';
 import Statements       from '../dashboard/Statements/Statements.js';
 // import OfferingCheckForm       from '../dashboard/OfferingCheckForm/OfferingCheckForm.js';
 import UploadPerformanceStatement  from '../dashboard/UploadStatement/UploadPerformanceStatement.js';
@@ -146,6 +147,7 @@ componentDidMount(){
                           <Route path="/companysetting/:id" component={CompanySetting} exact />
                           <Route path="/statement" component={Statements} exact />
                           <Route path="/OfferingCheckForm" component={OfferingCheckForm} exact />
+                          <Route path="/ClientTable" component={ClientTable} exact />
                          <Route path="/bankReport" component={BankReport} exact />
                         {/* Blog  */}
                           <Route path="/blogsform/id/:blogID"                exact strict component={BlogsFormPage}  />

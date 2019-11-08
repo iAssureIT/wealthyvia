@@ -139,7 +139,6 @@ class ClientTable extends Component {
                                       </td>
                                         {
                                           this.state.offeringTitle.reverse().map((b, j)=>{
-                                            console.log("b._id"+"U"+i+"P"+j+b._id)
                                             return(
                                                <td className="col-lg-1 textAlignCenter">
                                                    <i onClick={this.changeAttribute.bind(this)} abc={a.offering[j].offeringStatus} data-attribute={a.user_id} data-ID={"U"+i+"P"+j+"-"+b._id} className={'fa fa-check-circle prodCheckboxDim ' + (a.offering[j].offeringStatus == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>

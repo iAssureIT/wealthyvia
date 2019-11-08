@@ -100,6 +100,13 @@ export default class Leftsidebar extends Component{
 */}                           
                         </ul>
                     </li>
+                    <li  className="add " onClick={this.eventclk1.bind(this)}>
+                        <Link aria-expanded="false" to="/ClientTable">
+                            <i className="fa fa-file"></i>
+                            List Of Subscribed User
+                        </Link>
+                      
+                    </li>
                      <li  className="add " onClick={this.eventclk1.bind(this)}>
                         <Link aria-expanded="false">
                             <i className="fa fa-file"></i>

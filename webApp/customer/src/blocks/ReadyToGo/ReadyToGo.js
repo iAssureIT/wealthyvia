@@ -23,8 +23,7 @@ export default class ReadyToGo extends Component {
             "PRname"             : "",
             "PRcontactNumber"    : "",
             "panNumberLocationRTG"       : "",
-            "addressProofLocationRTG"       : "",
-
+            "addressProofLocationRTG"    : "",
             "PRemail"            : "",
             "message"            : "",
             "portfolioImage1"     : "",
@@ -1300,7 +1299,7 @@ validateFormReqReview() {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>4) {this.state.Question4}</b><span className="asterix">*</span></p>
+                                            <p><b>   {this.state.Question4}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1336,7 +1335,7 @@ validateFormReqReview() {
                                           </div>            
                                         </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                            <p><b>5) {this.state.Question5}</b><span className="asterix">*</span></p>
+                                            <p><b> {this.state.Question5}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                      
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1441,7 +1440,7 @@ validateFormReqReview() {
                                               </div>
                                           </div>
                                         </div>
-                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP ht150">
                                           <div className="row">
                                               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <label>Adress Proof <span className="fs10">(Driving Licence/Passport/Aadhaar card)(JPEG/PNG/PDF)</span></label><span className="asterix">*</span>
