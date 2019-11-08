@@ -401,7 +401,7 @@ a.article, a.article:hover {
   }
   .content-wrapper {
     min-height: 100%;
-    background-color: #f4f4f4  !important;
+    background-color: #eeeeee  !important;
     z-index: 800;
   }
   .main-footer {
@@ -483,7 +483,7 @@ a.article, a.article:hover {
   /* Content */
   .content {
     min-height: calc(100vh - 50px);
-    background: #f4f4f4 ;
+    background: #eeeeee !important;
     padding: 2%;
   /*  margin-right: auto;
     margin-left: auto;
@@ -2375,7 +2375,7 @@ a.article, a.article:hover {
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 2px;
     margin-bottom: 15px;
-    padding: 12.5px 0px 5px 5px;
+    padding: 0px 0px 0px 0px;
   }
   .bxSdwGraph{
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
@@ -2402,13 +2402,12 @@ a.article, a.article:hover {
     border-bottom-left-radius: 2px;
     display: block;
     float: left;
-    height: 80px;
+    height: 105px;
     width: 80px;
     text-align: center;
     font-size: 45px;
     line-height: 80px;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 100%;
   }
   .info-box-icon > img {
     max-width: 100%;

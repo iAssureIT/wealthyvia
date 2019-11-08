@@ -81,9 +81,7 @@ body{
 .emptyclass{
   height: 100px;
 }
-.mainContentBackground{
-  background: #fff;
-}
+
 .paddingZeroWrapper{
   padding: 0px,
 }
@@ -165,7 +163,7 @@ body{
   margin-top: 30px;
   margin-bottom: 30px;
   min-height: 600px;
-  background-color: "#fff";
+  background-color: #aaa !important;
 }
 .mngAssessmentLink,.mngAssessmentLink:focus,.mngAssessmentLink:hover,
 a.mngAssessmentLink[aria-expanded="true"]{
@@ -300,4 +298,8 @@ color: #333;
   font-size: 12px;
   margin-top: 5px;
   margin-bottom: 10px;
+}
+.workHeader{
+  border-top: 8px solid #201a47 !important;
+  border-radius:3px;
 }

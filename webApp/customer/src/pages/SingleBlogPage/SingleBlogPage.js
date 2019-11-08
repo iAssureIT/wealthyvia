@@ -4,7 +4,7 @@ import BlogContent           from "../../blocks/BlogContent/BlogContent.js";
 import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
 import Moment                from 'react-moment';
 import MetaTags              from 'react-meta-tags';
-// import ShareLink             from 'react-facebook-share-link'
+// import ShareLink          from 'react-facebook-share-link'
 
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
 import { FacebookProvider, Share } from 'react-facebook';
@@ -85,11 +85,13 @@ export default class SingleBlogPage extends React.Component {
   }
 
 	render() {
+   
     console.log('CurrentUrl',this.state.CurrentUrl);
     const token = localStorage.getItem("user_ID");
     if(token){
 
 		return (
+
       	<div className="container-fluid" style={{padding:"0px"}}>
        {/*  <MetaTags>
             <meta property="og:url"                 content={this.state.CurrentUrl}  />
@@ -104,6 +106,7 @@ export default class SingleBlogPage extends React.Component {
             <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 likeDiv mt40">
               <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a href={"https://twitter.com/home?status=" + this.state.CurrentUrl} target="_blank"><i className="fa fa-twitter" ></i></a><a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
             </div>
+
 
 {/*
               <FacebookProvider appId="409175303314400">

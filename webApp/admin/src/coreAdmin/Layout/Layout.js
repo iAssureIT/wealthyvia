@@ -124,7 +124,7 @@ componentDidMount(){
           <Router>
             <div className="App container-fluid">
               <div className="row">
-                <div id="headerid" className="headerbackgroundcolor">
+                <div id="headerid" className="headerbackgroundcolor backColorGrey">
                   <div className="">
                     <Header systemlogout={this.updateState} />
                  </div>
