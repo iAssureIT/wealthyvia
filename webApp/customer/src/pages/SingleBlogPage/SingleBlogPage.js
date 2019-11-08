@@ -3,7 +3,7 @@ import SingleBlogBanner      from "../../blocks/SingleBlogBanner/SingleBlogBanne
 import BlogContent           from "../../blocks/BlogContent/BlogContent.js";
 import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
 import Moment                from 'react-moment';
-import MetaTags              from 'react-meta-tags';
+//import MetaTags              from 'react-meta-tags';
 // import ShareLink          from 'react-facebook-share-link'
 
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";

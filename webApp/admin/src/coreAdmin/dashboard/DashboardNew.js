@@ -278,7 +278,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
                   <span className="info-box-icon bg-orange">
-                    <i className="fa fa-users"></i>
+                    <img src="/images/blogging.png"/>
                   </span>
                   <div className="info-box-content">
                     <span className="info-box-number">Users<small></small></span>
@@ -294,7 +294,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
                   <span className="info-box-icon bg-green">
-                    <i className="fa fa-users"></i>
+                    <img src="/images/file.png"/>
                   </span>
                   <div className="info-box-content">
                     <span className="info-box-number">Users<small></small></span>
@@ -310,7 +310,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-3 col-md-3 col-sm-4 col-xs-12">
                 <div className="info-box">
                   <span className="info-box-icon bg-aqua">
-                    <i className="fa fa-users" />
+                    <img src="/images/time-management.png"/>
                   </span>
                   <div className="info-box-content">
                     <span className="info-box-number">Users<small></small></span>
@@ -326,7 +326,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
                   <span className="info-box-icon bg-red">
-                    <i className="fa fa-users"></i>
+                    <img src="/images/inactive.png"/>
                   </span>
                   <div className="info-box-content">
                     <span className="info-box-number">Users<small></small></span>

@@ -2369,7 +2369,7 @@ a.article, a.article:hover {
   .info-box {
     display: block;
     /*min-height: 90px;*/
-    min-height: 105px;
+    min-height: 95px;
     background: #fff;
     width: 100%;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
@@ -2395,6 +2395,12 @@ a.article, a.article:hover {
   .info-box .progress .progress-bar {
     background: #fff;
   }
+  .info-box-icon img{
+    filter:invert(100%);
+    margin-top: 10px;
+    height: 50%;
+    width: 50%;
+  }
   .info-box-icon {
     border-top-left-radius: 2px;
     border-top-right-radius: 0;
@@ -2402,7 +2408,7 @@ a.article, a.article:hover {
     border-bottom-left-radius: 2px;
     display: block;
     float: left;
-    height: 105px;
+    height: 95px;
     width: 80px;
     text-align: center;
     font-size: 45px;
@@ -2411,7 +2417,7 @@ a.article, a.article:hover {
   }
   .info-box-icon > img {
     max-width: 100%;
-    margin-top: -8px;
+    margin-top: 8px;
     margin-left: 2px;
   }
   .info-box-content {
