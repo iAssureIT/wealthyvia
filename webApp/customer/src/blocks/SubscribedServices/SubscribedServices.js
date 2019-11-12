@@ -20,6 +20,8 @@ export default class SubscribedServices extends Component {
           date1                 : "08-10-2019 9:30PM",
           offeringTitle         : "",
           userOfferingsChecked  : "",
+          StartDate             : "",
+          EndDate             : "",
           subscribed            : false,
         };
     }
@@ -31,6 +33,9 @@ export default class SubscribedServices extends Component {
   {
     var userInfo = localStorage.getItem("user_ID");
     console.log("userInfo",userInfo);
+
+    /*Get Offerings*/
+
     axios.get('/api/offerings/get/all/list/1')
     .then((res)=>{      
       console.log("offerings",res.data);
@@ -45,26 +50,42 @@ export default class SubscribedServices extends Component {
            this.props.history.push("/");
       }
     });
-    axios.get('/api/subscriptionorders/get/all/'+userInfo+'/1')
-    .then((res)=>{      
-      this.setState({
-            userOfferingsChecked : res.data[0].offeringDetails,
+    
+    /*subscribed offerings*/
+
+     axios.get('/api/offeringsubscriptions/get/'+ userInfo )
+          .then( (res)=>{      
+            this.setState({
+                  subscriptionData        : res.data.offering,          
+                },()=>{
+                  console.log("subscriptionData",this.state.subscriptionData)
+            })
           })
-      console.log("userOfferingsChecked",this.state.userOfferingsChecked);
-    })
-    .catch((error)=>{
-      if(error.message === "Request failed with status code 401")
-      {
-           swal("Your session is expired! Please login again.","", "error");
-           this.props.history.push("/");
-      }
-    });
+          .catch((error)=>{
+            console.log("error",error);
+            if(error.message === "Request failed with status code 401")
+              { 
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+          });
   } 
+  getDate(event){
+    event.preventDefault();
+     var startDate = event.target.getAttribute("data-startDate");
+   var endDate = event.target.getAttribute("data-endDate");
+   console.log("startDate"+startDate+"-"+"endDate"+endDate);
+   this.setState({
+      StartDate : startDate,
+      EndDate   : endDate
+   })
+
+  }
   checkSubscribe(event)
   {
-    event.preventDefault();
+   event.preventDefault();
    swal("You are not subscribed to this offering","", "error");
-
+  
   }
   render() {
     var date = "09-10-2019  5:30PM";
@@ -77,13 +98,14 @@ export default class SubscribedServices extends Component {
                       <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt40 "> 
                           <ul class="nav nav-pills nav-stacked customStack textAlignCenter">
                             <li ><a data-toggle="pill" href="#performance">Performance</a></li>
-                           {this.state.offeringTitle?
-                             this.state.offeringTitle.map((a, i)=>{
+                           {this.state.subscriptionData?
+                             this.state.subscriptionData.map((a, i)=>{
                                 return(
                                   <li>
+                                      {console.log("a.offeringTitle",a._id)}
                                     { 
-                                      this.state.subscribed == true ?
-                                        <a data-toggle="pill" className="activeSubscription" href="#home">{a.offeringTitle}</a>
+                                      this.state.subscriptionData[i].offeringStatus == "Active" ?
+                                        <a data-toggle="pill" className="activeSubscription" data-startDate={a.startDate?a.startDate:""} data-endDate={a.endDate?a.endDate:""} onClick={this.getDate.bind(this)} href={"#"+a.offering_ID}>{a.offeringTitle}</a>
                                       :
                                         <a  className="disabled" onClick={this.checkSubscribe.bind(this)}>{a.offeringTitle}</a>
                                     }
@@ -97,39 +119,45 @@ export default class SubscribedServices extends Component {
 
                       </div>
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                          <div id="home" class="tab-pane fade in ">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
+                          <div id="5dbfd24b621a0aeead43e4d2" class="tab-pane fade in ">
+                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
                             <h3>5GCPM Reports & Statement</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt20">{this.state.date1}</label>
                           </div>
                           <div id="performance" class="tab-pane fade in active">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
+                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
                             <h3>Performance Reports</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt20">{this.state.date1}</label>
                           </div>
-                          <div id="menu1" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
-                           <h3>Safe Heaven Moats Reports & Statement</h3>
+                          <div id="5dbfd24b621a0aeead43e4d3" class="tab-pane fade">
+                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                           <h3>Safe Heaven Reports & Statement</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt20">{this.state.date1}</label>
                           </div>
-                          <div id="menu2" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
-                            <h3>Safe Heaven Stocks + Alpha Reports & Statement</h3>
+                          <div id="5dbfd257621a0aeead43e4d4" class="tab-pane fade">
+                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                            <h3>SHM Alpha Enhancer + Alpha Reports & Statement</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt20">{this.state.date1}</label>
                           </div>
-                          <div id="menu3" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
-                             <h3>USA Stocks Portfolio Reports & Statement</h3>
+                          <div id="5dbfd27b621a0aeead43e4d6" class="tab-pane fade">
+                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                             <h3>Fly Nifty Reports & Statement</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt40">{this.state.date1}</label>
                           </div>
-                           <div id="menu4" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.date} </span> </h6><br/>
-                            <h3>Unlisted Stocks Reports & Statement</h3>
+                           <div id="5dbfd288621a0aeead43e4d7" class="tab-pane fade">
+                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                            <h3>Multibagger Reports & Statement</h3>
+                            <h5>Last update date : {this.state.date} </h5>
+                            <label className="mt40">{this.state.date1}</label>
+                           </div>
+                            <div id="5dbfd266621a0aeead43e4d5" class="tab-pane fade">
+                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                            <h3>US Stocks Reports & Statement</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt40">{this.state.date1}</label>
                            </div>

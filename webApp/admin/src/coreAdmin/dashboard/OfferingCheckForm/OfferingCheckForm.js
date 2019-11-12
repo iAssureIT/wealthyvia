@@ -6,7 +6,6 @@ import swal                 from 'sweetalert';
 import $                    from "jquery";
 import DatePicker           from "react-datepicker";
 import Moment               from 'react-moment';
-
  
 import "react-datepicker/dist/react-datepicker.css";
 import './OfferingCheckForm.css';
@@ -46,7 +45,6 @@ class OfferingCheckForm extends Component{
       subscriptionData             : "",
       usersOfferingStatus          : "",
       userOfferingEndDate          : "",
-
       startDateAlready             : "",
       startDate                    : new Date(),
     };
@@ -93,7 +91,7 @@ class OfferingCheckForm extends Component{
                    swal("Your session is expired! Please login again.","", "error");
                    this.props.history.push("/");
               }
-          });
+          }); 
       })
       console.log("userDetailsDisplay",this.state.userDetailsDisplay)
       console.log("userIdG",this.state.userIdG)
@@ -354,14 +352,13 @@ class OfferingCheckForm extends Component{
                     <label className="control-label statelabel  locationlabel" >Client Details</label><br/>
                     {
                       this.state.userDetailsDisplay?
-
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mt20">
-                          <label className="fromHead">{this.state.userDetailsDisplay.fullName}</label><br/>
-                          <label className="fromHead">{this.state.userDetailsDisplay.mobNumber}</label><br/>
-                          <label className="fromHead">{this.state.userDetailsDisplay.email}</label><br/>
-                        </div>
-                        :
-                        <label value="" id="">No data found</label>
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mt20">
+                        <label className="fromHead">{this.state.userDetailsDisplay.fullName}</label><br/>
+                        <label className="fromHead">{this.state.userDetailsDisplay.mobNumber}</label><br/>
+                        <label className="fromHead">{this.state.userDetailsDisplay.email}</label><br/>
+                      </div>
+                      :
+                      <label value="" id="">No data found</label>
                     }
                   </div>
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 NOpadding ">

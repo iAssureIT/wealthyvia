@@ -24,10 +24,9 @@ class ClientTable extends Component {
     }   
   }
   handleChange(event){
-        var checkValue = event.target.checked;
-        const target = event.target.value;
-        // console.log("checkValue",checkValue);
-    }
+    var checkValue  = event.target.checked;
+    const target    = event.target.value;
+  }
 
   componentDidMount(){
     var data = {
@@ -35,26 +34,26 @@ class ClientTable extends Component {
       "limitRange"        : this.state.limitRange, 
     }
     /*User Subscribed*/
-     axios.get('/api/offeringsubscriptions/get/all')
-          .then( (res)=>{      
-            this.setState({
-                  completeDataCount       : res.data.length,
-                  subscriptionData        : res.data,          
-                },()=>{
-                  console.log("subscriptionData",this.state.subscriptionData);
-            })
-          
-          })
-          .catch((error)=>{
-            console.log("error",error);
-            if(error.message === "Request failed with status code 401")
-              { 
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-    });
+     axios.get('/api/offeringsubscriptions/get/alloffersub')
+      .then( (res)=>{      
+        this.setState({
+              completeDataCount       : res.data.length,
+              subscriptionData        : res.data,          
+            },()=>{
+              console.log("subscriptionData",this.state.subscriptionData);
+        })
+      
+      })
+      .catch((error)=>{
+        console.log("error",error);
+        if(error.message === "Request failed with status code 401")
+          { 
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+          }
+      });
    
-    axios.get('/api/subscriptionorders/get/showchart/'+ 2019)
+   /* axios.get('/api/subscriptionorders/get/showchart/'+ 2019)
     .then( (res)=>{      
       this.setState({
             completeDataCount : res.data.length,
@@ -68,7 +67,7 @@ class ClientTable extends Component {
              swal("Your session is expired! Please login again.","", "error");
              this.props.history.push("/");
         }
-    });
+    });*/
     axios.get('/api/offerings/get/all/list/1')
     .then((res)=>{      
       this.setState({
@@ -85,39 +84,7 @@ class ClientTable extends Component {
     // this.getData(this.state.startRange, this.state.limitRange)
   }
 
-  changeAttribute(event){
-    event.preventDefault();
-    // console.log('this', this.state.startRange, this.state.limitRange);
-    var attribute = event.target.getAttribute('data-attribute');
-    var attributeValue = event.target.getAttribute('data-attributeValue');
-    var product_ID  = event.currentTarget.getAttribute('data-ID');
-    
-    console.log(product_ID);
-    var data_id = product_ID.split('-');
-    var offering_ID = data_id[1];
-    console.log('attribute', attribute, attributeValue, data_id);
-    
-    if(offering_ID){
-        if(attributeValue=="Active"){
-            attributeValue = "Inactive";
-        } else {
-            attributeValue = "Active";
-        }
-       var offeringValues={
-          "userID"      : attribute, 
-          "planID"      : offering_ID,
-          "btnStatus"   : "checked",      
-        }
-        axios.post('/api/subscriptionorders/post/offering',offeringValues)
-        .then((response)=>{
-         console.log("response",response);
-         // window.location.reload();
-        })
-        .catch((error)=>{
-          console.log('error', error);
-        })
-      }
-    }
+ 
   render(){
     var adminRolesListDataList = this.state.adminRolesListData;
      return(
@@ -148,33 +115,41 @@ class ClientTable extends Component {
                             </tr>
                                                    
                           </thead>
-                          {console.log("this.state.tableData",this.state.tableData)}
+                          {console.log("this.state.subscriptionData",this.state.subscriptionData)}
                           <tbody>     
                           {
-                            this.state.tableData.map((a, i)=>{
+                            this.state.subscriptionData?
+                            this.state.subscriptionData.map((a, i)=>{
                                 return(
                                     <tr>  
                                       <td>{i<99 ? i<9 ? "WL00"+(i+1) : "WL0"+(i+1) : "WL"+(i+1)}</td>
                                       <td className="">
                                         <p>{a.userName}</p>
-                                        <p>{a.userMobile}</p>
-                                        <p>{a.userEmail}</p>
-                                     
+                                        <p>{a.mobileNumber}</p>
+                                        <p>{a.email}</p>
                                       </td>
                                         {
-                                          this.state.offeringTitle.reverse().map((b, j)=>{
-                                            return(
+                                          this.state.offeringTitle.map((b, j)=>{
+                                          return(
+
+                                            /*   <td className="col-lg-1 textAlignCenter">
+                                                   <i data-attribute={a.user_id} data-ID={"U"+i+"P"+j+"-"+b._id} className="fa fa-check-circle prodCheckboxDim prodCheckboxDimSelected" aria-hidden="true"></i>
+                                                </td> */
+                                                
                                                <td className="col-lg-1 textAlignCenter">
-                                                   <i onClick={this.changeAttribute.bind(this)} abc={a.offering[j].offeringStatus} data-attribute={a.user_id} data-ID={"U"+i+"P"+j+"-"+b._id} className={'fa fa-check-circle prodCheckboxDim ' + (a.offering[j].offeringStatus == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
-                                                </td>  
+                                                 <i className="fa fa-check-circle prodCheckboxDim prodCheckboxDimNotSelected" aria-hidden="true"></i>
+                                              </td>   
                                                                                          
                                                 )
                                             })
+                                          
+
                                         } 
 
                                </tr>
                                 )
-                              })
+                              }):
+                            null
                             }
                              </tbody>
                         </table>
