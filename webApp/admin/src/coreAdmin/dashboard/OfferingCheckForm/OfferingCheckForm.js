@@ -5,6 +5,8 @@ import axios                from 'axios';
 import swal                 from 'sweetalert';
 import $                    from "jquery";
 import DatePicker           from "react-datepicker";
+import Moment               from 'react-moment';
+
  
 import "react-datepicker/dist/react-datepicker.css";
 import './OfferingCheckForm.css';
@@ -15,7 +17,7 @@ const formValid = formerrors=>{
   val.length>0 && (valid = false);
   })
   return valid;
-  } 
+} 
 const amenitiesNameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
 var ActiveArrayUser =[];
 var result = [];
@@ -35,6 +37,7 @@ class OfferingCheckForm extends Component{
       editId                       : "",
       offeringTitle                : [],
       AmenitiesList                : [],
+      offeringArray                : [],
       startRange                   : 0,
       limitRange                   : 100,
       tableData                    : "",
@@ -42,44 +45,17 @@ class OfferingCheckForm extends Component{
       userIdG                      : "",
       subscriptionData             : "",
       usersOfferingStatus          : "",
+      userOfferingEndDate          : "",
+
+      startDateAlready             : "",
       startDate                    : new Date(),
-
-
     };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-   /* this.setState({
-      editId : this.props.match.params.id
-    })*/
-    /*Subscription Details*/
-    axios.get('/api/subscriptionorders/get/showchart/'+ 2019)
-    .then( (res)=>{      
-      this.setState({
-            completeDataCount       : res.data.length,
-            subscriptionData        : res.data,          
-          },()=>{
-          })
-      for(var i=0;i<res.data.length-1;i++)
-      {
-        if(res.data[i].user_id == this.state.userIdG)
-        {
-          result = res.data[i].offering;
-          this.setState({
-            usersOfferingStatus       :res.data[i].offering,
-          },()=>{});
-          console.log("result",result);
-        }
-      }
-    })
-    .catch((error)=>{
-      if(error.message === "Request failed with status code 401")
-        {
-             swal("Your session is expired! Please login again.","", "error");
-             this.props.history.push("/");
-        }
-    });
+   
+    
     /*Get all users details*/
      var data = {
     "startRange"        : this.state.startRange,
@@ -90,6 +66,34 @@ class OfferingCheckForm extends Component{
       this.setState({
         userDetailsDisplay : res.data[0],
         userIdG            : res.data[0]._id,
+      },()=>{
+        axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
+          .then( (res)=>{      
+            this.setState({
+                  userOfferingEndDate       : res.data.endDate,
+                  subscriptionData        : res.data.offering,          
+                },()=>{
+                  // console.log("subscriptionData",this.state.subscriptionData);
+            })
+           /* for(var i=0;i<res.data.length-1;i++)
+            {
+              if(res.data[i].user_id == this.state.userIdG)
+              {
+                result = res.data[i].offering;
+                this.setState({
+                  usersOfferingStatus       :res.data[i].offering,
+                },()=>{});
+              }
+            }*/
+          })
+          .catch((error)=>{
+            console.log("error",error);
+            if(error.message === "Request failed with status code 401")
+              { 
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+          });
       })
       console.log("userDetailsDisplay",this.state.userDetailsDisplay)
       console.log("userIdG",this.state.userIdG)
@@ -118,8 +122,9 @@ class OfferingCheckForm extends Component{
              this.props.history.push("/");
         }
     });
-
-    /* Get all Active users*/
+    /*Subscription Details*/
+   
+    /* Get all Active users
     axios
       .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
       .then((response)=> {
@@ -137,6 +142,8 @@ class OfferingCheckForm extends Component{
              this.props.history.push("/");
         }
     });
+    */
+    /*Offering Details*/
 
     axios.get('/api/offerings/get/all/list/1')
       .then( (offerings)=>{      
@@ -150,8 +157,7 @@ class OfferingCheckForm extends Component{
         }
     });  
 
-    /* Get all Inactive users*/
-
+    /* Get all Inactive users
 
     axios.get('/api/subscriptionorders/get/usersOfferingStatus/all/Inactive')
     .then( (inactiveUser)=>{      
@@ -163,14 +169,18 @@ class OfferingCheckForm extends Component{
         if(error.message === "Request failed with status code 401"){
           swal("Error!","Something went wrong!!", "error");
         }
-    });  
+    }); 
+    */
+ 
   }
+
   getDate = date => {
     this.setState({
       startDate: date
     });
     console.log("startDate",this.state.startDate);
   };
+
   handleChange=(event)=>{
     const target = event.target.value;
 
@@ -179,14 +189,32 @@ class OfferingCheckForm extends Component{
     .then( (res)=>{      
 
       this.setState({
-          completeDataCount : res.data.length,
+          completeDataCount  : res.data.length,
           userDetailsDisplay : res.data,
           userIdG            : target,
 
 
         },()=>{
-          console.log("userDetailsDisplay",this.state.userDetailsDisplay);
-        })
+        axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
+          .then( (res)=>{      
+            this.setState({
+                  userOfferingEndDate       : res.data.endDate,
+                  subscriptionData        : res.data.offering,          
+                },()=>{
+                  console.log("userOfferingSatrtDate",this.state.userOfferingStartDate);
+
+            })
+          
+          })
+          .catch((error)=>{
+            console.log("error",error);
+            if(error.message === "Request failed with status code 401")
+              { 
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+          });
+      })
     })
     .catch((error)=>{
       if(error.message === "Request failed with status code 401")
@@ -195,67 +223,97 @@ class OfferingCheckForm extends Component{
              this.props.history.push("/");
         }
     });
-/*==========================*/
-    if(target != "all")
-    {
-     axios.get('/api/subscriptionorders/get/usersOfferingStatus/'+target+'/Active')
-      .then( (Active)=>{      
-        this.setState({
-            ActiveList : Active.data,
-          })
-      })
-      .catch((error)=>{
-        if(error.message === "Request failed with status code 401"){
-          swal("Error!","Something went wrong!!", "error");
-        }
-    });
-    }else{
-      axios
-      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
-      .then((response)=> {
-        if(response.data){            
-              this.setState({
-                ActiveList : response.data,
-            });
-        }
-      })
-      .catch((error)=>{
-          if(error.message === "Request failed with status code 401"){
-            swal("Error!","Something went wrong!!", "error");
-          }
-      });  
-
-    }
   }
   changeAttribute(event){
-    event.preventDefault();
-    // console.log('this', this.state.startRange, this.state.limitRange);
-    var attribute = event.target.getAttribute('data-attribute');
-    // var attributeValue = event.target.getAttribute('data-attributeValue');
-    var offering_ID  = event.currentTarget.getAttribute('data-ID');
-    
+    var attribute       = event.target.getAttribute('data-attribute');
+    var attributeValue  = event.target.getAttribute('data-value');
+    var offering_ID     = event.currentTarget.getAttribute('data-ID');      
+    var offeringData    = this.state.subscriptionData;
+        for(var i=0;i<offeringData.length;i++)
+          {
+              console.log("offeringData[i].offering_ID->"+offeringData[i].offering_ID +"offering_ID"+offering_ID)
+            if(offeringData[i].offering_ID == offering_ID)
+            {
+              console.log("match",offeringData[i].offeringStatus == "Active")
+              if(offeringData[i].offeringStatus == "Active")
+              {
+                console.log("Making Inactive-",offeringData[i].offeringStatus)
+                offeringData[i].offeringStatus = "Inactive";
+                break;
+              }
+              else{ 
+                console.log("Making Active-",offeringData[i].offeringStatus)
+                offeringData[i].offeringStatus = "Active";
+                break;
+              }
+            }
+            else{
+              // res.data.offering[i].offeringStatus = res.data.offering[i].offeringStatus;
+              console.log("No match",offeringData[i].offeringStatus);
+            }
+          }
    
-    console.log('attribute', attribute, offering_ID);
-    if(offering_ID){
-        /*if(attributeValue=="Active"){
-            attributeValue = "Inactive";
-        } else {
-            attributeValue = "Active";
-        }*/
-       var offeringValues={
-          "userID"      : attribute, 
-          "planID"      : offering_ID,
-          "btnStatus"   : "checked",      
+          this.setState({
+            subscriptionData        : offeringData,  
+          },()=>{
+            console.log('subscriptionData', this.state.subscriptionData)
+          })
+      /*var offeringArray = this.state.offeringArray;
+      offeringArray.push({
+                            offering_ID:offering_ID,
+                            offeringTitle:attributeValue,
+                            offeringStatus:"Active",
+                         })
+      console.log("offeringArray",offeringArray);
+      var offeringValues={
+          "user_ID"       : this.state.userIdG, 
+          "startDate"     : start_Date,
+          "endDate"       : "",
+          "offeringArray" :offeringArray,
         }
-        axios.post('/api/subscriptionorders/post/offering',offeringValues)
+        console.log("offeringValues",offeringValues);*/
+  }
+
+  submitChanges(event){
+    var start_Date = this.state.startDate;
+    start_Date = new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(start_Date);
+    
+    var offeringValues={
+          "user_ID"       : this.state.userIdG, 
+          "startDate"     : start_Date,
+          "endDate"       : "",
+          "offering"      :this.state.subscriptionData,
+
+     }
+     console.log("offeringValues",offeringValues);
+     axios.post('/api/offeringsubscriptions/post',offeringValues)
         .then((response)=>{
          console.log("response",response);
-         // window.location.reload();
+         if(response.startDate !== "")
+         {
+          this.setState({
+            startDateAlready : response.startDate
+          })
+         }
+         if(response)
+         {
+           swal({
+            title: 'Congratulation!',
+            text: 'Offering details added successfully',
+            buttons: [
+              "Cancel",
+              'Ok'
+            ],
+            }).then((option)=> {
+              console.log("option---->",option)
+               window.location.reload();
+              
+            });
+          }
         })
         .catch((error)=>{
           console.log('error', error);
         })
-    }
   }
 
   render(){
@@ -267,8 +325,8 @@ class OfferingCheckForm extends Component{
           <h4 className="h5lettersp MasterBudgetTitle">Select Offerings for Client</h4>
          </div>
           <hr className="compySettingHr" />
-           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <form id="CompanySMSGatewayForm"  >
+           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+            <form id="CompanySMSGatewayForm" className="borderOfOuter"  >
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                 <div className=" formht  col-lg-6 col-md-12 col-sm-12 col-xs-12">
                   <div className="">
@@ -288,9 +346,7 @@ class OfferingCheckForm extends Component{
                           <option value="" id="">No data found</option>
 
                         }
-                    
                     </select>
-
                   </div>                     
                 </div>
                 <div className=" formht col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
@@ -299,78 +355,97 @@ class OfferingCheckForm extends Component{
                     {
                       this.state.userDetailsDisplay?
 
-                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mt20">
-                                <label className="fromHead">{this.state.userDetailsDisplay.fullName}</label><br/>
-                                <label className="fromHead">{this.state.userDetailsDisplay.mobNumber}</label><br/>
-                                <label className="fromHead">{this.state.userDetailsDisplay.email}</label><br/>
-                              </div>
-                            
-                          :
-                          <label value="" id="">No data found</label>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mt20">
+                          <label className="fromHead">{this.state.userDetailsDisplay.fullName}</label><br/>
+                          <label className="fromHead">{this.state.userDetailsDisplay.mobNumber}</label><br/>
+                          <label className="fromHead">{this.state.userDetailsDisplay.email}</label><br/>
+                        </div>
+                        :
+                        <label value="" id="">No data found</label>
                     }
-
-                  </div>   
+                  </div>
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 NOpadding ">
                     <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <label className="fromHead">Start Date<span className="redFont">*</span></label><br/>
                       <DatePicker
-                        selected={this.state.startDate}
+                        selected={this.state.userOfferingStartDate ? this.state.userOfferingStartDate :this.state.startDate}
                         onChange={this.getDate}
                         className="customDatePicker"
-                        dateFormat="dd-MM-yyyy"
+                        dateFormat="yyyy-MM-dd"
+                        disabled ={this.state.userOfferingStartDate ? true : false}
 
                       />
                     </div>
                     <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <label>End Date</label>
+                      <label className="fromHead">End Date<span className="redFont">*</span></label>
                       <div className="">
-                        
-                         <input type="text" ref="pageUrl" id="basicPageName" value={this.state.pageUrl} name="basicPageName"  className="customDatePicker col-lg-12 col-md-12 col-sm-12 col-xs-12 inputValid hinput30" onChange={this.handleChange.bind(this)} disabled/>
+                         <input type="text" ref="pageUrl" id="basicPageName" value={this.state.userOfferingEndDate} name="basicPageName"  className="customDatePicker col-lg-12 col-md-12 col-sm-12 col-xs-12 inputValid hinput30" onChange={this.handleChange.bind(this)} disabled/>
                       </div>
                    </div>
                   </div>
-                  <div className="col-lg-12 NOpadding table-responsive">
-                        <table className="table tableCustom table-striped col-lg-12">
-                          <thead className="bgThead">
-                            <tr>
+                  <div className="row">
+                    <div className="col-lg-12 NOpadding table-responsive mt20">
 
-                            {/*  <th className="text-center">5GCPM</th>
-                              <th className="text-center">Safe Heavan</th>
-                              <th className="text-center">SHM Alpha Enhancer</th>
-                              <th className="text-center">US Stocks</th>
-                              <th className="text-center">Fly Nifty</th>
-                              <th className="text-center">Multibagger</th>*/}
-                               {
-                                this.state.offeringTitle.map((b, j)=>{
+                          <table className="table tableCustomOC table-striped col-lg-12">
+                            <thead className="bgThead">
+                              <tr>
+
+                                <th className="text-center">5GCPM</th>
+                                <th className="text-center">Safe Heavan</th>
+                                <th className="text-center">SHM Alpha Enhancer</th>
+                                <th className="text-center">US Stocks</th>
+                                <th className="text-center">Fly Nifty</th>
+                                <th className="text-center">Multibagger</th>
+                                {/* {
+                                  this.state.offeringTitle.map((b, j)=>{
+                                    return(
+                                            <th className="text-center">{b.offeringTitle}</th>
+                                        )
+                                      })
+                                  } */}
+                              </tr>
+                                                     
+                            </thead>
+                            <tbody>     
+                            <tr>  
+                            <td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5dbfd235621a0aeead43e4d2" data-value="5GCPM" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[0].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            </td>
+                            <td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5dbfd24b621a0aeead43e4d3" data-value="Safe Heavan" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[1].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            </td>  
+                            <td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5dbfd257621a0aeead43e4d4" data-value="SHM Alpha Enhancer" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[2].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            </td>
+                            <td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5dbfd266621a0aeead43e4d5" data-value="US Stocks" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[3].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            </td>
+                            <td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5dbfd27b621a0aeead43e4d6" data-value="Fly Nifty" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[4].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            </td>
+                            <td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5dbfd288621a0aeead43e4d7" data-value="Multibagger" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[5].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            </td>  
+
+                          {/*  {
+
+                              this.state.offeringTitle.map((b,j)=>{
                                   return(
-                                          <th className="text-center">{b.offeringTitle}</th>
-                                      )
-                                    })
+                                         <td className="col-lg-1 textAlignCenter">
+                                             <i  data-ID={b._id} data-value={b.offeringTitle} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[j].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                                          </td>  
+                                                                                   
+                                        )
+                                      })
                                 } 
-                            </tr>
-                                                   
-                          </thead>
-                          <tbody>     
-                          <tr>  
-                          {
-
-                            this.state.offeringTitle.map((b, j)=>{
-                                return(
-                                       <td className="col-lg-1 textAlignCenter">
-                                         {console.log("result.offering[j]",this.state.usersOfferingStatus)}
-                                           <i  data-ID={b._id} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.usersOfferingStatus ? this.state.usersOfferingStatus[j].offeringStatus   == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                                        </td>  
-                                                                                 
-                                      )
-                                    })
-                              } 
-
-                               </tr>
-                             </tbody>
-                        </table>
+*/}
+                                 </tr>
+                               </tbody>
+                          </table>
+                    </div>
                   </div>   
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitOffering pull-right">
+                    <div className="col-lg-2 col-md-2 col-sm-2 col-xs-2 submitOffering pull-right" onClick={this.submitChanges.bind(this)}>
                         Submit
                   
                     </div> 

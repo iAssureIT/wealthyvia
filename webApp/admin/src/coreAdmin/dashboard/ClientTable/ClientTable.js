@@ -16,9 +16,11 @@ class ClientTable extends Component {
   constructor(props){
     super(props);
     this.state = {
-      offeringTitle :[],
-      tableData     :[],
-
+      offeringTitle    : [],
+      tableData        : [],
+      subscriptionData : "",
+      startRange       : 0,
+      limitRange       : 100,
     }   
   }
   handleChange(event){
@@ -32,6 +34,26 @@ class ClientTable extends Component {
       "startRange"        : this.state.startRange,
       "limitRange"        : this.state.limitRange, 
     }
+    /*User Subscribed*/
+     axios.get('/api/offeringsubscriptions/get/all')
+          .then( (res)=>{      
+            this.setState({
+                  completeDataCount       : res.data.length,
+                  subscriptionData        : res.data,          
+                },()=>{
+                  console.log("subscriptionData",this.state.subscriptionData);
+            })
+          
+          })
+          .catch((error)=>{
+            console.log("error",error);
+            if(error.message === "Request failed with status code 401")
+              { 
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+    });
+   
     axios.get('/api/subscriptionorders/get/showchart/'+ 2019)
     .then( (res)=>{      
       this.setState({
@@ -62,6 +84,7 @@ class ClientTable extends Component {
     });
     // this.getData(this.state.startRange, this.state.limitRange)
   }
+
   changeAttribute(event){
     event.preventDefault();
     // console.log('this', this.state.startRange, this.state.limitRange);
@@ -73,6 +96,7 @@ class ClientTable extends Component {
     var data_id = product_ID.split('-');
     var offering_ID = data_id[1];
     console.log('attribute', attribute, attributeValue, data_id);
+    
     if(offering_ID){
         if(attributeValue=="Active"){
             attributeValue = "Inactive";

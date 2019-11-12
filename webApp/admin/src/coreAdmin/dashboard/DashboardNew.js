@@ -27,14 +27,47 @@ class AdminContent extends Component{
       subscrptionData : [],
       totalUsers      : "",
       totalVendor     : "",
+      userCount       : "",
+      InactiveUsersCount : "",
+      ActiveUserCount  : "",
+
       twelveMonthGrossEarning:[],
     };
   }
 
   componentWillMount(){
     $('.sidebar').css({display:'block',background: '#222d32'});
+    axios.get('/api/users/get/list/'+100)
+      .then( (res)=>{      
+        this.setState({
+          userCount : res.data.length,
+      })
+    })
+    .catch(function (error) {
+    })
+    axios.get('/api/subscriptionorders/get/usersOfferingStatus/all/Inactive')
+    .then( (inactiveUser)=>{      
+      this.setState({
+          InactiveUsersCount : inactiveUser.data.length,
+        })
+    })
+    .catch((error)=>{
+        
+    });
+    axios
+      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
+      .then((response)=> {
+        if(response.data){            
+              this.setState({
+                ActiveUserCount : response.data.length,
+            });
+        }
+      })
+      .catch((error)=>{
+          
+      });    
     
-      axios
+    axios
         .get('/api/report/get/dashboard')
         .then((response)=>{
           console.log("dashboard............>",response.data);
@@ -52,7 +85,7 @@ class AdminContent extends Component{
               });
 
               console.log('this.state.subscrptionData', response.data.subscrptionData.length);
-var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Weekly Package", count: 3},{packageName: "Monthly Package", count: 5}]
+            var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Weekly Package", count: 3},{packageName: "Monthly Package", count: 5}]
             
             var pieArray = [["Monthly", "Weekly"]];  
             for (var i = 0; i < subscrptionData.length; i++) {
@@ -281,7 +314,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                     <img src="/images/blogging.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">Users<small></small></span>
+                    <span className="info-box-number">0<small></small></span>
                     <span className="info-box-text">
                       Blog&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalUsers}</b>
                     </span>
@@ -294,10 +327,10 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
               <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="info-box">
                   <span className="info-box-icon bg-green">
-                    <img src="/images/file.png"/>
+                    <img src="/images/subscription.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">Users<small></small></span>
+                    <span className="info-box-number">10<small></small></span>
                     <span className="info-box-text">
                       Offering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalUsers}</b>
                     </span>
@@ -313,7 +346,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                     <img src="/images/time-management.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">Users<small></small></span>
+                    <span className="info-box-number">{this.state.ActiveUserCount}<small></small></span>
                     <span className="info-box-text">
                       Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalVendor}</b>
                     </span>
@@ -329,7 +362,7 @@ var subscrptionData=[{packageName: "Daily Package", count: 5},{packageName: "Wee
                     <img src="/images/inactive.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">Users<small></small></span>
+                    <span className="info-box-number">{this.state.InactiveUsersCount}<small></small></span>
                     <span className="info-box-text">
                       Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningYTD}</b>
                     </span>

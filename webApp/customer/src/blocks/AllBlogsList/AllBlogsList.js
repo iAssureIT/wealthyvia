@@ -80,6 +80,7 @@ componentDidMount(){
 render() {
 		var data = this.state.Blogs;
 		var subscribed = false;
+		console.log("data===",data.blogURL);
    		const token = localStorage.getItem("user_ID");
 		return (
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
@@ -136,7 +137,7 @@ render() {
 				          			);
         					})
         				:
-        				<h4 className="noBlogs p10 textAlignCenter"><b>No blogs found</b></h4>
+        				<h4 className="noBlogs p10 textAlignCenter"><div className="loadingImageContainer col-lg-4 col-lg-offset-4"><img src="/images/Loadingsome.gif"/></div></h4>
             		}				
 	          		
           		</div>

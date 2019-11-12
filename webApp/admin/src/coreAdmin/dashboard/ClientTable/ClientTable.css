@@ -94,7 +94,7 @@
 /* Show the checkmark when checked */
 .centreDetailContainer input:checked ~ .radioCheck:after {
   display: block;
-    background-color: transparent;
+  background-color: transparent;
 }
 /* Style the checkmark/indicator */
 .centreDetailContainer .radioCheck:after {
@@ -111,14 +111,13 @@
 }
 .centreDetaillistItem{
   padding-left: 0px !important;
-      font-family: 'PT Sans', sans-serif;
-
+  font-family: 'PT Sans', sans-serif;
   font-size: 14px !important;
 }
 .prodCheckboxDim{
-  font-size: 20px;
+  font-size: 28px;
 }
 .prodCheckboxDimSelected{
   color: #f00;
-  font-size: 20px;
+  font-size: 28px;
 }
