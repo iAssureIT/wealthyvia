@@ -1023,6 +1023,7 @@ input[type="radio"]:checked:before {
   background: #d8d8d8!important;
 }
 .textpd{
+  height: 40px;
   padding-right: 7px;
 }
 .textpd1{
@@ -2219,15 +2220,7 @@ input[type="radio"]:checked:before {
 .resendOtpWrapcss{
   background: #d8d8d8!important;
 }
-.textpd{
-  padding-right: 7px;
-}
-.textpd1{
-  padding-left: 1px;
-}
-.textpdEye{
-  padding-left: 7px !important;
-}
+
 .fltlft{
   float:left !important;
 }

@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import {browserHistory} from 'react-router';
-import swal from 'sweetalert';
-import $ from "jquery";
+import { Link } 			from 'react-router-dom';
+import {browserHistory} 	from 'react-router';
+import swal 				from 'sweetalert';
+import $ 					from "jquery";
+import axios 				from 'axios';
+
 import 'bootstrap/js/tab.js';
 import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
-import axios from 'axios';
 
 
 const formValid = formerrors=>{
@@ -17,10 +18,10 @@ const formValid = formerrors=>{
   })
   return valid;
 }
-const firstnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const lastnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const mobileRegex  = RegExp(/^[0-9][0-9]{9}$|^$/);
-const emailRegex = RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^$/);
+const firstnameRegex 	= RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
+const lastnameRegex 	= RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
+const mobileRegex  		= RegExp(/^[0-9][0-9]{9}$|^$/);
+const emailRegex 		= RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^$/);
 
 class SignUp extends Component {
 
@@ -52,8 +53,7 @@ class SignUp extends Component {
     }
  	usersignup(event){
 	 	event.preventDefault();
-	 	if((this.refs.firstname.value == "") || (this.refs.lastname.value == "") || (this.refs.signupEmail.value == "")|| (this.refs.mobNumber.value == "") || (this.refs.signupPassword.value == ""))
-	 	{
+
 			var auth={
 	            firstName       : this.refs.firstname.value,
 	            lastName        : this.refs.lastname.value,
@@ -75,7 +75,7 @@ class SignUp extends Component {
 	        var passwordVar              = this.refs.signupPassword.value;
 	        var signupConfirmPasswordVar = this.refs.signupConfirmPassword.value;
 	 		
-	            if(formValid(this.state.formerrors)){
+	        if(formValid(this.state.formerrors)){
 	            if (passwordVar === signupConfirmPasswordVar) {
 	                return (passwordVar.length >= 6) ? 
 	                	(true, 
@@ -108,16 +108,12 @@ class SignUp extends Component {
 	                document.getElementById("signUpBtn").value = 'Sign Up';
 			        return swal("Passwords does not match","Please Try Again")
 	            }
-	            }else{
-	                document.getElementById("signUpBtn").value = 'Sign Up';
-					swal("Please enter mandatory fields", "", "warning");
-					console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-				}
+            }else{
+                document.getElementById("signUpBtn").value = 'Sign Up';
+				swal("Please enter mandatory fields", "", "warning");
+				console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
 			}
-			else{
-				swal("Warning","All fields are mandatory","warning");
-
-			}
+	
  	}
  	handleChange(event){
 	    // const target = event.target;
@@ -156,6 +152,7 @@ class SignUp extends Component {
 	    this.setState({ formerrors,
 	      [name]:value
 	    } );
+	    console.log("this.state.formerrors",this.state.formerrors)
 	}
  	acceptcondition(event){
 	    var conditionaccept = event.target.value;
@@ -295,11 +292,11 @@ class SignUp extends Component {
 						                  </span>
 									</div>
 								</div>
-							    <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent termspad">
+							   {/* <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent termspad">
 					                <input  id="idacceptcondition" type="checkbox"  value="acceptedconditions" onClick={this.acceptcondition.bind(this)}/><Link data-toggle="modal" data-target="#myModal" className="form-checkbox UMGrey1 modalbutton fontbold terms1" onClick={this.showModal.bind(this)}>&nbsp;I agree to the <span className="under"> terms & conditions</span><label className="sign">*</label></Link>
 					                <span className="checkmark1"></span>
-					            </div>
-							    <div class="modal fade" id="myModal" role="dialog">
+					            </div>*/}
+	{/*						    <div class="modal fade" id="myModal" role="dialog">
 							      <div class="modal-dialog">
 							        <div class="modal-content">
 							          <div class="modal-header">
@@ -314,10 +311,10 @@ class SignUp extends Component {
 							          </div>
 							        </div>
 							      </div>
-							    </div>
+							    </div>*/}
 
 								<div className="col-lg-12 col-md-12 col-xs-6 col-sm-6 form-group1 rrnRegisterBtn" onClick={this.usersignup.bind(this)}>
-							    	<input id="signUpBtn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 acceptinput UMloginbutton UMloginbutton1 hvr-sweep-to-right" type="submit" value="Sign Up" disabled/>
+							    	<input id="signUpBtn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 acceptinput UMloginbutton UMloginbutton1 hvr-sweep-to-right" onClick={this.usersignup.bind(this)}  value="Sign Up" disabled/>
 							    </div>		   
 
 						    	<div className="col-lg-4 col-lg-offset-4 col-md-4 col-sm-4 col-xs-4 pdcls">
