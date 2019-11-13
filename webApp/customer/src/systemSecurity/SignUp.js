@@ -51,65 +51,73 @@ class SignUp extends Component {
 
     }
  	usersignup(event){
- 		event.preventDefault();
- 			var auth={
-	                firstName       : this.refs.firstname.value,
-	                lastName        : this.refs.lastname.value,
-	                email         : this.refs.signupEmail.value,
-	                mobNumber    : this.refs.mobNumber.value,
-	                pwd        		: this.refs.signupPassword.value,
-	                role 			: 'user',
-	                status 			: 'Active',
-	                fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
+	 	event.preventDefault();
+	 	if((this.refs.firstname.value == "") || (this.refs.lastname.value == "") || (this.refs.signupEmail.value == "")|| (this.refs.mobNumber.value == "") || (this.refs.signupPassword.value == ""))
+	 	{
+			var auth={
+	            firstName       : this.refs.firstname.value,
+	            lastName        : this.refs.lastname.value,
+	            email        	: this.refs.signupEmail.value,
+	            mobNumber    	: this.refs.mobNumber.value,
+	            pwd        		: this.refs.signupPassword.value,
+	            role 			: 'user',
+	            status 			: 'Active',
+	            fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
+	        }
+		            
+		    if(auth){
+	        	document.getElementById("signUpBtn").value = 'We are processing. Please Wait...';            
+
+	         }   
+	        var firstname                = this.refs.firstname.value;
+	        var mobile                   = this.refs.mobNumber.value;
+	        var email                    = this.refs.signupEmail.value;
+	        var passwordVar              = this.refs.signupPassword.value;
+	        var signupConfirmPasswordVar = this.refs.signupConfirmPassword.value;
+	 		
+	            if(formValid(this.state.formerrors)){
+	            if (passwordVar === signupConfirmPasswordVar) {
+	                return (passwordVar.length >= 6) ? 
+	                	(true, 
+			             //document.getElementById("signUpBtn").value = 'Sign Up',
+	      				//browserHistory.push("/"),
+	                	axios.post('/api/users/post/signup/user/emailotp',auth)
+				            .then((response)=> {
+				            	if(response)
+				            	{
+				            	document.getElementById("signUpBtn").value = 'Sign Up';
+			            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
+				                this.props.history.push("/confirm-otp/"+response.data.ID);
+				                }else{
+				                	console.log("loadding")
+
+				                }
+				            })
+				            .catch(function (error) {
+				                console.log(error);
+	        					swal("Something went wrong..","Unable to submit data.","warning");
+				            })
+	                	)
+	                :
+		                (
+			                document.getElementById("signUpBtn").value = 'Sign Up',
+			                swal("Password should be at least 6 Characters Long","Please try again or create an Account")       
+		                )
+	                
+	            } else {
+	                document.getElementById("signUpBtn").value = 'Sign Up';
+			        return swal("Passwords does not match","Please Try Again")
 	            }
-	            
-
-        document.getElementById("signUpBtn").value = 'We are processing. Please Wait...';            
-            
-        var firstname                = this.refs.firstname.value;
-        var mobile                   = this.refs.mobNumber.value;
-        var email                    = this.refs.signupEmail.value;
-        var passwordVar              = this.refs.signupPassword.value;
-        var signupConfirmPasswordVar = this.refs.signupConfirmPassword.value;
- 		
-            if(formValid(this.state.formerrors)){
-            if (passwordVar === signupConfirmPasswordVar) {
-                return (passwordVar.length >= 6) ? 
-                	(true, 
-		             document.getElementById("signUpBtn").value = 'Sign Up',
-      				//browserHistory.push("/"),
-                	axios.post('/api/users/post/signup/user/emailotp',auth)
-			            .then((response)=> {
-			            	if(response)
-			            	{
-		            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
-			                this.props.history.push("/confirm-otp/"+response.data.ID);
-			                }else{
-			                	console.log("loadding")
-
-			                }
-			            })
-			            .catch(function (error) {
-			                console.log(error);
-        					swal("Something went wrong..","Unable to submit data.","warning");
-			            })
-                	)
-                :
-	                (
-		                document.getElementById("signUpBtn").value = 'Sign Up',
-		                swal("Password should be at least 6 Characters Long","Please try again or create an Account")       
-	                )
-                
-            } else {
-                document.getElementById("signUpBtn").value = 'Sign Up';
-		        return swal("Passwords does not match","Please Try Again")
-            }
-            }else{
-                document.getElementById("signUpBtn").value = 'Sign Up';
-				swal("Please enter mandatory fields", "", "warning");
-				console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+	            }else{
+	                document.getElementById("signUpBtn").value = 'Sign Up';
+					swal("Please enter mandatory fields", "", "warning");
+					console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+				}
 			}
-        
+			else{
+				swal("Warning","All fields are mandatory","warning");
+
+			}
  	}
  	handleChange(event){
 	    // const target = event.target;
@@ -308,7 +316,7 @@ class SignUp extends Component {
 							      </div>
 							    </div>
 
-								<div className="col-lg-12 col-md-12 col-xs-6 col-sm-6 form-group1 rrnRegisterBtn">
+								<div className="col-lg-12 col-md-12 col-xs-6 col-sm-6 form-group1 rrnRegisterBtn" onClick={this.usersignup.bind(this)}>
 							    	<input id="signUpBtn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 acceptinput UMloginbutton UMloginbutton1 hvr-sweep-to-right" type="submit" value="Sign Up" disabled/>
 							    </div>		   
 

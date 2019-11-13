@@ -16,6 +16,8 @@ class UploadStatement extends Component{
     super(props);
     this.state = {
       uploadStatement  : "",
+      uploadPerformanceName: "",
+      uploadPerformance: "",
       imgArrayWSaws    : [],
       offeringTitle    : [],
       fileArray        : [],
@@ -26,7 +28,7 @@ class UploadStatement extends Component{
   }
   componentDidMount() {
     axios
-    .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+    .get('/api/projectsettings/get/S3')
     .then((response)=>{
       const config = 
         {
@@ -43,10 +45,10 @@ class UploadStatement extends Component{
       .catch(function(error){
         console.log(error);
         if(error.message === "Request failed with status code 401")
-            {
-                 swal("Your session is expired! Please login again.","", "error");
-                 this.props.history.push("/");
-            }
+        {
+           swal("Your session is expired! Please login again.","", "error");
+           this.props.history.push("/");
+        }
       })
       axios.get('/api/offerings/get/all/list/1')
       .then( (offerings)=>{      
@@ -62,7 +64,7 @@ class UploadStatement extends Component{
           }
       });  
   }
-  uploadImg (event){
+  uploadStatement(event){
     var index = event.target.getAttribute('id');
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
@@ -77,8 +79,7 @@ class UploadStatement extends Component{
         var ext = newFile.name.split('.').pop();
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (newFile) {
-/*            if(this.state.uploadStatement.lenght<0){
-*/              S3FileUpload
+              S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{
                   this.setState({
@@ -107,33 +108,7 @@ class UploadStatement extends Component{
                 .catch((error)=>{
                   console.log(error);
                 })
-            /*}else{
-              swal({
-                    title: "Are you sure you want to replace this file?",
-                    text: "Once replaced, you will not be able to recover this file!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((success) => {
-                      if (success) {
-                        S3FileUpload
-                          .uploadFile(newFile,this.state.config)
-                          .then((Data)=>{
-                            this.setState({
-                              uploadStatement : Data.location
-                            })
-                            this.deleteimageLogo(index)
-                          })
-                          .catch((error)=>{
-                            console.log("formErrors");
-                            console.log(error);
-                          })
-                      } else {
-                      swal("Your information is safe!");
-                    }
-                  });
-            }      */   
+              
           }else{         
             swal("File not uploaded","Something went wrong","error"); 
           }    
@@ -143,10 +118,62 @@ class UploadStatement extends Component{
       }
     }
   }
-  Submit(){
-
+  uploadPerformance(event){
+    var index = event.target.getAttribute('id');
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+        uploadPerformanceName : newFile.name,
+      })
+      console.log("fileNamePAN",this.state.fileName);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
+          if (newFile) {
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{
+                  /*this.setState({
+                    uploadPerformance : Data.location,
+                  })
+               
+                  var obj2={
+                    fileName : this.state.uploadPerformanceName,
+                  }
+                  var obj1={
+                    filePath : Data.location,
+                  }
+                  var filenames = this.state.filenames;
+                  var fileArray = this.state.fileArray;
+                  filenames.push(obj2);
+                  fileArray.push(obj1);
+                  this.setState({
+                    filenames : filenames,
+                    fileArray : fileArray
+                  },()=>{
+                  var fileLocation = this.state.fileArray;
+                  localStorage.setItem("fileLocation",fileLocation);
+                  console.log("fileLocation",fileLocation);
+                  })*/
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+              
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload file format (pdf)","warning");  
+        }
+      }
+    }
   }
-   deleteimageLogo(index){
+
+  deleteimageLogo(index){
      swal({
         title: "Are you sure you want to delete this image?",
         text: "Once deleted, you will not be able to recover this image!",
@@ -166,6 +193,10 @@ class UploadStatement extends Component{
       }
     );
   }
+  Submit(event)
+  {
+
+  }
 
   render(){
     return(
@@ -181,8 +212,8 @@ class UploadStatement extends Component{
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div className="">
-                      <label className="control-label statelabel locationlabel" >Select Offering</label>
-                      <span className="astrick">*</span>
+                      <label className="control-label statelabel locationlabel" >Upload Statement</label>
+                      
                       <select  ref="planName"
                          type="text" name="planName" placeholder="Enter Subscription Name" 
                          className="selectbox" title="Please enter package Name">
@@ -196,25 +227,50 @@ class UploadStatement extends Component{
                       </select>
                     </div>                     
                   </div> 
+                   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div className="">
+                      <label className="control-label statelabel locationlabel" >Upload Performance</label>
+                      <select  ref="planName"
+                         type="text" name="planName" placeholder="Enter Subscription Name" 
+                         className="selectbox" title="Please enter package Name">
+                          <option >Performance</option>
+                      </select>
+                    </div>                     
+                  </div> 
                 </div>
                 </div>     
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
-                      <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12 padTopC">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <div className="clr_k ">
-                          <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
-                            <img src="/images/Upload-Icon.png"/>
-                          </div>
-                          <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
-                           <b className="text_k11"></b>
-                           <span className="under_ln">Upload Document</span>
-                          </div>      
-                          <input  type="file" title="Click to attach file" name="userPic" ref="statementImg" className="form-control click_input"  onChange={this.uploadImg.bind(this)} id="upload-file2" />
-                        </div> 
-                      </div>
-                     
+                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
+                  <div className="col-lg-12 col-md-5 col-sm-12 col-xs-12 padTopC">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                      <div className="clr_k ">
+                        <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
+                          <img src="/images/Upload-Icon.png"/>
+                        </div>
+                        <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
+                         <b className="text_k11"></b>
+                         <span className="under_ln">Upload Document</span>
+                        </div>      
+                        <input  type="file" title="Click to attach file" name="userPic" ref="statementImg" className="form-control click_input"  onChange={this.uploadStatement.bind(this)} id="upload-file2" />
+                      </div> 
                     </div>
-                 </div>          
+                  </div>
+                </div>          
+                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 row ">
+                  <div className="col-lg-12 col-md-5 col-sm-12 col-xs-12 padTopC">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                      <div className="clr_k ">
+                        <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
+                          <img src="/images/Upload-Icon.png"/>
+                        </div>
+                        <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
+                         <b className="text_k11"></b>
+                         <span className="under_ln">Upload Performance</span>
+                        </div>      
+                        <input  type="file" title="Click to attach file" name="userPic" ref="PerformanceDoc" className="form-control click_input"  onChange={this.uploadPerformance.bind(this)} id="upload-file2" />
+                      </div> 
+                    </div>
+                  </div>
+                </div>          
           
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
                  {/* { this.state.uploadStatement ?
@@ -242,7 +298,7 @@ class UploadStatement extends Component{
               this.state.fileArray.length<=0?
               null         
               :
-              <div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <div>
                     {
                       this.state.fileType ==="File" ?
@@ -338,8 +394,8 @@ class UploadStatement extends Component{
                     </div>
                 }
                 </div>*/}
-                <div className="formcontent col-lg-offset-9 col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                  <button onClick={this.Submit.bind(this)} className="btn bg-primary">Submit</button>
+                <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+                  <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
                 </div>
 
               </div>
