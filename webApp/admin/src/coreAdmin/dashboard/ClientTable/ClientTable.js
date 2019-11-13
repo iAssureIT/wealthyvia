@@ -132,13 +132,13 @@ class ClientTable extends Component {
                                           this.state.offeringTitle.map((b, j)=>{
                                           return(
 
-                                            /*   <td className="col-lg-1 textAlignCenter">
-                                                   <i data-attribute={a.user_id} data-ID={"U"+i+"P"+j+"-"+b._id} className="fa fa-check-circle prodCheckboxDim prodCheckboxDimSelected" aria-hidden="true"></i>
-                                                </td> */
-                                                
                                                <td className="col-lg-1 textAlignCenter">
+                                                   <i  data-attribute={a.user_id} data-ID={"U"+i+"P"+j+"-"+b._id} className={'fa fa-check-circle prodCheckboxDim ' + (a.offering[j].offeringStatus == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" )} aria-hidden="true"></i>
+                                                </td>
+                                                
+                                              /* <td className="col-lg-1 textAlignCenter">
                                                  <i className="fa fa-check-circle prodCheckboxDim prodCheckboxDimNotSelected" aria-hidden="true"></i>
-                                              </td>   
+                                              </td>  */ 
                                                                                          
                                                 )
                                             })

@@ -148,6 +148,7 @@ class OfferingCheckForm extends Component{
         this.setState({
               offeringTitle : offerings.data,
             })
+        console.log("offeringTitle",this.state.offeringTitle);
     })
     .catch((error)=>{
         if(error.message === "Request failed with status code 401"){
@@ -227,29 +228,37 @@ class OfferingCheckForm extends Component{
     var attributeValue  = event.target.getAttribute('data-value');
     var offering_ID     = event.currentTarget.getAttribute('data-ID');      
     var offeringData    = this.state.subscriptionData;
-        for(var i=0;i<offeringData.length;i++)
-          {
-              console.log("offeringData[i].offering_ID->"+offeringData[i].offering_ID +"offering_ID"+offering_ID)
-            if(offeringData[i].offering_ID == offering_ID)
-            {
-              console.log("match",offeringData[i].offeringStatus == "Active")
-              if(offeringData[i].offeringStatus == "Active")
-              {
-                console.log("Making Inactive-",offeringData[i].offeringStatus)
-                offeringData[i].offeringStatus = "Inactive";
-                break;
-              }
-              else{ 
-                console.log("Making Active-",offeringData[i].offeringStatus)
-                offeringData[i].offeringStatus = "Active";
-                break;
-              }
-            }
-            else{
-              // res.data.offering[i].offeringStatus = res.data.offering[i].offeringStatus;
-              console.log("No match",offeringData[i].offeringStatus);
-            }
-          }
+    var getIndex =  offeringData.findIndex(x=>x.offering_ID===offering_ID) 
+    if(getIndex>=0){
+      if(offeringData[getIndex].offeringStatus==="Active"){
+        offeringData[getIndex].offeringStatus="Inactive"
+      }else{
+        offeringData[getIndex].offeringStatus="Active"
+      }
+    }  
+        // for(var i=0;i<offeringData.length;i++)
+        //   {
+        //       console.log("offeringData[i].offering_ID->"+offeringData[i].offering_ID +"offering_ID"+offering_ID)
+        //     if(offeringData[i].offering_ID == offering_ID)
+        //     {
+        //       console.log("match",offeringData[i].offeringStatus == "Active")
+        //       if(offeringData[i].offeringStatus == "Active")
+        //       {
+        //         console.log("Making Inactive-",offeringData[i].offeringStatus)
+        //         offeringData[i].offeringStatus = "Inactive";
+        //         break;
+        //       }
+        //       else{ 
+        //         console.log("Making Active-",offeringData[i].offeringStatus)
+        //         offeringData[i].offeringStatus = "Active";
+        //         break;
+        //       }
+        //     }
+        //     else{
+        //       // res.data.offering[i].offeringStatus = res.data.offering[i].offeringStatus;
+        //       console.log("No match",offeringData[i].offeringStatus);
+        //     }
+        //   }
    
           this.setState({
             subscriptionData        : offeringData,  
@@ -387,26 +396,26 @@ class OfferingCheckForm extends Component{
                             <thead className="bgThead">
                               <tr>
 
-                                <th className="text-center">5GCPM</th>
+                               {/* <th className="text-center">5GCPM</th>
                                 <th className="text-center">Safe Heavan</th>
                                 <th className="text-center">SHM Alpha Enhancer</th>
                                 <th className="text-center">US Stocks</th>
                                 <th className="text-center">Fly Nifty</th>
-                                <th className="text-center">Multibagger</th>
-                                {/* {
+                                <th className="text-center">Multibagger</th>*/}
+                                 {
                                   this.state.offeringTitle.map((b, j)=>{
                                     return(
-                                            <th className="text-center">{b.offeringTitle}</th>
+                                            <th className="text-center" key={j+b.offeringStatus}>{b.offeringTitle}</th>
                                         )
                                       })
-                                  } */}
+                                  } 
                               </tr>
                                                      
                             </thead>
                             <tbody>     
                             <tr>  
-                            <td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5dbfd235621a0aeead43e4d2" data-value="5GCPM" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[0].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                            {/*<td className="col-lg-1 textAlignCenter">
+                              <i  data-ID="5da999bbaa1a87409b22d84f" data-value="5GCPM" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[0].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
                             </td>
                             <td className="col-lg-1 textAlignCenter">
                               <i  data-ID="5dbfd24b621a0aeead43e4d3" data-value="Safe Heavan" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[1].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
@@ -422,20 +431,20 @@ class OfferingCheckForm extends Component{
                             </td>
                             <td className="col-lg-1 textAlignCenter">
                               <i  data-ID="5dbfd288621a0aeead43e4d7" data-value="Multibagger" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[5].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>  
+                            </td>  */}
 
-                          {/*  {
+                            {
 
                               this.state.offeringTitle.map((b,j)=>{
                                   return(
-                                         <td className="col-lg-1 textAlignCenter">
+                                         <td className="col-lg-1 textAlignCenter" key={j+b.offeringTitle}>
                                              <i  data-ID={b._id} data-value={b.offeringTitle} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[j].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
                                           </td>  
                                                                                    
                                         )
                                       })
                                 } 
-*/}
+
                                  </tr>
                                </tbody>
                           </table>

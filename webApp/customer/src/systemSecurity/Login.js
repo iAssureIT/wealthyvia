@@ -47,7 +47,7 @@ class Login extends Component {
              this.props.history.push(localStorage.getItem("lastUrl"));
             window.location.reload();
           }else{
-              this.props.history.push("/");
+              this.props.history.push("/login");
             window.location.reload();
 
           }

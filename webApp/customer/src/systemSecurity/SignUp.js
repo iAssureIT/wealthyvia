@@ -28,7 +28,13 @@ class SignUp extends Component {
  	constructor(){
       super();
         this.state = {           
-           loggedIn : false,
+           loggedIn            : false,
+           fields              : {},
+      	   errors              : {},
+      	   firstNameV 			: '',
+      	   lastNameV		: "",
+	    	mobileV 		: "",
+	    	emailIDV		: "",
            auth:{
                 firstname       : '',
                 lastname        : '',
@@ -53,6 +59,7 @@ class SignUp extends Component {
     }
  	usersignup(event){
 	 	event.preventDefault();
+     if (this.validateForm() && this.validateFormReq()) {
 
 			var auth={
 	            firstName       : this.refs.firstname.value,
@@ -95,8 +102,14 @@ class SignUp extends Component {
 				            })
 				            .catch(function (error) {
 				                console.log(error);
-	        					swal("Something went wrong..","Unable to submit data.","warning");
-				            })
+				                if(error == "Error: Request failed with status code 409")
+				                {
+	        						swal("Warning..","Email id already exist..","warning");
+
+				                }else{
+	        						swal("Something went wrong..","Unable to submit data.","warning");
+				            	}
+				            })	
 	                	)
 	                :
 		                (
@@ -113,6 +126,20 @@ class SignUp extends Component {
 				swal("Please enter mandatory fields", "", "warning");
 				console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
 			}
+				let fields = {};
+          	   fields["firstNameV"]         = ""; 
+	           fields["lastNameV"]          = "";         
+	           fields["mobileV"]            = "";         
+	           fields["emailIDV"]           = "";         
+        
+             this.setState({
+	            "firstNameV"     : "",
+	            "lastNameV"      : "",
+	            "mobileV"        : "",
+	            "emailIDV"       : "",
+	            "fields"         : fields
+            });
+		}
 	
  	}
  	handleChange(event){
@@ -121,32 +148,20 @@ class SignUp extends Component {
 	    const datatype = event.target.getAttribute('data-text');
 	    const {name,value} = event.target;
 	    let formerrors = this.state.formerrors;
+
 	    
-	    switch (datatype){
-	     
-	       case 'firstNameV' : 
-	       formerrors.firstNameV = firstnameRegex.test(value) ? '' : "Please Enter Valid Name";
-	       break;
-	       
-	       case 'lastNameV' : 
-	       formerrors.lastNameV = lastnameRegex.test(value) ? '' : "Please Enter Valid Name";
-	       break;
-
-	       case 'mobileV' : 
-	       formerrors.mobileV = mobileRegex.test(value) ? '' : "Please Enter Numbers only";
-	       break;
-
-	       case 'emailIDV' : 
-	       formerrors.emailIDV = emailRegex.test(value) ? '' : "Invalid EmailID";
-	       break;
-	       
-	       default :
-	       break;
-
-	      //  case 'companyName' : 
-	      //  formerrors.companyName = value.length < 1 && value.lenght > 0 ? 'Minimum 1 Character ' : "";
-	      //  break;
-
+	   
+	    let fields = this.state.fields;
+	      fields[event.target.name] = event.target.value;
+	      this.setState({
+	        fields
+	      });
+	      if (this.validateForm() && this.validateFormReq()) {
+	        let errors = {};
+	        errors[event.target.name] = "";
+	        this.setState({
+	          errors: errors
+	      });
 	    }
 	    // this.setState({formerrors,})
 	    this.setState({ formerrors,
@@ -193,6 +208,84 @@ class SignUp extends Component {
         $('.hidePwd').toggleClass('hidePwd1');
         return $('.inputTextPass').attr('type', 'password');
     }
+    validateFormReq() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+    if (!fields["firstNameV"]) {
+      formIsValid = false;
+      errors["firstNameV"] = "This field is required.";
+    }  
+     if (!fields["lastNameV"]) {
+      formIsValid = false;
+      errors["lastNameV"] = "This field is required.";
+    }    
+    if (!fields["mobileV"]) {
+      formIsValid = false;
+      errors["mobileV"] = "This field is required.";
+    }   
+    if (!fields["emailIDV"]) {
+      formIsValid = false;
+      errors["emailIDV"] = "This field is required.";
+    }/*
+    if (!fields["addressProof"]) {
+      formIsValid = false;
+      errors["addressProof"] = "This field is required.";
+    }
+ */
+    this.setState({
+      errors: errors
+    });
+    return formIsValid;
+  }
+ 
+  validateForm() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+    if (typeof fields["firstNameV"] !== "undefined") {
+      //regular expression for email validation
+      var pattern = new RegExp(/^[a-zA-Z]+$/);
+      if (!pattern.test(fields["firstNameV"])) {
+        formIsValid = false;
+        errors["firstNameV"] = "Please enter valid first name.";
+      }
+    }
+     if (typeof fields["lastNameV"] !== "undefined") {
+      //regular expression for email validation
+      var pattern = new RegExp(/^[a-zA-Z]+$/);
+      if (!pattern.test(fields["lastNameV"])) {
+        formIsValid = false;
+        errors["lastNameV"] = "Please enter valid last name.";
+      }
+    }
+    if (typeof fields["emailIDV"] !== "undefined") {
+        //regular expression for email validation
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!pattern.test(fields["emailIDV"])) {
+          formIsValid = false;
+          errors["emailIDV"] = "Please enter valid email-ID.";
+        }
+      }
+       if (typeof fields["mobileV"] !== "undefined") {
+        if (!fields["mobileV"].match(/^[0-9]{10}$/)) {
+          formIsValid = false;
+          errors["mobileV"] = "Please enter valid mobile no.";
+        }
+      }
+  /*  if (typeof fields["blogTitle"] !== "undefined") {
+      if (!fields["blogTitle"].match(/^[a-zA-Z0-9]$/)) {
+        formIsValid = false;
+        errors["blogTitle"] = "Please .";
+      }
+    }*/
+   
+    this.setState({
+      errors: errors
+    });
+    return formIsValid;
+  }
+
 
 	render(){
 		// var winHeight = window.innerHeight;
@@ -210,9 +303,9 @@ class SignUp extends Component {
 							<div className="col-lg-12 col-md-12  signUpInnerWrapperOES signupfrm">
 								<div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd boxMarg">
 							   		<span className="blocking-span noIb">
-									   <input type="text" className="form-control abacusTextbox oesSignUpForm" id="firstname" ref="firstname" name="firstname"  onChange={this.handleChange} data-text="firstNameV" required/>
-									   {this.state.formerrors.firstNameV  && (
-				                        <span className="text-danger">{this.state.formerrors.firstNameV}</span> 
+									   <input type="text" className="form-control abacusTextbox oesSignUpForm" id="firstname" ref="firstname" name="firstNameV"  onChange={this.handleChange} data-text="firstNameV" required/>
+									   {this.state.errors.firstNameV  && (
+				                        <span className="text-danger">{this.state.errors.firstNameV}</span> 
 				                      )}
 							    		<span className="floating-label">
 								    		<i className="fa fa-user-circle-o signupIconFont" aria-hidden="true"/> 
@@ -222,9 +315,9 @@ class SignUp extends Component {
 								</div>
 							    <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd1 boxMarg">
 									<span className="blocking-span noIb">   
-										<input type="text" className="form-control abacusTextbox oesSignUpForm" id="lastname" ref="lastname" name="lastname"  onChange={this.handleChange} data-text="lastNameV" required/>
-										{this.state.formerrors.lastNameV  && (
-				                        <span className="text-danger">{this.state.formerrors.lastNameV}</span> 
+										<input type="text" className="form-control abacusTextbox oesSignUpForm" id="lastname" ref="lastname" name="lastNameV"  onChange={this.handleChange} data-text="lastNameV" required/>
+										{this.state.errors.lastNameV  && (
+				                        <span className="text-danger">{this.state.errors.lastNameV}</span> 
 				                      )}
 								    	<span className="floating-label1 lbfloatpass">
 								    		<i className="fa fa-user-circle-o signupIconFont" aria-hidden="true"/> 
@@ -234,9 +327,9 @@ class SignUp extends Component {
 							    </div>
 							    <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMarg">
 									<span className="blocking-span noIb">   
-									   <input className="form-control  abacusTextbox oesSignUpForm" ref="mobNumber" name="mobNumber" id="mobNumber" onChange={this.handleChange} data-text="mobileV" required/>
-									   {this.state.formerrors.mobileV  && (
-				                        <span className="text-danger">{this.state.formerrors.mobileV}</span> 
+									   <input className="form-control  abacusTextbox oesSignUpForm" ref="mobNumber" name="mobileV" id="mobNumber" onChange={this.handleChange} data-text="mobileV" required/>
+									   {this.state.errors.mobileV  && (
+				                        <span className="text-danger">{this.state.errors.mobileV}</span> 
 				                      )}
 									   <span className="floating-label">
 									   <i className="fa fa-mobile signupIconFont" aria-hidden="true"></i>Mobile Number</span>					   			
@@ -244,9 +337,9 @@ class SignUp extends Component {
 							    </div>
 						   		<div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMarg">
 									<span className="blocking-span noIb">   
-									  <input type="email" className="form-control signupsetting  abacusTextbox oesSignUpForm" ref="signupEmail" name="signupEmail" onChange={this.handleChange} data-text="emailIDV" required/>
-									  {this.state.formerrors.emailIDV  && (
-				                        <span className="text-danger">{this.state.formerrors.emailIDV}</span> 
+									  <input type="email" className="form-control signupsetting  abacusTextbox oesSignUpForm" ref="signupEmail" name="emailIDV" onChange={this.handleChange} data-text="emailIDV" required/>
+									  {this.state.errors.emailIDV  && (
+				                        <span className="text-danger">{this.state.errors.emailIDV}</span> 
 				                      )}
 							    		<span className="floating-label"><i className="fa fa-envelope-o signupIconFont" aria-hidden="true"></i>Email ID</span>					   			
 									</span>
