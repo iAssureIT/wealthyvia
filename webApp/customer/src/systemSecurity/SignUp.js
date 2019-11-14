@@ -15,15 +15,15 @@ class SignUp extends Component {
  	constructor(){
       super();
         this.state = {           
-           loggedIn            : false,
-           fields              : {},
-      	   errors              : {},
+           loggedIn             : false,
+           fields               : {},
+      	   errors               : {},
       	   firstNameV 			: '',
-      	   lastNameV		: "",
-	    	mobileV 		: "",
-	    	emailIDV		: "",
-	    	signupPassword  : "",
-	    	buttonHeading   : "Sign Up",
+      	   lastNameV			: "",
+	    	mobileV 			: "",
+	    	emailIDV			: "",
+	    	signupPassword  	: "",
+	    	buttonHeading   	: "Sign Up",
            auth:{
                 firstname       : '',
                 lastname        : '',
@@ -34,7 +34,6 @@ class SignUp extends Component {
                 role 			: ''
                
             },
-             
         }
          this.handleChange = this.handleChange.bind(this);
     }
@@ -74,11 +73,10 @@ class SignUp extends Component {
 				            .then((response)=> {
 				            	if(response)
 				            	{
-			            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
-
-				                this.props.history.push("/confirm-otp/"+response.data.ID);
+			            			swal("Great","Information submitted successfully and OTP is sent to your registered Email ID.");
+				                	this.props.history.push("/confirm-otp/"+response.data.ID);
 				                }else{
-				                	console.log("loadding")
+			            			swal("Warning","Something went wrong...","warning");
 
 				                }
 				            })
