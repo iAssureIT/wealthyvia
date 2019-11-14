@@ -45,6 +45,8 @@ class OfferingCheckForm extends Component{
       subscriptionData             : "",
       usersOfferingStatus          : "",
       userOfferingEndDate          : "",
+       userOfferingStartDate       : "",
+          
       startDateAlready             : "",
       startDate                    : new Date(),
     };
@@ -66,9 +68,12 @@ class OfferingCheckForm extends Component{
         userIdG            : res.data[0]._id,
       },()=>{
         axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
-          .then( (res)=>{      
+          .then( (res)=>{   
+          var date =    res.data.startDate;
+          console.log("date",date);
             this.setState({
                   userOfferingEndDate       : res.data.endDate,
+                  // userOfferingStartDate       : res.data.startDate,
                   subscriptionData        : res.data.offering,          
                 },()=>{
                   // console.log("subscriptionData",this.state.subscriptionData);
@@ -373,6 +378,7 @@ class OfferingCheckForm extends Component{
                   <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 NOpadding ">
                     <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                       <label className="fromHead">Start Date<span className="redFont">*</span></label><br/>
+                        {console.log("this.state.userOfferingStartDate",this.state.userOfferingStartDate)}
                       <DatePicker
                         selected={this.state.userOfferingStartDate ? this.state.userOfferingStartDate :this.state.startDate}
                         onChange={this.getDate}
@@ -396,53 +402,31 @@ class OfferingCheckForm extends Component{
                             <thead className="bgThead">
                               <tr>
 
-                               {/* <th className="text-center">5GCPM</th>
-                                <th className="text-center">Safe Heavan</th>
-                                <th className="text-center">SHM Alpha Enhancer</th>
-                                <th className="text-center">US Stocks</th>
-                                <th className="text-center">Fly Nifty</th>
-                                <th className="text-center">Multibagger</th>*/}
-                                 {
-                                  this.state.offeringTitle.map((b, j)=>{
+                                {
+                                  this.state.subscriptionData?
+                                  this.state.subscriptionData.map((b, j)=>{
                                     return(
                                             <th className="text-center" key={j+b.offeringStatus}>{b.offeringTitle}</th>
                                         )
-                                      })
+                                      }):
+                                      null
                                   } 
                               </tr>
                                                      
                             </thead>
                             <tbody>     
                             <tr>  
-                            {/*<td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5da999bbaa1a87409b22d84f" data-value="5GCPM" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[0].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>
-                            <td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5dbfd24b621a0aeead43e4d3" data-value="Safe Heavan" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[1].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>  
-                            <td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5dbfd257621a0aeead43e4d4" data-value="SHM Alpha Enhancer" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[2].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>
-                            <td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5dbfd266621a0aeead43e4d5" data-value="US Stocks" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[3].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>
-                            <td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5dbfd27b621a0aeead43e4d6" data-value="Fly Nifty" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[4].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>
-                            <td className="col-lg-1 textAlignCenter">
-                              <i  data-ID="5dbfd288621a0aeead43e4d7" data-value="Multibagger" data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[5].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
-                            </td>  */}
-
                             {
-
-                              this.state.offeringTitle.map((b,j)=>{
+                              this.state.subscriptionData?
+                              this.state.subscriptionData.map((b,j)=>{
                                   return(
                                          <td className="col-lg-1 textAlignCenter" key={j+b.offeringTitle}>
-                                             <i  data-ID={b._id} data-value={b.offeringTitle} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'fa fa-check-circle prodCheckboxDim ' + (this.state.subscriptionData ? this.state.subscriptionData[j].offeringStatus  == "Active" ? "prodCheckboxDimSelected" : "prodCheckboxDimNotSelected" : "prodCheckboxDimNotSelected")} aria-hidden="true"></i>
+                                             <i  data-ID={b.offering_ID} data-value={b.offeringTitle} data-attribute={this.state.userIdG} onClick={this.changeAttribute.bind(this)}  className={'prodCheckboxDim ' + (this.state.subscriptionData ? b.offeringStatus  == "Active" ? " fa fa-check prodCheckboxDimSelected" : " fa fa-times prodCheckboxDimNotSelected" : " fa fa-check prodCheckboxDimNotSelected")} aria-hidden="true"></i>
                                           </td>  
                                                                                    
                                         )
                                       })
+                              :null
                                 } 
 
                                  </tr>

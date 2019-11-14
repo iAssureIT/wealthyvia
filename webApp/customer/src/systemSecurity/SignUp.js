@@ -10,19 +10,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
 
 
-
-const formValid = formerrors=>{
-  let valid = true;
-  Object.values(formerrors).forEach(val=>{
-  val.length>0 && (valid = false);
-  })
-  return valid;
-}
-const firstnameRegex 	= RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const lastnameRegex 	= RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const mobileRegex  		= RegExp(/^[0-9][0-9]{9}$|^$/);
-const emailRegex 		= RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$|^$/);
-
 class SignUp extends Component {
 
  	constructor(){
@@ -35,6 +22,8 @@ class SignUp extends Component {
       	   lastNameV		: "",
 	    	mobileV 		: "",
 	    	emailIDV		: "",
+	    	signupPassword  : "",
+	    	buttonHeading   : "Sign Up",
            auth:{
                 firstname       : '',
                 lastname        : '',
@@ -45,12 +34,7 @@ class SignUp extends Component {
                 role 			: ''
                
             },
-             formerrors :{
-				        	firstNameV 		: "",
-				        	lastNameV		: "",
-				        	mobileV 		: "",
-				        	emailIDV		: "",
-					     },
+             
         }
          this.handleChange = this.handleChange.bind(this);
     }
@@ -72,28 +56,26 @@ class SignUp extends Component {
 	            fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
 	        }
 		            
-		    if(auth){
-	        	document.getElementById("signUpBtn").value = 'We are processing. Please Wait...';            
-
-	         }   
+		    
 	        var firstname                = this.refs.firstname.value;
 	        var mobile                   = this.refs.mobNumber.value;
 	        var email                    = this.refs.signupEmail.value;
 	        var passwordVar              = this.refs.signupPassword.value;
 	        var signupConfirmPasswordVar = this.refs.signupConfirmPassword.value;
 	 		
-	        if(formValid(this.state.formerrors)){
 	            if (passwordVar === signupConfirmPasswordVar) {
 	                return (passwordVar.length >= 6) ? 
 	                	(true, 
-			             //document.getElementById("signUpBtn").value = 'Sign Up',
+			            this.setState({
+			            	buttonHeading : 'We are processing. Please Wait...',
+			            }),
 	      				//browserHistory.push("/"),
 	                	axios.post('/api/users/post/signup/user/emailotp',auth)
 				            .then((response)=> {
 				            	if(response)
 				            	{
-				            	document.getElementById("signUpBtn").value = 'Sign Up';
 			            		swal("Great","Information submitted successfully and OTP is sent to your registered Email ID and Mobile no");
+
 				                this.props.history.push("/confirm-otp/"+response.data.ID);
 				                }else{
 				                	console.log("loadding")
@@ -113,30 +95,26 @@ class SignUp extends Component {
 	                	)
 	                :
 		                (
-			                document.getElementById("signUpBtn").value = 'Sign Up',
-			                swal("Password should be at least 6 Characters Long","Please try again or create an Account")       
+			                swal("Please enter valid password","Please enter password with atleast 6 character long.")       
 		                )
 	                
 	            } else {
-	                document.getElementById("signUpBtn").value = 'Sign Up';
 			        return swal("Passwords does not match","Please Try Again")
 	            }
-            }else{
-                document.getElementById("signUpBtn").value = 'Sign Up';
-				swal("Please enter mandatory fields", "", "warning");
-				console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-			}
+            
 				let fields = {};
           	   fields["firstNameV"]         = ""; 
 	           fields["lastNameV"]          = "";         
 	           fields["mobileV"]            = "";         
 	           fields["emailIDV"]           = "";         
+	           // fields["signupPassword"]     = "";         
         
              this.setState({
 	            "firstNameV"     : "",
 	            "lastNameV"      : "",
 	            "mobileV"        : "",
 	            "emailIDV"       : "",
+	            // "signupPassword" : "",
 	            "fields"         : fields
             });
 		}
@@ -147,7 +125,6 @@ class SignUp extends Component {
 	    // const {name , value}   = event.target;
 	    const datatype = event.target.getAttribute('data-text');
 	    const {name,value} = event.target;
-	    let formerrors = this.state.formerrors;
 
 	    
 	   
@@ -163,11 +140,7 @@ class SignUp extends Component {
 	          errors: errors
 	      });
 	    }
-	    // this.setState({formerrors,})
-	    this.setState({ formerrors,
-	      [name]:value
-	    } );
-	    console.log("this.state.formerrors",this.state.formerrors)
+	  
 	}
  	acceptcondition(event){
 	    var conditionaccept = event.target.value;
@@ -227,12 +200,12 @@ class SignUp extends Component {
     if (!fields["emailIDV"]) {
       formIsValid = false;
       errors["emailIDV"] = "This field is required.";
-    }/*
-    if (!fields["addressProof"]) {
-      formIsValid = false;
-      errors["addressProof"] = "This field is required.";
     }
- */
+   /* if (!fields["signupPassword"]) {
+      formIsValid = false;
+      errors["signupPassword"] = "This field is required.";
+    }*/
+ 
     this.setState({
       errors: errors
     });
@@ -273,10 +246,10 @@ class SignUp extends Component {
           errors["mobileV"] = "Please enter valid mobile no.";
         }
       }
-  /*  if (typeof fields["blogTitle"] !== "undefined") {
-      if (!fields["blogTitle"].match(/^[a-zA-Z0-9]$/)) {
+   /* if (typeof fields["signupPassword"] !== "undefined") {
+      if (!fields["signupPassword"].match(/^[a-zA-Z0-9]$/)) {
         formIsValid = false;
-        errors["blogTitle"] = "Please .";
+        errors["signupPassword"] = "Please .";
       }
     }*/
    
@@ -360,7 +333,10 @@ class SignUp extends Component {
 
 					                    <span className="blocking-span noIb">
 						                    <input type="password" className="form-control pass border3 oesSignUpForm confirmbtm inputTextPass tmsLoginTextBox" ref="signupPassword" name="signupPassword" required/>
-						                    <span className="floating-label1 lbfloatpass"><i className="fa fa-lock" aria-hidden="true"></i> Password</span>                 
+						                    <span className="floating-label1 lbfloatpass"><i className="fa fa-lock" aria-hidden="true"></i> Password</span>  
+						                    {this.state.errors.signupPassword  && (
+				                        <span className="text-danger">{this.state.errors.signupPassword}</span> 
+				                      )}               
 						                  </span>
 						                <div className="showHideSignDiv">
 						                  <i className="fa fa-eye showPwd showEyeupSign" aria-hidden="true" onClick={this.showSignPass.bind(this)}></i>
@@ -407,7 +383,7 @@ class SignUp extends Component {
 							    </div>*/}
 
 								<div className="col-lg-12 col-md-12 col-xs-6 col-sm-6 form-group1 rrnRegisterBtn" onClick={this.usersignup.bind(this)}>
-							    	<input id="signUpBtn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 acceptinput UMloginbutton UMloginbutton1 hvr-sweep-to-right" onClick={this.usersignup.bind(this)}  value="Sign Up" disabled/>
+							    	<input id="signUpBtn" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 acceptinput UMloginbutton UMloginbutton1 hvr-sweep-to-right" onClick={this.usersignup.bind(this)}  value={this.state.buttonHeading} disabled/>
 							    </div>		   
 
 						    	<div className="col-lg-4 col-lg-offset-4 col-md-4 col-sm-4 col-xs-4 pdcls">

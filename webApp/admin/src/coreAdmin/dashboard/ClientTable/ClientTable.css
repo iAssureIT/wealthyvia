@@ -118,6 +118,10 @@
   font-size: 28px;
 }
 .prodCheckboxDimSelected{
-  color: #f00;
+  color: #74c108;
   font-size: 28px;
+}
+.prodCheckboxDimNotSelected{
+    color: #e8430f;
+
 }
