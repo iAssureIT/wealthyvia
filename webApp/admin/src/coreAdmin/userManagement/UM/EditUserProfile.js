@@ -33,7 +33,6 @@ class EditUserProfile extends Component{
 		//	"role"		: this.state.role,
           // "officeLocation"  : this.refs.office.value,
 		}
-		console.log("formvalues",formvalues);
 				/*axios.patch('/api/users/patch/one/'+userid, formvalues)*/
 				axios.patch('/api/users/patch/'+userid, formvalues)
 
@@ -64,11 +63,9 @@ class EditUserProfile extends Component{
 					          completeDataCount : res.data.length,
 					          tableData 		: tableData,          
 					        },()=>{
-					        	console.log('tableData', this.state.tableData);
 					        })
 						})
 						.catch((error)=>{
-							console.log("error = ",error);
 							  if(error.message === "Request failed with status code 401")
 					              {
 					                   swal("Your session is expired! Please login again.","", "error");
@@ -92,7 +89,6 @@ class EditUserProfile extends Component{
 	handleChange(event){
         const target = event.target.value;
         const name   = event.target.name;
-        console.log('target',name, target);
          var FirstName = this.refs.firstName.value 
 			var LastName  =  this.refs.lastName.value 
 
@@ -110,19 +106,19 @@ class EditUserProfile extends Component{
 	}
 	
 	componentDidMount(){
-		console.log("here edit view");
 		var userid = this.state.UserId;
 		// console.log("userid-----------------------------------------",userid);
 		 axios.get('/api/users/get/'+userid)
 	      .then( (res)=>{
-	        console.log("here data_______________",res.data);
-	      /*  var FName = res.data.profile.fullName.split(' ');
+	        
+	        var FName = res.data.fullName.split(' ');
 	        var FirstName = FName[0];
 	        var LastName = FName[1];
-	        var Email = res.data.profile.email ? res.data.profile.email : null;
+
+	       /* var Email = res.data.profile.email ? res.data.profile.email : null;
 	        var Mnob  = res.data.profile.mobileNumber ? res.data.profile.mobileNumber : null;
-	        var Role  = res.data.roles.length > 0 ? res.data.roles[0] : null;*/
-	     /*   console.log("Role", Role)*/;
+	        var Role  = res.data.roles.length > 0 ? res.data.roles[0] : null;
+	        console.log("Role", Role);
 	        // console.log("L name", LastName);
 
 	     /* this.refs.firstName.value = FirstName;
@@ -134,13 +130,11 @@ class EditUserProfile extends Component{
 		  	mobNumber : Mnob,
 		  });
 		  */
-	        var FirstName = res.data.firstname;
-	        var LastName  = res.data.lastname;
+		   var FirstName = FName[0];
+	        var LastName = FName[1];
 	        var Email 	  = res.data.email;
 	        var Mnob  	  = res.data.mobNumber;
-
-	        console.log("Mnob", Mnob);
-	        console.log("L name", LastName);
+	      
 	        this.setState({
 	        	  "firstName"	: FirstName,
 		          "lastName"	: LastName,
@@ -156,7 +150,6 @@ class EditUserProfile extends Component{
 		 
 	      })
 	      .catch((error)=>{
-	        console.log("error = ",error);
 	        alert("Something went wrong! Please check Get URL.");
 	          if(error.message === "Request failed with status code 401")
               {

@@ -6,14 +6,7 @@ import swal                 from 'sweetalert';
 import $                    from "jquery";
 import './Statements.css';
 
-const formValid = formerrors=>{
-  let valid = true;
-  Object.values(formerrors).forEach(val=>{
-  val.length>0 && (valid = false);
-  })
-  return valid;
-  }
-const amenitiesNameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
+
 var ActiveArrayUser =[];
 class Statements extends Component{
 
@@ -31,6 +24,7 @@ class Statements extends Component{
       totalCount                   : '',
       id                           : '',
       ActiveList                   : [],
+      subscriptionData             : "",
       InactiveUsers                : [],
       ActiveArray                  : [],
       editId                       : "",
@@ -44,38 +38,21 @@ class Statements extends Component{
     this.setState({
       editId : this.props.match.params.id
     })
-     axios
-      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
-      .then((response)=> {
-          if(response.data){            
-                this.setState({
-                  ActiveList : response.data,
-              });
-          }
-         /* if(ActiveArrayUser)
-          {
-            for(var i=0;i<this.state.ActiveList.length;i++){
-             if(ActiveArrayUser[i].indexOf(this.state.ActiveList[i].userID)== -1)
-              {
-                ActiveArrayUser.push(this.state.ActiveList[i].userID);
-
-                this.setState({
-                  ActiveArray  :ActiveArrayUser[i],
-                },()=>{
-                })
-              }
-              console.log("ActiveArray",ActiveArrayUser[i].indexOf(this.state.ActiveList[i].userID)== -1);
-            }
-          }
-          else{
-           console.log("ActiveArray",ActiveArrayUser);
-
-          }*/
+     /*User Subscribed*/
+     axios.get('/api/offeringsubscriptions/get/offer_wise_status/all/Active')
+      .then( (res)=>{      
+        this.setState({
+              completeDataCount       : res.data.length,
+              subscriptionData        : res.data,          
+            },()=>{
+              console.log("subscriptionData",this.state.subscriptionData);
         })
-      .catch(function (error) {
-        console.log(error);
+      
+      })
+      .catch((error)=>{
+        console.log("error",error);
         if(error.message === "Request failed with status code 401")
-          {
+          { 
                swal("Your session is expired! Please login again.","", "error");
                this.props.history.push("/");
           }
@@ -92,11 +69,12 @@ class Statements extends Component{
             swal("Error!","Something went wrong!!", "error");
           }
       });  
-      axios.get('/api/subscriptionorders/get/usersOfferingStatus/all/Inactive')
+      axios.get('/api/offeringsubscriptions/get/offer_wise_status/all/Inactive')
       .then( (inactiveUser)=>{      
         this.setState({
             InactiveUsers : inactiveUser.data,
           })
+        console.log("inactiveUser.data",inactiveUser.data);
       })
       .catch((error)=>{
           if(error.message === "Request failed with status code 401"){
@@ -108,37 +86,21 @@ class Statements extends Component{
   handleChange=(event)=>{
     const target = event.target.value;
     console.log("target",target);
-    if(target != "all")
-    {
-     axios.get('/api/subscriptionorders/get/usersOfferingStatus/'+target+'/Active')
+   
+     axios.get('/api/offeringsubscriptions/get/offer_wise_status/'+target+'/Active')
       .then( (Active)=>{      
         this.setState({
-            ActiveList : Active.data,
+            
+           subscriptionData  : Active.data,
           })
+        console.log("subscriptionData",this.state.subscriptionData);
       })
       .catch((error)=>{
           if(error.message === "Request failed with status code 401"){
             swal("Error!","Something went wrong!!", "error");
           }
       });
-    }else{
-      axios
-      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
-      .then((response)=> {
-          if(response.data){            
-                this.setState({
-                  ActiveList : response.data,
-              });
-          }
-      })
-      .catch((error)=>{
-          if(error.message === "Request failed with status code 401"){
-            swal("Error!","Something went wrong!!", "error");
-          }
-      });  
-
-    }
-
+   
   }
 
   render(){
@@ -168,7 +130,6 @@ class Statements extends Component{
                                 )
                               })
                             }
-                            <option value="performance">Performance</option>
                         
                       </select>
                     </div>                     
@@ -179,7 +140,6 @@ class Statements extends Component{
                     <ul className="nav nav-pills customStack textAlignCenter">
                       <li className="active col-lg-3"><a data-toggle="pill" href="#home">Active User</a></li>
                        <li className=" col-lg-3"><a data-toggle="pill" href="#menu1">Inactive User</a></li>
-                      
                     </ul>
 
                       <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -199,20 +159,23 @@ class Statements extends Component{
                                 </thead>
                                 <tbody>
                                 {
-                                  
-                                  this.state.ActiveList.map((ActiveList, j)=>{
+                                 this.state.subscriptionData
+                                 ? 
+                                  this.state.subscriptionData.map((ActiveList, j)=>{
                                   return(
                                     <tr>
                                       <td>{j<99 ? j<9 ? "WL00"+(j+1) : "WL0"+(j+1) : "WL"+(j+1)}</td>
-                                      <td>{ActiveList.userName}</td>
-                                      <td className="text-center">{ActiveList.MobileNumber}</td>
-                                      <td className="text-center">{ActiveList.userEmail}</td>
+                                      <td>{ActiveList.name}</td>
+                                      <td className="text-center">{ActiveList.mobileNumber}</td>
+                                      <td className="text-center">{ActiveList.emailId}</td>
                                       <td className="text-center">{ActiveList.startDate}</td>
                                       <td className="text-center">{ActiveList.endDate}</td>
-                                      <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.user_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                     </tr>
                                     )
                                   })
+                                  :
+                                  null
 
                                 } 
                                 </tbody>
@@ -240,9 +203,9 @@ class Statements extends Component{
                                   return(
                                     <tr>
                                       <td>{k<99 ? k<9 ? "WL00"+(k+1) : "WL0"+(k+1) : "WL"+(k+1)}</td>
-                                      <td>{InactiveList.userName}</td>
-                                      <td className="text-center">{InactiveList.MobileNumber}</td>
-                                      <td className="text-center">{InactiveList.userEmail}</td>
+                                      <td>{InactiveList.name}</td>
+                                      <td className="text-center">{InactiveList.mobileNumber}</td>
+                                      <td className="text-center">{InactiveList.emailId}</td>
                                       <td className="text-center">{InactiveList.startDate}</td>
                                       <td className="text-center">{InactiveList.endDate}</td>
                                       <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>

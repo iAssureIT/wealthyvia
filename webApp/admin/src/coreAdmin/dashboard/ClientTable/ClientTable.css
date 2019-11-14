@@ -53,8 +53,8 @@
 }
 /* When the checkbox is checked, add a blue background */
 .centreDetailContainer input:checked ~ .centreDetailCheck {
-  background-color: #201a47;
-  border:2px solid #201a47;
+  background-color: #3c8dbc;
+  border:2px solid #3c8dbc;
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .centreDetailCheck:after {
@@ -83,8 +83,8 @@
 }
 /* When the checkbox is checked, add a blue background */
 .centreDetailContainer input:checked ~ .radioCheck {
-  background-color: #201a47;
-  border:2px solid #201a47;
+  background-color: #3c8dbc;
+  border:2px solid #3c8dbc;
 }
 /* Create the checkmark/indicator (hidden when not checked) */
 .radioCheck:after {

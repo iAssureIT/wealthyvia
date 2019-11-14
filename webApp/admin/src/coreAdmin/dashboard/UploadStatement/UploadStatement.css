@@ -24,7 +24,7 @@
 }
 .customStack>li.active>a, .customStack>li.active>a:focus, .customStack>li.active>a:hover{
 	border-radius: 3px !important;
-	background-color:#201a47 !important;
+	background-color:#3c8dbc !important;
 	color:#fff !important;
 }
 .customStack>li.active>a:hover{
@@ -37,7 +37,7 @@
 	font-size: 25px !important;
 }
 .backColorUserDetails{
-	background-color: #201a47;
+	background-color: #3c8dbc;
 	color: #fff;
 }
 .padding40{

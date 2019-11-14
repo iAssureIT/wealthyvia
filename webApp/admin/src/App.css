@@ -24,7 +24,7 @@ body{
   border-bottom: 1px solid #f4f4f4;
 }
 .App-header {
-  background-color: #201a47;
+  background-color: #3c8dbc;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -54,7 +54,7 @@ body{
 
 .headerbackgroundcolor
 {
-    background-color: #201a47;
+    background-color: #3c8dbc;
   }
 
 .headereffect
@@ -90,7 +90,7 @@ body{
 /*form common css*/
 .buttontAddEdit, .buttontAddEdit:hover, .buttontAddEdit:focus{
     padding: 6px 54px !important;
-    background-color: #201a47;
+    background-color: #3c8dbc;
     font-family:'Montserrat-Regular';
     color: #fff !important;
 }
@@ -258,12 +258,12 @@ color: #0275d8;text-decoration:none!important;border:none;background-color: tran
   margin-top: 40px !important;
 }
 .table>thead>tr>th{
-background-color: #201a47;
+background-color: #3c8dbc;
 padding: 20px;
 color: #fff;
 }
 .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n+1) > th{
-  background-color: #b2aecc;
+  background-color: #bee0ec;
 
 }
 .textAlignCenter{
@@ -300,6 +300,6 @@ color: #fff;
   margin-bottom: 10px;
 }
 .workHeader{
-  border-top: 4px solid #201a47 !important;
+  border-top: 4px solid #3c8dbc !important;
   border-radius:3px;
 }

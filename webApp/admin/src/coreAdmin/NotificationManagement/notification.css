@@ -229,7 +229,7 @@
 
 .tempactive {
     width: 104% !important;
-    box-shadow: 0px 8px 40px #201a47;
+    box-shadow: 0px 8px 40px  #3c8dbc;
     color: #666;
     font-size: 13px;
     z-index: 2 !important;
@@ -237,7 +237,7 @@
 }
 .tempactive .iconCss {
     border-radius: 18px;
-    background: #201a47 !important;
+    background: #3c8dbc !important;
     padding: 0.7em;
     color: #fff;
 }
@@ -541,7 +541,7 @@
 }
 .iconCss {
     border-radius: 18px;
-    background: #201a47;
+    background: #3c8dbc;
     padding: 0.7em;
     color: #fff;
     margin-top: 8px;
@@ -816,8 +816,8 @@
 .nav-pillss>li>a {
     color: #ffffff;
     white-space: nowrap;
-    box-shadow: 2px 2px 5px 0 #201a47;
-    background: #201a47;
+    box-shadow: 2px 2px 5px 0 #3c8dbc;
+    background: #3c8dbc;
     border-radius: 4px;
     font-family:'Montserrat-Regular';
     font-size: 14px;
@@ -825,8 +825,8 @@
 .nav-pillss>li>a:hover{
     color: #ffffff;
     white-space: nowrap;
-    box-shadow: 4px 4px 10px 0 #201a47;
-    background: #201a47;
+    box-shadow: 4px 4px 10px 0 #3c8dbc;
+    background: #3c8dbc;
     border-radius: 4px;
     font-family:'Montserrat-Regular';
     font-size: 14px;
@@ -935,7 +935,7 @@
       text-align: right!important;
   }
   .addexamform {
-    background: #201a47;
+    background: #3c8dbc;
     cursor: pointer;
     font-size: 14px;
     padding: 3px;

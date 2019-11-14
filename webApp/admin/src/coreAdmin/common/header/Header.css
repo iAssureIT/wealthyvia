@@ -64,7 +64,7 @@
 
 .sidenav a:hover {
   color: #f1f1f1;
-  background-color: #201a47;
+  background-color: #3c8dbc;
   border-left: 3px solid #2c1910;
 }
 
@@ -150,15 +150,15 @@
   margin-bottom: 35px;
 }
 .btn-Profile{
-    background-color: #201a47;
-    border-color:#201a47;
+    background-color: #3c8dbc;
+    border-color:#3c8dbc;
     color: #fff;
     border-radius: 3px;
     font-family: 'Montserrat-Regular';
 }
 .btn-logout{
-    background-color: #201a47;
-    border-color: #201a47;
+    background-color: #3c8dbc;
+    border-color: #3c8dbc;
     color: #fff;
     border-radius: 3px;
     font-family: 'Montserrat-Regular';

@@ -48,16 +48,16 @@
 	margin-top: 17px;
 }
 .tempTableHeader{
-  background: #201a47 !important;
+  background: #3c8dbc !important;
 }
 .activeCircle{
-  background: #201a47 !important;
+  background: #3c8dbc !important;
   color: #ffffff !important
 }
 .btnCustom{
   color: #fff !important;
-  background-color: #201a47 !important;
-  border-color: #201a47 !important;
+  background-color: #3c8dbc !important;
+  border-color: #3c8dbc !important;
 }
 .custPayBtn{
   color: blue;

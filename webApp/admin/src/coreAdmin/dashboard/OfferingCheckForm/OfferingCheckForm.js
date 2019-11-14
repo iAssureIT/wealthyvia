@@ -20,6 +20,7 @@ const formValid = formerrors=>{
 const amenitiesNameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
 var ActiveArrayUser =[];
 var result = [];
+var date = "";
 class OfferingCheckForm extends Component{
 
   constructor(props) {
@@ -69,25 +70,15 @@ class OfferingCheckForm extends Component{
       },()=>{
         axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
           .then( (res)=>{   
-          var date =    res.data.startDate;
+          date =    res.data.startDate;
           console.log("date",date);
             this.setState({
                   userOfferingEndDate       : res.data.endDate,
                   // userOfferingStartDate       : res.data.startDate,
                   subscriptionData        : res.data.offering,          
                 },()=>{
-                  // console.log("subscriptionData",this.state.subscriptionData);
             })
-           /* for(var i=0;i<res.data.length-1;i++)
-            {
-              if(res.data[i].user_id == this.state.userIdG)
-              {
-                result = res.data[i].offering;
-                this.setState({
-                  usersOfferingStatus       :res.data[i].offering,
-                },()=>{});
-              }
-            }*/
+         
           })
           .catch((error)=>{
             console.log("error",error);
@@ -125,27 +116,7 @@ class OfferingCheckForm extends Component{
              this.props.history.push("/");
         }
     });
-    /*Subscription Details*/
    
-    /* Get all Active users
-    axios
-      .get('/api/subscriptionorders/get/usersOfferOrderStatus/Active')
-      .then((response)=> {
-          if(response.data){            
-                this.setState({
-                  ActiveList : response.data,
-              });
-          }
-    })
-    .catch(function (error) {
-      console.log(error);
-      if(error.message === "Request failed with status code 401")
-        {
-             swal("Your session is expired! Please login again.","", "error");
-             this.props.history.push("/");
-        }
-    });
-    */
     /*Offering Details*/
 
     axios.get('/api/offerings/get/all/list/1')

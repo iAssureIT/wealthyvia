@@ -1640,7 +1640,7 @@ input[type="radio"]:checked:before {
   font-size: 18px;
 }
 .UMloginbutton{
-  background: #201a47;
+  background: #3c8dbc;
   padding: 7px 0;
   color: #fff;
   border: 0;
@@ -1657,7 +1657,7 @@ input[type="radio"]:checked:before {
 }
 .UMloginbutton:focus{
   outline: none;
-  background: #201a47;
+  background: #3c8dbc;
   color: #fff;
 }
 
@@ -2393,5 +2393,5 @@ input[type="radio"]:checked:before {
 padding-top: 20px;
 font-weight: bolder;
 color: #fff;
-border-bottom: 10px solid #201A47;
+border-bottom: 10px solid #3c8dbc;
 }

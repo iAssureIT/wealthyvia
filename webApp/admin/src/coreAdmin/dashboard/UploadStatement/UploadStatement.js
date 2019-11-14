@@ -15,14 +15,14 @@ class UploadStatement extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      uploadStatement  : "",
+      uploadStatement      : "",
       uploadPerformanceName: "",
-      uploadPerformance: "",
-      imgArrayWSaws    : [],
-      offeringTitle    : [],
-      fileArray        : [],
-      filenames        : [],
-      fileType        : "File",
+      uploadPerformance    : "",
+      imgArrayWSaws        : [],
+      offeringTitle        : [],
+      fileArray            : [],
+      filenames            : [],
+      fileType             : "File",
 
     };
   }
@@ -63,6 +63,14 @@ class UploadStatement extends Component{
             swal("Error!","Something went wrong!!", "error");
           }
       });  
+  }
+  handleChange(event)
+  {
+    event.preventDefault();
+     const target = event.target.value;
+    console.log("target",target);
+
+
   }
   uploadStatement(event){
     var index = event.target.getAttribute('id');
@@ -183,12 +191,12 @@ class UploadStatement extends Component{
       })
       .then((success) => {
           if (success) {
-            swal("Your image is deleted!");
+            swal("Your file is deleted!");
             this.setState({
               uploadStatement : ""
             })
           } else {
-          swal("Your image is safe!");
+          swal("Your file is safe!");
         }
       }
     );
@@ -216,11 +224,12 @@ class UploadStatement extends Component{
                       
                       <select  ref="planName"
                          type="text" name="planName" placeholder="Enter Subscription Name" 
-                         className="selectbox" title="Please enter package Name">
+                         className="selectbox" title="Please enter package Name"
+                         onChange={this.handleChange.bind(this)}>
                          {
                             this.state.offeringTitle.map((a, i)=>{
                               return(
-                                <option id={a._id}>{a.offeringTitle}</option>
+                                <option id={a._id} >{a.offeringTitle}</option>
                               )
                             })
                           }  
@@ -293,7 +302,6 @@ class UploadStatement extends Component{
                     :
                     null
                   }      */}
-                  {console.log("fileArray",this.state.fileArray.length)}
               {
               this.state.fileArray.length<=0?
               null         

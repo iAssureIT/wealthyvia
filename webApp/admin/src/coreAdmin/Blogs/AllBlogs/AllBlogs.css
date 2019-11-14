@@ -19,7 +19,7 @@
 }
 .customPillsBlogs>li.active>a, .customPillsBlogs>li.active>a:focus, .customPillsBlogs>li.active>a:hover{
 	background-color: transparent !important;
-	color: #201a47 !important;
+	color: #3c8dbc !important;
 }
 .customPillsBlogsSmall{
  font-family:'Montserrat',sans-serif;
@@ -37,7 +37,7 @@
 }
 .customPillsBlogsSmall>li.active>a, .customPillsBlogsSmall>li.active>a:focus, .customPillsBlogsSmall>li.active>a:hover{
 	background-color: transparent !important;
-	color: #201a47 !important;
+	color: #3c8dbc !important;
 }
 .descriptionData{
 	padding: 15px;

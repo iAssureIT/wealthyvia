@@ -136,7 +136,7 @@ i, span {
 }
 #sidebar ul li a:hover {
     color: #fff;
-    background: #201b47;
+    background: #3c8dbc;
 }
 #sidebar ul li a i {
     margin-right: 10px;
@@ -144,7 +144,7 @@ i, span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #201b47;
+    background: #3c8dbc;
     border-left: 3px solid #2c1910;
     margin-bottom: 1px;
 }
