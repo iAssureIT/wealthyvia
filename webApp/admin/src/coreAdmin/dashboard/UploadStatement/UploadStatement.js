@@ -9,6 +9,7 @@ import { deleteFile }             from 'react-s3';
 
 import './UploadStatement.css';
 
+var Off_id = "";
 var location ="";
 class UploadStatement extends Component{
 
@@ -16,6 +17,7 @@ class UploadStatement extends Component{
     super(props);
     this.state = {
       uploadStatement      : "",
+      userDetailsDisplay      : "",
       uploadPerformanceName: "",
       uploadPerformance    : "",
       imgArrayWSaws        : [],
@@ -27,6 +29,10 @@ class UploadStatement extends Component{
     };
   }
   componentDidMount() {
+    var user_IDOff_id = this.props.match.params.user_ID.split("-");
+    Off_id = user_IDOff_id[0];
+    var user_ID = user_IDOff_id[1];
+    console.log("Off_id",Off_id);
     axios
     .get('/api/projectsettings/get/S3')
     .then((response)=>{
@@ -63,6 +69,44 @@ class UploadStatement extends Component{
             swal("Error!","Something went wrong!!", "error");
           }
       });  
+     axios.get('/api/users/get/'+user_ID)
+    .then( (res)=>{      
+
+      this.setState({
+          userDetailsDisplay : res.data,
+
+
+        },()=>{
+          console.log("userDetailsDisplay",this.state.userDetailsDisplay)
+        axios.get('/api/offeringsubscriptions/get/'+ user_ID)
+          .then( (res)=>{      
+            this.setState({
+                  userOfferingEndDate       : res.data.endDate,
+                  userOfferingStartDate        : res.data.startDate,          
+                },()=>{
+                  console.log("userOfferingSatrtDate",this.state.userOfferingStartDate);
+
+            })
+          
+          })
+          .catch((error)=>{
+            console.log("error",error);
+            if(error.message === "Request failed with status code 401")
+              { 
+                   swal("Your session is expired! Please login again.","", "error");
+                   this.props.history.push("/");
+              }
+          });
+      })
+    })
+    .catch((error)=>{
+      if(error.message === "Request failed with status code 401")
+        {
+             swal("Your session is expired! Please login again.","", "error");
+             this.props.history.push("/");
+        }
+    });
+
   }
   handleChange(event)
   {
@@ -73,6 +117,7 @@ class UploadStatement extends Component{
 
   }
   uploadStatement(event){
+    console.log("IN")
     var index = event.target.getAttribute('id');
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
@@ -82,10 +127,11 @@ class UploadStatement extends Component{
       this.setState({
         uploadStatementName : newFile.name,
       })
-      console.log("fileNamePAN",this.state.fileName);
-      if (newFile) {
+      if (newFile && this.state.config) {
         var ext = newFile.name.split('.').pop();
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
+          console.log("ext",ext);
+
           if (newFile) {
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
@@ -93,7 +139,22 @@ class UploadStatement extends Component{
                   this.setState({
                     uploadStatement : Data.location,
                   })
-               
+                   axios.patch('/api/offeringsubscriptions/patch/update_statements/'+Off_id+'/add',Data.location)
+                    .then( (uploadedStatements)=>{      
+                      // console.log("offerings = ",offerings.data);   
+                      this.setState({
+                            uploadedStatementsDatabase : uploadedStatements.data,
+                          })
+                      console.log("uploadedStatementsDatabase",this.state.uploadedStatementsDatabase)
+                       
+                    })
+                    .catch((error)=>{
+                        if(error.message === "Request failed with status code 401"){
+                          swal("Error!","Something went wrong!!", "error");
+                        }
+                    });  
+                  console.log("uploadStatement",this.state.uploadStatement);
+
                   var obj2={
                     fileName : this.state.uploadStatementName,
                   }
@@ -110,7 +171,7 @@ class UploadStatement extends Component{
                   },()=>{
                   var fileLocation = this.state.fileArray;
                   localStorage.setItem("fileLocation",fileLocation);
-                  console.log("fileLocation",fileLocation);
+                  // console.log("fileLocation",localStorage.getItem("fileLocation"));
                   })
                 })
                 .catch((error)=>{
@@ -211,13 +272,30 @@ class UploadStatement extends Component{
       <div className="row">
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
-          <h4 className="h5lettersp MasterBudgetTitle">User Statement Upload</h4>
+          <h4 className="h5lettersp MasterBudgetTitle">Upload User Documents </h4>
          </div>
           <hr className="compySettingHr"/>
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
              <form id="CompanySMSGatewayForm"  >
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
+               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 userInfoContainer ">
+                  <label className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">Name<br/>
+                   <span className="noBold">{this.state.userDetailsDisplay.firstname}</span></label>
+                  <label  className="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">Email<br/>
+                  <span className="noBold"> {this.state.userDetailsDisplay.email}</span></label>
+                  <label  className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">Mobile No.<br/>
+                  <span className="noBold"> {this.state.userDetailsDisplay.mobNumber}</span></label>
+                  <label  className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">Start Date<br/>
+                  <span className="noBold">{this.state.userOfferingStartDate}</span></label>
+                  <label  className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">End Date<br/>
+                  <span className="noBold">{this.state.userOfferingEndDate}</span></label>
+               </div> 
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
+                    <label className="control-label statelabel locationlabel" >Type</label><br/>
+                          <input type="radio" name="price" checked />&nbsp;Statement
+                          <input type="radio"  className="addSpace" name="price" />&nbsp;Performance
+                </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
+                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div className="">
                       <label className="control-label statelabel locationlabel" >Upload Statement</label>
@@ -236,7 +314,7 @@ class UploadStatement extends Component{
                       </select>
                     </div>                     
                   </div> 
-                   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                {/*   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div className="">
                       <label className="control-label statelabel locationlabel" >Upload Performance</label>
                       <select  ref="planName"
@@ -245,7 +323,7 @@ class UploadStatement extends Component{
                           <option >Performance</option>
                       </select>
                     </div>                     
-                  </div> 
+                  </div> */}
                 </div>
                 </div>     
                 <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
@@ -259,12 +337,12 @@ class UploadStatement extends Component{
                          <b className="text_k11"></b>
                          <span className="under_ln">Upload Document</span>
                         </div>      
-                        <input  type="file" title="Click to attach file" name="userPic" ref="statementImg" className="form-control click_input"  onChange={this.uploadStatement.bind(this)} id="upload-file2" />
+                        <input type="file" className="noPadding click_input" title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />
                       </div> 
                     </div>
                   </div>
                 </div>          
-                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 row ">
+            {/*    <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 row ">
                   <div className="col-lg-12 col-md-5 col-sm-12 col-xs-12 padTopC">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                       <div className="clr_k ">
@@ -279,29 +357,34 @@ class UploadStatement extends Component{
                       </div> 
                     </div>
                   </div>
-                </div>          
-          
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
-                 {/* { this.state.uploadStatement ?
-                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 padTopC">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Statement</h5>
-                      </div>
-                      <div className="containerC">
-                        <label id="" className="pull-right custFaTimes1" title="Delete image" onClick={this.deleteimageLogo.bind(this)}>X</label>
-                        <img src={this.state.uploadStatement} alt="Avatar" className="imageC"/>
-                        <div className="middleC">
-                          <div className="textC">
-                            <input type="file" title="Click to change the photo" multiple name="userPic" id={this.state.banner} onChange={this.uploadImg.bind(this)} ref="workspaceImg" className="form-control click_input" />
-                            <i className="fa fa-camera fa-2x"></i>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgdetails">(max size: 2 Mb, Format: PDF)</div>
+                </div>*/}          
+                        <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div className="">
+                      {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
                     </div>
-                    :
-                    null
-                  }      */}
+                    <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                          {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
+                        
+                        {/*<input type="file" className="noPadding " title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />*/}
+                        <div className="errorMsg"></div>
+
+                      </div>
+                    </div>
+                   {/* <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                        { this.state.filenames!=="" && this.state.filenames ? 
+                          <div>
+                            <label className="pull-right custFaTimes" title="Delete image"  >X</label>data-id={this.state.imgbPath}
+                            <img src={this.state.filenames.fileName} width="150" height="100"/>
+                          </div>
+                          : <div> </div>
+                        }
+                        </div>
+                      </div>*/}
+                    </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
+                
               {
               this.state.fileArray.length<=0?
               null         
@@ -333,75 +416,6 @@ class UploadStatement extends Component{
              
               </div>
             }
-               {/* {
-                  this.state.uploadStatement !==""?
-                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  imagesDivUploaded">
-                      <img src="/images/pdf.png"/>
-                      <label className="mt20">{this.state.uploadStatementName}</label>
-                    </div>
-                    : 
-                    <div className="loadingImage"><img src="/images/loading.gif"/></div>
-                }*/}
-                {/*     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
-                  {this.state.imgArrayWSaws==null?
-                    null
-                  :
-                    this.state.imgArrayWSaws.map((data,index)=>{
-                      return(
-                              <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row">
-                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                                  <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Workspace Image {index+1}</h5>
-                                </div>
-                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                  <div className="imgcss" key={index}>
-                                    <label id={index} className="pull-right custFaTimes" title="Delete image" data-id={data.imgPath} onClick={this.deleteimageWS.bind(this)}>X</label>
-                                    <img className="img-responsive" src={data.imgPath}/>
-                                  </div>
-                                </div>
-                              </div>
-                            )
-                    })
-                  }
-                  {this.state.imgArrayWSaws.length<=0?
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Workspace Images <span className="astrick">*</span></h5>
-                       
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                        <div className="clr_k ">
-                          <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon">
-                            <img src="/images/Upload-Icon.png"/>
-                          </div>
-                          <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
-                           <b className="text_k11"></b>
-                           <span className="under_ln">Choose Workspace Images</span>
-                          </div>     
-                          <input  type="file" title="Click to attach file" multiple name="userPic" onChange={this.uploadworkspaceImage.bind(this)} ref="workspaceImg"  className="form-control click_input" id="upload-file2" />
-                        </div>
-                      </div>
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgdetails">(max size: 1 Mb, Format: JPEG, jpg, png)</div>
-                    </div>
-                  :
-                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                        <h5 className="h5Title col-lg-12 col-md-12 col-sm-12 col-xs-12">Add Images <span className="astrick">*</span></h5>
-                      </div>
-                      <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
-                        <div className="clr_k" style={{height:"120px"}}>
-                          <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon1">
-                            <img src="/images/Upload-Icon.png"/>
-                          </div>
-                          <div  className= "col-lg-offset-1 col-lg-10 col-md-10 col-sm-10 col-xs-10 below_text">
-                           <b className="text_k11"></b>
-                           <span className="text-center under_ln">Choose another image</span>
-                          </div>     
-                          <input  type="file" title="Click to attach file" multiple name="userPic" onChange={this.uploadworkspaceImage.bind(this)} ref="workspaceImg"  className="form-control click_input" id="upload-file2" />
-                        </div>
-                      </div>
-                    </div>
-                }
-                </div>*/}
                 <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
                   <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
                 </div>

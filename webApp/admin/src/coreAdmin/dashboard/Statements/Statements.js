@@ -170,7 +170,7 @@ class Statements extends Component{
                                       <td className="text-center">{ActiveList.emailId}</td>
                                       <td className="text-center">{ActiveList.startDate}</td>
                                       <td className="text-center">{ActiveList.endDate}</td>
-                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.user_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.offerSub_ID+"-"+ActiveList.user_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                     </tr>
                                     )
                                   })
@@ -208,7 +208,7 @@ class Statements extends Component{
                                       <td className="text-center">{InactiveList.emailId}</td>
                                       <td className="text-center">{InactiveList.startDate}</td>
                                       <td className="text-center">{InactiveList.endDate}</td>
-                                      <td className="text-center"><a href="/uploadStatement" data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a><a href="/uploadStatement" data-toggle="tooltip" title="Upload Performance Statements">&nbsp;&nbsp;&nbsp;<img src="/images/file.png"/></a></td>
+                                      <td className="text-center"><a href={"/uploadStatement/"+InactiveList.offerSub_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                     </tr>
                                     )
                                   })
