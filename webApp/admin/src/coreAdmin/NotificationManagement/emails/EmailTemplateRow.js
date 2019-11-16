@@ -2,9 +2,6 @@ import React, { Component }    from 'react';
 import EditNotificationModal   from '../EditNotificationModal.js';
 import axios 				   from 'axios';
 import swal                 from 'sweetalert';
-// axios.defaults.baseURL = ' http://qatprmapi.iassureit.com/';
-// // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class EmailTemplateRow extends Component{
 

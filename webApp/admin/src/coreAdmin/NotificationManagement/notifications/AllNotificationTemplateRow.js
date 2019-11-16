@@ -2,9 +2,6 @@ import React, { Component } 	from 'react';
 import EditNotificationModal    from '../EditNotificationModal.js';
 import swal                 from 'sweetalert';
 import axios 					from 'axios';
-// axios.defaults.baseURL = ' http://qatprmapi.iassureit.com/';
-// // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 class AllNotificationTemplateRow extends Component{
 

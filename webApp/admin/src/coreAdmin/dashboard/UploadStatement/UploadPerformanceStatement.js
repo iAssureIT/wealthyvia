@@ -7,8 +7,6 @@ import $                    from "jquery";
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
 import './UploadStatement.css';
-/*axios.defaults.baseURL = 'http://api.wealthyvia.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 var location ="";
 class UploadPerformanceStatement extends Component{
@@ -23,7 +21,7 @@ class UploadPerformanceStatement extends Component{
   }
   componentDidMount() {
   axios
-      .get('http://api.wealthyvia.com/api/projectsettings/get/S3')
+      .get('/api/projectsettings/get/S3')
       .then((response)=>{
         const config = 
                        {

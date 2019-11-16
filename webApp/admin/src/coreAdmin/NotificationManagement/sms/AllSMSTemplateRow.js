@@ -3,11 +3,6 @@ import EditNotificationModal    from '../EditNotificationModal.js';
 import axios 					from 'axios';
 import swal                 from 'sweetalert';
 
-// axios.defaults.baseURL = ' http://qatprmapi.iassureit.com/';
-// // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
-// axios.defaults.headers.post['Content-Type'] = 'application/json';
-
-
 export default class AllSMSTemplateRow extends Component{
 
 	constructor(props) {
