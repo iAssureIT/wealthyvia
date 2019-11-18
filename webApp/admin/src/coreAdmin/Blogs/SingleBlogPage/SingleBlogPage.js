@@ -22,6 +22,7 @@ export default class SingleBlogPage extends React.Component {
 		      "blogContent"       : "",
           "bannerImage"       : {},
           "viewCount"         : "",
+          
 
 		};
 	} 
@@ -37,8 +38,8 @@ componentDidMount(){
         console.log("Count ==",response.data.count);
         this.setState({
             viewCount: response.data.count,
+
         })
-        
       })
       .catch(function(error){
         console.log(error);
@@ -57,8 +58,11 @@ componentDidMount(){
           "summary"		  :response.data.summary,
           "typeOfBlog"	:response.data.typeOfBlog,
           "blogContent"	:response.data.blogContent,
-          "bannerImage" :response.data.bannerImage.path          
+          "createdAt" :response.data.createdAt,
+          "bannerImage" :response.data.bannerImage.path 
+
         })
+      console.log("response.data",response.data);
       })
       .catch(function(error){
         console.log(error);

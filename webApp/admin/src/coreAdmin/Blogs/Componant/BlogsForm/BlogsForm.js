@@ -132,9 +132,12 @@ class BlogsForm extends Component{
         "blogTitle"       :this.refs.blogTitle.value,
         "summary"         :this.refs.summary.value,
         "typeOfBlog"      : this.refs.typeOfBlog.value,
-        "pageUrl"         : this.refs.blogTitle.value.toLowerCase().split(" ").join("-"),
+
+        "pageUrl"         : this.refs.blogTitle.value.replace(/[^a-zA-Z ]/g, " ").toLowerCase().split(" ").join("-"),
        
       });
+      // var noSpecial = alert(this.state.blogTitle.replace(/[^a-zA-Z ]/g, " "));
+
       let fields = this.state.fields;
       fields[event.target.name] = event.target.value;
       this.setState({
@@ -451,7 +454,7 @@ uploadBlogImage(event){
     let formIsValid = true;
     if (typeof fields["blogTitle"] !== "undefined") {
       //regular expression for email validation
-      var pattern = new RegExp(/^[a-zA-Z0-9~,.?: -]+$/);
+      var pattern = new RegExp(/^[a-zA-Z0-9~,?:!. -]+$/);
       if (!pattern.test(fields["blogTitle"])) {
         formIsValid = false;
         errors["blogTitle"] = "Please enter valid blog title.";

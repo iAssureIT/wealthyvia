@@ -91,6 +91,7 @@
 }
 .padTopC{
     padding-top: 15px;
+    padding-left: 0px;
 }
 .padLeftC{
     padding-left: 30px !important;
@@ -144,4 +145,13 @@
 }
 .addSpace{
 	margin-left: 20px !important;
+}
+
+.customCircle{
+	font-size:20px;
+	color:red;
+	cursor: pointer;
+}
+.pdfContainer{
+
 }

@@ -4,6 +4,7 @@ import Blogs                      from "../../blocks/Blogs/Blogs.js";
 import OwlCarousel                from 'react-owl-carousel';
 import axios                      from "axios";
 import swal                       from 'sweetalert';
+import { Document, Page, pdfjs } from "react-pdf";
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -21,7 +22,9 @@ export default class SubscribedServices extends Component {
           offeringTitle         : "",
           userOfferingsChecked  : "",
           StartDate             : "",
-          EndDate             : "",
+          EndDate               : "",
+          numPages              : null,
+          pageNumber            : 1,
           subscribed            : false,
         };
     }
@@ -31,6 +34,8 @@ export default class SubscribedServices extends Component {
 
   componentDidMount()
   {
+     pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
     var userInfo = localStorage.getItem("user_ID");
     console.log("userInfo",userInfo);
 
@@ -87,8 +92,14 @@ export default class SubscribedServices extends Component {
    swal("You are not subscribed to this offering","", "error");
   
   }
+  onDocumentLoadSuccess = ({ numPages }) => {
+    this.setState({ numPages });
+  }
   render() {
     var date = "09-10-2019  5:30PM";
+    const { pageNumber, numPages } = this.state;
+    const path = "/Changes to be made.pdf";
+
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding100">
                 <div className="row">
@@ -119,48 +130,31 @@ export default class SubscribedServices extends Component {
 
                       </div>
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                          <div id="5dbfd24b621a0aeead43e4d2" class="tab-pane fade in ">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
-                            <h3>5GCPM Reports & Statement</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt20">{this.state.date1}</label>
-                          </div>
                           <div id="performance" class="tab-pane fade in active">
                             <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
                             <h3>Performance Reports</h3>
                             <h5>Last update date : {this.state.date} </h5>
                             <label className="mt20">{this.state.date1}</label>
                           </div>
-                          <div id="5dbfd24b621a0aeead43e4d3" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
-                           <h3>Safe Heaven Reports & Statement</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt20">{this.state.date1}</label>
-                          </div>
-                          <div id="5dbfd257621a0aeead43e4d4" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
-                            <h3>SHM Alpha Enhancer + Alpha Reports & Statement</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt20">{this.state.date1}</label>
-                          </div>
-                          <div id="5dbfd27b621a0aeead43e4d6" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
-                             <h3>Fly Nifty Reports & Statement</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt40">{this.state.date1}</label>
-                          </div>
-                           <div id="5dbfd288621a0aeead43e4d7" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
-                            <h3>Multibagger Reports & Statement</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt40">{this.state.date1}</label>
-                           </div>
-                            <div id="5dbfd266621a0aeead43e4d5" class="tab-pane fade">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
-                            <h3>US Stocks Reports & Statement</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt40">{this.state.date1}</label>
-                           </div>
+                           {this.state.subscriptionData?
+                             this.state.subscriptionData.map((a, i)=>{
+                                return(
+                                    <div id={a.offering_ID} class="tab-pane fade in ">
+                                      <h6 className="pull-right"><span>Start Date :  {a.startDate} </span> - <span>End Date :  {a.endDate} </span> </h6><br/>
+                                      <h3>{a.offeringTitle} Reports & Statement</h3>
+                                      <h5>Last update date : {this.state.date} </h5>
+                                      <label className="mt20">{this.state.date1}</label>
+                                        <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download>
+  <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"/>
+</a>
+
+                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "attachment" >Click here for my pdf</a>
+
+                                    </div>
+                                    )
+                                })
+                              :null
+                            }
                         </div>  
                     </div>  
                   </div>  

@@ -16,15 +16,17 @@ class UploadStatement extends Component{
   constructor(props) {
     super(props);
     this.state = {
-      uploadStatement      : "",
-      userDetailsDisplay      : "",
-      uploadPerformanceName: "",
-      uploadPerformance    : "",
-      imgArrayWSaws        : [],
-      offeringTitle        : [],
-      fileArray            : [],
-      filenames            : [],
-      fileType             : "File",
+      uploadStatement        : "",
+      userDetailsDisplay     : "",
+      uploadPerformanceName  : "",
+      uploadPerformance      : "",
+      imgArrayWSaws          : [],
+      offeringTitle          : [],
+      fileArray              : [],
+      filenames              : [],
+      fileArrayPerformance   : [],
+      filenamesPerformance   : [],
+      fileType               : "File",
 
     };
   }
@@ -117,12 +119,11 @@ class UploadStatement extends Component{
 
   }
   uploadStatement(event){
-    console.log("IN")
     var index = event.target.getAttribute('id');
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
-      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFileName = file.name;
       var newFile = new File([file],newFileName);
       this.setState({
         uploadStatementName : newFile.name,
@@ -139,27 +140,13 @@ class UploadStatement extends Component{
                   this.setState({
                     uploadStatement : Data.location,
                   })
-                   axios.patch('/api/offeringsubscriptions/patch/update_statements/'+Off_id+'/add',Data.location)
-                    .then( (uploadedStatements)=>{      
-                      // console.log("offerings = ",offerings.data);   
-                      this.setState({
-                            uploadedStatementsDatabase : uploadedStatements.data,
-                          })
-                      console.log("uploadedStatementsDatabase",this.state.uploadedStatementsDatabase)
-                       
-                    })
-                    .catch((error)=>{
-                        if(error.message === "Request failed with status code 401"){
-                          swal("Error!","Something went wrong!!", "error");
-                        }
-                    });  
-                  console.log("uploadStatement",this.state.uploadStatement);
-
+                 
                   var obj2={
                     fileName : this.state.uploadStatementName,
                   }
                   var obj1={
                     filePath : Data.location,
+                    fileName : this.state.uploadStatementName,
                   }
                   var filenames = this.state.filenames;
                   var fileArray = this.state.fileArray;
@@ -192,41 +179,42 @@ class UploadStatement extends Component{
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
-      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFileName = file.name;
       var newFile = new File([file],newFileName);
       this.setState({
         uploadPerformanceName : newFile.name,
       })
-      console.log("fileNamePAN",this.state.fileName);
-      if (newFile) {
+      if (newFile && this.state.config) {
         var ext = newFile.name.split('.').pop();
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
+          console.log("ext",ext);
+
           if (newFile) {
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{
-                  /*this.setState({
+                  this.setState({
                     uploadPerformance : Data.location,
                   })
-               
+                 
                   var obj2={
                     fileName : this.state.uploadPerformanceName,
                   }
                   var obj1={
                     filePath : Data.location,
+                    fileName : this.state.uploadPerformanceName,
                   }
-                  var filenames = this.state.filenames;
-                  var fileArray = this.state.fileArray;
+                  var filenames = this.state.filenamesPerformance;
+                  var fileArray = this.state.fileArrayPerformance;
                   filenames.push(obj2);
                   fileArray.push(obj1);
                   this.setState({
-                    filenames : filenames,
-                    fileArray : fileArray
+                    filenamesPerformance : filenames,
+                    fileArrayPerformance : fileArray
                   },()=>{
-                  var fileLocation = this.state.fileArray;
-                  localStorage.setItem("fileLocation",fileLocation);
-                  console.log("fileLocation",fileLocation);
-                  })*/
+                 
+                 console.log("fileArrayPerformance",this.state.fileArrayPerformance);
+                  })
                 })
                 .catch((error)=>{
                   console.log(error);
@@ -262,9 +250,120 @@ class UploadStatement extends Component{
       }
     );
   }
+  handelChange(event)
+  {
+    event.preventDefault();
+    var radioValue = event.target.value;
+    console.log("radioValue",radioValue);
+
+  }
   Submit(event)
   {
+    console.log("this.state.fileArray",this.state.fileArray);
+    var statements = this.state.fileArray;
+     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+Off_id+'/add',statements)
+          .then( (uploadedStatements)=>{      
+            // console.log("offerings = ",offerings.data);   
+            this.setState({
+                  uploadedStatementsDatabase : uploadedStatements.data,
+                })
+            console.log("uploadedStatementsDatabase",this.state.uploadedStatementsDatabase)
+             
+          })
+          .catch((error)=>{
+              if(error.message === "Request failed with status code 401"){
+                swal("Error!","Something went wrong!!", "error");
+              }
+          });  
+    console.log("uploadStatement",this.state.uploadStatement);
 
+  }
+ /* SubmitPerformance(event)
+  {
+    console.log("this.state.fileArray",this.state.fileArrayPerformance);
+     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+Off_id+'/add',this.state.fileArray)
+          .then( (uploadedStatements)=>{      
+            // console.log("offerings = ",offerings.data);   
+            this.setState({
+                  uploadedStatementsDatabase : uploadedStatements.data,
+                })
+            console.log("uploadedStatementsDatabase",this.state.uploadedStatementsDatabase)
+             
+          })
+          .catch((error)=>{
+              if(error.message === "Request failed with status code 401"){
+                swal("Error!","Something went wrong!!", "error");
+              }
+          });  
+    console.log("uploadStatement",this.state.uploadStatement);
+
+  }*/
+  deleteDocument(e)
+  {
+    var fileToDelete = e.target.getAttribute("data-name");
+    console.log("fileToDelete",fileToDelete);
+    var index = e.target.getAttribute('id');
+    var filePath = e.target.getAttribute('data-id');
+    var data = fileToDelete.split("/");
+    var imageName = data[4];
+    console.log("imageName==",imageName);
+
+    if(index){
+      swal({
+            title: "Are you sure you want to delete this image?",
+            text: "Once deleted, you will not be able to recover this image!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              var array = this.state.fileArray; // make a separate copy of the array
+              array.splice(index, 1);
+              swal("Image deleted successfully");
+              this.setState({
+                fileArray: array
+              });
+            }else {
+              swal("Your image is safe!");
+            }
+          });
+        console.log("this.state.fileArray",this.state.fileArray)
+    }
+  }
+
+ deletePerformanceDocument(e)
+  {
+    var fileToDelete = e.target.getAttribute("data-name");
+    console.log("fileToDelete",fileToDelete);
+    var index = e.target.getAttribute('id');
+    var filePath = e.target.getAttribute('data-id');
+    var data = fileToDelete.split("/");
+    var imageName = data[4];
+    console.log("imageName==",imageName);
+
+    if(index){
+      swal({
+            title: "Are you sure you want to delete this image?",
+            text: "Once deleted, you will not be able to recover this image!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              var array = this.state.fileArrayPerformance; // make a separate copy of the array
+              array.splice(index, 1);
+              swal("Image deleted successfully");
+              this.setState({
+                fileArrayPerformance: array
+              });
+            }else {
+              swal("Your image is safe!");
+            }
+          });
+        console.log("this.state.fileArrayPerformance",this.state.fileArrayPerformance)
+    }
   }
 
   render(){
@@ -279,7 +378,7 @@ class UploadStatement extends Component{
              <form id="CompanySMSGatewayForm"  >
                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 userInfoContainer ">
                   <label className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">Name<br/>
-                   <span className="noBold">{this.state.userDetailsDisplay.firstname}</span></label>
+                   <span className="noBold">{this.state.userDetailsDisplay.fullName}</span></label>
                   <label  className="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">Email<br/>
                   <span className="noBold"> {this.state.userDetailsDisplay.email}</span></label>
                   <label  className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">Mobile No.<br/>
@@ -289,59 +388,148 @@ class UploadStatement extends Component{
                   <label  className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">End Date<br/>
                   <span className="noBold">{this.state.userOfferingEndDate}</span></label>
                </div> 
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                    <label className="control-label statelabel locationlabel" >Type</label><br/>
-                          <input type="radio" name="price" checked />&nbsp;Statement
-                          <input type="radio"  className="addSpace" name="price" />&nbsp;Performance
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt40 ">
+                  <ul className="nav nav-pills customStack textAlignCenter">
+                    <li className="active col-lg-3"><a data-toggle="pill" href="#home">Statement</a></li>
+                    <li className=" col-lg-3"><a data-toggle="pill" href="#menu1">Performance</a></li>
+                  </ul>
                 </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
-                  <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <div className="">
-                      <label className="control-label statelabel locationlabel" >Upload Statement</label>
-                      
-                      <select  ref="planName"
-                         type="text" name="planName" placeholder="Enter Subscription Name" 
-                         className="selectbox" title="Please enter package Name"
-                         onChange={this.handleChange.bind(this)}>
-                         {
-                            this.state.offeringTitle.map((a, i)=>{
-                              return(
-                                <option id={a._id} >{a.offeringTitle}</option>
-                              )
-                            })
-                          }  
-                      </select>
-                    </div>                     
-                  </div> 
-                {/*   <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
-                    <div className="">
-                      <label className="control-label statelabel locationlabel" >Upload Performance</label>
-                      <select  ref="planName"
-                         type="text" name="planName" placeholder="Enter Subscription Name" 
-                         className="selectbox" title="Please enter package Name">
-                          <option >Performance</option>
-                      </select>
-                    </div>                     
-                  </div> */}
-                </div>
-                </div>     
-                <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
-                  <div className="col-lg-12 col-md-5 col-sm-12 col-xs-12 padTopC">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                      <div className="clr_k ">
-                        <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
-                          <img src="/images/Upload-Icon.png"/>
-                        </div>
-                        <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
-                         <b className="text_k11"></b>
-                         <span className="under_ln">Upload Document</span>
-                        </div>      
-                        <input type="file" className="noPadding click_input" title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />
-                      </div> 
+                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                  <div id="home" className="tab-pane fade in active">
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
+                        <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                          <div className="">
+                            <label className="control-label statelabel locationlabel" >Upload Statement</label>
+                            <select  ref="planName"
+                               type="text" name="planName" placeholder="Enter Subscription Name" 
+                               className="selectbox" title="Please enter package Name"
+                               onChange={this.handleChange.bind(this)}>
+                               {
+                                  this.state.offeringTitle.map((a, i)=>{
+                                    return(
+                                      <option id={a._id} >{a.offeringTitle}</option>
+                                    )
+                                  })
+                                }  
+                            </select>
+                          </div>                     
+                        </div> 
                     </div>
+                    <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
+                      <div className="col-lg-12 col-md-5 col-sm-12 col-xs-12 padTopC">
+                          <div className="clr_k ">
+                            <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
+                              <img src="/images/Upload-Icon.png"/>
+                            </div>
+                            <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
+                             <b className="text_k11"></b>
+                             <span className="under_ln">Upload Document</span>
+                            </div>      
+                            <input type="file" className="noPadding click_input" title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />
+                          </div> 
+                        </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
+                
+                      {
+                      this.state.fileArray.length<=0?
+                      null         
+                      :
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div>
+                            {
+                              this.state.fileType ==="File" ?
+                              <div  className="col-lg-12 col-md-4 col-sm-12 col-xs-12 row padTopC">
+                                <p className="fileName">File Uploaded</p>
+                                {
+                                  this.state.fileArray && this.state.fileArray.length > 0 ?
+                                  this.state.fileArray.map((a, index)=>{
+                                    return(
+                                      <div  key={index} className="pdfContainer col-lg-2" >
+                                        <img src="/images/pdf.png"/>
+                                        <i id={index} className="fa fa-times-circle customCircle pull-right" title="Remove Document" data-name={a.filePath} onClick={this.deleteDocument.bind(this)}></i>
+                                        <p className="">{a.fileName}</p>
+
+                                      </div>
+                                    )
+                                  })
+                                :
+                                  null
+                                }
+                              </div>
+                            :
+                              null
+                            }
+                          </div>
+                     
+                      </div>
+                     }
+                    </div>    
                   </div>
-                </div>          
+                  <div id="menu1" className="tab-pane fade">
+                      <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                        <div className="">
+                          <label className="control-label statelabel locationlabel" >Upload Performance</label>
+                          <select  ref="planName"
+                             type="text" name="planName" placeholder="Enter Subscription Name" 
+                             className="selectbox" title="Please enter package Name">
+                              <option >Performance</option>
+                          </select>
+                        </div>                     
+                      </div> 
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
+                        <div className="col-lg-6 col-md-5 col-sm-12 col-xs-12 padTopC">
+                            <div className="clr_k ">
+                              <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
+                                <img src="/images/Upload-Icon.png"/>
+                              </div>
+                              <div  className= "col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center below_text">
+                               <b className="text_k11"></b>
+                               <span className="under_ln">Upload Document</span>
+                              </div>      
+                              <input type="file" className="noPadding click_input" title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadPerformance.bind(this)} />
+                          </div> 
+                        </div>
+                    </div>
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
+                
+                      {
+                      this.state.fileArrayPerformance.length<=0?
+                      null         
+                      :
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div>
+                            {
+                              this.state.fileType ==="File" ?
+                              <div  className="col-lg-12 col-md-4 col-sm-12 col-xs-12 row padTopC">
+                                <p className="fileName">File Uploaded</p>
+                                {
+                                  this.state.fileArrayPerformance && this.state.fileArrayPerformance.length > 0 ?
+                                  this.state.fileArrayPerformance.map((a, index)=>{
+                                    return(
+                                      <div  key={index} className="pdfContainer col-lg-2" >
+                                        <img src="/images/pdf.png"/>
+                                        <i id={index} className="fa fa-times-circle customCircle pull-right" title="Remove Document" data-name={a.filePath} onClick={this.deletePerformanceDocument.bind(this)}></i>
+                                        <p className="">{a.fileName}</p>
+
+                                      </div>
+                                    )
+                                  })
+                                :
+                                  null
+                                }
+                              </div>
+                            :
+                              null
+                            }
+                          </div>
+                     
+                      </div>
+                     }
+                    </div>   
+                  </div>
+                </div> 
+
             {/*    <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 row ">
                   <div className="col-lg-12 col-md-5 col-sm-12 col-xs-12 padTopC">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
@@ -358,19 +546,18 @@ class UploadStatement extends Component{
                     </div>
                   </div>
                 </div>*/}          
-                        <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      {/*  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="">
-                      {/*<input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>*/}
+                      <input id="input-b1" name="input-b1" type="file" className="file" data-show-preview="false" onChange={this.handleChange.bind(this)} required/>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
+                   <div className="col-lg-6 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
-                          {/*<label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>*/}
-                        
-                        {/*<input type="file" className="noPadding " title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />*/}
+                        <label htmlFor="designImg" className="designLabel col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Upload</label>
+                        <input type="file" className="noPadding " title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />
                         <div className="errorMsg"></div>
 
                       </div>
-                    </div>
+                    </div>*/}
                    {/* <div className="col-lg-4 col-lg-offset-2 col-md-6 col-xs-12  col-sm-2 marginTop17 ">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         { this.state.filenames!=="" && this.state.filenames ? 
@@ -381,46 +568,12 @@ class UploadStatement extends Component{
                           : <div> </div>
                         }
                         </div>
-                      </div>*/}
-                    </div>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
-                
-              {
-              this.state.fileArray.length<=0?
-              null         
-              :
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                  <div>
-                    {
-                      this.state.fileType ==="File" ?
-                      <div  className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row padTopC">
-                        <p className="fileName">File Uploaded</p>
-                        {
-                          this.state.filenames && this.state.filenames.length > 0 ?
-                          this.state.filenames.map((a, index)=>{
-                            return(
-                              <div  key={index}>
-                                <img src="/images/pdf.png"/>
-                                <p  className="">{a.fileName}</p>
-                              </div>
-                            )
-                          })
-                        :
-                          null
-                        }
                       </div>
-                    :
-                      null
-                    }
-                  </div>
-             
-              </div>
-            }
-                <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+                    </div>*/}
+          
+               <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
                   <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
                 </div>
-
-              </div>
 
             </form>
           </div>

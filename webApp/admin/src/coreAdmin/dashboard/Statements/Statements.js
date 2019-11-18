@@ -39,7 +39,7 @@ class Statements extends Component{
       editId : this.props.match.params.id
     })
      /*User Subscribed*/
-     axios.get('/api/offeringsubscriptions/get/offer_wise_status/all/Active')
+     axios.get('/api/wmsubscriptions/get/wmsublist/Active')
       .then( (res)=>{      
         this.setState({
               completeDataCount       : res.data.length,
@@ -86,6 +86,27 @@ class Statements extends Component{
   handleChange=(event)=>{
     const target = event.target.value;
     console.log("target",target);
+    if(target == "all")
+    {
+      axios.get('/api/wmsubscriptions/get/wmsublist/Active')
+      .then( (res)=>{      
+        this.setState({
+              completeDataCount       : res.data.length,
+              subscriptionData        : res.data,          
+            },()=>{
+              console.log("subscriptionData",this.state.subscriptionData);
+        })
+      
+      })
+      .catch((error)=>{
+        console.log("error",error);
+        if(error.message === "Request failed with status code 401")
+          { 
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+          }
+      });
+    }else{
    
      axios.get('/api/offeringsubscriptions/get/offer_wise_status/'+target+'/Active')
       .then( (Active)=>{      
@@ -100,6 +121,7 @@ class Statements extends Component{
             swal("Error!","Something went wrong!!", "error");
           }
       });
+    }
    
   }
 
