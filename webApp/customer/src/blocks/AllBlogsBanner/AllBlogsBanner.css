@@ -21,7 +21,7 @@
 }
 .AllBlogstextcentered{
   position: absolute;
-  top: 22%;
+  top: 10%;
   text-align: center;
   left: 0%;
   
@@ -33,32 +33,4 @@
 }
 .fs24{
   font-size: 22px;
-}
-.customInputAllBlog{
-  margin-top: 50px;
-  margin-left:10px;
-  height: 35px;
-  display: block;
-  padding: 6px 12px;
-  font-size: 14px;
-  transition: 10s all ease;
-  line-height: 1.42857143;
-  color: #fff;
-  background-color: transparent;
-  background-image: none;
-  border:none;
-  border-bottom: 0.5px solid #ccc;
-}
-.searchIconABB{
-  font-size: 25px;
-  margin-top: 49px;
-  cursor: pointer;
-  color: #fff;
-    border-bottom: 0.5px solid #ccc;
-
-}
-.open{
-    display: block !important;
-    transition: 10s all ease !important;
-
 }

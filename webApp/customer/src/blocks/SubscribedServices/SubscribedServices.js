@@ -145,11 +145,18 @@ export default class SubscribedServices extends Component {
                                       <h5>Last update date : {this.state.date} </h5>
                                       <label className="mt20">{this.state.date1}</label>
                                         <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download>
-  <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"/>
-</a>
+                                        <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"/>
+                                      </a>
+                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf">Download</a>
 
-                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "attachment" >Click here for my pdf</a>
 
+                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">Click here for my pdf</a>
+                                       <Document
+                                          file="somefile.pdf"
+                                          onLoadSuccess={this.onDocumentLoadSuccess}
+                                        >
+                                          <Page pageNumber={pageNumber} />
+                                        </Document>
                                     </div>
                                     )
                                 })

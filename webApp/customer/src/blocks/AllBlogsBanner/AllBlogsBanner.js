@@ -8,11 +8,9 @@ export default class AllBlogsBanner extends React.Component {
 	}
 	searchButton(event)
 	{
-
 	 	$('.searchIconABB').click(function(){
 	  		$(this).siblings().toggleClass('open');
-		});
-				
+		});				
 	}
 	
 render() {

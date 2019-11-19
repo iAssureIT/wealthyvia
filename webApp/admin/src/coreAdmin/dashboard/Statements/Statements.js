@@ -212,7 +212,7 @@ class Statements extends Component{
                                     <th>Sr.</th>
                                     <th>Name</th>
                                     <th className="text-center">Mobile</th>
-                                    <th className="text-center">Mail </th>
+                                    <th className="text-center">Mail</th>
                                     <th className="text-center">Start Date</th>
                                     <th className="text-center">End Date</th>
                                     <th className="text-center">Action</th>
@@ -230,7 +230,6 @@ class Statements extends Component{
                                       <td className="text-center">{InactiveList.emailId}</td>
                                       <td className="text-center">{InactiveList.startDate}</td>
                                       <td className="text-center">{InactiveList.endDate}</td>
-                                      <td className="text-center"><a href={"/uploadStatement/"+InactiveList.offerSub_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                     </tr>
                                     )
                                   })

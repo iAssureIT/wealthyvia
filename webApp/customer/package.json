@@ -10,6 +10,7 @@
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "pure-react-carousel": "^1.21.1",
+    "query-string": "^6.9.0",
     "react": "^16.8.6",
     "react-awesome-slider": "^1.0.1",
     "react-dom": "^16.8.6",

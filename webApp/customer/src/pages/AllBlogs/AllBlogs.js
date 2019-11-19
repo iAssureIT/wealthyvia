@@ -12,7 +12,7 @@ export default class AllBlogs extends Component {
 	    	
 	    };
   	}  
-  	componentDidMount()
+  	componentDidMount() 
   	{
 	  var url = this.props.location.pathname;
       localStorage.setItem("lastUrl",url);
@@ -20,7 +20,7 @@ export default class AllBlogs extends Component {
   render() {
 		return (
 				<div className="">
-					<AllBlogsBanner/>
+					{/*<AllBlogsBanner/>*/}
 					<AllBlogsList/>	
 
 				</div>	

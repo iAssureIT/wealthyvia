@@ -31,14 +31,18 @@ class ConfirmOtp extends Component {
     }
     axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
     .then((response)=>{
+      console.log("response",response);
       const token = localStorage.getItem("verify");
-      console.log("token",token);
+      localStorage.setItem("user_ID",formValues.ID);
+
       if(token == "true")
       {
         this.props.history.push('/reset-pwd/'+formValues.ID);
       }else{
-      swal("Account Created.","Please Login to continue.","success");
-      this.props.history.push('/');
+        console.log(localStorage.getItem("lastUrl"));
+        this.props.history.push('/');
+        window.location.reload();
+
       }
     })
     .catch((error)=>{

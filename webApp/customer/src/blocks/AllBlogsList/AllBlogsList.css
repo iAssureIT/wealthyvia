@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
 .AllBlogsBox{
 	background-color: #f6f6f6;
 	border: 1px solid #eaeaea;
@@ -9,9 +10,16 @@
 }
 .blogTitle{
 	margin: 5px 0px;
-	  overflow: hidden;
-  white-space: pre;
-  text-overflow: ellipsis;
+	font-size: 18px;
+    margin: 5px 0px;
+    line-height: 23px;
+	 
+}
+.blogTitleList{
+	margin: 5px 0px;
+    font-size: 25px;
+    line-height: 23px
+	 
 }
 .AllblogImgB{
 	height: 173px!important;
@@ -32,9 +40,17 @@
 }
 .All1blog1{
 	position: relative;
-	height: 400px;
+	height: 330px;
 	overflow: hidden;
 	margin-bottom: 50px;
+	background-color: #fff;
+	box-shadow: 0px 11px 15px 1px #ccc;
+}
+.All1blogList{
+	position: relative;
+	height: 150px;
+	overflow: hidden;
+	margin-top: 15px;
 	background-color: #fff;
 	box-shadow: 0px 11px 15px 1px #ccc;
 }
@@ -128,3 +144,74 @@
 	width: 100%;
 
 }
+.customGridIcon{
+	margin-top: 60px;
+	margin-right: 10px;
+	cursor: pointer;
+	font-size: 20px !important;
+}
+.blogDate{
+	font-size: 12px;
+}
+.searchIconABB{
+  font-size: 20px;
+  margin-top: 49px;
+  cursor: pointer;
+  color: #fff;
+
+}
+.open{
+    display: block !important;
+    transition: 10s all ease !important;
+
+}
+.AllblogList{
+	margin-top: 40px;
+}
+.customInputAllBlog{
+  margin-left:10px;
+  height: 30px;
+  display: block;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #fff;
+  margin-right: 10px;
+  background-color: transparent;
+  background-image: none;
+  border:none;
+}
+.outerborder{
+  margin-top: 55px;
+	border: 1px solid #aaa;
+	height: 30px;
+	border-radius: 5px;
+	margin-right: 10px;
+}
+.pad10search{
+	padding-top: 7px !important;
+
+}
+/*input[type=text] {
+  width: 10px;
+  border:none;
+  margin-top: 50px;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: transparent;
+  background-image: url('/images/magnifying-glass.png');
+
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  cursor:pointer;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+input[type=text]:focus {
+  width: 20%;
+   box-sizing: border-box;
+  border: 2px solid #ccc;
+ 
+}
+*/
+

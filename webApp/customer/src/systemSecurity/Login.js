@@ -4,6 +4,9 @@ import { Link} from 'react-router-dom';
 import { Redirect } from 'react-router';
 import swal from 'sweetalert';
 import $ from "jquery";
+import queryString from "query-string";
+
+// const queryString = require('query-string');
 /*import particlesJS from 'react-particles-js';
 */
 
@@ -17,7 +20,8 @@ class Login extends Component {
 
   constructor(){
       super();
-        this.state = {           
+        this.state = {
+          destination: "",           
           loggedIn : false,
           auth: {
                 email           : '',
@@ -25,40 +29,37 @@ class Login extends Component {
             }
         }
   }
+
   componentDidMount(){
-/*    particlesJS("particles-js", {"particles":{"number":{"value":80,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});var count_particles, stats, update; stats = new Stats; stats.setMode(0); stats.domElement.style.position = 'absolute'; stats.domElement.style.left = '0px'; stats.domElement.style.top = '0px'; document.body.appendChild(stats.domElement); count_particles = document.querySelector('.js-count-particles'); update = function() { stats.begin(); stats.end(); if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) { count_particles.innerText = window.pJSDom[0].pJS.particles.array.length; } requestAnimationFrame(update); }; requestAnimationFrame(update);;
-*/  }
+    const parsed = queryString.parse(this.props.location.search);
+    this.setState({destination : parsed.destination});
+  }
+
   userlogin(event){
-    event.preventDefault();
-        var auth= {
-          email       : this.refs.loginusername.value,
-          password    : this.refs.loginpassword.value,
-        }
+    event.preventDefault();    
+    var auth= {
+      email       : this.refs.loginusername.value,
+      password    : this.refs.loginpassword.value,
+    }
 
 
-    axios.post('/api/users/post/login',auth)
+    axios
+      .post('/api/users/post/login',auth)
       .then((response)=> {
-        localStorage.setItem("token",response.data.token);
-        localStorage.setItem("user_ID",response.data.ID);
-
-    
-          if( localStorage.getItem("lastUrl")){
-            console.log("-->",localStorage.getItem("lastUrl"))
-             this.props.history.push(localStorage.getItem("lastUrl"));
-            window.location.reload();
+          localStorage.setItem("token",response.data.token);
+          localStorage.setItem("user_ID",response.data.ID);   
+          if(this.state.destination){
+             this.props.history.push(this.state.destination);            
           }else{
+            if( localStorage.getItem("lastUrl")){
+               console.log("-->",localStorage.getItem("lastUrl"))
+               this.props.history.push(localStorage.getItem("lastUrl"));
+                window.location.reload();
+            }else{
               this.props.history.push("/login");
-            window.location.reload();
-
-          }
-        // direct.setState({loggedIn:response.data.token})
-        if(localStorage==null){
-          swal("Invalid Email or Password","Please Enter valid email and password");
-        }else{
-          this.setState({
-              loggedIn  :   true
-          })
-        }
+              window.location.reload();
+            }            
+          } 
       })
       .catch(function (error) {
           console.log(error);
@@ -78,30 +79,6 @@ class Login extends Component {
       return $('.inputTextPass').attr('type', 'password');
   }
   render(){
-    // var winHeight = window.innerHeight;
-    // var divHeight = winHeight/4.5+'px';
-    //   console.log("-------------------------------",this.state.loggedIn)
-    
-    // if(this.state.loggedIn===true){
-    //   return <div></div>
-    // }
-
-    // var windowWidth = $(window).width();
-    // // console.log('ww',windowWidth);
-    //   if(windowWidth>=320&&windowWidth<=992){
-    //     var backImage = "visible-xs col-xs-12 visible-sm col-sm-12 noBackImage"
-    //     }else{
-    //     var backImage = "signUpBackground hidden-xs hidden-sm"
-    //   }
-
-
-    // var winHeight = window.innerHeight;
-    // var divHeight = 490 +'px';
-    //   console.log("-------------------------------",this.state.loggedIn)
-    
-   
-
-
 
     return(  
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
