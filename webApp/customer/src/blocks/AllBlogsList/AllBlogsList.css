@@ -25,6 +25,9 @@
 	height: 173px!important;
 	width: 100%;
 }
+.AllblogImgList{
+	height: 173px!important;
+}
 .Allblog a:hover{
 	text-decoration: none;
 }

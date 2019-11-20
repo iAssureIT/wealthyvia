@@ -212,7 +212,7 @@ export default class AllBlogsList extends React.Component {
 												:
 												null
 											}
-												<img className="img-responsive col-lg-2 AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+												<img className="img-responsive col-lg-2 AllblogImgList" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
 												{ loggedIn ?
 													(data.typeOfBlog == "Premium" 
 													 ?
