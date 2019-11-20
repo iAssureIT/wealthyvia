@@ -13,6 +13,7 @@ export default class AllBlogsList extends React.Component {
 		this.state = {
 			"Blogs"		: [],
 			"viewType"  : "grid",
+			"noData"    : false,
 		};
 	}
 	deleteBlog(event){
@@ -77,6 +78,47 @@ export default class AllBlogsList extends React.Component {
 		console.log("viewType",this.state.viewType);
 	 				
 	}
+	searchBlogs(event){
+		var searchText = this.refs.searchBox.value;
+		 console.log("searchText = ", searchText);
+		if(searchText!== ""){
+			console.log("in if")
+			axios
+		      .get('/api/blogs/get/search/list/'+searchText)
+		      .then((response)=>{
+		       console.log("===>",response.data);
+		       if(response.data.length >0)
+		      	{
+		      	this.setState({
+		      			Blogs:response.data,
+		      			noData : false
+		      		});
+		      	}else{
+		      		console.log("array empty")
+		      		this.setState({
+		      			noData : true
+		      		})
+
+		      	}
+		      })
+		      .catch(function(error){
+		        console.log(error);
+		          if(error.message === "Request failed with status code 401")
+		            {
+	                   swal("Your session is expired! Please login again.","", "error");
+	                   this.props.history.push("/");
+	                }
+		      })
+		  }else{
+		  	console.log("in el;s")
+		  	this.setState({
+      			noData : false
+      		})
+		  	this.getBlogData();
+
+		  }
+
+	}
 	render() {
 		var data = this.state.Blogs;
 		var subscribed = false;
@@ -89,7 +131,7 @@ export default class AllBlogsList extends React.Component {
 							
 							<i className="fa fa-th customGridIcon pull-right" title="Grid view" data-value="grid" onClick={this.getView.bind(this)}></i>
 						    <i className="fa fa-list customGridIcon  pull-right"  data-value="list"  title="List view" onClick={this.getView.bind(this)}></i>
-						    <form className="outerborder col-lg-5 pull-right"><input type="text" name="search" placeholder="Search.." className="pull-right customInputAllBlog"/><i className="fa fa-search pad10search"></i></form>
+						    <div className="outerborder col-lg-5 pull-right noPadding"><input type="text" name="search" placeholder="Search.." className="pull-right customInputAllBlog" ref="searchBox" onKeyUp={this.searchBlogs.bind(this)}/><i className="fa fa-search pad10search"></i></div>
 						    
 					    </div>
 						<div className="col-lg-12 AllBlogstextcentered">
@@ -98,63 +140,65 @@ export default class AllBlogsList extends React.Component {
 						</div>
 					</div>
 				</div>
+          					{console.log("this.state.noData "+this.state.noData +"data.length"+data.length)}
           		<div className="col-lg-12">
-          			{ this.state.viewType == "grid" ?
-		          		
-	            		data && data.length > 0 ?
-		      				data.map((data, index)=>{
-	            					return(
-					          			<div className="col-lg-3 Allblog">
-					          				
-					          				<div className="All1blog1 z50">
-					          				{data.typeOfBlog == "Premium" ?
-					          					<div className="premiumBlogIndicate">Premium</div>
-												
-												:
-												null
-											}
-												<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
-												{ loggedIn ?
-													(data.typeOfBlog == "Premium" 
-													 ?
-														(subscribed 
+          			{ this.state.viewType == "grid" 
+          				?
+			          		this.state.noData == false && data.length>0	
+			          			?
+		            			data && data.length > 0 ?
+			      					data.map((data, index)=>{
+		            					return(
+						          			<div className="col-lg-3 Allblog">
+						          				<div className="All1blog1 z50">
+						          				{data.typeOfBlog == "Premium" ?
+						          					<div className="premiumBlogIndicate">Premium</div>
+													
+													:
+													null
+												}
+													<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+													{ loggedIn ?
+														(data.typeOfBlog == "Premium" 
 														 ?
-																<a href={"/blog/"+data.blogURL}>
-																	<p className="blogDate p10 col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-																	<h4 className="blogTitle col-lg-12 p10"><b>{data.blogTitle}</b></h4>
-																	{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
-																</a>														
+															(subscribed 
+															 ?
+																	<a href={"/blog/"+data.blogURL}>
+																		<p className="blogDate p10 col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																		<h4 className="blogTitle col-lg-12 p10"><b>{data.blogTitle}</b></h4>
+																		{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
+																	</a>														
+															:
+																	<a href={"/planPage"}>
+																		<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																		<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																		{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
+																	</a>														
+															)
 														:
-																<a href={"/planPage"}>
-																	<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-																	<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
-																	{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
-																</a>														
+															<a href={"/blog/"+data.blogURL}>
+																<p className="blogDate  col-lg-12  p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
+																<h4 className="blogTitle  col-lg-12  p10"><b>{data.blogTitle}</b></h4>
+																{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
+															</a>
 														)
 													:
-														<a href={"/blog/"+data.blogURL}>
-															<p className="blogDate  col-lg-12  p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
-															<h4 className="blogTitle  col-lg-12  p10"><b>{data.blogTitle}</b></h4>
+														<a href={"/login?destination=/blog/"+data.blogURL}>
+															<p className="blogDate p10  col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+															<h4 className="blogTitle col-lg-12  p10"><b>{data.blogTitle}</b></h4>
 															{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
 														</a>
-													)
-												:
-													<a href={"/login?destination=/blog/"+data.blogURL}>
-														<p className="blogDate p10  col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-														<h4 className="blogTitle col-lg-12  p10"><b>{data.blogTitle}</b></h4>
-														{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
-													</a>
-												}
-					          				
-											</div>
+													}
+						          				
+												</div>
 
-					          			</div>
-					          			);
-	        					})
+						          			</div>
+						          			);
+		        					})
+	        					:<h4 className="noBlogs p10 textAlignCenter"><div className="loadingImageContainer col-lg-4 col-lg-offset-4"><img src="/images/Loadingsome.gif"/></div></h4>
 	        				:
-	        				<h4 className="noBlogs p10 textAlignCenter"><div className="loadingImageContainer col-lg-4 col-lg-offset-4"><img src="/images/Loadingsome.gif"/></div></h4>
-	            		
-	            		:
+	        				<h4 className="noBlogs p10 textAlignCenter">no data found</h4>
+	    	            :
 
 	            		data && data.length > 0 ?
 		      				data.map((data, index)=>{

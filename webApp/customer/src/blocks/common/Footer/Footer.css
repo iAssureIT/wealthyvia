@@ -6,7 +6,7 @@
 	padding-top: 20px !important;
 }
 .footerDivFirst{
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
 
 }
 .footerDivFirst label{
@@ -39,7 +39,7 @@ color: #201A47;
 	border-radius: 0px !important;
     height: 30px !important;
     border: none;
-   font-family:'Montserrat',sans-serif;
+   font-family:Arial;
 
 }
 .customInputEH:focus{

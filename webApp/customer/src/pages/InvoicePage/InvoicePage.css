@@ -1,7 +1,7 @@
 .selectedPlan{
 	height: 100px;
 	margin-top:120px !important;
-	    font-family: 'Montserrat',sans-serif !important;
+	    font-family: Arial !important;
 }
 .selectedPlan label{
 	font-size: 40px;
@@ -10,13 +10,13 @@
 	height: auto;
 	padding: 60px !important;
 	border-radius: 10px;
-	font-family: 'Montserrat',sans-serif !important;
+	font-family: Arial !important;
 	margin-bottom: 50px;
     box-shadow: 1px 1px 10px 2px #ccc;
 }
 .centreDetaillistItemIP{
   padding-left: 0px !important;
-  font-family: 'Montserrat',sans-serif !important;
+  font-family: Arial !important;
   font-weight: bold;
   font-size: 25px !important;
 }
@@ -63,7 +63,7 @@
 	margin-bottom: 20px;
 	background-color: #201a47;
 	color: #fff;
-	    font-family: 'Montserrat',sans-serif !important;
+	    font-family: Arial !important;
 	  text-align: center;
 	  cursor: pointer;
 	  font-weight: bold;

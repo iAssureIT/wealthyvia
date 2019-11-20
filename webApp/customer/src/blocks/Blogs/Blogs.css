@@ -41,7 +41,7 @@
     border:1px solid #333;
 	z-index: 1000;
 	transition-duration: 0.5s;
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
 	text-align: center;
 	background-color: rgba(0,0,0,0.9);
 	margin-top: -198px;
@@ -61,7 +61,7 @@
 	opacity: 1;
 	z-index: 1000;
 	transition-duration: 0.5s;
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
     cursor: pointer;
 
 	text-align: center;
@@ -101,14 +101,14 @@
 .blogHeading{
     font-size: 22px;
     font-weight: bold;
-     font-family:'Montserrat',sans-serif;
+     font-family:Arial;
         color: #201A47;
 text-align: center;
 padding: 10px;
 }
 .imgContainerBlog{
     height: 180px !important;
-    font-family:'Montserrat',sans-serif;
+    font-family:Arial;
     overflow: hidden;
 
 }

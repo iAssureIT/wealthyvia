@@ -70,13 +70,12 @@ class OfferingCheckForm extends Component{
       },()=>{
         axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
           .then( (res)=>{   
-          date =    res.data.startDate;
-          console.log("date",date);
             this.setState({
                   userOfferingEndDate       : res.data.endDate,
-                  // userOfferingStartDate       : res.data.startDate,
-                  subscriptionData        : res.data.offering,          
+                  userOfferingStartDate     : new Date( res.data.startDate),
+                  subscriptionData          : res.data.offering,          
                 },()=>{
+                  console.log("userOfferingSatrtDate",this.state.userOfferingStartDate);
             })
          
           })
@@ -172,14 +171,19 @@ class OfferingCheckForm extends Component{
         },()=>{
         axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
           .then( (res)=>{      
-            this.setState({
+            if(res.data.startDate == ""){
+               this.setState({
                   userOfferingEndDate       : res.data.endDate,
-                  subscriptionData        : res.data.offering,          
-                },()=>{
-                  console.log("userOfferingSatrtDate",this.state.userOfferingStartDate);
-
-            })
-          
+                  userOfferingStartDate     : "",
+                  subscriptionData          : res.data.offering,          
+                 },()=> {console.log("userOfferingStartDate",this.state.userOfferingStartDate)})
+             }else{
+                this.setState({
+                      userOfferingEndDate       : res.data.endDate,
+                      userOfferingStartDate     : new Date(res.data.startDate),
+                      subscriptionData          : res.data.offering,          
+                    })
+            }
           })
           .catch((error)=>{
             console.log("error",error);
@@ -338,9 +342,9 @@ class OfferingCheckForm extends Component{
                     {
                       this.state.userDetailsDisplay?
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mt20">
-                        <label className="fromHead">{this.state.userDetailsDisplay.fullName}</label><br/>
-                        <label className="fromHead">{this.state.userDetailsDisplay.mobNumber}</label><br/>
-                        <label className="fromHead">{this.state.userDetailsDisplay.email}</label><br/>
+                        <label className="fromHead"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.userDetailsDisplay.fullName}</label><br/>
+                        <label className="fromHead"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.userDetailsDisplay.mobNumber}</label><br/>
+                        <label className="fromHead"><i class="fa fa-envelope"></i>&nbsp;&nbsp; {this.state.userDetailsDisplay.email}</label><br/>
                       </div>
                       :
                       <label value="" id="">No data found</label>
@@ -351,11 +355,11 @@ class OfferingCheckForm extends Component{
                       <label className="fromHead">Start Date<span className="redFont">*</span></label><br/>
                         {console.log("this.state.userOfferingStartDate",this.state.userOfferingStartDate)}
                       <DatePicker
-                        selected={this.state.userOfferingStartDate ? this.state.userOfferingStartDate :this.state.startDate}
+                        selected={this.state.userOfferingStartDate? this.state.userOfferingStartDate :this.state.startDate}
                         onChange={this.getDate}
                         className="customDatePicker"
                         dateFormat="yyyy-MM-dd"
-                        disabled ={this.state.userOfferingStartDate ? true : false}
+                        disabled ={this.state.userOfferingStartDate? true : false}
 
                       />
                     </div>

@@ -33,16 +33,20 @@ class ConfirmOtp extends Component {
     .then((response)=>{
       console.log("response",response);
       const token = localStorage.getItem("verify");
+      const destination = localStorage.getItem("destination");
       localStorage.setItem("user_ID",formValues.ID);
+      console.log("destination",destination);
 
       if(token == "true")
       {
         this.props.history.push('/reset-pwd/'+formValues.ID);
-      }else{
-        console.log(localStorage.getItem("lastUrl"));
-        this.props.history.push('/');
+      }else if(destination){
+        this.props.history.push(destination);
         window.location.reload();
 
+      }else{
+        this.props.history.push('/');
+        window.location.reload();
       }
     })
     .catch((error)=>{

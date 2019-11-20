@@ -8,13 +8,13 @@
 }
 .customPillsBlogs{
 	margin-top: 20px;
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
 }
 .customPillsBlogs li{
 	color: #333 !important;
 	font-size: 21px;
 	font-weight: bold;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
 
 	margin-right: 15px;
 }
@@ -23,7 +23,7 @@
 	color: #201a47 !important;
 }
 .customPillsBlogsSmall{
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
 }
 .customPillsBlogsSmall li{
 	color: #333 !important;

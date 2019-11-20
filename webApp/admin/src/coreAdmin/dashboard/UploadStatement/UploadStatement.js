@@ -399,7 +399,7 @@ class UploadStatement extends Component{
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
                         <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
                           <div className="">
-                            <label className="control-label statelabel locationlabel" >Upload Statement</label>
+                            <label className="control-label statelabel locationlabel" >Select Offering for Statements</label>
                             <select  ref="planName"
                                type="text" name="planName" placeholder="Enter Subscription Name" 
                                className="selectbox" title="Please enter package Name"

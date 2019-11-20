@@ -1,6 +1,6 @@
 .typesOfGrouth{
 	padding: 40px !important;
-    font-family: 'Montserrat',sans-serif;
+    font-family: Arial;
     padding-top: 5% !important;
 }
 .typesOfGrouth p{
@@ -10,7 +10,7 @@
 	font-size: 40px;
 }
 .suitableForDiv{
-    font-family: 'Montserrat',sans-serif;
+    font-family: Arial;
 }
 .suitableForDiv p{
 	 font-size: 18px;

@@ -1,7 +1,7 @@
 .gifContainer{
 	padding-top:40px;
 	padding-bottom: 40px;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
 	 height: auto;
 }
 .gifContainer img{
@@ -10,7 +10,7 @@
 }
 .gifTextContainer{
 	padding: 40px !important;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
 
 	padding-top:10% !important;
 }

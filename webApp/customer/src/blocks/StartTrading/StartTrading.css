@@ -2,7 +2,7 @@
 .startTrandingContent{
 	padding: 80px !important;
 	margin-top: 40px !important;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
     justify-content: center;
 
 
@@ -24,7 +24,7 @@
 
 .startTrandingContentSmall{
 	padding: 45px !important;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
     justify-content: center;
 
 }

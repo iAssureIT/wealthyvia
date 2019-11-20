@@ -32,7 +32,7 @@ width: 100%;
   padding: 25px !important;
   text-align: left !important;
   z-index: 1000;
-   font-family:'Montserrat',sans-serif;
+   font-family:Arial;
    background-color: rgba(0,0,0,0.2);
   margin-top: -380px;
   color: #fff;
@@ -42,13 +42,13 @@ width: 100%;
     transition: all 0s ease 0s;
     line-height: 60px;
     font-size: 40px;
-    font-family:'Montserrat',sans-serif;
+    font-family:Arial;
     visibility: visible;
     opacity: 1;
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, -33.4375, 0, 1);
 }
 .caption p{
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
     font-size: 13px;
 }
 .captionSmall{
@@ -57,7 +57,7 @@ width: 100%;
 	padding: 25px !important;
 	text-align: left !important;
 	z-index: 1000;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
    background-color: rgba(0,0,0,0.2);
 	margin-top: -400px;
 	color: #fff;
@@ -68,13 +68,13 @@ width: 100%;
     transition: all 0s ease 0s;
     line-height: 45px;
     font-size: 30px;
-    font-family:'Montserrat',sans-serif;
+    font-family:Arial;
     visibility: visible;
     opacity: 1;
     transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.00166, 0, -33.4375, 0, 1);
 }
 .captionSmall p{
- font-family:'Montserrat',sans-serif;
+ font-family:Arial;
     font-size: 13px;
 }
 .readMoreButtonCar{
@@ -82,7 +82,7 @@ width: 100%;
 
 	padding: 0px !important;
 	cursor: pointer;
-	 font-family:'Montserrat',sans-serif;
+	 font-family:Arial;
 	margin-top: 0px !important;
 	font-weight: bold;
 }

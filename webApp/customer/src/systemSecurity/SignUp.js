@@ -4,6 +4,8 @@ import {browserHistory} 	from 'react-router';
 import swal 				from 'sweetalert';
 import $ 					from "jquery";
 import axios 				from 'axios';
+import queryString          from "query-string";
+
 
 import 'bootstrap/js/tab.js';
 import 'font-awesome/css/font-awesome.min.css';
@@ -38,6 +40,10 @@ class SignUp extends Component {
          this.handleChange = this.handleChange.bind(this);
     }
     componentWillMount() {
+    	const parsed = queryString.parse(this.props.location.search);
+  		this.setState({destination : parsed.destination});
+  		
+   		localStorage.setItem("destination",parsed.destination);
 
     }
  	usersignup(event){
@@ -80,11 +86,16 @@ class SignUp extends Component {
 
 				                }
 				            })
-				            .catch(function (error) {
+				            .catch(error=> {
+				            	
 				                console.log(error);
+						        this.setState({
+					            	buttonHeading : 'Sign Up',
+					            });
 				                if(error == "Error: Request failed with status code 409")
 				                {
 	        						swal("Warning..","Email id already exist..","warning");
+	        					
 
 				                }else{
 	        						swal("Something went wrong..","Unable to submit data.","warning");
