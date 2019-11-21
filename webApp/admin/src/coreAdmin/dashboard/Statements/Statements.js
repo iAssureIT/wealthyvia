@@ -192,7 +192,7 @@ class Statements extends Component{
                                       <td className="text-center">{ActiveList.emailId}</td>
                                       <td className="text-center">{ActiveList.startDate}</td>
                                       <td className="text-center">{ActiveList.endDate}</td>
-                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.offerSub_ID+"-"+ActiveList.user_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.wmSub_id+"-"+ActiveList.user_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                     </tr>
                                     )
                                   })

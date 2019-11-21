@@ -40,8 +40,9 @@ class ConfirmOtp extends Component {
       if(token == "true")
       {
         this.props.history.push('/reset-pwd/'+formValues.ID);
-      }else if(destination){
+      }else if(destination && destination!="undefined" ){
         this.props.history.push(destination);
+        console.log("in dest")
         window.location.reload();
 
       }else{

@@ -145,7 +145,7 @@ class UploadStatement extends Component{
                     fileName : this.state.uploadStatementName,
                   }
                   var obj1={
-                    filePath : Data.location,
+                    url      : Data.location,
                     fileName : this.state.uploadStatementName,
                   }
                   var filenames = this.state.filenames;
@@ -201,7 +201,7 @@ class UploadStatement extends Component{
                     fileName : this.state.uploadPerformanceName,
                   }
                   var obj1={
-                    filePath : Data.location,
+                    url : Data.location,
                     fileName : this.state.uploadPerformanceName,
                   }
                   var filenames = this.state.filenamesPerformance;
@@ -278,10 +278,14 @@ class UploadStatement extends Component{
     console.log("uploadStatement",this.state.uploadStatement);
 
   }
- /* SubmitPerformance(event)
+  SubmitPerformance(event)
   {
-    console.log("this.state.fileArray",this.state.fileArrayPerformance);
-     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+Off_id+'/add',this.state.fileArray)
+    console.log("performanceDoc",this.state.fileArrayPerformance);
+    // var performanceDoc = this.state.fileArrayPerformance;
+    var performanceDoc = {
+      "performanceDoc" : this.state.fileArrayPerformance
+    };
+     axios.patch('/api/wmsubscriptions/patch/'+Off_id,performanceDoc)
           .then( (uploadedStatements)=>{      
             // console.log("offerings = ",offerings.data);   
             this.setState({
@@ -295,9 +299,9 @@ class UploadStatement extends Component{
                 swal("Error!","Something went wrong!!", "error");
               }
           });  
-    console.log("uploadStatement",this.state.uploadStatement);
+    console.log("uploadedStatementsDatabase",this.state.uploadedStatementsDatabase);
 
-  }*/
+  }
   deleteDocument(e)
   {
     var fileToDelete = e.target.getAttribute("data-name");
@@ -464,17 +468,20 @@ class UploadStatement extends Component{
                      
                       </div>
                      }
-                    </div>    
+                    </div>
+                     <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+                      <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
+                    </div> 
                   </div>
                   <div id="menu1" className="tab-pane fade">
-                      <div className=" formht col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                      <div className="  col-lg-6 col-md-12 col-sm-12 col-xs-12">
                         <div className="">
                           <label className="control-label statelabel locationlabel" >Upload Performance</label>
-                          <select  ref="planName"
+                         {/* <select  ref="planName"
                              type="text" name="planName" placeholder="Enter Subscription Name" 
                              className="selectbox" title="Please enter package Name">
                               <option >Performance</option>
-                          </select>
+                          </select>*/}
                         </div>                     
                       </div> 
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  ">
@@ -526,7 +533,10 @@ class UploadStatement extends Component{
                      
                       </div>
                      }
-                    </div>   
+                    </div> 
+                     <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+                      <div onClick={this.SubmitPerformance.bind(this)} className="submitOffering pull-right" >Submit</div>
+                    </div>  
                   </div>
                 </div> 
 
@@ -571,10 +581,10 @@ class UploadStatement extends Component{
                       </div>
                     </div>*/}
           
-               <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
+               {/*<div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
                   <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
                 </div>
-
+*/}
             </form>
           </div>
         </div>

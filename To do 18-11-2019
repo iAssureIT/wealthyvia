@@ -13,7 +13,6 @@ To do 18-11-2019 and 19-11-2019
 	- Show document selected 						- Done
 	- delete seleted         						- Done
 	
-
 9)  Redirection after signup						- Done
 10) Change allblog view								- Done
 11) Blog redirection                    			- Done
@@ -22,15 +21,20 @@ To do 18-11-2019 and 19-11-2019
 To do 20-11-2019 
 
 13) Change font to Arial 12 Arial black bold 		- Done
-14) Sign up take time								- Pending
 15) Email already exist sign up button txt      	- Done
 16) Use lasturl in signup							- Done
 17) Delete defected blogs							- Done
-18) Share button blogs 								- Pending
-19) Change Client ID from API side 					- Pending
 20) Set icon in dashboard and startdate disable 	- Done 	
-21) Search option for Blog 							- Inprogress
-4) Upload performance 
+21) Search option for Blog 							- Done
+
+To do 21-11-2019 
+
+22) Change Active user list api                     - Pending
+18) Share button blogs 								- Pending
+14) Sign up take time								- Pending
+6)  Refect documents on client dashboard    		- Pending
+7)  Payment gateway integration 					- Pending
+19) Change Client ID from API side 					- Pending
 
 	- fetch from database   					 	- Inprogress
 	- insert into database  					 	- Inprogress
@@ -39,5 +43,3 @@ To do 20-11-2019
 	
 	- fetch from database   					 	- Inprogress
 	- insert into database  					 	- Inprogress
-6)  Refect documents on client dashboard    		- Pending
-7)  Payment gateway integration 					- Pending

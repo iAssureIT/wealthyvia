@@ -143,8 +143,17 @@ export default class SubscribedServices extends Component {
                                       <h6 className="pull-right"><span>Start Date :  {a.startDate} </span> - <span>End Date :  {a.endDate} </span> </h6><br/>
                                       <h3>{a.offeringTitle} Reports & Statement</h3>
                                       <h5>Last update date : {this.state.date} </h5>
-                                      <label className="mt20">{this.state.date1}</label>
-                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">Changes to be made</a>
+                                        <label className="mt20">{this.state.date1}</label><br/>
+                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline"><div className="col-lg-4 col-md-4 col-xs-4 col-sm-4  ">
+                                        <img className="marLeft"src="/images/pdf.png"/><br/>
+                                        Changes to be made
+                                      </div>
+                                      </a>
+                                      <div className="col-lg-4 col-md-4 col-xs-4 col-sm-4 ">
+                                        <img className="marLeft"src="/images/pdf.png"/><br/>
+                                        <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">Changes to be made</a>
+                                      </div>
+                                  
                                      {/* <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download>
                                         <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"/>
                                       </a>

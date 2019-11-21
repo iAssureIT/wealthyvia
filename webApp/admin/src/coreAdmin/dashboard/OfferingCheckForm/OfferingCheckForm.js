@@ -64,6 +64,7 @@ class OfferingCheckForm extends Component{
     }
     axios.get('/api/users/get/list/'+data.limitRange)
     .then( (res)=>{      
+      console.log("userDetailsDisplay",res)
       this.setState({
         userDetailsDisplay : res.data[0],
         userIdG            : res.data[0]._id,
@@ -97,7 +98,6 @@ class OfferingCheckForm extends Component{
               }
           }); 
       })
-      console.log("userDetailsDisplay",this.state.userDetailsDisplay)
       console.log("userIdG",this.state.userIdG)
       var tableData = res.data.map((a, i)=>{
         return {

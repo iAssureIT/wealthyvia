@@ -108,6 +108,7 @@ a .active{
 }
 .textAlignCenter{
   text-align: center;
+  font-family: Arial;
 }
 .noPadding{
       padding: 0px !important;

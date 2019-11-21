@@ -11,12 +11,12 @@
 .All1blog1{
 
 }
-.blogTitle{
+/*.blogTitle{
 	margin: 5px 0px;
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
+}*/
 .AllblogImgB{
 	height: 173px!important;
 	width: 100%;
