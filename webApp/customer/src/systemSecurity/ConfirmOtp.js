@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 import $ from "jquery";
 import axios from 'axios';
@@ -23,7 +23,7 @@ class ConfirmOtp extends Component {
   }
   confirmOTP(event){
     event.preventDefault();
-    var url = this.props.match.params;
+    // var url = this.props.match.params;
     // console.log('confirm otp');
     var formValues ={
       "ID" :  this.props.match.params.user_ID,

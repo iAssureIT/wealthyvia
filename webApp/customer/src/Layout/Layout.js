@@ -8,7 +8,7 @@ import ContactUs                                 from "../pages/ContactUs/Contac
 import ProductPage                               from "../pages/ProductPage/ProductPage.js";
 import RiskProfilePage                           from "../pages/RiskProfilePage/RiskProfilePage.js";
 import KycForm                                   from "../pages/KycForm/KycForm.js";
-import BlogViewPage                              from "../pages/BlogViewPage/BlogViewPage.js";
+//import BlogViewPage                              from "../pages/BlogViewPage/BlogViewPage.js";
 import AllBlogs                                  from "../pages/AllBlogs/AllBlogs.js";
 import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
 import InvoicePage                               from "../pages/InvoicePage/InvoicePage.js";

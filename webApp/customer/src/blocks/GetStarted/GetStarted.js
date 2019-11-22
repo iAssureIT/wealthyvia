@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
-
 import "./GetStarted.css";
 
 export default class GetStarted extends Component {

@@ -18,7 +18,6 @@ export default class OfferingContent extends React.Component {
 	}
 
 	render() {
-		var data = this.state.Blog;
 		var imgPath = <img src="/images/user1.png" alt="i1"/>
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>

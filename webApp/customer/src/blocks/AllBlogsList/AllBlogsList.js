@@ -222,27 +222,27 @@ export default class AllBlogsList extends React.Component {
 															 ?
 																	<a href={"/blog/"+data.blogURL}>
 																		<h4 className="blogTitle col-lg-8 p10"><b>{data.blogTitle}</b></h4>
-																		<p className="blogDate p10 col-lg-2 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																		<p className="blogDate p10 col-lg-8 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
 																		{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
 																	</a>														
 															:
 																	<a href={"/planPage"}>
-																		<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-																		<h4 className="blogTitle p10"><b>{data.blogTitle}</b></h4>
+																		<p className="blogDate p10 col-lg-8 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+																		<h4 className="blogTitle col-lg-8 p10"><b>{data.blogTitle}</b></h4>
 																		{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
 																	</a>														
 															)
 														:
 															<a href={"/blog/"+data.blogURL}>
 																<span className="blogDate col-lg-8  p10 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="">{data.createdAt}</Moment></span>
-																<h4 className="blogTitleList  col-lg-10  p10"><b>{data.blogTitle}</b></h4>
-																<p className="blogParaList col-lg-10 p10 graycolor">{data.summary}</p>
+																<h4 className="blogTitleList  col-lg-8  p10"><b>{data.blogTitle}</b></h4>
+																<p className="blogParaList col-lg-8 p10 graycolor">{data.summary}</p>
 															</a>
 														)
 													:
 														<a href={"/login?destination=/blog/"+data.blogURL}>
-															<p className="blogDate p10  col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
-															<h4 className="blogTitle col-lg-12  p10"><b>{data.blogTitle}</b></h4>
+															<p className="blogDate p10  col-lg-8 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></p>
+															<h4 className="blogTitle col-lg-8  p10"><b>{data.blogTitle}</b></h4>
 															{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
 														</a>
 													}

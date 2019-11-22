@@ -1,5 +1,5 @@
 import React              		from 'react';
-import { ParallaxProvider } 	from 'react-scroll-parallax';
+// import { ParallaxProvider } 	from 'react-scroll-parallax';
 import Layout 					from "./Layout/Layout.js";
 import axios                    from "axios";
 

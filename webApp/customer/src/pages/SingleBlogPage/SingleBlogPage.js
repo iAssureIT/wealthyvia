@@ -7,7 +7,7 @@ import Moment                from 'react-moment';
 // import ShareLink          from 'react-facebook-share-link'
 
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
-import { FacebookProvider, Share } from 'react-facebook';
+//import { FacebookProvider, Share } from 'react-facebook';
 
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';

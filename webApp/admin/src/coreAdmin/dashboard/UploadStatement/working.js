@@ -201,9 +201,8 @@ class UploadStatement extends Component{
 
                   var filenamesPerformance = this.state.filenamesPerformance;
                   var fileArrayPerformance = this.state.fileArrayPerformance;
-                  filenamesPerformance.push(obj2);
+                   filenamesPerformance.push(obj2);
                   fileArrayPerformance.push(obj1);
-
                   this.setState({
                     filenamesPerformance : filenamesPerformance,
                     fileArrayPerformance : fileArrayPerformance
@@ -271,21 +270,11 @@ class UploadStatement extends Component{
   SubmitPerformance(event)
   {
     // var performanceDoc = this.state.fileArrayPerformance;
-       if(this.state.userDetailsDisplay.performanceDoc.length >0)
-      {
-        this.setState({
-          fileArrayPerformanceUpdate : this.state.userDetailsDisplay.performanceDoc,
-
-        },()=>{
-          console.log("fileArrayPerformance",this.state.fileArrayPerformance)
-          console.log("fileArrayPerformanceUpdate",this.state.fileArrayPerformanceUpdate)
-        })
-      }
     var performanceDoc = {
       "performanceDoc" : this.state.fileArrayPerformance
     };
     console.log("Performance",performanceDoc)
-    /* axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
+     axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
           .then( (uploadedStatements)=>{      
             this.setState({
                   uploadedStatementsDatabase : uploadedStatements.data,
@@ -300,7 +289,7 @@ class UploadStatement extends Component{
                 swal("Error!","Something went wrong!!", "error");
               }
           });  
-*/
+
   }
   deleteDocument(e)
   {

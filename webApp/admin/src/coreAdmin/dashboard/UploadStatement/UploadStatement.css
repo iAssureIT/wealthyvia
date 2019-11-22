@@ -31,7 +31,9 @@
 
 }
 .tableCustom>tbody>tr>td{
-	padding: 19px;
+	padding: 15px;
+	padding-top: 18px;
+	padding-bottom: 18px;
 }
 .MasterBudgetTitle{
 	font-size: 25px !important;

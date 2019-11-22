@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
-
 import "./InvoicePage.css";
 
 export default class InvoicePage extends Component {
@@ -18,7 +16,7 @@ export default class InvoicePage extends Component {
 
   render() {
 
-          if(this.props.match.params.validityPeriod == 999)
+          if(this.props.match.params.validityPeriod === 999)
           {
           return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite  ">
@@ -51,7 +49,7 @@ export default class InvoicePage extends Component {
                 </div>
             </div>
           );
-        }else if(this.props.match.params.validityPeriod == 1499){
+        }else if(this.props.match.params.validityPeriod === 1499){
              return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite  ">
                 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan noPadding">

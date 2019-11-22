@@ -17,7 +17,6 @@ class Statements extends Component{
       Validity                     : "",
       Cost                         : "",
       maxCheckIns                  : "",
-      formerrors                   :{amenitiesName  : "",},
       subscription                 : {},
       amenitiesIcon                : '',
       amenitiesName                : '',
@@ -44,9 +43,7 @@ class Statements extends Component{
         this.setState({
               completeDataCount       : res.data.length,
               subscriptionData        : res.data,          
-            },()=>{
-              console.log("subscriptionData",this.state.subscriptionData);
-        })
+            })
       
       })
       .catch((error)=>{
@@ -74,7 +71,7 @@ class Statements extends Component{
         this.setState({
             InactiveUsers : inactiveUser.data,
           })
-        console.log("inactiveUser.data",inactiveUser.data);
+        
       })
       .catch((error)=>{
           if(error.message === "Request failed with status code 401"){
@@ -85,7 +82,6 @@ class Statements extends Component{
 
   handleChange=(event)=>{
     const target = event.target.value;
-    console.log("target",target);
     if(target == "all")
     {
       axios.get('/api/wmsubscriptions/get/wmsublist/Active')
@@ -93,9 +89,7 @@ class Statements extends Component{
         this.setState({
               completeDataCount       : res.data.length,
               subscriptionData        : res.data,          
-            },()=>{
-              console.log("subscriptionData",this.state.subscriptionData);
-        })
+            })
       
       })
       .catch((error)=>{
@@ -114,7 +108,7 @@ class Statements extends Component{
             
            subscriptionData  : Active.data,
           })
-        console.log("subscriptionData",this.state.subscriptionData);
+        
       })
       .catch((error)=>{
           if(error.message === "Request failed with status code 401"){
@@ -126,7 +120,6 @@ class Statements extends Component{
   }
 
   render(){
-    const {formerrors} = this.state;
     return(
       <div className="row">
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
@@ -192,7 +185,7 @@ class Statements extends Component{
                                       <td className="text-center">{ActiveList.emailId}</td>
                                       <td className="text-center">{ActiveList.startDate}</td>
                                       <td className="text-center">{ActiveList.endDate}</td>
-                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.wmSub_id+"-"+ActiveList.user_ID} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
+                                      <td className="text-center"><a href={"/uploadStatement/"+ActiveList.wmSub_id} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-upload"></i></a></td>
                                     </tr>
                                     )
                                   })
@@ -230,6 +223,8 @@ class Statements extends Component{
                                       <td className="text-center">{InactiveList.emailId}</td>
                                       <td className="text-center">{InactiveList.startDate}</td>
                                       <td className="text-center">{InactiveList.endDate}</td>
+                                      <td className="text-center"><a href={"/uploadStatement/"+InactiveList.wmSub_id} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-eye"></i></a></td>
+
                                     </tr>
                                     )
                                   })

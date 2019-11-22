@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
-
 import "./ValuesWeCreate.css";
 
 export default class ValuesWeCreate extends Component {
@@ -22,7 +20,7 @@ export default class ValuesWeCreate extends Component {
               <div className="col-lg-4 col-lg-offset-6 col-md-12 col-sm-12 col-xs-12 floatingDivContainer">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
                   <div className="iconCircle col-lg-4 col-lg-offset-4 col-sm-4 col-sm-offset-4 col-xs-6 col-xs-offset-3">
-                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/correct.png"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/correct.png" alt=""/>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
                   <label className="headingOfValue">Value We Create</label>

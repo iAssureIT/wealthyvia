@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
 
 import "./CorporateGovernance.css";
 
@@ -26,14 +25,14 @@ export default class CorporateGovernance extends Component {
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                   {
-                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance1.jpg"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance1.jpg" alt=""/>
                     ?
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance.jpg" alt=""/>
                     </div>
                     :
                     <div>
-                      <img src="/images/loading.gif"/>
+                      <img src="/images/loading.gif" alt=""/>
                     </div>
                   }
                   </div>
@@ -55,7 +54,7 @@ export default class CorporateGovernance extends Component {
                  
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/Corporate-Governance.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">

@@ -25,21 +25,21 @@ export default class AboutUsCarousel extends Component {
 						    <div className="item ">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerAU ">
 									<div className="row">
-										<img src="/images/banner1.png"/>
+										<img src="/images/banner1.png" alt=""/>
 									</div>
 								</div>
 							</div>
 							 <div className="item ">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerAU ">
 									<div className="row">
-										<img src="/images/banner2.png"/>
+										<img src="/images/banner2.png" alt=""/>
 									</div>
 								</div>
 							</div>
 							 <div className="item ">
 								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerAU ">
 									<div className="row">
-										<img src="/images/banner3.png"/>
+										<img src="/images/banner3.png" alt=""/>
 									</div>
 								</div>
 							</div>

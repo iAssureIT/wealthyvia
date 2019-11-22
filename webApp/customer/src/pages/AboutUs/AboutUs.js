@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
-import AboutUsCarousel from "../../blocks/AboutUsCarousel/AboutUsCarousel.js";
 import ClientDeliverables from "../../blocks/ClientDeliverables/ClientDeliverables.js";
 import ValuesWeCreate from "../../blocks/ValuesWeCreate/ValuesWeCreate.js";
 import "./AboutUs.css";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } 			from 'react-router-dom';
-import {browserHistory} 	from 'react-router';
+// import { Link } 			from 'react-router-dom';
+//import {browserHistory} 	from 'react-router';
 import swal 				from 'sweetalert';
 import $ 					from "jquery";
 import axios 				from 'axios';
@@ -92,7 +92,7 @@ class SignUp extends Component {
 						        this.setState({
 					            	buttonHeading : 'Sign Up',
 					            });
-				                if(error == "Error: Request failed with status code 409")
+				                if(error === "Error: Request failed with status code 409")
 				                {
 	        						swal("Warning..","Email id already exist..","warning");
 	        					

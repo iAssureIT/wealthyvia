@@ -1,5 +1,5 @@
 import React, { Component }       from 'react';
-import $                          from 'jquery';
+// import $                          from 'jquery';
 import Blogs                      from "../../blocks/Blogs/Blogs.js";
 import OwlCarousel                from 'react-owl-carousel';
 import axios                      from "axios";
