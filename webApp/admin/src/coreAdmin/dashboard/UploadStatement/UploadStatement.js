@@ -201,9 +201,8 @@ class UploadStatement extends Component{
 
                   var filenamesPerformance = this.state.filenamesPerformance;
                   var fileArrayPerformance = this.state.fileArrayPerformance;
-                  filenamesPerformance.push(obj2);
+                   filenamesPerformance.push(obj2);
                   fileArrayPerformance.push(obj1);
-
                   this.setState({
                     filenamesPerformance : filenamesPerformance,
                     fileArrayPerformance : fileArrayPerformance
@@ -252,13 +251,13 @@ class UploadStatement extends Component{
       statements : this.state.fileArray,
     } 
      console.log("statements"+statements);
-     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenOfferingID+'/add',statements)
+     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenOfferingID,statements)
           .then( (uploadedStatements)=>{      
             this.setState({
                   uploadedStatementsDatabase : uploadedStatements.data,
                 })
             console.log("uploadedStatementsDatabase",uploadedStatements.data);
-             
+            swal("Congrats..!","Document uploaded successfully", "success");
           })
           .catch((error)=>{
             console.log(error);
@@ -271,27 +270,18 @@ class UploadStatement extends Component{
   SubmitPerformance(event)
   {
     // var performanceDoc = this.state.fileArrayPerformance;
-       if(this.state.userDetailsDisplay.performanceDoc.length >0)
-      {
-        this.setState({
-          fileArrayPerformanceUpdate : this.state.userDetailsDisplay.performanceDoc,
-
-        },()=>{
-          console.log("fileArrayPerformance",this.state.fileArrayPerformance)
-          console.log("fileArrayPerformanceUpdate",this.state.fileArrayPerformanceUpdate)
-        })
-      }
     var performanceDoc = {
       "performanceDoc" : this.state.fileArrayPerformance
     };
     console.log("Performance",performanceDoc)
-    /* axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
+     axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
           .then( (uploadedStatements)=>{      
             this.setState({
                   uploadedStatementsDatabase : uploadedStatements.data,
                 })
             console.log("uploadedStatementsDatabase",uploadedStatements.data);
             console.log("userDetailsDisplayDoc",this.state.userDetailsDisplay.performanceDoc)
+            swal("Congrats..!","Document uploaded successfully", "success");
 
           })
           .catch((error)=>{
@@ -300,7 +290,7 @@ class UploadStatement extends Component{
                 swal("Error!","Something went wrong!!", "error");
               }
           });  
-*/
+
   }
   deleteDocument(e)
   {

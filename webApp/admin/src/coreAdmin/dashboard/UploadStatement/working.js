@@ -201,8 +201,9 @@ class UploadStatement extends Component{
 
                   var filenamesPerformance = this.state.filenamesPerformance;
                   var fileArrayPerformance = this.state.fileArrayPerformance;
-                   filenamesPerformance.push(obj2);
+                  filenamesPerformance.push(obj2);
                   fileArrayPerformance.push(obj1);
+
                   this.setState({
                     filenamesPerformance : filenamesPerformance,
                     fileArrayPerformance : fileArrayPerformance
@@ -251,13 +252,14 @@ class UploadStatement extends Component{
       statements : this.state.fileArray,
     } 
      console.log("statements"+statements);
-     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenOfferingID+'/add',statements)
+     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenOfferingID,statements)
           .then( (uploadedStatements)=>{      
             this.setState({
                   uploadedStatementsDatabase : uploadedStatements.data,
                 })
             console.log("uploadedStatementsDatabase",uploadedStatements.data);
-             
+            swal("Congrats..!","Document uploaded successfully", "success");
+ 
           })
           .catch((error)=>{
             console.log(error);
@@ -270,9 +272,37 @@ class UploadStatement extends Component{
   SubmitPerformance(event)
   {
     // var performanceDoc = this.state.fileArrayPerformance;
-    var performanceDoc = {
+    if(this.state.userDetailsDisplay.performanceDoc)
+    {
+     if(this.state.userDetailsDisplay.performanceDoc.length >0)
+      {
+        this.setState({
+          fileArrayPerformanceUpdate : this.state.userDetailsDisplay.performanceDoc,
+
+        },()=>{
+          console.log("fileArrayPerformance",this.state.fileArrayPerformance)
+          console.log("fileArrayPerformanceUpdate",this.state.fileArrayPerformanceUpdate)
+        })
+      }
+        var update_Doc = this.state.userDetailsDisplay.performanceDoc;
+     
+
+       for(var i=0;i<this.state.fileArrayPerformance.length;i++)
+        {
+          console.log("i=",i);
+
+          update_Doc.push(this.state.fileArrayPerformance[i])
+          console.log("update_Doc",update_Doc)
+        }
+      var performanceDoc = {
+        "performanceDoc" : this.state.fileArrayPerformanceUpdate
+      };
+      }else{
+         var performanceDoc = {
       "performanceDoc" : this.state.fileArrayPerformance
     };
+      }
+    
     console.log("Performance",performanceDoc)
      axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
           .then( (uploadedStatements)=>{      
@@ -280,7 +310,7 @@ class UploadStatement extends Component{
                   uploadedStatementsDatabase : uploadedStatements.data,
                 })
             console.log("uploadedStatementsDatabase",uploadedStatements.data);
-            console.log("userDetailsDisplayDoc",this.state.userDetailsDisplay.performanceDoc)
+            swal("Congrats..!","Document uploaded successfully", "success");
 
           })
           .catch((error)=>{
@@ -478,7 +508,22 @@ class UploadStatement extends Component{
                         </div>
                     </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
-                
+                      
+                       {
+                          this.state.fileArrayPerformanceUpdate && this.state.fileArrayPerformanceUpdate.length > 0 ?
+                          this.state.fileArrayPerformanceUpdate.map((a, index)=>{
+                            return(
+                              <div  key={index} className="pdfContainer col-lg-2" >
+                                <img src="/images/pdf.png"/>
+                                <i id={index} className="fa fa-times-circle customCircle pull-right" title="Remove Document" data-name={a.url} onClick={this.deletePerformanceDocument.bind(this)}></i>
+                                <p className="">{a.fileName}</p>
+
+                              </div>
+                            )
+                          })
+                        :
+                          null
+                        }
                       {
                       this.state.fileArrayPerformance.length<=0?
                       null         
