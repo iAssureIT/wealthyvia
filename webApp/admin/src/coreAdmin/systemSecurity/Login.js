@@ -110,7 +110,9 @@ class Login extends Component {
     
     return(
       <div>
-        <div className="headerbackgroundimg col-lg-12 col-md-12 col-sm-12 col-xs-12 headerName" >Wealthyvia</div> 
+        <div className="headerbackgroundimg col-lg-12 col-md-12 col-sm-12 col-xs-12 headerName" >
+          <img id="imgSidebar" className="marLeft25" src="/images/WealthyVia_Logo.png" alt="Logo_img" height="40%" width="20%"/>
+        </div> 
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainBackgroundImg">
 
         </div>

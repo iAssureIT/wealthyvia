@@ -29,16 +29,28 @@ To do 20-11-2019
 To do 21-11-2019 
 
 22) Change Active user list api                     - Done
-18) Share button blogs 								- Pending
 14) Sign up take time								- Need disscussion
 6)  Refect documents on client dashboard    		- Done
-7)  Payment gateway integration 					- Pending
 19) Change Client ID from API side 					- Done
 
-	- fetch from database   					 	- Inprogress (Need query)
+5) Upload statement & performance
+	- insert into database  					 	- Done
 	- insert into database  					 	- Done
 
-5) Upload statement 
-	
-	- fetch from database   					 	- Inprogress
-	- insert into database  					 	- Done
+To do 23-11-2019 
+
+1) Change UI of single blog page 					- Done
+2) Solve confirmOTP defect 							- Done
+4) Upload statement 								- Done
+5) Upload performance   							- Done
+6) Payment gateway integration 						- Pending
+7) Share button blogs 								- Pending
+	- Twitter     									- Done
+	- Facebook                              		- Pending
+	- linkedIn										- Pending
+8) Making site performance better           		- Inprogress
+9) Change Active user list api              		- Pending
+10) Change Logo and icon 							- Done
+11) UI of list view   								- Done
+
+

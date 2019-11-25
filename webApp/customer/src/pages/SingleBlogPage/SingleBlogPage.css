@@ -1,0 +1,14 @@
+.likeDiv{
+	border-top: 1px solid #aaa;
+	padding: 15px;
+	font-size: 20px !important;
+
+}
+.likeDiv a{
+	padding: 10px;
+}
+.bottomDiv{
+	font-family: 'Arial';
+	padding:15px;
+	padding-left:25px !important;
+}

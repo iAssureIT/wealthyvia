@@ -11,6 +11,7 @@ import './UploadStatement.css';
 
 var user_ID = "";
 var location ="";
+var performanceDoc={};
 class UploadStatement extends Component{
 
   constructor(props) {
@@ -58,18 +59,7 @@ class UploadStatement extends Component{
            this.props.history.push("/");
         }
       })
-     /* axios.get('/api/offerings/get/all/list/1')
-      .then( (offerings)=>{      
-        this.setState({
-              offeringTitle : offerings.data,
-            })
-         
-      })
-      .catch((error)=>{
-          if(error.message === "Request failed with status code 401"){
-            swal("Error!","Something went wrong!!", "error");
-          }
-      });  */
+  
      axios.get('/api/wmsubscriptions/get/detaillistoffersub/'+user_ID)
     .then( (res)=>{      
 
@@ -78,22 +68,7 @@ class UploadStatement extends Component{
           offeringTitle : res.data[0].offerings,
         },()=>{
           console.log("userDetailsDisplay",this.state.userDetailsDisplay)
-       /* axios.get('/api/offeringsubscriptions/get/'+ user_ID)
-          .then( (res)=>{      
-            this.setState({
-                  userOfferingEndDate       : res.data.endDate,
-                  userOfferingStartDate        : res.data.startDate,          
-                },()=>{
-            })
-          
-          })
-          .catch((error)=>{
-            if(error.message === "Request failed with status code 401")
-              { 
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-          });*/
+     
       })
     })
     .catch((error)=>{
@@ -103,6 +78,39 @@ class UploadStatement extends Component{
              this.props.history.push("/");
         }
     });
+
+    if(this.state.userDetailsDisplay.performanceDoc)
+    {
+
+     if(this.state.userDetailsDisplay.performanceDoc.length >0)
+      {
+        this.setState({
+          fileArrayPerformanceUpdate : this.state.userDetailsDisplay.performanceDoc,
+
+        },()=>{
+          console.log("fileArrayPerformance",this.state.fileArrayPerformance)
+          console.log("fileArrayPerformanceUpdate",this.state.fileArrayPerformanceUpdate)
+        })
+      }
+        var update_Doc = this.state.userDetailsDisplay.performanceDoc;
+     
+
+       for(var i=0;i<this.state.fileArrayPerformance.length;i++)
+        {
+          console.log("i=",i);
+
+          update_Doc.push(this.state.fileArrayPerformance[i])
+          console.log("update_Doc",update_Doc)
+        }
+         performanceDoc = {
+          "performanceDoc" : this.state.fileArrayPerformanceUpdate
+        };
+      }else{
+         performanceDoc = {
+          "performanceDoc" : this.state.fileArrayPerformance
+        };
+      }
+    
 
   }
   handleChange(event)
@@ -272,7 +280,7 @@ class UploadStatement extends Component{
   SubmitPerformance(event)
   {
     // var performanceDoc = this.state.fileArrayPerformance;
-    if(this.state.userDetailsDisplay.performanceDoc)
+   /* if(this.state.userDetailsDisplay.performanceDoc)
     {
      if(this.state.userDetailsDisplay.performanceDoc.length >0)
       {
@@ -298,11 +306,11 @@ class UploadStatement extends Component{
         "performanceDoc" : this.state.fileArrayPerformanceUpdate
       };
       }else{
-         var performanceDoc = {
-      "performanceDoc" : this.state.fileArrayPerformance
-    };
+        var performanceDoc = {
+          "performanceDoc" : this.state.fileArrayPerformance
+        };
       }
-    
+    */
     console.log("Performance",performanceDoc)
      axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
           .then( (uploadedStatements)=>{      

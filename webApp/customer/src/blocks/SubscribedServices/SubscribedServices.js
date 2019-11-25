@@ -21,6 +21,7 @@ export default class SubscribedServices extends Component {
           date1                 : "08-10-2019 9:30PM",
           offeringTitle         : "",
           userOfferingsChecked  : "",
+          listOfPerformanceDoc  : "",
           StartDate             : "",
           EndDate               : "",
           numPages              : null,
@@ -61,9 +62,10 @@ export default class SubscribedServices extends Component {
      axios.get('/api/offeringsubscriptions/get/'+ userInfo )
           .then( (res)=>{      
             this.setState({
-                  subscriptionData        : res.data.offering,          
+                  subscriptionData        : res.data.offering,
+                  listOfPerformanceDoc    : res.data.performanceDoc,          
                 },()=>{
-                  console.log("subscriptionData",this.state.subscriptionData)
+                  console.log("listOfPerformanceDoc",this.state.listOfPerformanceDoc)
             })
           })
           .catch((error)=>{
@@ -131,10 +133,28 @@ export default class SubscribedServices extends Component {
                       </div>
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div id="performance" class="tab-pane fade in active">
-                            <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                           {/* <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>*/}
                             <h3>Performance Reports</h3>
-                            <h5>Last update date : {this.state.date} </h5>
-                            <label className="mt20">{this.state.date1}</label>
+                            <h5 className="">Last update date : {this.state.date} </h5>
+                            <label className="mt20 col-lg-12 col-md-12 col-sm-12 col-xs-12">{this.state.date1}</label>
+
+                             {
+                                this.state.listOfPerformanceDoc?
+                                this.state.listOfPerformanceDoc.map((a, i)=>{
+                                  return(
+                                  <div className="col-lg-4 col-md-4 col-xs-4 col-sm-4  textAlignCenter">
+                                    <a href={a.url} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">
+                                    <div >
+                                      <img className="" src="/images/pdf.png"/><br/>
+                                      {a.fileName} 
+                                    </div>
+                                    </a>
+                                  </div>
+                                    )
+                                  })
+                                :
+                                null
+                              }
                           </div>
                            {this.state.subscriptionData?
                              this.state.subscriptionData.map((a, i)=>{
@@ -149,11 +169,14 @@ export default class SubscribedServices extends Component {
                                           this.state.subscriptionData[i].statements?
                                           this.state.subscriptionData[i].statements.map((a, i)=>{
                                             return(
-                                            <a href={a.url} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline"><div className="col-lg-4 col-md-4 col-xs-4 col-sm-4  ">
-                                              <img className="marLeft"src="/images/pdf.png"/><br/>
-                                              {a.fileName} 
+                                            <div className="col-lg-4 col-md-4 col-xs-4 col-sm-4  textAlignCenter">
+                                              <a href={a.url} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">
+                                              <div >
+                                                <img className="" src="/images/pdf.png"/><br/>
+                                                {a.fileName} 
+                                              </div>
+                                              </a>
                                             </div>
-                                            </a>
                                               )
                                             })
                                           :

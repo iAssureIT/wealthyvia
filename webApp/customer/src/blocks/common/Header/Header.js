@@ -19,17 +19,17 @@ export default class Header extends Component {
             "name"                : "",
             "panNumber"           : "",
             "panNumberName"       : "",
-            "panNumberLocation"       : "",
+            "panNumberLocation"   : "",
             "email"               : "",
             "addressProof"        : "",
             "addressProofName"    : "",
             "contactNumber"       : "",
-            "addressProofLocation"       : "",
+            "addressProofLocation": "",
 
-            "fields"              : {},
-            "errors"              : {},  
-            "fields1"             : {},
-            "errors1"             : {},
+            "fields"             : {},
+            "errors"             : {},  
+            "fields1"            : {},
+            "errors1"            : {},
             "questionsArray"     : [],
             "answersArray"       : [],
             "answersofQ1"        : [],
@@ -371,7 +371,7 @@ export default class Header extends Component {
           event.target.value ="";
        }else{
           this.setState({
-              "addressProof"      :event.target.value,
+              "addressProof"  : event.target.value,
             });
           }
     }
@@ -667,7 +667,7 @@ export default class Header extends Component {
                                              <div className="centreDetailContainer col-lg-1 row">
                                                     <input type="checkbox"  name={this.state.Question1} value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
                                                     <span className="centreDetailCheck"></span>
-                                                 </div>
+                                                 </div>Pending
                                                 <span className="centreDetaillistItem">15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -1141,7 +1141,11 @@ export default class Header extends Component {
                                 <nav className="navbar marginZero customNavBarUpper backColorWhite colorP navbar-default  hidden-xs hidden-sm">
                                     <div className="container-fluid">
                                       <div className="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <a className="navbar-brand webSiteName colorP col-lg-4 col-md-4 col-sm-4 col-xs-4" href="/">Wealthyvia</a>
+                                        <a className="navbar-brand webSiteName colorP col-lg-4 col-md-4 col-sm-4 col-xs-4" href="/">
+                                          <div className="col-lg-9 webSiteImage">
+                                            <img src ="/images/WealthyVia_Logo.png" />
+                                          </div>
+                                        </a>
                                       <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP"><b>SEBI Registration No. INH000005397</b></a></div>
                                       <div className="col-lg-3 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12 iconContainerHeader">
                                         <div className="row">
@@ -1167,7 +1171,9 @@ export default class Header extends Component {
                             <nav className="navbar marginZero customNavBar navbar-default">
                                 <div className="container-fluid">
                                   <div className="navbar-header">
-                                    <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">Wealthyvia</a>
+                                    <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">
+                                      <img src ="/images/WealthyVia_Logo.png" />
+                                    </a>
 
                                     <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
                                       <span className="sr-only">Toggle navigation</span>
@@ -1189,8 +1195,6 @@ export default class Header extends Component {
                                           <ul className="dropdown-menu customDropdown">
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
                                             <a href="">Communique</a>
-                                              {/* <a href="https://www.arthavruddhi.com/blog" target="_blank">Arthavrudhhi Blogs</a>
-                                               <a href="">Communique</a>*/}
                                            
                                         </ul>
                                       </li>
@@ -1231,8 +1235,7 @@ export default class Header extends Component {
                                            
                                           </ul>
                                         </li>
-/*                                        <a  className="cursorPointer" data-toggle="tooltip" title="Logout" onClick={this.logout.bind(this)}>{this.state.userinfo && this.state.userinfo.fullName ? <span><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</span>:"Login/Signup"}</a>
-*/                                        :
+                                        :
                                       <li className="dropdown">
                                         <a href="/login">Login/Signup </a>
                                       </li>
@@ -1241,7 +1244,7 @@ export default class Header extends Component {
                                           token ?
                                             <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
                                                     <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
-                                                    <span  className="investNowHead hidden-sm hidden-xs" >Invest Now</span>
+                                                    <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
                                             </li>                     
                                           :
                                             <a  href="/login" ><li className="dropdown investNowHeadBefore">

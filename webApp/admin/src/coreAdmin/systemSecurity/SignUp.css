@@ -2389,9 +2389,9 @@ input[type="radio"]:checked:before {
 }
 .headerName{
   font-size: 40px !important;
-    font-family:'Montserrat-Regular' !important;
-padding-top: 20px;
-font-weight: bolder;
-color: #fff;
-border-bottom: 10px solid #3c8dbc;
+  font-family:'Montserrat-Regular' !important;
+  padding-top: 5px;
+  font-weight: bolder;
+  color: #fff;
+  border-bottom: 10px solid #3c8dbc;
 }

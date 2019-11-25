@@ -11,6 +11,7 @@ import './UploadStatement.css';
 
 var user_ID = "";
 var location ="";
+var performanceDoc={};
 class UploadStatement extends Component{
 
   constructor(props) {
@@ -28,6 +29,7 @@ class UploadStatement extends Component{
       filenamesPerformance   : [],
       fileType               : "File",
       chosenOffering         : "",
+      chosenTargetID         : "",
       chosenOfferingID       : "",
 
     };
@@ -58,65 +60,98 @@ class UploadStatement extends Component{
            this.props.history.push("/");
         }
       })
-     /* axios.get('/api/offerings/get/all/list/1')
-      .then( (offerings)=>{      
-        this.setState({
-              offeringTitle : offerings.data,
-            })
-         
-      })
-      .catch((error)=>{
-          if(error.message === "Request failed with status code 401"){
-            swal("Error!","Something went wrong!!", "error");
-          }
-      });  */
+  
      axios.get('/api/wmsubscriptions/get/detaillistoffersub/'+user_ID)
-    .then( (res)=>{      
-
+    .then( (res)=>{
       this.setState({
           userDetailsDisplay : res.data[0],
           offeringTitle : res.data[0].offerings,
         },()=>{
-          console.log("userDetailsDisplay",this.state.userDetailsDisplay)
-       /* axios.get('/api/offeringsubscriptions/get/'+ user_ID)
-          .then( (res)=>{      
-            this.setState({
-                  userOfferingEndDate       : res.data.endDate,
-                  userOfferingStartDate        : res.data.startDate,          
-                },()=>{
-            })
-          
-          })
-          .catch((error)=>{
-            if(error.message === "Request failed with status code 401")
-              { 
-                   swal("Your session is expired! Please login again.","", "error");
-                   this.props.history.push("/");
-              }
-          });*/
-      })
-    })
-    .catch((error)=>{
-      if(error.message === "Request failed with status code 401")
-        {
-             swal("Your session is expired! Please login again.","", "error");
-             this.props.history.push("/");
-        }
-    });
 
+          /*for performance*/
+
+          if(this.state.userDetailsDisplay.performanceDoc)
+            {
+             if(this.state.userDetailsDisplay.performanceDoc.length >0)
+              {
+                this.setState({
+                  fileArrayPerformance : this.state.userDetailsDisplay.performanceDoc,
+                })
+              }
+              var update_Doc = this.state.userDetailsDisplay.performanceDoc;
+              for(var i=0;i<this.state.fileArrayPerformance.length;i++)
+              {
+                update_Doc.push(this.state.fileArrayPerformance[i])
+              }
+              performanceDoc = {
+                "performanceDoc" : this.state.fileArrayPerformance
+              };
+          }else{
+             performanceDoc = {
+              "performanceDoc" : this.state.fileArrayPerformance
+            };
+          }
+
+          
+        })
+      })
+      .catch((error)=>{
+        if(error.message === "Request failed with status code 401")
+          {
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+          }
+      });
   }
   handleChange(event)
   {
     event.preventDefault();
     const target    = event.target.value;
     var target_id = $(event.currentTarget).find('option:selected').attr('id');
+    var offering_id = $(event.currentTarget).find('option:selected').attr('offering_id');
     this.setState({
       chosenOffering : target,
-      chosenOfferingID : target_id,
+      chosenTargetID : target_id,
+      chosenOfferingID : offering_id,
     },()=>{
 
-    console.log("target",this.state.chosenOffering);
-    console.log("target_id",this.state.chosenOfferingID);
+    console.log("this.state.userDetailsDisplay.offerings",this.state.userDetailsDisplay);
+    /*for Statement*/
+
+          if(this.state.userDetailsDisplay.offerings)
+            {
+
+              for (var j=0;j<this.state.userDetailsDisplay.offerings.length;j++)
+              {
+                console.log("In for",this.state.userDetailsDisplay.offerings[j].offering_ID)
+
+               if(this.state.chosenOfferingID === this.state.userDetailsDisplay.offerings[j].offering_ID)
+               {
+                console.log("match",this.state.userDetailsDisplay.offerings[j].offering_ID)
+                console.log("match",this.state.userDetailsDisplay.offerings[j].statements)
+                this.setState({
+                  fileArray : this.state.userDetailsDisplay.offerings[j].statements,
+                })
+               }
+                /*{
+                  this.setState({
+                    fileArray : this.state.userDetailsDisplay.performanceDoc,
+                  })
+                }
+                var update_Doc = this.state.userDetailsDisplay.performanceDoc;
+                for(var i=0;i<this.state.fileArrayPerformance.length;i++)
+                {
+                  update_Doc.push(this.state.fileArrayPerformance[i])
+                }
+                performanceDoc = {
+                  "performanceDoc" : this.state.fileArrayPerformance
+                };*/
+              }
+          }else{
+             performanceDoc = {
+              "performanceDoc" : this.state.fileArrayPerformance
+            };
+          }
     })
   }
   uploadStatement(event){
@@ -201,12 +236,17 @@ class UploadStatement extends Component{
 
                   var filenamesPerformance = this.state.filenamesPerformance;
                   var fileArrayPerformance = this.state.fileArrayPerformance;
-                   filenamesPerformance.push(obj2);
+                  console.log("fileArrayPerformance push selected",fileArrayPerformance);
+                  filenamesPerformance.push(obj2);
                   fileArrayPerformance.push(obj1);
+
+                  console.log("fileArrayPerformance",fileArrayPerformance);
                   this.setState({
                     filenamesPerformance : filenamesPerformance,
                     fileArrayPerformance : fileArrayPerformance
                   })
+                  console.log("fileArrayPerformanceaftr pushobject",this.state.fileArrayPerformance);
+
                 })
                 .catch((error)=>{
                 })
@@ -223,8 +263,8 @@ class UploadStatement extends Component{
 
   deleteimageLogo(index){
      swal({
-        title: "Are you sure you want to delete this image?",
-        text: "Once deleted, you will not be able to recover this image!",
+        title: "Are you sure you want to delete this document?",
+        text: "Once deleted, you will not be able to recover this document!",
         icon: "warning",
         buttons: true,
         dangerMode: true,
@@ -250,39 +290,44 @@ class UploadStatement extends Component{
     var statements ={
       statements : this.state.fileArray,
     } 
-     console.log("statements"+statements);
-     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenOfferingID,statements)
+     console.log("statements",statements);
+     axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenTargetID,statements)
           .then( (uploadedStatements)=>{      
             this.setState({
                   uploadedStatementsDatabase : uploadedStatements.data,
                 })
             console.log("uploadedStatementsDatabase",uploadedStatements.data);
-            swal("Congrats..!","Document uploaded successfully", "success");
+            if(uploadedStatements.data === "Statement uploaded"){
+              swal("Congrats..!","Document uploaded successfully", "success");
+            }else{
+              swal("Error..!","Something went wrong", "error");
+            }
+ 
           })
           .catch((error)=>{
             console.log(error);
-              if(error.message === "Request failed with status code 401"){
-                swal("Error!","Something went wrong!!", "error");
+              if(error.message === "Request failed with status code 404"){
+                swal("Error!","Please select offering !!", "error");
+              }else{
+                swal("Error!","Something went wrong !!", "error");
               }
           });  
 
   }
   SubmitPerformance(event)
   {
-    // var performanceDoc = this.state.fileArrayPerformance;
-    var performanceDoc = {
-      "performanceDoc" : this.state.fileArrayPerformance
-    };
-    console.log("Performance",performanceDoc)
-     axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
-          .then( (uploadedStatements)=>{      
-            this.setState({
-                  uploadedStatementsDatabase : uploadedStatements.data,
-                })
-            console.log("uploadedStatementsDatabase",uploadedStatements.data);
-            console.log("userDetailsDisplayDoc",this.state.userDetailsDisplay.performanceDoc)
-            swal("Congrats..!","Document uploaded successfully", "success");
-
+      var performanceDoc = {
+       performanceDoc : this.state.fileArrayPerformance,
+      }
+      console.log("Performance",performanceDoc)
+      console.log("fileArrayPerformance In submit",this.state.fileArrayPerformance);
+      axios.patch('/api/wmsubscriptions/patch/'+user_ID,performanceDoc)
+        .then( (uploadedStatements)=>{      
+          this.setState({
+                uploadedStatementsDatabase : uploadedStatements.data,
+              })
+              console.log("uploadedStatementsDatabase",uploadedStatements.data);
+              swal("Congrats..!","Document uploaded successfully", "success");
           })
           .catch((error)=>{
               console.log(error);
@@ -303,8 +348,8 @@ class UploadStatement extends Component{
 
     if(index){
       swal({
-            title: "Are you sure you want to delete this image?",
-            text: "Once deleted, you will not be able to recover this image!",
+            title: "Are you sure you want to delete this document?",
+            text: "Once deleted, you will not be able to recover this document!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -313,12 +358,12 @@ class UploadStatement extends Component{
             if (willDelete) {
               var array = this.state.fileArray; // make a separate copy of the array
               array.splice(index, 1);
-              swal("Image deleted successfully");
+              swal("File deleted successfully");
               this.setState({
                 fileArray: array
               });
             }else {
-              swal("Your image is safe!");
+              swal("Your document is safe!");
             }
           });
     }
@@ -327,15 +372,15 @@ class UploadStatement extends Component{
  deletePerformanceDocument(e)
   {
     var fileToDelete = e.target.getAttribute("data-name");
-    var index = e.target.getAttribute('id');
-    var filePath = e.target.getAttribute('data-id');
-    var data = fileToDelete.split("/");
-    var imageName = data[4];
+    var index        = e.target.getAttribute('id');
+    var filePath     = e.target.getAttribute('data-id');
+    var data         = fileToDelete.split("/");
+    var imageName    = data[4];
 
     if(index){
       swal({
-            title: "Are you sure you want to delete this image?",
-            text: "Once deleted, you will not be able to recover this image!",
+            title: "Are you sure you want to delete this document?",
+            text: "Once deleted, you will not be able to recover this document!",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -344,12 +389,12 @@ class UploadStatement extends Component{
             if (willDelete) {
               var array = this.state.fileArrayPerformance; // make a separate copy of the array
               array.splice(index, 1);
-              swal("Image deleted successfully");
+              swal("File deleted successfully");
               this.setState({
-                fileArrayPerformance: array
+                fileArrayPerformance: array,
               });
             }else {
-              swal("Your image is safe!");
+              swal("Your document is safe!");
             }
           });
     }
@@ -398,7 +443,7 @@ class UploadStatement extends Component{
                                {
                                   this.state.offeringTitle.map((a, i)=>{
                                     return(
-                                      <option id={a._id} >{a.offeringTitle}</option>
+                                      <option id={a._id} offering_id={a.offering_ID}>{a.offeringTitle}</option>
                                     )
                                   })
                                 }  
@@ -416,7 +461,7 @@ class UploadStatement extends Component{
                              <b className="text_k11"></b>
                              <span className="under_ln">Upload Document</span>
                             </div>      
-                            <input type="file" className="noPadding click_input" title="Please choose image" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />
+                            <input type="file" className="noPadding click_input" title="Please choose file" id="designImg" name="bannerImg" ref="bannerImg" onChange={this.uploadStatement.bind(this)} />
                           </div> 
                         </div>
                     </div>
@@ -479,7 +524,22 @@ class UploadStatement extends Component{
                         </div>
                     </div>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
-                
+                      
+                       {
+                          this.state.fileArrayPerformanceUpdate && this.state.fileArrayPerformanceUpdate.length > 0 ?
+                          this.state.fileArrayPerformanceUpdate.map((a, index)=>{
+                            return(
+                              <div  key={index} className="pdfContainer col-lg-2" >
+                                <img src="/images/pdf.png"/>
+                                <i id={index} className="fa fa-times-circle customCircle pull-right" title="Remove Document" data-name={a.url} onClick={this.deletePerformanceDocument.bind(this)}></i>
+                                <p className="">{a.fileName}</p>
+
+                              </div>
+                            )
+                          })
+                        :
+                          null
+                        }
                       {
                       this.state.fileArrayPerformance.length<=0?
                       null         
