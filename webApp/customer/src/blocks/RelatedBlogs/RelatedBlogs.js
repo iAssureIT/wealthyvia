@@ -9,11 +9,7 @@ export default class RelatedBlogs extends React.Component {
 		super(props);
 		this.state = {
 
-			"Blogs"		: [
-
-							
-							
-						  ]
+			"Blogs"		: [],
 	};
 }
 getBlogData(){
@@ -38,6 +34,8 @@ componentDidMount(){
 }
 	render() {
 		var data = this.state.Blogs;
+		var subscribed = true;
+
 		return (
           	<div className="container-fluid RelatedBlogsBox" style={{padding:"0px"}}>
           		<div className="col-lg-12 mtop75">
@@ -52,18 +50,56 @@ componentDidMount(){
 		                					return(
 							          			<div className="col-lg-4">
 							          				<div className="col-lg-12 rblog">
-							          					<div className="r1blog1">
-															<img className="img-responsive blogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
-															<a href={"/blog/"+data.blogURL}>
+							          				{data.typeOfBlog == "Premium" ?
+						          						<div className="premiumBlogIndicate">Premium</div>
+														:
+														null
+													}
+													{
+													data.typeOfBlog == "Premium" 
+														 ?
+															(subscribed 
+															 ?
+																<div className="r1blog1">
+																	<img className="img-responsive blogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+																	<a href={"/blog/"+data.blogURL}>
 
-																<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
-																<h4 className="blogTitle p10 mt40"><b>{data.blogTitle}</b></h4>
-																<p className="blogPara p10 graycolor">{data.summary}
-																</p>
-															</a>
-														<hr/>
-															
-														</div>
+																		<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
+																		<h4 className="blogTitle p10 mt40"><b>{data.blogTitle}</b></h4>
+																		<p className="blogPara p10 graycolor">{data.summary}
+																		</p>
+																	</a>
+																	<hr/>
+																</div>													
+															:
+																<div className="r1blog1">
+																	<img className="img-responsive blogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+																	<a href={"/planPage"}>
+
+																		<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
+																		<h4 className="blogTitle p10 mt40"><b>{data.blogTitle}</b></h4>
+																		<p className="blogPara p10 graycolor">{data.summary}
+																		</p>
+																	</a>
+																	<hr/>
+																</div>	
+
+															)
+															:
+															<div className="r1blog1">
+																	<img className="img-responsive blogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
+																	<a href={"/blog/"+data.blogURL}>
+
+																		<p className="blogDate p10 mtop20 graycolor">{data.blogDate}</p>
+																		<h4 className="blogTitle p10 mt40"><b>{data.blogTitle}</b></h4>
+																		<p className="blogPara p10 graycolor">{data.summary}
+																		</p>
+																	</a>
+																	<hr/>
+																</div>	
+
+														}
+							          				
 							          				</div>
 							          			</div>
 							          			);

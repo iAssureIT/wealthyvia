@@ -65,7 +65,7 @@ export default class SubscribedServices extends Component {
                   subscriptionData        : res.data.offering,
                   listOfPerformanceDoc    : res.data.performanceDoc,          
                 },()=>{
-                  console.log("listOfPerformanceDoc",this.state.listOfPerformanceDoc)
+                  console.log("listOfPerformanceDoc",res.data)
             })
           })
           .catch((error)=>{

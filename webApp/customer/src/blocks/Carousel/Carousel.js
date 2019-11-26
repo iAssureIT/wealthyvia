@@ -54,14 +54,13 @@ export default class Carousel extends Component {
 					      <li data-target="#customCarousel" data-slide-to="0" className="active"></li>
 					      <li data-target="#customCarousel" data-slide-to="1"></li>
 					      <li data-target="#customCarousel" data-slide-to="2"></li>
-					      <li data-target="#customCarousel" data-slide-to="3"></li>
 					     
 					    </ol>
 					    <div className="carousel-inner height350">
 					      <div className="item fadding">
 					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
 					    	 <div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					    	 	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Capital Protection. Risk Mitigation. Alpha generation</label>
+					    	 	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your long term best friend and we create such friends' circle for you.</label>
 					    	 	
 				       		 </div>
 					      </div>
@@ -69,25 +68,17 @@ export default class Carousel extends Component {
 					      <div className="item fadding">
 					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
 						      <div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">The Value we create :<br/> Profound. <br/>Profuse. <br/>Precise.</label>
+						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Return on Capital & Growth are the only lifelines of any business.</label>
 					    	 	
 				        </div>
 					      </div>
 					    
-					      <div className="item fadding">
-					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
-						      <div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						       	<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Your right investment decision is your  long term best friend and we create that friends circle for you.</label>
-					    	 	
-				          </div>
-					      </div>
+					     
 					      
 				    	<div className="item active fadding">
 					        <img src="/images/bannerImgLogo.jpg" alt="LogoImg"/>
 						     	<div className="captionSmall col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						      		<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Intelligence to identify <br/>
-																	Systemized process to execute <br/>
-																	Courage to capitalise </label>
+						      		<label className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 row">Fruitful Investments always take Intelligence to identify, Systemised Process to execute and Courage to capitalise the right opportunities. </label>
 					          </div>
 				   		 </div>
 					</div>
