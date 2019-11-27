@@ -352,7 +352,7 @@ export default class ProductPage extends Component {
                     </div>  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
                       <div className="row">
-                        <p>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
+                        <p>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. It is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
                       </div>
                     </div>
 
@@ -374,7 +374,7 @@ export default class ProductPage extends Component {
                     </div>  
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
                       <div className="row">
-                        <p>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. This portfolio is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
+                        <p>Wealthyvia primary motto is to “Capital Protection. Risk Mitigation. Alpha generation. It is created keeping in mind that – “Protect your downside.Upside will take care of itself”. </p>
                       </div>
                     </div>
 
@@ -397,9 +397,9 @@ export default class ProductPage extends Component {
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
-                        <li>This portfolio consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
-                        <li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
-                        <li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
+                        <li>Safe Heaven Moats consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
+                        <li>It is created by keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
+                        <li>It consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
 
                         </ul>
                       </p>                 
@@ -411,9 +411,9 @@ export default class ProductPage extends Component {
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
-                          <li>This portfolio consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
-                        <li>This portfolio is created keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
-                        <li>Portfolio consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
+                           <li>Safe Heaven Moats consists of Robust, high quality large cap bluechip companies that have consistently high return on capital, very strong business moats, leadership in their segments  and that are part of natural consumption behaviour of Indian  middle class.</li>
+                        <li>It is created by keeping in mind that – “Protect your downside. Upside will take care of itself”.</li>
+                        <li>It consists of well researched large caps, with quality management & strong balance sheet. They are leaders in their respective sectors & are linked to Indian growth story.</li>
 
                         </ul>
                       </p>                  
@@ -531,8 +531,8 @@ export default class ProductPage extends Component {
                               <li>Change of consumption patterns and behaviours.</li>
                             </ul>
                           </li>
-                          <li><span className="numberDiv">2</span> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
-                          <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
+                          <li><span className="numberDiv">2</span> This is a low risk briefcase created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
+                          <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion of their savings in Equities.</li>
                         </ul>
                       </p>                  
                     </div>
@@ -555,8 +555,8 @@ export default class ProductPage extends Component {
                               <li>Change of consumption patterns and behaviours.</li>
                             </ul>
                           </li>
-                          <li><span className="numberDiv">2</span> This is a low risk portfolio created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
-                          <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion portfolio of their savings in Equities.</li>
+                          <li><span className="numberDiv">2</span> This is a low risk case created for investors who are having low risk appetite but at the same time want to generate alpha over a period of time vis-à-vis Debt fund returns.</li>
+                          <li><span className="numberDiv">3</span>Suitable for investors who are in their Middle age or closer to retirement who are looking forward to invest a portion of their savings in Equities.</li>
                         </ul>
                       </p>                      
                     </div>
@@ -644,8 +644,8 @@ export default class ProductPage extends Component {
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                         <ul className="customOl listStyle">
-                          <li>As your existing Mutual Funds or Wealthyvia – Safe Heaven Moats portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
-                        <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
+                          <li>As your existing Mutual Funds or Wealthyvia – Safe Heaven Moats is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying Mutual Funds.</li>
+                        <li>The margin the client receives after collateralizing his mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
                         <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
                         <li>Strategy will only be implement on
                           <ul className="customOl listStyle">
@@ -671,10 +671,11 @@ export default class ProductPage extends Component {
                     <label><span className="iceBlueColor">Overview </span></label>
                       <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
                       <ul className="customOl listStyle">
-                          <li>As your existing Mutual Funds or Wealthyvia – Safe Heaven Moats portfolio is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying portfolio or Mutual Funds.</li>
-                        <li>The margin the client receives after collateralizing his portfolio / mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
+                           <li>As your existing Mutual Funds or Wealthyvia – Safe Heaven Moats is doing its job of compounding over a long period of time, Investors have an opportunity to generate alpha by collateralizing the underlying Mutual Funds.</li>
+                        <li>The margin the client receives after collateralizing his mutual funds is used to take low risk, limited exposure to Nifty F&O segment.</li>
                         <li>Predefined strategies for Entry & Exit signals, Profit booking & Strict stop loss.</li>
                         <li>Strategy will only be implement on
+                         
                           <ul className="customOl listStyle">
                             <li>Nifty Future & Options (monthly)</li>
                           </ul>
@@ -968,7 +969,7 @@ export default class ProductPage extends Component {
               <p className="col-lg-10 col-lg-offset-1">We are a Mumbai based dealer of Unlisted, Pre IPO shares. Our superiority stems robust systems and processes which provide smooth and hassle-free flow of agreement backed transactions by ensuring timely delivery of shares and money to the clients.
               Many young companies grow much faster than mature companies due to their lower base hence they tend to significantly outperform the benchmark returns.</p>
               <p className="col-lg-10 col-lg-offset-1" >However, a lot of this growth happens before the company goes public with an IPO. Hence participating in such companies in the Growth / Pre IPO stage can provide superior returns to the investor. Buyers need a safe mechanism that gives them access to high quality shares at the best price, provides matching of trade and enables even retail purchases.
-              While investments in Unlisted/Pre IPO shares have the potential of giving high returns, they are also accompanied by higher risk due to a variety of reasons. Investors need to exercise caution while investing in Unlisted/Pre IPO companies. Generally, they should have a minimum time horizon of 4 years and should not allocate more than 30% of their portfolio in Unlisted/Pre IPO shares.
+              While investments in Unlisted/Pre IPO shares have the potential of giving high returns, they are also accompanied by higher risk due to a variety of reasons. Investors need to exercise caution while investing in Unlisted/Pre IPO companies. Generally, they should have a minimum time horizon of 4 years and should not allocate more than 30% of their assets in Unlisted/Pre IPO shares.
               </p>
             </div>   
 			  		<div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">

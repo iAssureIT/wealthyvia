@@ -1203,11 +1203,11 @@ export default class Header extends Component {
                                             Offerings <span className="caret"></span>
                                           </a>
                                           <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
-                                            <a  className="dropdown-item" href="/#5gcpm">5GCPM Portfolio</a>
+                                            <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
                                             <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
                                             <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                            <a className="dropdown-item" href="#">Nifty Algo Trading</a>
-                                            <a className="dropdown-item" href="/#USAStocks">USA Stocks Portfolio</a>
+                                            <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
                                             <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
                                             <a className="dropdown-item" href="#">Multibagger</a>
                                           </ul>

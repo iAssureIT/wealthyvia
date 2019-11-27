@@ -55,22 +55,7 @@ export default class Blogs extends Component {
 	      })
 	}
 	  componentWillReceiveProps() {
-   		axios
-	      .get('/api/blogs/get/all/list')
-	      .then((response)=>{
-	      	blogData =response.data;
-
-	      	this.setState({
-	      			Blogs:response.data
-	      		});
-	      })
-	      .catch(function(error){
-	          if(error.message === "Request failed with status code 401")
-	              {
-	                   swal("Your session is expired! Please login again.","", "error");
-	                   /*this.props.history.push("/");*/
-	              }
-	      })
+   		
   }
 
    
@@ -94,8 +79,8 @@ export default class Blogs extends Component {
 						    autoplay        =  {true}
 							>
 							 {
-			                    blogData ?
-			                      blogData.map((data, index) => {
+			                    this.state.Blogs && this.state.Blogs.length>0?
+			                      this.state.Blogs .map((data, index) => {
 			                        return (
 			                          <div className="item" key={index}>
 			                          	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">

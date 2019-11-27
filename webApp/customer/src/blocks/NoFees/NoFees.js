@@ -33,7 +33,7 @@ export default class NoFees extends Component {
                     <label><span className="iceBlueColor">5GCPM </span></label>
                     <p> Wealth is a function of investing in intelligent ideas with conviction. 
                         It's not only about patience but also about disciplined approach. Such gem stocks that compound at higher rate 
-                        and produce significant growth of portfolio are rare. Our self-designed & developed 5GCPM framework 
+                        and produce significant growth of investments are rare. Our self-designed & developed 5GCPM framework 
                         helps you to invest in such stocks..</p><a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
 
                     </div>

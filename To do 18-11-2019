@@ -37,20 +37,33 @@ To do 21-11-2019
 	- insert into database  					 	- Done
 	- insert into database  					 	- Done
 
-To do 23-11-2019 
+To do 22-11-2019 
 
 1) Change UI of single blog page 					- Done
 2) Solve confirmOTP defect 							- Done
 4) Upload statement 								- Done
 5) Upload performance   							- Done
-6) Payment gateway integration 						- Pending
 7) Share button blogs 								- Pending
 	- Twitter     									- Done
 	- Facebook                              		- Pending
 	- linkedIn										- Pending
 8) Making site performance better           		- Inprogress
-9) Change Active user list api              		- Pending
+9) Change Active user list api              		- Done
 10) Change Logo and icon 							- Done
 11) UI of list view   								- Done
 
 
+To do 26-11-2019 
+
+1) solved banner defect  							- Done
+2) dynamic blog in homepage    						- Done
+3) payment gateway integration
+		- get order id from razorpay				- Done
+		- get payment id and details				- Inprogress
+
+
+To do 27-11-2019 
+
+1) Change portfolio from everywhere  				- Inprogress
+2) 
+3) 

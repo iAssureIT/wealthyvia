@@ -84,11 +84,11 @@ export default class Footer extends Component {
                 <div className="col-lg-3 col-md-3 col-sm-6 col-xs-6 footerDivFirst">
                   <label>Products</label>
                   <ul>
-                      <li><a href="/#5gcpm">5GCPM Portfolio</a></li>
+                      <li><a href="/#5gcpm">5GCPM</a></li>
                       <li><a href="/#safeHeavenMoats">Safe Heavan Stocks</a></li>
                       <li> <a href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a></li>
                     <li> <a href="#">Nifty Algo Trading</a></li>
-                     <li> <a href="/#USAStocks">USA Stocks Portfolio</a></li>
+                     <li> <a href="/#USAStocks">USA Stocks</a></li>
                      <li> <a href="/#unlistedStocks">Unlisted Stocks</a></li>
                      <li> <a href="#">Multibagger</a></li>
                   </ul>

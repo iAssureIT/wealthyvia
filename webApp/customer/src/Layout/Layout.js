@@ -22,6 +22,12 @@ import OfferingPage                              from "../pages/OfferingPage/Off
 import ClientDashboard                           from "../pages/ClientDashboard/ClientDashboard.js";
 
 
+import PaymentResponse                          from "../pages/PaymentProcess/PaymentResponse.js";
+import PaymentSuccess                           from "../pages/PaymentProcess/PaymentSuccess.js";
+import PaymentFailure                           from "../pages/PaymentProcess/PaymentFailure.js";
+
+
+
 // Section: 1 - SystemSecurity ******************************************************
 import Login            from '../systemSecurity/Login.js';
 import ConfirmOtp       from '../systemSecurity/ConfirmOtp.js'; 
@@ -52,8 +58,12 @@ const WebLayout = () => (
               <Route path="/offeringformpage/:selectedID"     exact strict component={offeringFormPage}  />
               <Route path="/offeringpage"                     exact strict component={OfferingPage}  />
               <Route path="/offeringpage/:selectedID"         exact strict component={OfferingPage}  />
-               <Route path="/blog/:selectedUrl"                    exact strict component={SingleBlogPage}  />
+               <Route path="/blog/:selectedUrl"               exact strict component={SingleBlogPage}  />
 
+
+              <Route path="/payment-response"                  exact strict component={PaymentResponse}  />
+              <Route path="/payment-success"                   exact strict component={PaymentSuccess}  />
+              <Route path="/payment-failure"                   exact strict component={PaymentFailure}  />
 
 
               <Route path="/login"                             exact strict component={ Login } />
