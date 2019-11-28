@@ -61,7 +61,7 @@ const WebLayout = () => (
                <Route path="/blog/:selectedUrl"               exact strict component={SingleBlogPage}  />
 
 
-              <Route path="/payment-response"                  exact strict component={PaymentResponse}  />
+              <Route path="/paymentResponse"                  exact strict component={PaymentResponse}  />
               <Route path="/payment-success"                   exact strict component={PaymentSuccess}  />
               <Route path="/payment-failure"                   exact strict component={PaymentFailure}  />
 

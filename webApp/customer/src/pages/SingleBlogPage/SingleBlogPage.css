@@ -2,10 +2,33 @@
 	border-top: 1px solid #aaa;
 	padding: 15px;
 	font-size: 20px !important;
-
 }
 .likeDiv a{
 	padding: 10px;
+}
+.likeDivSmall{
+	border-top: 1px solid #aaa;
+	padding: 5px;
+	font-size: 20px !important;
+	display: flex;
+    box-shadow: 1px 1px 10px 2px #ccc;
+	justify-content:space-between;
+	position: fixed !important;
+    bottom: 0;
+    z-index: 1000;
+
+    background-color: #fff;
+    right: 0;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100% !important;
+}
+.likeDivSmall a{
+	padding: 10px;
+	font-size: 20px;
+}
+.likeDivSmall i{
+	font-size: 28px;
 }
 .bottomDiv{
 	font-family: 'Arial';

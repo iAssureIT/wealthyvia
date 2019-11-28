@@ -28,6 +28,7 @@ export default class InvoicePage extends Component {
      this.setState({
       user_ID : user_ID
      })
+     var hostname = window.location.hostname=='localhost'?'localhost:3001':window.location.hostname;
      console.log("user_ID",user_ID)
      var options = {
         amount            : (this.props.match.params.validityPeriod*100),  // amount in the smallest currency unit
@@ -103,7 +104,7 @@ export default class InvoicePage extends Component {
         receipt           : "order_rcptid_11",
         payment_capture   : '0',
         "plan_ID"         : "",
-        "userID"          : this.state.user_ID,
+        "userID"          : "5d974178b6554854576501c2",
         "planName"        : "6 Months",
         "planAmount"      : 999, 
         "validityPeriod"  : "6 months", 
@@ -188,7 +189,7 @@ export default class InvoicePage extends Component {
                       <input type="hidden" name="prefill[contact]" value="9123456780"/>
                       <input type="hidden" name="prefill[email]" value="gaurav.kumar@example.com"/>
                       <input type="hidden" name="notes[shipping address]" value="L-16, The Business Centre, 61 Wellfield Road, New Delhi - 110001"/>
-                      <input type="hidden" name="callback_url" value="http://localhost:3005/api/subscriptionorders/payment-response"/>
+                      <input type="hidden" name="callback_url" value="http://localhost:3006/api/subscriptionorders/payment-response"/>
                       <input type="hidden" name="cancel_url" value={CurrentURL}/>
                       <button className="col-lg-2 pull-right col-md-12 col-sm-12 col-xs-12 makePaymentButton ">
                          Make Payment
