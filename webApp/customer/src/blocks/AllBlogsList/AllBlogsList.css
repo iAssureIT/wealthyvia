@@ -14,9 +14,22 @@
 }
 .blogTitleList{
 	margin: 5px 0px;
-    font-size: 22px;
+    font-size: 1.8em;
     line-height: 23px
 	 
+}
+.blogTitleListSmall{
+	margin: 5px 0px;
+    font-size: 14px;
+    line-height: 23px
+	 
+}
+.premiumBlogIndicateList{
+	color: #f5d26e;
+    font-size: 16px;
+    position: absolute;
+    margin-top: -11px;
+    margin-left: -4px
 }
 .AllblogImgB{
 	height: 173px!important;
@@ -60,8 +73,9 @@
 .All1blogList{
 	position: relative;
 	overflow: hidden;
-	height: 95px;
+	height: auto;
 	padding: 5px;
+	padding-top: 10px !important;
 	margin-top: 7px;
 	margin-bottom: 7px;
 	background-color: #fff;
@@ -201,6 +215,7 @@
 }
 .pad10search{
 	padding-top: 7px !important;
+	padding-left: 5px !important;
 
 }
 /*input[type=text] {
