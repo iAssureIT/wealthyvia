@@ -10,7 +10,7 @@ import './App.css';
 
 axios.defaults.baseURL = 'https://api.wealthyvia.com';
 //axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
- //axios.defaults.baseURL = 'http://localhost:3066';
+ //axios.defaults.baseURL = 'http://localhost:3005';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {

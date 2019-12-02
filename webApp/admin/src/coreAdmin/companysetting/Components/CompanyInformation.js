@@ -270,7 +270,6 @@ console.log("innnuuu");
           if(error.message === "Request failed with status code 401")
             {
                  swal("Your session is expired! Please login again.","", "error");
-                 this.props.history.push("/");
             }
 
         })
@@ -500,13 +499,8 @@ console.log("innnuuu");
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm">
                   
-
-
-
-
-
-
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 compForm compinfotp">
+                  {console.log("this.state.logo",this.state.logo)}
                   {this.state.logo==""?
                     <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12 row pull-right padTopC">
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -546,18 +540,6 @@ console.log("innnuuu");
                     </div>       
                   }                  
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
                 </div>
                  <div className="col-lg-12 margdiv">
                      <div className="col-lg-1 row">

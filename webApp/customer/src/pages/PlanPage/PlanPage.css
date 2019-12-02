@@ -14,7 +14,6 @@
         transition-duration: 0.5s;
     cursor: pointer;
 
-
 }
 .planName{
 	font-size: 45px;
@@ -34,4 +33,13 @@
 }
 .PlanContainer{
 	padding-bottom: 100px;
+}
+.selectedPlanPP{
+    padding: 30px;
+    font-size: 40px;
+    margin-top: 120px;
+
+    background-size: 100% 100%;
+    margin-top: 120px !important;
+    font-family: Arial !important;
 }

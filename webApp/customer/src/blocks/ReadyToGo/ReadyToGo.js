@@ -76,7 +76,6 @@ export default class ReadyToGo extends Component {
       .then((response)=>{
         const config = 
                        {
-                          
                           bucketName      : response.data.bucket,
                           dirName         : response.data.bucket,
                           region          : response.data.region,

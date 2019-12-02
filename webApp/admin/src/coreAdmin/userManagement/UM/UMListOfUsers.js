@@ -517,7 +517,7 @@ class UMListOfUsers extends Component{
                 // swal("Success! Showing "+selectedValue,"","success");
                 var tableData = res.data.map((a, i)=>{
                   return {
-                         _id             : a._id,
+                         _id            : a._id,
                         fullName        : a.fullName ? a.fullName : "-",
                         email           : a.email ? a.email : "-",
                         mobNumber       : a.mobNumber ? a.mobNumber : "-", 

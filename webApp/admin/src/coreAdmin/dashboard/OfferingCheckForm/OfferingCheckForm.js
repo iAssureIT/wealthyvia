@@ -62,7 +62,7 @@ class OfferingCheckForm extends Component{
     "startRange"        : this.state.startRange,
     "limitRange"        : this.state.limitRange, 
     }
-    axios.get('/api/users/get/list/'+data.limitRange)
+    axios.get('/api/users/get/list/role/user/'+data.limitRange)
     .then( (res)=>{      
       console.log("userDetailsDisplay",res)
       this.setState({

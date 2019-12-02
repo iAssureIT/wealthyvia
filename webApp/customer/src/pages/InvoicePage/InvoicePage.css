@@ -1,18 +1,36 @@
+@media print 
+{
+    tr, td, th {page-break-inside:avoid}
+    thead {display:table-header-group}
+    .NoPrint {visibility:hidden; display:none}
+    a {color:#000000}
+}
 .selectedPlan{
-	height: 100px;
+	height: 335px;
+  padding:30px;
+  color: #fff;
+  font-size: 15px;
+  background-size: 100% 100%;
 	margin-top:120px !important;
-	    font-family: Arial !important;
+
+	font-family: Arial !important;
+  background-image: url("/images/bannerImgOrder.jpg");
+
 }
 .selectedPlan label{
 	font-size: 40px;
 }
+.selectedPlan img{
+  padding-top:8px;
+  height: 90px;
+}
 .PlanDetails{
 	height: auto;
-	padding: 60px !important;
-	border-radius: 10px;
+	padding: 15px !important;
 	font-family: Arial !important;
 	margin-bottom: 50px;
-    box-shadow: 1px 1px 10px 2px #ccc;
+  box-shadow: 1px 1px 10px 2px #ccc;
+
 }
 .centreDetaillistItemIP{
   padding-left: 0px !important;
@@ -26,8 +44,6 @@
 }
 .radioCheckIP{
   position: absolute;
-
-
   top: 2px;
   left: 52px;
   vertical-align: center !important;
@@ -40,6 +56,9 @@
   margin-left: -37px;
   z-index: 0;
 }
+.companyDetails{
+  margin-top: 12px;
+}
 .centreDetailContainer input:checked ~ .radioCheckIP {
   background-color: #201a47;
   border:2px solid #201a47;
@@ -47,8 +66,9 @@
   width: 30px;
 }
 .customUlIP{
-	margin-left:55px !important;
-  list-style-type: circle;
+  list-style: none;
+  font-size: 16px;
+  padding-left: 20px !important;
   
 }
 .customUlIP li{
@@ -69,4 +89,11 @@
 	  font-weight: bold;
 	  font-size: 15px;
 	border-radius: 3px;
+}
+.fs30{
+  font-size: 30px;
+}
+.priceDivUP{
+  border-top:5px #201a47 solid;
+  padding:40px;
 }

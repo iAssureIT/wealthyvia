@@ -24,8 +24,6 @@ import ClientDashboard                           from "../pages/ClientDashboard/
 
 import PaymentResponse                          from "../pages/PaymentProcess/PaymentResponse.js";
 import PaymentSuccess                           from "../pages/PaymentProcess/PaymentSuccess.js";
-import PaymentFailure                           from "../pages/PaymentProcess/PaymentFailure.js";
-
 
 
 // Section: 1 - SystemSecurity ******************************************************
@@ -61,9 +59,8 @@ const WebLayout = () => (
                <Route path="/blog/:selectedUrl"               exact strict component={SingleBlogPage}  />
 
 
-              <Route path="/paymentResponse"                  exact strict component={PaymentResponse}  />
+              <Route path="/payment-response/:orderId"         exact strict component={PaymentResponse}  />
               <Route path="/payment-success"                   exact strict component={PaymentSuccess}  />
-              <Route path="/payment-failure"                   exact strict component={PaymentFailure}  />
 
 
               <Route path="/login"                             exact strict component={ Login } />

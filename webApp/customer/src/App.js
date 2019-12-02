@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 axios.defaults.baseURL = 'https://api.wealthyvia.com';
 //axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
-//axios.defaults.baseURL = 'http://localhost:3006';
+//axios.defaults.baseURL = 'http://localhost:3005';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 function App() {

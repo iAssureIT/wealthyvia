@@ -21,7 +21,7 @@ export default class PlanPage extends Component {
 
     return (
             <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite PlanContainer ">
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 selectedPlan noPadding">
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 selectedPlanPP noPadding">
                     <label className="col-lg-12"> Select Plan</label>
                 </div>
                 <a href={"/invoicePage/"+this.state.sixmonths}>

@@ -393,4 +393,7 @@
 .envLabel{
   text-align: left;
 }
+.containerC img{
+  height: 60px;
+}
 /*sandbox UI*/
