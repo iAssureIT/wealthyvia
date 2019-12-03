@@ -12,17 +12,18 @@ export default class PaymentResponse extends React.Component {
     this.state = {
       paymentDetails  : "",
       date            : "",
+      orderDetails    : "",
     }
 	}
 
 	componentDidMount(){
-		var order_id = this.props.match.params.order_id;
+		var order_id = this.props.match.params.orderId;
 		console.log("order_id = ",order_id);
     CurrentURL = window.location.href;
     this.setState({
       date: Moment(new Date()).format("DD-MM-YYYY")
     }) 
-		 axios
+		/* axios
         .get('/api/subscriptionorders/payment-response/'+order_id)
         .then((orderDetails)=>{ 
           console.log("orderDetails = ",orderDetails)
@@ -30,6 +31,25 @@ export default class PaymentResponse extends React.Component {
             orderDetails : orderDetails.data,
           }) 
           // console.log("paymentDetails",this.state.paymentDetails);
+
+        })
+        .catch(function(error){
+          console.log(error);
+            if(error.message === "Request failed with status code 401")
+            {
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+            }
+        })*/
+        /* get orderDetails */
+        axios
+        .get('/api/subscriptionorders/paymentOrderDetails/'+order_id)
+        .then((orderDetails)=>{ 
+          console.log("orderDetails = ",orderDetails)
+          this.setState({
+            orderDetails : orderDetails.data[0],
+          }) 
+          console.log("paymentDetails",this.state.orderDetails);
 
         })
         .catch(function(error){
@@ -86,7 +106,12 @@ export default class PaymentResponse extends React.Component {
                 
                 </div>
                   <div className="col-lg-12">
+                  {this.state.orderDetails.paymentStatus == "Paid" ?
                     <label className="note mt20"> Thank you for your payment.</label>
+                    :
+                    <label className="noteRed mt20"> Something went wrong</label>
+
+                  }
                     {/*<label className="warning"> IMPORTANT: Please be aware that while you may receive a notification from your bank that your payment
                       amount has been debited from your bank account, the amount would be credited to your American Express
                       Card in the next 1-2 working days*.</label>*/}
@@ -101,20 +126,23 @@ export default class PaymentResponse extends React.Component {
                           <li><b>Mobile Number</b></li>
                           <li><b>Email Id</b></li>
                           <li><b>Amount</b></li>
-                          <li><b>Paid From</b></li>
                          
                         </ul>                     
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding">
                        <ul className="customUlIP">
-                          <li className="successPay"><b>Success</b></li>
-                          <li>AVS10930BB</li>
+                          {
+                            this.state.orderDetails.paymentStatus == "Paid" ? 
+                            <li className="successPay"><b>Success </b></li>
+                            :
+                            <li className="failPay"><b>Failed </b></li>
+                          }
+                          <li>{this.state.orderDetails.transactionId}</li>
                           <li>{this.state.date}</li>
-                          <li>Priyanka Lewade</li>
-                          <li>8208066599</li>
-                          <li>priyankalewade96@gmail.com</li>
-                          <li>999</li>
-                          <li>SBI</li>
+                          <li>{this.state.orderDetails.userName}</li>
+                          <li>{this.state.orderDetails.mobileNumber}</li>
+                          <li>{this.state.orderDetails.email}</li>
+                          <li>{(this.state.orderDetails.amountPaid)/100}</li>
                          
                         </ul>        
                     </div>

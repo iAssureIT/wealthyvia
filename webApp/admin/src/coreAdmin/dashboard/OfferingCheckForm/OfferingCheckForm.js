@@ -27,7 +27,7 @@ class OfferingCheckForm extends Component{
     super(props);
     this.state = {
       SubscriptionName             : "",
-      formerrors                   :{amenitiesName  : "",},
+      formerrors                   :{ amenitiesName  : "", },
       subscription                 : {},
       totalCount                   : '',
       id                           : '',
@@ -47,7 +47,6 @@ class OfferingCheckForm extends Component{
       usersOfferingStatus          : "",
       userOfferingEndDate          : "",
        userOfferingStartDate       : "",
-          
       startDateAlready             : "",
       startDate                    : new Date(),
     };

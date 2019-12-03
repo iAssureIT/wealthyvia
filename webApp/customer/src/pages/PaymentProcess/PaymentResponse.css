@@ -10,6 +10,11 @@
 	color: #0f98d1;
 	margin-top: 50px;
 }
+.noteRed{
+  font-size: 25px;
+  color: #f00;
+  margin-top: 50px;
+}
 .outerBorder{
 	border:1px solid #aaa;
 }
@@ -39,4 +44,7 @@
 }
 .successPay{
 	color: #0cd222;
+}
+.failPay{
+  color: #f00;
 }
