@@ -22,6 +22,7 @@ import OfferingPage                              from "../pages/OfferingPage/Off
 import ClientDashboard                           from "../pages/ClientDashboard/ClientDashboard.js";
 
 
+import InvoicePageView                          from "../pages/PaymentProcess/InvoicePageView.js";
 import PaymentResponse                          from "../pages/PaymentProcess/PaymentResponse.js";
 import PaymentSuccess                           from "../pages/PaymentProcess/PaymentSuccess.js";
 
@@ -59,6 +60,7 @@ const WebLayout = () => (
                <Route path="/blog/:selectedUrl"               exact strict component={SingleBlogPage}  />
 
 
+              <Route path="/invoicePageView/:order_Id"         exact strict component={InvoicePageView}  />
               <Route path="/payment-response/:orderId"         exact strict component={PaymentResponse}  />
               <Route path="/payment-success"                   exact strict component={PaymentSuccess}  />
 

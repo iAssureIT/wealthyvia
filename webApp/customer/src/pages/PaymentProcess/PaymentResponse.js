@@ -92,13 +92,18 @@ export default class PaymentResponse extends React.Component {
               <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 ">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt100 outerBorder noPadding">
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 selectedPlanPR">
+                  {  
+                    this.state.companysettings && this.state.companysettings.length >0?
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 companyDetails "><b> </b>{this.state.companysettings?this.state.companysettings[0].companyEmail:null}
                       <div className=""><b></b>{this.state.companysettings?this.state.companysettings[0].companywebsite:null}</div>
                       <div className=""><b></b>{this.state.companysettings?this.state.companysettings[0].companyaddress :null}</div>
                       <div className=""><b></b>{this.state.companysettings?this.state.companysettings[0].state+" "+this.state.companysettings[0].country+" "+this.state.companysettings[0].pincode:null}</div>
                     </div>
+                    :
+                    null
+                  }
                     {
-                      this.state.companysettings?
+                      this.state.companysettings&& this.state.companysettings.length >0?
                         <img src={this.state.companysettings[0].logoFilename} className="col-lg-5 col-md-5 col-sm-4 col-xs-4 pull-right"/>
                       :
                       null
@@ -106,7 +111,10 @@ export default class PaymentResponse extends React.Component {
                 
                 </div>
                   <div className="col-lg-12">
-                  {this.state.orderDetails.paymentStatus == "Paid" ?
+
+                  {
+                    this.state.orderDetails && 
+                    this.state.orderDetails.paymentStatus == "Paid" ?
                     <label className="note mt20"> Thank you for your payment.</label>
                     :
                     <label className="noteRed mt20"> Something went wrong</label>
@@ -130,6 +138,7 @@ export default class PaymentResponse extends React.Component {
                         </ul>                     
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding">
+                      {this.state.orderDetails ?
                        <ul className="customUlIP">
                           {
                             this.state.orderDetails.paymentStatus == "Paid" ? 
@@ -137,6 +146,7 @@ export default class PaymentResponse extends React.Component {
                             :
                             <li className="failPay"><b>Failed </b></li>
                           }
+
                           <li>{this.state.orderDetails.transactionId}</li>
                           <li>{this.state.date}</li>
                           <li>{this.state.orderDetails.userName}</li>
@@ -144,14 +154,18 @@ export default class PaymentResponse extends React.Component {
                           <li>{this.state.orderDetails.email}</li>
                           <li>{(this.state.orderDetails.amountPaid)/100}</li>
                          
-                        </ul>        
+                        </ul>
+                        :
+                        null
+                        }
+
                     </div>
 
                    </div>
                 </div>
                  <div className="col-lg-12  col-md-12 col-sm-12 col-xs-12 btnContainer noPadding NoPrint">                
                     <div className="col-lg-2  col-md-12 col-sm-12 col-xs-12 makePaymentButton " >
-                       Back
+                      <a href="/allblogs"> Back </a>
                     </div>
                      <div className="col-lg-2 pull-right  col-md-12 col-sm-12 col-xs-12 makePaymentButton NoPrint" onClick={this.printContent.bind(this)}>
                        Print

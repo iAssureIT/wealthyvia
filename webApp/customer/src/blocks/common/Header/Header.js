@@ -1221,7 +1221,9 @@ export default class Header extends Component {
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item" href=""><div className="ImgDiv col-lg-2 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
-                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a><a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                             <a className="dropdown-item  col-lg-5 col-xs-7 col-sm-7" href="/myorders"><span className="myprofileButton">My order</span></a>
+                                             <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton ">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
@@ -1285,11 +1287,14 @@ export default class Header extends Component {
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item" href=""><div className="ImgDiv col-lg-2 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
-                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a><a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
                                               <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
                                            

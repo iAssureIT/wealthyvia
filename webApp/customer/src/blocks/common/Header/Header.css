@@ -709,6 +709,7 @@ hr{
 .logOutButton{
   background-color: #f00;
   color: #fff;
+  padding:10px;
   border-radius: 3px;
   text-align: center;
   padding-left: 15px;

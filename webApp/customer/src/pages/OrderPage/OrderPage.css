@@ -20,6 +20,7 @@
 	font-family: Arial !important;
 	margin-bottom: 50px;
     box-shadow: 1px 1px 10px 2px #ccc;
+    cursor: pointer;
 }
 .noBold{
 	font-weight: normal !important;
@@ -38,4 +39,14 @@
 }
 .totalDiv{
 	margin-top: 10px;
+}
+.selectedPlanOP{
+	height: auto;
+/*  padding:30px;*/
+  	font-size: 30px;
+  	background-size: 100% 100%;
+	margin-top:120px !important;
+  	margin-bottom:80px !important; 
+	font-family: Arial !important;
+
 }
