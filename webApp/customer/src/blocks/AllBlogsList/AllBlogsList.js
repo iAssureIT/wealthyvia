@@ -5,15 +5,16 @@ import Moment 			 from 'react-moment';
 import $                 from "jquery";
 
 import './AllBlogsList.css';
-
+var subscribed = "";
 export default class AllBlogsList extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			"Blogs"		: [],
-			"viewType"  : "grid",
-			"noData"    : false,
+			"Blogs"		 : [],
+			"viewType"   : "grid",
+			"noData"     : false,
+			"userStatus" : "",
 		};
 	}
 	deleteBlog(event){
@@ -65,7 +66,36 @@ export default class AllBlogsList extends React.Component {
 	}
 	componentDidMount(){
 		var Blogs =[];
+		var user_ID = localStorage.getItem('user_ID')
+
+		axios
+	      .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
+	      .then((userStatus)=>{
+	       console.log("===>",userStatus.data);
+	      	this.setState({
+	      			userStatus:userStatus.data[0].paymentStatus
+	      		});
+	      	if( this.state.userStatus == "Paid")
+	      	{
+	      		subscribed = true
+	      	}else{
+	      		subscribed = false
+	      	}
+	      })
+	      .catch(function(error){
+	        console.log(error);
+	          if(error.message === "Request failed with status code 401")
+	              {
+	                   swal("Your session is expired! Please login again.","", "error");
+	                   this.props.history.push("/");
+	              }
+	      })
+
+
+
+
 		this.getBlogData();
+
 
 	}
 	getView(event)

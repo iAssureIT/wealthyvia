@@ -27,13 +27,13 @@ export default class InvoicePageView extends Component {
       date: Moment(new Date()).format("DD-MM-YYYY")
     });
   }
-  componentDidUpdate(prevProps, prevState){
+/*  componentDidUpdate(prevProps, prevState){
     if(prevState.orderDetails.length!==this.state.orderDetails.length){
       this.setState({
             orderDetails:this.state.orderDetails
           });
     }
-  }
+  }*/
   componentDidMount(){
     CurrentURL = window.location.href;
     var order_id = this.props.match.params.order_Id;
@@ -71,7 +71,7 @@ export default class InvoicePageView extends Component {
         .then((orderDetails)=>{ 
           console.log("orderDetails = ",orderDetails)
           this.setState({
-            orderDetails : orderDetails.data[0],
+            orderDetails : orderDetails.data,
           }) 
           console.log("paymentDetails",this.state.orderDetails);
 
@@ -187,13 +187,13 @@ export default class InvoicePageView extends Component {
                         <li className="dateContain">Lastest blogs to read</li> 
                       </ul>
                       
-                     <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-12 col-xs-12">
+                     <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
                         <li className="dateContain">Subtotal</li>
                         <li className="dateContain">Tax (18%)</li>
                         <li className="dateContain"><b>Grand Total</b></li>
                       </ul>
                       {this.state.orderDetails ?
-                      <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                      <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
                         <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</li>
                         <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)-((this.state.orderDetails.amountPaid/100)/1.18))}</li>
                         <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{(this.state.orderDetails.amountPaid/100)}</li>

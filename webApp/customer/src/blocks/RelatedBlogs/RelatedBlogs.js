@@ -49,9 +49,9 @@ componentDidMount(){
 				      					/*index=(0,1);*/
 		                					return(
 							          			<div className="col-lg-4">
-							          				<div className="col-lg-12 rblog">
+							          				<div className="col-lg-12 rblog z50">
 							          				{data.typeOfBlog == "Premium" ?
-						          						<div className="premiumBlogIndicate">Premium</div>
+						          						<div className="premiumBlogIndicateRB">Premium</div>
 														:
 														null
 													}

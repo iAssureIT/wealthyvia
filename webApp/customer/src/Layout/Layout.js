@@ -49,7 +49,7 @@ const WebLayout = () => (
               <Route path="/AllBlogs"                         exact strict component={AllBlogs}  />
               <Route path="/blogsform/:blogID"                exact strict component={BlogsFormPage}  />
               <Route path="/offerings/:divId"                 exact strict component={ProductPage}  />
-              <Route path="/InvoicePage/:validityPeriod"      exact strict component={InvoicePage}  />
+              <Route path="/InvoicePage/:order_id"            exact strict component={InvoicePage}  />
               <Route path="/PlanPage"                         exact strict component={PlanPage}  />
               <Route path="/OrderPage"                        exact strict component={OrderPage}  />
               <Route path="/blogsform"                        exact strict component={BlogsFormPage}  />

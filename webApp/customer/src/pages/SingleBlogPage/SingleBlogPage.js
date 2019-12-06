@@ -5,8 +5,10 @@ import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
 import Moment                from 'react-moment';
 //import MetaTags              from 'react-meta-tags';
 // import ShareLink          from 'react-facebook-share-link'
-import "./SingleBlogPage.css";
+//import ShareLinkedin        from 'react-share-linkedin';
+
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
+import "./SingleBlogPage.css";
 //import { FacebookProvider, Share } from 'react-facebook';
 
 import axios                 from 'axios';

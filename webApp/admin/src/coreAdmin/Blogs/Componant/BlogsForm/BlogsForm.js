@@ -9,20 +9,6 @@ import swal from 'sweetalert';
 import PropTypes from 'prop-types';
 import CKEditor from 'ckeditor4-react';
 
-/*const formValid = formerrors=>{
-  console.log("formerrors",formerrors);
-  let valid = true;
-  Object.values(formerrors).forEach(val=>{
-  val.length>0 && (valid = false);
-  })
-  return valid;
-  }*/
-
-/*const clientnameRegex = RegExp(/^[A-za-z']+( [A-Za-z']+)*$/);
-const emailRegex = RegExp (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
-*/
-/*axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
-axios.defaults.headers.post['Content-Type'] = 'application/json';*/
 
 class BlogsForm extends Component{
 	constructor(props) {

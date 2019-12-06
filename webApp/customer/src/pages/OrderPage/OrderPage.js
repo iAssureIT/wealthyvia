@@ -72,7 +72,7 @@ export default class OrderPage extends Component {
                         return(
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 PlanDetailsOP" key={index} >
                           <a href={"/invoicePageView/"+data.paymentOrderId}>
-                            <span className="centreDetaillistItemOP col-lg-8  col-md-12 col-sm-12 col-xs-12">Order Number :<span className="noBold"> {data.paymentOrderId}</span></span>
+                            <span className="centreDetaillistItemOP  col-lg-8  col-md-12 col-sm-12 col-xs-12">Order Number :<span className="noBold hoverEffect"> {data.paymentOrderId}</span></span>
                             <span className="centreDetaillistItemOP col-lg-4  col-md-12 col-sm-12 col-xs-12"><span className="pull-right">Date : <span className="noBold">  {this.state.date}</span></span></span>
                             <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Plan Name :<span className="noBold">  {data.planName}</span></span>
                             <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Amount : <span className="noBold">  {(data.amountPaid)/100}</span></span>

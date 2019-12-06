@@ -22,6 +22,14 @@
     box-shadow: 1px 1px 10px 2px #ccc;
     cursor: pointer;
 }
+.PlanDetailsOP:hover{
+	
+    box-shadow: 1px 1px 10px 8px #ccc;
+    cursor: pointer;
+}
+.PlanDetailsOP:hover .hoverEffect{
+	color: #109dd7 !important;
+}
 .noBold{
 	font-weight: normal !important;
 }

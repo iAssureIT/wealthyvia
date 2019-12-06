@@ -1136,7 +1136,7 @@ export default class Header extends Component {
                                     </div>
                                 </div>
                              </div>
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div className="row">
                                 <nav className="navbar marginZero customNavBarUpper backColorWhite colorP navbar-default  hidden-xs hidden-sm">
                                     <div className="container-fluid">
@@ -1165,8 +1165,168 @@ export default class Header extends Component {
                                     </div>
                                   </nav>
                               </div>
-                          </div>    
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        </div>    
+                        <div className=" hidden-lg hidden-md col-sm-12 col-xs-12">
+                          <div className="row">
+                            <nav className="navbar marginZero customNavBarSmall navbar-default">
+                                <div className="container-fluid">
+                                  <div className="navbar-header">
+                                    <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">
+                                      <img src ="/images/IMG-20191129-WA0007.jpg" />
+                                    </a>
+
+                                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
+                                      <span className="sr-only">Toggle navigation</span>
+                                      <span className="icon-bar"></span>
+                                      <span className="icon-bar"></span>
+                                      <span className="icon-bar"></span>
+                                    </button>
+
+                                  </div>
+
+                                  <div className="collapse navbar-collapse" id="navBar">
+                                  { token ?
+                                    <ul className="nav navbar-nav navbar-right customUlSmall">
+                                      <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Articulations <span className="caret"></span>
+                                        </a>                       
+                                        <ul className="dropdown-menu customDropdownSmall">
+                                            <a href="/AllBlogs">Arthavrudhhi Blogs</a>
+                                            <a href="">Communique</a>
+                                        </ul>
+                                      </li>
+                                      <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Offerings <span className="caret"></span>
+                                        </a>
+                                        <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
+                                          <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
+                                          <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                         <a className="dropdown-item" href="#">Nifty Algo Trading</a>
+                                          <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
+                                          <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
+                                          <a className="dropdown-item" href="#">Multibagger</a>
+                                        </ul>
+                                      </li>
+                                      <li className="dropdown">
+                                        <a href="/about-us" >About Us </a>
+                                      </li>
+                                      {token ?
+                                          <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
+                                          </a>
+                                          <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
+                                            <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-xs-4 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
+                                            <hr/>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                             <a className="dropdown-item  col-lg-5 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My order</span></a>
+                                             <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton ">Logout</span></a>
+                                            
+                                          </ul>
+                                          <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
+                                              <a className="dropdown-item backColorWhite" href="/clientDashboard"><span className="myprofileButtonSmall">My Dashboard</span></a>
+                                              <a className="dropdown-item backColorWhite " href="/orderPage"><span className="myprofileButtonSmall">My Orders</span></a>
+                                             <a className="dropdown-item backColorWhite cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButtonSmall">Logout</span></a>
+                                             <a className="dropdown-item backColorWhite cursorPointer"  ><span className=" pull-right"></span></a>
+                                           
+                                          </ul>
+                                        </li>
+                                        :
+                                      <li className="dropdown">
+                                        <a href="/login">Login/Signup </a>
+                                      </li>
+                                      }
+                                      {
+                                          token ?
+                                            <li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
+                                                    <span  className="investNowHeadOtherSmall hidden-md hidden-lg" >Invest Now</span>
+                                                    <label  className="investNowHead  hidden-sm hidden-xs" >Invest Now</label>
+                                            </li>                     
+                                          :
+                                            <a  href="/login" ><li className="dropdown investNowHeadBefore">
+                                              <span >Invest Now</span>
+                                            </li>   
+                                            </a>                    
+                                      }
+                                    </ul>
+                                    :
+                                    <ul className="nav navbar-nav navbar-right customUl width50">
+                                      <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Articulations <span className="caret"></span>
+                                        </a>                       
+                                        <ul className="dropdown-menu customDropdown">
+                                            <a href="/AllBlogs">Arthavrudhhi Blogs</a>
+                                            <a href="">Communique</a>
+                                        </ul>
+                                      </li>
+                                      <li className="nav-item dropdown">
+                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                          Offerings <span className="caret"></span>
+                                        </a>
+                                        <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
+                                          <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
+                                          <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                         <a className="dropdown-item" href="#">Nifty Algo Trading</a>
+                                          <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
+                                          <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
+                                          <a className="dropdown-item" href="#">Multibagger</a>
+                                        </ul>
+                                      </li>
+                                      <li className="dropdown">
+                                        <a href="/about-us" >About Us </a>
+                                      </li>
+                                      {token ?
+                                          <li className="nav-item dropdown">
+                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
+                                          </a>
+                                          <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
+                                            <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
+                                            <hr/>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
+                                            
+                                          </ul>
+                                          <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
+                                              <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
+                                             <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
+                                           
+                                          </ul>
+                                        </li>
+                                        :
+                                      <li className="dropdown">
+                                        <a href="/login">Login/Signup </a>
+                                      </li>
+                                      }
+                                      {
+                                        token ?
+                                          <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
+                                                  <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
+                                                  <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
+                                          </li>                     
+                                        :
+                                          <a  href="/login" ><li className="dropdown investNowHeadBefore">
+                                            <span >Invest Now</span>
+                                          </li>   
+                                          </a>                    
+                                      }
+                                    </ul>
+                                  }
+                                
+                                </div>
+                              </div>
+                            </nav>
+                          </div>
+                        </div>
+                         <div className="col-lg-12 col-md-12 hidden-xs hidden-sm">
                           <div className="row">
                             <nav className="navbar marginZero customNavBar navbar-default">
                                 <div className="container-fluid">
@@ -1219,16 +1379,25 @@ export default class Header extends Component {
                                             {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
-                                            <a  className="dropdown-item" href=""><div className="ImgDiv col-lg-2 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
+                                            <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4  col-lg-offset-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>
+                                            {this.state.userinfo && this.state.userinfo.fullName ? 
+                                              <div>
+                                              <span className="mt20 textAlignCenter fs19 col-lg-12"><b>{this.state.userinfo.fullName}</b>
+                                              </span>
+                                               <span className="textAlignCenter mailClass col-lg-12">{this.state.userinfo.email}
+                                              </span>
+                                              </div>
+                                              :null
+                                            }</a>
                                             <hr/>
-                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                             <a className="dropdown-item  col-lg-5 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My order</span></a>
-                                             <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton ">Logout</span></a>
+                                             <a className="dropdown-item  col-lg-12 col-xs-12 col-sm-12 mt20 noPadding" href="/clientDashboard"><span className=" col-lg-12 myprofileButton marginTop">My Dashboard</span></a>
+                                             <a className="dropdown-item  col-lg-12 col-xs-12 col-sm-12 noPadding" href="/orderPage"><span className=" col-lg-12 myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item col-lg-6 mt20 cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton  col-lg-offset-11">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
-                                              <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                              <a className="dropdown-item backColorPurple" href="/orderPage"><span className="myprofileButton">My Dashboard</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton ">My Dashboard</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
                                            
@@ -1286,7 +1455,7 @@ export default class Header extends Component {
                                             {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
-                                            <a  className="dropdown-item" href=""><div className="ImgDiv col-lg-2 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
+                                            <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-lg-offset-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
                                              <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
                                              <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
@@ -1307,26 +1476,25 @@ export default class Header extends Component {
                                       </li>
                                       }
                                       {
-                                          token ?
-                                            <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
-                                                    <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
-                                                    <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
-                                            </li>                     
-                                          :
-                                            <a  href="/login" ><li className="dropdown investNowHeadBefore">
-                                              <span >Invest Now</span>
-                                            </li>   
-                                            </a>                    
+                                        token ?
+                                          <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
+                                                  <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
+                                                  <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
+                                          </li>                     
+                                        :
+                                          <a  href="/login" ><li className="dropdown investNowHeadBefore">
+                                            <span >Invest Now</span>
+                                          </li>   
+                                          </a>                    
                                       }
                                     </ul>
                                   }
                                 
-                                   
-                                  </div>
-                                </div>
-                              </nav>
+                              </div>
+                            </div>
+                          </nav>
                           </div>
-              </div>
+                        </div>
           </div>
       </div>    
     );

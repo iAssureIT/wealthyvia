@@ -47,7 +47,7 @@ export default class PaymentResponse extends React.Component {
         .then((orderDetails)=>{ 
           console.log("orderDetails = ",orderDetails)
           this.setState({
-            orderDetails : orderDetails.data[0],
+            orderDetails : orderDetails.data,
           }) 
           console.log("paymentDetails",this.state.orderDetails);
 
@@ -147,7 +147,7 @@ export default class PaymentResponse extends React.Component {
                             <li className="failPay"><b>Failed </b></li>
                           }
 
-                          <li>{this.state.orderDetails.transactionId}</li>
+                          <li>{this.state.orderDetails.transactionId?this.state.orderDetails.transactionId:"-"}</li>
                           <li>{this.state.date}</li>
                           <li>{this.state.orderDetails.userName}</li>
                           <li>{this.state.orderDetails.mobileNumber}</li>

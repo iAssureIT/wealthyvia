@@ -4,7 +4,7 @@ import Blogs                      from "../../blocks/Blogs/Blogs.js";
 import OwlCarousel                from 'react-owl-carousel';
 import axios                      from "axios";
 import swal                       from 'sweetalert';
-import { Document, Page, pdfjs } from "react-pdf";
+// import { Document, Page, pdfjs } from "react-pdf";
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -17,6 +17,7 @@ export default class SubscribedServices extends Component {
     super(props);
         this.state = {
           nameOfDiv             : "5gcpm",
+          Blogs                 : "",
           date                  : "09-10-2019",
           date1                 : "08-10-2019 9:30PM",
           offeringTitle         : "",
@@ -32,13 +33,36 @@ export default class SubscribedServices extends Component {
   ScrollTop(event){
     window.scrollTo(0,0);
   }
-
+  componentDidUpdate(prevProps, prevState){
+    console.log('prevProps, prevState',prevProps, prevState)
+    if(prevState.Blogs.length!==this.state.Blogs.length){
+      this.setState({
+            Blogs:this.state.Blogs
+          });
+    }
+  }
   componentDidMount()
   {
-     pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
     var userInfo = localStorage.getItem("user_ID");
     console.log("userInfo",userInfo);
+     axios
+        .get('/api/blogs/get/all/list/type/Premium/1')
+        .then((response)=>{
+        
+            this.setState({
+                Blogs:response.data
+              });
+      
+          console.log("this.state.Blogs",this.state.Blogs);
+        })
+        .catch(function(error){
+            if(error.message === "Request failed with status code 401")
+                {
+                     swal("Your session is expired! Please login again.","", "error");
+                     /*this.props.history.push("/");*/
+                }
+        })
 
     /*Get Offerings*/
 
@@ -209,13 +233,52 @@ export default class SubscribedServices extends Component {
                       <h4 className="headerBlogCD"> Blog Subscription Plan</h4>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                         <ul className="customOl myULCD">
-                            <li><a href="/InvoicePage/999">6 Months at   <span className="pull-right"> Rs 999 . &nbsp; <strike>Rs 1499 </strike></span></a></li>
-                            <li><a href="/InvoicePage/1499">1 Year at <span className="pull-right"> Rs 1499 . &nbsp;<strike> Rs 1999</strike></span></a></li>
-                            <li><a href="/InvoicePage/1999">2 Years at  <span className="pull-right"> Rs 1999 . &nbsp;<strike> Rs 2599</strike></span></a></li>
+                            <li><a href="/planPage">6 Months <span className="pull-right"> Rs 999 . &nbsp; <strike>Rs 1499 </strike></span></a></li>
+                            <li><a href="/planPage">1 Year   <span className="pull-right"> Rs 1499 . &nbsp;<strike> Rs 1999</strike></span></a></li>
+                            <li><a href="/planPage">2 Years  <span className="pull-right"> Rs 1999 . &nbsp;<strike> Rs 2599</strike></span></a></li>
 
                         </ul>
+                      
+
+
                         <label className="clickToPlan pull-right">Click on plan name to subscribe.</label>
-                      </div>            
+                      </div> 
+                      {console.log("Blogs",this.state.Blogs)}
+                      <div className="col-lg-12 textAlignCenter mt20 fs19" ><label>Premium Blogs</label></div>
+                        <OwlCarousel
+                            className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
+                            loop
+                            margin          =  {20}
+                            items           =  {1}
+                            nav             =  {0}
+                            dots            =  {0}
+                            responsiveClass =  {true}
+                            autoplay        =  {true}
+                        >
+                        {
+                        this.state.Blogs && this.state.Blogs.length>0?
+                          this.state.Blogs .map((data, index) => {
+                            return (
+                              <div className="item" key={index}>
+                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+                              <div className="row">
+                                <img src={data.bannerImage.path}/>
+
+                              </div>
+                            </div>
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+                              <div className="row">
+                                <label>{data.blogTitle}</label>
+                                <p>{data.summary}<a href="/allblogs"> read more</a></p>
+                              </div>
+                            </div>
+                              </div>
+                            );
+                          })
+                          :
+                          null
+                        }
+                      </OwlCarousel>           
                       {/*<h4 className="headerBlogCD"> Your Blog Subscription</h4>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                         <ul classN  ame="myULCDSP">
