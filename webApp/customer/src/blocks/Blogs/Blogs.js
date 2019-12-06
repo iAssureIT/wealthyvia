@@ -70,39 +70,40 @@ export default class Blogs extends Component {
 			  	<div className="blogHeading  col-md-12 col-lg-12 col-sm-12 col-xs-12"> Blogs </div>
 			  		<OwlCarousel
 					    className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
-					    loop
-					    margin 			=  {20}
-					    items  			=  {1}
-					    nav    			=  {0}
-					    dots   			=  {0}
-					    responsiveClass =  {true}
-					    autoplay        =  {true}
-					>
-					{
-					this.state.Blogs && this.state.Blogs.length>0?
-					  this.state.Blogs.map((data, index) => {
-					    return (
-					      <div className="item" key={index}>
-					      	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-								<div className="row">
-									<img src={data.bannerImage.path}/>
+					     loop
+						    margin 			=  {20}
+						    items  			=  {1}
+						    nav    			=  {0}
+						    dots   			=  {0}
+						    responsiveClass =  {true}
+						    autoplay        =  {true}
+							>
+							 {
+			                    this.state.Blogs && this.state.Blogs.length>0?
+			                      this.state.Blogs .map((data, index) => {
+			                        return (
+			                          <div className="item" key={index}>
+			                          	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+											<div className="row">
+												<img src={data.bannerImage.path}/>
 
-								</div>
-							</div>
-							<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-								<div className="row">
-									<label>{data.blogTitle}</label>
-									<p>{data.summary}<a href="/allblogs"> read more</a></p>
-								</div>
-							</div>
-					      </div>
-					    );
-					  })
-					  :
-					  null
-					}
-
-				</OwlCarousel>
+											</div>
+										</div>
+										<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+											<div className="row">
+												<label>{data.blogTitle}</label>
+												<p>{data.summary}<a href="/allblogs"> read more</a></p>
+											</div>
+										</div>
+			                          </div>
+			                        );
+			                      })
+			                      :
+			                      null
+			                  }
+							
+						</OwlCarousel>
+				
 			</div>		
 		);
 	}
