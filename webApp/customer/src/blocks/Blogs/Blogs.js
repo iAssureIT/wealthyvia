@@ -82,7 +82,6 @@ export default class Blogs extends Component {
 			                          	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
 											<div className="row">
 												<img src={data.bannerImage.path}/>
-
 											</div>
 										</div>
 										<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
