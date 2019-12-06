@@ -109,6 +109,8 @@ export default class Header extends Component {
   }
   componentDidMount()
     {
+      console.log("process.env.REACT_APP_BASE_URL",process.env.REACT_APP_BASE_URL);
+
       $('.dropdown-radio').find('input').change(function() {
       var dropdown = $(this).closest('.dropdown');
       var radioname = $(this).attr('name');
@@ -122,7 +124,7 @@ export default class Header extends Component {
       var thisvalue = dropdown.find( checked ).val();
 
     });
-      const userid = localStorage.getItem('user_ID');
+    const userid = localStorage.getItem('user_ID');
      axios.get("/api/users/get/"+userid)
       .then((response)=>{ 
           this.setState({

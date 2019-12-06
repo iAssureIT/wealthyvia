@@ -24,6 +24,7 @@ export default class Homepage extends Component {
   	  var url = this.props.location.pathname;
        console.log("lastUrl",url);
         localStorage.setItem("lastUrl",url);
+
   	}  
 	
   render() {
@@ -32,11 +33,10 @@ export default class Homepage extends Component {
 				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mb50">
 					<div className="row">
 				     {/* <Banner/>*/}
-             <Carousel/>
-             <Blogs />
-             <BottomDiv />
-{/*    				<Invest/>
-*/}      				<NoFees/>
+              <Carousel/>
+              <Blogs />
+              <BottomDiv />
+      				<NoFees/>
       				<OneAdvice/>
       				<StartTrading/>
       				<HandFreeInvesting/>
