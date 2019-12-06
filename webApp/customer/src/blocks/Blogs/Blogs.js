@@ -80,6 +80,8 @@ export default class Blogs extends Component {
 							>
 							 {
 			                    this.state.Blogs && this.state.Blogs.length>0?
+			                      
+
 			                      this.state.Blogs .map((data, index) => {
 			                        return (
 			                          <div className="item" key={index}>
