@@ -54,23 +54,18 @@ export default class Blogs extends Component {
 	              }
 	      })
 	}
-	  componentWillReceiveProps() {
+	componentWillReceiveProps() {
    		
-  }
+  	}
 
-   
   render() {
-  	// var data = this.state.Blogs;
-  	// const {data = []} = this.state.Blogs;
-  	 const {data = undefined} = this.state;
-
-  	console.log("data",blogData);
+  	
 		return (
 			<div className="col-lg-3 col-md-12 col-sm-12 col-xs-12  blogContainer ">
 			  	<div className="blogHeading  col-md-12 col-lg-12 col-sm-12 col-xs-12"> Blogs </div>
 			  		<OwlCarousel
 					    className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
-					     loop
+					    	loop
 						    margin 			=  {20}
 						    items  			=  {1}
 						    nav    			=  {0}
@@ -79,10 +74,9 @@ export default class Blogs extends Component {
 						    autoplay        =  {true}
 							>
 							 {
-			                    this.state.Blogs && this.state.Blogs.length>0?
-			                      
-
-			                      this.state.Blogs .map((data, index) => {
+			                    this.state.Blogs && this.state.Blogs.length>0
+			                    ?
+			                      this.state.Blogs.map((data, index) => {
 			                        return (
 			                          <div className="item" key={index}>
 			                          	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
@@ -110,32 +104,3 @@ export default class Blogs extends Component {
 		);
 	}
 }
-
-{/* <div className="item ">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-									<div className="row">
-										<img src="/images/monthly.png"/>
-
-									</div>
-								</div>
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-									<div className="row">
-										<label>Monthly Communique : Effect of tax reforms and opportunity one can’t afford to miss!</label>
-										<p>This is one of major reforms in Indian business ecosystem after 1991...<br/><a href="/allblogs"> read more</a></p>
-									</div>
-								</div>
-							</div>
-							 <div className="item ">
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-									<div className="row">
-										<img src="/images/stockb.jpeg"/>
-
-									</div>
-								</div>
-								<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-									<div className="row">
-										<label>Safe Heaven Stocks</label>
-										<p>In 2014 , I met an old investor. I had no clue what was his portfolio or profile. We explained him a midcap idea he listened patiently...<a href="/allblogs"> read more</a></p>
-									</div>
-								</div>
-							</div>*/}
