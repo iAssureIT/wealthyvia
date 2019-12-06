@@ -80,7 +80,7 @@ export default class Blogs extends Component {
 					>
 					{
 					this.state.Blogs && this.state.Blogs.length>0?
-					  this.state.Blogs .map((data, index) => {
+					  this.state.Blogs.map((data, index) => {
 					    return (
 					      <div className="item" key={index}>
 					      	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">

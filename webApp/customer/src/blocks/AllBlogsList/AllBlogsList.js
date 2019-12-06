@@ -5,7 +5,7 @@ import Moment 			 from 'react-moment';
 import $                 from "jquery";
 
 import './AllBlogsList.css';
-var subscribed = "";
+var subscribed = false;
 export default class AllBlogsList extends React.Component {
 
 	constructor(props) {
@@ -151,7 +151,6 @@ export default class AllBlogsList extends React.Component {
 	}
 	render() {
 		var data = this.state.Blogs;
-		var subscribed = false;
    		const loggedIn = localStorage.getItem("user_ID");
 		return (
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
