@@ -1,56 +1,85 @@
 .headerServices{
 	padding: 10px;
+	padding-bottom: 20px;
 	font-size: 25px;
+	border-bottom: 1px solid #aaa;
 }
 .blogContainCD{
+	border-radius: 10px;
+	margin-top:40px; 
+
 	border: 1px solid #aaa;
-	padding: 50px !important;
-	padding-top: 20px !important;
+	padding: 20px !important;
+	padding-top: 70px !important;
 }
 .blogContainCD h4{
 
 	text-align: center;
-}
+}	
 .headerBlogCD{
 	font-size: 25px;
 	padding-bottom: 20px;
+	padding-top: 20px;
 	font-weight: bold !important;
+	border-top: 1px solid #aaa;
 }
 .customTabContent{
 	padding: 20px !important;
 	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0px 2px 6px 4px #aaa;
     min-height: 480px !important;
 }
 .customStack{
+	background-color:	#201a47;  
+	border-radius: 10px;
+	padding: 20px !important;
 }
 .customStack>li.active>a, .customStack>li.active>a:focus, .customStack>li.active>a:hover{
 	border-radius: 3px !important;
 	background-color:#00BAF2 !important;
+	color: #333;
 }
 .customStack>li.active>a:hover{
- color: #666 !important;
+ color: #333 !important;
 }
 .planContainer{
-padding: 20px !important;
-margin-bottom: 40px;
- font-family:Arial;
-	color: #666 ;
+	padding: 15px !important;
+	margin-bottom: 40px;
+	font-family:Arial;
+	border-radius: 10px;
+	color: #aaa ;
 
 }
 .planContainer label{
-	text-align: center;
-		color: #333 !important;
+	color: #333 !important;
 
 }
 .customStack li>a{
+	background-color: #fff;
 	font-size: 16px;
 	border:1px solid #aaa;
-	padding: 18px !important;
+	padding: 15px !important;
 	color: #666;
 	margin-bottom:10px !important; 
 }
-.customTabContent h3,h5{
+.performancetab a{
+	border:none !important;
+	background-color: #201a47 !important;
+    color: #fff !important;
+    width: 370px;
+    border: none !important;
+}
+.performancetab li:hover a{
+	background-color: #337ab7 !important;
+}
+.customTabContent h3{
  text-align: center;
+ color: #24baf2;
+}
+.customTabContent h5{
+ text-align: center;
+ color: #333;
 }
 .clickToPlan{
 	color: #00f;
@@ -87,16 +116,43 @@ margin-bottom: 40px;
 	color: #201a47;
 }
 .padding100{
-	padding-bottom: 250px;
+	padding-bottom: 50px;
 }
 .activeSubscription{
 	background-color: #201a47;
-	color: #fff !important;
+	color: #333 !important;
 }
 .customStack>li>a:hover{
-	background-color: transparent !important;
-    color: #666 !important;
+	background-color: #00BAF2 !important;
+    color: #333 !important;
 }
 .marLeft{
 	margin-left: 20%;
 }
+.mainContainerSS{
+	background-color: #00BAF2;
+}
+.performancetab{
+	position: absolute;
+    left: 820px;
+    top: -515px;
+    width: 100%;
+    z-index: 1000 !important;
+
+}
+.marginTopM
+{
+	margin-top: -60px;
+}
+.borderTop{
+	border-top:1px solid #aaa;
+	padding-top: 10px;
+}
+.height310{
+	height: 310px;
+}
+/*.customStack:first-child {
+  background-color: yellow;
+}
+*/
+

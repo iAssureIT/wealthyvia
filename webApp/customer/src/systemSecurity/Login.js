@@ -22,6 +22,7 @@ class Login extends Component {
       super();
         this.state = {
           destination: "",           
+          userStatus: "",           
           loggedIn : false,
           auth: {
                 email           : '',
@@ -33,6 +34,7 @@ class Login extends Component {
   componentDidMount(){
     const parsed = queryString.parse(this.props.location.search);
     this.setState({destination : parsed.destination});
+     
   }
 
   userlogin(event){
@@ -49,7 +51,32 @@ class Login extends Component {
           localStorage.setItem("token",response.data.token);
           localStorage.setItem("user_ID",response.data.ID);   
           if(this.state.destination){
-             this.props.history.push(this.state.destination);            
+            
+              axios
+              .get('/api/subscriptionorders/paymentOrderDetailsUser/'+response.data.ID)
+              .then((userStatus)=>{
+                if(userStatus.data.length>0)
+                {
+                console.log("userStatus.data[0].paymentStatus",userStatus.data[0].paymentStatus);
+                  if(userStatus.data[0].paymentStatus == "Paid" )
+                  {
+                      this.props.history.push(this.state.destination);            
+                      window.location.reload();                 
+                   }else{
+                      this.props.history.push("/planPage");
+                 }
+                }else{
+                    this.props.history.push("/planPage");
+                }
+                })
+              .catch(function(error){
+                console.log(error);
+                  if(error.message === "Request failed with status code 401")
+                      {
+                           swal("Your session is expired! Please login again.","", "error");
+                           this.props.history.push("/");
+                      }
+              })
           }else{ 
             if( localStorage.getItem("lastUrl")){
                console.log("-->",localStorage.getItem("lastUrl"))

@@ -5,6 +5,7 @@ import OwlCarousel                from 'react-owl-carousel';
 import axios                      from "axios";
 import swal                       from 'sweetalert';
 // import { Document, Page, pdfjs } from "react-pdf";
+import Moment                     from 'moment';
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -28,6 +29,7 @@ export default class SubscribedServices extends Component {
           numPages              : null,
           pageNumber            : 1,
           subscribed            : false,
+          blogSubscribed        : "",
         };
     }
   ScrollTop(event){
@@ -51,8 +53,10 @@ export default class SubscribedServices extends Component {
         .then((userStatus)=>{
          console.log("===>",userStatus.data);
           this.setState({
-              userStatus:userStatus.data[0].paymentStatus
+              userStatus:userStatus.data[0].paymentStatus,
+              blogSubscribed:userStatus.data[0]
             });
+          console.log("this.state.userStatus",this.state.userStatus)
           if( this.state.userStatus == "Paid")
           {
             subscribed = true
@@ -151,14 +155,13 @@ export default class SubscribedServices extends Component {
     const path = "/Changes to be made.pdf";
 
     return (
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 padding100">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContainerSS padding100">
                 <div className="row">
                   <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 mt40 ">  
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray planContainer ">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite planContainer ">
                       <label className="headerServices col-lg-12">Services you subscribed for</label>
                       <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt40 "> 
                           <ul class="nav nav-pills nav-stacked customStack textAlignCenter">
-                            <li ><a data-toggle="pill" href="#performance">Performance</a></li>
                            {this.state.subscriptionData?
                              this.state.subscriptionData.map((a, i)=>{
                                 return(
@@ -176,11 +179,12 @@ export default class SubscribedServices extends Component {
                               })
                               :null
                             }
+                            <li className="performancetab"><a data-toggle="pill" href="#performance">Click here to check performance</a></li>
                           </ul>
 
                       </div>
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                          <div id="performance" class="tab-pane fade in active">
+                          <div id="performance" class="tab-pane fade in active ">
                            {/* <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>*/}
                             <h3>Performance Reports</h3>
                             <h5 className="">Last update date : {this.state.date} </h5>
@@ -208,7 +212,6 @@ export default class SubscribedServices extends Component {
                              this.state.subscriptionData.map((a, i)=>{
                                 return(
                                     <div id={a.offering_ID} class="tab-pane fade in ">
-                                      <h6 className="pull-right"><span>Start Date :  {a.startDate} </span> - <span>End Date :  {a.endDate} </span> </h6><br/>
                                       <h3>{a.offeringTitle} Reports & Statement</h3>
                                       <h5>Last update date : {this.state.date} </h5>
                                         <label className="mt20">{this.state.date1}</label><br/>
@@ -254,8 +257,62 @@ export default class SubscribedServices extends Component {
                   </div>  
                   {
                     subscribed ?
-                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt40 ">   
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD">
+                      
+                  <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite">
+                    <h4 className="headerBlogCD col-lg-12"> Your Blog Subscription</h4>
+                      <ul className="myULCDSP mt20">
+                          <li>{this.state.blogSubscribed.planName} Subsription  <span className="pull-right"><i class="fa fa-rupee">&nbsp;</i> {(this.state.blogSubscribed.amountPaid)/100} </span></li>
+{/*                          <li>Subscribed on <span className="pull-right"></span><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{this.state.blogSubscribed.createdAt}</Moment></li>
+*/}                         <li>Subscription end date  <span className="pull-right">02-02-2020 </span></li>
+
+                      </ul>
+                      <label className="mt40 priBlogHead borderTop textAlignCenter col-lg-12">Premium Blogs</label>
+                      <div>
+                        <OwlCarousel
+                          className="owl-theme  col-md-10 col-lg-offset-1 col-lg-10 col-sm-12 col-xs-12 boxShadow"
+                           loop
+                            margin={20}
+                            items={1}
+                            nav={0}
+                            dots={0}
+                            responsiveClass={true}
+                            autoplay={true}
+                          >
+                         {
+                            this.state.Blogs && this.state.Blogs.length>0?
+                              this.state.Blogs .map((data, index) => {
+                                return (
+                                  <div className="item" key={index}>
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+                                  <div className="row">
+                                    <img src={data.bannerImage.path}/>
+
+                                  </div>
+                                </div>
+                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+                                  <div className="row">
+                                    <label>{data.blogTitle}</label>
+                                    <p>{data.summary}<a href="/allblogs"> read more</a></p>
+                                  </div>
+                                </div>
+                                  </div>
+                                );
+                              })
+                            :
+                            null
+                          }
+                         
+                        
+                      </OwlCarousel>
+                      </div>
+
+                      <label className="clickToPlan pull-right mt20"><a href="/allblogs">Read more premium blog >></a></label>
+                    </div>          
+                  </div>          
+                  : 
+                   <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12  ">   
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite ">
                           <h4 className="headerBlogCD"> Blog Subscription Plan</h4>
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                             <ul className="customOl myULCD">
@@ -265,9 +322,9 @@ export default class SubscribedServices extends Component {
                             </ul>
                            <label className="clickToPlan pull-right">Click on plan name to subscribe.</label>
                           </div>
-                          <div className="col-lg-12 textAlignCenter mt20 fs19" ><label>Premium Blogs</label></div>
+                          <div className="col-lg-12 textAlignCenter mt20 fs19 borderTop textAlignCenter" ><label>Premium Blogs</label></div>
                         <OwlCarousel
-                            className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
+                            className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow"
                             loop
                             margin          =  {20}
                             items           =  {1}
@@ -301,61 +358,10 @@ export default class SubscribedServices extends Component {
                         }
                       </OwlCarousel> 
                     </div>                    
-                  </div>
-                  :    
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
-                  <h4 className="headerBlogCD"> Your Blog Subscription</h4>
-                    <ul classN  ame="myULCDSP mt20">
-                        <li><a href="">6 Month Subsription  <span className="pull-right"> Rs 999 </span></a></li>
-                        <li><a href="">Subscribed on <span className="pull-right">02-10-2019 </span></a></li>
-                        <li><a href="">Subscription end date  <span className="pull-right">02-02-2020 </span></a></li>
-
-                    </ul>
-                    <label className="mt40 priBlogHead">Premium Blogs</label>
-                    <div>
-                      <OwlCarousel
-                        className="owl-theme  col-md-12 col-lg-12 col-sm-12 col-xs-12 boxShadow"
-                         loop
-                          margin={20}
-                          items={1}
-                          nav={0}
-                          dots={0}
-                          responsiveClass={true}
-                          autoplay={true}
-                        >
-                       {
-                          this.state.Blogs && this.state.Blogs.length>0?
-                            this.state.Blogs .map((data, index) => {
-                              return (
-                                <div className="item" key={index}>
-                                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-                                <div className="row">
-                                  <img src={data.bannerImage.path}/>
-
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-                                <div className="row">
-                                  <label>{data.blogTitle}</label>
-                                  <p>{data.summary}<a href="/allblogs"> read more</a></p>
-                                </div>
-                              </div>
-                                </div>
-                              );
-                            })
-                          :
-                          null
-                        }
-                       
-                      
-                    </OwlCarousel>
-                    </div>
-
-                    <label className="clickToPlan pull-right mt20">Read more premium blog >></label>
-                  </div>          
-                            
-                                
-                   }
+                  </div>  
+                              
+                                  
+                     }
                 </div>
               </div>
     );

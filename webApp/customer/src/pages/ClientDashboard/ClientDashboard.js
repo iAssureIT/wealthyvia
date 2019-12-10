@@ -17,7 +17,7 @@ export default class ClientDashboard extends Component {
   	 const token = localStorage.getItem("user_ID");
     if(token){
 		return (
-				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mb50">
+				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mb50">
 					<div className="row">
 				    <DashboardHeader />
             <SubscribedServices />

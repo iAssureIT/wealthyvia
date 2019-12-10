@@ -37,7 +37,6 @@ class UploadStatement extends Component{
   componentDidMount() {
     var user_IDOff_id = this.props.match.params.user_ID;
     user_ID = user_IDOff_id;
-    console.log("user_ID",user_ID);
     axios
     .get('/api/projectsettings/get/S3')
     .then((response)=>{
@@ -52,8 +51,10 @@ class UploadStatement extends Component{
         this.setState({
           config : config
         })
+       console.log("config",config);
       })
       .catch(function(error){
+        console.log("error",error)
         if(error.message === "Request failed with status code 401")
         {
            swal("Your session is expired! Please login again.","", "error");

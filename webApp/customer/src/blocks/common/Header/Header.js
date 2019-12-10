@@ -46,8 +46,7 @@ export default class Header extends Component {
   }
   logout(){
     var user_ID = localStorage.setItem("user_ID", "")
-    
-     window.location.reload();  
+    window.location.reload();  
 
   }
 
@@ -109,7 +108,6 @@ export default class Header extends Component {
   }
   componentDidMount()
     {
-      console.log("process.env.REACT_APP_BASE_URL",process.env.REACT_APP_BASE_URL);
 
       $('.dropdown-radio').find('input').change(function() {
       var dropdown = $(this).closest('.dropdown');
@@ -130,6 +128,18 @@ export default class Header extends Component {
           this.setState({
               userinfo : response.data
           })
+
+      })
+      .catch((error)=>{
+            console.log('error', error);
+      })
+      /*userCount*/
+       axios.get("/api/users/get/list/1")
+      .then((userInfo)=>{ 
+          this.setState({
+              userCount : userInfo.data.length
+          })
+          console.log("userInfo",this.state.userCount);
 
       })
       .catch((error)=>{
@@ -647,7 +657,6 @@ export default class Header extends Component {
 */  console.log("userinfo",this.state.userinfo);
   if( this.state.userinfo.fullName){
     const var1 =  this.state.userinfo.fullName.split(' ');
-    console.log("var1",var1)
     var firstLetterF = var1[0].charAt(0);
     var firstLetterL = var1[1].charAt(0);
   }
@@ -824,15 +833,13 @@ export default class Header extends Component {
                                                       <span className="radioCheck"></span>
                                                    </div>
                                                   <span className="centreDetaillistItem col-xs-9 ">FD/bonds/gold 80%, MF /direct equity 20% </span>
-
                                           </div>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
-                                              <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                      <input type="radio" name={this.state.Question3} value="FD 60% , 30 %Gold, 10% bonds, no direct equity" onChange={this.getCheckValue.bind(this)}/>
-                                                      <span className="radioCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem col-xs-9">FD 60% , 30 %Gold, 10% bonds, no direct equity</span>
-
+                                            <div className="centreDetailContainer col-lg-1 col-xs-3 row">
+                                                    <input type="radio" name={this.state.Question3} value="FD 60% , 30 %Gold, 10% bonds, no direct equity" onChange={this.getCheckValue.bind(this)}/>
+                                                    <span className="radioCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem col-xs-9">FD 60% , 30 %Gold, 10% bonds, no direct equity</span>
                                           </div>
                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-1 col-xs-3 row">
@@ -890,21 +897,18 @@ export default class Header extends Component {
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                                             <p><b>{this.state.Question5}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
-                                     
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name={this.state.Question5} value="0 to -25%" onChange={this.getCheckValue.bind(this)}/>
-                                                      <span className="radioCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem col-xs-9 ">0 to -25%</span>
-
-                                          </div>
-                                          <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
+                                                    <input type="radio" name={this.state.Question5} value="0 to -25%" onChange={this.getCheckValue.bind(this)}/>
+                                                    <span className="radioCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem col-xs-9 ">0 to -25%</span>
+                                            </div>
+                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name={this.state.Question5} value="-25% to -50%" onChange={this.getCheckValue.bind(this)}/>
-                                                      <span className="radioCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem  col-xs-9">-25% to -50%</span>
-
+                                                    <input type="radio" name={this.state.Question5} value="-25% to -50%" onChange={this.getCheckValue.bind(this)}/>
+                                                    <span className="radioCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem  col-xs-9">-25% to -50%</span>
                                           </div>
                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
@@ -1143,24 +1147,27 @@ export default class Header extends Component {
                                 <nav className="navbar marginZero customNavBarUpper backColorWhite colorP navbar-default  hidden-xs hidden-sm">
                                     <div className="container-fluid">
                                       <div className="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <a className="navbar-brand webSiteName colorP col-lg-4 col-md-4 col-sm-4 col-xs-4" href="/">
-                                          <div className="col-lg-9 webSiteImage">
+                                        <a className="navbar-brand webSiteName colorP col-lg-3 col-md-3 col-sm-4 col-xs-4" href="/">
+                                          <div className="col-lg-10 webSiteImage">
                                             <img src ="/images/WealthyVia_Logo.png" />
                                           </div>
                                         </a>
                                       <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP"><b>SEBI Registration No. INH000005397</b></a></div>
-                                      <div className="col-lg-3 col-md-10 col-mg-offset-1 col-sm-10 col-xs-12 iconContainerHeader">
+                                      <div className="col-lg-4 col-md-10 col-sm-10 col-xs-12 iconContainerHeader">
                                         <div className="row">
+                                          <div className="col-lg-3 col-md-2 col-sm-1 col-xs-1 mt10 textAlignRight noPadding  pull-right ">
+                                            <b className="fs19">{(285+this.state.userCount)} +</b><br/>  Users
+                                          </div> 
                                         
                                           <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
-                  
-                                          <a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><img src="/images/linkedin1.png"/></a>
+                                           <a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><img src="/images/link.png"/></a>
                                           </div> 
                                           <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook pull-right">
-                                            <a href="https://www.facebook.com/wealthy.via" target="_blank">  <img src="/images/facebook.png"/></a>
-                                          </div> <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
-                                            <a href=" https://twitter.com/ViaWealthy" target="_blank"><img src="/images/twitter.png"/></a>
-                                          </div> 
+                                            <a href="https://www.facebook.com/wealthy.via" target="_blank">  <img src="/images/face.png"/></a>
+                                          </div>
+                                           <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
+                                            <a href=" https://twitter.com/ViaWealthy" target="_blank"><img src="/images/tweet.png"/></a>
+                                          </div>
                                         </div>
                                       </div>
                                       </div>
@@ -1224,13 +1231,13 @@ export default class Header extends Component {
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-xs-4 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
                                              <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                             <a className="dropdown-item  col-lg-5 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My order</span></a>
+                                             <a className="dropdown-item  col-lg-5 col-xs-7 col-sm-7" href="/MyOrders"><span className="myprofileButton">My order</span></a>
                                              <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton ">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
                                               <a className="dropdown-item backColorWhite" href="/clientDashboard"><span className="myprofileButtonSmall">My Dashboard</span></a>
-                                              <a className="dropdown-item backColorWhite " href="/orderPage"><span className="myprofileButtonSmall">My Orders</span></a>
+                                              <a className="dropdown-item backColorWhite " href="/MyOrders"><span className="myprofileButtonSmall">My Orders</span></a>
                                              <a className="dropdown-item backColorWhite cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButtonSmall">Logout</span></a>
                                              <a className="dropdown-item backColorWhite cursorPointer"  ><span className=" pull-right"></span></a>
                                            
@@ -1291,13 +1298,13 @@ export default class Header extends Component {
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
                                              <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/MyOrders"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
                                               <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                              <a className="dropdown-item backColorPurple" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/MyOrders"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
                                            
@@ -1393,13 +1400,13 @@ export default class Header extends Component {
                                             }</a>
                                             <hr/>
                                              <a className="dropdown-item  col-lg-12 col-xs-12 col-sm-12 mt20 noPadding" href="/clientDashboard"><span className=" col-lg-12 myprofileButton marginTop">My Dashboard</span></a>
-                                             <a className="dropdown-item  col-lg-12 col-xs-12 col-sm-12 noPadding" href="/orderPage"><span className=" col-lg-12 myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item  col-lg-12 col-xs-12 col-sm-12 noPadding" href="/MyOrders"><span className=" col-lg-12 myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item col-lg-6 mt20 cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton  col-lg-offset-11">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
                                               <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton ">My Dashboard</span></a>
-                                              <a className="dropdown-item backColorPurple" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/MyOrders"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
                                            
@@ -1460,13 +1467,13 @@ export default class Header extends Component {
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-lg-offset-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
                                             <hr/>
                                              <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                             <a className="dropdown-item  col-lg-7 col-xs-7 col-sm-7" href="/MyOrders"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item col-lg-6 row cursorPointer"  onClick={this.logout.bind(this)}><span className="logOutButton pull-right">Logout</span></a>
                                             
                                           </ul>
                                           <ul className="dropdown-menu  hidden-md hidden-lg" aria-labelledby="navbarDropdownMenuLink">
                                               <a className="dropdown-item backColorPurple" href="/clientDashboard"><span className="myprofileButton">My Dashboard</span></a>
-                                              <a className="dropdown-item backColorPurple" href="/orderPage"><span className="myprofileButton">My Orders</span></a>
+                                              <a className="dropdown-item backColorPurple" href="/MyOrders"><span className="myprofileButton">My Orders</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer" onClick={this.logout.bind(this)}><span className="myprofileButton">Logout</span></a>
                                              <a className="dropdown-item backColorPurple cursorPointer"  ><span className=" pull-right"></span></a>
                                            

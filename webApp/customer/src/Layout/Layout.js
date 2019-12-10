@@ -51,7 +51,7 @@ const WebLayout = () => (
               <Route path="/offerings/:divId"                 exact strict component={ProductPage}  />
               <Route path="/InvoicePage/:order_id"            exact strict component={InvoicePage}  />
               <Route path="/PlanPage"                         exact strict component={PlanPage}  />
-              <Route path="/OrderPage"                        exact strict component={OrderPage}  />
+              <Route path="/MyOrders"                        exact strict component={OrderPage}  />
               <Route path="/blogsform"                        exact strict component={BlogsFormPage}  />
               <Route path="/offeringformpage"                 exact strict component={offeringFormPage}  />
               <Route path="/offeringformpage/:selectedID"     exact strict component={offeringFormPage}  />

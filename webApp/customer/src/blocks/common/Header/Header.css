@@ -741,6 +741,9 @@ dropdown-submenu {
   transition-duration: 0.5s;
 
 }
+.faceBook img{
+ height: 30px;
+}
 .faceBook:hover{
   cursor: pointer;
   transform: scale(1.1);

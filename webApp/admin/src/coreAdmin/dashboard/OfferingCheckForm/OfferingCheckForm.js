@@ -177,6 +177,7 @@ class OfferingCheckForm extends Component{
 
 
         },()=>{
+          console.log(" this.state.userIdG", this.state.userIdG);
         axios.get('/api/offeringsubscriptions/get/'+ this.state.userIdG)
           .then( (res)=>{      
             if(res.data.startDate == ""){
