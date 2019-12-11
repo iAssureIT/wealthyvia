@@ -6,7 +6,6 @@ import $ 					from "jquery";
 import axios 				from 'axios';
 import queryString          from "query-string";
 
-
 import 'bootstrap/js/tab.js';
 import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
@@ -17,16 +16,16 @@ class SignUp extends Component {
  	constructor(){
       super();
         this.state = {           
-           loggedIn             : false,
-           fields               : {},
-      	   errors               : {},
-      	   firstNameV 			: '',
-      	   lastNameV			: "",
-	    	mobileV 			: "",
+            loggedIn            : false,
+            fields              : {},
+      	   	errors              : {},
+      	   	firstNameV 			: '',
+      	   	lastNameV			: "",
+	     	mobileV 			: "",
 	    	emailIDV			: "",
 	    	signupPassword  	: "",
 	    	buttonHeading   	: "Sign Up",
-           auth:{
+          	auth:{
                 firstname       : '',
                 lastname        : '',
                 mobNumber       : '',

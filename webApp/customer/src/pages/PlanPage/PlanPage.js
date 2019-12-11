@@ -20,6 +20,7 @@ export default class PlanPage extends Component {
 
   componentDidMount()
   {
+    // window.location.reload();
      var user_ID = localStorage.getItem('user_ID')
      this.setState({
       user_ID : user_ID,

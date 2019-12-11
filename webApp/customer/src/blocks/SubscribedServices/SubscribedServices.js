@@ -47,12 +47,11 @@ export default class SubscribedServices extends Component {
   }
   componentDidMount()
   {
-
     var userInfo = localStorage.getItem("user_ID");
-
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+userInfo)
         .then((userStatus)=>{
+          console.log("userStatus",userStatus)
           this.setState({
               userStatus    :userStatus.data[0].paymentStatus,
               blogSubscribed:userStatus.data[0],
@@ -268,6 +267,7 @@ export default class SubscribedServices extends Component {
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite">
                     <h4 className="headerBlogCD col-lg-12"> Your Blog Subscription</h4>
+                      {console.log("Blogs",this.state.blogSubscribed)}
                       <ul className="myULCDSP mt20">
                           <li>{this.state.blogSubscribed.planName} Subsription  <span className="pull-right"><i class="fa fa-rupee">&nbsp;</i> {(this.state.blogSubscribed.amountPaid)/100} </span></li>
                           <li>Subscribed on <span className="pull-right">{this.state.createdAt}</span></li>
@@ -309,6 +309,7 @@ export default class SubscribedServices extends Component {
                             :
                             null
                           }
+                      }
                          
                         
                       </OwlCarousel>

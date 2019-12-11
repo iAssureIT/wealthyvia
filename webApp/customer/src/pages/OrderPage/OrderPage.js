@@ -72,6 +72,7 @@ export default class OrderPage extends Component {
                                   <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Plan Name :<span className="noBold">  {data.planName}</span></span>
                                   <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Amount : <span className="noBold"> <i class="fa fa-rupee">&nbsp;</i> {(data.amountPaid)/100}</span></span>
                                   <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Validity Period : <span className="noBold">{data.planName} &nbsp;( {this.state.endsOn} )</span></span>
+                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Payment Status: <span className="noBold">{data.paymentStatus == "unPaid" ?  "Failed" : "Success" } </span></span>
                                 </a>
                                 </div>
                             )

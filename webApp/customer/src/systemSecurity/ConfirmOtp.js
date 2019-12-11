@@ -35,15 +35,41 @@ class ConfirmOtp extends Component {
       const token = localStorage.getItem("verify");
       const destination = localStorage.getItem("destination");
       localStorage.setItem("user_ID",formValues.ID);
-      console.log("destination",destination);
 
       if(token == "true")
       {
         this.props.history.push('/reset-pwd/'+formValues.ID);
       }else if(destination && destination!="undefined" ){
-        this.props.history.push(destination);
-        console.log("in dest")
-        window.location.reload();
+
+              axios
+              .get('/api/subscriptionorders/paymentOrderDetailsUser/'+formValues.ID)
+              .then((userStatus)=>{
+                if(userStatus.data.length>0)
+                {
+                  console.log("userStatus.data[0].paymentStatus0",userStatus.data[0].paymentStatus)
+                  if(userStatus.data[0].paymentStatus == "Paid" )
+                  {
+                  console.log("userStatus.data[0].paymentStatus1")
+
+                       this.props.history.push(destination);
+                   }else{
+                      console.log("userStatus.data[0].paymentStatuspla")
+                      this.props.history.push("/planPage");
+                 }
+                }else{
+                                  
+                  this.props.history.push("/planPage");
+                }
+                })
+              .catch(function(error){
+                console.log(error);
+                  if(error.message === "Request failed with status code 401")
+                      {
+                           swal("Your session is expired! Please login again.","", "error");
+                           this.props.history.push("/");
+                      }
+              })
+       
 
       }else{
         this.props.history.push('/');

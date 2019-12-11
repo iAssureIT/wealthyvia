@@ -142,7 +142,7 @@ export default class InvoicePage extends Component {
                         <li className="dateContain">Tax (18%)</li>
                         <li className="dateContain"><b>Grand Total</b></li>
                       </ul>
-                      <ul className="customUlIP rzp_test_lQNmCUfCX3Wkh4xtAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
+                      <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
                     
                         <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</li>
                         <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)-((this.state.orderDetails.amountPaid/100)/1.18))}</li>

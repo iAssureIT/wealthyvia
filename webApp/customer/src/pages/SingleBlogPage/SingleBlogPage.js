@@ -6,11 +6,11 @@ import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
 import Moment                from 'react-moment';
-import {
+/*import {
   FacebookShareButton,
   LinkedinShareButton,
  
-} from 'react-share';
+} from 'react-share';*/
 import "./SingleBlogPage.css";
 var id;
 
