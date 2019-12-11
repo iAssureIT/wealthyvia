@@ -16,7 +16,7 @@ export default class OrderPage extends Component {
           planName: "Gold Plan",
           amount: 35000,
           validityPeriod: "3 Months",
-          endsOn: "Ends on 24/02/2020",
+          endsOn: "Ends on 12/6/2020",
           offeringName:"Gold Plan",
           orderResponse : "",
         };
@@ -26,13 +26,7 @@ export default class OrderPage extends Component {
   }
   componentDidMount()
   {
-         var user_ID = localStorage.getItem('user_ID')
-
-      // String myDate = "2014/10/29 18:10:45";
-      // SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-      // Date date = sdf.parse(myDate);
-      // long millis = date.getTime();
-
+    var user_ID = localStorage.getItem('user_ID')      
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
         .then((orderResponse)=>{ 
@@ -40,6 +34,7 @@ export default class OrderPage extends Component {
           this.setState({
             orderResponse : orderResponse.data,
           })
+          console.log("orderResponse",this.state.orderResponse);
         })
         .catch(function(error){
             if(error.message === "Request failed with status code 401")

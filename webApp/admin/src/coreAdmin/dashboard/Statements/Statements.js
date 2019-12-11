@@ -208,8 +208,8 @@ class Statements extends Component{
                                     <th className="text-center">Mail</th>
                                     <th className="text-center">Start Date</th>
                                     <th className="text-center">End Date</th>
-                                    <th className="text-center">Action</th>
-                                 </tr>
+{/*                                    <th className="text-center">Action</th>
+*/}                                 </tr>
                                 </thead>
                                 <tbody>
                                   {
@@ -223,8 +223,8 @@ class Statements extends Component{
                                       <td className="text-center">{InactiveList.emailId}</td>
                                       <td className="text-center">{InactiveList.startDate}</td>
                                       <td className="text-center">{InactiveList.endDate}</td>
-                                      <td className="text-center"><a href={"/uploadStatement/"+InactiveList.wmSub_id} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-eye"></i></a></td>
-
+{/*                                      <td className="text-center"><a href={"/uploadStatement/"+InactiveList.wmSub_id} data-toggle="tooltip" title="Upload Statements"><i className="fa fa-eye"></i></a></td>
+*/}
                                     </tr>
                                     )
                                   })
