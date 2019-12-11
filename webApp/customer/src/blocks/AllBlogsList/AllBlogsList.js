@@ -20,7 +20,6 @@ export default class AllBlogsList extends React.Component {
 	deleteBlog(event){
 		event.preventDefault();
 		var id= event.target.id;
-		console.log("id delet",id);
 		 swal({
 	          title: "Are you sure you want to delete this Blog?",
 	          text: "Once deleted, you will not be able to recover this Blog!",
@@ -50,7 +49,6 @@ export default class AllBlogsList extends React.Component {
 		axios
 	      .get('/api/blogs/get/all/list')
 	      .then((response)=>{
-	       console.log("===>",response.data);
 	      	this.setState({
 	      			Blogs:response.data
 	      		});
@@ -71,7 +69,6 @@ export default class AllBlogsList extends React.Component {
 		axios
 	      .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
 	      .then((userStatus)=>{
-	       console.log("===>",userStatus.data);
 	      	this.setState({
 	      			userStatus:userStatus.data[0].paymentStatus
 	      		});
@@ -101,22 +98,17 @@ export default class AllBlogsList extends React.Component {
 	getView(event)
 	{
 		var getValue = event.target.getAttribute("data-value");
-		console.log("getValue",getValue);
 		this.setState({
 			viewType : getValue,
 		})
-		console.log("viewType",this.state.viewType);
 	 				
 	}
 	searchBlogs(event){
 		var searchText = this.refs.searchBox.value;
-		 console.log("searchText = ", searchText);
 		if(searchText!== ""){
-			console.log("in if")
 			axios
 		      .get('/api/blogs/get/search/list/'+searchText)
 		      .then((response)=>{
-		       console.log("===>",response.data);
 		       if(response.data.length >0)
 		      	{
 		      	this.setState({
@@ -124,7 +116,6 @@ export default class AllBlogsList extends React.Component {
 		      			noData : false
 		      		});
 		      	}else{
-		      		console.log("array empty")
 		      		this.setState({
 		      			noData : true
 		      		})
@@ -140,7 +131,6 @@ export default class AllBlogsList extends React.Component {
 	                }
 		      })
 		  }else{
-		  	console.log("in el;s")
 		  	this.setState({
       			noData : false
       		})
@@ -169,7 +159,6 @@ export default class AllBlogsList extends React.Component {
 						</div>
 					</div>
 				</div>
-          					{console.log("this.state.noData "+this.state.noData +"data.length"+data.length)}
           		<div className="col-lg-12">
           			{ this.state.viewType == "grid" 
           				?

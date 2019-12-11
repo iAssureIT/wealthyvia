@@ -17,29 +17,27 @@ export default class ProductPage extends Component {
 	constructor(props){
     super(props);
 	    this.state = {
-	    	productDetailsArray:[],
-	    	  	"name"             : "",
-        		"panNumber"      : "",
-        		"email"            : "",
-        		"nameModal"             : "",
-        		"panNumberModal"      : "",
-        		"emailModal"            : "",
-        		"addressProof"      : "",
-        		"contactNumber"    : "",
-	    		"fields"        : {},
-      			"errors"        : {},  
-            "fields1"        : {},
-            "errors1"        : {},
+	    	productDetailsArray    :[],
+	    	"name"             : "",
+        "panNumber"        : "",
+        "email"            : "",
+        "nameModal"        : "",
+        "panNumberModal"   : "",
+        "emailModal"       : "",
+        "addressProof"     : "",
+        "contactNumber"    : "",
+	    	"fields"           : {},
+      	"errors"           : {},  
+        "fields1"          : {},
+        "errors1"          : {},
 	    };
   	}  
-      srollDiv(event)
-  {
-        window.scrollTo(0,630);
-
-  }
+    srollDiv(event)
+    {
+      window.scrollTo(0,630);
+    }
   	componentDidMount()
   	{
-		      console.log('Selected value=',$('.dropdown-radio').find('input').change())
   		$('.dropdown-radio').find('input').change(function() {
 		  var dropdown = $(this).closest('.dropdown');
 		  var radioname = $(this).attr('name');
@@ -54,145 +52,130 @@ export default class ProductPage extends Component {
 
 		});
 
-	console.log(this.props.match.params.divId);
-	this.setState({
-		divID : this.props.match.params.divId,
-	})
+  	this.setState({
+  		divID : this.props.match.params.divId,
+  	})
   	}
-  	 onOptionSelect = (value) => {
-    console.log('Selected value=', value)	
-	}
-  handleChange(event){
+  	onOptionSelect = (value) => {
+  	}
+    handleChange(event){
 
-    this.setState({
-      "name"             : this.refs.name.value,
-      "contactNumber"    : this.refs.contactNumber.value,
-      "email"            : this.refs.email.value,
-       "nameModal"             : this.refs.nameModal.value,
-      "contactNumberModal"    : this.refs.contactNumberModal.value,
-      "emailModal"            : this.refs.emailModal.value,
-      "panNumber"      : this.refs.panNumber.value,
-      "addressProof"      : this.refs.addressProof.value,
-    });
-       let fields = this.state.fields;
-    fields[event.target.name] = event.target.value;
-    this.setState({
-      fields
-    });
-    if (this.validateForm() && this.validateFormReq()) {
-      let errors = {};
-      errors[event.target.name] = "";
       this.setState({
-        errors: errors
+        "name"                  : this.refs.name.value,
+        "contactNumber"         : this.refs.contactNumber.value,
+        "email"                 : this.refs.email.value,
+        "nameModal"             : this.refs.nameModal.value,
+        "contactNumberModal"    : this.refs.contactNumberModal.value,
+        "emailModal"            : this.refs.emailModal.value,
+        "panNumber"             : this.refs.panNumber.value,
+        "addressProof"          : this.refs.addressProof.value,
       });
-    }
-      let fields1 = this.state.fields1;
-    fields1[event.target.name] = event.target.value;
-    this.setState({
-      fields1
-    });
-    if (this.validateFormModal() && this.validateFormReqModal()) {
-      let errors1 = {};
-      errors1[event.target.name] = "";
+      let fields = this.state.fields;
+      fields[event.target.name] = event.target.value;
       this.setState({
-        errors1: errors1
+        fields
       });
-    }
-
+      if (this.validateForm() && this.validateFormReq()) {
+        let errors = {};
+        errors[event.target.name] = "";
+        this.setState({
+          errors: errors
+        });
+      }
+        let fields1 = this.state.fields1;
+      fields1[event.target.name] = event.target.value;
+      this.setState({
+        fields1
+      });
+      if (this.validateFormModal() && this.validateFormReqModal()) {
+        let errors1 = {};
+        errors1[event.target.name] = "";
+        this.setState({
+          errors1: errors1
+        });
+      }
   }
 
 	Submit(event){
-		event.preventDefault();
-
-	if (this.validateForm() && this.validateFormReq()) {
-     
-      var dataArray={
-       "name"            : this.refs.name.value,
-      "addressProof"      : this.refs.addressProof.value,
-      "panNumber"      : this.refs.panNumber.value,
-      "email"            : this.refs.email.value,
-      "contactNumber"    : this.refs.contactNumber.value,
-
-    }
-      let fields = {};
-      fields["panNumber"]     = "";
-      fields["addressProof"]     = "";
-      fields["name"]            = "";
-      fields["email"]           = "";
-      fields["contactNumber"]   = "";
-    
-        swal("Congrats..!", "Your data is submitted sucessfully!", "success")
- $("#kycModal").hide();
-    $("#kycModal").removeClass('in');
-      $(".modal-backdrop").remove();
-  console.log("In")
-  $("body").removeClass("modal-open");
-      this.setState({
-        "panNumber"     	: "",
-        "addressProof"      : "",
-        "name"             : "",
-        "email"            : "",
-        "contactNumber"    : "",
+  	event.preventDefault();
+  	if (this.validateForm() && this.validateFormReq()) {
        
-        "fields"           : fields
-      });
+        var dataArray={
+        "name"            : this.refs.name.value,
+        "addressProof"     : this.refs.addressProof.value,
+        "panNumber"        : this.refs.panNumber.value,
+        "email"            : this.refs.email.value,
+        "contactNumber"    : this.refs.contactNumber.value,
+
+        }
+        let fields                = {};
+        fields["panNumber"]       = "";
+        fields["addressProof"]    = "";
+        fields["name"]            = "";
+        fields["email"]           = "";
+        fields["contactNumber"]   = "";
       
-    }
+        swal("Congrats..!", "Your data is submitted sucessfully!", "success")
+        $("#kycModal").hide();
+        $("#kycModal").removeClass('in');
+        $(".modal-backdrop").remove();
+        $("body").removeClass("modal-open");
+            this.setState({
+              "panNumber"     	 : "",
+              "addressProof"     : "",
+              "name"             : "",
+              "email"            : "",
+              "contactNumber"    : "",
+              "fields"           : fields
+            });
+        
+      }
 
   	}
 
 	CloseKycModal(){
-   $("#kycModal").hide();
+    $("#kycModal").hide();
     $("#kycModal").removeClass('in');
-	$(".modal-backdrop").remove();
-	console.log("In")
-	$("body").removeClass("modal-open");
+  	$(".modal-backdrop").remove();
+  	$("body").removeClass("modal-open");
 
 	}
 	SubmitEnquire(event){
-	event.preventDefault();
-      console.log("In",this.validateFormReqModal() )
-      console.log("In",this.validateFormModal() )
-
-
-	if (this.validateFormModal() && this.validateFormReqModal()) {
-     
-      var dataArray={
-     
-       "nameModal"             : this.refs.nameModal.value,
-      "contactNumberModal"    : this.refs.contactNumberModal.value,
-      "emailModal"            : this.refs.emailModal.value,
-
-    }
-      let fields1 = {};
-       fields1["nameModal"]            = "";
-      fields1["emailModal"]           = "";
-      fields1["contactNumberModal"]   = "";
+	  event.preventDefault();
+  	if (this.validateFormModal() && this.validateFormReqModal()) {
+        
+        var dataArray={
+          "nameModal"             : this.refs.nameModal.value,
+          "contactNumberModal"    : this.refs.contactNumberModal.value,
+          "emailModal"            : this.refs.emailModal.value,
+        }
+        let fields1 = {};
+        fields1["nameModal"]            = "";
+        fields1["emailModal"]           = "";
+        fields1["contactNumberModal"]   = "";
         swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-  $("#EnquireModal").hide();
-    $("#EnquireModal").removeClass('in');
-      $(".modal-backdrop").remove();
-  console.log("In")
-  $("body").removeClass("modal-open");
-      	
-      this.setState({
-       
-         "nameModal"             : "",
-        "emailModal"            : "",
-        "contactNumberModal"    : "",
-        "fields1"           : fields1
-      });
-    }
+        $("#EnquireModal").hide();
+        $("#EnquireModal").removeClass('in');
+        $(".modal-backdrop").remove();
+        $("body").removeClass("modal-open");
+        this.setState({
+         
+           "nameModal"             : "",
+          "emailModal"            : "",
+          "contactNumberModal"    : "",
+          "fields1"           : fields1
+        });
+      }
 	}
 	SubmitFirst(event){
   	event.preventDefault();
-	  	$("#myModal").hide();
+	  $("#myModal").hide();
 		$("#myModal").removeClass('in');
 		$("#kycModal").show();
 		$("#kycModal").addClass('in');
 	}
 
-   validateFormReq() {
+  validateFormReq() {
     let fields = this.state.fields;
     let errors = {};
     let formIsValid = true;
@@ -224,10 +207,10 @@ export default class ProductPage extends Component {
       });
       return formIsValid;
   }
-    validateFormReqModal() {
-    let fields = this.state.fields1;
-    let errors = {};
-    let formIsValid = true;
+  validateFormReqModal() {
+      let fields = this.state.fields1;
+      let errors = {};
+      let formIsValid = true;
       
         if (!fields["nameModal"]) {
         formIsValid = false;
@@ -266,16 +249,14 @@ export default class ProductPage extends Component {
           formIsValid = false;
           errors["contactNumber"] = "Please enter valid mobile no.";
         }
-      }
-        
-     
+      }        
       this.setState({
         errors: errors
       });
       return formIsValid;
-}
+  }
 
- validateFormModal() {
+  validateFormModal() {
     let fields = this.state.fields1;
     let errors = {};
     let formIsValid = true;
@@ -294,12 +275,11 @@ export default class ProductPage extends Component {
           errors["contactNumberModal"] = "Please enter valid mobile no.";
         }
       }
-     
       this.setState({
         errors1: errors
       });
       return formIsValid;
-}
+  }
   isNumberKey(evt){
     var charCode = (evt.which) ? evt.which : evt.keyCode
     if (charCode > 31 && (charCode < 48 || charCode > 57)  && (charCode < 96 || charCode > 105))

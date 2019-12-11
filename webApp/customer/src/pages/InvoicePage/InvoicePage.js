@@ -40,15 +40,12 @@ export default class InvoicePage extends Component {
     axios
       .get('/api/companysettings/list')
       .then((response)=>{ 
-        console.log("companysettings response = ",response.data)
         this.setState({
           companysettings : response.data,
         },()=>{
-          console.log("companysettings = ",this.state.companysettings);
         })
       })
       .catch(function(error){
-        console.log(error);
           if(error.message === "Request failed with status code 401"){
              swal("Your session is expired! Please login again.","", "error");
              this.props.history.push("/");
@@ -59,15 +56,12 @@ export default class InvoicePage extends Component {
       axios
       .get('/api/subscriptionorders/paymentOrderDetails/'+order_id)
       .then((orderDetails)=>{ 
-        console.log("1 orderDetails = ",orderDetails.data)
         this.setState({
           orderDetails : orderDetails.data,
         }) 
-        console.log("paymentDetails",this.state.orderDetails);
 
       })
       .catch(function(error){
-        console.log(error);
           if(error.message === "Request failed with status code 401")
           {
              swal("Your session is expired! Please login again.","", "error");
@@ -78,7 +72,6 @@ export default class InvoicePage extends Component {
   makePayment(event)
   {
     event.preventDefault();
-    console.log("In makepayment")
    
   }
 
@@ -165,7 +158,6 @@ export default class InvoicePage extends Component {
                   <div className="bottomDiv col-lg-12  noPadding">
                       <div className="col-lg-8 col-lg-offset-4  col-md-12 col-sm-12 col-xs-12 btnContainer">
                          <div>
-                         {console.log("axios.defaults.baseURL",axios.defaults.baseURL)}
                             <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
                             
                               <input type="hidden" name="key_id" value="rzp_test_lQNmCUfCX3Wkh4"/>

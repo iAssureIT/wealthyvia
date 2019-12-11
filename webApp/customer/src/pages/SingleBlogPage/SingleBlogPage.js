@@ -6,7 +6,6 @@ import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
 import Moment                from 'react-moment';
-// import ShareLinkedin         from 'react-share-linkedin';
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -83,7 +82,6 @@ export default class SingleBlogPage extends React.Component {
 
 	render() {
    
-    console.log('CurrentUrl',this.state.CurrentUrl);
     const token = localStorage.getItem("user_ID");
     if(token){
 

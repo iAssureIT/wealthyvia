@@ -39,7 +39,6 @@ export default class SubscribedServices extends Component {
     window.scrollTo(0,0);
   }
   componentDidUpdate(prevProps, prevState){
-    console.log('prevProps, prevState',prevProps, prevState)
     if(prevState.Blogs.length!==this.state.Blogs.length){
       this.setState({
             Blogs:this.state.Blogs
@@ -50,12 +49,10 @@ export default class SubscribedServices extends Component {
   {
 
     var userInfo = localStorage.getItem("user_ID");
-    console.log("userInfo",userInfo);
 
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+userInfo)
         .then((userStatus)=>{
-         console.log("===>",userStatus.data);
           this.setState({
               userStatus    :userStatus.data[0].paymentStatus,
               blogSubscribed:userStatus.data[0],
@@ -72,9 +69,7 @@ export default class SubscribedServices extends Component {
           this.setState({
             "calculatedDate" : calculatedDate,
           })
-          console.log(currentDate);
-          console.log(futureMonth._d);
-          console.log("calculatedDate",calculatedDate);
+          
           if( this.state.userStatus == "Paid")
           {
             subscribed = true
@@ -100,7 +95,6 @@ export default class SubscribedServices extends Component {
                 Blogs:response.data
               });
       
-          console.log("this.state.Blogs",this.state.Blogs);
         })
         .catch(function(error){
             if(error.message === "Request failed with status code 401")
@@ -114,7 +108,6 @@ export default class SubscribedServices extends Component {
 
     axios.get('/api/offerings/get/all/list/1')
     .then((res)=>{      
-      console.log("offerings",res.data);
       this.setState({
             offeringTitle : res.data,
           })
@@ -135,7 +128,6 @@ export default class SubscribedServices extends Component {
                   subscriptionData        : res.data.offering,
                   listOfPerformanceDoc    : res.data.performanceDoc,          
                 },()=>{
-                  console.log("listOfPerformanceDoc",res.data)
             })
           })
           .catch((error)=>{
@@ -151,7 +143,6 @@ export default class SubscribedServices extends Component {
     event.preventDefault();
      var startDate = event.target.getAttribute("data-startDate");
    var endDate = event.target.getAttribute("data-endDate");
-   console.log("startDate"+startDate+"-"+"endDate"+endDate);
    this.setState({
       StartDate : startDate,
       EndDate   : endDate
@@ -183,7 +174,6 @@ export default class SubscribedServices extends Component {
                              this.state.subscriptionData.map((a, i)=>{
                                 return(
                                   <li>
-                                      {console.log("a.offeringTitle",a._id)}
                                     { 
                                       this.state.subscriptionData[i].offeringStatus == "Active" ?
                                         <a data-toggle="pill" className="activeSubscription" data-startDate={a.startDate?a.startDate:""} data-endDate={a.endDate?a.endDate:""} onClick={this.getDate.bind(this)} href={"#"+a.offering_ID}>{a.offeringTitle}</a>
@@ -233,7 +223,6 @@ export default class SubscribedServices extends Component {
                                       <h3>{a.offeringTitle} Reports & Statement</h3>
                                       <h5>Last update date : {this.state.date} </h5>
                                         <label className="mt20">{this.state.date1}</label><br/>
-                                        {console.log("this.state.subscriptionData.statements",this.state.subscriptionData[i].statements)}
                                         {
                                           this.state.subscriptionData[i].statements?
                                           this.state.subscriptionData[i].statements.map((a, i)=>{

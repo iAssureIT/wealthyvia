@@ -36,14 +36,12 @@ export default class OrderPage extends Component {
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
         .then((orderResponse)=>{ 
-          console.log("response",orderResponse.data)
+
           this.setState({
             orderResponse : orderResponse.data,
           })
-          console.log("orderResponse",this.state.orderResponse);
         })
         .catch(function(error){
-          console.log(error);
             if(error.message === "Request failed with status code 401")
             {
                swal("Your session is expired! Please login again.","", "error");
@@ -56,7 +54,6 @@ export default class OrderPage extends Component {
 
   render() {
     const loggedIn = localStorage.getItem("user_ID");
-    console.log("orderResponse",this.state.orderResponse)
     return (
             loggedIn ?
 

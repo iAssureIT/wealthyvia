@@ -56,7 +56,6 @@ class BlogsForm extends Component{
     axios
       .get("/api/blogs/get/"+id)
       .then((response)=>{
-        console.log("===>",response.data);
         this.setState({
           "blogTitle":response.data.blogTitle,
           "summary":response.data.summary,
@@ -114,17 +113,13 @@ class BlogsForm extends Component{
       
   }
   uploadDesignImg(e){
-          console.log("upload =",e.target.files[0]);
-          var file = e.target.files[0];
+      var file = e.target.files[0];
         this.setState({
           uploadedImage: e.target.files[0]
         },()=>{
-          console.log("uploadToS3 =",this.state.uploadedImage);
-          console.log("config",this.state.config);
            S3FileUpload
             .uploadFile(file,this.state.config)
             .then((Data)=>{
-                console.log('mani', Data);
               this.setState({
                 imgbPath : {
                   "path"    : Data.location,
@@ -151,7 +146,6 @@ uploadBlogImage(event){
         var ext = newFile.name.split('.').pop();
         if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
           if (newFile) {
-      console.log("blog1Img--------------->",newFile);
             S3FileUpload
               .uploadFile(newFile,this.state.config)
               .then((Data)=>{
@@ -165,10 +159,8 @@ uploadBlogImage(event){
                     // workspaceImages : imgArrayWSaws
                     blog1Img : imgArrayWSaws
                   })
-      console.log("blog1Img1--------------->",imgArrayWSaws);
               })
               .catch((error)=>{
-                console.log("formErrors");
                 console.log(error);
               })
 
@@ -220,7 +212,6 @@ uploadBlogImage(event){
     var filePath = e.target.getAttribute('data-id');
     var data = filePath.split("/");
     var imageName = data[4];
-    console.log("imageName==",imageName);
 
     if(index){
       swal({
@@ -282,7 +273,6 @@ uploadBlogImage(event){
           .then((res)=>{
                       swal("Thank you .Your Blog Created.");
                        this.props.history.push("/singleblogpage/"+res.data.ID);
-                       console.log("response = ", res.data);
 
                   })
                   .catch((error)=>{

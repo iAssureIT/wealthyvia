@@ -47,7 +47,6 @@ export default class InvoicePageView extends Component {
       CurrentURL : CurrentURL,
     })
     // var calculate = parseInt(this.props.match.params.validityPeriod);
-     console.log("CurrentURL",CurrentURL);
      var user_ID = localStorage.getItem('user_ID')
      this.setState({
       user_ID : user_ID,
@@ -63,17 +62,14 @@ export default class InvoicePageView extends Component {
             console.log('error', error);
       })
      var hostname = window.location.hostname=='localhost'?'localhost:3001':window.location.hostname;
-     console.log("user_ID",user_ID)
 
     /* get orderDetails */
         axios
         .get('/api/subscriptionorders/paymentOrderDetails/'+order_id)
         .then((orderDetails)=>{ 
-          console.log("orderDetails = ",orderDetails)
           this.setState({
             orderDetails : orderDetails.data,
           }) 
-          console.log("paymentDetails",this.state.orderDetails);
 
         })
         .catch(function(error){
@@ -88,12 +84,9 @@ export default class InvoicePageView extends Component {
       axios
         .get('/api/companysettings/list')
         .then((response)=>{ 
-          console.log("response",response.data)
           this.setState({
             companysettings : response.data,
           })
-          console.log("companysettings",this.state.companysettings);
-
           
         })
         .catch(function(error){
@@ -108,7 +101,6 @@ export default class InvoicePageView extends Component {
   makePayment(event)
   {
     event.preventDefault();
-    console.log("In makepayment")
    
   }
 

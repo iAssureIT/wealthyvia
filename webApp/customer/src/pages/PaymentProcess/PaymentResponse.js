@@ -18,7 +18,6 @@ export default class PaymentResponse extends React.Component {
 
 	componentDidMount(){
 		var order_id = this.props.match.params.orderId;
-		console.log("order_id = ",order_id);
     CurrentURL = window.location.href;
     this.setState({
       date: Moment(new Date()).format("DD-MM-YYYY")
@@ -45,11 +44,9 @@ export default class PaymentResponse extends React.Component {
         axios
         .get('/api/subscriptionorders/paymentOrderDetails/'+order_id)
         .then((orderDetails)=>{ 
-          console.log("orderDetails = ",orderDetails)
           this.setState({
             orderDetails : orderDetails.data,
           }) 
-          console.log("paymentDetails",this.state.orderDetails);
 
         })
         .catch(function(error){
@@ -64,12 +61,9 @@ export default class PaymentResponse extends React.Component {
       axios
         .get('/api/companysettings/list')
         .then((response)=>{ 
-          console.log("response",response.data)
           this.setState({
             companysettings : response.data,
           })
-          console.log("companysettings",this.state.companysettings);
-
           
         })
         .catch(function(error){

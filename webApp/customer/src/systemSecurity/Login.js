@@ -57,7 +57,6 @@ class Login extends Component {
               .then((userStatus)=>{
                 if(userStatus.data.length>0)
                 {
-                console.log("userStatus.data[0].paymentStatus",userStatus.data[0].paymentStatus);
                   if(userStatus.data[0].paymentStatus == "Paid" )
                   {
                       this.props.history.push(this.state.destination);            
@@ -79,7 +78,6 @@ class Login extends Component {
               })
           }else{ 
             if( localStorage.getItem("lastUrl")){
-               console.log("-->",localStorage.getItem("lastUrl"))
                this.props.history.push(localStorage.getItem("lastUrl"));
                 window.location.reload();
             }else{

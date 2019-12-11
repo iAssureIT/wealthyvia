@@ -30,7 +30,6 @@ componentDidMount(){
 		axios
       .get('/api/offerings/get/'+id)
       .then((response)=>{
-      	console.log("response blogs==",response.data);
         this.setState({
 
 

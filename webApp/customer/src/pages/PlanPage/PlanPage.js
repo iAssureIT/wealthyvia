@@ -55,15 +55,13 @@ export default class PlanPage extends Component {
         "endDate"         : "27-08-2020",
         "paymentOrderId"   : "",
         "amountPaid"      : 0,
-    };  console.log("options",options);  
+    };   
       axios
         .post('/api/subscriptionorders/post',options)
         .then((response)=>{ 
-          console.log("response",response.data)
           this.setState({
             paymentDetails : response.data,
           })
-          console.log("paymentDetails",this.state.paymentDetails);
           this.props.history.push("/invoicePage/"+this.state.paymentDetails.id);
         })
         .catch(function(error){
