@@ -29,6 +29,7 @@
     "react-scripts": "3.0.1",
     "react-scroll-parallax": "^2.1.2",
     "react-share": "^3.0.1",
+    "react-share-linkedin": "^1.0.0",
     "react-simple-radio-button": "^1.0.14",
     "react-table": "^6.10.0",
     "redux": "^4.0.4",

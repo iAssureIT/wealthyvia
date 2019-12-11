@@ -1,20 +1,20 @@
-import React from 'react';
+import React                 from 'react';
 import SingleBlogBanner      from "../../blocks/SingleBlogBanner/SingleBlogBanner.js";
 import BlogContent           from "../../blocks/BlogContent/BlogContent.js";
 import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
-import Moment                from 'react-moment';
-//import MetaTags              from 'react-meta-tags';
-// import ShareLink          from 'react-facebook-share-link'
-//import ShareLinkedin        from 'react-share-linkedin';
-
 import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
-import "./SingleBlogPage.css";
-//import { FacebookProvider, Share } from 'react-facebook';
-
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
-
+import Moment                from 'react-moment';
+// import ShareLinkedin         from 'react-share-linkedin';
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+ 
+} from 'react-share';
+import "./SingleBlogPage.css";
 var id;
+
 export default class SingleBlogPage extends React.Component {
 
 	constructor(props) {
@@ -99,14 +99,25 @@ export default class SingleBlogPage extends React.Component {
               href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank">
                   <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
-              <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+  {/*              <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+*/}               <LinkedinShareButton
+                  title       = {this.state.blogTitle}
+                  description = {this.state.summary}
+                  url         = {this.state.CurrentUrl}
+                >
+                <i class="fa fa-linkedin"></i>
+                </LinkedinShareButton>
             </div>
               <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
                 <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
                 href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
-                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+
+                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin">
+
+                </i></a>
+                   
               </div>
 
 

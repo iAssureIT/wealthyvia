@@ -6,6 +6,7 @@ import axios                      from "axios";
 import swal                       from 'sweetalert';
 // import { Document, Page, pdfjs } from "react-pdf";
 import Moment                     from 'moment';
+import moment               from 'moment';
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -19,8 +20,10 @@ export default class SubscribedServices extends Component {
         this.state = {
           nameOfDiv             : "5gcpm",
           Blogs                 : "",
+          calculatedDate        : "",
           date                  : "09-10-2019",
           date1                 : "08-10-2019 9:30PM",
+          createdAt             : "",
           offeringTitle         : "",
           userOfferingsChecked  : "",
           listOfPerformanceDoc  : "",
@@ -48,15 +51,30 @@ export default class SubscribedServices extends Component {
 
     var userInfo = localStorage.getItem("user_ID");
     console.log("userInfo",userInfo);
+
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+userInfo)
         .then((userStatus)=>{
          console.log("===>",userStatus.data);
           this.setState({
-              userStatus:userStatus.data[0].paymentStatus,
-              blogSubscribed:userStatus.data[0]
+              userStatus    :userStatus.data[0].paymentStatus,
+              blogSubscribed:userStatus.data[0],
+              createdAt     :moment(userStatus.data[0].createdAt).format("YYYY-MM-DD"),
             });
-          console.log("this.state.userStatus",this.state.userStatus)
+          var currentDate = this.state.createdAt;
+          var futureMonth = moment(currentDate).add(6, 'M');
+          var futureMonthEnd = moment(futureMonth).endOf('month');
+
+         /* if(currentDate.date() != futureMonth.date() && futureMonth.isSame(futureMonthEnd.format('YYYY-MM-DD'))) {
+              futureMonth = futureMonth.add(1, 'd');
+          }*/
+          var calculatedDate = moment(futureMonth._d).format("YYYY-MM-DD");
+          this.setState({
+            "calculatedDate" : calculatedDate,
+          })
+          console.log(currentDate);
+          console.log(futureMonth._d);
+          console.log("calculatedDate",calculatedDate);
           if( this.state.userStatus == "Paid")
           {
             subscribed = true
@@ -151,8 +169,7 @@ export default class SubscribedServices extends Component {
   }
   render() {
     var date = "09-10-2019  5:30PM";
-    const { pageNumber, numPages } = this.state;
-    const path = "/Changes to be made.pdf";
+  
 
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContainerSS padding100">
@@ -179,7 +196,8 @@ export default class SubscribedServices extends Component {
                               })
                               :null
                             }
-                            <li className="performancetab"><a data-toggle="pill" href="#performance">Click here to check performance</a></li>
+                            <li className="performancetabSmall hidden-lg hidden-md"><a data-toggle="pill" href="#performance">Click here to check performance</a></li>
+                            <li className=" performancetab hidden-xs hidden-sm"><a data-toggle="pill" href="#performance">Click here to check performance</a></li>
                           </ul>
 
                       </div>
@@ -263,8 +281,8 @@ export default class SubscribedServices extends Component {
                     <h4 className="headerBlogCD col-lg-12"> Your Blog Subscription</h4>
                       <ul className="myULCDSP mt20">
                           <li>{this.state.blogSubscribed.planName} Subsription  <span className="pull-right"><i class="fa fa-rupee">&nbsp;</i> {(this.state.blogSubscribed.amountPaid)/100} </span></li>
-{/*                          <li>Subscribed on <span className="pull-right"></span><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{this.state.blogSubscribed.createdAt}</Moment></li>
-*/}                         <li>Subscription end date  <span className="pull-right">02-02-2020 </span></li>
+                          <li>Subscribed on <span className="pull-right">{this.state.createdAt}</span></li>
+                          <li>Subscription end date  <span className="pull-right">{this.state.calculatedDate}</span></li>
 
                       </ul>
                       <label className="mt40 priBlogHead borderTop textAlignCenter col-lg-12">Premium Blogs</label>
