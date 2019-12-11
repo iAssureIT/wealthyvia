@@ -6,7 +6,6 @@ import swal                 from 'sweetalert';
 import $                    from "jquery";
 import './Statements.css';
 
-
 var ActiveArrayUser =[];
 class Statements extends Component{
 

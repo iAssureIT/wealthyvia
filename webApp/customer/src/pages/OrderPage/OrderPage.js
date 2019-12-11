@@ -11,14 +11,14 @@ export default class OrderPage extends Component {
   constructor(props) {
     super(props);
         this.state = {
-          date:"24/09/2019",
-          orderNumber: "123456",
-          planName: "Gold Plan",
-          amount: 35000,
-          validityPeriod: "3 Months",
-          endsOn: "Ends on 12/6/2020",
-          offeringName:"Gold Plan",
-          orderResponse : "",
+          date            : "24/09/2019",
+          orderNumber     : "123456",
+          planName        : "Gold Plan",
+          amount          : 35000,
+          validityPeriod  : "3 Months",
+          endsOn          : "Ends on 12/6/2020",
+          offeringName    : "Gold Plan",
+          orderResponse   : "",
         };
     }
   ScrollTop(event){

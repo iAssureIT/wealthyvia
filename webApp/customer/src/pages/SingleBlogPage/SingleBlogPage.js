@@ -97,14 +97,14 @@ export default class SingleBlogPage extends React.Component {
               href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank">
                   <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
-  {/*              <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
-*/}               <LinkedinShareButton
+                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+               {/*<LinkedinShareButton
                   title       = {this.state.blogTitle}
                   description = {this.state.summary}
                   url         = {this.state.CurrentUrl}
                 >
                 <i class="fa fa-linkedin"></i>
-                </LinkedinShareButton>
+                </LinkedinShareButton>*/}
             </div>
               <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
                 <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
