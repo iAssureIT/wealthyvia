@@ -49,7 +49,7 @@ class UploadStatement extends Component{
         },()=>{
 
           /*for performance*/
-
+          console.log("this.state.userDetailsDisplay.performanceDoc",this.state.userDetailsDisplay.performanceDoc);
           if(this.state.userDetailsDisplay.performanceDoc)
             {
              if(this.state.userDetailsDisplay.performanceDoc.length >0)
@@ -94,6 +94,11 @@ class UploadStatement extends Component{
               selectedFiles : x[0].statements,
             });
          }
+         else{
+          this.setState({
+              selectedFiles : "",
+            });
+         }
       }
     })
   }
@@ -135,12 +140,12 @@ class UploadStatement extends Component{
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (file) {
               var fileArrayPerformance = this.state.fileArrayPerformance;
-              fileArrayPerformance.push(file);
+              fileArrayPerformance.push(event.currentTarget.files[0]);
 
-              console.log("fileArrayPerformance",fileArrayPerformance);
               this.setState({
                 fileArrayPerformance : fileArrayPerformance
               }); 
+              console.log("fileArrayPerformance",fileArrayPerformance);
           }else{         
             swal("File not uploaded","Something went wrong","error"); 
           }    
@@ -151,27 +156,6 @@ class UploadStatement extends Component{
     }
   }
 
-/*  deleteimageLogo(index){
-     swal({
-        title: "Are you sure you want to delete this document?",
-        text: "Once deleted, you will not be able to recover this document!",
-        icon: "warning",
-        buttons: true,
-        dangerMode: true,
-      })
-      .then((success) => {
-          if (success) {
-            swal("Your file is deleted!");
-            this.setState({
-              uploadStatement : ""
-            })
-          } else {
-          swal("Your file is safe!");
-        }
-      }
-    );
-  }
-*/
   Submit(event)
   {
     const data = new FormData();
@@ -185,17 +169,24 @@ class UploadStatement extends Component{
     .then( (uploadedStatements)=>{  
          if(uploadedStatements.status === 200){
             swal("Congrats..!","Document uploaded successfully", "success");
-        /*    var statementsConcat = this.state.selectedFiles;
-            statementsConcat = statementsConcat.concat(uploadedStatements.data.keyList);*/
-             var statements ={
-                statements : uploadedStatements.data.keyList,
+           var statementsConcat = this.state.selectedFiles;
+           var statements = {};
+           if(uploadedStatements.data.keyList != undefined){
+            statementsConcat = statementsConcat.concat(uploadedStatements.data.keyList);
+             statements ={
+                statements : statementsConcat,
               } 
-              this.setState({
-                showFile : "",
-              })
-            console.log("statements",uploadedStatements.data.keyList);
-/*            console.log("statementsConcat",statementsConcat);
-*/             axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenTargetID,statements)
+              console.log("statements if",statements);
+
+            }else{
+              statements ={
+                statements : this.state.selectedFiles,
+              }
+              
+            console.log("statements else",statements);
+            }
+            console.log("statementsConcat",statements);
+            axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenTargetID,statements)
                 .then( (uploadedStatements)=>{      
                   this.setState({
                         uploadedStatementsDatabase : uploadedStatements.data,
@@ -234,23 +225,6 @@ class UploadStatement extends Component{
   {
 
     const data = new FormData();
-    var fileArrayPerformanceData = this.state.fileArrayPerformanceData; 
-    var fileArrayPerformance = this.state.fileArrayPerformance;
-    if(fileArrayPerformanceData.length > 0){
-      for (var k=0;k<=this.state.fileArrayPerformanceData.length;k++)
-      {
-        console.log(" -",this.state.fileArrayPerformanceData[k].name);
-         fileArrayPerformance.push(new File(['file'], this.state.fileArrayPerformanceData[k].name, {type: 'application/pdf'}));
-        //fileArrayPerformance.concat(new File(['file'], this.state.fileArrayPerformanceData[k].name, {type: 'application/pdf'}))
-        break;
-
-      }
-      console.log("fileArrayPerformance",fileArrayPerformance);
-    }
-
-    this.setState({
-      fileArrayPerformance :fileArrayPerformance,
-    },()=>{
 
     if (this.state.fileArrayPerformance) {
       for ( let i = 0; i < this.state.fileArrayPerformance.length; i++ ) {
@@ -261,12 +235,23 @@ class UploadStatement extends Component{
       axios.post('/api/fileUpload/',data)
         .then( (uploadedStatements)=>{  
           console.log("uploadedStatements",uploadedStatements);    
-      
+           var performanceConcat = this.state.fileArrayPerformanceData;
+           var performanceDoc = {};
+
           if(uploadedStatements.status === 200){
             swal("Congrats..!","Document uploaded successfully", "success");
-            var performanceDoc ={
-              performanceDoc : uploadedStatements.data.keyList,
-            } 
+            if(uploadedStatements.data.keyList != undefined)
+            {
+              performanceConcat = performanceConcat.concat(uploadedStatements.data.keyList);
+              performanceDoc ={
+                performanceDoc : performanceConcat,
+              } 
+            }else{
+              performanceDoc ={
+                performanceDoc : this.state.fileArrayPerformanceData,
+              } 
+            }
+            console.log("performanceDoc",performanceDoc);   
             axios.patch('/api/wmsubscriptions/patch/'+wmSub_id,performanceDoc)
               .then( (uploadedStatements)=>{      
                 this.setState({
@@ -292,7 +277,7 @@ class UploadStatement extends Component{
             swal("Error!","Something went wrong !!", "error");
           }
       });  
-    });
+  
   }
   deleteDocument(e)
   {
@@ -329,8 +314,6 @@ class UploadStatement extends Component{
     var fileToDelete = e.target.getAttribute("data-name");
     var index        = e.target.getAttribute('id');
     var filePath     = e.target.getAttribute('data-id');
-    var data         = fileToDelete.split("/");
-    var imageName    = data[4];
 
     if(index){
       swal({
@@ -342,11 +325,11 @@ class UploadStatement extends Component{
           })
           .then((willDelete) => {
             if (willDelete) {
-              var array = this.state.fileArrayPerformance; // make a separate copy of the array
+              var array = this.state.fileArrayPerformanceData; // make a separate copy of the array
               array.splice(index, 1);
               swal("File deleted successfully");
               this.setState({
-                fileArrayPerformance: array,
+                fileArrayPerformanceData: array,
               });
             }else {
               swal("Your document is safe!");
@@ -427,7 +410,13 @@ class UploadStatement extends Component{
                           <div>
                             
                               <div  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row padTopC">
+                                {
+                                  this.state.showFile.length >0 || this.state.selectedFiles.length>0?
                                 <p className="fileName">File Uploaded</p>
+                                :
+                                null
+
+                                }
                                 {
                                   this.state.showFile  && this.state.showFile.length > 0 ?
                                   this.state.showFile.map((a, index)=>{
@@ -495,16 +484,19 @@ class UploadStatement extends Component{
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
                       
                       
-                      {
-                      this.state.fileArrayPerformance.length<=0?
-                      null         
-                      :
+                      
+                      
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div>
-                            {
-                              this.state.fileType ==="File" ?
-                              <div  className="col-lg-12 col-md-4 col-sm-12 col-xs-12 row padTopC">
+                            
+                              <div  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row padTopC">
+                              {
+                                  this.state.fileArrayPerformance.length >0 || this.state.fileArrayPerformanceData.length>0?
                                 <p className="fileName">File Uploaded</p>
+                                :
+                                null
+
+                                }                               
                                 {
                                   this.state.fileArrayPerformance && this.state.fileArrayPerformance.length > 0 ?
                                   this.state.fileArrayPerformance.map((a, index)=>{
@@ -520,14 +512,27 @@ class UploadStatement extends Component{
                                 :
                                   null
                                 }
+                                 {
+                                  this.state.fileArrayPerformanceData && this.state.fileArrayPerformanceData.length > 0 ?
+                                  this.state.fileArrayPerformanceData.map((a, index)=>{
+                                    return(
+                                      <div  key={index} className="pdfContainer col-lg-2" >
+                                        <img src="/images/pdf.png"/>
+                                        <i id={index} className="fa fa-times-circle customCircle pull-right" title="Remove Document" data-name={a.name} onClick={this.deletePerformanceDocument.bind(this)}></i>
+                                        <p className="">{a.name}</p>
+
+                                      </div>
+                                    )
+                                  })
+                                :
+                                  null
+                                }
                               </div>
-                            :
-                              null
-                            }
+                           
                           </div>
                      
                       </div>
-                     }
+                     
                     </div> 
                      <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
                       <div onClick={this.SubmitPerformance.bind(this)} className="submitOffering pull-right" >Submit</div>
