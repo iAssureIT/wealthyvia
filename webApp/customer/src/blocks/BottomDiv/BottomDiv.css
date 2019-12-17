@@ -109,15 +109,14 @@
     opacity: 1;
     z-index: 1000;
     transition-duration: 0.5s;
- font-family:Arial;
+    font-family:Arial;
     cursor: pointer;
     text-align: center;
-    background-color: rgba(0,0,0,0.6);
     margin-top: -185px;
     padding: 15px;
     padding-top: 75px !important;
 
-    color: #fff;
+    color: #333;
 }
 .miniDiv1Filterother img {
     transform: scale(1);
@@ -153,24 +152,23 @@
     opacity: 0;
     z-index: 1000;
     transition-duration: 0.5s;
- font-family:Arial;
+    font-family:Arial;
     text-align: center;
-    background-color: rgba(0,0,0,0.9);
     margin-top: -185px;
     padding: 15px;
     padding-top: 50px !important;
-    color: #fff;
+    color: #333;
 }
 .miniFilterTextDivother label{
     font-size: 20px;
     padding-top: 20px; 
     line-height: 25px;
-    color: #fff;
+    color: #333;
 }
 .miniFilterTextDiv2 label{
     font-size: 19px;
     line-height: 45px;
-    color: #fff;
+    color: #333;
 }
 .miniDiv1Filterother:hover .miniFilterTextDivother{
     opacity: 1;

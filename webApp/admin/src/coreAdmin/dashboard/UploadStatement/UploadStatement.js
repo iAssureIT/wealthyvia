@@ -170,13 +170,22 @@ class UploadStatement extends Component{
          if(uploadedStatements.status === 200){
             swal("Congrats..!","Document uploaded successfully", "success");
            var statementsConcat = this.state.selectedFiles;
+           console.log("statementsConcat",statementsConcat,this.state.selectedFiles);
            var statements = {};
            if(uploadedStatements.data.keyList != undefined){
-            statementsConcat = statementsConcat.concat(uploadedStatements.data.keyList);
-             statements ={
-                statements : statementsConcat,
-              } 
+              if(this.state.selectedFiles)
+              {
+               statementsConcat = statementsConcat.concat(uploadedStatements.data.keyList);
+               statements ={
+                  statements : statementsConcat,
+                } 
               console.log("statements if",statements);
+
+              }else{
+                statements ={
+                  statements : uploadedStatements.data.keyList,
+                } 
+              }
 
             }else{
               statements ={
@@ -295,13 +304,15 @@ class UploadStatement extends Component{
           })
           .then((willDelete) => {
             if (willDelete) {
-              var array = this.state.selectedFiles; // make a separate copy of the array
-              array.splice(index, 1);
-              swal("File deleted successfully");
-              this.setState({
-                selectedFiles: array
-              });
-              console.log("selectedFiles",this.state.selectedFiles)
+             
+                var array = this.state.selectedFiles; // make a separate copy of the array
+                array.splice(index, 1);
+                swal("File deleted successfully");
+                this.setState({
+                  selectedFiles: array
+                });
+                console.log("selectedFiles",this.state.selectedFiles)
+             
             }else {
               swal("Your document is safe!");
             }

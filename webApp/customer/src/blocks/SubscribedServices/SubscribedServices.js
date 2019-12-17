@@ -21,8 +21,8 @@ export default class SubscribedServices extends Component {
           nameOfDiv             : "5gcpm",
           Blogs                 : "",
           calculatedDate        : "",
-          date                  : "09-10-2019",
-          date1                 : "08-10-2019 9:30PM",
+          date                  : "",
+          date1                 : "",
           createdAt             : "",
           offeringTitle         : "",
           userOfferingsChecked  : "",
@@ -142,8 +142,8 @@ export default class SubscribedServices extends Component {
   } 
   getData(event)
   {
-      var Filekey  =  event.target.getAttribute("data-key");
-      console.log("Filekey",event.target.getAttribute("data-key"))
+      var Filekey  =  event.currentTarget.getAttribute("data-key");
+      console.log("Filekey",event.currentTarget.getAttribute("data-key"))
         axios.get('/api/fileUpload/image/'+Filekey) 
       .then( (UploadedImg)=>{      
         this.setState({
@@ -165,8 +165,7 @@ export default class SubscribedServices extends Component {
         StartDate : startDate,
         EndDate   : endDate
      })
-     console.log("StartDate",this.state.StartDate)
-    }
+  }
   checkSubscribe(event)
   {
    event.preventDefault();
@@ -190,13 +189,13 @@ export default class SubscribedServices extends Component {
         }
 
         FullDateOnly = FullDate.getDate() + "-" + month + "-" + (FullDate.getYear() + 1900) ;
-        console.log("i = ",FullDateOnly);
+        //console.log("i = ",FullDateOnly);
         dateArray .push(FullDateOnly) ;
 
       }
-      console.log("1 dateArray  = ", dateArray );      
+     // console.log("1 dateArray  = ", dateArray );      
       dateArray  = [...new Set(dateArray)];
-      console.log("2 dateArray  = ", dateArray);      
+      //console.log("2 dateArray  = ", dateArray);      
 
     }
 
@@ -239,8 +238,8 @@ export default class SubscribedServices extends Component {
                                 this.state.listOfPerformanceDoc?
                                 this.state.listOfPerformanceDoc.map((a, i)=>{
                                   return(
-                                  <div className="col-lg-4 col-md-4 breakAll col-xs-4 col-sm-4  textAlignCenter">
-                                    <a href={a.name} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.name?a.name:""} onClick={this.getData.bind(this)}>
+                                  <div className="col-lg-4 col-md-4 breakAll col-xs-4 ht200 col-sm-4  textAlignCenter">
+                                    <a href={a.key} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
                                     <div >
                                       <img className="" src="/images/pdf.png"/><br/>
                                       {a.name} 
@@ -252,26 +251,9 @@ export default class SubscribedServices extends Component {
                                 :
                                 null
                               }
-                          </div>
-                           {
-
-                           /*   dateArray.length > 0
-                              ?
-                                dateArray.map( (element,index)=>{
-                                  return(
-                                    <div>
-                                    <h5 key={index}> {element} </h5>
-                                    </div>
-                                  );
-                                } )
-                              :
-                                null*/
-
-
-
-
-
-
+                         </div>
+                       
+                            {
                             this.state.subscriptionData
                             ?
                              this.state.subscriptionData.map((a, i)=>{
@@ -287,12 +269,11 @@ export default class SubscribedServices extends Component {
                                         {
                                           this.state.subscriptionData[i].statements
                                           ?
-                                          this.state.subscriptionData[i].statements.map((a, i)=>{
+                                          this.state.subscriptionData[i].statements.sort((a, b) => a.createdAt > b.createdAt).map((a, i)=>{
                                             return(
-                                            <div className="col-lg-4 col-md-4 breakAll curserPointer col-xs-4 col-sm-4  textAlignCenter" data-key={a.name?a.name:""} onClick={this.getData.bind(this)}>
+                                            <div className="col-lg-4 col-md-4 breakAll curserPointer ht200 col-xs-4 col-sm-4  textAlignCenter" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
                                               <h6> {a.createdAt} </h6>
-                                            {console.log("{a.name}",a.name)}
-                                              <a href={a.name} download target="_blank"  Content-Type= "application/octet-stream" Content-Disposition= "inline">
+                                              <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download Content-Type= "application/octet-stream" Content-Disposition= "inline">
                                               <div >
                                                 <img className="" src="/images/pdf.png"/><br/>
                                                 {a.name} 

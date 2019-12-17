@@ -31,8 +31,8 @@
 
 }
 .margins{
-	border-top: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid #333;
 }
 .miniFilterTextDiv{
 	position: absolute;
@@ -41,19 +41,18 @@
     border:1px solid #333;
 	z-index: 1000;
 	transition-duration: 0.5s;
- font-family:Arial;
+    font-family:Arial;
 	text-align: center;
-	background-color: rgba(0,0,0,0.9);
 	margin-top: -198px;
 	padding: 50px;
     cursor: pointer;
-	color: #fff;
+	color: #333;
 }
 .miniFilterTextDiv label{
     font-size: 20px;
     padding-top: 20px; 
     line-height: 5px;
-    color: #fff;
+    color: #333;
 }
 .miniFilterTextDiv1{
 	position: absolute;
@@ -61,11 +60,10 @@
 	opacity: 1;
 	z-index: 1000;
 	transition-duration: 0.5s;
- font-family:Arial;
+    font-family:Arial;
     cursor: pointer;
 
 	text-align: center;
-	background-color: rgba(0,0,0,0.6);
 	margin-top: -174px;
 	padding: 60px;
 	color: #222;
@@ -74,24 +72,24 @@
     font-size: 20px;
     padding: 15px; 
     line-height: 20px;
-    color: #fff;
+    color: #333;
 }
 .shopNowButtonFilters{
     height: 36px;
-    color: #fff;
+    color: #333;
     font-size: 13px;
-    border:1px #fff solid;
+    border:1px #333 solid;
     padding: 5px;
-    cursor: pointer;
+    cursor: pointer !important;
     background-color: transparent;
     font-weight: bold;
-   	box-shadow: inset 0 0 0 0 #fff;
+   	box-shadow: inset 0 0 0 0 #333;
     transition: 0.5s all ease-in-out;
 }
 .shopNowButtonFilters:hover{
   box-shadow: inset 100px 0px 1px 0 #fff !important;
     box-shadow: inset 0px 100px 1px 0 #fff;
-    cursor: pointer;
+    cursor: pointer !important;
     transition: 0.5s all ease-in-out;
 }
 
