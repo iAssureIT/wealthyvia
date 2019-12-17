@@ -239,7 +239,7 @@ export default class SubscribedServices extends Component {
                                 this.state.listOfPerformanceDoc.map((a, i)=>{
                                   return(
                                   <div className="col-lg-4 col-md-4 breakAll col-xs-4 ht200 col-sm-4  textAlignCenter">
-                                    <a href={a.key} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
+                                    <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
                                     <div >
                                       <img className="" src="/images/pdf.png"/><br/>
                                       {a.name} 
