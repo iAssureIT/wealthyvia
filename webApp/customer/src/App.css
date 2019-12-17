@@ -210,3 +210,9 @@ background-color: #000;
 .textAlignRight{
   text-align: right !important;
 }
+.breakAll{
+  word-break: break-all;
+}
+.curserPointer{
+  cursor: pointer;
+}

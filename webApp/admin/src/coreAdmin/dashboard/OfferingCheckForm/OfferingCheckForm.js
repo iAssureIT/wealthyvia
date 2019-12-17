@@ -27,7 +27,7 @@ class OfferingCheckForm extends Component{
     super(props);
     this.state = {
       SubscriptionName             : "",
-      formerrors                   :{ amenitiesName  : "", },
+      formerrors                   : { amenitiesName  : "", },
       subscription                 : {},
       totalCount                   : '',
       id                           : '',
@@ -101,7 +101,7 @@ class OfferingCheckForm extends Component{
       var tableData = res.data.map((a, i)=>{
         return {
           _id             : a._id,
-          userId          : "WL00"+(i+1),
+          clientId        : a.clientId,
           fullName        : a.fullName ? a.fullName : "-",
           email           : a.email ? a.email : "-",
           mobNumber       : a.mobNumber ? a.mobNumber : "-", 
@@ -138,6 +138,7 @@ class OfferingCheckForm extends Component{
           swal("Error!","Something went wrong!!", "error");
         }
     });  
+   
 
     /* Get all Inactive users
 
@@ -302,7 +303,6 @@ class OfferingCheckForm extends Component{
             ],
             }).then((option)=> {
               console.log("option---->",option)
-               window.location.reload();
               
             });
           }
@@ -335,7 +335,7 @@ class OfferingCheckForm extends Component{
                           this.state.tableData?
                           this.state.tableData.map((a, i)=>{
                             return(
-                              <option value={a._id} id={a._id}>{a.fullName} ({a.userId})</option>
+                              <option value={a._id} id={a._id}>{a.fullName} ({a.clientId})</option>
                             )
                           })
                           :

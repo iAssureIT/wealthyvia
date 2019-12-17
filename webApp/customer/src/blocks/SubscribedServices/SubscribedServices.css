@@ -75,7 +75,7 @@
 }
 .customTabContent h3{
  text-align: center;
- color: #24baf2;
+ color: #201a47;
 }
 .customTabContent h5{
  text-align: center;
@@ -89,8 +89,36 @@
 .myULCD li{
 	cursor: pointer;
 	font-size: 15px;
+
 }
-.myULCD li>a:hover{
+.myULCD a>li:hover{
+	color: #aaa !important;
+	text-decoration: none !important;
+}
+.myULSS li:hover{
+	text-decoration: none !important;
+	box-shadow: 0px 2px 14px 2px #aaa;
+	
+}
+.myULSS li{
+
+	cursor: pointer;
+	font-size: 15px;
+	list-style: none;
+	background-color: #00baf2;
+	margin-bottom:10px;
+	border-radius: 30px;
+	padding: 8px !important;	
+	padding-left: 15px !important;	
+	padding-right: 15px !important;	
+	
+}
+.myULSS li>a{
+	color: #fff;
+	
+}
+
+.myULSS li>a:hover{
 	color: #00f !important;
 	text-decoration: none !important;
 }
@@ -119,11 +147,11 @@
 	padding-bottom: 50px;
 }
 .activeSubscription{
-	background-color: #FFF !important;
+	background-color: #24baf2 !important;
 	color: #333 !important;
 }
 .customStack>li>a:hover{
-	background-color: #00BAF2 !important;
+	background-color: #0edaef !important;
     color: #333 !important;
 }
 .marLeft{
@@ -134,7 +162,7 @@
 }
 .performancetab{
 	position: absolute;
-    left: 820px;
+    left: 58.6em;
     top: -515px;
     width: 100%;
     z-index: 1000 !important;

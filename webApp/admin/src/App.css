@@ -303,3 +303,6 @@ color: #fff;
   border-top: 4px solid #3c8dbc !important;
   border-radius:3px;
 }
+.curserPointer{
+  cursor: pointer !important;
+}

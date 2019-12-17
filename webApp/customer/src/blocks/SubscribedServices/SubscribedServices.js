@@ -33,6 +33,7 @@ export default class SubscribedServices extends Component {
           pageNumber            : 1,
           subscribed            : false,
           blogSubscribed        : "",
+          subscriptionData      : [],
         };
     }
   ScrollTop(event){
@@ -122,7 +123,8 @@ export default class SubscribedServices extends Component {
     /*subscribed offerings*/
 
      axios.get('/api/offeringsubscriptions/get/'+ userInfo )
-          .then( (res)=>{      
+          .then( (res)=>{ 
+          console.log("res",res.data);     
             this.setState({
                   subscriptionData        : res.data.offering,
                   listOfPerformanceDoc    : res.data.performanceDoc,          
@@ -138,16 +140,33 @@ export default class SubscribedServices extends Component {
               }
           });
   } 
+  getData(event)
+  {
+      var Filekey  =  event.target.getAttribute("data-key");
+      console.log("Filekey",event.target.getAttribute("data-key"))
+        axios.get('/api/fileUpload/image/'+Filekey) 
+      .then( (UploadedImg)=>{      
+        this.setState({
+              UploadedImg : UploadedImg.data,
+            })
+        console.log("UploadedImg",this.state.UploadedImg);
+    })
+    .catch((error)=>{
+        if(error.message === "Request failed with status code 401"){
+          swal("Error!","Something went wrong!!", "error");
+        }
+    });  
+  }
   getDate(event){
     event.preventDefault();
      var startDate = event.target.getAttribute("data-startDate");
-   var endDate = event.target.getAttribute("data-endDate");
-   this.setState({
-      StartDate : startDate,
-      EndDate   : endDate
-   })
-
-  }
+     var endDate = event.target.getAttribute("data-endDate");
+     this.setState({
+        StartDate : startDate,
+        EndDate   : endDate
+     })
+     console.log("StartDate",this.state.StartDate)
+    }
   checkSubscribe(event)
   {
    event.preventDefault();
@@ -159,7 +178,27 @@ export default class SubscribedServices extends Component {
   }
   render() {
     var date = "09-10-2019  5:30PM";
-  
+    var dateArray  = [];
+    var FullDate = "";var month = "";
+    var FullDateOnly = "";
+    if(this.state.subscriptionData.length > 0){
+      for(let i=0; i<this.state.subscriptionData[0].statements.length; i++ ){
+        FullDate = new Date(this.state.subscriptionData[0].statements[i].createdAt); 
+        month = FullDate.getMonth()+1 ;
+        if(month < 10){
+          month = '0' + month; 
+        }
+
+        FullDateOnly = FullDate.getDate() + "-" + month + "-" + (FullDate.getYear() + 1900) ;
+        console.log("i = ",FullDateOnly);
+        dateArray .push(FullDateOnly) ;
+
+      }
+      console.log("1 dateArray  = ", dateArray );      
+      dateArray  = [...new Set(dateArray)];
+      console.log("2 dateArray  = ", dateArray);      
+
+    }
 
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContainerSS padding100">
@@ -185,14 +224,13 @@ export default class SubscribedServices extends Component {
                               })
                               :null
                             }
-                            <li className="performancetabSmall hidden-lg hidden-md"><a data-toggle="pill" href="#performance">Click here to check performance</a></li>
-                            <li className=" performancetab hidden-xs hidden-sm"><a data-toggle="pill" href="#performance">Click here to check performance</a></li>
+                            <li className="performancetabSmall hidden-lg hidden-md"><a data-toggle="pill" href="#performance">Performance Report</a></li>
+                            <li className=" performancetab hidden-xs hidden-sm"><a data-toggle="pill" href="#performance">Performance Report</a></li>
                           </ul>
 
                       </div>
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div id="performance" class="tab-pane fade in active ">
-                           {/* <h6 className="pull-right"><span>Start Date :  {this.state.date} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>*/}
                             <h3>Performance Reports</h3>
                             <h5 className="">Last update date : {this.state.date} </h5>
                             <label className="mt20 col-lg-12 col-md-12 col-sm-12 col-xs-12">{this.state.date1}</label>
@@ -201,11 +239,11 @@ export default class SubscribedServices extends Component {
                                 this.state.listOfPerformanceDoc?
                                 this.state.listOfPerformanceDoc.map((a, i)=>{
                                   return(
-                                  <div className="col-lg-4 col-md-4 col-xs-4 col-sm-4  textAlignCenter">
-                                    <a href={a.url} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">
+                                  <div className="col-lg-4 col-md-4 breakAll col-xs-4 col-sm-4  textAlignCenter">
+                                    <a href={a.name} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.name?a.name:""} onClick={this.getData.bind(this)}>
                                     <div >
                                       <img className="" src="/images/pdf.png"/><br/>
-                                      {a.fileName} 
+                                      {a.name} 
                                     </div>
                                     </a>
                                   </div>
@@ -215,22 +253,49 @@ export default class SubscribedServices extends Component {
                                 null
                               }
                           </div>
-                           {this.state.subscriptionData?
+                           {
+
+                           /*   dateArray.length > 0
+                              ?
+                                dateArray.map( (element,index)=>{
+                                  return(
+                                    <div>
+                                    <h5 key={index}> {element} </h5>
+                                    </div>
+                                  );
+                                } )
+                              :
+                                null*/
+
+
+
+
+
+
+                            this.state.subscriptionData
+                            ?
                              this.state.subscriptionData.map((a, i)=>{
                                 return(
                                     <div id={a.offering_ID} class="tab-pane fade in ">
+                                    <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
+                                     {/* <h6 className="col-lg-12"><span className=" col-lg-4 pull-right"><b className="pull-right">Start Date  <br/>{this.state.StartDate} </b> </span>
+                                     <span className="col-lg-4  pull-right"><b className="pull-right">End Date<br/> {this.state.EndDate} </b> </span></h6><br/>
+                                    */}
                                       <h3>{a.offeringTitle} Reports & Statement</h3>
                                       <h5>Last update date : {this.state.date} </h5>
                                         <label className="mt20">{this.state.date1}</label><br/>
                                         {
-                                          this.state.subscriptionData[i].statements?
+                                          this.state.subscriptionData[i].statements
+                                          ?
                                           this.state.subscriptionData[i].statements.map((a, i)=>{
                                             return(
-                                            <div className="col-lg-4 col-md-4 col-xs-4 col-sm-4  textAlignCenter">
-                                              <a href={a.url} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline">
+                                            <div className="col-lg-4 col-md-4 breakAll curserPointer col-xs-4 col-sm-4  textAlignCenter" data-key={a.name?a.name:""} onClick={this.getData.bind(this)}>
+                                              <h6> {a.createdAt} </h6>
+                                            {console.log("{a.name}",a.name)}
+                                              <a href={a.name} download target="_blank"  Content-Type= "application/octet-stream" Content-Disposition= "inline">
                                               <div >
                                                 <img className="" src="/images/pdf.png"/><br/>
-                                                {a.fileName} 
+                                                {a.name} 
                                               </div>
                                               </a>
                                             </div>
@@ -239,24 +304,12 @@ export default class SubscribedServices extends Component {
                                           :
                                           null
                                         }
-                                     {/* <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download>
-                                        <img src="/images/myw3schoolsimage.jpg" alt="W3Schools" width="104" height="142"/>
-                                      </a>
-                                      <a href="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" download="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf">Download</a>
-                                      <iframe src="https://wealthyvia.s3.amazonaws.com/wealthyvia/Changes to be made.pdf" height="200" width="300"></iframe>
-                                      <Document
-                                          file="somefile.pdf"
-                                          onLoadSuccess={this.onDocumentLoadSuccess}
-                                        >
-                                          <Page pageNumber={pageNumber} />
-                                        </Document>
-                                              <a href="/images/Changes to be made.pdf" download="GFG"> 
-                                              <button type="button">Download</button> 
-                                            </a> */}
                                     </div>
                                     )
                                 })
                               :null
+
+
                             }
                         </div>  
                     </div>  
@@ -267,7 +320,6 @@ export default class SubscribedServices extends Component {
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite">
                     <h4 className="headerBlogCD col-lg-12"> Your Blog Subscription</h4>
-                      {console.log("Blogs",this.state.blogSubscribed)}
                       <ul className="myULCDSP mt20">
                           <li>{this.state.blogSubscribed.planName} Subsription  <span className="pull-right"><i class="fa fa-rupee">&nbsp;</i> {(this.state.blogSubscribed.amountPaid)/100} </span></li>
                           <li>Subscribed on <span className="pull-right">{this.state.createdAt}</span></li>
@@ -276,43 +328,40 @@ export default class SubscribedServices extends Component {
                       </ul>
                       <label className="mt40 priBlogHead borderTop textAlignCenter col-lg-12">Premium Blogs</label>
                       <div>
-                        <OwlCarousel
-                          className="owl-theme  col-md-10 col-lg-offset-1 col-lg-10 col-sm-12 col-xs-12 boxShadow"
-                           loop
-                            margin={20}
-                            items={1}
-                            nav={0}
-                            dots={0}
-                            responsiveClass={true}
-                            autoplay={true}
-                          >
-                         {
-                            this.state.Blogs && this.state.Blogs.length>0?
-                              this.state.Blogs .map((data, index) => {
-                                return (
-                                  <div className="item" key={index}>
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-                                  <div className="row">
-                                    <img src={data.bannerImage.path}/>
-
-                                  </div>
-                                </div>
+                       <OwlCarousel
+                            className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow"
+                            loop
+                            margin          =  {20}
+                            items           =  {1}
+                            nav             =  {0}
+                            dots            =  {0}
+                            responsiveClass =  {true}
+                            autoplay        =  {true}
+                        >
+                        {
+                        this.state.Blogs && this.state.Blogs.length>0?
+                          this.state.Blogs .map((data, index) => {
+                            return (
+                              <div className="item" key={index}>
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
-                                  <div className="row">
-                                    <label>{data.blogTitle}</label>
-                                    <p>{data.summary}<a href="/allblogs"> read more</a></p>
-                                  </div>
-                                </div>
-                                  </div>
-                                );
-                              })
-                            :
-                            null
-                          }
-                      }
-                         
-                        
-                      </OwlCarousel>
+                              <div className="row">
+                                <img src={data.bannerImage.path}/>
+
+                              </div>
+                            </div>
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgContainerBlog ">
+                              <div className="row">
+                                <label>{data.blogTitle}</label>
+                                <p>{data.summary}<a href="/allblogs"> read more</a></p>
+                              </div>
+                            </div>
+                              </div>
+                            );
+                          })
+                          :
+                          null
+                        }
+                      </OwlCarousel> 
                       </div>
 
                       <label className="clickToPlan pull-right mt20"><a href="/allblogs">Read more premium blog >></a></label>
@@ -321,14 +370,10 @@ export default class SubscribedServices extends Component {
                   : 
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12  ">   
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite ">
-                          <h4 className="headerBlogCD"> Blog Subscription Plan</h4>
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
-                            <ul className="customOl myULCD">
-                              <li><a href="/planPage">6 Months <span className="pull-right"> Rs 999 . &nbsp; <strike>Rs 1499 </strike></span></a></li>
-                              <li><a href="/planPage">1 Year   <span className="pull-right"> Rs 1499 . &nbsp;<strike> Rs 1999</strike></span></a></li>
-                              <li><a href="/planPage">2 Years  <span className="pull-right"> Rs 1999 . &nbsp;<strike> Rs 2599</strike></span></a></li>
-                            </ul>
-                           <label className="clickToPlan pull-right">Click on plan name to subscribe.</label>
+                            <ul className="customOl myULSS textAlignCenter mt20">
+                              <a href="/planPage"><li>Click Here to Subscribe Blogs</li></a>
+                             </ul>
                           </div>
                           <div className="col-lg-12 textAlignCenter mt20 fs19 borderTop textAlignCenter" ><label>Premium Blogs</label></div>
                         <OwlCarousel

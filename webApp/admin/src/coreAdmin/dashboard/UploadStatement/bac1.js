@@ -82,18 +82,34 @@ class UploadStatement extends Component{
       chosenOfferingID : offering_id,
     },()=>{
       if(this.state.userDetailsDisplay.offerings){
-      
+        // for (var j=0;j<this.state.userDetailsDisplay.offerings.length;j++){
+        //  if(this.state.chosenOfferingID === this.state.userDetailsDisplay.offerings[j].offering_ID){
+        //     this.setState({
+        //       selectedFilesData : this.state.userDetailsDisplay.offerings[j].statements,
+        //       showFile          : this.state.userDetailsDisplay.offerings[j].statements,
+        //     },()=>{
+        //       console.log("selectedFiles",this.state.selectedFilesData);
+        //     })
+        //   }
+        // }
         console.log(this.state.userDetailsDisplay.offerings);
         var x = this.state.userDetailsDisplay.offerings.filter((a)=> {
           console.log(this.state.chosenOfferingID+'==='+ a.offering_ID);
           return this.state.chosenOfferingID === a.offering_ID
         });
+        console.log('x', x);
+        console.log('showFile', x);
           if(x[0].statements.length>0)
           {
             this.setState({
-              selectedFiles : x[0].statements,
-            });
+              selectedFilesData : x[0].statements,
+              showFile          : x[0].statements,
+            },()=>{console.log("x[0].statements",x[0].statements)})
          }
+      }else{
+         performanceDoc = {
+          "performanceDoc" : this.state.fileArrayPerformance
+        };
       }
     })
   }
@@ -107,10 +123,13 @@ class UploadStatement extends Component{
         var ext = file.name.split('.').pop();
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (file) {
+            var selectedFiles = [];
             var showFile = this.state.showFile;
+            selectedFiles.push(event.target.files[0]);
             showFile.push(event.target.files[0]);
 
             this.setState({
+              selectedFiles : selectedFiles,
               showFile      : showFile,
             },()=>{
               console.log("this.state.selectedFiles",this.state.selectedFiles, this.state.selectedFilesData);
@@ -174,61 +193,86 @@ class UploadStatement extends Component{
 */
   Submit(event)
   {
-    const data = new FormData();
-    if (this.state.showFile) {
-       for ( let i = 0; i < this.state.showFile.length; i++ ) {
-        console.log("this.state.selectedFiles[i],this.state.selectedFiles[ i ].name",this.state.showFile[i],this.state.showFile[ i ].name)
-        data.append( 'file', this.state.showFile[i],this.state.showFile[ i ].name );
-       }
-    }
-    axios.post('/api/fileUpload/',data)
-    .then( (uploadedStatements)=>{  
-         if(uploadedStatements.status === 200){
-            swal("Congrats..!","Document uploaded successfully", "success");
-        /*    var statementsConcat = this.state.selectedFiles;
-            statementsConcat = statementsConcat.concat(uploadedStatements.data.keyList);*/
-             var statements ={
-                statements : uploadedStatements.data.keyList,
-              } 
-              this.setState({
-                showFile : "",
-              })
-            console.log("statements",uploadedStatements.data.keyList);
-/*            console.log("statementsConcat",statementsConcat);
-*/             axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenTargetID,statements)
-                .then( (uploadedStatements)=>{      
-                  this.setState({
-                        uploadedStatementsDatabase : uploadedStatements.data,
-                      })
-                  console.log("uploadedStatementsDatabase",uploadedStatements.data);
-                  if(uploadedStatements.data === "Statement uploaded"){
-                    swal("Congrats..!","Document uploaded successfully", "success");
-                  }else{
-                    swal("Error..!","Something went wrong", "error");
-                  }
-                })
-                .catch((error)=>{
-                  console.log(error);
-                    if(error.message === "Request failed with status code 404"){
-                      swal("Error!","Please select offering !!", "error");
-                    }else{
-                      swal("Error!","Something went wrong !!", "error");
-                    }
-                });  
-          
-          }else{
-            swal("Error..!","Something went wrong", "error");
-          } 
+    var selectedFiles = []; 
+    var selectedFiles1 = []; 
+    var file = this.state.selectedFilesData;
+    console.log("showFile",selectedFiles,file);
+    if(file.length > 0){
+      console.log("this.state.selectedFilesData.length = ",this.state.selectedFilesData.length);
+      for (var k=0;k<this.state.selectedFilesData.length;k++)
+      {
+        console.log(" -",this.state.selectedFilesData[k].name);
+        selectedFiles.push(new File(['file'], this.state.selectedFilesData[k].name, {type: 'application/pdf'}));
+          // break;
+        /*if(k== this.state.selectedFilesData.length){
+        }*/
+      }
 
-        })
-      .catch((error)=>{
-        console.log(error);
-          if(error.message === "Request failed with status code 404"){
-            swal("Error!","Please select offering !!", "error");
-          }else{
-            swal("Error!","Something went wrong !!", "error");
-          }
-      });  
+    }
+    selectedFiles1 =this.state.selectedFiles;
+    // selectedFiles1 =selectedFiles1.concat(selectedFiles);
+   console.log("selectedFiles1",selectedFiles1);
+    this.setState({
+      selectedFiles :selectedFiles1,
+    },()=>{
+      if(this.state.selectedFiles.length>0)
+      {
+        const data = new FormData();
+        if (this.state.selectedFiles) {
+           for ( let i = 0; i < this.state.selectedFiles.length; i++ ) {
+            console.log("this.state.selectedFiles[i],this.state.selectedFiles[ i ].name",this.state.selectedFiles[i],this.state.selectedFiles[ i ].name)
+            data.append( 'file', this.state.selectedFiles[i],this.state.selectedFiles[ i ].name );
+           }
+        }
+        axios.post('/api/fileUpload/',data)
+        .then( (uploadedStatements)=>{  
+             if(uploadedStatements.status === 200){
+                swal("Congrats..!","Document uploaded successfully", "success");
+                 var statements ={
+                    statements : uploadedStatements.data.keyList,
+                  } 
+                  var concat = uploadedStatements.data.keyList;
+                  concat = concat.concat(this.state.selectedFilesData);
+                  console.log("concat",concat);
+                 axios.patch('/api/offeringsubscriptions/patch/update_statements/'+this.state.chosenTargetID,statements)
+                    .then( (uploadedStatements)=>{      
+                      this.setState({
+                            uploadedStatementsDatabase : uploadedStatements.data,
+                          })
+                      console.log("uploadedStatementsDatabase",uploadedStatements.data);
+                      if(uploadedStatements.data === "Statement uploaded"){
+                        swal("Congrats..!","Document uploaded successfully", "success");
+                      }else{
+                        swal("Error..!","Something went wrong", "error");
+                      }
+                    })
+                    .catch((error)=>{
+                      console.log(error);
+                        if(error.message === "Request failed with status code 404"){
+                          swal("Error!","Please select offering !!", "error");
+                        }else{
+                          swal("Error!","Something went wrong !!", "error");
+                        }
+                    });  
+              
+              }else{
+                swal("Error..!","Something went wrong", "error");
+              } 
+
+            })
+            .catch((error)=>{
+              console.log(error);
+                if(error.message === "Request failed with status code 404"){
+                  swal("Error!","Please select offering !!", "error");
+                }else{
+                  swal("Error!","Something went wrong !!", "error");
+                }
+            });  
+        }else{
+          swal("Please select atleast one document");
+
+      }
+    })
   }
   SubmitPerformance(event)
   {
@@ -310,13 +354,13 @@ class UploadStatement extends Component{
           })
           .then((willDelete) => {
             if (willDelete) {
-              var array = this.state.selectedFiles; // make a separate copy of the array
+              var array = this.state.showFile; // make a separate copy of the array
               array.splice(index, 1);
               swal("File deleted successfully");
               this.setState({
-                selectedFiles: array
+                showFile: array
               });
-              console.log("selectedFiles",this.state.selectedFiles)
+              console.log("fileArray",this.state.showFile)
             }else {
               swal("Your document is safe!");
             }
@@ -324,7 +368,7 @@ class UploadStatement extends Component{
     }
   }
 
-  deletePerformanceDocument(e)
+ deletePerformanceDocument(e)
   {
     var fileToDelete = e.target.getAttribute("data-name");
     var index        = e.target.getAttribute('id');
@@ -422,31 +466,18 @@ class UploadStatement extends Component{
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdcls mt40">
                      
-                     
+                      {
+                      this.state.showFile.length<=0?
+                      null         
+                      :
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                           <div>
                             
-                              <div  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row padTopC">
+                              <div  className="col-lg-12 col-md-4 col-sm-12 col-xs-12 row padTopC">
                                 <p className="fileName">File Uploaded</p>
                                 {
                                   this.state.showFile  && this.state.showFile.length > 0 ?
                                   this.state.showFile.map((a, index)=>{
-                                    return(
-                                      <div  key={index} className="pdfContainer col-lg-2" >
-
-                                        <img src="/images/pdf.png"/>
-                                        <i id={index} className="fa fa-times-circle customCircle pull-right" title="Remove Document" data-name={a.name} onClick={this.deleteDocument.bind(this)}></i>
-                                        <p className="">{a.name}</p>
-
-                                      </div>
-                                    )
-                                  })
-                                :
-                                  null
-                                }
-                                  {
-                                  this.state.selectedFiles  && this.state.selectedFiles.length > 0 ?
-                                  this.state.selectedFiles.map((a, index)=>{
                                     return(
                                       <div  key={index} className="pdfContainer col-lg-2" >
 
@@ -465,7 +496,7 @@ class UploadStatement extends Component{
                           </div>
                      
                       </div>
-                     
+                     }
                     </div>
                      <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
                       <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>

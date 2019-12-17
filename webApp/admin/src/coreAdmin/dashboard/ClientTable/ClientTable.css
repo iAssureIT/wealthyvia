@@ -120,8 +120,10 @@
 .prodCheckboxDimSelected{
   color: #74c108;
   font-size: 28px;
+  cursor: pointer;
 }
 .prodCheckboxDimNotSelected{
     color: #e8430f;
+  cursor: pointer;
 
 }

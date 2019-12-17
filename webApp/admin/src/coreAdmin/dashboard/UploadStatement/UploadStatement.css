@@ -155,5 +155,5 @@
 	cursor: pointer;
 }
 .pdfContainer{
-
+    word-break: break-word;
 }

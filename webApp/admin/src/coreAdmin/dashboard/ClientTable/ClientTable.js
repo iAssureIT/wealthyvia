@@ -122,8 +122,8 @@ class ClientTable extends Component {
                             this.state.subscriptionData.map((a, i)=>{
                                 return(
                                     <tr>  
-                                      <td>{i<99 ? i<9 ? "WL00"+(i+1) : "WL0"+(i+1) : "WL"+(i+1)}</td>
-                                      <td className="">
+                                      <td>{a.clientID}</td>
+                                      <td className=""> 
                                         <p>{a.userName}</p>
                                         <p>{a.mobileNumber}</p>
                                         <p>{a.email}</p>

@@ -1155,8 +1155,8 @@ export default class Header extends Component {
                                       <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP"><b>SEBI Registration No. INH000005397</b></a></div>
                                       <div className="col-lg-4 col-md-10 col-sm-10 col-xs-12 iconContainerHeader">
                                         <div className="row">
-                                          <div className="col-lg-3 col-md-2 col-sm-1 col-xs-1 mt10 textAlignRight noPadding  pull-right ">
-                                            <b className="fs19">{(285+this.state.userCount)} +</b><br/>  Users
+                                          <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  textAlignRight mr15 noPadding  pull-right ">
+                                            <b>Users : </b><b className="fs19">{this.state.userCount ? (285+this.state.userCount) :285 } +</b>
                                           </div> 
                                         
                                           <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">

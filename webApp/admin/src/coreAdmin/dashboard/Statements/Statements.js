@@ -178,7 +178,7 @@ class Statements extends Component{
                                   this.state.subscriptionData.map((ActiveList, j)=>{
                                   return(
                                     <tr>
-                                      <td>{j<99 ? j<9 ? "WL00"+(j+1) : "WL0"+(j+1) : "WL"+(j+1)}</td>
+                                      <td>{ActiveList.clientId}</td>
                                       <td>{ActiveList.name}</td>
                                       <td className="text-center">{ActiveList.mobileNumber}</td>
                                       <td className="text-center">{ActiveList.emailId}</td>
@@ -216,7 +216,7 @@ class Statements extends Component{
                                   this.state.InactiveUsers.map((InactiveList, k)=>{
                                   return(
                                     <tr>
-                                      <td>{k<99 ? k<9 ? "WL00"+(k+1) : "WL0"+(k+1) : "WL"+(k+1)}</td>
+                                      <td>{InactiveList.clientId}</td>
                                       <td>{InactiveList.name}</td>
                                       <td className="text-center">{InactiveList.mobileNumber}</td>
                                       <td className="text-center">{InactiveList.emailId}</td>
