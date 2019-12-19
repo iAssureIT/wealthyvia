@@ -1,5 +1,4 @@
 import React, { Component }   from 'react';
-import $                      from 'jquery';
 import Moment                 from 'react-moment';
 
 
@@ -11,7 +10,7 @@ export default class DashboardHeader extends Component {
     super(props);
         this.state = {
           nameOfDiv     :"5gcpm",
-          date:"14-10-2019",
+          date          :"14-10-2019",
         };
     }
   ScrollTop(event){

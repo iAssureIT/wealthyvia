@@ -26,7 +26,6 @@ export default class RiskProfilePage extends Component {
 		  dropdown.find('button').text( checkedtext );
 
 		  //retrieve the checked value, if needed in page 
-		  var thisvalue = dropdown.find( checked ).val();
 
 		});
   	}

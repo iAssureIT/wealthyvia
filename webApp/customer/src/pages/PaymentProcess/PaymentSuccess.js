@@ -1,6 +1,4 @@
 import React, { Component }  from 'react';
-import axios                 from 'axios';
-import swal                  from 'sweetalert';
 import "./PaymentSuccess.css";
 var CurrentURL="";
 export default class PaymentSuccess extends Component {
@@ -27,7 +25,7 @@ export default class PaymentSuccess extends Component {
                       <div className=""><b></b>  www.wealthyvia.com</div>
                       <div className=""><b></b> Link Palace, Landmark , Goregaon East, Mumbai.400063</div>
                     </div>
-                    <img src="/images/WealthyVia_Logo.png" className="col-lg-3 col-xs-3 pull-right"/>
+                    <img src="/images/WealthyVia_Logo.png" alt="" className="col-lg-3 col-xs-3 pull-right"/>
                 </div>
                 <div className="col-lg-10 col-lg-offset-1  col-md-12 col-sm-12 col-xs-12 PlanDetails">
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">

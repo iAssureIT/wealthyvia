@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
 
 import "./NoFees.css";
 
@@ -41,12 +40,12 @@ export default class NoFees extends Component {
                   </div>
                 </div>
                <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-sm hidden-xs padding40 fiveG para1 ">
-                    <img className="row" src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpg"/>
+                    <img className="row" src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpg" alt=""/>
                 </div>
                   <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
                     <div className="row">
                       <div className="col-sm-12 col-sm-12 hidden-md hidden-lg small">
-                            <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpg"/>
+                            <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/blog1.jpg" alt=""/>
                         </div>
                         <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContentSmall  backColorGray">
                           <div className="row">

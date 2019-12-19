@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import InputMask from 'react-input-mask';
-import swal from 'sweetalert';
-import $ from "jquery";
-import axios from 'axios';
+import { Link }             from 'react-router-dom';
+import swal                 from 'sweetalert';
+import $                    from "jquery";
+import axios                from 'axios';
 
 import 'font-awesome/css/font-awesome.min.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
@@ -24,7 +23,7 @@ class ResetPassword extends Component {
       var user_id = this.props.match.params;
       console.log("user_id",user_id);
 
-      if(password==passwordConfirm){
+      if(password===passwordConfirm){
         if(password.length >= 6){
         axios
           .patch('/api/users/patch/password/'+user_id.user_ID,{pwd:this.refs.resetPassword.value})

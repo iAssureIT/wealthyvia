@@ -1,6 +1,5 @@
 import React, { Component }  from 'react';
 import { Link }              from 'react-router-dom';
-import InputMask             from 'react-input-mask';
 import swal                  from 'sweetalert';
 import $                     from "jquery";
 import axios                 from 'axios';
@@ -18,7 +17,6 @@ class ForgotPassword extends Component {
       }
     }
     componentDidMount(){
-      var x = this.props.match.params;
     }
     forgotpassword(event){
       event.preventDefault();
@@ -26,14 +24,11 @@ class ForgotPassword extends Component {
            this.setState({
             email : emailPbj,
       });
-      var emailObject ={
-            emailId: this.refs.enterEmail.value,
-      }   
-    
+  
            axios.patch('/api/users/patch/password/email',{emailId:this.refs.enterEmail.value})
           .then((response)=> {
             console.log("response.data.ID",response.data.ID);
-            if(response.data.ID != undefined && response.data.ID != "undefined"){
+            if(response.data.ID !== undefined && response.data.ID !== "undefined"){
               swal("Great","Information submitted successfully and OTP is sent to your registered Email ID");
               this.props.history.push("/confirm-otp/"+response.data.ID);
               localStorage.setItem("verify", true)
@@ -53,7 +48,7 @@ class ForgotPassword extends Component {
 
     inputEffect(event){
       event.preventDefault();
-      if($(event.target).val() != ""){
+      if($(event.target).val() !== ""){
         $(event.target).addClass("has-content");
       }else{
         $(event.target).removeClass("has-content");

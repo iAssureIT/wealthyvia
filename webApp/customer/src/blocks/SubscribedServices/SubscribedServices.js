@@ -1,12 +1,9 @@
 import React, { Component }       from 'react';
-// import $                          from 'jquery';
-import Blogs                      from "../../blocks/Blogs/Blogs.js";
 import OwlCarousel                from 'react-owl-carousel';
 import axios                      from "axios";
 import swal                       from 'sweetalert';
-// import { Document, Page, pdfjs } from "react-pdf";
-import Moment                     from 'moment';
 import moment               from 'moment';
+import Moment                from 'moment';
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -28,6 +25,7 @@ export default class SubscribedServices extends Component {
           userOfferingsChecked  : "",
           listOfPerformanceDoc  : "",
           StartDate             : "",
+          validityPeriod        : "",
           EndDate               : "",
           numPages              : null,
           pageNumber            : 1,
@@ -48,23 +46,20 @@ export default class SubscribedServices extends Component {
   }
   componentDidMount()
   {
-    var userInfo = localStorage.getItem("user_ID");
+    var user_ID = localStorage.getItem("user_ID");
     axios
-        .get('/api/subscriptionorders/paymentOrderDetailsUser/'+userInfo)
+        .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
         .then((userStatus)=>{
           console.log("userStatus",userStatus)
           this.setState({
               userStatus    :userStatus.data[0].paymentStatus,
               blogSubscribed:userStatus.data[0],
+              validityPeriod:userStatus.data[0].validityPeriod,
               createdAt     :moment(userStatus.data[0].createdAt).format("YYYY-MM-DD"),
             });
           var currentDate = this.state.createdAt;
-          var futureMonth = moment(currentDate).add(6, 'M');
-          var futureMonthEnd = moment(futureMonth).endOf('month');
-
-         /* if(currentDate.date() != futureMonth.date() && futureMonth.isSame(futureMonthEnd.format('YYYY-MM-DD'))) {
-              futureMonth = futureMonth.add(1, 'd');
-          }*/
+          var futureMonth = moment(currentDate).add(this.state.validityPeriod, 'M');
+          
           var calculatedDate = moment(futureMonth._d).format("YYYY-MM-DD");
           this.setState({
             "calculatedDate" : calculatedDate,
@@ -122,7 +117,7 @@ export default class SubscribedServices extends Component {
     
     /*subscribed offerings*/
 
-     axios.get('/api/offeringsubscriptions/get/'+ userInfo )
+     axios.get('/api/offeringsubscriptions/get/'+ user_ID )
           .then( (res)=>{ 
           console.log("res",res.data);     
             this.setState({
@@ -149,7 +144,6 @@ export default class SubscribedServices extends Component {
         this.setState({
               UploadedImg : UploadedImg.data,
             })
-        console.log("UploadedImg",this.state.UploadedImg);
     })
     .catch((error)=>{
         if(error.message === "Request failed with status code 401"){
@@ -180,6 +174,14 @@ export default class SubscribedServices extends Component {
     var dateArray  = [];
     var FullDate = "";var month = "";
     var FullDateOnly = "";
+    var lengthOfPer = this.state.listOfPerformanceDoc.length;
+    var lastUpdatedDatePer = ""
+    var lastUpdatedDateState = ""
+    if(this.state.listOfPerformanceDoc[lengthOfPer-1])
+    {
+      lastUpdatedDatePer = moment(this.state.listOfPerformanceDoc[lengthOfPer-1].createdAt).format("DD-MM-YYYY")
+    }
+    
     if(this.state.subscriptionData.length > 0){
       for(let i=0; i<this.state.subscriptionData[0].statements.length; i++ ){
         FullDate = new Date(this.state.subscriptionData[0].statements[i].createdAt); 
@@ -231,7 +233,13 @@ export default class SubscribedServices extends Component {
                        <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
                           <div id="performance" class="tab-pane fade in active ">
                             <h3>Performance Reports</h3>
-                            <h5 className="">Last update date : {this.state.date} </h5>
+                            {
+                              this.state.listOfPerformanceDoc[lengthOfPer-1] ?
+                            <h5 className="">Last update date : {lastUpdatedDatePer} </h5>
+                            :
+                            null
+
+                            }
                             <label className="mt20 col-lg-12 col-md-12 col-sm-12 col-xs-12">{this.state.date1}</label>
 
                              {
@@ -264,15 +272,20 @@ export default class SubscribedServices extends Component {
                                      <span className="col-lg-4  pull-right"><b className="pull-right">End Date<br/> {this.state.EndDate} </b> </span></h6><br/>
                                     */}
                                       <h3>{a.offeringTitle} Reports & Statement</h3>
-                                      <h5>Last update date : {this.state.date} </h5>
+                                      {
+                                        this.state.subscriptionData[i].statements.length-1 >=0 ?
+                                          <h5>Last update date : {moment((this.state.subscriptionData[i].statements[this.state.subscriptionData[i].statements.length-1]).createdAt).format("DD-MM-YYYY")}</h5>
+                                          :
+                                          null
+                                      }
                                         <label className="mt20">{this.state.date1}</label><br/>
                                         {
                                           this.state.subscriptionData[i].statements
                                           ?
-                                          this.state.subscriptionData[i].statements.sort((a, b) => a.createdAt > b.createdAt).map((a, i)=>{
+                                          this.state.subscriptionData[i].statements.sort((a, b) => a.createdAt<b.createdAt).map((a, i)=>{
                                             return(
                                             <div className="col-lg-4 col-md-4 breakAll curserPointer ht200 col-xs-4 col-sm-4  textAlignCenter" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
-                                              <h6> {a.createdAt} </h6>
+                                              <h6> {a.createdAt}</h6>
                                               <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download Content-Type= "application/octet-stream" Content-Disposition= "inline">
                                               <div >
                                                 <img className="" src="/images/pdf.png"/><br/>
@@ -280,6 +293,7 @@ export default class SubscribedServices extends Component {
                                               </div>
                                               </a>
                                             </div>
+
                                               )
                                             })
                                           :

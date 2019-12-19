@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
 
 import "./ProductPageBanner.css";
 
@@ -46,7 +45,7 @@ export default class ProductPageBanner extends Component {
                 </div>
                  <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt="" /><br/>
                           <span>Slide down to know more</span>
                       </div>
                 </div>
@@ -68,7 +67,7 @@ export default class ProductPageBanner extends Component {
                 </div>
                  <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt=""/><br/>
                           <span>Slide down to know more</span>
                       </div>
                 </div>

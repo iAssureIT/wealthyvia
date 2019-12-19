@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import $                    from 'jquery';
 
 import "./ContactUs.css";
 
 import ContactUsBanner      from "../../blocks/ContactUsBanner/ContactUsBanner.js";
-import ContactAddress       from "../../blocks/ContactAddress/ContactAddress.js";
 import ContactMap         from "../../blocks/ContactMap/ContactMap.js";
 import ContactUsForm      from "../../blocks/ContactUsForm/ContactUsForm.js";
 

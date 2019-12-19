@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import $                    from 'jquery';
 import axios                from 'axios';
 import swal                 from 'sweetalert';
 import Moment               from 'react-moment';
+import moment               from 'moment';
 
 import "./OrderPage.css";
 
@@ -34,6 +34,7 @@ export default class OrderPage extends Component {
           this.setState({
             orderResponse : orderResponse.data,
           })
+
           console.log("orderResponse",this.state.orderResponse);
         })
         .catch(function(error){
@@ -67,12 +68,20 @@ export default class OrderPage extends Component {
                               return(
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 PlanDetailsOP" key={index} >
                                 <a href={"/invoicePageView/"+data.paymentOrderId}>
-                                  <span className="centreDetaillistItemOP  col-lg-8  col-md-12 col-sm-12 col-xs-12">Order Number :<span className="noBold hoverEffect"> {data.paymentOrderId}</span></span>
-                                  <span className="centreDetaillistItemOP col-lg-4  col-md-12 col-sm-12 col-xs-12"><span className="pull-right">Date : <span className="noBold">   <Moment format="DD/MM/YYYY">{data.createdAt}</Moment></span></span></span>
-                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Plan Name :<span className="noBold">  {data.planName}</span></span>
+                                  <span className="centreDetaillistItemOP  col-lg-8  col-md-12 col-sm-12 col-xs-12">Order Number :<span className="noBold hoverEffect"> {data.invoiceNum}</span></span>
+                                  <span className="centreDetaillistItemOP col-lg-4  col-md-12 col-sm-12 col-xs-12"><span className="pull-right ">Date : <span className="noBold">   <Moment format="DD/MM/YYYY">{data.createdAt}</Moment></span></span></span>
+                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Plan Name :<span className="noBold hoverEffect">  {data.planName}</span></span>
                                   <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Amount : <span className="noBold"> <i class="fa fa-rupee">&nbsp;</i> {(data.amountPaid)/100}</span></span>
-                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Validity Period : <span className="noBold">{data.planName} &nbsp;( {this.state.endsOn} )</span></span>
-                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Payment Status: <span className="noBold">{data.paymentStatus == "unPaid" ?  "Failed" : "Success" } </span></span>
+                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Validity Period : 
+                                    
+                                    <span className="noBold">{data.planName} &nbsp;
+                                      ( {
+                                         moment( moment(data.createdAt).add(data.validityPeriod, 'M')._d).format("DD-MM-YYYY")
+                                      } )
+                                    </span>
+                                 
+                                  </span>
+                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Payment Status: <span className="noBold">{data.paymentStatus === "unPaid" ?  "Failed" : "Success" } </span></span>
                                 </a>
                                 </div>
                             )

@@ -29,7 +29,6 @@ getBlogData(){
       })
 }
 componentDidMount(){
-	var Blogs =[];
 	this.getBlogData();
 }
 	render() {
@@ -50,13 +49,13 @@ componentDidMount(){
 		                					return(
 							          			<div className="col-lg-4">
 							          				<div className="col-lg-12 rblog z50">
-							          				{data.typeOfBlog == "Premium" ?
+							          				{data.typeOfBlog === "Premium" ?
 						          						<div className="premiumBlogIndicateRB">Premium</div>
 														:
 														null
 													}
 													{
-													data.typeOfBlog == "Premium" 
+													data.typeOfBlog === "Premium" 
 														 ?
 															(subscribed 
 															 ?

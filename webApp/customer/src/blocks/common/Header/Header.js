@@ -1,10 +1,8 @@
 import React, { Component }               from 'react';
 import $                                  from 'jquery';
 import swal                               from 'sweetalert';
-import ReactMultiSelectCheckboxes         from 'react-multiselect-checkboxes';
 import axios                              from 'axios';
 import S3FileUpload                       from 'react-s3';
-import { deleteFile }                     from 'react-s3';
 import "./Header.css";
 var array        = [];
 var answersarray = [];
@@ -45,7 +43,7 @@ export default class Header extends Component {
     window.scrollTo(0,0);
   }
   logout(){
-    var user_ID = localStorage.setItem("user_ID", "")
+    localStorage.setItem("user_ID", "")
     window.location.reload();  
 
   }
@@ -119,7 +117,6 @@ export default class Header extends Component {
       dropdown.find('button').text( checkedtext );
 
       //retrieve the checked value, if needed in page 
-      var thisvalue = dropdown.find( checked ).val();
 
     });
     const userid = localStorage.getItem('user_ID');
@@ -209,7 +206,6 @@ export default class Header extends Component {
   //   window.location.reload();
   // }
   getData(){
-    var one =1;
     const userid = localStorage.getItem('user_ID');
     axios.get("/api/users/get/"+userid)
       .then((response)=>{ 
@@ -319,9 +315,9 @@ export default class Header extends Component {
       })
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf" ){ 
           if (newFile) {
-            if(this.state.panNumber==""){
+            if(this.state.panNumber===""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
@@ -411,9 +407,9 @@ export default class Header extends Component {
       })
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf" ){ 
           if (newFile) {
-            if(this.state.addressProof==""){
+            if(this.state.addressProof===""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
@@ -572,10 +568,7 @@ export default class Header extends Component {
   
   /*get checkbox value*/  
   getCheckValue(event){
-    var id = event.target.id;
     var checked = event.target.checked;
-    var name = event.target.name;
-    var value = event.target.value;
     if(checked){
       var value = event.target.value;
       
@@ -583,7 +576,7 @@ export default class Header extends Component {
         if(array){
 
           
-          if(this.state.questionsArray.indexOf(event.target.name)== -1)
+          if(this.state.questionsArray.indexOf(event.target.name)=== -1)
           {
             array.push(event.target.name);
 
@@ -593,26 +586,26 @@ export default class Header extends Component {
             })
           }
             answersarray.push(event.target.value);
-          if(event.target.name == "1) What is the primary goal for the funds invested through WealthyVia?")
+          if(event.target.name === "1) What is the primary goal for the funds invested through WealthyVia?")
           {
             this.setState({
               answersofQ1    : answersarray,
             },()=>{
             })
-          }else  if(event.target.name == "2) Any near term need for the funds invested with us ?"){
+          }else  if(event.target.name === "2) Any near term need for the funds invested with us ?"){
             this.setState({
               answersofQ2    : event.target.value,
             },()=>{
           
           })
           }
-          else  if(event.target.name == "3) Your investments % exposure of your investable capital can be best described as"){
+          else  if(event.target.name === "3) Your investments % exposure of your investable capital can be best described as"){
             this.setState({
               answersofQ3    : event.target.value,
             },()=>{
           })
           }
-           else  if(event.target.name == "4) What is number of years you have spent in stock market investments"){
+           else  if(event.target.name === "4) What is number of years you have spent in stock market investments"){
             this.setState({
               answersofQ4    : event.target.value,
             },()=>{
@@ -671,7 +664,7 @@ export default class Header extends Component {
                           </div>
                            <div className="col-lg-12 col-md-12 hidden-xs hidden-sm modalBodyCustom " >
                             <form id="riskform">
-                                <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>{this.state.compalsaroy == false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                                <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>{this.state.compalsaroy ===false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                                     <p id="Q1">{this.state.Question1} <span className="asterix">*</span></p>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -823,7 +816,7 @@ export default class Header extends Component {
                                   </div>
                                   <div className="col-lg-12 col-md-12 hidden-xs hidden-sm ">
                                       <form id="riskform">
-                                      {this.state.compalsaroy == false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                                      {this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
                                             <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
@@ -938,7 +931,7 @@ export default class Header extends Component {
                                   {/*Duplicate*/}
                                      <div className="hidden-md hidden-lg col-sm-12 col-xs-12 modalBodyCustomSmall">
                                       <form id="riskform">
-                                      {this.state.compalsaroy == false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                                      {this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
                                             <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
@@ -1149,10 +1142,10 @@ export default class Header extends Component {
                                       <div className="navbar-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <a className="navbar-brand webSiteName colorP col-lg-3 col-md-3 col-sm-4 col-xs-4" href="/">
                                           <div className="col-lg-10 webSiteImage">
-                                            <img src ="/images/WealthyVia_Logo.png" />
+                                            <img src ="/images/WealthyVia_Logo.png" alt="" />
                                           </div>
                                         </a>
-                                      <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP"><b>SEBI Registration No. INH000005397</b></a></div>
+                                      <div className="col-lg-4 col-lg-offset-1 col-md-8 col-sm-8 col-xs-8"> <a className="navbar-brand colorP" href=""><b>SEBI Registration No. INH000005397</b></a></div>
                                       <div className="col-lg-4 col-md-10 col-sm-10 col-xs-12 iconContainerHeader">
                                         <div className="row">
                                           <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4  textAlignRight mr15 noPadding  pull-right ">
@@ -1160,13 +1153,13 @@ export default class Header extends Component {
                                           </div> 
                                         
                                           <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
-                                           <a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"><img src="/images/link.png"/></a>
+                                           <a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"  rel="noopener noreferrer"><img src="/images/link.png" alt="" /></a>
                                           </div> 
                                           <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook pull-right">
-                                            <a href="https://www.facebook.com/wealthy.via" target="_blank">  <img src="/images/face.png"/></a>
+                                            <a href="https://www.facebook.com/wealthy.via" target="_blank"  rel="noopener noreferrer">  <img src="/images/face.png" alt="" /></a>
                                           </div>
                                            <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
-                                            <a href=" https://twitter.com/ViaWealthy" target="_blank"><img src="/images/tweet.png"/></a>
+                                            <a href=" https://twitter.com/ViaWealthy" target="_blank"  rel="noopener noreferrer"><img src="/images/tweet.png" alt="" /></a>
                                           </div>
                                         </div>
                                       </div>
@@ -1181,7 +1174,7 @@ export default class Header extends Component {
                                 <div className="container-fluid">
                                   <div className="navbar-header">
                                     <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">
-                                      <img src ="/images/IMG-20191129-WA0007.jpg" />
+                                      <img src ="/images/IMG-20191129-WA0007.jpg" alt=""  />
                                     </a>
 
                                     <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
@@ -1197,7 +1190,7 @@ export default class Header extends Component {
                                   { token ?
                                     <ul className="nav navbar-nav navbar-right customUlSmall">
                                       <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Articulations <span className="caret"></span>
                                         </a>                       
                                         <ul className="dropdown-menu customDropdownSmall">
@@ -1206,7 +1199,7 @@ export default class Header extends Component {
                                         </ul>
                                       </li>
                                       <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Offerings <span className="caret"></span>
                                         </a>
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
@@ -1224,7 +1217,7 @@ export default class Header extends Component {
                                       </li>
                                       {token ?
                                           <li className="nav-item dropdown">
-                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
@@ -1264,7 +1257,7 @@ export default class Header extends Component {
                                     :
                                     <ul className="nav navbar-nav navbar-right customUl width50">
                                       <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Articulations <span className="caret"></span>
                                         </a>                       
                                         <ul className="dropdown-menu customDropdown">
@@ -1273,7 +1266,7 @@ export default class Header extends Component {
                                         </ul>
                                       </li>
                                       <li className="nav-item dropdown">
-                                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Offerings <span className="caret"></span>
                                         </a>
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
@@ -1291,7 +1284,7 @@ export default class Header extends Component {
                                       </li>
                                       {token ?
                                           <li className="nav-item dropdown">
-                                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
@@ -1341,7 +1334,7 @@ export default class Header extends Component {
                                 <div className="container-fluid">
                                   <div className="navbar-header">
                                     <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">
-                                      <img src ="/images/IMG-20191129-WA0007.jpg" />
+                                      <img src ="/images/IMG-20191129-WA0007.jpg" alt="" />
                                     </a>
 
                                     <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >

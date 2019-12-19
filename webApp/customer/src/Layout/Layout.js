@@ -7,7 +7,6 @@ import AboutUs                                   from "../pages/AboutUs/AboutUs.
 import ContactUs                                 from "../pages/ContactUs/ContactUs.js";
 import ProductPage                               from "../pages/ProductPage/ProductPage.js";
 import RiskProfilePage                           from "../pages/RiskProfilePage/RiskProfilePage.js";
-import KycForm                                   from "../pages/KycForm/KycForm.js";
 //import BlogViewPage                              from "../pages/BlogViewPage/BlogViewPage.js";
 import AllBlogs                                  from "../pages/AllBlogs/AllBlogs.js";
 import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
@@ -45,7 +44,6 @@ const WebLayout = () => (
               <Route path="/contact-us"                       exact strict component={ContactUs}  />
               <Route path="/ProductPage"                      exact strict component={ProductPage}  />
               <Route path="/RiskProfilePage"                  exact strict component={RiskProfilePage}  />
-              <Route path="/KycForm"                          exact strict component={KycForm}  />
               <Route path="/AllBlogs"                         exact strict component={AllBlogs}  />
               <Route path="/blogsform/:blogID"                exact strict component={BlogsFormPage}  />
               <Route path="/offerings/:divId"                 exact strict component={ProductPage}  />

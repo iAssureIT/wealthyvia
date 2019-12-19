@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
-import $ 				 			from 'jquery';
-import Invest        				         from "../../blocks/Invest/Invest.js";
-import ProductPageBanner                        from "../../blocks/ProductPageBanner/ProductPageBanner.js";
-import FiveGCPMDiv                        from "../../blocks/FiveGCPMDiv/FiveGCPMDiv.js";
-import GrowthFactor                        from "../../blocks/GrowthFactor/GrowthFactor.js";
-import CorporateGovernance                        from "../../blocks/CorporateGovernance/CorporateGovernance.js";
-import Practicability                        from "../../blocks/Practicability/Practicability.js";
-import MagicFormula                        from "../../blocks/MagicFormula/MagicFormula.js";
-import swal               from 'sweetalert';
-import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
-import ReadyToGo                        from "../../blocks/ReadyToGo/ReadyToGo.js";
+import React, { Component }          from 'react';
+import $ 				 			               from 'jquery';
+import ProductPageBanner             from "../../blocks/ProductPageBanner/ProductPageBanner.js";
+import FiveGCPMDiv                   from "../../blocks/FiveGCPMDiv/FiveGCPMDiv.js";
+import GrowthFactor                  from "../../blocks/GrowthFactor/GrowthFactor.js";
+import CorporateGovernance           from "../../blocks/CorporateGovernance/CorporateGovernance.js";
+import Practicability                from "../../blocks/Practicability/Practicability.js";
+import MagicFormula                  from "../../blocks/MagicFormula/MagicFormula.js";
+import swal                          from 'sweetalert';
+import ReadyToGo                     from "../../blocks/ReadyToGo/ReadyToGo.js";
 
 import "./ProductPage.css";
 
@@ -48,7 +46,6 @@ export default class ProductPage extends Component {
 		  dropdown.find('button').text( checkedtext );
 
 		  //retrieve the checked value, if needed in page 
-		  var thisvalue = dropdown.find( checked ).val();
 
 		});
 
@@ -100,14 +97,7 @@ export default class ProductPage extends Component {
   	event.preventDefault();
   	if (this.validateForm() && this.validateFormReq()) {
        
-        var dataArray={
-        "name"            : this.refs.name.value,
-        "addressProof"     : this.refs.addressProof.value,
-        "panNumber"        : this.refs.panNumber.value,
-        "email"            : this.refs.email.value,
-        "contactNumber"    : this.refs.contactNumber.value,
-
-        }
+      
         let fields                = {};
         fields["panNumber"]       = "";
         fields["addressProof"]    = "";
@@ -143,12 +133,6 @@ export default class ProductPage extends Component {
 	SubmitEnquire(event){
 	  event.preventDefault();
   	if (this.validateFormModal() && this.validateFormReqModal()) {
-        
-        var dataArray={
-          "nameModal"             : this.refs.nameModal.value,
-          "contactNumberModal"    : this.refs.contactNumberModal.value,
-          "emailModal"            : this.refs.emailModal.value,
-        }
         let fields1 = {};
         fields1["nameModal"]            = "";
         fields1["emailModal"]           = "";
@@ -293,7 +277,7 @@ export default class ProductPage extends Component {
   }
   isTextKey(evt)  {
    var charCode = (evt.which) ? evt.which : evt.keyCode;
-   if (charCode!=189 && charCode > 32 && (charCode < 65 || charCode > 90) )
+   if (charCode!==189 && charCode > 32 && (charCode < 65 || charCode > 90) )
    {
     evt.preventDefault();
       return false;
@@ -305,16 +289,8 @@ export default class ProductPage extends Component {
 
 
   render() {
-  		const options = [
-  { label: '15% is fine with me but don’t wanna lose at all . Safety first . Long term.', value: 1},
-  { label: 'I am ok to take little risk but return should be 25-30%', value: 2},
-  { label: 'I am looking for multibagger stocks so that I can multi-fold my portfolio in 3 years', value: 3},
-  { label: 'Just strong core portfolio with blue chips or mutual fund but ok to earn something extra.', value: 4},
-  { label: 'I wanna allocate some portion to big tech giants like amazon facebook types too.', value: 5},
-  { label: 'I am day trader, daily play with markets. I want continuous smart trades.', value: 6},
-
-];
-	if(this.state.divID == "safeHeavenMoats")
+  		
+	if(this.state.divID === "safeHeavenMoats")
 	{
 		return (
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -339,7 +315,7 @@ export default class ProductPage extends Component {
                 </div>
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt=""/><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -361,7 +337,7 @@ export default class ProductPage extends Component {
                 </div>
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt="" /><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -371,7 +347,7 @@ export default class ProductPage extends Component {
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer  ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive" alt=""/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -385,7 +361,7 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -419,10 +395,10 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                        <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="/images/workWith.jpg"/>
+                        <img src="/images/workWith.jpg"  alt=""/>
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/workWith.jpg"/>
+                        <img src="/images/workWith.jpg" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Preferred companies </span></label>
@@ -444,7 +420,7 @@ export default class ProductPage extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png" alt=""/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Companies we don’t Prefer</span></label>
@@ -461,7 +437,7 @@ export default class ProductPage extends Component {
                     </div>
                      
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Companies we don’t Prefer</span></label>
@@ -518,12 +494,12 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.png" alt=""/>
                     </div>
                   </div>
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.png" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
@@ -548,7 +524,7 @@ export default class ProductPage extends Component {
 			</div>
 		);
 	}
-	else if(this.state.divID == "5gcpm"){
+	else if(this.state.divID === "5gcpm"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 				<div className="row">
@@ -564,7 +540,7 @@ export default class ProductPage extends Component {
 			</div>
 
 		);
-	}else if(this.state.divID == "safeHeavenAlpha"){
+	}else if(this.state.divID === "safeHeavenAlpha"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
@@ -588,7 +564,7 @@ export default class ProductPage extends Component {
                 </div>
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt=""/><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -610,7 +586,7 @@ export default class ProductPage extends Component {
                 </div>
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt="" /><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -642,10 +618,10 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                        <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"  alt=""/>
                     </div>
                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Overview </span></label>
@@ -675,7 +651,7 @@ export default class ProductPage extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/risk.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/risk.jpg" alt=""/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Risks Involved </span></label>
@@ -687,7 +663,7 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/risk.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/risk.jpg" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Risks Involved </span></label>
@@ -721,12 +697,12 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitableFor.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
@@ -745,7 +721,7 @@ export default class ProductPage extends Component {
 			</div>
 
 		);
-	}else if(this.state.divID == "USAStocks"){
+	}else if(this.state.divID === "USAStocks"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 						<div className="row">
@@ -770,7 +746,7 @@ export default class ProductPage extends Component {
                 </div>
                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt=""/><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -793,7 +769,7 @@ export default class ProductPage extends Component {
                 </div>
                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt="" /><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -803,7 +779,7 @@ export default class ProductPage extends Component {
 			  	   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/US-stocks.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/US-stocks.jpg" alt=""/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Few Facts on USA market </span></label>
@@ -816,7 +792,7 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/US-stocks.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/US-stocks.jpg" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Few Facts on USA market </span></label>
@@ -835,15 +811,15 @@ export default class ProductPage extends Component {
           
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer" id="cg">
 			  			<label> Since 2010 , US market outperformed Indian Market</label>
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/chart1.jpg" className=""/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/chart1.jpg"  alt=""className=""/>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
 			  			<label> Natural Benefit of USD INR increase over longer time</label>
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/usinr.jpg" className=""/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/usinr.jpg" alt="" className=""/>
 			  		</div>
 			  		<div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12  chartContainer " id="cg">
 			  			<label> Over the period, all currencies have declined against doller</label>
-			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/chart3.jpg" className=""/>
+			  			<img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/chart3.jpg"  alt=""className=""/>
 			  		</div>
 				
 				    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
@@ -864,13 +840,13 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/help.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/help.jpg" alt=""/>
                     </div>
                   </div>
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/help.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/help.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 suitableForDiv learnMoreST">
@@ -914,7 +890,7 @@ export default class ProductPage extends Component {
                 </div>
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt="" /><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -936,7 +912,7 @@ export default class ProductPage extends Component {
                 </div>
                    <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
                       <div className="row">
-                          <img src="/images/down.png" /><br/>
+                          <img src="/images/down.png" alt="" /><br/>
                           <span>Scroll down to know how</span>
                       </div>
                 </div>
@@ -953,7 +929,7 @@ export default class ProductPage extends Component {
               </p>
             </div>   
 			  		<div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer mt20">
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/buyProcess.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/buyProcess.png" alt=""/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">The process to buy unlisted shares </span></label>
@@ -1000,13 +976,13 @@ export default class ProductPage extends Component {
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/security.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/security.png" alt=""/>
                     </div>
                   </div>
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/security.png"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/security.png" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">

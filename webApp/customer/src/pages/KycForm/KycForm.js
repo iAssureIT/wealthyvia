@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import swal from 'sweetalert';
-import $ from "jquery";
 import "./KycForm.css";
 
 

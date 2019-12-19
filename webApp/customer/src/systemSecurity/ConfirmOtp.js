@@ -26,8 +26,8 @@ class ConfirmOtp extends Component {
     // var url = this.props.match.params;
     // console.log('confirm otp');
     var formValues ={
-      "ID" :  this.props.match.params.user_ID,
-      "emailotp":  parseInt(this.refs.emailotp.value)
+      "ID"        :  this.props.match.params.user_ID,
+      "emailotp"  :  parseInt(this.refs.emailotp.value)
     }
     axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
     .then((response)=>{
@@ -36,10 +36,10 @@ class ConfirmOtp extends Component {
       const destination = localStorage.getItem("destination");
       localStorage.setItem("user_ID",formValues.ID);
 
-      if(token == "true")
+      if(token === "true")
       {
         this.props.history.push('/reset-pwd/'+formValues.ID);
-      }else if(destination && destination!="undefined" ){
+      }else if(destination && destination!=="undefined" ){
 
               axios
               .get('/api/subscriptionorders/paymentOrderDetailsUser/'+formValues.ID)
@@ -47,7 +47,7 @@ class ConfirmOtp extends Component {
                 if(userStatus.data.length>0)
                 {
                   console.log("userStatus.data[0].paymentStatus0",userStatus.data[0].paymentStatus)
-                  if(userStatus.data[0].paymentStatus == "Paid" )
+                  if(userStatus.data[0].paymentStatus === "Paid" )
                   {
                   console.log("userStatus.data[0].paymentStatus1")
 
@@ -83,7 +83,7 @@ class ConfirmOtp extends Component {
 
   inputEffect(event){
     event.preventDefault();
-    if($(event.target).val() != ""){
+    if($(event.target).val() !== ""){
       $(event.target).addClass("has-content");
     }else{
       $(event.target).removeClass("has-content");
@@ -109,10 +109,10 @@ class ConfirmOtp extends Component {
 
   render(){
     
-      var resendOtpWrap = "resendOtpWrap resendOtpWrapcss";
+     /* var resendOtpWrap = "resendOtpWrap resendOtpWrapcss";
       var mobileEmail = 'Mobile Number';
       var resendOtp = <span onClick={this.resendOtp.bind(this)}>Resend OTP</span>;
-
+*/
     return(
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
         <div className="col-lg-4 col-lg-offset-7 col-md-4 col-md-offset-7 col-sm-12 signupPadding signUpFormWrap">

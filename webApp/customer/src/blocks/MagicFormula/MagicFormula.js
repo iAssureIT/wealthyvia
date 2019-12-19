@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
 
 import "./MagicFormula.css";
 
@@ -27,7 +26,7 @@ export default class MagicFormula extends Component {
                 <div className="row">
                    <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  imageContainer">
                     <div>
-                      <img src="/images/magic.jpg"/>
+                      <img src="/images/magic.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  typesOfGrouth learnMoreST">
@@ -43,7 +42,7 @@ export default class MagicFormula extends Component {
                 
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer">
                     <div>
-                      <img src="/images/magic.jpg"/>
+                      <img src="/images/magic.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">

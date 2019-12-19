@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import $         from 'jquery';
-
 import "./HandFreeInvesting.css";
 
 export default class HandFreeInvesting extends Component {
@@ -48,14 +47,14 @@ export default class HandFreeInvesting extends Component {
                 </div>
                <div className="col-lg-6 col-md-6  hidden-sm hidden-xs padding40Left handFreeInvestingImgContainer">
                   <div>
-                    <img src="/images/unlisted.jpg"/>
+                    <img src="/images/unlisted.jpg" alt=""/>
                   </div>
                 </div>
                   <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
               <div className="row">
               <div className="col-sm-12 col-sm-12 hidden-md hidden-lg small">
                   <div>
-                    <img src="/images/unlisted.jpg"/>
+                    <img src="/images/unlisted.jpg" alt=""/>
                   </div>
                 </div>
                 <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContentSmall  backColorGray">

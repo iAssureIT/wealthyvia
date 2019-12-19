@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
 
 import "./GrowthFactor.css";
 
@@ -39,12 +38,12 @@ export default class GrowthFactor extends Component {
                     </div>
                    <div className="col-lg-6 col-md-6 hidden-sm hidden-xs  gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/five.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/five.jpg" alt=""/>
                     </div>
                   </div>
                      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 gifContainer">
                     <div>
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/five.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/five.jpg" alt=""/>
                     </div>
                   </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">

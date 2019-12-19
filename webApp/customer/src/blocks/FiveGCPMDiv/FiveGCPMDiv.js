@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import $         from 'jquery';
-
 import "./FiveGCPMDiv.css";
 
 export default class FiveGCPMDiv extends Component {
@@ -27,7 +25,7 @@ export default class FiveGCPMDiv extends Component {
                 <label className="investLabel">Introducting you to 5GCPM</label>
                 <p className="investPara col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">Our proprietory self designed framework puts you ahead in the game of wealth creation. It makes you invest in the best performing companies & provides protection with risk management.</p>
                 <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 subDiv1 ">
-                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/memorize.png"/></div>
+                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/memorize.png" alt=""/></div>
                     <label className="payZero">5 Growth Factors</label>
                   {/*  <p className="payZeroDesc">Sales.<br/>
                                             Profits.<br/>
@@ -37,7 +35,7 @@ export default class FiveGCPMDiv extends Component {
 */}
                 </div>
                 <div className="col-lg-3 col-md-4 col-sm-6 col-xs-12 subDiv1 ">
-                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitcase.png"/></div>
+                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/suitcase.png" alt=""/></div>
                     <label className="payZero">Corporate Governance</label>
                   {/*  <p className="payZeroDesc">Tax evasions, Dividends.<br/>
                                               High Promoter Holdings.<br/>
@@ -48,7 +46,7 @@ export default class FiveGCPMDiv extends Component {
 */}
                 </div>
                  <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 subDiv1 ">
-                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/dollar.png"/></div>
+                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/dollar.png" alt=""/></div>
                     <label className="payZero">Practicability</label>
                   {/*  <p className="payZeroDesc">Probabilistic Approach.<br/>
                                               Feasibility<br/>
@@ -58,7 +56,7 @@ export default class FiveGCPMDiv extends Component {
 
                   </div>
                    <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12 subDiv1 ">
-                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/molecule.png"/></div>
+                      <div className="iconContainer"><img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/molecule.png" alt=""/></div>
                     <label className="payZero">Magic Formula</label>
                                             {/*<p className="payZeroDesc">7 parameters are
                         combined to form one

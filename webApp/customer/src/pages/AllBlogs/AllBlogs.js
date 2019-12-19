@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
+import AllBlogsList      	from "../../blocks/AllBlogsList/AllBlogsList.js";
+
 import "./AllBlogs.css";
-import AllBlogsBanner      from "../../blocks/AllBlogsBanner/AllBlogsBanner.js";
-import AllBlogsList      from "../../blocks/AllBlogsList/AllBlogsList.js";
-
-
 
 export default class AllBlogs extends Component {
 	constructor(props){
@@ -20,9 +18,7 @@ export default class AllBlogs extends Component {
   render() {
 		return (
 				<div className="">
-					{/*<AllBlogsBanner/>*/}
 					<AllBlogsList/>	
-
 				</div>	
 		);
 	}

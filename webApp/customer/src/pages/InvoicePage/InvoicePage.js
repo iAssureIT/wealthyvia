@@ -22,7 +22,6 @@ export default class InvoicePage extends Component {
     window.scrollTo(0,0);
   }
     getDate() {
-    var date = { currentTime: new Date().toLocaleString() };
 
     this.setState({
       date: Moment(new Date()).format("DD-MM-YYYY")
@@ -59,7 +58,7 @@ export default class InvoicePage extends Component {
         this.setState({
           orderDetails : orderDetails.data,
         }) 
-
+        console.log("orderDetails",orderDetails.data);
       })
       .catch(function(error){
           if(error.message === "Request failed with status code 401")
@@ -95,7 +94,7 @@ export default class InvoicePage extends Component {
                   <div className="col-lg-6 col-lg-offset-4 col-md-12 col-sm-12 col-xs-12 iconContainerIP">
                       <label className="col-lg-12 invoiceHead "><span className="pull-right">INVOICE</span></label>
                       <label className="col-lg-12 dateContain "><span className="pull-right">Date : <span className="noBold">{this.state.date}</span></span></label>
-                      <label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.paymentDetails.id}</span></span></label>
+                      <label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
 
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">

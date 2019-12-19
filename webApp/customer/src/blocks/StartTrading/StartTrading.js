@@ -52,12 +52,12 @@ export default class StartTrading extends Component {
                 </div>
                <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-xs hidden-sm startTrandingImgContainer padding40 para2">
                   <div>
-                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/MF.jpg"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/MF.jpg" alt="" />
                   </div>
                 </div>
                   <div className="col-sm-12 col-sm-12 hidden-md hidden-lg  startTrandingImgContainerSmall ">
                   <div>
-                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/MF.jpg"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/MF.jpg" alt=""/>
                   </div>
                 </div>
                <div className="col-sm-12 col-sm-12 hidden-md hidden-lg startTrandingContentSmall backColorGray">

@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
-import { Link} from 'react-router-dom';
-// import {browserHistory} from 'react-router-dom';
-import { Redirect } from 'react-router';
-import swal from 'sweetalert';
-import $ from "jquery";
-import queryString from "query-string";
-
-// const queryString = require('query-string');
-/*import particlesJS from 'react-particles-js';
-*/
+import { Link}              from 'react-router-dom';
+import swal                 from 'sweetalert';
+import $                    from "jquery";
+import queryString          from "query-string";
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -57,7 +51,7 @@ class Login extends Component {
               .then((userStatus)=>{
                 if(userStatus.data.length>0)
                 {
-                  if(userStatus.data[0].paymentStatus == "Paid" )
+                  if(userStatus.data[0].paymentStatus === "Paid" )
                   {
                       this.props.history.push(this.state.destination);            
                       window.location.reload();                 
