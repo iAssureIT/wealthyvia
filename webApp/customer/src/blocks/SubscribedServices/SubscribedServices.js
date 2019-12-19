@@ -183,23 +183,30 @@ export default class SubscribedServices extends Component {
     }
     
     if(this.state.subscriptionData.length > 0){
-      for(let i=0; i<this.state.subscriptionData[0].statements.length; i++ ){
-        FullDate = new Date(this.state.subscriptionData[0].statements[i].createdAt); 
-        month = FullDate.getMonth()+1 ;
-        if(month < 10){
-          month = '0' + month; 
+      for(let j=0;j<this.state.subscriptionData.length;j++)
+      {
+        if(this.state.subscriptionData[j].statements.length>0)
+        {
+           for(let i=0; i<this.state.subscriptionData[j].statements.length; i++ ){
+          FullDate = new Date(this.state.subscriptionData[j].statements[i].createdAt);
+
+          month = FullDate.getMonth()+1 ;
+          if(month < 10){
+            month = '0' + month; 
+          }
+
+          FullDateOnly = FullDate.getDate() + "-" + month + "-" + (FullDate.getYear() + 1900) ;
+          //console.log("i = ",FullDateOnly);
+          dateArray .push(FullDateOnly) ;
+
         }
-
-        FullDateOnly = FullDate.getDate() + "-" + month + "-" + (FullDate.getYear() + 1900) ;
-        //console.log("i = ",FullDateOnly);
-        dateArray .push(FullDateOnly) ;
-
+       // console.log("1 dateArray  = ", dateArray );      
+        dateArray  = [...new Set(dateArray)];
+        }
+        }
+        console.log("2 dateArray  = ", dateArray);      
+       
       }
-     // console.log("1 dateArray  = ", dateArray );      
-      dateArray  = [...new Set(dateArray)];
-      //console.log("2 dateArray  = ", dateArray);      
-
-    }
 
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContainerSS padding100">
@@ -285,7 +292,7 @@ export default class SubscribedServices extends Component {
                                           this.state.subscriptionData[i].statements.sort((a, b) => a.createdAt<b.createdAt).map((a, i)=>{
                                             return(
                                             <div className="col-lg-4 col-md-4 breakAll curserPointer ht200 col-xs-4 col-sm-4  textAlignCenter" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
-                                              <h6> {a.createdAt}</h6>
+                                              <h5> {moment(a.createdAt).format("DD-MM-YYYY HH:MM")}</h5>
                                               <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download Content-Type= "application/octet-stream" Content-Disposition= "inline">
                                               <div >
                                                 <img className="" src="/images/pdf.png"/><br/>
