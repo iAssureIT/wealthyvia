@@ -81,7 +81,7 @@ export default class OrderPage extends Component {
                                     </span>
                                  
                                   </span>
-                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Payment Status: <span className="noBold">{data.paymentStatus === "unPaid" ?  "Failed" : "Success" } </span></span>
+                                  <span className="centreDetaillistItemOP col-lg-12  col-md-12 col-sm-12 col-xs-12">Payment Status: <span className="noBold">{data.paymentStatus !== "Paid" ?  "Failed" : "Success" } </span></span>
                                 </a>
                                 </div>
                             )

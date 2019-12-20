@@ -174,14 +174,17 @@ export default class SubscribedServices extends Component {
     var dateArray  = [];
     var FullDate = "";var month = "";
     var FullDateOnly = "";
-    var lengthOfPer = this.state.listOfPerformanceDoc.length;
-    var lastUpdatedDatePer = ""
-    var lastUpdatedDateState = ""
-    if(this.state.listOfPerformanceDoc[lengthOfPer-1])
+    if(this.state.listOfPerformanceDoc)
     {
-      lastUpdatedDatePer = moment(this.state.listOfPerformanceDoc[lengthOfPer-1].createdAt).format("DD-MM-YYYY")
-    }
+    var lengthOfPer = this.state.listOfPerformanceDoc.length;
+      var lastUpdatedDatePer = ""
+      var lastUpdatedDateState = ""
+      if(this.state.listOfPerformanceDoc[lengthOfPer-1])
+      {
+        lastUpdatedDatePer = moment(this.state.listOfPerformanceDoc[lengthOfPer-1].createdAt).format("DD-MM-YYYY")
+      }
     
+    }
     if(this.state.subscriptionData.length > 0){
       for(let j=0;j<this.state.subscriptionData.length;j++)
       {
@@ -241,7 +244,7 @@ export default class SubscribedServices extends Component {
                           <div id="performance" class="tab-pane fade in active ">
                             <h3>Performance Reports</h3>
                             {
-                              this.state.listOfPerformanceDoc[lengthOfPer-1] ?
+                              this.state.listOfPerformanceDoc &&this.state.listOfPerformanceDoc[lengthOfPer-1] ?
                             <h5 className="">Last update date : {lastUpdatedDatePer} </h5>
                             :
                             null
@@ -250,7 +253,7 @@ export default class SubscribedServices extends Component {
                             <label className="mt20 col-lg-12 col-md-12 col-sm-12 col-xs-12">{this.state.date1}</label>
 
                              {
-                                this.state.listOfPerformanceDoc?
+                                this.state.listOfPerformanceDoc && this.state.listOfPerformanceDoc.length>0?
                                 this.state.listOfPerformanceDoc.map((a, i)=>{
                                   return(
                                   <div className="col-lg-4 col-md-4 breakAll col-xs-4 ht200 col-sm-4  textAlignCenter">
@@ -264,7 +267,7 @@ export default class SubscribedServices extends Component {
                                     )
                                   })
                                 :
-                                null
+                                <h4 className="textAlignCenter">No documents found</h4>
                               }
                          </div>
                        
@@ -304,7 +307,8 @@ export default class SubscribedServices extends Component {
                                               )
                                             })
                                           :
-                                          null
+                                          <h4>No documents found</h4>
+
                                         }
                                     </div>
                                     )

@@ -60,7 +60,6 @@ export default class InvoicePageView extends Component {
       .catch((error)=>{
             console.log('error', error);
       })
-     var hostname = window.location.hostname=='localhost'?'localhost:3001':window.location.hostname;
 
     /* get orderDetails */
         axios
@@ -114,7 +113,8 @@ export default class InvoicePageView extends Component {
                   <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 logoContainerIP">
                   {
                   this.state.companysettings && this.state.companysettings.length>0?
-                      <img src={this.state.companysettings[0].logoFilename} className=""/>
+                      // <img src={this.state.companysettings[0].logoFilename} className=""/>
+                      <img src="/images/WealthyVia_Logo.png" className=""/>
                     :
                     null
                   }

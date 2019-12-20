@@ -152,7 +152,7 @@ class SignUp extends Component {
 	}
  	acceptcondition(event){
 	    var conditionaccept = event.target.value;
-	    if(conditionaccept=="acceptedconditions"){
+	    if(conditionaccept==="acceptedconditions"){
 	        $(".acceptinput").removeAttr('disabled');
 	        // if(this.state.roletype=="Student"){
 	        //     document.getElementById("lastname").removeAttribute("");

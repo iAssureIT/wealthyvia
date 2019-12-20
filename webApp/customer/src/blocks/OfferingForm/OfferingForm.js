@@ -2,12 +2,11 @@
 import React, { Component }      from 'react';
 
 import "./OfferingForm.css";
-import {Route, withRouter} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 import axios        from 'axios';
 import S3FileUpload from 'react-s3';
 
 import swal from 'sweetalert';
-import PropTypes from 'prop-types';
 import CKEditor from 'ckeditor4-react';
 
 
@@ -22,11 +21,10 @@ class OfferingForm extends Component{
       "config"            : "",
       "uploadedImage"     : [],
       "imgPath"           : "",
-      "imgOfferPath"         : {},
-
+      "imgOfferPath"      : {},
       "blog1Img"          : [],
-      "offeringContent"       : '',
-      "formerrors"        :{
+      "offeringContent"   : '',
+      "formerrors"        : {
           "clientName"    : " ",
           "clientEmail"   : " ", 
         },
@@ -150,7 +148,7 @@ uploadBlogImage(event){
       if (newFile) {
       // console.log("config--------------->",this.state.config);
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG"){ 
           if (newFile) {
       console.log("blog1Img--------------->",newFile);
             S3FileUpload
@@ -209,7 +207,7 @@ uploadBlogImage(event){
     var filePath = e.target.getAttribute('data-id');
     var data = filePath.split("/");
     var imageName = data[4];
-    console.log("imageName==",imageName);
+    console.log("imageName===",imageName);
 
     if(index){
       swal({

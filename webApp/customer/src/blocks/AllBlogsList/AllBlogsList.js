@@ -2,7 +2,6 @@ import React 			 from 'react';
 import axios       		 from 'axios';
 import swal              from 'sweetalert';
 import Moment 			 from 'react-moment';
-import $                 from "jquery";
 
 import './AllBlogsList.css';
 var subscribed = false;
@@ -63,12 +62,12 @@ export default class AllBlogsList extends React.Component {
 	      })
 	}
 	componentDidMount(){
-		var Blogs =[];
 		var user_ID = localStorage.getItem('user_ID')
 
 		axios
 	      .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
 	      .then((userStatus)=>{
+	      	console.log("userStatus",userStatus);
 	      	this.setState({
 	      			userStatus:userStatus.data[0].paymentStatus
 	      		});
@@ -78,6 +77,8 @@ export default class AllBlogsList extends React.Component {
 	      	}else{
 	      		subscribed = false
 	      	}
+	      },()=>{
+	      	console.log("subscribed",subscribed);
 	      })
 	      .catch(function(error){
 	        console.log(error);
@@ -140,6 +141,7 @@ export default class AllBlogsList extends React.Component {
 
 	}
 	render() {
+		console.log("subscribed returnnder",subscribed);
 		var data = this.state.Blogs;
    		const loggedIn = localStorage.getItem("user_ID");
 		return (

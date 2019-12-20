@@ -3,7 +3,7 @@ import "./RelatedBlogs.css";
 
 import axios        from 'axios';
 import swal from 'sweetalert';
-
+var subscribed = false;
 export default class RelatedBlogs extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,11 +29,39 @@ getBlogData(){
       })
 }
 componentDidMount(){
+	var user_ID = localStorage.getItem('user_ID')
+
+		axios
+	      .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
+	      .then((userStatus)=>{
+	      	console.log("userStatus",userStatus);
+	      	this.setState({
+	      			userStatus:userStatus.data[0].paymentStatus
+	      		});
+	      	if( this.state.userStatus == "Paid")
+	      	{
+	      		subscribed = true
+	      	}else{
+	      		subscribed = false
+	      	}
+	      },()=>{
+	      	console.log("subscribed",subscribed);
+	      })
+	      .catch(function(error){
+	        console.log(error);
+	          if(error.message === "Request failed with status code 401")
+	              {
+	                   swal("Your session is expired! Please login again.","", "error");
+	                   this.props.history.push("/");
+	              }
+	      })
+
+
 	this.getBlogData();
+
 }
 	render() {
 		var data = this.state.Blogs;
-		var subscribed = true;
 
 		return (
           	<div className="container-fluid RelatedBlogsBox" style={{padding:"0px"}}>

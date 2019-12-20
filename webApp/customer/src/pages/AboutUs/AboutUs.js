@@ -89,14 +89,14 @@ export default class AboutUs extends Component {
 
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/team.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/team.png" alt=""/>
                           <p>Management Integrity, high shareholding , better reputation, Changes in shareholding patterns</p>                      
                       </div>
                     </div>
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/address.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/address.png" alt=""/>
                           <p>Consistency in Revenue , EBIDTA , Profit Growth , ROE , ROCE and Margins </p>
                     
                       </div>
@@ -104,7 +104,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/diagram.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/diagram.png" alt=""/>
                           <p>Business Scaleability, sustainability, market shares, product pricing powers, Durable competitive advantage </p>
                     
                       </div>
@@ -112,7 +112,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/sign.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/sign.png" alt=""/>
                           <p>Corporate Governance : Accounting redflags, promoter track/reputation  records, Third party transactions , tax and dividends</p>
                     
                       </div>
@@ -120,7 +120,7 @@ export default class AboutUs extends Component {
 
                      <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/umbrella.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/umbrella.png" alt=""/>
                           <p>Are Big investors, FII , DII interested in these stocks? Buying interest </p>
                     
                       </div>
@@ -128,7 +128,7 @@ export default class AboutUs extends Component {
 
                     <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 hexDiv1">
                         <div className="row">
-                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/house.png"/>
+                          <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/house.png" alt=""/>
                           <p>We invest only when valuations are right</p>
                     
                       </div>
@@ -176,7 +176,7 @@ export default class AboutUs extends Component {
                     <p>We have team of great mixture and different strengths and expertise working together but with equal commitment. Our Team Comprises of Research Analysts from Industry specialists, business analysts, Operational and Marketing consultants and Stock Market equity specialists.</p>
                     </div>
                       <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  image1 noPadding"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg" alt=""/>
                     </div>  
                      
                 </div>  
@@ -184,7 +184,7 @@ export default class AboutUs extends Component {
             <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray">
                 <div className="row">
                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ourTeam.jpg" alt=""/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Our Team</label>
@@ -197,7 +197,7 @@ export default class AboutUs extends Component {
                 <div className="row">
                   
                   <div className="col-lg-6   col-md-5 hidden-xs hidden-sm  noPadding image1"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg" alt=""/>
                     </div> 
                     <div className="col-lg-6  col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Fondness For Reading</label>
@@ -210,7 +210,7 @@ export default class AboutUs extends Component {
             <div className="hidden-lg hidden-md col-sm-12 col-xs-12 ">
                 <div className="row">
                        <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/books.jpg" alt=""/>
                     </div>   
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Fondness For Reading</label>
@@ -228,14 +228,14 @@ export default class AboutUs extends Component {
                     <p>self developed screening Software tools to scan Fundamentals and Technicals. It took 924 hours of hard work and 17000 lines of code to reach it to our requirements. These Systems help us a lot in being alert to find opportunities and direct our time to right efforts.</p>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  noPadding image1"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg" alt=""/>
                     </div>  
                 </div>  
             </div>
             <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray ">
                 <div className="row">
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg"/>
+                    <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/weAre.jpg" alt=""/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Our Equipments & Tools</label>
@@ -247,7 +247,7 @@ export default class AboutUs extends Component {
             <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv ">
                 <div className="row">
                   <div className="col-lg-6   col-md-5 hidden-xs hidden-sm  noPadding image1 "> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg" alt=""/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Clear Roadmap</label>
@@ -259,7 +259,7 @@ export default class AboutUs extends Component {
             <div className="hidden-lg hidden-md col-sm-12 col-xs-12  ">
                 <div className="row">
                       <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/clearDirection.jpg" alt=""/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Clear Roadmap</label>
@@ -277,7 +277,7 @@ export default class AboutUs extends Component {
                       <p> unless we measure, we can not know where we stand  viz a viz others others. Our monitoring policy and tools measure it continously where we are standing and can we outperperform benchmark indices.</p>
                       </div>  
                       <div className="col-lg-6 col-md-6 hidden-xs hidden-sm  noPadding image1"> 
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg"/>
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/performance.jpg" alt=""/>
                       </div> 
                   </div>  
                 </div>
@@ -296,7 +296,7 @@ export default class AboutUs extends Component {
                 <div className="col-lg-12 col-md-12 hidden-xs hidden-sm padding40inDiv ">
                   <div className="row">
                      <div className="col-lg-6  col-md-5 hidden-xs hidden-sm  noPadding image1"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg" alt=""/>
                     </div>  
                     <div className="col-lg-6 col-md-6 hidden-xs hidden-sm imageContent1"> 
                     <label className="nameOfImageHead">Management</label>
@@ -308,7 +308,7 @@ export default class AboutUs extends Component {
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12  ">
                     <div className="row">
                         <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding image2"> 
-                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg"/>
+                      <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/management.jpg" alt=""/>
                     </div>  
                     <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
                     <label className="nameOfImageHead">Management</label>

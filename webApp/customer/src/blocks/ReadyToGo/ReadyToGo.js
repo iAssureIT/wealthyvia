@@ -4,7 +4,7 @@ import swal                       from 'sweetalert';
 import axios                      from 'axios';
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
-import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
+// import ReactMultiSelectCheckboxes from 'react-multiselect-checkboxes';
 
 import "./ReadyToGo.css";
 
@@ -68,7 +68,7 @@ export default class ReadyToGo extends Component {
     dropdown.find('button').text( checkedtext );
 
     //retrieve the checked value, if needed in page 
-    var thisvalue = dropdown.find( checked ).val();
+    // var thisvalue = dropdown.find( checked ).val();
 
     });
     axios
@@ -133,7 +133,7 @@ export default class ReadyToGo extends Component {
       })
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf" ){ 
           if (newFile) {
             if(this.state.addressProof==""){
               S3FileUpload
@@ -220,7 +220,7 @@ export default class ReadyToGo extends Component {
       })
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ){ 
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf" ){ 
           if (newFile) {
             if(this.state.panNumber==""){
               S3FileUpload
@@ -821,7 +821,7 @@ validateFormReqReview() {
         if(array){
 
           
-          if(this.state.questionsArray.indexOf(event.target.name)== -1)
+          if(this.state.questionsArray.indexOf(event.target.name)=== -1)
           {
             array.push(event.target.name);
 
@@ -831,26 +831,26 @@ validateFormReqReview() {
             })
           }
             answersarray.push(event.target.value);
-          if(event.target.name == "1) What is the primary goal for the funds invested through WealthyVia?")
+          if(event.target.name === "1) What is the primary goal for the funds invested through WealthyVia?")
           {
             this.setState({
               answersofQ1    : answersarray,
             },()=>{
             })
-          }else  if(event.target.name == "2) Any near term need for the funds invested with us ?"){
+          }else  if(event.target.name === "2) Any near term need for the funds invested with us ?"){
             this.setState({
               answersofQ2    : event.target.value,
             },()=>{
           
           })
           }
-          else  if(event.target.name == "3) Your investments % exposure of your investable capital can be best described as"){
+          else  if(event.target.name === "3) Your investments % exposure of your investable capital can be best described as"){
             this.setState({
               answersofQ3    : event.target.value,
             },()=>{
           })
           }
-           else  if(event.target.name == "4) What is number of years you have spent in stock market investments"){
+           else  if(event.target.name === "4) What is number of years you have spent in stock market investments"){
             this.setState({
               answersofQ4    : event.target.value,
             },()=>{
@@ -909,9 +909,9 @@ validateFormReqReview() {
       console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
-        if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG" ||  ext=="PDF" ||  ext=="pdf" ||  ext=="xlsx"||  ext=="xls"||  ext=="csv"){ 
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf" ||  ext==="xlsx"||  ext==="xls"||  ext==="csv"){ 
           if (newFile) {
-            if(this.state.fileUpload==""){
+            if(this.state.fileUpload===""){
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
@@ -988,7 +988,7 @@ validateFormReqReview() {
                           </div>
                           <div className="col-lg-12 col-md-12 hidden-xs hidden-sm modalBodyCustom " >
                             <form id="riskform">
-                                <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>{this.state.compalsaroy == false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                                <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>{this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                                     <p id="Q1">{this.state.Question1} <span className="asterix">*</span></p>
                                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -1140,7 +1140,7 @@ validateFormReqReview() {
                                   </div>
                                     <div className="col-lg-12 col-md-12 hidden-xs hidden-sm ">
                                       <form id="riskform">
-                                      {this.state.compalsaroy == false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                                      {this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
                                             <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
@@ -1260,7 +1260,7 @@ validateFormReqReview() {
                                   {/*Duplicate*/}
                                     <div className="hidden-md hidden-lg col-sm-12 col-xs-12 modalBodyCustomSmall">
                                       <form id="riskform">
-                                      {this.state.compalsaroy == false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                                      {this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
                                             <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
@@ -1716,12 +1716,12 @@ validateFormReqReview() {
                      <label className="readyTo">Ready to go?</label><br/>
                      <span className="logoText"><b><i>Start your Wealth Creation with us, Today!!</i> </b></span><br/>
                      <div className="col-lg-11 col-lg-offset-1 noPadding">
-                     {token == "" ?
+                     {token === "" ?
                       <a  href="/login" ><div className="buyNowButtonPP col-lg-3">Invest Now</div></a>
                         :
                       <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
                       }
-                      {token == "" ?
+                      {token ==="" ?
                       <a  href="/login" ><div className="col-lg-offset-1 col-lg-3 enquireNow">Enquire Now</div></a>
                         :
                       <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>

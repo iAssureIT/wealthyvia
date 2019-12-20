@@ -2,7 +2,7 @@ import React                 from 'react';
 import SingleBlogBanner      from "../../blocks/SingleBlogBanner/SingleBlogBanner.js";
 import BlogContent           from "../../blocks/BlogContent/BlogContent.js";
 import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
-import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
+// import BlogComment           from "../../blocks/BlogComment/BlogComment.js";
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
 import Moment                from 'react-moment';
@@ -93,11 +93,11 @@ export default class SingleBlogPage extends React.Component {
           <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
       		  <BlogContent blogContent={this.state.blogContent}/>
             <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
-              <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
-              href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank">
+              <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
+              href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
                   <i class="fa fa-twitter" aria-hidden="true"></i>
               </a>
-                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin"></i></a>
+                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
                {/*<LinkedinShareButton
                   title       = {this.state.blogTitle}
                   description = {this.state.summary}
@@ -107,12 +107,12 @@ export default class SingleBlogPage extends React.Component {
                 </LinkedinShareButton>*/}
             </div>
               <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
-                <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
-                href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank">
+                <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
+                href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
                     <i class="fa fa-twitter" aria-hidden="true"></i>
                 </a>
 
-                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"><i class="fa fa-linkedin">
+                <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin">
 
                 </i></a>
                    

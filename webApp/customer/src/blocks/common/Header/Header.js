@@ -1255,12 +1255,12 @@ export default class Header extends Component {
                                       }
                                     </ul>
                                     :
-                                    <ul className="nav navbar-nav navbar-right customUl width50">
+                                    <ul className="nav navbar-nav navbar-right customUlSmall width50">
                                       <li className="nav-item dropdown">
                                         <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Articulations <span className="caret"></span>
                                         </a>                       
-                                        <ul className="dropdown-menu customDropdown">
+                                        <ul className="dropdown-menu customDropdownSmall">
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
                                             <a href="">Communique</a>
                                         </ul>
@@ -1269,7 +1269,7 @@ export default class Header extends Component {
                                         <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                           Offerings <span className="caret"></span>
                                         </a>
-                                        <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
+                                        <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
                                           <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
@@ -1311,12 +1311,13 @@ export default class Header extends Component {
                                       {
                                         token ?
                                           <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
-                                                  <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
+                                                  <span  className="investNowHeadOtherSmall hidden-md hidden-lg" >Invest Now</span>
                                                   <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
                                           </li>                     
                                         :
-                                          <a  href="/login" ><li className="dropdown investNowHeadBefore">
-                                            <span >Invest Now</span>
+                                          <a  href="/login" >
+                                          <li className="dropdown">
+                                            <span className="investNowHeadOtherSmall" >Invest Now</span>
                                           </li>   
                                           </a>                    
                                       }

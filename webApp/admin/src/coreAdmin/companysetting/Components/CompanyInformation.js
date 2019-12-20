@@ -93,7 +93,6 @@ class CompanyInformation extends Component{
     axios
       .get('/api/companysettings/list')
       .then((response)=>{
-        console.log("get list companysettings.............",response.data);
         var respData = response.data[0];
         this.setState({
                       companyId               : respData.companyId,
@@ -254,7 +253,7 @@ console.log("innnuuu");
                                 logoFilename            : this.state.logo,
                                 companyId               : 1,
                                }
-    console.log('companyInfoFormValue =:', companyInfoFormValueUpdate);
+    console.log('companyInfoFormValue =:', companyInfoFormValue);
       if(this.state.companyId == "1"){
        if(formValid(this.state.formerrors)){
         axios.patch('/api/companysettings/information',companyInfoFormValueUpdate)
@@ -382,7 +381,7 @@ console.log("innnuuu");
 
   companyLogoUpload(event){
     event.preventDefault();
-    var index = event.target.getAttribute('id');
+    var index = event.currentTarget.getAttribute('id');
     console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {

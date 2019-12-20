@@ -98,7 +98,9 @@ export default class PaymentResponse extends React.Component {
                   }
                     {
                       this.state.companysettings&& this.state.companysettings.length >0?
-                        <img src={this.state.companysettings[0].logoFilename} className="col-lg-5 col-md-5 col-sm-4 col-xs-4 pull-right"/>
+                        //<img src={this.state.companysettings[0].logoFilename} className="col-lg-5 col-md-5 col-sm-4 col-xs-4 pull-right"/>
+                      <img src="/images/WealthyVia_Logo.png" className="col-lg-5 pull-right"/>
+
                       :
                       null
                     }
@@ -141,7 +143,7 @@ export default class PaymentResponse extends React.Component {
                             <li className="failPay"><b>Failed </b></li>
                           }
 
-                          <li>{this.state.orderDetails.transactionId?this.state.orderDetails.transactionId:"-"}</li>
+                          <li>{this.state.orderDetails.invoiceNum?this.state.orderDetails.invoiceNum :"-"}</li>
                           <li>{this.state.date}</li>
                           <li>{this.state.orderDetails.userName}</li>
                           <li>{this.state.orderDetails.mobileNumber}</li>
