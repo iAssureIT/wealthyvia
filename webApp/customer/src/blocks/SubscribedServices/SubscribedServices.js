@@ -174,42 +174,32 @@ export default class SubscribedServices extends Component {
     var dateArray  = [];
     var FullDate = "";var month = "";
     var FullDateOnly = "";
-    if(this.state.listOfPerformanceDoc)
-    {
-    var lengthOfPer = this.state.listOfPerformanceDoc.length;
+    if(this.state.listOfPerformanceDoc){
+      var lengthOfPer = this.state.listOfPerformanceDoc.length;
       var lastUpdatedDatePer = ""
       var lastUpdatedDateState = ""
-      if(this.state.listOfPerformanceDoc[lengthOfPer-1])
-      {
+      if(this.state.listOfPerformanceDoc[lengthOfPer-1]){
         lastUpdatedDatePer = moment(this.state.listOfPerformanceDoc[lengthOfPer-1].createdAt).format("DD-MM-YYYY")
       }
-    
     }
+
     if(this.state.subscriptionData.length > 0){
-      for(let j=0;j<this.state.subscriptionData.length;j++)
-      {
-        if(this.state.subscriptionData[j].statements.length>0)
-        {
-           for(let i=0; i<this.state.subscriptionData[j].statements.length; i++ ){
-          FullDate = new Date(this.state.subscriptionData[j].statements[i].createdAt);
-
-          month = FullDate.getMonth()+1 ;
-          if(month < 10){
-            month = '0' + month; 
+      for(let j=0;j<this.state.subscriptionData.length;j++){
+        if(this.state.subscriptionData[j].statements.length>0){
+          for(let i=0; i<this.state.subscriptionData[j].statements.length; i++ ){
+            FullDate = new Date(this.state.subscriptionData[j].statements[i].createdAt);
+            month = FullDate.getMonth()+1 ;
+            if(month < 10){
+              month = '0' + month; 
+            }
+            FullDateOnly = FullDate.getDate() + "-" + month + "-" + (FullDate.getYear() + 1900) ;
+            dateArray.push(FullDateOnly) ;
           }
-
-          FullDateOnly = FullDate.getDate() + "-" + month + "-" + (FullDate.getYear() + 1900) ;
-          //console.log("i = ",FullDateOnly);
-          dateArray .push(FullDateOnly) ;
-
+          dateArray  = [...new Set(dateArray)];
         }
-       // console.log("1 dateArray  = ", dateArray );      
-        dateArray  = [...new Set(dateArray)];
-        }
-        }
-        console.log("2 dateArray  = ", dateArray);      
-       
       }
+      console.log("2 dateArray  = ", dateArray);         
+    }//if
 
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContainerSS padding100">
@@ -288,26 +278,42 @@ export default class SubscribedServices extends Component {
                                           :
                                           null
                                       }
-                                        <label className="mt20">{this.state.date1}</label><br/>
-                                        {
-                                          this.state.subscriptionData[i].statements
-                                          ?
-                                          this.state.subscriptionData[i].statements.map((a, i)=>{
-                                            return(
-                                            <div className="col-lg-4 col-md-4 breakAll curserPointer ht200 col-xs-4 col-sm-4  textAlignCenter" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
-                                              <h5> {moment(a.createdAt).format("DD-MM-YYYY HH:MM")}</h5>
-                                              <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download Content-Type= "application/octet-stream" Content-Disposition= "inline">
-                                              <div >
-                                                <img className="" src="/images/pdf.png"/><br/>
-                                                {a.name} 
-                                              </div>
-                                              </a>
-                                            </div>
 
+
+                                        {
+                                      
+                                          dateArray.length > 0 
+                                          ? dateArray.map((publishdate,index)=>{
+                                              return(
+                                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                  <label className="mt20">Date: {publishdate}</label><br/>
+                                                  {this.state.subscriptionData[i].statements
+                                                   ?
+                                                    this.state.subscriptionData[i].statements.map((a, i)=>{
+                                                      if( moment(a.createdAt).format("DD-MM-YYYY") === publishdate){
+                                                        return(
+                                                            <div className="col-lg-4 col-md-4 breakAll curserPointer ht200 col-xs-4 col-sm-4  textAlignCenter" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
+                                                              <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download Content-Type= "application/octet-stream" Content-Disposition= "inline">
+                                                              <div >
+                                                                <img className="" src="/images/pdf.png"/><br/>
+                                                                {a.name} 
+                                                              </div>
+                                                              </a>
+                                                            </div>
+                                                        )                                                        
+                                                      }
+                                                    })
+                                                  :
+                                                    <h4>No documents found</h4>
+                                                  }
+                                                </div>
                                               )
+                                              
+
                                             })
-                                          :
-                                          <h4>No documents found</h4>
+                                          : 
+                                            <h3> No Data Available </h3>
+
 
                                         }
                                     </div>
