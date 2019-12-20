@@ -6,7 +6,7 @@ import LayoutSystemSecurity from './coreAdmin/LayoutSystemSecurity/LayoutSystemS
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './lib/router.js';
-import './App.css';
+import './App.css';	
 
 //axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 axios.defaults.baseURL = 'https://api.wealthyvia.com';

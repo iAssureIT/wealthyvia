@@ -1,5 +1,5 @@
 /*.blogContainer{
-	height: 420px;
+    height: 420px;
 }
 
 .miniDiv1Filterother img {
@@ -19,34 +19,34 @@
   transition-duration: 0.5s;
 }
 .miniDiv1Filterother:hover .miniFilterTextDivother{
-	opacity: 1;
-	    transition-duration: 0.5s;
+    opacity: 1;
+        transition-duration: 0.5s;
 
 
 }
 .miniDiv1Filterother:hover .miniFilterTextDiv1{
-	opacity: 0;
-	    transition-duration: 0.5s;
+    opacity: 0;
+        transition-duration: 0.5s;
 
 
 }
 .margins{
-	border-top: 1px solid #aaa;
-	border-bottom: 1px solid #aaa;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
 }
 .miniFilterTextDivother{
-	position: absolute;
-	height: 200px;
-	opacity: 0;
-	z-index: 1000;
-	transition-duration: 0.5s;
+    position: absolute;
+    height: 200px;
+    opacity: 0;
+    z-index: 1000;
+    transition-duration: 0.5s;
  font-family:Arial;
 
-	text-align: center;
-	background-color: rgba(0,0,0,0.9);
-	margin-top: -237px;
-	padding: 30px;
-	color: #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0.9);
+    margin-top: -237px;
+    padding: 30px;
+    color: #fff;
 }
 .miniFilterTextDivother label{
     font-size: 20px;
@@ -55,18 +55,18 @@
     color: #fff;
 }
 .miniFilterTextDiv1{
-	position: absolute;
-	height: 200px;
-	opacity: 1;
-	z-index: 1000;
-	transition-duration: 0.5s;
+    position: absolute;
+    height: 200px;
+    opacity: 1;
+    z-index: 1000;
+    transition-duration: 0.5s;
  font-family:Arial;
 
-	text-align: center;
-	background-color: rgba(0,0,0,0.6);
-	margin-top: -220px;
-	padding: 40px;
-	color: #fff;
+    text-align: center;
+    background-color: rgba(0,0,0,0.6);
+    margin-top: -220px;
+    padding: 40px;
+    color: #fff;
 }
 .miniFilterTextDiv1 label{
     font-size: 20px;
@@ -83,7 +83,7 @@
     cursor: pointer;
     background-color: transparent;
     font-weight: bold;
-   	box-shadow: inset 0 0 0 0 #fff;
+    box-shadow: inset 0 0 0 0 #fff;
     transition: 0.5s all ease-in-out;
 }
 .shopNowButtonFilters:hover{
@@ -94,7 +94,7 @@
 }
 
 .pad20{
-	padding-top: 20px !important;
+    padding-top: 20px !important;
 }
 */
 .ht162{
@@ -109,14 +109,15 @@
     opacity: 1;
     z-index: 1000;
     transition-duration: 0.5s;
-    font-family:Arial;
+ font-family:Arial;
     cursor: pointer;
     text-align: center;
+    background-color: rgba(0,0,0,0.6);
     margin-top: -185px;
     padding: 15px;
     padding-top: 75px !important;
 
-    color: #333;
+    color: #fff;
 }
 .miniDiv1Filterother img {
     transform: scale(1);
@@ -154,31 +155,28 @@
     transition-duration: 0.5s;
     font-family:Arial;
     text-align: center;
+    background-color: rgba(0,0,0,0.9);
     margin-top: -185px;
     padding: 15px;
     padding-top: 50px !important;
-    color: #333;
+    color: #fff;
 }
 .miniFilterTextDivother label{
     font-size: 20px;
     padding-top: 20px; 
     line-height: 25px;
-    color: #333;
+    color: #fff;
 }
 .miniFilterTextDiv2 label{
     font-size: 19px;
     line-height: 45px;
-    color: #333;
+    color: #fff;
 }
 .miniDiv1Filterother:hover .miniFilterTextDivother{
     opacity: 1;
-        transition-duration: 0.5s;
-
-
+    transition-duration: 0.5s;
 }
 .miniDiv1Filterother:hover .miniFilterTextDiv2{
     opacity: 0;
-        transition-duration: 0.5s;
-
-
+    transition-duration: 0.5s;
 }
