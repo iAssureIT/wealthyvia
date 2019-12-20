@@ -197,7 +197,11 @@
 */
 
 .ht200{
-	height: auto;
-	padding:10px;
-	overflow: hidden;
+	height: 100px;
+    padding: 10px;
+    display: inline-block;
+    /* width: 143px !important; */
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 }
