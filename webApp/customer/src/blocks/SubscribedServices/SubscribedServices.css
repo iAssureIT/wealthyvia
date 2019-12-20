@@ -197,7 +197,7 @@
 */
 
 .ht200{
-	height: 180px;
+	height: auto;
 	padding:10px;
 	overflow: hidden;
 }

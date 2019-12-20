@@ -174,6 +174,9 @@ export default class SubscribedServices extends Component {
     var dateArray  = [];
     var FullDate = "";var month = "";
     var FullDateOnly = "";
+    var dateArray1  = [];
+    var FullDatePer = "";var monthPer = "";
+    var FullDateOnlyPer = "";
     if(this.state.listOfPerformanceDoc){
       var lengthOfPer = this.state.listOfPerformanceDoc.length;
       var lastUpdatedDatePer = ""
@@ -183,7 +186,7 @@ export default class SubscribedServices extends Component {
       }
     }
 
-    if(this.state.subscriptionData.length > 0){
+   if(this.state.subscriptionData.length > 0){
       for(let j=0;j<this.state.subscriptionData.length;j++){
         if(this.state.subscriptionData[j].statements.length>0){
           for(let i=0; i<this.state.subscriptionData[j].statements.length; i++ ){
@@ -198,7 +201,23 @@ export default class SubscribedServices extends Component {
           dateArray  = [...new Set(dateArray)];
         }
       }
-      console.log("2 dateArray  = ", dateArray);         
+      console.log("2 dateArray 1 = ", dateArray);         
+    }//if
+    if(this.state.listOfPerformanceDoc && this.state.listOfPerformanceDoc.length > 0){
+      for(let j=0;j<this.state.listOfPerformanceDoc.length;j++){
+        if(this.state.listOfPerformanceDoc.length>0){
+            FullDatePer = new Date(this.state.listOfPerformanceDoc[j].createdAt);
+            monthPer = FullDatePer.getMonth()+1 ;
+            if(monthPer < 10){
+              monthPer = '0' + monthPer; 
+            }
+            FullDateOnlyPer = FullDatePer.getDate() + "-" + monthPer + "-" + (FullDatePer.getYear() + 1900) ;
+            dateArray1.push(FullDateOnlyPer) ;
+         
+          dateArray1  = [...new Set(dateArray1)];
+        }
+      }
+      console.log("2 dateArray  = ", dateArray1);         
     }//if
 
     return (
@@ -241,25 +260,39 @@ export default class SubscribedServices extends Component {
 
                             }
                             <label className="mt20 col-lg-12 col-md-12 col-sm-12 col-xs-12">{this.state.date1}</label>
-
-                             {
-                                this.state.listOfPerformanceDoc && this.state.listOfPerformanceDoc.length>0?
-                                this.state.listOfPerformanceDoc.map((a, i)=>{
+                          
+                              {        
+                              dateArray1.length > 0 
+                              ? dateArray1.map((publishdate,index)=>{
                                   return(
-                                  <div className="col-lg-4 col-md-4 breakAll col-xs-4 ht200 col-sm-4  textAlignCenter">
-                                    <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
-                                    <div >
-                                      <img className="" src="/images/pdf.png"/><br/>
-                                      {a.name} 
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                      <label className="mt20">Date: {publishdate}</label><br/>
+                                      {this.state.listOfPerformanceDoc
+                                       ?
+                                         this.state.listOfPerformanceDoc.map((a, i)=>{
+                                          if( moment(a.createdAt).format("DD-MM-YYYY") === publishdate){
+                                            return(
+                                                  <div className="col-lg-4 col-md-4 breakAll col-xs-4 ht200 col-sm-4  textAlignCenter">
+                                                    <a href={axios.defaults.baseURL+"/api/fileUpload/image/"+a.key} download target="_blank" Content-Type= "application/octet-stream" Content-Disposition= "inline" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
+                                                    <div >
+                                                      <img className="" src="/images/pdf.png"/><br/>
+                                                      {a.name} 
+                                                    </div>
+                                                    </a>
+                                                  </div>
+                                              )                                               
+                                          }
+                                          })
+                                      :
+                                        <h2 className="textAlignCenter">No documents found</h2>
+                                      }
                                     </div>
-                                    </a>
-                                  </div>
-                                    )
-                                  })
-                                :
-                                <h4 className="textAlignCenter">No documents found</h4>
-                              }
-                         </div>
+                                  )
+                                })
+                              : 
+                               <h2 className="textAlignCenter"> No Data Available </h2>
+                            }
+                            </div>
                        
                             {
                             this.state.subscriptionData
