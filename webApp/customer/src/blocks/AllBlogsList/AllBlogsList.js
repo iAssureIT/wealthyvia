@@ -37,8 +37,6 @@ export default class AllBlogsList extends React.Component {
 				    .catch((error)=>{
 				       console.log("error = ", error);              
 				    });
-	            
-	              
 	            } else {
 	            swal("Your Blog is safe!");
 	          }

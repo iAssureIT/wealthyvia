@@ -28,14 +28,12 @@ class AdminContent extends Component{
       totalUsers      : "",
       totalVendor     : "",
       userCount       : "",
-      InactiveUsersCount : "",
-      ActiveUserCount  : "",
-
-      twelveMonthGrossEarning:[],
+      InactiveUsersCount      : "",
+      ActiveUserCount         : "",
+      twelveMonthGrossEarning :[],
     };
   }
-
-  componentWillMount(){
+  componentDidMount(){
     $('.sidebar').css({display:'block',background: '#222d32'});
     axios.get('/api/users/get/list/'+100)
       .then( (res)=>{      
@@ -61,6 +59,7 @@ class AdminContent extends Component{
               this.setState({
                 ActiveUserCount : response.data.length,
             });
+          console.log("ActiveUserCount",response.data)
         }
       })
       .catch((error)=>{
@@ -162,139 +161,8 @@ class AdminContent extends Component{
       pieOptions      : pieOptions,
     })
   }
-
-  componentWillUnmount(){
-    // $("script[src='/js/adminLte.js']").remove();
-    // $("link[href='/css/dashboard.css']").remove();
-    // console.log('wow');
-  }
-
   allUserCount(){
     return this.state.allUserData.length;
-  }
-
-  componentDidUpdate(){
-      // const myChartRef = this.chartRef.current.getContext("2d");
-          
-      //     new Chart(myChartRef, {
-      //         type: "line",
-      //         data: {
-      //             //Bring in data
-      //             labels: ["Jan", "Feb", "March"],
-      //             datasets: [
-      //                 {
-      //                     label: "Sales",
-      //                     data: [86, 67, 91],
-      //                 }
-      //             ]
-      //         },
-      //         options: {
-      //             //Customize chart options
-      //         }
-      //     });
-
-      //   var competitionRegChart = document.getElementById("competitionRegChart").getContext('2d');
-      //   var myChart = new Chart(competitionRegChart, {
-      //       type: 'bar',
-      //       data: {
-      //           // labels: this.state.CompetitionwiseReg.map(function(label,index){return label.competitionName.substring(0,5)}),
-      //           labels: this.state.CompetitionwiseReg.map(function(label,index){return (label.competitionName).substring(0,7)+"..."}),
-      //           // labels: this.state.CompetitionwiseReg.map(function(label,index){return (label.competitionName).split(/\s+/).slice(0,2).join(" ")+"..."}),
-      //           datasets: [{
-      //               label: 'Competition registrations',
-      //               data: this.state.CompetitionwiseReg.map(function(compCnt,index){return compCnt.competitionRegCnt}),
-      //               backgroundColor: [
-      //                   'rgba(255, 99, 132, 0.2)',
-      //                   'rgba(54, 162, 235, 0.2)',
-      //                   'rgba(255, 206, 86, 0.2)',
-      //                   'rgba(75, 192, 192, 0.2)',
-      //                   'rgba(153, 102, 255, 0.2)',
-      //                   'rgba(255, 159, 64, 0.2)',
-      //                   'rgba(255, 99, 132, 0.2)',
-      //                   'rgba(54, 162, 235, 0.2)',
-      //                   'rgba(255, 206, 86, 0.2)',
-      //                   'rgba(75, 192, 192, 0.2)',
-      //                   'rgba(153, 102, 255, 0.2)',
-      //                   'rgba(255, 159, 64, 0.2)'
-      //               ],
-      //               borderColor: [
-      //                   'rgba(255,99,132,1)',
-      //                   'rgba(54, 162, 235, 1)',
-      //                   'rgba(255, 206, 86, 1)',
-      //                   'rgba(75, 192, 192, 1)',
-      //                   'rgba(153, 102, 255, 1)',
-      //                   'rgba(255, 159, 64, 1)',
-      //                   'rgba(255,99,132,1)',
-      //                   'rgba(54, 162, 235, 1)',
-      //                   'rgba(255, 206, 86, 1)',
-      //                   'rgba(75, 192, 192, 1)',
-      //                   'rgba(153, 102, 255, 1)',
-      //                   'rgba(255, 159, 64, 1)'
-      //               ],
-      //               borderWidth: 1
-      //           }]
-      //       },
-      //       options: {
-      //           scales: {
-      //               yAxes: [{
-      //                   ticks: {
-      //                       beginAtZero:true
-      //                   }
-      //               }]
-      //           }
-      //       }
-      //   });
-
-      //   var packagePurchageChart = document.getElementById("packagePurchageChart").getContext('2d');
-      //   var myChart = new Chart(packagePurchageChart, {
-      //       type: 'bar',
-      //       data: {
-      //           labels: this.state.allPackages.map(function(label,index){return (label).substring(0,5)+"..."}),
-      //           // labels: this.state.allPackages,
-      //           datasets: [{
-      //               label: 'All Packages',
-      //               data: this.state.PackagesPurchaseCnt,
-      //               backgroundColor: [
-      //                   'rgba(255, 99, 132, 0.2)',
-      //                   'rgba(54, 162, 235, 0.2)',
-      //                   'rgba(255, 206, 86, 0.2)',
-      //                   'rgba(75, 192, 192, 0.2)',
-      //                   'rgba(153, 102, 255, 0.2)',
-      //                   'rgba(255, 159, 64, 0.2)',
-      //                   'rgba(255, 99, 132, 0.2)',
-      //                   'rgba(54, 162, 235, 0.2)',
-      //                   'rgba(255, 206, 86, 0.2)',
-      //                   'rgba(75, 192, 192, 0.2)',
-      //                   'rgba(153, 102, 255, 0.2)',
-      //                   'rgba(255, 159, 64, 0.2)'
-      //               ],
-      //               borderColor: [
-      //                   'rgba(255,99,132,1)',
-      //                   'rgba(54, 162, 235, 1)',
-      //                   'rgba(255, 206, 86, 1)',
-      //                   'rgba(75, 192, 192, 1)',
-      //                   'rgba(153, 102, 255, 1)',
-      //                   'rgba(255, 159, 64, 1)',
-      //                   'rgba(255,99,132,1)',
-      //                   'rgba(54, 162, 235, 1)',
-      //                   'rgba(255, 206, 86, 1)',
-      //                   'rgba(75, 192, 192, 1)',
-      //                   'rgba(153, 102, 255, 1)',
-      //                   'rgba(255, 159, 64, 1)'
-      //               ],
-      //               borderWidth: 1
-      //           }]
-      //       },
-      //       options: {
-      //           scales: {
-      //               yAxes: [{
-      //                   ticks: {
-      //                       beginAtZero:true
-      //                   }
-      //               }]
-      //           }
-      //       }
-      //   });
   }
   render(){
 
@@ -303,8 +171,6 @@ class AdminContent extends Component{
         <div className="content-wrapper">
           <section className="content-header">
             <h1>Dashboard</h1>
-            {/*<ol className="breadcrumb"></ol>*/}
-            
           </section>
           <section className="content">
             <div className="row">
@@ -330,12 +196,12 @@ class AdminContent extends Component{
                     <img src="/images/subscription.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">10<small></small></span>
+                    <span className="info-box-number">{this.state.ActiveUserCount?this.state.ActiveUserCount:"0"}<small></small></span>
                     <span className="info-box-text">
                       Offering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalUsers}</b>
                     </span>
                     <span className="info-box-text">
-                      Subscribed&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.subUsers}</b>
+                      Subscribed&nbsp;&nbsp;&nbsp;&nbsp;<b></b>
                     </span>
                   </div>
                 </div>
@@ -346,12 +212,12 @@ class AdminContent extends Component{
                     <img src="/images/time-management.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">{this.state.ActiveUserCount}<small></small></span>
+                    <span className="info-box-number">{this.state.ActiveUserCount?this.state.ActiveUserCount:"0"}<small></small></span>
                     <span className="info-box-text">
                       Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.totalVendor}</b>
                     </span>
                     <span className="info-box-text">
-                      Active&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.activeVendor}</b>
+                      Active&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b></b>
                     </span>
                   </div>
                 </div>
@@ -362,12 +228,12 @@ class AdminContent extends Component{
                     <img src="/images/inactive.png"/>
                   </span>
                   <div className="info-box-content">
-                    <span className="info-box-number">{this.state.InactiveUsersCount}<small></small></span>
+                    <span className="info-box-number">{this.state.InactiveUsersCount?this.state.InactiveUsersCount:"0"}<small></small></span>
                     <span className="info-box-text">
                       Total&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningYTD}</b>
                     </span>
                     <span className="info-box-text">
-                      Inactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>{this.state.earningMTD}</b>
+                      Inactive&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b></b>
                     </span>
                   </div>
                 </div>
@@ -377,7 +243,7 @@ class AdminContent extends Component{
            
             <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  boxWrapDashboard graphWrapperTab">
-                <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap innerGraphWraptbl tableClrPdg" style={{padding:"0px 0px"}}>
+               <div className="col-lg-12 col-md-12 col-sm-12 innerGraphWrap innerGraphWraptbl tableClrPdg" style={{padding:"0px 0px"}}>
                   <OfferingCheckForm />
                 </div>
               </div>

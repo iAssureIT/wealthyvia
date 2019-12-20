@@ -292,7 +292,7 @@ export default class SubscribedServices extends Component {
                                         {
                                           this.state.subscriptionData[i].statements
                                           ?
-                                          this.state.subscriptionData[i].statements.sort((a, b) => a.createdAt<b.createdAt).map((a, i)=>{
+                                          this.state.subscriptionData[i].statements.map((a, i)=>{
                                             return(
                                             <div className="col-lg-4 col-md-4 breakAll curserPointer ht200 col-xs-4 col-sm-4  textAlignCenter" data-key={a.key?a.key:""} onClick={this.getData.bind(this)}>
                                               <h5> {moment(a.createdAt).format("DD-MM-YYYY HH:MM")}</h5>

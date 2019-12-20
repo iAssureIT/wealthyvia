@@ -49,7 +49,7 @@ export default class Blogs extends Component {
 	      .catch(function(error){
 	          if(error.message === "Request failed with status code 401")
 	              {
-	                   swal("Your session is expired! Please login again.","", "error");
+	                   swal("Something went wrong","", "error");
 	                   /*this.props.history.push("/");*/
 	              }
 	      })

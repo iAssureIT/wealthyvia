@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Link} from 'react-router-dom';
+import React, { Component }     from 'react';
+import { Link}                  from 'react-router-dom';
 // import {browserHistory} from 'react-router-dom';
-import { Redirect } from 'react-router';
-import swal from 'sweetalert';
-import $ from "jquery";
+import { Redirect }             from 'react-router';
+import swal                     from 'sweetalert';
+import $                        from "jquery";
+import axios                    from 'axios';
 
 import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './SignUp.css';
 
-import axios from 'axios';
 
 class Login extends Component {
 
@@ -22,13 +22,10 @@ class Login extends Component {
                 pwd             : '',
             }
         }
-
   }
-
   componentDidMount(){
     
   }
-
   handleChange(event){
     // event.preventDefault();
     const target = event.target;
@@ -48,8 +45,6 @@ class Login extends Component {
           password    : this.state.pwd,
           
         }
-        console.log("auth value",auth);
-
     axios
       .post('/api/users/post/login/admin',auth)
       .then((response)=> {
@@ -128,7 +123,7 @@ class Login extends Component {
                 <div className="col-lg-12 col-md-12 col-sm-12 paddingZero">
                   <div className="inputContent">
                     <span className="blocking-span noIb">
-                      <input type="email" className="form-control border3 pass oesSignUpForm inputTextPass tmsLoginTextBox oesSignUpForm tmsLoginTextBox" onChange={this.handleChange.bind(this)} ref="loginusername" id="loginusername" name="email" placeholder="" required/>
+                      <input type="email" className="form-control border3 pass oesSignUpForm tmsLoginTextBox oesSignUpForm tmsLoginTextBox" onChange={this.handleChange.bind(this)} ref="loginusername" id="loginusername" name="email" placeholder="" required/>
                       <span className="floating-label"><i className="fa fa-envelope signupIconFont" aria-hidden="true"/>Email ID</span>   
                     </span>
                   </div>
