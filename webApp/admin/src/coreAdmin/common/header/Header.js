@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import './Header.css';
 
-class Header extends Component{
+export default class Header extends Component{
   
   constructor(props) {
    super(props);
@@ -130,4 +130,3 @@ class Header extends Component{
     );
   }
 }
-export default withRouter(Header);
