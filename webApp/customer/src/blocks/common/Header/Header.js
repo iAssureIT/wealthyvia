@@ -45,9 +45,7 @@ export default class Header extends Component {
   logout(){
     localStorage.setItem("user_ID", "")
     window.location.reload();  
-
   }
-
   validateFormReq() {
     let fields = this.state.fields;
     let errors = {};
@@ -80,7 +78,6 @@ export default class Header extends Component {
     });
     return formIsValid;
   }
- 
   validateForm() {
     let fields = this.state.fields;
     let errors = {};
@@ -167,44 +164,6 @@ export default class Header extends Component {
               }
       })
   }
-
-  // Submit(event){
-  //   event.preventDefault();
-
-  //   if (this.validateForm() && this.validateFormReq()) {
-     
-  //     var dataArray={
-  //      "name"            : this.refs.name.value,
-  //     "addressProof"      : this.refs.addressProof.value,
-  //     "panNumber"      : this.refs.panNumber.value,
-  //     "email"            : this.refs.email.value,
-  //     "contactNumber"    : this.refs.contactNumber.value,
-
-  //     }
-
-  //     let fields = {};
-  //     fields["panNumber"]       = "";
-  //     fields["addressProof"]     = "";
-  //     fields["name"]            = "";
-  //     fields["email"]           = "";
-  //     fields["contactNumber"]   = "";
-    
-  //   swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-  //   $("#myModalHeader").hide();
-  //   $("#myModalHeader").removeClass('in');
-  //   $(".modal-backdrop").remove();
-  //   $("body").removeClass("modal-open");
-  //     this.setState({
-  //       "panNumber"       : "",
-  //       "addressProof"      : "",
-  //       "name"             : "",
-  //       "email"            : "",
-  //       "contactNumber"    : "",
-  //       "fields"           : fields
-  //     });
-  //   }
-  //   window.location.reload();
-  // }
   getData(){
     const userid = localStorage.getItem('user_ID');
     axios.get("/api/users/get/"+userid)
@@ -258,7 +217,6 @@ export default class Header extends Component {
     $("#kycModalHeader").addClass('in');
     }
   }
-
   handleChange(event){
     this.setState({
       "name"             : this.refs.name.value,
@@ -456,7 +414,6 @@ export default class Header extends Component {
       }
     }
   }
-
   Submit(event){
     event.preventDefault();
       if (this.validateForm() && this.validateFormReq()) {
@@ -467,9 +424,7 @@ export default class Header extends Component {
           "panNumber"        : this.refs.panNumber.value,
           "email"            : this.refs.email.value,
           "contactNumber"    : this.refs.contactNumber.value,
-
         }
-
         if(dataArray1){
           var adminEmail = "kycwealthyvia@gmail.com";
           const dataArray = {
@@ -484,61 +439,58 @@ export default class Header extends Component {
                                 "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
           };
-          
-           axios
-            .post('/send-email',dataArray)
-            .then((res)=>{
-                       if(res.status === 200){
+          axios
+          .post('/send-email',dataArray)
+          .then((res)=>{
+             if(res.status === 200){
+              const formValues2 = {
+                "email"         : adminEmail ,
+                "subject"       : "New KYC/Investment Profile details arrived from client!",
+                "mail"          : 'Dear Admin, <br/>'+
+                                  "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
+                                  "<b> Name: </b>"   + dataArray1.name + '<br/>'+
+                                  "<b> Email: </b>"  + dataArray1.email + '<br/>'+
+                                  "<b> Contact Number: </b>"  + dataArray1.contactNumber + '<br/><br/>'+
+                              
+                                  "<b> Investment Profile details </b> <br/><br/>"+
+                                  ""+this.state.questionsArray[0]+"<br/>"+
+                                  "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
+                                  ""+this.state.questionsArray[1]+"<br/>"+
+                                  "Ans : "+this.state.answersofQ2+"<br/><br/>"+ 
+                                  ""+this.state.questionsArray[2]+"<br/>"+
+                                  "Ans : "+this.state.answersofQ3+"<br/><br/>"+
+                                   ""+this.state.questionsArray[3]+"<br/>"+
+                                  "Ans : "+this.state.answersofQ4+"<br/><br/>"+
+                                  ""+this.state.questionsArray[4]+"<br/>"+
+                                  "Ans : "+this.state.answersofQ5+"<br/><br/>"+
+                                  "" ,
+                 "attachments" : [{
+                  "name" : this.state.panNumberName,
+                  "path" : this.state.panNumberLocation
+                    },
+                    {
+                  "name" : this.state.addressProofName,
+                  "path" : this.state.addressProofLocation
+                    },
+                  ]
 
-                        const formValues2 = {
-                          "email"         : adminEmail ,
-                          "subject"       : "New KYC/Investment Profile details arrived from client!",
-                          "mail"          : 'Dear Admin, <br/>'+
-                                            "New KYC details came from client. <br/> <br/>Details are as follows -<br/> <br/>" + 
-                                            "<b> Name: </b>"   + dataArray1.name + '<br/>'+
-                                            "<b> Email: </b>"  + dataArray1.email + '<br/>'+
-                                            "<b> Contact Number: </b>"  + dataArray1.contactNumber + '<br/><br/>'+
-                                        
-                                            "<b> Investment Profile details </b> <br/><br/>"+
-                                            ""+this.state.questionsArray[0]+"<br/>"+
-                                            "Ans : "+this.state.answersofQ1+"<br/><br/>"+ 
-                                            ""+this.state.questionsArray[1]+"<br/>"+
-                                            "Ans : "+this.state.answersofQ2+"<br/><br/>"+ 
-                                            ""+this.state.questionsArray[2]+"<br/>"+
-                                            "Ans : "+this.state.answersofQ3+"<br/><br/>"+
-                                             ""+this.state.questionsArray[3]+"<br/>"+
-                                            "Ans : "+this.state.answersofQ4+"<br/><br/>"+
-                                            ""+this.state.questionsArray[4]+"<br/>"+
-                                            "Ans : "+this.state.answersofQ5+"<br/><br/>"+
-                                            "" ,
-                           "attachments" : [{
-                            "name" : this.state.panNumberName,
-                            "path" : this.state.panNumberLocation
-                              },
-                              {
-                            "name" : this.state.addressProofName,
-                            "path" : this.state.addressProofLocation
-                              },
-                            ]
-
-                        };
-                        axios
-                        .post('/send-email',formValues2)
-                        .then((res)=>{
-                                  if(res.status === 200){
-                                       swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-                                  }
-                                })
-                                .catch((error)=>{
-                                  console.log("error = ", error);
-                                  
-                                });
+              };
+              axios
+              .post('/send-email',formValues2)
+              .then((res)=>{
+                        if(res.status === 200){
+                             swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
                         }
-                    })
-                    .catch((error)=>{
-                      console.log("error = ", error);
-                    });
-         
+                      })
+                      .catch((error)=>{
+                        console.log("error = ", error);
+                        
+                      });
+              }
+          })
+          .catch((error)=>{
+            console.log("error = ", error);
+          });
           let fields = {};
           fields["panNumber"]     = "";
           fields["addressProof"]     = "";
@@ -559,13 +511,9 @@ export default class Header extends Component {
         $("#kycModalHeader").removeClass('in');
         $(".modal-backdrop").remove();
         $("body").removeClass("modal-open");
-  /*        window.location.reload(true);
-  */           
-          }
-        }
-   
+      }
+    }
   }
-  
   /*get checkbox value*/  
   getCheckValue(event){
     var checked = event.target.checked;
@@ -646,13 +594,11 @@ export default class Header extends Component {
   }
   render() {
     const token = localStorage.getItem("user_ID");
-/*  var intials = $('#firstName').text().charAt(0) + $('#lastName').text().charAt(0);
-*/  console.log("userinfo",this.state.userinfo);
-  if( this.state.userinfo.fullName){
-    const var1 =  this.state.userinfo.fullName.split(' ');
-    var firstLetterF = var1[0].charAt(0);
-    var firstLetterL = var1[1].charAt(0);
-  }
+    if( this.state.userinfo.fullName){
+      const var1 =  this.state.userinfo.fullName.split(' ');
+      var firstLetterF = var1[0].charAt(0);
+      var firstLetterL = var1[1].charAt(0);
+    }
       return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
               <div className="row">
@@ -989,10 +935,10 @@ export default class Header extends Component {
                                           </div>
                                            <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                               <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                      <input type="radio" name={this.state.Question4} value="5 years plus" onChange={this.getCheckValue.bind(this)}/>
-                                                      <span className="radioCheck"></span>
-                                                   </div>
-                                                  <span className="centreDetaillistItem col-xs-9">5 years plus</span>
+                                                    <input type="radio" name={this.state.Question4} value="5 years plus" onChange={this.getCheckValue.bind(this)}/>
+                                                    <span className="radioCheck"></span>
+                                                 </div>
+                                                <span className="centreDetaillistItem col-xs-9">5 years plus</span>
 
                                           </div>   
                                           <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
@@ -1123,19 +1069,18 @@ export default class Header extends Component {
                                           </div>
                                         </div>
                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-                                              <div className="col-lg-2 col-md-2 hidden-sm hidden-xs submitButton pull-right" onClick={this.Submit.bind(this)}>
-                                                Submit
-                                              </div>
-                                               <div className="hidden-lg hidden-md col-sm-4 col-xs-4 submitButton mt50 pull-right" onClick={this.Submit.bind(this)}>
-                                                Submit
-                                              </div>
-                                               
+                                            <div className="col-lg-2 col-md-2 hidden-sm hidden-xs submitButton pull-right" onClick={this.Submit.bind(this)}>
+                                              Submit
+                                            </div>
+                                             <div className="hidden-lg hidden-md col-sm-4 col-xs-4 submitButton mt50 pull-right" onClick={this.Submit.bind(this)}>
+                                              Submit
+                                            </div>
                                         </div>
                                       </form>
                                     </div>
                                 </div>
                              </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div className="row">
                                 <nav className="navbar marginZero customNavBarUpper backColorWhite colorP navbar-default  hidden-xs hidden-sm">
                                     <div className="container-fluid">

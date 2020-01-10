@@ -374,7 +374,7 @@ export default class SubscribedServices extends Component {
                       <label className="mt40 priBlogHead borderTop textAlignCenter col-lg-12">Premium Blogs</label>
                       <div>
                        <OwlCarousel
-                            className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow"
+                            className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow borderRadiusT"
                             loop
                             margin          =  {20}
                             items           =  {1}
@@ -422,7 +422,7 @@ export default class SubscribedServices extends Component {
                           </div>
                           <div className="col-lg-12 textAlignCenter mt20 fs19 borderTop textAlignCenter" ><label>Premium Blogs</label></div>
                         <OwlCarousel
-                            className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow"
+                            className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow borderRadiusT"
                             loop
                             margin          =  {20}
                             items           =  {1}

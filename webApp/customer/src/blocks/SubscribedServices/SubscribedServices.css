@@ -195,7 +195,6 @@
   background-color: yellow;
 }
 */
-
 .ht200{
 	height: 100px;
     padding: 10px;
@@ -204,4 +203,10 @@
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
+}
+.borderRadiusT{
+	border-radius: 3px;
+}
+.mt15{
+	margin-top: 15px !important;
 }

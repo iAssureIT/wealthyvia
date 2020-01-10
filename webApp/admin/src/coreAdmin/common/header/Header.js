@@ -1,6 +1,5 @@
 import React,{Component}  from 'react';
 import { render }         from 'react-dom';
-import { withRouter }     from 'react-router-dom';
 import axios              from "axios";
 import $                  from "jquery";
 import swal               from 'sweetalert';

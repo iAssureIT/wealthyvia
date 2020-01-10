@@ -423,9 +423,9 @@ class UploadStatement extends Component{
                               <div  className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row padTopC">
                                 {
                                   this.state.showFile.length >0 || this.state.selectedFiles.length>0?
-                                <p className="fileName">File Uploaded</p>
-                                :
-                                null
+                                  <p className="fileName">File Uploaded</p>
+                                  :
+                                  null
 
                                 }
                                 {

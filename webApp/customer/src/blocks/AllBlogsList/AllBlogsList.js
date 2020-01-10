@@ -169,44 +169,46 @@ export default class AllBlogsList extends React.Component {
 		            					return(
 						          			<div className="col-lg-3 Allblog">
 						          				<div className="All1blog1 z50">
-						          				{data.typeOfBlog == "Premium" ?
-						          					<div className="premiumBlogIndicate">Premium</div>
-													
-													:
-													null
-												}
+							          				{data.typeOfBlog == "Premium" ?
+							          					<div className="premiumBlogIndicate">Premium</div>
+														
+														:
+														null
+													}
 													<img className="img-responsive AllblogImgB" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>
-													{ loggedIn ?
-														(data.typeOfBlog == "Premium" 
+													{ data.typeOfBlog == "Premium" ?
+														( loggedIn 
 														 ?
 															(subscribed 
 															 ?
-																	<a href={"/blog/"+data.blogURL}>
-																		<p className="blogDate p10 col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
-																		<h4 className="blogTitle col-lg-12 p10"><b>{data.blogTitle}</b></h4>
-																		{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
-																	</a>														
+																<a href={"/blog/"+data.blogURL}>
+																	<p className="blogDate p10 col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
+																	<h4 className="blogTitle col-lg-12 p10"><b>{data.blogTitle}</b></h4>
+																	{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
+																</a>														
 															:
-																	<a href={"/planPage"}>
-																		<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
-																		<h4 className="blogTitle  col-lg-12  p10"><b>{data.blogTitle}</b></h4>
-																		{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
-																	</a>														
+																<a href={"/planPage"}>
+																	<p className="blogDate p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
+																	<h4 className="blogTitle  col-lg-12  p10"><b>{data.blogTitle}</b></h4>
+																	{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
+																</a>														
 															)
 														:
-															<a href={"/blog/"+data.blogURL}>
-																<p className="blogDate  col-lg-12  p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
-																<h4 className="blogTitle  col-lg-12  p10"><b>{data.blogTitle}</b></h4>
+															<a href={"/login?destination=/blog/"+data.blogURL}>
+																<p className="blogDate p10  col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
+																<h4 className="blogTitle col-lg-12  p10"><b>{data.blogTitle}</b></h4>
 																{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
 															</a>
+														
 														)
 													:
-														<a href={"/login?destination=/blog/"+data.blogURL}>
-															<p className="blogDate p10  col-lg-12 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
-															<h4 className="blogTitle col-lg-12  p10"><b>{data.blogTitle}</b></h4>
+
+														<a href={"/blog/"+data.blogURL}>
+															<p className="blogDate  col-lg-12  p10 mtop20 graycolor"><Moment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</Moment></p>
+															<h4 className="blogTitle  col-lg-12  p10"><b>{data.blogTitle}</b></h4>
 															{/*<p className="blogPara p10 graycolor">{data.summary}</p>*/}
 														</a>
-													}
+												}
 						          				
 												</div>
 
@@ -224,31 +226,29 @@ export default class AllBlogsList extends React.Component {
 			      				data.map((data, index)=>{
 		            					return(
 		            						<div className="col-lg-12 Allblog">
-						          				
-						          				<div className="All1blogList ">
-						          				{data.typeOfBlog == "Premium" ?
-						          					<div className="premiumBlogIndicateList  "><i className="fa fa-star" aria-hidden="true"></i></div>
-													
-													:
-													null
-												}
-													{/*<img className="img-responsive col-lg-2 col-md-2 col-xs-2 col-sm-2AllblogImgList" src={data.bannerImage ? data.bannerImage.path : ""} alt="Bannerpng"/>*/}
+						          				{/*<div className="All1blogList ">
+							          				{data.typeOfBlog == "Premium" ?
+							          					<div className="premiumBlogIndicateList  "><i className="fa fa-star" aria-hidden="true"></i></div>
+														
+														:
+														null
+													}
 													{ loggedIn ?
 														(data.typeOfBlog == "Premium" 
 														 ?
 															(subscribed 
 															 ?
-																	<a href={"/blog/"+data.blogURL}>
-																		<span className="blogDate p10 col-lg-8  graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></span>
-																		<h4 className="blogTitleList col-lg-10 col-md-12 hidden-xs hidden-sm p10"><b>{data.blogTitle}</b></h4>
-																		<h4 className="blogTitleListSmall hidden-md hidden-lg  col-xs-12 col-sm-12 p10"><b>{data.blogTitle}</b></h4>
-																	</a>														
+																<a href={"/blog/"+data.blogURL}>
+																	<span className="blogDate p10 col-lg-8  graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></span>
+																	<h4 className="blogTitleList col-lg-10 col-md-12 hidden-xs hidden-sm p10"><b>{data.blogTitle}</b></h4>
+																	<h4 className="blogTitleListSmall hidden-md hidden-lg  col-xs-12 col-sm-12 p10"><b>{data.blogTitle}</b></h4>
+																</a>														
 															:
-																	<a href={"/planPage"}>
-																		<span className="blogDate p10 col-lg-8  graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></span>
-																		<h4 className="blogTitleList col-lg-10 col-md-12  hidden-xs hidden-sm p10"><b>{data.blogTitle}</b></h4>
-																		<h4 className="blogTitleListSmall hidden-md hidden-lg  col-xs-12 col-sm-12  p10"><b>{data.blogTitle}</b></h4>
-																	</a>														
+																<a href={"/planPage"}>
+																	<span className="blogDate p10 col-lg-8  graycolor"><Moment format="DD/MM/YYYY HH:mm">{data.createdAt}</Moment></span>
+																	<h4 className="blogTitleList col-lg-10 col-md-12  hidden-xs hidden-sm p10"><b>{data.blogTitle}</b></h4>
+																	<h4 className="blogTitleListSmall hidden-md hidden-lg  col-xs-12 col-sm-12  p10"><b>{data.blogTitle}</b></h4>
+																</a>														
 															)
 														:
 															<a href={"/blog/"+data.blogURL}>
@@ -267,7 +267,7 @@ export default class AllBlogsList extends React.Component {
 						          				
 												</div>
 
-						          			</div>
+						          	*/}		</div>
 						          			)
 		            				})
 			      				:

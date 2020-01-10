@@ -452,7 +452,6 @@ export default class ReadyToGo extends Component {
       "PRcontactNumber"    : this.refs.PRcontactNumber.value,
 
       }
-      console.log("dataArray1",dataArray1);
       var adminEmail = "review.wealthyvia@gmail.com";
       const dataArray = {
           "email"         : this.state.PRemail ,
@@ -465,7 +464,7 @@ export default class ReadyToGo extends Component {
                             "Email :" + this.state.PRemail + '<br/>'+
                             "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
-        };
+      };
        axios
         .post('/send-email',dataArray)
         .then((res)=>{
@@ -584,8 +583,6 @@ export default class ReadyToGo extends Component {
        fields1["nameModal"]            = "";
        fields1["emailModal"]           = "";
        fields1["contactNumberModal"]   = "";
-
-
         $("#EnquireModal").hide();
         $("#EnquireModal").removeClass('in');
         $(".modal-backdrop").remove();
@@ -682,7 +679,7 @@ export default class ReadyToGo extends Component {
       });
       return formIsValid;
   }
-    validateFormReqModal() {
+  validateFormReqModal() {
     let fields = this.state.fields1;
     let errors = {};
     let formIsValid = true;
