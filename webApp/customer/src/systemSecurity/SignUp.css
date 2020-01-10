@@ -1,5 +1,11 @@
-/*****SignUp.css*****/
 
+/*****SignUp.css*****/
+.sentanceCase{
+  text-transform: capitalize !important;
+}
+.toLowerCase{
+  text-transform: lowercase !important;
+}
 .signUpBackground{
   background-image: url("/images/TGK.png");
   background-size: 100% 100%;

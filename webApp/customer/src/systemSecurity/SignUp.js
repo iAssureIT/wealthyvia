@@ -284,7 +284,7 @@ class SignUp extends Component {
 							<div className="col-lg-12 col-md-12  signUpInnerWrapperOES signupfrm">
 								<div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd boxMarg">
 							   		<span className="blocking-span noIb">
-									   <input type="text" className="form-control abacusTextbox oesSignUpForm" id="firstname" ref="firstname" name="firstNameV"  onChange={this.handleChange} data-text="firstNameV" required/>
+									   <input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" id="firstname" ref="firstname" name="firstNameV"  onChange={this.handleChange} data-text="firstNameV" required/>
 									   {this.state.errors.firstNameV  && (
 				                        <span className="text-danger">{this.state.errors.firstNameV}</span> 
 				                      )}
@@ -296,7 +296,7 @@ class SignUp extends Component {
 								</div>
 							    <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd1 boxMarg">
 									<span className="blocking-span noIb">   
-										<input type="text" className="form-control abacusTextbox oesSignUpForm" id="lastname" ref="lastname" name="lastNameV"  onChange={this.handleChange} data-text="lastNameV" required/>
+										<input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" id="lastname" ref="lastname" name="lastNameV"  onChange={this.handleChange} data-text="lastNameV" required/>
 										{this.state.errors.lastNameV  && (
 				                        <span className="text-danger">{this.state.errors.lastNameV}</span> 
 				                      )}
@@ -318,7 +318,7 @@ class SignUp extends Component {
 							    </div>
 						   		<div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMarg">
 									<span className="blocking-span noIb">   
-									  <input type="email" className="form-control signupsetting  abacusTextbox oesSignUpForm" ref="signupEmail" name="emailIDV" onChange={this.handleChange} data-text="emailIDV" required/>
+									  <input type="email" className="form-control signupsetting toLowerCase abacusTextbox oesSignUpForm" ref="signupEmail" name="emailIDV" onChange={this.handleChange} data-text="emailIDV" required/>
 									  {this.state.errors.emailIDV  && (
 				                        <span className="text-danger">{this.state.errors.emailIDV}</span> 
 				                      )}
