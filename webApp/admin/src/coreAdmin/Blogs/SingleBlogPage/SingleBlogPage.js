@@ -2,14 +2,10 @@ import React from 'react';
 import SingleBlogBanner          from "../Componant/SingleBlogBanner/SingleBlogBanner.js";
 import BlogContent               from "../Componant/BlogContent/BlogContent.js";
 import RelatedBlogs              from "../Componant/RelatedBlogs/RelatedBlogs.js";
-
 import BlogComment              from "../Componant/BlogComment/BlogComment.js";
 import Moment                   from 'react-moment';
-
 import axios                    from 'axios';
 import swal                     from 'sweetalert2';
-
-
 
 export default class SingleBlogPage extends React.Component {
 
@@ -22,8 +18,6 @@ export default class SingleBlogPage extends React.Component {
 		      "blogContent"       : "",
           "bannerImage"       : {},
           "viewCount"         : "",
-          
-
 		};
 	} 
 
@@ -31,7 +25,6 @@ export default class SingleBlogPage extends React.Component {
 componentDidMount(){
   var blogURL = this.props.match.params.selectedUrl;
   console.log("blogURL  ==",blogURL);
-  // var blogURL = this.pro
   axios
       .get('/api/blogs/get/count/url/'+blogURL)
       .then((response)=>{
@@ -77,7 +70,7 @@ componentDidMount(){
     console.log(this.props.match.params);
 		return (
           	<div className="container-fluid" style={{padding:"0px"}}>
-          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage} blogURL={this.props.match.params.selectedUrl}/>
+          		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={encodeURI(this.state.bannerImage)} blogURL={this.props.match.params.selectedUrl}/>
           	  <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
 
             	<BlogContent blogContent={this.state.blogContent}/>

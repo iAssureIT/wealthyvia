@@ -119,7 +119,7 @@ class BlogsForm extends Component{
         "summary"         :this.refs.summary.value,
         "typeOfBlog"      : this.refs.typeOfBlog.value,
 
-        "pageUrl"         : this.refs.blogTitle.value.replace(/[^a-zA-Z ]/g, " ").toLowerCase().split(" ").join("-"),
+        "pageUrl"         : this.refs.blogTitle.value.replace(/[^a-zA-Z0-9]/g, " ").toLowerCase().split(" ").join("-"),
        
       });
       // var noSpecial = alert(this.state.blogTitle.replace(/[^a-zA-Z ]/g, " "));

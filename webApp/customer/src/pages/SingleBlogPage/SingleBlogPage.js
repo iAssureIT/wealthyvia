@@ -81,8 +81,9 @@ export default class SingleBlogPage extends React.Component {
         if(token)
         {
         return (
+
             <div className="container-fluid" style={{padding:"0px"}}>
-              <SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
+              <SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={encodeURI(this.state.bannerImage)}/>
               <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
                 <BlogContent blogContent={this.state.blogContent}/>
                 <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
