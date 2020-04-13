@@ -167,6 +167,7 @@ class UploadStatement extends Component{
     }
     axios.post('/api/fileUpload/',data)
     .then( (uploadedStatements)=>{  
+      console.log("jci");
          if(uploadedStatements.status === 200){
             swal("Congrats..!","Document uploaded successfully", "success");
            var statementsConcat = this.state.selectedFiles;

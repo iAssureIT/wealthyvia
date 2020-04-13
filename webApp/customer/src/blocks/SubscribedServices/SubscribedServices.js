@@ -47,6 +47,7 @@ export default class SubscribedServices extends Component {
   componentDidMount()
   {
     var user_ID = localStorage.getItem("user_ID");
+    console.log("user_ID",user_ID)
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
         .then((userStatus)=>{

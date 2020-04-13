@@ -142,6 +142,13 @@ export default class AllBlogsList extends React.Component {
 		console.log("subscribed returnnder",subscribed);
 		var data = this.state.Blogs;
    		const loggedIn = localStorage.getItem("user_ID");
+   		if(!loggedIn){
+		return (
+			<div>
+			{window.location.href="/login"}
+			</div>
+		
+		);}else{
 		return (
 			<div className="container-fluid AllBlogsBox" style={{padding:"0px"}}>
 				<div className="col-lg-12 nopadding AllBlogsbannerWall">
@@ -279,6 +286,10 @@ export default class AllBlogsList extends React.Component {
 	          		
           		</div>
 			</div>
+			
+			
+		
 		);
+		}
 	}
 }
