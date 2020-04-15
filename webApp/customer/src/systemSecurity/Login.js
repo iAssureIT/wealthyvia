@@ -50,6 +50,7 @@ class Login extends Component {
               axios
               .get('/api/subscriptionorders/paymentOrderDetailsUser/'+response.data.ID)
               .then((userStatus)=>{
+                console.log("userStatus.data",userStatus.data)
                 if(userStatus.data.length>0)
                 {
                   if(userStatus.data[0].paymentStatus === "Paid" )
@@ -60,7 +61,7 @@ class Login extends Component {
                       this.props.history.push("/planPage");
                  }
                 }else{
-                    this.props.history.push("/planPage");
+                    this.props.history.push(this.state.destination);
                 }
                 })
               .catch(function(error){
