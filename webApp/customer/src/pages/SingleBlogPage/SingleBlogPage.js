@@ -23,8 +23,9 @@ export default class SingleBlogPage extends React.Component {
 		};
 	}
   componentDidMount(){
-    var url = this.props.location.pathname;
+     var url = this.props.location.pathname;
     localStorage.setItem("lastUrl",url);
+    console.log("localStorage.setItem",localStorage.getItem("lastUrl"))
     this.setState({
       CurrentUrl:window.location.href
     })
@@ -77,93 +78,94 @@ export default class SingleBlogPage extends React.Component {
 	render() {
    
     const token = localStorage.getItem("user_ID");
-    if(this.state.typeOfBlog == "Premium"){
-        if(token)
-        {
-        return (
+      if(token){
+        if(this.state.typeOfBlog == "Premium"){
+            
+            return (
 
-            <div className="container-fluid" style={{padding:"0px"}}>
-              <SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={encodeURI(this.state.bannerImage)}/>
-              <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
-                <BlogContent blogContent={this.state.blogContent}/>
-                <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
-                  <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a>
-                  <a class="twitter-share-button"
-                       href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-                  <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
-                 
-                </div>
-                  <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
+                <div className="container-fluid" style={{padding:"0px"}}>
+                  <SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={encodeURI(this.state.bannerImage)}/>
+                  <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
+                    <BlogContent blogContent={this.state.blogContent}/>
+                    <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
+                      <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a>
+                      <a class="twitter-share-button"
+                           href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
+                      <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
+                     
+                    </div>
+                      <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
+                        <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
+                            href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
+                            <i class="fa fa-twitter" aria-hidden="true"></i>
+                        </a>
+                        <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
+                          <i class="fa fa-linkedin"></i>
+                        </a>
+                      </div>
+                    <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+                      <span className="countNumberLike">{this.state.viewCount} views</span>
+                    </div>
+                  <RelatedBlogs/>
+               </div>
+              
+              );
+
+           
+      }else{
+
+      		return (
+
+            	<div className="container-fluid" style={{padding:"0px"}}>
+           
+            		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
+                <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
+            		  <BlogContent blogContent={this.state.blogContent}/>
+                  <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
                     <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
-                        href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
+                    href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
                         <i class="fa fa-twitter" aria-hidden="true"></i>
                     </a>
-                    <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
+                      <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
+                     {/*<LinkedinShareButton
+                        title       = {this.state.blogTitle}
+                        description = {this.state.summary}
+                        url         = {this.state.CurrentUrl}
+                      >
                       <i class="fa fa-linkedin"></i>
-                    </a>
+                      </LinkedinShareButton>*/}
                   </div>
-                <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
-                  <span className="countNumberLike">{this.state.viewCount} views</span>
-                </div>
-              <RelatedBlogs/>
-           </div>
-          
-          );
+                    <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
+                      <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
+                      href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
+                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                      </a>
 
+                      <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin">
+
+                      </i></a>
+                         
+                    </div>
+
+
+
+                
+                  <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
+                    <span className="countNumberLike">{this.state.viewCount} views</span>
+                  </div>
+            		<RelatedBlogs/>
+      			 </div>
+            
+      	   	);
+          
         }
+      }
         else{
            this.props.history.push("/login");
             window.location.reload();
         }
-    }else{
-
-  		return (
-
-        	<div className="container-fluid" style={{padding:"0px"}}>
-       
-        		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
-            <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
-        		  <BlogContent blogContent={this.state.blogContent}/>
-              <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
-                <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
-                href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
-                  <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin"></i></a>
-                 {/*<LinkedinShareButton
-                    title       = {this.state.blogTitle}
-                    description = {this.state.summary}
-                    url         = {this.state.CurrentUrl}
-                  >
-                  <i class="fa fa-linkedin"></i>
-                  </LinkedinShareButton>*/}
-              </div>
-                <div className="hidden-ms hidden-lg col-sm-12 col-xs-12 likeDivSmall mt40">
-                  <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
-                  href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">
-                      <i class="fa fa-twitter" aria-hidden="true"></i>
-                  </a>
-
-                  <a href={"https://www.linkedin.com/shareArticle?mini=true&url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i class="fa fa-linkedin">
-
-                  </i></a>
-                     
-                </div>
-
-
-
-            
-              <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 bottomDiv">
-                <span className="countNumberLike">{this.state.viewCount} views</span>
-              </div>
-        		<RelatedBlogs/>
-  			 </div>
-        
-  	   	);
-      
-    }
 	}
 }
 

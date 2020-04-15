@@ -44,6 +44,7 @@ class Login extends Component {
       .then((response)=> {
           localStorage.setItem("token",response.data.token);
           localStorage.setItem("user_ID",response.data.ID);   
+          console.log("destination,st",this.state.destination);
           if(this.state.destination){
             
               axios
