@@ -58,7 +58,9 @@ class ConfirmOtp extends Component {
                  }
                 }else{
                                   
-                  this.props.history.push("/planPage");
+                  this.props.history.push(destination);
+                  window.location.reload();
+
                 }
                 })
               .catch(function(error){

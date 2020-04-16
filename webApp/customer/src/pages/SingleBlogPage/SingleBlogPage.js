@@ -23,10 +23,7 @@ export default class SingleBlogPage extends React.Component {
 		};
 	}
   componentDidMount(){
-     var url = this.props.location.pathname;
-    localStorage.setItem("lastUrl",url);
-    console.log("localStorage.setItem",localStorage.getItem("lastUrl"))
-    this.setState({
+     this.setState({
       CurrentUrl:window.location.href
     })
     id = this.props.match.params.selectedUrl;
@@ -76,7 +73,10 @@ export default class SingleBlogPage extends React.Component {
   }
 
 	render() {
-   
+   var url = this.props.location.pathname;
+    localStorage.setItem("lastUrl",url);
+    console.log("localStorage.setItem",localStorage.getItem("lastUrl"))
+    
     const token = localStorage.getItem("user_ID");
       if(token){
         if(this.state.typeOfBlog == "Premium"){

@@ -62,6 +62,7 @@ class Login extends Component {
                  }
                 }else{
                     this.props.history.push(this.state.destination);
+                    window.location.reload();                 
                 }
                 })
               .catch(function(error){
