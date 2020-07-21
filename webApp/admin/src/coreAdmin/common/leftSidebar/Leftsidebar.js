@@ -118,6 +118,13 @@ export default class Leftsidebar extends Component{
                             <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>*/}
                         </ul>
                     </li>
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/productchart">
+                        <i className="fa fa-file"></i>
+                          Product Charts
+                      </Link>
+                    </li>
                   
                                  
                 </ul>
