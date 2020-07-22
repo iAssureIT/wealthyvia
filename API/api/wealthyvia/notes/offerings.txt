@@ -1,0 +1,267 @@
+Status : 
+		YTS 	: Yet to Start, 
+		WIP 	: Can be used with limitations
+		TIP		: Testing in process
+		Done	: Tested and can be used
+
+API : 
+
+01. Insert Offering Details 									- Done
+02. Fetch Offering Details										- Done
+03. Fetch All Offering Details									- Done
+04. Fetch All Offering Details list purpose						- Done
+	//title, bannner image, createdAt, createdBy
+05. Fetch specify types of Offering Details						- Done
+06. Fetch specify types of Offering Details list purpose		- Done
+	//title, bannner image, createdAt, createdBy
+07. Search Offerings Details list purpose						- YTS
+	//title, summery, bannner image, createdAt, createdBy
+08. Update Offering Details content and images					- Done
+09. Delete Offering Details										- Done
+
+=====================================================================================
+01. Insert Offering Details
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/offerings/post'
+
+Input	: 
+			{
+			    "offeringTitle"		: String,
+				"offeringContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 		: {
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+									  },
+				"images"			: [{
+											"path"  	: String,
+											"name"		: String,
+											"size"		: String,
+											"extension" : String,
+											"sequence"	: Number
+										}],
+				"videos" 			: String, //(YouTube Link only)
+				"typeOfOffering"	: String, //(Regular/Premium)
+			    "createdBy"   		: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+				message : "OFFERING_DETAILS_INSERTED",
+				ID 		: String //_id of the document
+			}
+		  
+
+=====================================================================================
+02. Fetch Offering Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/offerings/get/:ID'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			{
+			    "offeringTitle"		: String,
+				"offeringContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 		: String,
+				"images"			: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 			: String, //(YouTube Link only)
+				"typeOfOffering" 	: String, //(Regular/Premium)
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date
+			}
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+03. Fetch All Offering Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/offerings/get/all/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "offeringTitle"		: String,
+				"offeringContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 		: String,
+				"images"			: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 			: String, //(YouTube Link only)
+				"typeOfOffering" 	: String, //(Regular/Premium)
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+04. Fetch All Offering Details list purpose
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/offerings/get/all/list/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "offeringTitle"		: String,
+				"bannerImage" 		: String,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+05. Fetch specify types of Offering Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/offerings/get/all/type/:type/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "offeringTitle"		: String,
+				"offeringContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 		: String,
+				"images"			: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 			: String, //(YouTube Link only)
+				"typeOfOffering" 	: String, //(Regular/Premium)
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+06. Fetch specify types of Offering Details list purpose
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/offerings/get/all/list/type/:type/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "offeringTitle"		: String,
+				"bannerImage" 		: String,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+08. Update Offering Details content and images
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/offerings/patch/:ID'
+
+Input	: {
+			    "offeringTitle"		: String,
+				"offeringContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 		: {
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+									  },
+				"images"			: [{
+											"path"  	: String,
+											"name"		: String,
+											"size"		: String,
+											"extension" : String,
+											"sequence"	: Number
+										}],
+				"videos" 			: String, //(YouTube Link only)
+				"typeOfOffering"	: String, //(Regular/Premium)
+			    "createdBy"   		: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+			    "message": "OFFERING_UPDATED"
+			}
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+09. Delete Offering Details
+=====================================================================================
+
+Method  : DELETE
+
+URL 	: '/api/offerings/delete/:ID'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+			    "message": "OFFERING_DELETED"
+			}
+		  If not successful
+		  	{
+		  		message : "OFFERING_NOT_DELETED",
+		  	}

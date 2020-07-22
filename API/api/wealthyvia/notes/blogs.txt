@@ -1,0 +1,325 @@
+Status : 
+		YTS 	: Yet to Start, 
+		WIP 	: Can be used with limitations
+		TIP		: Testing in process
+		Done	: Tested and can be used
+
+API : 
+
+01. Insert Blog Details 									- Done
+02. Fetch Blog Details										- Done
+03. Fetch All Blog Details									- Done
+04. Fetch All Blog Details list purpose						- Done
+	//title, summery, bannner image, createdAt, createdBy
+05. Fetch specify types of Blog Details						- Done
+06. Fetch specify types of Blog Details list purpose		- Done
+	//title, summery, bannner image, createdAt, createdBy
+07. Search Blogs Details list purpose						- YTS
+	//title, summery, bannner image, createdAt, createdBy
+08. Update Blog Details content and images					- Done
+09. Update Blog Details comment								- YTS
+10. Delete Blog Details										- Done
+11. Fetch Number of times blog is visited					- YTS
+12. 
+
+=====================================================================================
+01. Insert Blog Details
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/blogs/post'
+
+Input	: 
+			{
+			    "blogTitle"		: String,
+				"blogContent" 	: String, //(CK Editor Rich text)
+				"blogURL"		: String,
+				"bannerImage" 	: {
+									"path"  	: String,
+									"name"		: String,
+									"size"		: String,
+									"extension" : String,
+								  },
+				"images"		: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 		: String, //(YouTube Link only)
+				"typeOfBlog" 	: String, //(Regular/Premium)
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+				message : "BlOG_DETAILS_INSERTED",
+				ID 		: String //_id of the document
+			}
+		  
+
+=====================================================================================
+02. Fetch Blog Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/blogs/get/:ID'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			{
+			    "blogTitle"		: String,
+				"blogContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 	: String,
+				"images"		: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 		: String, //(YouTube Link only)
+				"typeOfBlog" 	: String, //(Regular/Premium)
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			    "createdAt"		: Date,
+			    "comments" 		:   [
+				    					{
+				    						"comment" 	: String,
+				    						"name"	  	: String,
+				    						"email"	  	: String,
+				    						"website" 	: String,
+				    						"createdAt"	: Date
+				    					}
+				    				]
+			}
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+03. Fetch All Blog Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/blogs/get/all/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "blogTitle"		: String,
+				"blogContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 	: String,
+				"images"		: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 		: String, //(YouTube Link only)
+				"typeOfBlog" 	: String, //(Regular/Premium)
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			    "createdAt"		: Date,
+			    "comments" 		:   [
+				    					{
+				    						"comment" 	: String,
+				    						"name"	  	: String,
+				    						"email"	  	: String,
+				    						"website" 	: String,
+				    						"createdAt"	: Date
+				    					}
+				    				]
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+04. Fetch All Blog Details list purpose
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/blogs/get/all/list/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "blogTitle"		: String,
+				"bannerImage" 	: String,
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			    "createdAt"		: Date
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+05. Fetch specify types of Blog Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/blogs/get/all/type/:type/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "blogTitle"		: String,
+				"blogContent" 	: String, //(CK Editor Rich text)
+				"bannerImage" 	: String,
+				"images"		: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 		: String, //(YouTube Link only)
+				"typeOfBlog" 	: String, //(Regular/Premium)
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			    "createdAt"		: Date,
+			    "comments" 		:   [
+				    					{
+				    						"comment" 	: String,
+				    						"name"	  	: String,
+				    						"email"	  	: String,
+				    						"website" 	: String,
+				    						"createdAt"	: Date
+				    					}
+				    				]
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+06. Fetch specify types of Blog Details list purpose
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/blogs/get/all/list/type/:type/:pageno'
+
+Note 	: Limit is set to 10
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "blogTitle"		: String,
+				"bannerImage" 	: String,
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			    "createdAt"		: Date
+			}]
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+08. Update Blog Details content and images
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/blogs/patch/:ID'
+
+Input	: {
+			    "blogTitle"		: String,
+				"blogContent" 	: String, //(CK Editor Rich text)
+				"blogURL"		: String,
+				"bannerImage" 	: {
+									"path"  	: String,
+									"name"		: String,
+									"size"		: String,
+									"extension" : String,
+								  },
+				"images"		: [{
+										"path"  	: String,
+										"name"		: String,
+										"size"		: String,
+										"extension" : String,
+										"sequence"	: Number
+									}],
+				"videos" 		: String, //(YouTube Link only)
+				"typeOfBlog" 	: String, //(Regular/Premium)
+				"summary" 		: String,
+			    "createdBy"   	: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+			    "message": "BLOG_UPDATED"
+			}
+		  If not successful
+		  	{
+		  		message : "DATA_NOT_FOUND",
+		  	}
+
+=====================================================================================
+10. Delete Blog Details
+=====================================================================================
+
+Method  : DELETE
+
+URL 	: '/api/blogs/delete/:ID'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+			    "message": "BLOG_DELETED"
+			}
+		  If not successful
+		  	{
+		  		message : "BLOG_NOT_DELETED",
+		  	}
+
+=====================================================================================
+11. Fetch Number of times blog is visited
+=====================================================================================
+
+Method  : DELETE
+
+URL 	: '/api/blogs/get/count/:ID'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+			    "count": Number
+			}
+		  If not successful
+		  	{
+		  		message : "BLOG_NOT_FOUND",
+		  	}

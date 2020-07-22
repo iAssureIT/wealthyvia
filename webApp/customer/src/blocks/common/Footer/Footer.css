@@ -63,3 +63,12 @@ color: #201A47;
 	padding: 15px;
 	font-family: Arial;
 }
+.sitelink{
+	color: #FFFFFF !important;	
+}
+.footerRightCss{
+	padding: 15px;
+	font-family: Arial;
+	display: none;
+	text-align: right;
+}

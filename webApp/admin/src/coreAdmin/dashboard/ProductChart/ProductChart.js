@@ -274,6 +274,7 @@ class ProductChart extends Component{
               </div>
                       
 
+                
           </div>
         </div>
       </div>

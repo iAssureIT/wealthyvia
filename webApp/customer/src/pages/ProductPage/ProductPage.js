@@ -1,6 +1,7 @@
 import React, { Component }          from 'react';
 import $ 				 			               from 'jquery';
 import ProductPageBanner             from "../../blocks/ProductPageBanner/ProductPageBanner.js";
+import ProductChart                  from "../../blocks/ProductChart/ProductChart.js";
 import FiveGCPMDiv                   from "../../blocks/FiveGCPMDiv/FiveGCPMDiv.js";
 import GrowthFactor                  from "../../blocks/GrowthFactor/GrowthFactor.js";
 import CorporateGovernance           from "../../blocks/CorporateGovernance/CorporateGovernance.js";
@@ -528,8 +529,9 @@ export default class ProductPage extends Component {
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 				<div className="row">
-          <ProductPageBanner/>
+          <ProductPageBanner/>          
           <FiveGCPMDiv/>
+          <ProductChart offeringName="5GCPM" />
           <GrowthFactor/>
           <CorporateGovernance />
           <Practicability />

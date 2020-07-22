@@ -1,0 +1,44 @@
+Status : 
+		YTS 	: Yet to Start, 
+		WIP 	: Can be used with limitations
+		TIP		: Testing in process
+		Done	: Tested and can be used
+
+API : 
+
+01. Insert Plan Details 										- YTS
+02. Fetch Plan Details											- YTS
+03. Fetch All Plans Details										- YTS
+04. Fetch specify types of Plans Details						- YTS
+05. Fetch specify types of Order Details for particular User	- YTS
+06. Search Plans Details 										- YTS
+07. Delete Plans Details										- YTS
+
+=====================================================================================
+01. Insert Plan Details
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/subscriptionplans/post'
+
+Input	: 
+			{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String, //_id of user
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+				message : "ORDER_INSERTED",
+				ID 		: String //_id of the document
+			}

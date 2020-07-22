@@ -1,0 +1,365 @@
+Status : 
+		YTS 	: Yet to Start, 
+		WIP 	: Can be used with limitations
+		TIP		: Testing in process
+		Done	: Tested and can be used
+
+API : 
+
+01. Insert Order Details 										- Done
+02. Fetch Order Details											- Done
+03. Fetch All Order Details										- Done
+04. Fetch All Order Details for particular User					- Done
+05. Fetch specify types of Order Details						- Done
+06. Fetch specify types of Order Details for particular User	- Done
+07. Search Orders Details 										- YTS
+08. Update Order Basic Details 									- Done
+09. Update Order listofBlogs Details							- Done
+10. Update Order statements Details 							- Done
+11. Delete Order Details										- Done
+12. Insert Order For Offering 									- Done
+
+=====================================================================================
+01. Insert Order Details
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/subscriptionorders/post'
+
+Input	: 
+			{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String, //_id of user
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+				message : "ORDER_INSERTED",
+				ID 		: String //_id of the document
+			}
+
+=====================================================================================
+02. Fetch Order Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/subscriptionorders/get/:ID'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String,
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			; Date,
+			}
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_FOUND",
+		  	}
+
+=====================================================================================
+03. Fetch All Order Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/subscriptionorders/get/all/:pageno'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String,
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date,
+				"listofBlogs"		: [{
+											blog_ID 	: type: mongoose.Schema.Types.ObjectId, ref: 'blogs',
+											accessDate	: Date,
+									  }],
+				"statements" 		: [{
+											"path"  	: String,
+											"name"		: String,
+											"size"		: String,
+											"extension" : String,
+									  }]
+			}]
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_FOUND",
+		  	}
+		  
+=====================================================================================
+04. Fetch All Order Details for particular User
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/subscriptionorders/get/all/:userID/:pageno'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String,
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date,
+				"listofBlogs"		: [{
+											blog_ID 	: type: mongoose.Schema.Types.ObjectId, ref: 'blogs',
+											accessDate	: Date,
+									  }],
+				"statements" 		: [{
+											"path"  	: String,
+											"name"		: String,
+											"size"		: String,
+											"extension" : String,
+									  }]
+			}]
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_FOUND",
+		  	}
+
+=====================================================================================
+05. Fetch specify types of Order Details
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/subscriptionorders/get/type/:type/:pageno'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String,
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date,
+				"listofBlogs"		: [{
+											blog_ID 	: type: mongoose.Schema.Types.ObjectId, ref: 'blogs',
+											accessDate	: Date,
+									  }],
+				"statements" 		: [{
+											"path"  	: String,
+											"name"		: String,
+											"size"		: String,
+											"extension" : String,
+									  }]
+			}]
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_FOUND",
+		  	}
+
+=====================================================================================
+06. Fetch specify types of Order Details for particular User
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/subscriptionorders/get/type/:type/:userID/:pageno'
+
+Input	: - NA -
+			
+
+Output	: If Successfully
+			[{
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String,
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			    "createdBy"   		: String, //_id of User or null
+			    "createdAt"			: Date,
+				"listofBlogs"		: [{
+											blog_ID 	: type: mongoose.Schema.Types.ObjectId, ref: 'blogs',
+											accessDate	: Date,
+									  }],
+				"statements" 		: [{
+											"path"  	: String,
+											"name"		: String,
+											"size"		: String,
+											"extension" : String,
+									  }]
+			}]
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_FOUND",
+		  	}
+
+=====================================================================================
+08. Update Order Basic Details
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/subscriptionorders/patch/:ID'
+
+Input	: {
+			    "typeofPlan"		: String, //Subscription Plan or Offering Plan
+			    "userID"			: String,
+			    "planName"			: String,
+				"planAmount"  		: Number, 
+				"validityPeriod" 	: String, //1 month or 1 year
+				"purchaseDate"		: String, //"YYYY-MM-DD"
+				"startDate" 		: String, //"YYYY-MM-DD"
+				"endDate" 			: String, //"YYYY-MM-DD"
+				"transactionId" 	: String,
+				"amountPaid"		: Number,
+			}
+			
+
+Output	: If Successfully
+			[{
+			    message : "ORDER_UPDATED",
+			}]
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_UPDATED",
+		  	}
+
+=====================================================================================
+09. Update Order listofBlogs Details
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/subscriptionorders/patch/blogs/:orderID'
+
+Input	: {
+			    "blog_ID" 		: String, //_id of blog
+				"accessDate"	: Date,
+			}
+			
+Output	: If Successfully add
+			[{
+			    message : "BLOG_ADDED",
+			}]
+		  If not successul
+		  	{
+		  		message : "BLOG_NOT_ADDED",
+		  	}
+
+=====================================================================================
+10. Update Order statements Details
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/subscriptionorders/patch/statement/:action/:orderID'
+
+Note 	: action should be either "add" or "remove"
+
+Input	: {
+				path  			: String,
+				name			: String,
+				size			: String,
+				extension 		: String,
+				uploadDate		: String, //"YYYY-MM-DD"
+				statement_ID	: String, //required when we have to remove the statement
+		  }
+			
+Output	: If Successfully add
+			[{
+			    message : "STATEMENT_UPDATED",
+			}]
+		  If not successul
+		  	{
+		  		message : "STATEMENT_NOT_UPDATED",
+		  	}
+
+=====================================================================================
+11. Delete Order Details
+=====================================================================================
+
+Method  : DELETE
+
+URL 	: '/api/subscriptionorders/delete/:ID'
+
+Input	: - NA -
+			
+Output	: If Successfully 
+			[{
+			    message : "ORDER_DELETED",
+			}]
+		  If not successul
+		  	{
+		  		message : "ORDER_NOT_DELETED",
+		  	}
+=====================================================================================
+12. Insert Order For Offering
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/subscriptionorders/post/offering'
+
+Input	: 
+			{
+			    "userID"			: String, //_id of user
+			    "planID"			: String, //_id of offering or null
+			    "btnStatus"			: String, //Either "checked" or "unchecked"
+			    "createdBy"   		: String, //_id of User or null
+			}
+
+Output	: If Successfully
+			{
+				message : "ORDER_INSERTED",
+				ID 		: String //_id of the document
+			}

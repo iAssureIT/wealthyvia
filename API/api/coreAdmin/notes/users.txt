@@ -1,0 +1,447 @@
+Status : 
+		YTS 	: Yet to Start, 
+		WIP 	: Can be used with limitations
+		TIP		: Testing in process
+		Done	: Tested and can be used
+
+Pending List : 1. Before creating the user check for the role
+			   2. Role Adding check if role already added
+
+API : 
+
+01. Create Admin 								- Done
+02. Create User 								- Done
+03. Create User with Send Email OTP 			- Done 
+04. User Login (email and password)				- Done
+05. Update User (name and mobile) 				- Done
+06. Update Status of the User 					- Done
+07. Update Role of the User 					- Done
+08. Reset the password of the user 				- Done
+09. Details of Particular User using _id		- Done
+10. Details of Particular User using email 		- YTS
+11. List all the users 							- Done
+12. List all the users role wise				- Done
+13. List all the users status wise				- Done
+14. Delete User using _id						- Done
+15. Search 										- YTS
+16. Check Email OTP  (_id and OTP)				- YTS
+17. Check Email and send OTP 					- Done
+18. Resend OTP (_id)							- Done
+19. Resend OTP (email)							- Done
+
+
+=====================================================================================
+1. Create Admin
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/users/post/signup/admin'
+
+Input	: 
+			{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"pwd"		: String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_CREATED",
+				ID 		: String //_id of the user
+			}
+
+=====================================================================================
+2. Create User
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/users/post/signup/user'
+
+Input	: 
+			{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"pwd"		: String, //Mandatory
+				"role"      : String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_CREATED",
+				ID 		: String //_id of the user
+			}
+
+=====================================================================================
+3. Create User with Send Email OTP
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/users/post/signup/user/emailotp'
+
+Input	: 
+			{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"pwd"		: String, //Mandatory
+				"role"      : String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_CREATED_OTP_SEND",
+				ID 		: String //_id of the user
+			}
+
+=====================================================================================
+4. User Login (email and password)
+=====================================================================================
+
+Method  : POST
+
+URL 	: '/api/users/post/login'
+
+Input	: 
+			{
+				"email"		: String, //Mandatory 
+				"password"	: String, //Mandatory
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_CREATED",
+				ID 		: String //_id of the user
+			}
+
+=====================================================================================
+5. Update Users (name and mobile)
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/:ID'
+
+Input	: 
+			{
+				"firstname" : String,
+				"lastname"	: String,
+				"mobNumber" : String,
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_UPDATED",
+			}
+		  If not
+		  	{
+		  		message : "USER_NOT_UPDATED",	
+		  	}
+
+=====================================================================================
+6. Update Users (name and mobile)
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/:ID'
+
+Input	: 
+			{
+				"firstname" : String,
+				"lastname"	: String,
+				"mobNumber" : String,
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_UPDATED",
+			}
+		  If not
+		  	{
+		  		message : "USER_NOT_UPDATED",	
+		  	}
+
+=====================================================================================
+7. Update Status of the User
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/status/:ID'
+
+Input	: 
+			{
+				"status" : String, //Either "Active" or "Inactive"
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_STATUS_UPDATED",
+			}
+		  If not
+		  	{
+		  		message : "USER_STATUS_NOT_UPDATED",	
+		  	}
+
+=====================================================================================
+8. Update Role of the User
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/role/:action/:ID'
+
+Note 	: action can be "assign" or "remove"
+
+Input	: 
+			{
+				"role" : String, 
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_ROLE_UPDATED",
+			}
+		  If not
+		  	{
+		  		message : "USER_ROLE_NOT_UPDATED",	
+		  	}
+
+=====================================================================================
+9. Reset the password of the user
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/password/:ID'
+
+Input	: 
+			{
+				"pwd" : String, 
+			}
+
+Output	: If Successfully
+			{
+				message : "USER_ROLE_UPDATED",
+			}
+		  If not
+		  	{
+		  		message : "USER_ROLE_NOT_UPDATED",	
+		  	}
+
+=====================================================================================
+10. Details of Particular User using _id
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/users/get/:ID'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"role"      : String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}
+		  If not
+		  	{
+		  		message : "USER_NOT_FOUND",	
+		  	}
+
+=====================================================================================
+11. List all the users
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/users/get/list/:pageno'
+
+Input	: - NA -
+
+Output	: If Successfully
+			[{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"role"      : String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}]
+		  If not
+		  	{
+		  		message : "USER_NOT_FOUND",	
+		  	}
+		  	
+=====================================================================================
+12. List all the users role wise
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/users/get/list/role/:role/:pageno'
+
+Input	: - NA -
+
+Output	: If Successfully
+			[{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"role"      : String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}]
+		  If not
+		  	{
+		  		message : "USER_NOT_FOUND",	
+		  	}
+		  	
+=====================================================================================
+13. List all the users status wise
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/users/get/list/status/:status/:pageno'
+
+Input	: - NA -
+
+Output	: If Successfully
+			[{
+				"firstname" : String,
+				"lastname"	: String,
+				"email"		: String, //Mandatory 
+				"mobNumber" : String,
+				"role"      : String, //Mandatory
+				"status"	: String, //Either "Active" or "Inactive"
+				"fullName"	: String, //If firstname and lastname is not collected then
+			}]
+		  If not
+		  	{
+		  		message : "USER_NOT_FOUND",	
+		  	}
+		  	
+=====================================================================================
+14. Delete User using _id
+=====================================================================================
+
+Method  : DELETE
+
+URL 	: '/api/users/delete/:ID'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+		  		message : "USER_DELETED",	
+		  	}
+		  If not
+		  	{
+		  		message : "USER_NOT_DELETED",	
+		  	}
+
+=====================================================================================
+16. Check Email OTP  (_id and OTP)
+=====================================================================================
+
+Method  : GET
+
+URL 	: '/api/users/get/checkotp/:ID/:emailotp'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+		  		message : "SUCCESS",	
+		  	}
+		  If not
+		  	{
+		  		message : "FAILED",	
+		  	}
+
+=====================================================================================
+17. Check Email and send OTP
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/password/email'
+
+Input	: {
+				"email" : String,
+			}
+
+Output	: If Successfully
+			{
+		  		message : "OTP_UPDATED",	
+		  	}
+		  If not
+		  	{
+		  		message : "OTP_NOT_UPDATED",	
+		  	}
+		  	{
+		  		message:"USER_NOT_FOUND"	
+		  	}
+
+=====================================================================================
+18. Resend OTP (_id)
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/optEmail/:ID'
+
+Input	: - NA -
+
+Output	: If Successfully
+			{
+		  		message : "OTP_UPDATED",	
+		  	}
+		  If not
+		  	{
+		  		message : "USER_NOT_UPDATED",	
+		  	}
+
+=====================================================================================
+19. Resend OTP (email)
+=====================================================================================
+
+Method  : PATCH
+
+URL 	: '/api/users/patch/optEmail/email'
+
+Input	: {
+				"emailId" : String
+			}
+
+Output	: If Successfully
+			{
+		  		message : "OTP_UPDATED",	
+		  	}
+		  If not
+		  	{
+		  		message : "USER_NOT_UPDATED",	
+		  	}
+

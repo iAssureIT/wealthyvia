@@ -426,7 +426,7 @@ export default class Header extends Component {
           "contactNumber"    : this.refs.contactNumber.value,
         }
         if(dataArray1){
-          var adminEmail = "kycwealthyvia@gmail.com";
+          var adminEmail = "monikapawashe25@gmail.com";
           const dataArray = {
               "email"         : this.state.email ,
               "subject"       : "Your KYC details is sent successfully.",
