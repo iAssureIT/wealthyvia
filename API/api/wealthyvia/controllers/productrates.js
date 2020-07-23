@@ -431,15 +431,82 @@ exports.get_productrates = (req,res,next)=>{
 exports.get_productratesbyproductid = (req,res,next)=>{
     //console.log("product id", req.params.productID);
     var productid = req.params.productID;
-    //var ondate = moment().format("YYYY-MM-DDTHH:mm:ss");
-    //console.log("current date", ondate);
-   /* var curdate = new Date();
-    var prevdate = new Date();
-    //curdate.setDate(curdate.getDate()-5);
-    console.log("cur date", curdate);
-    prevdate.setDate(curdate.getDate()-8);
-    console.log("prev date", prevdate);
+    var limit = req.params.limit;
 
+    var curdate = new Date();
+    var prevdate = new Date();
+    var ProductData = new Object();
+    var maxdata = new Object();
+    ProductRates.findOne({ productID: req.params.productID })
+            .exec()
+            .then(productdata=>{
+                maxdata = productdata;
+                //res.status(200).json( productdata);
+            })
+            .catch((err)=>{
+                res.status(500).json({
+                    "err" : err
+                });
+            })
+    getlimitasync();
+
+    async function getlimitasync(){
+        //1M
+            //prevdate.setDate(curdate.getDate()-8);
+            prevdate.setMonth(curdate.getMonth()-1);
+            //console.log("cur date", curdate);
+            //console.log("prev date", prevdate);
+            var rate1mdata = await getProductrateByLimit(productid, curdate, prevdate);
+            //console.log("1m", rate1mdata);
+            ProductData["1M"] = rate1mdata;
+        //3M
+            prevdate = new Date();
+            prevdate.setMonth(curdate.getMonth()-3);
+            //console.log("cur date", curdate);
+            //console.log("prev date", prevdate);
+            var rate3mdata = await getProductrateByLimit(productid, curdate, prevdate);
+            //console.log("3m", rate3mdata);
+            ProductData["3M"] = rate3mdata
+        
+            prevdate = new Date();
+            prevdate.setMonth(curdate.getMonth()-6);
+            //console.log("cur date", curdate);
+            //console.log("prev date", prevdate);
+            var rate6mdata = await getProductrateByLimit(productid, curdate, prevdate);
+            ProductData["6M"] = rate6mdata
+
+            prevdate = new Date();        
+            prevdate.setFullYear(curdate.getFullYear()-1);
+            //console.log("cur date", curdate);
+            //console.log("prev date", prevdate);
+            var rate1ydata = await getProductrateByLimit(productid, curdate, prevdate);
+            ProductData["1Y"] = rate1ydata
+
+            prevdate = new Date();
+            prevdate.setFullYear(curdate.getFullYear()-2);
+            //console.log("cur date", curdate);
+            //console.log("prev date", prevdate);
+            var rate2ydata = await getProductrateByLimit(productid, curdate, prevdate);
+            ProductData["2Y"] = rate2ydata;
+            ProductData["MAX"]= maxdata;
+            //console.log("productdata", Array.isArray(ProductData));
+            if(ProductData){
+                console.log("productdata", ProductData);
+                res.status(200).json( ProductData);
+
+            }
+            
+    
+    //var ondate = moment().format("YYYY-MM-DDTHH:mm:ss");
+    }
+       
+        
+}
+
+
+var getProductrateByLimit = async (productid, curdate, prevdate) => {
+
+    return new Promise(function(resolve,reject){ 
     ProductRates.aggregate([
         // Get just the docs that contain a shapes element where color is 'red'
         {$match: 
@@ -472,30 +539,41 @@ exports.get_productratesbyproductid = (req,res,next)=>{
             }},
             _id: 1,
             productName: 1,  indexName: 1
-        }}
+        }},
+        {$project: {
+            rates: { '$map': { 
+                'input': '$rates', 
+                'as': 'rate', 
+                'in': { 
+                    'date':  {$dateToString:  {format: "%Y-%m-%d", date: "$$rate.date"} } ,
+                    'productRate'   : "$$rate.productRate",
+                    'indexRate'  : "$$rate.indexRate",
+                    'fileName'      : "$$rate.fileName",
+                }
+            } },
+            _id: 1,
+            productName: 1,  indexName: 1
+        }},
         
         
     ])
     .exec()
             .then(productdata=>{
-                res.status(200).json( productdata);
-                console.log("product data", productdata[0].rates);
+                if(productdata.length > 0){
+                    //console.log("product data", productdata[0].rates.length);
+                    resolve(productdata[0]);
+                    //res.status(200).json( productdata[0]);
+                    //console.log("product data", productdata[0].rates.length);
+                }
+                else{
+                    resolve(productdata);
+                    //res.status(200).json( productdata);
+                }
+                
             })
             .catch((err)=>{
                 console.log("error", err);
-                res.status(500).json({
-                    "err" : err
-                });
-            })*/
-
-    ProductRates.findOne({ productID: req.params.productID })
-            .exec()
-            .then(productdata=>{
-                res.status(200).json( productdata);
+                reject(err);
             })
-            .catch((err)=>{
-                res.status(500).json({
-                    "err" : err
-                });
-            })
+    })
 }

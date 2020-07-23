@@ -8,10 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './lib/router.js';
 import './App.css';	
 
-//axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
+
+axios.defaults.baseURL = process.env.REACT_APP_BASE_URL;
 //axios.defaults.baseURL = 'https://api.wealthyvia.com';
 //axios.defaults.baseURL = 'http://wealthyviapi.iassureit.com';
-axios.defaults.baseURL = 'http://localhost:3015';
+//axios.defaults.baseURL = 'http://localhost:3015';
 
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 

@@ -21,7 +21,13 @@
 }
 
 .productchartout{
-    margin-top: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.productspace{
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 .nav-pills>li {
@@ -37,10 +43,10 @@
 }
 
 .nav-pills > li > a {
-    border-radius: 0;
+    border-radius: 0 !important;
     color: #444;
-    border-left: 1px solid #dde0e4;
-    padding: 7px 10px;
+    border-left: 1px solid #dde0e4 !important;
+    padding: 7px 10px !important;
 }    
 
 .nav-pills > li.active > a, .nav-pills > li > a.active {
@@ -61,6 +67,20 @@
     padding-bottom: 20px;
 }
 
+.investingva{
+	font-size: 17px;
+    line-height: 21px;
+}
+
+.pageloader{
+    height:300px;
+}
+
 .nav-pills{
     float: right;
+}
+
+.blockborder{
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
 }

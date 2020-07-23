@@ -650,6 +650,9 @@ export default class ProductPage extends Component {
                 
                 </div>
            </div>
+
+            <ProductChart offeringName="Safeheaven" />
+
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
@@ -680,7 +683,7 @@ export default class ProductPage extends Component {
                 </div>
            </div>
 			  	 
-            
+           
             
                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect mt20">
                 <div className="row">

@@ -16,6 +16,7 @@ class ProductChart extends Component{
     this.state = {
         offeringTitle           : [],
         productName             : '',
+        indexName               : '',
         productID               : '',
         userID                  : '',
         fileDetailUrl           : "/api/productrates/get/filedetails/",
@@ -49,7 +50,8 @@ class ProductChart extends Component{
         "errors"              : false,
         "shown"               : true,
         "fields"              : {},
-        "productData"         : ''
+        "productData"         : '',
+        "prdatawithoutmax"    : ''
         
     };
     this.handleChange = this.handleChange.bind(this);
@@ -97,9 +99,31 @@ class ProductChart extends Component{
         .get("/api/productrates/get/rates/"+productid)
         .then( (response)=>{      
           //console.log("productdata = ",response.data);   
-            this.setState({
-              productData : response.data,
-            })
+             if(response.data.MAX){
+              var prdatawithoutmax = Object.assign({}, response.data);
+              prdatawithoutmax = Object.keys(prdatawithoutmax).reduce((object, key) => {
+                                  if (key !== 'MAX') {
+                                    object[key] = prdatawithoutmax[key]
+                                  }
+                                  return object
+                                },{});
+                console.log("productdata = ",prdatawithoutmax);  
+                this.setState({
+                  productData : response.data,
+                  prdatawithoutmax : prdatawithoutmax,
+                  productName : response.data.MAX.productName,
+                  indexName : response.data.MAX.indexName
+                })
+             }
+             else{
+                this.setState({
+                  productData : '',
+                  prdatawithoutmax : '',
+                  productName : '',
+                  indexName : ''
+                })
+             }
+            
           })
           .catch((error)=>{
               if(error.message === "Request failed with status code 401"){
@@ -265,13 +289,122 @@ class ProductChart extends Component{
                         />
                         
                 </div>
-              </form>             
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout">
+              </form> 
+
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout">   
+
+                {
+                  this.state.productData ?
+                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 hrline">
+
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          Past Performance vs {this.state.indexName}
+                        </div>
+
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <ul className="nav nav-pills" id="myTab" role="tablist">
+                              
+                              { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
+                                    return (
+                                     <li className="nav-item" key={key}>
+                                          <a className="nav-link" id={key+"-tab"} data-toggle="tab" href={"#"+key} role="tab" aria-controls={key} >{key}</a>
+                                     </li>
+                                    )
+                                  })  
+                              }
+                              { this.state.productData.MAX ? 
+                                  <li className="nav-item active" key="max">
+                                    <a className="nav-link" id="MAX-tab" data-toggle="tab" href="#MAX" role="tab" aria-controls="MAX"  >MAX</a> 
+                                  </li>
+                                :
+                                null
+                              } 
+
+                            </ul>
+                         </div>
+                      </div>      
+                       
+
+                        <div className="col-lg-10 col-md-10 col-sm-12 col-xs-12 productchartout">
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              Current value of ₹ 100 invested once on inception of this smallcase would be
+                          </div>
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                  {this.state.productName} 287.63
+                              </div>
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                  {this.state.indexName} Equity Midcap 112.65
+                              </div>
+                          </div>
+                        </div>
+
+                        <div className="tab-content" id="myTabContent">
+                          
+                          { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
+                                return (
+                                  <div className="tab-pane fade" key={key} id={key} role="tabpanel" aria-labelledby={key+"-tab"}>
+                                    <Linechart productData = { value }/>
+                                  </div>  
+                                )
+                              })  
+                          }
+                          { this.state.productData.MAX ? 
+                            <div className="tab-pane fade in active" id="MAX" role="tabpanel" aria-labelledby={"MAX-tab"}>
+                                    <Linechart productData = { this.state.productData.MAX }/>
+                            </div>  
+                            :
+                            null
+                          }  
+
+                        </div>
+                    </div> 
+                  :
+                    null
+                }   
+              </div> 
+{/*
+            {this.state.productData ? 
+            <div>
+              <ul class="nav nav-tabs" id="myTab" role="tablist">
+              
+              { this.state.productData.map((elem,index)=>{
+                  return(
+                    <li class="nav-item">
+                <a class="nav-link active" id={elem+"-tab"} data-toggle="tab" href={"#"+elem} role="tab" aria-controls={elem} aria-selected="true">elem</a>
+              </li>
+              
+                  )
+              })
+              } 
+              </ul>
+
+              <div class="tab-content" id="myTabContent">
+              { this.state.productData.map((elem,index)=>{
+                  return(
+                    <div class="tab-pane fade" id={elem} role="tabpanel" aria-labelledby={elem+"-tab"}>
+                      {
+                      this.state.productData ? 
+                      <Linechart productData = { this.state.productData.elem }/>
+                      : null 
+                      } 
+                  </div>
+                  )
+              })
+              } 
+              </div>
+              </div>
+              :
+              null
+            } */}
+            {/*  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout">
                 {this.state.productData ? 
                   <Linechart productData = { this.state.productData }/>
                 : null 
                 } 
-              </div>
+              </div> */}
                       
 
                 

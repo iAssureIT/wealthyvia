@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import { Doughnut, Pie, Bar, Radar, Polar, Line, Chart } from 'react-chartjs-2';
-
+import { Doughnut, Pie, Bar, Radar, Polar, Line, Chart, defaults } from 'react-chartjs-2';
+//defaults.global.maintainAspectRatio = false;
 
 
 
@@ -182,11 +182,9 @@ export default class Linechart extends Component{
 		return(
 				<section>
 					<div className="row">
-						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 dashboard">
+						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 chartdiv">
 							
-								<div className="pageTitle"> Performance </div>
-								
-                {this.state.data  ? 
+								{this.state.data  ? 
                   <Line
                     data={this.state.data}
                     options={this.state.options}

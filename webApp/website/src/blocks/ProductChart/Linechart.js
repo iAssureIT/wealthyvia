@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { Doughnut, Pie, Bar, Radar, Polar, Line, Chart } from 'react-chartjs-2';
-
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 
@@ -44,7 +44,8 @@ export default class Linechart extends Component{
 		super(props);
     this.state = {
          data: '',
-         options: ''
+         options: '',
+         loading : true
     }
   }
   
@@ -120,79 +121,85 @@ export default class Linechart extends Component{
         };
         
         const options = {
-        responsive: true,
-        tooltips: {
-          mode: 'label',
-          intersect: false,
-          gridLines: {
-          display: true,
-          backgroundColor: '#f7f7f7',
-          
-          
-          },
-          pointHoverRadius: 5,
-          pointHoverBorderColor: '#E3AF64',
-        },
-        elements: {
-          line: {
-          fill: false
-          }
-        },
-        scales: {
-          xAxes: [
-          {
+          responsive: true,
+          tooltips: {
+            mode: 'label',
+            intersect: false,
+            gridLines: {
+            display: true,
+            backgroundColor: '#f7f7f7',
             
-            display: true,
-            gridLines: {
-            display: false,
-            drawBorder: true,
+            
             },
-            ticks: {
-            autoSkip: true,
-            maxRotation: 0,
-            minRotation: 0,
-            maxTicksLimit: 7
-            },
-            labels: date,
-        
+            pointHoverRadius: 5,
+            pointHoverBorderColor: '#E3AF64',
+          },
+          elements: {
+            line: {
+            fill: false
+            }
+          },
+          scales: {
+            xAxes: [
+            {
+              
+              display: true,
+              gridLines: {
+              display: false,
+              drawBorder: true,
+              },
+              ticks: {
+              autoSkip: true,
+              maxRotation: 0,
+              minRotation: 0,
+              maxTicksLimit: 7
+              },
+              labels: date,
+          
+            }
+            ],
+            yAxes: [
+            {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              id: 'y-axis-1',
+              gridLines: {
+              display: true,
+              drawBorder: false,
+              },
+              labels: {
+              show: true
+              },
+            }
+            ]
           }
-          ],
-          yAxes: [
-          {
-            type: 'linear',
-            display: true,
-            position: 'left',
-            id: 'y-axis-1',
-            gridLines: {
-            display: true,
-            drawBorder: false,
-            },
-            labels: {
-            show: true
-            },
-          }
-          ]
-        }
         };
-        this.setState({data : data, options: options})
+        this.setState({data : data, options: options, loading : false})
   }
 
 
 	render(){
+    console.log("loading", this.state.loading);
 		return(
 				<section>
 					<div className="row">
 						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 dashboard">
 							
-								<div className="pageTitle"> Performance </div>
-								
-                {this.state.data  ? 
+								{this.state.loading === false  ? 
                   <Line
                     data={this.state.data}
                     options={this.state.options}
                     
                   />
-                  :null
+                  :
+                  <div className="pageloader">
+                    <ClipLoader
+                          size={120}
+                          color={"#123abc"}
+                          loading={this.state.loading}
+                      />
+                  </div>  
                 }
                 </div>
 								

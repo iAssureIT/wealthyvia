@@ -18,11 +18,11 @@ const projectSettingRoutes 			= require('./api/coreAdmin/routes/projectsettings.
 //Wealthyvia Modules
 const blogRoutes 					= require('./api/wealthyvia/routes/blogs.js');
 const offeringsRoutes 				= require('./api/wealthyvia/routes/offerings.js');
-const productratesRoutes 				= require('./api/wealthyvia/routes/productrates.js');
 const subscriptionorderRoutes 		= require('./api/wealthyvia/routes/subscriptionorders.js');
 const offerSubscriptionRoutes 		= require('./api/wealthyvia/routes/offeringsubscriptions.js');
 const wmSubscriptionRoutes 			= require('./api/wealthyvia/routes/wmsubscriptions.js');
 const invoiceRoutes 				= require('./api/wealthyvia/routes/invoice.js');
+const productratesRoutes 			= require('./api/wealthyvia/routes/productrates.js');
 // global.JWT_KEY = "secret";
 
 mongoose.connect('mongodb://localhost/'+globalVariable.dbname,{
@@ -81,18 +81,16 @@ app.post('/send-email', (req, res)=> {
 			port: 587,
 			// port: 465,
 			auth: {
-				//user: 'kycwealthyvia@gmail.com',
-				//pass: 'Artha123$'
+				user: 'kycwealthyvia@gmail.com',
+				pass: 'Artha123$'
 				// user : 'iassureitmail@gmail.com',
 				// pass : 'iAssureIT@123'
-					user : 'monikapawashe25@gmail.com',
-					pass : 'vedika12@'
 			}
 		});
 		console.log('after transport');
 		let mailOptions = {
 			
-			from   : '"Wealthyvia" <monikapawashe25@gmail.com>', // sender address
+			from   : '"Wealthyvia" <kycwealthyvia@gmail.com>', // sender address
 			// from   : '"Wealthyvia" <iassureitmail@gmail.com>', // sender address
 			to     : req.body.email, // list of receivers
 			subject: req.body.subject, // Subject line
