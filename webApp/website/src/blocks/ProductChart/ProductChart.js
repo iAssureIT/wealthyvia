@@ -99,7 +99,7 @@ class ProductChart extends Component{
                         </div>
 
                         <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <ul className="nav nav-pills" id="myTab" role="tablist">
+                            <ul className="nav nav-pills chartpills" id="myTab" role="tablist">
                               
                               { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
                                     return (

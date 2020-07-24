@@ -24,7 +24,7 @@
     margin-top: 40px;
 }
 
-.nav-pills>li {
+.nav-pills.chartpills>li {
     float: left;
     border-top: 1px solid #dde0e4;
     border-bottom: 1px solid #dde0e4;
@@ -32,18 +32,18 @@
     margin-left: 0px !important;
 }   
 
-.nav-pills>li:last-child {
+.nav-pills.chartpills>li:last-child {
     border-right: 1px solid #dde0e4; 
 }
 
-.nav-pills > li > a {
+.nav-pills.chartpills > li > a {
     border-radius: 0;
     color: #444;
     border-left: 1px solid #dde0e4;
     padding: 7px 10px;
 }    
 
-.nav-pills > li.active > a, .nav-pills > li > a.active {
+.nav-pills.chartpills > li.active > a, .nav-pills.chartpills > li > a.active {
     margin-bottom: 0px !important;
     background-color: #fff !important;
     border: 1px solid #3c8dbc !important;
@@ -61,6 +61,6 @@
     padding-bottom: 20px;
 }
 
-.nav-pills{
+.nav-pills.chartpills{
     float: right;
 }
