@@ -441,6 +441,7 @@ exports.get_productratesbyproductid = (req,res,next)=>{
             .exec()
             .then(productdata=>{
                 maxdata = productdata;
+                 getlimitasync();
                 //res.status(200).json( productdata);
             })
             .catch((err)=>{
@@ -448,7 +449,7 @@ exports.get_productratesbyproductid = (req,res,next)=>{
                     "err" : err
                 });
             })
-    getlimitasync();
+   
 
     async function getlimitasync(){
         //1M
@@ -457,41 +458,55 @@ exports.get_productratesbyproductid = (req,res,next)=>{
             //console.log("cur date", curdate);
             //console.log("prev date", prevdate);
             var rate1mdata = await getProductrateByLimit(productid, curdate, prevdate);
-            //console.log("1m", rate1mdata);
-            ProductData["1M"] = rate1mdata;
+            
+            if(rate1mdata && rate1mdata.rates ){
+                //console.log("1m", rate1mdata);
+                if( maxdata.rates.length > rate1mdata.rates.length )
+                ProductData["1M"] = rate1mdata;
+            }
+            
         //3M
             prevdate = new Date();
             prevdate.setMonth(curdate.getMonth()-3);
-            //console.log("cur date", curdate);
-            //console.log("prev date", prevdate);
             var rate3mdata = await getProductrateByLimit(productid, curdate, prevdate);
-            //console.log("3m", rate3mdata);
-            ProductData["3M"] = rate3mdata
+            
+            if(rate3mdata && rate3mdata.rates ){
+                if( maxdata.rates.length > rate3mdata.rates.length )
+                ProductData["3M"] = rate3mdata;
+            }
+            
         
             prevdate = new Date();
             prevdate.setMonth(curdate.getMonth()-6);
-            //console.log("cur date", curdate);
-            //console.log("prev date", prevdate);
             var rate6mdata = await getProductrateByLimit(productid, curdate, prevdate);
-            ProductData["6M"] = rate6mdata
+            
+            if(rate6mdata && rate6mdata.rates ){
+                if( maxdata.rates.length > rate6mdata.rates.length )
+                ProductData["6M"] = rate6mdata;
+            }
 
             prevdate = new Date();        
             prevdate.setFullYear(curdate.getFullYear()-1);
-            //console.log("cur date", curdate);
-            //console.log("prev date", prevdate);
             var rate1ydata = await getProductrateByLimit(productid, curdate, prevdate);
-            ProductData["1Y"] = rate1ydata
+            
+            if(rate1ydata && rate1ydata.rates ){
+                if( maxdata.rates.length > rate1ydata.rates.length )
+                ProductData["1Y"] = rate1ydata;
+            }
 
             prevdate = new Date();
             prevdate.setFullYear(curdate.getFullYear()-2);
-            //console.log("cur date", curdate);
-            //console.log("prev date", prevdate);
             var rate2ydata = await getProductrateByLimit(productid, curdate, prevdate);
-            ProductData["2Y"] = rate2ydata;
+
+            if(rate2ydata && rate2ydata.rates ){
+                if( maxdata.rates.length > rate2ydata.rates.length )
+                ProductData["2Y"] = rate2ydata;
+            }
+
+            
             ProductData["MAX"]= maxdata;
-            //console.log("productdata", Array.isArray(ProductData));
             if(ProductData){
-                console.log("productdata", ProductData);
+                //console.log("productdata", ProductData);
                 res.status(200).json( ProductData);
 
             }

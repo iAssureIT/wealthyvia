@@ -327,16 +327,16 @@ class ProductChart extends Component{
                       </div>      
                        
 
-                        <div className="col-lg-10 col-md-10 col-sm-12 col-xs-12 productchartout">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout">
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                               Current value of ₹ 100 invested once on inception of this smallcase would be
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                               <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.productName} 287.63
+                                  {this.state.productName} ₹287.63
                               </div>
                               <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.indexName} Equity Midcap 112.65
+                                  {this.state.indexName} ₹112.65
                               </div>
                           </div>
                         </div>
