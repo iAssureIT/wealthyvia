@@ -45,6 +45,8 @@ export default class Linechart extends Component{
     this.state = {
          data: '',
          options: '',
+         mobiledata : '',
+         mobileoptions: '',
          loading : true
     }
   }
@@ -175,7 +177,59 @@ export default class Linechart extends Component{
             ]
           }
         };
-        this.setState({data : data, options: options, loading : false})
+        const mobileoptions = {
+          responsive: true,
+          tooltips: {
+            mode: 'label',
+            intersect: false,
+            gridLines: {
+            display: true,
+            backgroundColor: '#f7f7f7',
+            
+            
+            },
+            pointHoverRadius: 5,
+            pointHoverBorderColor: '#E3AF64',
+          },
+          elements: {
+            line: {
+            fill: false
+            }
+          },
+          scales: {
+            xAxes: [
+            {
+              
+              display: true,
+              gridLines: {
+              display: false,
+              drawBorder: true,
+              },
+              ticks: {
+              display: false
+              },
+              labels: date,
+          
+            }
+            ],
+            yAxes: [
+            {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              id: 'y-axis-1',
+              gridLines: {
+              display: true,
+              drawBorder: false,
+              },
+              labels: {
+              show: true
+              },
+            }
+            ]
+          }
+        };
+        this.setState({data : data, options: options, mobileoptions: mobileoptions, loading : false})
   }
 
 
@@ -184,14 +238,24 @@ export default class Linechart extends Component{
 		return(
 				<section>
 					<div className="row">
-						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 dashboard">
+						<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 dashboard extspace">
 							
 								{this.state.loading === false  ? 
-                  <Line
-                    data={this.state.data}
-                    options={this.state.options}
-                    
-                  />
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <div className="col-lg-12 col-md-12 hidden-sm hidden-xs ">
+                      <Line
+                        data={this.state.data}
+                        options={this.state.options}                    
+                      />
+                    </div>
+                    <div className="hidden-lg hidden-md col-sm-12 col-xs-12 extspace">
+                      <Line
+                        data={this.state.data}
+                        options={this.state.mobileoptions}
+                        width={800} height={700}                    
+                      />
+                    </div>
+                  </div>
                   :
                   <div className="pageloader">
                     <ClipLoader

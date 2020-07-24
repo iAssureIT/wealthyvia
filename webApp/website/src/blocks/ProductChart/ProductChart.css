@@ -84,3 +84,14 @@
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
+
+.chartheading{
+    font-size: 23px;
+}
+
+@media (max-width: 767px){
+    .extspace{
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

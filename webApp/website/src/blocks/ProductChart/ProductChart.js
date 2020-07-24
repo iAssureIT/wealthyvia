@@ -83,22 +83,22 @@ class ProductChart extends Component{
 
   render(){
     return(
-      <div className="row">
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout blockborder">
       {
         this.state.productData ?
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout blockborder">
+        
           <div className="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1  col-sm-12 col-xs-12">
 
               
-                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 extspace">
 
-                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 hrline">
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 hrline extspace">
 
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                          <h4>Past Performance vs {this.state.indexName}</h4>
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 iceBlueColor">
+                          <h4 className="chartheading">Past Performance vs {this.state.indexName}</h4>
                         </div>
 
-                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
                             <ul className="nav nav-pills chartpills" id="myTab" role="tablist">
                               
                               { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
@@ -122,21 +122,21 @@ class ProductChart extends Component{
                       </div>      
                        
 
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productspace">
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productspace extspace">
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
                               <h5 className="investingva">Current value of ₹ 100 invested once on inception of this smallcase would be</h5>
                           </div>
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
                                   <h4>{this.state.productName} ₹287.63</h4>
                               </div>
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
                                   <h4>{this.state.indexName} ₹112.65</h4>
                               </div>
                           </div>
                         </div>
 
-                        <div className="tab-content" id="myTabContent">
+                        <div className="tab-content extspace" id="myTabContent">
                           
                           { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
                                 return (
@@ -159,7 +159,7 @@ class ProductChart extends Component{
                     
                 
             </div>
-          </div> 
+          
           :
                     null
           }   
