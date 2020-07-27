@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Doughnut, Pie, Bar, Radar, Polar, Line, Chart, defaults } from 'react-chartjs-2';
 //defaults.global.maintainAspectRatio = false;
+import Moment                from 'moment';
 
 
 
@@ -50,7 +51,8 @@ export default class Linechart extends Component{
   
   componentDidMount(){
     var productData = this.props.productData;
-    this.setchartdata(productData);
+    var productkey = this.props.productkey;
+    this.setchartdata(productData, productkey);
     //console.log("pr data", productData);
     
   }
@@ -61,21 +63,49 @@ export default class Linechart extends Component{
     if(this.props.productData){
 		  if (this.props.productData.productID !== prevProps.productData.productID) {
 			
-					this.setchartdata(this.props.productData);
+					this.setchartdata(this.props.productData, this.props.productkey);
 					
 			}
     }	
   }
   
-  setchartdata(productData){
+  setchartdata(productData, productkey){
+      console.log("prkey",productkey);
       var rates= productData.rates;
-      var date = rates.map((data)=>{
-        return data.date;
-      });
+      if(productkey === "MAX"){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("MMM YYYY");
+          });
+      }
+      else if(productkey === "1Y" || productkey === "2Y" || productkey === "3Y"){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("MMM YYYY");
+          });
+      }
+      else if(productkey === "3M" || productkey === "6M" ){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("MMM");
+          });
+      }
+      else if(productkey === "1M" ){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("DD MMM YYYY");
+          });
+      }
+      else{
+        var date = rates.map((data)=>{
+          return data.date;
+        });
+      }
+      
 
-      var year = date.map((data)=>{
+      /*var year = date.map((data)=>{
         return data.substr(0,4);
-      });
+      });*/
 
       //console.log("year", year);
 
@@ -148,10 +178,13 @@ export default class Linechart extends Component{
             drawBorder: true,
             },
             ticks: {
+            labelOffset: 50,
+            padding:10,
             autoSkip: true,
             maxRotation: 0,
             minRotation: 0,
-            maxTicksLimit: 7
+            maxTicksLimit: 7,
+            
             },
             labels: date,
         
@@ -170,6 +203,7 @@ export default class Linechart extends Component{
             labels: {
             show: true
             },
+            
           }
           ]
         }
