@@ -2,6 +2,7 @@ const mongoose	= require("mongoose");
 const ObjectID          = require('mongodb').ObjectID;
 const ProductRates = require('../models/productrates.js');
 const moment               = require('moment');
+const _         = require("underscore");
 
 const FailedRecords = require('../models/failedRecords');
 
@@ -548,8 +549,8 @@ var getProductrateByLimit = async (productid, curdate, prevdate) => {
                 input: "$rates",
                 as: "rate",
                 cond: { $and: [ 
-                    { $lt: ["$$rate.date", curdate] }, 
-                    { $gt: ["$$rate.date", prevdate] }
+                    { $lte: ["$$rate.date", curdate] }, 
+                    { $gte: ["$$rate.date", prevdate] }
                 ]}
             }},
             _id: 1,
@@ -592,3 +593,90 @@ var getProductrateByLimit = async (productid, curdate, prevdate) => {
             })
     })
 }
+
+exports.fetch_file = (req,res,next)=>{
+    ProductRates.find({ productID: ObjectID(req.body.productID)})
+    .exec()
+    .then(data=>{
+        //console.log("rates", data[0].rates);
+        if(data.length > 0 && data[0]. rates){
+            var rates = data[0].rates;
+            var x = _.unique(_.pluck(rates, "fileName"));
+                console.log('x',x);
+            var z = [];
+            for(var i=0; i<x.length; i++){
+                var y = rates.filter((a)=> a.fileName == x[i]);
+                console.log('y',y);
+                console.log('x[i]',x[i]);
+                z.push({
+                    "fileName": x[i] !== undefined ? x[i] : "Manual",
+                    'count': y.length,
+                    "_id" : x[i]
+                })
+            console.log('z',z);
+            }
+            res.status(200).json(z.slice(req.body.startRange, req.body.limitRange));
+        }
+        else{
+            res.status(200).json("data not found");
+        }
+        
+    })
+    .catch(err =>{
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+};
+
+exports.fetch_file_count = (req,res,next)=>{
+    ProductRates.find({ productID: ObjectID(req.params.productID)})
+    .exec()
+    .then(data=>{
+        if(data.length > 0 && data[0]. rates){
+            var rates = data[0].rates;
+            var x = _.unique(_.pluck(rates, "fileName"));
+            var z = [];
+            for(var i=0; i<x.length; i++){
+                var y = rates.filter((a)=> a.fileName == x[i]);
+                z.push({
+                    "fileName": x[i],
+                    'count': y.length,
+                    "_id" : x[i]
+                })
+            }
+            res.status(200).json(z.length);
+        }
+        else{
+            res.status(200).json("data not found");
+        }
+        
+    })
+    .catch(err =>{
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });
+};
+
+exports.delete_file = (req,res,next)=>{
+    console.log("productid", req.params.productID, "filename", req.params.fileName);
+    ProductRates.updateOne( { productID: req.params.productID },
+        { rates: { $exists: true } },
+    { $pull: { 'rates': { fileName: { $eq: req.params.fileName } } } }
+    )
+    .exec()
+    .then(data=>{
+        res.status(200).json({
+            "message" : "Product rates of file "+req.params.fileName+" deleted successfully"
+        });
+    })
+    .catch(err =>{
+        console.log(err);
+        res.status(500).json({
+            error: err
+        });
+    });  
+};
