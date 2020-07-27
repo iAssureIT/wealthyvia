@@ -4,6 +4,7 @@ import SimpleReactValidator from 'simple-react-validator';
 import axios                from 'axios';
 import swal                 from 'sweetalert';
 import $                    from "jquery";
+
 import BulkUpload             from "../../common/bulkupload/BulkUpload.js";
 import Linechart             from "./Linechart.js";
 import './ProductChart.css';
@@ -274,7 +275,7 @@ class ProductChart extends Component{
                         <BulkUpload url="/api/productrates/bulk_upload_productrates" 
                                 data={{"productName" : this.state.productName, "productID" : this.state.productID, "userID" : this.state.userID }}
                                 uploadedData={this.uploadedData} 
-                                fileurl="#"
+                                fileurl="/csvfile/sampledata.csv"
                                 fileDetailUrl={this.state.fileDetailUrl}
                                 getData={this.getData.bind(this)}
                                 propsdata={this.state.propsdata}
@@ -346,14 +347,14 @@ class ProductChart extends Component{
                           { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
                                 return (
                                   <div className="tab-pane fade" key={key} id={key} role="tabpanel" aria-labelledby={key+"-tab"}>
-                                    <Linechart productData = { value }/>
+                                    <Linechart productData = { value } productkey={key}/>
                                   </div>  
                                 )
                               })  
                           }
                           { this.state.productData.MAX ? 
                             <div className="tab-pane fade in active" id="MAX" role="tabpanel" aria-labelledby={"MAX-tab"}>
-                                    <Linechart productData = { this.state.productData.MAX }/>
+                                    <Linechart productData = { this.state.productData.MAX } productkey="MAX" />
                             </div>  
                             :
                             null
