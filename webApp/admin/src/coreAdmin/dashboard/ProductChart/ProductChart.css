@@ -64,3 +64,18 @@
 .nav-pills.chartpills{
     float: right;
 }
+
+.submitBtn{
+    background: #3c8dbc;
+    color: #FFF;
+    opacity: 1;
+    padding: 9px 15px;
+    font-size: 14px;
+}
+.submitBtnGo{
+    background: #3c8dbc;
+    color: #FFF;
+    opacity: 1 !important;
+    padding: 9px 15px;
+    font-size: 14px;
+}
