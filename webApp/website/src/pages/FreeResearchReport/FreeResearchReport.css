@@ -1,0 +1,64 @@
+.researchpage {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    font-family: Arial;
+}
+.top-border-block {
+    padding: 25px 30px 30px;
+    margin-bottom: 30px;
+    background: #fff;
+    border-top: 10px solid #c9c9c1;
+    position: relative;
+}
+.top-border-block:before {
+    content: "";
+    height: 10px;
+    width: auto;
+    display: block;
+    position: absolute;
+    background: url(/images/border-pat.jpg) repeat-x;
+    top: -10px;
+    left: 14px;
+    right: 14px;
+}    
+.pageheading {
+	font-size: 34px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+    color: #201a47;
+}
+.reporttitle{
+	font-size: 28px;
+    margin-top: 5px;
+    color: #201a47 !important;
+    font-family: Arial;
+}
+.reportdescription {
+	font-size: 18px;
+	font-family: Arial;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.date{
+	font-size: 18px;
+	font-family: Arial;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.searchinput{
+    color: #000;
+}
+.reportborder {
+    margin-top: 30px;
+}
+
+@media only screen and (max-width: 767px){
+.pageheading {
+    font-size: 24px;
+    padding-top: 20px;
+} 
+.reportborder {
+    margin-top: 0px;
+    margin-bottom: 30px;
+}   
+}
