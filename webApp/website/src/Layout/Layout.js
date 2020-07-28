@@ -25,6 +25,7 @@ import ClientDashboard                           from "../pages/ClientDashboard/
 import InvoicePageView                          from "../pages/PaymentProcess/InvoicePageView.js";
 import PaymentResponse                          from "../pages/PaymentProcess/PaymentResponse.js";
 import PaymentSuccess                           from "../pages/PaymentProcess/PaymentSuccess.js";
+import FreeResearchReport                       from "../pages/FreeResearchReport/FreeResearchReport.js";
 
 
 // Section: 1 - SystemSecurity ******************************************************
@@ -57,8 +58,8 @@ const WebLayout = () => (
               <Route path="/offeringformpage/:selectedID"     exact strict component={offeringFormPage}  />
               <Route path="/offeringpage"                     exact strict component={OfferingPage}  />
               <Route path="/offeringpage/:selectedID"         exact strict component={OfferingPage}  />
-               <Route path="/blog/:selectedUrl"               exact strict component={SingleBlogPage}  />
-
+              <Route path="/blog/:selectedUrl"               exact strict component={SingleBlogPage}  />
+              <Route path="/free-research-reports"            exact strict component={FreeResearchReport}  />
 
               <Route path="/invoicePageView/:order_Id"         exact strict component={InvoicePageView}  />
               <Route path="/payment-response/:orderId"         exact strict component={PaymentResponse}  />

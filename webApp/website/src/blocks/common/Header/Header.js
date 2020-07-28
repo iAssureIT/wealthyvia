@@ -426,7 +426,7 @@ export default class Header extends Component {
           "contactNumber"    : this.refs.contactNumber.value,
         }
         if(dataArray1){
-          var adminEmail = "monikapawashe25@gmail.com";
+          var adminEmail = "kycwealthyvia@gmail.com";
           const dataArray = {
               "email"         : this.state.email ,
               "subject"       : "Your KYC details is sent successfully.",
@@ -1141,6 +1141,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdownSmall">
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
                                             <a href="">Communique</a>
+                                            <a href="/free-research-reports">Free Research Reports</a>
                                         </ul>
                                       </li>
                                       <li className="nav-item dropdown">
@@ -1163,7 +1164,7 @@ export default class Header extends Component {
                                       {token ?
                                           <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i className="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-xs-4 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
@@ -1208,6 +1209,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdownSmall">
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
                                             <a href="">Communique</a>
+                                            <a href="/free-research-reports">Free Research Reports</a>
                                         </ul>
                                       </li>
                                       <li className="nav-item dropdown">
@@ -1230,7 +1232,7 @@ export default class Header extends Component {
                                       {token ?
                                           <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i className="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>
@@ -1302,6 +1304,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdown">
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
                                             <a href="">Communique</a>
+                                            <a href="/free-research-reports">Free Research Reports</a>
                                         </ul>
                                       </li>
                                       <li className="nav-item dropdown">
@@ -1324,7 +1327,7 @@ export default class Header extends Component {
                                       {token ?
                                           <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i className="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4  col-lg-offset-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>
@@ -1378,6 +1381,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdown">
                                             <a href="/AllBlogs">Arthavrudhhi Blogs</a>
                                             <a href="">Communique</a>
+                                            <a href="/free-research-reports">Free Research Reports</a>
                                         </ul>
                                       </li>
                                       <li className="nav-item dropdown">
@@ -1400,7 +1404,7 @@ export default class Header extends Component {
                                       {token ?
                                           <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i class="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
+                                            {this.state.userinfo && this.state.userinfo.fullName ? <label className="customName"><i className="fa fa-user-circle-o"></i>&nbsp;{this.state.userinfo.fullName}</label>:"Login/Signup"}
                                           </a>
                                           <ul className="dropdown-menu customDropdownLogOut hidden-xs hidden-sm " aria-labelledby="navbarDropdownMenuLink">
                                             <a  className="dropdown-item col-lg-12" href=""><div className="ImgDiv col-lg-4 col-lg-offset-4 col-xs-2 col-sm-2">{firstLetterF}{firstLetterL}</div>&nbsp; &nbsp; {this.state.userinfo && this.state.userinfo.fullName ? <span className="mt20">{this.state.userinfo.fullName}</span>:null}</a>

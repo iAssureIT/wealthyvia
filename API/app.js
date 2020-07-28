@@ -13,7 +13,7 @@ const masternotificationRoutes		= require('./api/coreAdmin/routes/masternotifica
 const notificationRoutes			= require('./api/coreAdmin/routes/notification.js');
 const companysettingsRoutes			= require('./api/coreAdmin/routes/companysettings.js');
 const projectSettingRoutes 			= require('./api/coreAdmin/routes/projectsettings.js');
-//const awsUploadRoutes 				= require('./api/coreAdmin/routes/awsUpload.js');
+const awsUploadRoutes 				= require('./api/coreAdmin/routes/awsUpload.js');
 
 //Wealthyvia Modules
 const blogRoutes 					= require('./api/wealthyvia/routes/blogs.js');
@@ -23,6 +23,7 @@ const offerSubscriptionRoutes 		= require('./api/wealthyvia/routes/offeringsubsc
 const wmSubscriptionRoutes 			= require('./api/wealthyvia/routes/wmsubscriptions.js');
 const invoiceRoutes 				= require('./api/wealthyvia/routes/invoice.js');
 const productratesRoutes 			= require('./api/wealthyvia/routes/productrates.js');
+const researchreportRoutes 			= require('./api/wealthyvia/routes/researchreport.js');
 // global.JWT_KEY = "secret";
 
 mongoose.connect('mongodb://localhost/'+globalVariable.dbname,{
@@ -62,7 +63,7 @@ app.use("/api/masternotifications",masternotificationRoutes);
 app.use('/api/notifications',notificationRoutes);
 app.use('/api/companysettings',companysettingsRoutes);
 app.use('/api/projectsettings',projectSettingRoutes);
-//app.use('/api/fileUpload',awsUploadRoutes);
+app.use('/api/fileUpload',awsUploadRoutes);
 
 //wealthyvia
 app.use('/api/blogs',blogRoutes);
@@ -72,6 +73,7 @@ app.use('/api/offeringsubscriptions',offerSubscriptionRoutes);
 app.use('/api/wmsubscriptions',wmSubscriptionRoutes);
 app.use('/api/invoice',invoiceRoutes);
 app.use('/api/productrates',productratesRoutes);
+app.use('/api/researchreport',researchreportRoutes);
 
 app.post('/send-email', (req, res)=> {
 	// console.log('req',req.body);
