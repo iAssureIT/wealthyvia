@@ -420,7 +420,7 @@ class FreeReseachReport extends Component{
                       
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
 	                    <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                    <label>Title<span className="redFont">*</span></label>
+		                    <label>Title</label>
 		                    <div className="">
 		                      <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title" type="text" name="title"  ref="title" value={this.state.title}	onChange={this.handleChange.bind(this)}  required/>
 		                      <div className="errorMsg"></div>
@@ -429,7 +429,7 @@ class FreeReseachReport extends Component{
 	                  	</div>
 
 	                  	<div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{height:"auto"}}>
-		                    <label >Description<span className="redFont">*</span></label>
+		                    <label >Description</label>
 		                    <div className="">
 		                      <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="description"  ref="description" value={this.state.description} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="dexcription"></textarea>
 		                      <div className="errorMsg"></div>
@@ -509,7 +509,7 @@ class FreeReseachReport extends Component{
 	                          return(
 	                            <tr key={j}>
 									<td>{report.title}</td>
-									<td className="td_description">{report.description}</td>
+									<td className="td_description">{report.description? report.description : "-" }</td>
 									<td className="text-center">
                           {
                             report.researchreport ? 
