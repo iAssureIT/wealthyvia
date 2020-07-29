@@ -130,9 +130,15 @@ class FreeReseachReport extends Component{
       var file = event.currentTarget.files[0];
       //var newFile = new File([file],newFileName);
       if (file) {
+
         var ext = file.name.split('.').pop();
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (file) {
+
+            if(file.size > 207200){
+            swal("Fle size must be less than 2MB");
+          }
+          else{
 
             /*S3FileUpload
                 .uploadFile(file,this.state.config)
@@ -158,6 +164,7 @@ class FreeReseachReport extends Component{
             },()=>{
               console.log("this.state.showFile",this.state.showFile);
             })
+          }
           }else{         
             swal("File not uploaded","Something went wrong","error"); 
           }    
