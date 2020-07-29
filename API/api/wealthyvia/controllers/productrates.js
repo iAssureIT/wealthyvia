@@ -121,7 +121,10 @@ exports.bulk_upload_productrates = (req,res,next)=>{
             }
             //console.log("validrates",validrates[0]);                
             ProductRates.update({ _id: allproductrates._id }, 
-                { "$push": { "rates": { "$each": validrates }, updateLog: updateLog } } )
+                { 
+                    $set: { productName : rowheader[1], indexName : rowheader[2] },
+                    "$push": { "rates": { "$each": validrates }, updateLog: updateLog } 
+                })
             .then(data=>{
                 console.log("data",data);
             })
