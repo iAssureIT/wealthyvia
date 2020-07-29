@@ -136,7 +136,7 @@ class FreeReseachReport extends Component{
           if (file) {
 
             if(file.size > 207200){
-            swal("Fle size must be less than 2MB");
+            swal("", "File size must be less than 2MB", "warning");
           }
           else{
 
