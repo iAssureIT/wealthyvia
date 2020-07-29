@@ -135,7 +135,7 @@ class FreeReseachReport extends Component{
         if(ext=="pdf" || ext=="PDF" || ext == "odp"){ 
           if (file) {
 
-            if(file.size > 207200){
+            if(file.size > 2097152){
             swal("", "File size must be less than 2MB", "warning");
           }
           else{
@@ -177,6 +177,10 @@ class FreeReseachReport extends Component{
 
   Submit(event)
   {
+    if(this.state.title === '' || this.state.description === '' ){
+      swal("", "Please fill required fields", "error");
+    }
+    else{ 
     const data = new FormData();
     if (this.state.showFile) {
        console.log("selected file",this.state.showFile,this.state.showFile.name)
@@ -193,7 +197,7 @@ class FreeReseachReport extends Component{
     .then( (uploadedReports)=>{  
       console.log("jci");
         if(uploadedReports.status === 200){
-            swal("Congrats..!","Document uploaded successfully", "success");
+            //swal("Congrats..!","Document uploaded successfully", "success");
             var formvalues = {};
             console.log("selectedfiles", this.state.selectedfiles,"showFile", this.state.showFile);
 
@@ -272,7 +276,7 @@ class FreeReseachReport extends Component{
     .then( (uploadedReports)=>{  
       console.log("jci");
         if(uploadedReports.status === 200){
-            swal("Congrats..!","Document uploaded successfully", "success");
+            //swal("Congrats..!","Document uploaded successfully", "success");
            console.log("data", uploadedReports.data );
            var formvalues ={
            		  title          : this.state.title,
@@ -316,7 +320,8 @@ class FreeReseachReport extends Component{
          }
       });
 
-    }  
+    } 
+    } 
   }
   
   deleteDocument(e)
@@ -420,7 +425,7 @@ class FreeReseachReport extends Component{
                       
                     <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
 	                    <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-		                    <label>Title</label>
+		                    <label>Title</label><span className="astrick">*</span>
 		                    <div className="">
 		                      <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="title" type="text" name="title"  ref="title" value={this.state.title}	onChange={this.handleChange.bind(this)}  required/>
 		                      <div className="errorMsg"></div>
@@ -429,7 +434,7 @@ class FreeReseachReport extends Component{
 	                  	</div>
 
 	                  	<div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{height:"auto"}}>
-		                    <label >Description</label>
+		                    <label >Description</label><span className="astrick">*</span>
 		                    <div className="">
 		                      <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="description"  ref="description" value={this.state.description} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="dexcription"></textarea>
 		                      <div className="errorMsg"></div>
