@@ -149,7 +149,7 @@ export default class FreeResearchReport extends Component {
                             return(
                               <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
                                                     <div >
-                                                      <i className="fa fa-download"></i>
+                                                      <i className="fa fa-download"></i> &nbsp;
                                                       {reportpdf.name} 
                                                     </div>
                                                     </a>
