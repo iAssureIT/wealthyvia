@@ -61,7 +61,7 @@ const fileUpload = multer({
 			cb(null, currentfile)
 		  }
 	 }),
-	 limits:{ fileSize: 2000000 }, // In bytes: 2000000 bytes = 2 MB
+	 limits:{ fileSize: 4000000 }, // In bytes: 2000000 bytes = 2 MB
 	 fileFilter: function( req, file, cb ){
 	  	checkFileType( file, cb );
 	 }

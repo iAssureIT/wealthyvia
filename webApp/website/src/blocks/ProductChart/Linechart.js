@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Doughnut, Pie, Bar, Radar, Polar, Line, Chart } from 'react-chartjs-2';
 import ClipLoader from "react-spinners/ClipLoader";
-
+import Moment                from 'moment';
 
 
 Chart.defaults.LineWithLine = Chart.defaults.line;
@@ -53,7 +53,8 @@ export default class Linechart extends Component{
   
   componentDidMount(){
     var productData = this.props.productData;
-    this.setchartdata(productData);
+    var productkey = this.props.productkey;
+    this.setchartdata(productData, productkey);
     //console.log("pr data", productData);
     
   }
@@ -70,15 +71,41 @@ export default class Linechart extends Component{
     }	
   }
   
-  setchartdata(productData){
+  setchartdata(productData, productkey){
       var rates= productData.rates;
-      var date = rates.map((data)=>{
-        return data.date;
-      });
+      if(productkey === "MAX"){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("DD MMM YYYY");
+          });
+      }
+      else if(productkey === "1Y" || productkey === "2Y" || productkey === "3Y"){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("DD MMM YYYY");
+          });
+      }
+      else if(productkey === "3M" || productkey === "6M" ){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("DD MMM YYYY");
+          });
+      }
+      else if(productkey === "1M" ){
+          
+          var date = rates.map((data)=>{
+            return Moment(data.date).format("DD MMM YYYY");
+          });
+      }
+      else{
+        var date = rates.map((data)=>{
+          return data.date;
+        });
+      }
 
-      var year = date.map((data)=>{
+      /*var year = date.map((data)=>{
         return data.substr(0,4);
-      });
+      });*/
 
       //console.log("year", year);
 
@@ -151,6 +178,8 @@ export default class Linechart extends Component{
               drawBorder: true,
               },
               ticks: {
+                labelOffset: 70,
+              padding:10,
               autoSkip: true,
               maxRotation: 0,
               minRotation: 0,

@@ -22,6 +22,8 @@ import OfferingCheckForm  from '../dashboard/OfferingCheckForm/OfferingCheckForm
 import ClientTable        from '../dashboard/ClientTable/ClientTable.js';
 import Statements       from '../dashboard/Statements/Statements.js';
 import ProductChart       from '../dashboard/ProductChart/ProductChart.js';
+import FilewiseProductratesList       from '../dashboard/ProductChart/FilewiseProductratesList.js';
+import FreeResearchReport    from '../dashboard/FreeResearchReport/FreeResearchReport.js';
 // import OfferingCheckForm       from '../dashboard/OfferingCheckForm/OfferingCheckForm.js';
 import UploadPerformanceStatement  from '../dashboard/UploadStatement/UploadPerformanceStatement.js';
 import Leftsidebar      from '../common/leftSidebar/Leftsidebar.js';
@@ -148,6 +150,9 @@ componentDidMount(){
                           <Route path="/companysetting/:id" component={CompanySetting} exact />
                           <Route path="/statement" component={Statements} exact />
                           <Route path="/productchart" component={ProductChart} exact />
+                          <Route path="/filewiseproductrates" component={FilewiseProductratesList} exact />
+                          <Route path="/free-research-reports" component={FreeResearchReport} exact />
+                          <Route path="/free-research-reports/:reportid"  exact strict component={FreeResearchReport}  />
                           <Route path="/OfferingCheckForm" component={OfferingCheckForm} exact />
                           <Route path="/ClientTable" component={ClientTable} exact />
                          <Route path="/bankReport" component={BankReport} exact />

@@ -141,14 +141,14 @@ class ProductChart extends Component{
                           { Object.entries(this.state.prdatawithoutmax).map(([key, value]) => {
                                 return (
                                   <div className="tab-pane fade" key={key} id={key} role="tabpanel" aria-labelledby={key+"-tab"}>
-                                    <Linechart productData = { value }/>
+                                    <Linechart productData = { value } productkey={key}/>
                                   </div>  
                                 )
                               })  
                           }
                           { this.state.productData.MAX ? 
                             <div className="tab-pane fade in active" id="MAX" role="tabpanel" aria-labelledby={"MAX-tab"}>
-                                    <Linechart productData = { this.state.productData.MAX }/>
+                                    <Linechart productData = { this.state.productData.MAX } productkey="MAX"/>
                             </div>  
                             :
                             null

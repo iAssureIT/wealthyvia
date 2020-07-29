@@ -61,13 +61,16 @@ class IAssureTable extends Component {
 	}
     delete(e){
 	  	e.preventDefault();
+	  	var filename =  e.target.getAttribute("data-filename");
 	  	var tableObjects =  this.props.tableObjects;
-		let id = (e.target.id).replace(".", "/");
+	  	let id = (e.target.id).replace(".", "/");
+	  	//let filename = (e.target.filename).replace("-", "/");
+		//id = (id).replace(".", "/");
 		axios({
 	        method: tableObjects.deleteMethod,
-	        url: tableObjects.apiLink+'/delete/'+id
+	        url: tableObjects.apiLink+id+"/"+filename
 	    }).then((response)=> {
-	    	this.props.getData(this.state.startRange, this.state.limitRange);
+	    	this.props.getData(this.state.startRange, this.state.limitRange, id);
 			swal({
 				title : response.data.message,
 			  });
@@ -496,9 +499,9 @@ class IAssureTable extends Component {
 														<td className="textAlignCenter">
 															<span>
 																{this.props.tableObjects.editUrl ? <i className="fa fa-pencil" title="Edit" id={value._id} onClick={this.edit.bind(this)}></i>:null}&nbsp; &nbsp; 
-																{this.props.editId && this.props.editId === value._id? null :<i className={"fa fa-trash redFont "+value.id} id={value.id+'-Delete'} data-toggle="modal" title="Delete" data-target={"#showDeleteModal"+(value._id).replace(".", "")}></i>}
+																{this.props.editId && this.props.editId === value._id? null :<i className={"fa fa-trash redFont "+value.id} id={value.id+'-Delete'} data-toggle="modal" title="Delete" data-target={"#showDeleteModal"+(value._id).replace(".", "")+(value.recordindex)}></i>}
 															</span>
-															<div className="modal fade col-lg-12 col-md-12 col-sm-12 col-xs-12" id={"showDeleteModal"+(value._id).replace(".", "")} role="dialog">
+															<div className="modal fade col-lg-12 col-md-12 col-sm-12 col-xs-12" id={"showDeleteModal"+(value._id).replace(".", "")+(value.recordindex)} role="dialog" data-filename={value.fileName}>
 																<div className=" adminModal adminModal-dialog col-lg-12 col-md-12 col-sm-12 col-xs-12">
 																<div className="modal-content adminModal-content col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12 noPadding">
 																	<div className="modal-header adminModal-header col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -516,7 +519,7 @@ class IAssureTable extends Component {
 																		<button type="button" className="btn adminCancel-btn col-lg-4 col-lg-offset-1 col-md-4 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-10 col-xs-offset-1" data-dismiss="modal">CANCEL</button>
 																	</div>
 																	<div className="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-																		<button onClick={this.delete.bind(this)} id={value._id} type="button" className="btn examDelete-btn col-lg-4 col-lg-offset-7 col-md-4 col-md-offset-7 col-sm-8 col-sm-offset-3 col-xs-10 col-xs-offset-1" data-dismiss="modal">DELETE</button>
+																		<button onClick={this.delete.bind(this)} id={value._id} type="button" data-filename={value.fileName} className="btn examDelete-btn col-lg-4 col-lg-offset-7 col-md-4 col-md-offset-7 col-sm-8 col-sm-offset-3 col-xs-10 col-xs-offset-1" data-dismiss="modal">DELETE</button>
 																	</div>
 																	</div>
 																</div>

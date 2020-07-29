@@ -416,7 +416,7 @@ exports.filedetails = (req,res,next)=>{
 };
 
 exports.get_productrates = (req,res,next)=>{
-    console.log("get_productrates", req.body);
+    //console.log("get_productrates", req.body);
     ProductRates.findOne({ productID: req.body.productID })
             .exec()
             .then(productdata=>{
@@ -439,10 +439,65 @@ exports.get_productratesbyproductid = (req,res,next)=>{
     var ProductData = new Object();
     var maxdata = new Object();
     ProductRates.findOne({ productID: req.params.productID })
-            .exec()
+        .exec()
             .then(productdata=>{
-                maxdata = productdata;
-                 getlimitasync();
+                if(productdata){
+
+                    if(productdata.rates.length > 0){
+                    ProductRates.aggregate([
+                    // Get just the docs that contain a shapes element where color is 'red'
+                            {$match: 
+                                { "productID": {$eq: ObjectID(req.params.productID) } } 
+                            },
+                            {$project: {
+                                rates: { '$map': { 
+                                    'input': '$rates', 
+                                    'as': 'rate', 
+                                    'in': { 
+                                        'date':  {$dateFromString:  {dateString: "$$rate.date"} } ,
+                                        'productRate'   : "$$rate.productRate",
+                                        'indexRate'  : "$$rate.indexRate",
+                                        'fileName'      : "$$rate.fileName",
+                                    }
+                                } },
+                                
+                                
+                                _id: 1,
+                                productName: 1,  indexName: 1
+                            }},
+                            {$unwind: "$rates"}, 
+                              {$sort: {"rates.date": 1}}, 
+                              {$group: {_id: { prateid: "$_id",  productName : "$productName", indexName: "$indexName" },
+                                "indexName": { "$first": "$indexName" }, rates: {$push:"$rates"}}},
+                            {$project: {
+                                rates: 1,
+                                _id: "$_id.prateid",
+                                productName: "$_id.productName",
+                                indexName: "$_id.indexName",
+                                
+                            }}
+                        ])
+                    .exec().then(prmaxdata=>{
+
+                        maxdata = prmaxdata[0];
+                         getlimitasync();
+                        })
+                        .catch((err)=>{
+                            res.status(500).json({
+                                "err" : err
+                            });
+                        })
+
+                    }
+                    else{
+                        res.status(200).json( productdata);
+                    }
+                }
+                else{
+                    res.status(200).json( "data not found");
+                }
+                
+                
                 //res.status(200).json( productdata);
             })
             .catch((err)=>{
@@ -556,6 +611,15 @@ var getProductrateByLimit = async (productid, curdate, prevdate) => {
             _id: 1,
             productName: 1,  indexName: 1
         }},
+        {$unwind: "$rates"}, 
+          {$sort: {"rates.date":1}}, 
+          {$group: {_id:"$_id", "productName": { "$first": "$productName" },
+            "indexName": { "$first": "$indexName" }, rates: {$push:"$rates"}}},
+        {$project: {
+            rates: 1,
+            _id: 1,
+            productName: 1,  indexName: 1
+        }},
         {$project: {
             rates: { '$map': { 
                 'input': '$rates', 
@@ -599,7 +663,7 @@ exports.fetch_file = (req,res,next)=>{
     .exec()
     .then(data=>{
         //console.log("rates", data[0].rates);
-        if(data.length > 0 && data[0]. rates){
+        if(data.length > 0 && data[0].rates && data[0].rates.length > 0){
             var rates = data[0].rates;
             var x = _.unique(_.pluck(rates, "fileName"));
                 console.log('x',x);
@@ -613,7 +677,7 @@ exports.fetch_file = (req,res,next)=>{
                     'count': y.length,
                     "_id" : x[i]
                 })
-            console.log('z',z);
+            //console.log('z',z);
             }
             res.status(200).json(z.slice(req.body.startRange, req.body.limitRange));
         }
@@ -634,7 +698,7 @@ exports.fetch_file_count = (req,res,next)=>{
     ProductRates.find({ productID: ObjectID(req.params.productID)})
     .exec()
     .then(data=>{
-        if(data.length > 0 && data[0]. rates){
+        if(data.length > 0 && data[0].rates && data[0].rates.length > 0 ){
             var rates = data[0].rates;
             var x = _.unique(_.pluck(rates, "fileName"));
             var z = [];
@@ -664,8 +728,7 @@ exports.fetch_file_count = (req,res,next)=>{
 exports.delete_file = (req,res,next)=>{
     console.log("productid", req.params.productID, "filename", req.params.fileName);
     ProductRates.updateOne( { productID: req.params.productID },
-        { rates: { $exists: true } },
-    { $pull: { 'rates': { fileName: { $eq: req.params.fileName } } } }
+     { $pull: { 'rates': { fileName: req.params.fileName } } }, { safe: true, multi:true }
     )
     .exec()
     .then(data=>{

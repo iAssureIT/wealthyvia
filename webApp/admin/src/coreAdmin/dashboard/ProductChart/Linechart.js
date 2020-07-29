@@ -61,7 +61,7 @@ export default class Linechart extends Component{
   componentDidUpdate(prevProps) {
     // Typical usage (don't forget to compare props):
     if(this.props.productData){
-		  if (this.props.productData.productID !== prevProps.productData.productID) {
+		  if (this.props.productData.productID !== prevProps.productData.productID || this.props.productData.rates.length !== prevProps.productData.rates.length) {
 			
 					this.setchartdata(this.props.productData, this.props.productkey);
 					
@@ -75,19 +75,19 @@ export default class Linechart extends Component{
       if(productkey === "MAX"){
           
           var date = rates.map((data)=>{
-            return Moment(data.date).format("MMM YYYY");
+            return Moment(data.date).format("DD MMM YYYY");
           });
       }
       else if(productkey === "1Y" || productkey === "2Y" || productkey === "3Y"){
           
           var date = rates.map((data)=>{
-            return Moment(data.date).format("MMM YYYY");
+            return Moment(data.date).format("DD MMM YYYY");
           });
       }
       else if(productkey === "3M" || productkey === "6M" ){
           
           var date = rates.map((data)=>{
-            return Moment(data.date).format("MMM");
+            return Moment(data.date).format("DD MMM YYYY");
           });
       }
       else if(productkey === "1M" ){
@@ -178,7 +178,7 @@ export default class Linechart extends Component{
             drawBorder: true,
             },
             ticks: {
-            labelOffset: 50,
+            labelOffset: 70,
             padding:10,
             autoSkip: true,
             maxRotation: 0,

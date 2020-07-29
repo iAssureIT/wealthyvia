@@ -119,13 +119,39 @@ export default class Leftsidebar extends Component{
                         </ul>
                     </li>
 
-                    <li className="add" onClick={this.eventclk.bind(this)}>
+                    <li  className="add " onClick={this.eventclk1.bind(this)}>
+                        <Link aria-expanded="false">
+                            <i className="fa fa-file"></i>
+                            Product Chart
+                        </Link>
+                        <ul className="collapse list-unstyled treeview-menu" id="submenu1">
+                            <li><Link to="/productchart"><i className="fa fa-file"></i>Product Charts</Link></li>
+                            <li><Link to="/filewiseproductrates"><i className="fa fa-file"></i>Filewise Product rates</Link></li>
+                            {/*<li><Link to="/cafeWiseCheckOut"><i className="fa fa-database"></i>CafeWise Check-Out Report</Link></li>
+                            <li><Link to="/settlementReportSummary"><i className="fa fa-database"></i>Settlement Report</Link></li>*/}
+                        </ul>
+                    </li>
+
+                    {/*<li className="add" onClick={this.eventclk.bind(this)}>
                       <Link to="/productchart">
                         <i className="fa fa-file"></i>
                           Product Charts
                       </Link>
                     </li>
-                  
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/filewiseproductrates">
+                        <i className="fa fa-file"></i>
+                          Filewise Product rates
+                      </Link>
+                    </li>*/}
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/free-research-reports">
+                        <i className="fa fa-file"></i>
+                          Free Research Report
+                      </Link>
+                    </li>                  
                                  
                 </ul>
 

@@ -130,6 +130,12 @@ class ProductChart extends Component{
               if(error.message === "Request failed with status code 401"){
               swal("Error!","Something went wrong!!", "error");
           }
+          this.setState({
+                  productData : '',
+                  prdatawithoutmax : '',
+                  productName : '',
+                  indexName : ''
+                })
       }); 
     }
 
