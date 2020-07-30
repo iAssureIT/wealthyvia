@@ -23,6 +23,9 @@
 .productchartout{
     margin-top: 40px;
 }
+.productchartcontent{
+    margin-bottom: 40px;
+}
 
 .nav-pills.chartpills>li {
     float: left;

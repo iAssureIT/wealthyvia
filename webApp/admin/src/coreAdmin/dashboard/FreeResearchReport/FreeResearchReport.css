@@ -5,8 +5,21 @@
 	cursor: pointer
 }
 .td_description{
-	width: 40%;
+	width: 35%;
+}
+.td_pdf{
+	width: 20%;
+}
+.td_action{
+	width: 15%;
+}
+.td_title{
+	width: 30%;
 }
 .fa-trash, .fa-edit{
 	font-size: 16px;
+}
+
+.reserachtable td, .reserachtable th{
+	border: 1px solid #ccc;
 }

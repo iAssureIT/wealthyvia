@@ -7,6 +7,10 @@
 .productselection{
     margin-bottom: 20px;
 }
+.productchartcontent{
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
 
 .productselection .selectbox{
     margin-bottom: 0px !important;

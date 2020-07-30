@@ -122,19 +122,7 @@ class ProductChart extends Component{
                       </div>      
                        
 
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productspace extspace">
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
-                              <h5 className="investingva">Current value of ₹ 100 invested once on inception of this smallcase would be</h5>
-                          </div>
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
-                                  <h4>{this.state.productName} ₹287.63</h4>
-                              </div>
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 extspace">
-                                  <h4>{this.state.indexName} ₹112.65</h4>
-                              </div>
-                          </div>
-                        </div>
+                        
 
                         <div className="tab-content extspace" id="myTabContent">
                           

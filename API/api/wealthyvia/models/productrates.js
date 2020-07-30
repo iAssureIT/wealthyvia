@@ -9,7 +9,8 @@ const productratesSchema = mongoose.Schema({
                     "date"  	    : String,
                     "productRate"	: Number,
                     "indexRate"		: Number,
-                    "fileName"      : String
+                    "fileName"      : String,
+                    "uploadTime"    : Date
 			}],
 	createdAt   : Date,
     createdBy   : { type: mongoose.Schema.Types.ObjectId, ref: 'users' },

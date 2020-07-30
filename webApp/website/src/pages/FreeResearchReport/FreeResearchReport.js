@@ -120,44 +120,54 @@ export default class FreeResearchReport extends Component {
 					    			this.state.researchreportlist.map((report, j)=>{
 	                          			return(
 	                          				<div className="top-border-block item1"  key= {j}>
-				                                <h3 className="hidden-xs reporttitle">
-				                                	{report.title}
-				                                	
-				                                </h3>
+	                          				<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				                                <a href={report.researchreport && report.researchreport[0] ? axios.defaults.baseURL+"/api/fileUpload/image/"+report.researchreport[0].key : "" }>
+					                                <h3 className="hidden-xs reporttitle">
+					                                	{report.title}
+					                                	
+					                                </h3>
+				                                </a>
+				                                <a href={report.researchreport && report.researchreport[0] ? axios.defaults.baseURL+"/api/fileUpload/image/"+report.researchreport[0].key : "" }>
+					                                <h3 className="visible-xs ">				                                    	
+					                                    		{report.title}
+					                                </h3>
+				                                </a>
 				                                
-				                                <div className="data ">
-				                                    <h3 className="visible-xs ">
-				                                    	<a className="ng-binding" href="/research/stock-specific-reports-1/PNB-Housing-Finance-Ltd--Q1FY21-Result-Update-097539">
-				                                    		{report.title}
-				                                    	</a>
-				                                    </h3>
-				                                    <div className="publish-slugs ">
-				                                        <span className="date ng-binding">
-				                                        	{Moment(report.createdAt).format("Do MMMM YYYY")}
-				                                        </span>
-				                                        
-				                                        
-				                                    </div>
-				                                    
-				                                    <div className="reportdescription">
-				                                    	{report.description}
-				                                    </div>
-				                                    <div className="report">
-				                                    	{
-                            report.researchreport ? 
-                            report.researchreport.map((reportpdf, j)=>{
-                            return(
-                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
-                                                    <div >
-                                                      <i className="fa fa-download"></i> &nbsp;
-                                                      {reportpdf.name} 
-                                                    </div>
-                                                    </a>
-                             )})  
-                            :
-                            null
-                          }
-				                                    </div>
+				                                	<div className="data col-lg-2 col-md-2 col-sm-2 col-xs-2 imgblock">
+				                                		<a href={report.researchreport && report.researchreport[0] ? axios.defaults.baseURL+"/api/fileUpload/image/"+report.researchreport[0].key : "" }>
+				                                		<img src="/images/pdfimg.png" className="imgpdf"/>
+				                                		</a>
+				                                	</div>
+					                                <div className="data col-lg-10 col-md-10 col-sm-10 col-xs-10">
+					                                    
+					                                    <div className="publish-slugs ">
+					                                        <span className="date ng-binding">
+					                                        	{Moment(report.createdAt).format("Do MMMM YYYY")} | By Wealthvia
+					                                        </span>
+					                                        
+					                                        
+					                                    </div>
+					                                    
+					                                    <div className="reportdescription">
+					                                    	{report.description? <div dangerouslySetInnerHTML={ { __html: report.description } }></div> : "" }
+					                                    </div>
+					                                    <div className="report">
+					                                    	{ /*
+									                            report.researchreport ? 
+									                            report.researchreport.map((reportpdf, j)=>{
+									                            return(
+									                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
+									                                                    <div >
+									                                                      <i className="fa fa-download"></i> &nbsp;
+									                                                      {reportpdf.name} 
+									                                                    </div>
+									                                                    </a>
+									                             )})  
+									                            :
+									                            null
+									                        */}
+					                                    </div>
+					                                </div>
 				                                </div>
 				                                <div className="clearfix "></div>
 				                        	</div>

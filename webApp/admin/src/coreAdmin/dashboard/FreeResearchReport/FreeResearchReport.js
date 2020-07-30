@@ -7,6 +7,7 @@ import Swal                       from 'sweetalert2';
 import $                          from "jquery";
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
+import CKEditor from 'ckeditor4-react';
 import './FreeResearchReport.css';
 
 var wmSub_id = "";
@@ -123,6 +124,13 @@ class FreeReseachReport extends Component{
     this.setState({ [name] : value })
     
   }
+
+  onEditorChange( evt ) {
+      this.setState( {
+          description : evt.editor.getData()
+      } );
+  }
+
   uploadResearchReport(event){
     var index = event.target.getAttribute('id');
     let self = this;
@@ -423,7 +431,7 @@ class FreeReseachReport extends Component{
                 <div className="tab-content customTabContent col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                   <div id="home" className="tab-pane fade in active">
                       
-                    <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12  ">
+                    <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12  ">
 	                    <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		                    <label>Title</label><span className="astrick">*</span>
 		                    <div className="">
@@ -436,7 +444,9 @@ class FreeReseachReport extends Component{
 	                  	<div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12" style={{height:"auto"}}>
 		                    <label >Description</label><span className="astrick">*</span>
 		                    <div className="">
-		                      <textarea className="form-control nameSpaceUpper form-control col-lg-12 col-md-12 col-sm-12 col-xs-12" name="description"  ref="description" value={this.state.description} onChange={this.handleChange.bind(this)}  placeholder="" rows="5" id="dexcription"></textarea>
+		                      <CKEditor
+                          data={this.state.description}
+                          onChange={this.onEditorChange.bind(this)} />
 		                      <div className="errorMsg"></div>
 		                    </div>
 		                </div>
@@ -497,7 +507,7 @@ class FreeReseachReport extends Component{
 	            <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 	                <div id="home" className="tab-pane fade in active">
 	                  <div className="col-lg-12 NOpadding">
-	                      <table className="table tableCustom table-striped">
+	                      <table className="table tableCustom table-striped reserachtable">
 	                        <thead className="bgThead">
 	                          <tr>
 	                            <th>Title</th>
@@ -513,16 +523,16 @@ class FreeReseachReport extends Component{
 	                          this.state.researchreportlist.map((report, j)=>{
 	                          return(
 	                            <tr key={j}>
-									<td>{report.title}</td>
-									<td className="td_description">{report.description? report.description : "-" }</td>
-									<td className="text-center">
+									<td className="td_title">{report.title}</td>
+									<td className="td_description">{report.description? <div dangerouslySetInnerHTML={ { __html: report.description } }></div> : "-" }</td>
+									<td className="text-center td_pdf">
                           {
                             report.researchreport ? 
                             report.researchreport.map((reportpdf, j)=>{
                             return(
                               <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download target="_blank" data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
                                                     <div >
-                                                      <i className="fa fa-download"></i><br/>
+                                                      <img src="/images/pdf.png"/><br/>
                                                       {reportpdf.name} 
                                                     </div>
                                                     </a>
@@ -531,7 +541,7 @@ class FreeReseachReport extends Component{
                             null
                           }
                             </td>
-									<td className="text-center">
+									<td className="text-center td_action">
 										&nbsp;&nbsp;
 										<a href={"/free-research-reports/"+report._id}> <i className="fa fa-edit"> </i> </a>
 														&nbsp;&nbsp;

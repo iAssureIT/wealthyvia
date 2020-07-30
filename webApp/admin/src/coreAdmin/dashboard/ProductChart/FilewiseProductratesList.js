@@ -4,6 +4,7 @@ import axios                  from 'axios';
 import swal                 from 'sweetalert';
 import IAssureTable         from "../../common/bulkupload/IAssureTable.js";
 import './filewiseproductratelist.css';
+import Moment                from 'moment';
 
 
 class FilewiseProductratesList extends Component{
@@ -19,6 +20,7 @@ class FilewiseProductratesList extends Component{
        tableHeading:{
             "productName"  : 'Product Name',            
             "fileName"     : "File Name",
+            "displayuploadTime"   : "Upload Time",
             "count"        : "Product rate Count",
             "actions"      : "Action"
           },
@@ -88,6 +90,8 @@ class FilewiseProductratesList extends Component{
           return {
                 productName: this.state.productName,
                 fileName: a.fileName != null ? a.fileName : "-", 
+                displayuploadTime: a.uploadTime != null ? Moment(a.uploadTime).format("DD MMM YYYY HH:MM:SS") : "-",
+                uploadTime: a.uploadTime != null ? a.uploadTime : "-",
                 count: a.count != NaN ? "<p>"+a.count+"</p>" : "a", 
                 _id: this.state.productID != null ? this.state.productID : "-",
                 recordindex: i 

@@ -15,6 +15,7 @@ class BulkUpload extends Component{
     	"inputFileData" : [],
       tableData:[],
       failedRecordsTable:[],
+      uploadTime     : '',
     
       tableObjects : {
         paginationApply : false,
@@ -31,10 +32,12 @@ class BulkUpload extends Component{
   componentDidMount() {
     const center_ID = localStorage.getItem("center_ID");
     const centerName = localStorage.getItem("centerName");
+    //const uploadTime = this.props.propsdata.uploadTime;
     // console.log("localStorage =",localStorage.getItem('centerName'));
     this.setState({
       center_ID    : center_ID,
-      centerName   : centerName,
+      centerName   : centerName
+      
     },()=>{
       this.props.getData(this.props.propsdata ? this.props.propsdata : this.state.startRange, this.state.limitRange, this.state.center_ID);
     });
@@ -217,6 +220,8 @@ class BulkUpload extends Component{
   }
   bulkUpload() {
     $('.fullpageloader').show();
+    this.setState({uploadTime   : new Date() }, ()=> {
+
     var initialLmt = 0;
     var factor = 100;
     var endLmt = initialLmt+factor;
@@ -238,6 +243,7 @@ class BulkUpload extends Component{
             reqdata   : this.props.data,
             fileName  : this.state.fileName,
             totalRecords : totalrows,
+            uploadTime : this.state.uploadTime,
             updateBadData : i > factor ? false : true
           };
           // console.log('formValue',formValues)
@@ -256,7 +262,20 @@ class BulkUpload extends Component{
           })
           .then((response)=> {
             console.log('response',response.data)
+            if(response.data.message === 'please upload correct excel sheet of selected product'){
+                swal({
+                 title : response.data.message,
+                
+              })
               // console.log('response.data.completed',response.data.completed)
+            }
+            else if(response.data.message === 'Select product'){
+                swal({
+                 title : response.data.message,
+                
+              })
+              // console.log('response.data.completed',response.data.completed)
+            }
             if (response.data.completed) {
 
               // console.log('endLmt',endLmt)
@@ -267,7 +286,7 @@ class BulkUpload extends Component{
                 
                 $('.fullpageloader').hide();
                 $('.filedetailsDiv').show();
-                this.props.getFileDetails(this.state.fileName) 
+                this.props.getFileDetails(this.state.fileName, this.state.uploadTime) 
                 this.props.getData(this.props.propsdata ? this.props.propsdata : this.state.startRange, this.state.limitRange, this.state.center_ID);
               }
               this.setState({percentage:percentage},()=>{})
@@ -300,6 +319,8 @@ class BulkUpload extends Component{
     //     .catch((error) => {
     //         console.log('error', error);
     //     })
+    
+    })
   }
 
   render() {

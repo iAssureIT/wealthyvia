@@ -6,6 +6,7 @@ const FailedRecordSchema = mongoose.Schema({
 	indexName   		: String, 
 	productID   		: {type: mongoose.Schema.Types.ObjectId, ref: 'offerings'},
 	totalRecords 		: Number,
+	uploadTime          : Date,
     failedRecords       : Array,
     fileName       		: String,
    	createdAt 			: Date

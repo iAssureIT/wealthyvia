@@ -17,6 +17,7 @@ class ProductChart extends Component{
     this.state = {
         offeringTitle           : [],
         productName             : '',
+        chartProductName        : '',
         indexName               : '',
         productID               : '',
         userID                  : '',
@@ -52,7 +53,11 @@ class ProductChart extends Component{
         "shown"               : true,
         "fields"              : {},
         "productData"         : '',
-        "prdatawithoutmax"    : ''
+        "prdatawithoutmax"    : '',
+        uploadTime            : new Date(),
+        propsdata             : {
+          uploadTime : new Date(),
+        }
         
     };
     this.handleChange = this.handleChange.bind(this);
@@ -89,6 +94,7 @@ class ProductChart extends Component{
         
         if(event.target.name == "productName"){
           var product = target.split("-");
+          console.log("product Name", product[0]);
             this.setState({ productName : product[0], productID: product[1], errors: false } )
             this.getproductchartdata(product[1]);
         }
@@ -112,15 +118,16 @@ class ProductChart extends Component{
                 this.setState({
                   productData : response.data,
                   prdatawithoutmax : prdatawithoutmax,
-                  productName : response.data.MAX.productName,
-                  indexName : response.data.MAX.indexName
+                  // productName : response.data.MAX.productName,
+                  indexName : response.data.MAX.indexName,
+                  chartProductName : response.data.MAX.productName,
                 })
              }
              else{
                 this.setState({
                   productData : '',
                   prdatawithoutmax : '',
-                  productName : '',
+                  // productName : '',
                   indexName : ''
                 })
              }
@@ -133,7 +140,7 @@ class ProductChart extends Component{
           this.setState({
                   productData : '',
                   prdatawithoutmax : '',
-                  productName : '',
+                  // productName : '',
                   indexName : ''
                 })
       }); 
@@ -142,6 +149,7 @@ class ProductChart extends Component{
     uploadedData(data){
         var inputGetData = {
           "productID"       : this.state.productID,
+          "uploadTime"      : this.state.uploadTime
         }
         this.getData(inputGetData);
     }
@@ -153,7 +161,7 @@ class ProductChart extends Component{
          //console.log("propsdata",this.state.propsdata)
         })
         if(inputGetData){
-            axios.post('/api/productrates/get/rates', this.state.productID)
+            axios.get('/api/productrates/get/ratesoneproduct/'+this.state.productID)
             .then((response)=>{
             //console.log('response', response);
             var tableData = response.data.rates.map((a, i)=>{
@@ -176,10 +184,11 @@ class ProductChart extends Component{
         }      
     }
 
-    getFileDetails(fileName){
-        //console.log("filename", fileName);
+    getFileDetails(fileName, uploadTime){
+      var uploadTime = new Date(uploadTime).toISOString();
+        console.log("filename", fileName, );
         axios
-        .get(this.state.fileDetailUrl+this.state.productID+"/"+fileName)
+        .get(this.state.fileDetailUrl+this.state.productID+"/"+fileName+"/"+uploadTime)
         .then((response)=> {
         $('.fullpageloader').hide();  
         if (response) {
@@ -236,6 +245,7 @@ class ProductChart extends Component{
   handleSubmit(event){
     event.preventDefault();
     //console.log("product", this.state.productID)
+    //this.setState({uploadTime : new Date()});
     if(!this.state.productID){
       this.setState({errors: true});
       
@@ -334,19 +344,7 @@ class ProductChart extends Component{
                       </div>      
                        
 
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartout">
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              Current value of ₹ 100 invested once on inception of this smallcase would be
-                          </div>
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.productName} ₹287.63
-                              </div>
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.indexName} ₹112.65
-                              </div>
-                          </div>
-                        </div>
+                        
 
                         <div className="tab-content" id="myTabContent">
                           

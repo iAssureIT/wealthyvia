@@ -47,7 +47,11 @@ export default class Linechart extends Component{
          options: '',
          mobiledata : '',
          mobileoptions: '',
-         loading : true
+         loading : true,
+         productName : '',
+         indexName   : '',
+         productinvestedvalue: '',
+         indexinvestedvalue  : ''
     }
   }
   
@@ -73,6 +77,14 @@ export default class Linechart extends Component{
   
   setchartdata(productData, productkey){
       var rates= productData.rates;
+
+      var productstartvalue = rates[0].productRate;
+      var productendvalue = rates[rates.length - 1].productRate;
+      var indexstartvalue = rates[0].indexRate;
+      var indexendvalue = rates[rates.length - 1].indexRate;
+      var productinvestedvalue = (productendvalue / productstartvalue )* 100;
+      var indexinvestedvalue  = (indexendvalue / indexstartvalue)* 100;
+
       if(productkey === "MAX"){
           
           var date = rates.map((data)=>{
@@ -258,7 +270,8 @@ export default class Linechart extends Component{
             ]
           }
         };
-        this.setState({data : data, options: options, mobileoptions: mobileoptions, loading : false})
+        this.setState({data : data, options: options, mobileoptions: mobileoptions, loading : false, productName: productData.productName, indexName: productData.indexName,
+          productinvestedvalue: productinvestedvalue, indexinvestedvalue: indexinvestedvalue})
   }
 
 
@@ -271,6 +284,21 @@ export default class Linechart extends Component{
 							
 								{this.state.loading === false  ? 
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartcontent">
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              Current value of ₹ 100 invested once on inception of this smallcase would be
+                          </div>
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                  {this.state.productName} <br /> ₹{this.state.productinvestedvalue ? parseFloat(this.state.productinvestedvalue).toFixed(2) : 0 }
+                              </div>
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                  {this.state.indexName} <br/> ₹{this.state.indexinvestedvalue ? parseFloat(this.state.indexinvestedvalue).toFixed(2) : 0 }
+                              </div>
+                          </div>
+                        </div>
+
                     <div className="col-lg-12 col-md-12 hidden-sm hidden-xs ">
                       <Line
                         data={this.state.data}
