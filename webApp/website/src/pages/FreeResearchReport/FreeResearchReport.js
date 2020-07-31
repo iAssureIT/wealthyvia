@@ -133,12 +133,12 @@ export default class FreeResearchReport extends Component {
 					                                </h3>
 				                                </a>
 				                                
-				                                	<div className="data col-lg-2 col-md-2 col-sm-2 col-xs-2 imgblock">
+				                                	<div className="data col-lg-2 col-md-2 col-sm-2 hidden-xs imgblock">
 				                                		<a href={report.researchreport && report.researchreport[0] ? axios.defaults.baseURL+"/api/fileUpload/image/"+report.researchreport[0].key : "" }>
-				                                		<img src="/images/pdfimg.png" className="imgpdf"/>
+				                                		<img src="/images/ResearchPDF.png" className="imgpdf"/>
 				                                		</a>
 				                                	</div>
-					                                <div className="data col-lg-10 col-md-10 col-sm-10 col-xs-10">
+					                                <div className="data col-lg-10 col-md-10 col-sm-10 col-xs-12">
 					                                    
 					                                    <div className="publish-slugs ">
 					                                        <span className="date ng-binding">

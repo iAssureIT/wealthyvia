@@ -451,7 +451,8 @@ class FreeReseachReport extends Component{
 		                    </div>
 		                </div>
 
-                      <div className="formcontent col-lg-12 col-md-5 col-sm-12 col-xs-12 padTop">
+                      <div className="formcontent col-lg-6 col-md-5 col-sm-12 col-xs-12 padTop">
+                        <label>Upload Research Report</label>
                           <div className="clr_k ">
                             <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
                               <img src="/images/Upload-Icon.png"/>

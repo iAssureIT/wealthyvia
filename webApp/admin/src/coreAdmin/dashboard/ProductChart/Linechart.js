@@ -49,7 +49,8 @@ export default class Linechart extends Component{
          productName : '',
          indexName   : '',
          productinvestedvalue: '',
-         indexinvestedvalue  : ''
+         indexinvestedvalue  : '',
+         inceptiontext       : ''
     }
   }
   
@@ -85,6 +86,26 @@ export default class Linechart extends Component{
       var indexendvalue = rates[rates.length - 1].indexRate;
       var productinvestedvalue = (productendvalue / productstartvalue )* 100;
       var indexinvestedvalue  = (indexendvalue / indexstartvalue)* 100;
+      var inceptiontext = "on inception";
+
+      if(productkey === "MAX") {
+        inceptiontext = "on inception";
+      }
+      else if(productkey === "1Y") {
+        inceptiontext = "1 year ago";
+      }
+      else if(productkey === "2Y") {
+        inceptiontext = "2 years ago";
+      }
+      else if(productkey === "1M") {
+        inceptiontext = "1 month ago";
+      }
+      else if(productkey === "3M") {
+        inceptiontext = "3 months ago";
+      }
+      else if(productkey === "6M") {
+        inceptiontext = "6 months ago";
+      }
 
       if(productkey === "MAX"){
           
@@ -223,7 +244,7 @@ export default class Linechart extends Component{
         }
         };
         this.setState({data : data, options: options, productName: productData.productName, indexName: productData.indexName,
-          productinvestedvalue: productinvestedvalue, indexinvestedvalue: indexinvestedvalue})
+          productinvestedvalue: productinvestedvalue, indexinvestedvalue: indexinvestedvalue, inceptiontext: inceptiontext})
   }
 
 
@@ -237,14 +258,14 @@ export default class Linechart extends Component{
                   <div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartcontent">
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              Current value of ₹ 100 invested once on inception of this smallcase would be
+                              Current value of <b>₹ 100</b> invested once <b>{this.state.inceptiontext}</b> of this smallcase would be
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                               <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.productName} <br /> ₹{this.state.productinvestedvalue ? parseFloat(this.state.productinvestedvalue).toFixed(2) : 0}
+                                  {this.state.productName} <br /> <b>₹ {this.state.productinvestedvalue ? parseFloat(this.state.productinvestedvalue).toFixed(2) : 0}</b>
                               </div>
                               <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.indexName} <br/> ₹{this.state.indexinvestedvalue ? parseFloat(this.state.indexinvestedvalue).toFixed(2) : 0 }
+                                  {this.state.indexName} <br/> <b>₹ {this.state.indexinvestedvalue ? parseFloat(this.state.indexinvestedvalue).toFixed(2) : 0 }</b>
                               </div>
                           </div>
                         </div>

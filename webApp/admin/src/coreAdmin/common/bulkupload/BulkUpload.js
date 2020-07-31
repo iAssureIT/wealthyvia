@@ -264,14 +264,14 @@ class BulkUpload extends Component{
             console.log('response',response.data)
             if(response.data.message === 'please upload correct excel sheet of selected product'){
                 swal({
-                 title : response.data.message,
+                 text : "The Excel sheet data seems not belong to be "+response.data.productName+" Product.",
                 
               })
               // console.log('response.data.completed',response.data.completed)
             }
             else if(response.data.message === 'Select product'){
                 swal({
-                 title : response.data.message,
+                 text : "Please select product",
                 
               })
               // console.log('response.data.completed',response.data.completed)
@@ -392,8 +392,8 @@ class BulkUpload extends Component{
                           id="test-table-xls-button"
                           className="download-table-xls-button badDwldButton"
                           table={"failedtable"+this.props.failedRecordsCount}
-                          filename="tablexls"
-                          sheet="tablexls"
+                          filename="Badrecords"
+                          sheet="Badrecords"
                           buttonText="Download Bad Records"/>
                         <br/>
                       </div>  

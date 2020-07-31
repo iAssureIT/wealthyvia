@@ -26,6 +26,29 @@
 .productchartcontent{
     margin-bottom: 40px;
 }
+.table-responsive {
+    max-height: 580px;
+    overflow-y: scroll;
+}
+
+/*tbody {
+    display:block;
+    max-height:560px;
+    overflow-y:scroll;
+}
+tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+thead{
+    display:table;
+    width:100%;
+    table-layout:fixed;
+}
+thead {
+    width: calc( 100% - 1em )/* scrollbar is average 1em/16px width, remove it from thead width */
+/*}*/
 
 .nav-pills.chartpills>li {
     float: left;

@@ -55,6 +55,7 @@ exports.bulk_upload_productrates = (req,res,next)=>{
             console.log("please upload excel sheet with proper product name", );
             res.status(200).json({
                 "message": "please upload correct excel sheet of selected product",
+                "productName": req.body.reqdata.productName,
                 "completed": true
             });
         }
@@ -68,14 +69,14 @@ exports.bulk_upload_productrates = (req,res,next)=>{
 
                 //console.log("date", productratedata[k][rowheader[0]]);
                 if (productratedata[k][rowheader[0]] === '-' || productratedata[k][rowheader[1]] == '') {
-                    remark += "Date not found, " ;  
+                    remark += "Date not found. " ;  
                 }
                 if (productratedata[k][rowheader[1]] === '-' || productratedata[k][rowheader[1]] == '') {
-                    remark += rowheader[1]+" rate not found, " ;  
+                    remark += rowheader[1]+" Rate not found. " ;  
                 }
                 if (productratedata[k][rowheader[2]] === '-' || productratedata[k][rowheader[2]] == '') {
                     //console.log("ratefdfd", productratedata[k][rowheader[2]]);
-                    remark += rowheader[2]+" rate not found, " ;  
+                    remark += rowheader[2]+" Rate not found. " ;  
                     //console.log("remarks", remark);
                 }
                 countmy++;
@@ -98,7 +99,7 @@ exports.bulk_upload_productrates = (req,res,next)=>{
                     //console.log("rates", rates);
                     if (rates.length>0) {
                         DuplicateCount++;
-                        remark += "Date of Rate already exist";                       
+                        remark += "Date of Rate already exists";                       
                         
                         invalidData.push({
                             date           : date,
@@ -166,13 +167,13 @@ exports.bulk_upload_productrates = (req,res,next)=>{
             for(var k = 0 ; k < productratedata.length ; k++){
             //console.log("productratedata[k]", productratedata[k][rowheader[0]]);
                 if (productratedata[k][rowheader[0]] == '-') {
-                    remark += "Date not found, " ;  
+                    remark += "Date not found. " ;  
                 }
                 if (productratedata[k][rowheader[1]] == '-') {
-                    remark += rowheader[1]+" rate not found, " ;  
+                    remark += rowheader[1]+" Rate not found. " ;  
                 }
                 if (productratedata[k][rowheader[2]] == '-') {
-                    remark += rowheader[2]+" rate not found, " ;  
+                    remark += rowheader[2]+" Rate not found. " ;  
                 }
                 
                 if (remark == '') {
@@ -527,9 +528,10 @@ exports.get_productratesbyproductid = (req,res,next)=>{
     async function getlimitasync(){
         //1M
             //prevdate.setDate(curdate.getDate()-8);
-            prevdate.setMonth(curdate.getMonth()-1);
-            //console.log("cur date", curdate);
-            //console.log("prev date", prevdate);
+            prevdate.setDate(curdate.getDate()-31);
+            console.log("cur date", curdate);
+            console.log("prev date", prevdate);
+            //prevdate = moment(prevdate).format("YYYY-MM-DDT00:00:00.000Z");
             var rate1mdata = await getProductrateByLimit(productid, curdate, prevdate);
             
             if(rate1mdata && rate1mdata.rates ){
