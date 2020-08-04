@@ -8,6 +8,7 @@ exports.create_researchreport = (req, res, next) => {
                     "_id"               : mongoose.Types.ObjectId(), 
                     "title"             : req.body.title,
                     "description"       : req.body.description, //(CK Editor Rich text)
+                    "reportImage"       : req.body.reportImage,
                     "researchreport"    : req.body.researchreport,
                     "createdBy"         : ObjectID(req.body.createdBy), //_id of User or null
                     "createdAt"         : new Date(),     
@@ -74,7 +75,7 @@ exports.fetch_researchreport_all_list = (req,res,next) => {
     var startRange  = countNum2 - limitRange;
     ResearchReport.find({})
          .sort({createdAt : -1})
-         .select("title description researchreport createdBy createdAt")
+         .select("title description reportImage researchreport createdBy createdAt")
          .exec()
          .then(data=>{
             if(data.length > 0 ){

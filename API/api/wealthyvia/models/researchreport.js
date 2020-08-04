@@ -4,6 +4,7 @@ const researchReportSchema = mongoose.Schema({
 	_id					: mongoose.Schema.Types.ObjectId,
 	title				: String,
 	description			: String,
+	reportImage 		: String,
 	researchreport 		: [{
 								name	: String,
 								key 		: String,

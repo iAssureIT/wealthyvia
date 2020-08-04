@@ -378,7 +378,7 @@ export default class ProductPage extends Component {
                 
                 </div>
               </div>
-              <ProductChart offeringName="Safe Heavan" />
+              <ProductChart offeringName="Safe Heaven" />
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect" >
                 <div className="row">
                

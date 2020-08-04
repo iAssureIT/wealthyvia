@@ -20,17 +20,19 @@ class FreeReseachReport extends Component{
     this.state = {
     	title 					: "",
     	description 			: "",
-		fileArray              : [],
-		showFile               : '',
-    selectedfiles          : '',
-		filenames              : [],
-		fileType               : "File",   
-		researchreportlist     : [],
-		action                 : 'insert',
-		reportid               : '',
-    uploadReport           : '',
-    userID                 : '' 
-
+  		fileArray              : [],
+  		showFile               : '',
+      selectedfiles          : '',
+  		filenames              : [],
+  		fileType               : "File",   
+  		researchreportlist     : [],
+  		action                 : 'insert',
+  		reportid               : '',
+      uploadReport           : '',
+      userID                 : '',
+      reportImage            : '',
+      errors                 : {},   
+      config                 : "",
     };
     this.baseState = this.state;
   }
@@ -43,13 +45,12 @@ class FreeReseachReport extends Component{
       userID : userid
     })
 
-    /*axios
+    axios
       .get('/api/projectsettings/get/S3')
       .then((response)=>{
         const config = 
                        {
                           bucketName      : response.data.bucket,
-                          dirName         : response.data.bucket,
                           region          : response.data.region,
                           accessKeyId     : response.data.key,
                           secretAccessKey : response.data.secret,
@@ -65,7 +66,7 @@ class FreeReseachReport extends Component{
                    swal("Your session is expired! Please login again.","", "error");
                    this.props.history.push("/");
               }
-      })*/
+      })
 
   	var reportid = this.props.match.params.reportid;
   	//console.log("reportid", reportid);
@@ -129,6 +130,59 @@ class FreeReseachReport extends Component{
       this.setState( {
           description : evt.editor.getData()
       } );
+  }
+
+  uploadReportImage(event){
+    console.log("upload =",event.target.files[0]);
+    var file = event.target.files[0];
+    console.log("config", this.state.config);
+    if(file){
+      var ext = file.name.split('.').pop();
+      if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
+        
+          S3FileUpload
+            .uploadFile(file,this.state.config)
+            .then((Data)=>{
+                console.log('Data.location', Data.location);
+              this.setState({
+                reportImage :  Data.location
+              })
+          })
+          .catch((error)=>{
+            console.log(error);
+          })
+       
+      }else{
+        swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning"); 
+         this.setState({
+              reportImage: ''
+          }) 
+        }
+      }
+    else{         
+            swal("","Something went wrong","error"); 
+    }
+  }
+
+  deleteReportImage(event){
+    event.preventDefault();
+    swal({
+          title: "Are you sure you want to delete this image?",
+          text: "Once deleted, you will not be able to recover this image!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        })
+        .then((success) => {
+            if (success) {
+              swal("Your image is deleted!");
+              this.setState({
+                imgbPath : ""
+              })
+            } else {
+            swal("Your image is safe!");
+          }
+        });
   }
 
   uploadResearchReport(event){
@@ -450,6 +504,28 @@ class FreeReseachReport extends Component{
 		                      <div className="errorMsg"></div>
 		                    </div>
 		                </div>
+
+                    <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 reportimageblock">
+                    <label>Upload Report Image</label>
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                                                 
+                        <input type="file" className="noPadding" title="Please choose image" id="reportImage" name="reportImage" ref="reportImage" onChange={this.uploadReportImage.bind(this)} />
+                        <div className="errorMsg">{this.state.errors.bannerImg}</div>
+
+                      </div>
+                    </div>
+
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
+                        { this.state.reportImage ? 
+                          <div>
+                            <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteReportImage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
+                            <img src={this.state.reportImage} width="150" height="100"/>
+                          </div>
+                          : <div> </div>
+                        }
+                        </div>
+                    </div>
 
                       <div className="formcontent col-lg-6 col-md-5 col-sm-12 col-xs-12 padTop">
                         <label>Upload Research Report</label>

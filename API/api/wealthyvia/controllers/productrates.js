@@ -17,7 +17,7 @@ exports.bulk_upload_productrates = (req,res,next)=>{
     var remark = ''; 
     var failedRecords = [];
     var Count = 0;
-    var countmy = 0;
+    //var countmy = 0;
     var DuplicateCount = 0;
 
     if(!req.body.reqdata.productID  ){
@@ -41,16 +41,16 @@ exports.bulk_upload_productrates = (req,res,next)=>{
         var rowheader = [];
         var uploadTime = req.body.uploadTime;
       //  var uptimr =  moment(req.body.uploadTime,'YYYY-MM-DD')._i
-        console.log("uploadtime", uploadTime);
+        //console.log("uploadtime", uploadTime);
         if(productratedata.length > 0){
             for(var key in productratedata[0]){
                 rowheader.push(key);
             } 
             //console.log("heading", rowheader);
         }
-        console.log("productname",req.body.reqdata.productName, "row", rowheader[1]);
+       // console.log("productname",req.body.reqdata.productName, "row", rowheader[1]);
 
-        console.log("match", rowheader[1].includes(req.body.reqdata.productName));
+        //console.log("match", rowheader[1].includes(req.body.reqdata.productName));
         if(!rowheader[1].includes(req.body.reqdata.productName)){
             console.log("please upload excel sheet with proper product name", );
             res.status(200).json({
@@ -79,9 +79,19 @@ exports.bulk_upload_productrates = (req,res,next)=>{
                     remark += rowheader[2]+" Rate not found. " ;  
                     //console.log("remarks", remark);
                 }
-                countmy++;
+                
+
+                for(var x = 0; x < k; x++){
+                    //console.log("data", productratedata[k][rowheader[0]], productratedata[x][rowheader[0]])
+                        if( productratedata[k][rowheader[0]] === productratedata[x][rowheader[0]] ){
+                            remark += "Date of Rate already exists";
+                            break;   
+                        }
+                }
+
                 if (remark == '') {
-                    
+
+
                     if (typeof productratedata[k][rowheader[0]] == 'number') {
                         date = moment(new Date(Math.round((productratedata[k][rowheader[0]] - 25569)*86400*1000))).format("YYYY-MM-DD");
                     }else{
@@ -174,6 +184,12 @@ exports.bulk_upload_productrates = (req,res,next)=>{
                 }
                 if (productratedata[k][rowheader[2]] == '-') {
                     remark += rowheader[2]+" Rate not found. " ;  
+                }
+
+                for(var x = 0; x < k; x++){
+                        if( productratedata[k][rowheader[0]] === productratedata[x][rowheader[0]] ){
+                            remark += "Date of Rate already exists";   
+                        }
                 }
                 
                 if (remark == '') {
@@ -309,14 +325,14 @@ function fetchAllProductrates(productID){
 
 var insertFailedRecords = async (invalidData,updateBadData) => {
     //console.log('updateBadData',updateBadData);
-    console.log("inserttime", invalidData.uploadTime);
+    //console.log("inserttime", invalidData.uploadTime);
     return new Promise(function(resolve,reject){ 
     FailedRecords.find({fileName:invalidData.fileName, productID: invalidData.productID, uploadTime: invalidData.uploadTime})  
             .exec()
             .then(data=>{
                 //console.log("data", data)
             if(data.length>0){
-                console.log('datafalied ', invalidData.FailedRecords.length);   
+                //console.log('datafalied ', invalidData.FailedRecords.length);   
                   FailedRecords.updateOne({ fileName:invalidData.fileName, uploadTime: invalidData.uploadTime},  
                         {   $set:   {'totalRecords': invalidData.totalRecords},
                             $push:  { 'failedRecords' : invalidData.FailedRecords } 
@@ -331,7 +347,7 @@ var insertFailedRecords = async (invalidData,updateBadData) => {
                     .catch(err =>{ reject(err); });
                 
             }else{
-                console.log('datafalied insert ', invalidData.FailedRecords.length);  
+                //console.log('datafalied insert ', invalidData.FailedRecords.length);  
                     const failedRecords = new FailedRecords({
                     _id                     : new mongoose.Types.ObjectId(),  
                     productID               : invalidData.productID,                  
@@ -379,7 +395,7 @@ exports.filedetails = (req,res,next)=>{
                          {_id: 0, "rates": 1, productName: 1,  indexName: 1 })*/
                         // console.log("upload time in good rec", req.params.uploadTime, new Date(req.params.uploadTime));
                          var uploadTime = new Date(req.params.uploadTime);
-                         console.log("uploadin  file details", uploadTime);
+                         //console.log("uploadin  file details", uploadTime);
     ProductRates.aggregate([
         // Get just the docs that contain a shapes element where color is 'red'
         {$match: 
@@ -529,8 +545,8 @@ exports.get_productratesbyproductid = (req,res,next)=>{
         //1M
             //prevdate.setDate(curdate.getDate()-8);
             prevdate.setDate(curdate.getDate()-31);
-            console.log("cur date", curdate);
-            console.log("prev date", prevdate);
+            //console.log("cur date", curdate);
+            //console.log("prev date", prevdate);
             //prevdate = moment(prevdate).format("YYYY-MM-DDT00:00:00.000Z");
             var rate1mdata = await getProductrateByLimit(productid, curdate, prevdate);
             
@@ -715,7 +731,7 @@ exports.fetch_file = (req,res,next)=>{
 
             let results = utime.map(date => date.toISOString())
             var updatetime = _.unique(results);
-                console.log('utime',updatetime);    
+                //console.log('utime',updatetime);    
             var z = [];
             for(var ti=0; ti<updatetime.length; ti++){
                 var timefilter = rates.filter((a)=> a.uploadTime.toISOString() == updatetime[ti]);
@@ -823,7 +839,7 @@ exports.fetch_file_count = (req,res,next)=>{
 };
 
 exports.delete_file = (req,res,next)=>{
-    console.log("productid", req.params.productID, "filename", req.params.fileName, req.params.uploadTime);
+    //console.log("productid", req.params.productID, "filename", req.params.fileName, req.params.uploadTime);
     ProductRates.updateOne( { productID: req.params.productID },
      { $pull: { 'rates': { fileName: req.params.fileName, uploadTime: req.params.uploadTime } } }, { safe: true, multi:true }
     )

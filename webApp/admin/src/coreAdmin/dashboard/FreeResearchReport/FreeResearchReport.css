@@ -19,7 +19,9 @@
 .fa-trash, .fa-edit{
 	font-size: 16px;
 }
-
 .reserachtable td, .reserachtable th{
 	border: 1px solid #ccc;
+}
+.reportimageblock{
+	padding-top: 21px;
 }

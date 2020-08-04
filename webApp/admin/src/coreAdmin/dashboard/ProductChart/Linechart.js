@@ -112,6 +112,7 @@ export default class Linechart extends Component{
           var date = rates.map((data)=>{
             return Moment(data.date).format("DD MMM YYYY");
           });
+
       }
       else if(productkey === "1Y" || productkey === "2Y" || productkey === "3Y"){
           
@@ -145,11 +146,11 @@ export default class Linechart extends Component{
       //console.log("year", year);
 
       var productRate = rates.map((data)=>{
-        return data.productRate;
+        return parseFloat((data.productRate / rates[0].productRate ) * 100).toFixed(2);
       });
 
       var indexRate = rates.map((data)=>{
-        return data.indexRate;
+        return parseFloat((data.indexRate / rates[0].indexRate ) * 100).toFixed(2);
       }); 
 
       const data = {
@@ -258,7 +259,7 @@ export default class Linechart extends Component{
                   <div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 productchartcontent">
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              Current value of <b>₹ 100</b> invested once <b>{this.state.inceptiontext}</b> of this smallcase would be
+                              Current value of <b>₹ 100</b> invested once <b>{this.state.inceptiontext}</b> would be
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                               <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
