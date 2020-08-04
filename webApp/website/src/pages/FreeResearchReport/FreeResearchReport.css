@@ -64,6 +64,15 @@
 .imgblock{
     padding-left: 0px !important;
 }
+.datebox{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.fa-download:before {
+    /* color: #201a47; */
+    color: #25bbf3 !important;
+    font-size: 20px;
+}
 
 @media only screen and (max-width: 767px){
 .pageheading {

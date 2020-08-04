@@ -91,7 +91,7 @@ class FreeReseachReport extends Component{
           
 					console.log("response.data = ",response.data);
 					this.setState({title :response.data.title,
-									description: response.data.description, selectedfiles: researchreportobj});
+									description: response.data.description, reportImage: response.data.reportImage, selectedfiles: researchreportobj});
 				}
 			})
 			.catch(error=>{
@@ -177,7 +177,7 @@ class FreeReseachReport extends Component{
             if (success) {
               swal("Your image is deleted!");
               this.setState({
-                imgbPath : ""
+                reportImage : ""
               })
             } else {
             swal("Your image is safe!");
@@ -267,6 +267,7 @@ class FreeReseachReport extends Component{
                formvalues ={
                 title          : this.state.title,
                 description    : this.state.description,
+                reportImage    : this.state.reportImage,
                 researchreport : null,
                 newuploaded    : true,
                 updatedBy      : this.state.userID
@@ -276,6 +277,7 @@ class FreeReseachReport extends Component{
                formvalues ={
                 title          : this.state.title,
                 description    : this.state.description,
+                reportImage    : this.state.reportImage,
                 newuploaded    : false,
                 researchreport : '',
                 updatedBy      : this.state.userID
@@ -285,6 +287,7 @@ class FreeReseachReport extends Component{
                   var formvalues ={
                     title          : this.state.title,
                     description    : this.state.description,
+                    reportImage    : this.state.reportImage,
                     researchreport : uploadedReports.data.keyList,
                     updatedBy      : this.state.userID,
                     newuploaded    : true,
@@ -343,6 +346,7 @@ class FreeReseachReport extends Component{
            var formvalues ={
            		  title          : this.state.title,
            		  description    : this.state.description,
+                reportImage    : this.state.reportImage,
                 researchreport : uploadedReports.data.keyList,
                 createdBy      : this.state.userID
            } 
@@ -587,8 +591,9 @@ class FreeReseachReport extends Component{
 	                      <table className="table tableCustom table-striped reserachtable">
 	                        <thead className="bgThead">
 	                          <tr>
-	                            <th>Title</th>
+	                            <th >Title</th>
 	                            <th className="text-center">Description</th>
+                              <th className="text-center">Report Image </th>
 	                            <th className="text-center">Research report </th>
 	                            <th className="text-center">Action</th>
 	                         </tr>
@@ -602,7 +607,17 @@ class FreeReseachReport extends Component{
 	                            <tr key={j}>
 									<td className="td_title">{report.title}</td>
 									<td className="td_description">{report.description? <div dangerouslySetInnerHTML={ { __html: report.description } }></div> : "-" }</td>
-									<td className="text-center td_pdf">
+									<td className="text-center td_reportimage">
+                          {
+                            report.reportImage ? 
+                            
+                                     <img src={report.reportImage} alt="reportimage" className="reportimgbox" />
+                               
+                            :
+                            null
+                          }
+                  </td>
+                  <td className="text-center td_pdf">
                           {
                             report.researchreport ? 
                             report.researchreport.map((reportpdf, j)=>{

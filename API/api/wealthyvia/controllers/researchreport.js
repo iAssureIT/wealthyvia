@@ -106,7 +106,8 @@ exports.patch_researchreport = (req,res,next) => {
                             $push: { updateLog: updateLog }  ,
                             $set : {
                                 "title"             : req.body.title,
-                                "description"       : req.body.description
+                                "description"       : req.body.description,
+                                "reportImage"       : req.body.reportImage
                             }
                         }
                     )
@@ -126,7 +127,8 @@ exports.patch_researchreport = (req,res,next) => {
                             $push: { updateLog: updateLog }  ,
                             $set : {
                                 "title"             : req.body.title,
-                                "description"       : req.body.description, 
+                                "description"       : req.body.description,
+                                "reportImage"       : req.body.reportImage, 
                                 "researchreport"    : req.body.researchreport,
                             }
                         }

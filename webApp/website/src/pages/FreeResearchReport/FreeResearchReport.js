@@ -132,20 +132,77 @@ export default class FreeResearchReport extends Component {
 					                                    		{report.title}
 					                                </h3>
 				                                </a>
-				                                
-				                                	<div className="data col-lg-2 col-md-2 col-sm-2 hidden-xs imgblock">
-				                                		<a href={report.researchreport && report.researchreport[0] ? axios.defaults.baseURL+"/api/fileUpload/image/"+report.researchreport[0].key : "" }>
-				                                		<img src="/images/ResearchPDF.png" className="imgpdf"/>
-				                                		</a>
-				                                	</div>
-					                                <div className="data col-lg-10 col-md-10 col-sm-10 col-xs-12">
-					                                    
-					                                    <div className="publish-slugs ">
-					                                        <span className="date ng-binding">
-					                                        	{Moment(report.createdAt).format("Do MMMM YYYY")} | By Wealthvia
-					                                        </span>
-					                                        
-					                                        
+
+				                                { report.reportImage ?
+				                                	<div>
+					                                	<div className="data col-lg-3 col-md-3 col-sm-3 col-xs-12 imgblock">
+					                                		<a href={report.researchreport && report.researchreport[0] ? axios.defaults.baseURL+"/api/fileUpload/image/"+report.researchreport[0].key : "" }>
+					                                		{/*<img src="/images/ResearchPDF.png" className="imgpdf"/>*/}
+					                                		{
+					                                			report.reportImage ? 
+					                                			<img src={report.reportImage} className="imgpdf"/>
+					                                			:
+					                                			null
+					                                		}
+					                                		</a>
+					                                	</div>
+					                                	<div className="data col-lg-9 col-md-9 col-sm-9 col-xs-12">
+
+						                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 datebox">
+						                                    	<div className="publish-slugs col-lg-6 datebox">
+							                                        <span className="date ng-binding">
+							                                        	{Moment(report.createdAt).format("Do MMMM YYYY")} | By Wealthvia
+							                                        </span>				                                        
+							                                        
+							                                    </div>
+
+							                                    <div className="publish-slugs col-lg-6 text-right datebox">
+							                                        {	report.researchreport ? 
+											                            report.researchreport.map((reportpdf, j)=>{
+											                            return(
+											                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
+								                                                <i className="fa fa-download"></i> 
+								                                            </a>
+											                             )})  
+											                            :
+											                            null
+											                        }			                                        
+							                                        
+							                                    </div>
+						                                    </div>
+						                                    
+						                                    <div className="reportdescription">
+						                                    	{report.description? <div dangerouslySetInnerHTML={ { __html: report.description } }></div> : "" }
+						                                    </div>
+						                                    
+						                                </div>
+					                                </div>
+				                                	:
+
+				                                	
+					                                <div className="data col-lg-12 col-md-12 col-sm-12 col-xs-12 datebox">
+
+					                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 datebox">
+					                                    	<div className="publish-slugs col-lg-6 datebox">
+						                                        <span className="date ng-binding">
+						                                        	{Moment(report.createdAt).format("Do MMMM YYYY")} | By Wealthvia
+						                                        </span>				                                        
+						                                        
+						                                    </div>
+
+						                                    <div className="publish-slugs col-lg-6 text-right datebox">
+						                                        {	report.researchreport ? 
+										                            report.researchreport.map((reportpdf, j)=>{
+										                            return(
+										                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
+					                                                      	<i className="fa fa-download"></i>
+					                                                    </a>
+										                             )})  
+										                            :
+										                            null
+										                        }			                                        
+						                                        
+						                                    </div>
 					                                    </div>
 					                                    
 					                                    <div className="reportdescription">
@@ -168,6 +225,7 @@ export default class FreeResearchReport extends Component {
 									                        */}
 					                                    </div>
 					                                </div>
+					                            }
 				                                </div>
 				                                <div className="clearfix "></div>
 				                        	</div>
