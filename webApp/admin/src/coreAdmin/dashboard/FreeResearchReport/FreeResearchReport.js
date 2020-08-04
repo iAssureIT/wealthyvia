@@ -135,7 +135,7 @@ class FreeReseachReport extends Component{
   uploadReportImage(event){
     console.log("upload =",event.target.files[0]);
     var file = event.target.files[0];
-    console.log("config", this.state.config);
+    //console.log("config", this.state.config);
     if(file){
       var ext = file.name.split('.').pop();
       if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
