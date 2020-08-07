@@ -85,8 +85,8 @@ app.post('/send-email', (req, res)=> {
 			port: 587,
 			// port: 465,
 			auth: {
-				user: 'monikapawashe16@gmail.com',
-				pass: 'vedika12#$'
+				user: 'wealthyviaapp@gmail.com',
+				pass: 'Wealthyvia@123'
 				// user : 'iassureitmail@gmail.com',
 				// pass : 'iAssureIT@123'
 			}
@@ -135,8 +135,8 @@ app.post('/send-email-admin', (req, res)=> {
 			port: 587,
 			// port: 465,
 			auth: {
-				user: 'monikapawashe16@gmail.com',
-				pass: 'vedika12#$'
+				user: 'wealthyviaapp@gmail.com',
+				pass: 'Wealthyvia@123'
 				// user : 'iassureitmail@gmail.com',
 				// pass : 'iAssureIT@123'
 			}

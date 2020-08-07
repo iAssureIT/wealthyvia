@@ -139,7 +139,10 @@ class FreeReseachReport extends Component{
     if(file){
       var ext = file.name.split('.').pop();
       if(ext=="jpg" || ext=="png" || ext=="jpeg" || ext=="JPG" || ext=="PNG" || ext=="JPEG"){ 
-        
+        if(file.size > 1000000){
+            swal("", "File size must be less than 1MB", "warning");
+          }
+          else {
           S3FileUpload
             .uploadFile(file,this.state.config)
             .then((Data)=>{
@@ -151,6 +154,7 @@ class FreeReseachReport extends Component{
           .catch((error)=>{
             console.log(error);
           })
+         } 
        
       }else{
         swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning"); 
@@ -510,7 +514,7 @@ class FreeReseachReport extends Component{
 		                </div>
 
                     <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 reportimageblock">
-                    <label>Upload Report Image</label>
+                    <label>Upload Report Image (Max size : 1mb)</label>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                                                  
                         <input type="file" className="noPadding" title="Please choose image" id="reportImage" name="reportImage" ref="reportImage" onChange={this.uploadReportImage.bind(this)} />
@@ -523,7 +527,7 @@ class FreeReseachReport extends Component{
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 row">
                         { this.state.reportImage ? 
                           <div>
-                            <label className="pull-right custFaTimes" title="Delete image"  onClick={this.deleteReportImage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
+                            <label className="pull-right custFaTimes deletecross" title="Delete image"  onClick={this.deleteReportImage.bind(this)}>X</label>{/*data-id={this.state.imgbPath}*/}
                             <img src={this.state.reportImage} width="150" height="100"/>
                           </div>
                           : <div> </div>
@@ -532,7 +536,7 @@ class FreeReseachReport extends Component{
                     </div>
 
                       <div className="formcontent col-lg-6 col-md-5 col-sm-12 col-xs-12 padTop">
-                        <label>Upload Research Report</label>
+                        <label>Upload Research Report (Max size : 2mb)</label>
                           <div className="clr_k ">
                             <div className="col-lg-offset-1 col-lg-2 col-md-12 col-sm-12 col-xs-12 hand_icon move_hand_icon">
                               <img src="/images/Upload-Icon.png"/>

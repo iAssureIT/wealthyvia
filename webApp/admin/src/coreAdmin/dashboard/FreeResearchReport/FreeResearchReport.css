@@ -31,3 +31,9 @@
 .reportimgbox{
 	width: 90%
 }
+.deletecross{
+	position: absolute;
+	left: 161px;
+	cursor: pointer;
+	top: -8px;
+}
