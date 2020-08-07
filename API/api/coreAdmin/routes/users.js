@@ -8,6 +8,7 @@ router.post('/post/signup/user', UserController.user_signup_user); //Working
 router.post('/post/signup/user/emailotp', UserController.user_signup_user_email_otp); //Working
 router.post('/post/login',UserController.user_login); //Working
 router.post('/post/login/admin',UserController.admin_login); //Working
+router.post('/post/login/distributor',UserController.distributor_login); //Working
 router.patch('/patch/:ID',UserController.user_update_name_mobile);
 router.patch('/patch/status/:ID',UserController.user_update_status);
 router.patch('/patch/optEmail/email',UserController.update_email_otp_email);

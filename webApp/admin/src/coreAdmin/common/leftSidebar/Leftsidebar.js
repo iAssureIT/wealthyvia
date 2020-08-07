@@ -151,6 +151,13 @@ export default class Leftsidebar extends Component{
                         <i className="fa fa-file"></i>
                           Free Research Report
                       </Link>
+                    </li>
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/new-distributor-list">
+                        <i className="fa fa-file"></i>
+                          Distributor List
+                      </Link>
                     </li>                  
                                  
                 </ul>

@@ -329,10 +329,10 @@ exports.user_login = (req,res,next) =>{
 						}
 					})
 				}else{
-                    res.status(409).status({message:"Password not found"}); 
+                    res.status(409).json({message:"Password not found"}); 
 				}
 			}else{
-                res.status(409).status({message:"User Not found"});
+                res.status(409).json({message:"User Not found"});
 			}			
 		})
 		.catch(err =>{
@@ -404,10 +404,10 @@ exports.admin_login = (req,res,next) =>{
 						}
 					})
 				}else{
-                    res.status(409).status({message:"Password not found"}); 
+                    res.status(409).json({message:"Password not found"}); 
 				}
 			}else{
-                res.status(409).status({message:"User Not found Or User is not a admin"});
+                res.status(409).json({message:"User Not found Or User is not a admin"});
 			}			
 		})
 		.catch(err =>{
@@ -417,6 +417,83 @@ exports.admin_login = (req,res,next) =>{
 			});
 		});
 };
+exports.distributor_login = (req,res,next) =>{
+	console.log("distributor login")
+	User.findOne({
+					emails	: {$elemMatch:{address:req.body.email}},
+					roles   : ["distributor"]
+				})
+		.exec()
+		.then(user => {
+			console.log("user ",user);
+			if(user != null && user != undefined){
+				var pwd = user.services.password.bcrypt;
+				if(pwd){
+					bcrypt.compare(req.body.password,pwd,(err,result)=>{
+						console.log("distributor err ",err,"result",result);
+						if(err || !result){
+							return res.status(401).json({
+								message: 'Auth failed'
+							});		
+						}
+						if(result){
+							console.log("distributor result ====> ",globalVariable); 
+							const token = jwt.sign({
+								email 	: req.body.email,
+								userId	:  user._id ,
+							},globalVariable.JWT_KEY,
+							{
+								expiresIn: "1h"
+							}
+							);
+							User.updateOne(
+									{ emails:{$elemMatch:{address:req.body.email}}},
+									{
+										$push : {
+											"services.resume.loginTokens" : {
+													when: new Date(),
+													hashedToken : token
+												}
+										}
+									}
+								)
+								.exec()
+								.then(updateUser=>{
+									console.log("admin updateUser ",updateUser);
+									if(updateUser.nModified == 1){
+										res.status(200).json({
+													message			: 'Auth successful',
+													token			: token,
+													ID 				: user._id,
+													passwordreset 	: user.profile.passwordreset,
+										});	
+									}else{
+										return res.status(401).json({
+												message: 'Auth failed'
+											});
+									}
+								})
+								.catch(err=>{
+									console.log("500 err ",err);
+									res.status(500).json(err);
+								});	
+						}
+					})
+				}else{
+                    res.status(409).json({message:"Password not found"}); 
+				}
+			}else{
+                res.status(409).json({message:"User Not found Or User is not a distributor"});
+			}			
+		})
+		.catch(err =>{
+			console.log(err);
+			res.status(500).json({
+				error: err
+			});
+		});
+};
+
 exports.user_update_name_mobile = (req,res,next)=>{
 	User.findOne({_id:req.params.ID})
 		.exec()

@@ -33,6 +33,9 @@ import EditUserProfile  from '../userManagement/UM/EditUserProfile.js';
 import UMRolesList      from '../userManagement/Roles/UMRolesList.js';
 import CompanySetting   from '../companysetting/Components/CompanySetting.js';
 import ViewTemplates    from '../NotificationManagement/ViewTemplates.js';
+import distributorList    from '../dashboard/Distributorlist/distributorList.js';
+import disProfile         from '../dashboard/Distributorlist/disProfile.js';
+import distributorEditForm from '../dashboard/Distributorlist/distributorEditForm.js';
 
 import AdminContent       from '../dashboard/DashboardNew.js';
 /*============================ /Blog==============================================*/
@@ -149,6 +152,10 @@ componentDidMount(){
                           <Route path="/companysetting" component={CompanySetting} exact />
                           <Route path="/companysetting/:id" component={CompanySetting} exact />
                           <Route path="/statement" component={Statements} exact />
+                          <Route path="/new-distributor-list" component={distributorList} exact />
+                          <Route path="/distributor-profile-view/:ID"     component={disProfile} exact  />
+                          <Route path="/distributorEditForm/"          component={distributorEditForm} exact  />
+                          <Route path="/distributorEditForm/:ID"          component={distributorEditForm} exact  />
                           <Route path="/productchart" component={ProductChart} exact />
                           <Route path="/filewiseproductrates" component={FilewiseProductratesList} exact />
                           <Route path="/free-research-reports" component={FreeResearchReport} exact />

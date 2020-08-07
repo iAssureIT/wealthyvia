@@ -24,6 +24,7 @@ const wmSubscriptionRoutes 			= require('./api/wealthyvia/routes/wmsubscriptions
 const invoiceRoutes 				= require('./api/wealthyvia/routes/invoice.js');
 const productratesRoutes 			= require('./api/wealthyvia/routes/productrates.js');
 const researchreportRoutes 			= require('./api/wealthyvia/routes/researchreport.js');
+const distributorMasterRoutes 		= require('./api/wealthyvia/routes/distributormaster.js');
 // global.JWT_KEY = "secret";
 
 mongoose.connect('mongodb://localhost/'+globalVariable.dbname,{
@@ -74,6 +75,7 @@ app.use('/api/wmsubscriptions',wmSubscriptionRoutes);
 app.use('/api/invoice',invoiceRoutes);
 app.use('/api/productrates',productratesRoutes);
 app.use('/api/researchreport',researchreportRoutes);
+app.use('/api/distributormaster',distributorMasterRoutes);
 
 app.post('/send-email', (req, res)=> {
 	// console.log('req',req.body);
@@ -83,8 +85,8 @@ app.post('/send-email', (req, res)=> {
 			port: 587,
 			// port: 465,
 			auth: {
-				user: 'kycwealthyvia@gmail.com',
-				pass: 'Artha123$'
+				user: 'monikapawashe16@gmail.com',
+				pass: 'vedika12#$'
 				// user : 'iassureitmail@gmail.com',
 				// pass : 'iAssureIT@123'
 			}
@@ -95,6 +97,56 @@ app.post('/send-email', (req, res)=> {
 			from   : '"Wealthyvia" <kycwealthyvia@gmail.com>', // sender address
 			// from   : '"Wealthyvia" <iassureitmail@gmail.com>', // sender address
 			to     : req.body.email, // list of receivers
+			subject: req.body.subject, // Subject line
+			text   : req.body.text, // plain text body
+			html   : req.body.mail, // html body
+			attachments : req.body.attachments
+		};
+		console.log('after mailoption');
+		//name email mobilenumber message
+		// console.log("mailOptions",mailOptions);
+		
+		transporter.sendMail(mailOptions, (error, info) => {
+			console.log('in mail');
+			if (error) {
+				
+				console.log("send mail error",error);
+				return "Failed";
+			}
+			if(info){
+				console.log('in info');
+				// return "Success";
+				res.status(200).json({ 
+					
+					message: "Success",
+					// return "Success",
+
+				});
+			}
+	
+			res.render('index');
+		});
+});
+app.post('/send-email-admin', (req, res)=> {
+	// console.log('req',req.body);
+	let transporter = nodeMailer.createTransport({
+			// service: 'Gmail',
+			host: 'smtp.gmail.com',
+			port: 587,
+			// port: 465,
+			auth: {
+				user: 'monikapawashe16@gmail.com',
+				pass: 'vedika12#$'
+				// user : 'iassureitmail@gmail.com',
+				// pass : 'iAssureIT@123'
+			}
+		});
+		console.log('after transport', req.body.emaillist);
+		let mailOptions = {
+			
+			from   : '"Wealthyvia" <kycwealthyvia@gmail.com>', // sender address
+			// from   : '"Wealthyvia" <iassureitmail@gmail.com>', // sender address
+			to     : req.body.emaillist,
 			subject: req.body.subject, // Subject line
 			text   : req.body.text, // plain text body
 			html   : req.body.mail, // html body

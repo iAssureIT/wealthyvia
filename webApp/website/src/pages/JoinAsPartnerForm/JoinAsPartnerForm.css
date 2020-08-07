@@ -1,0 +1,133 @@
+.formContainer1{
+    height: 840px;
+    margin: 10px;
+    margin-top: 80px;
+    padding:0px !important ;
+    margin-bottom: 80px;
+    /* padding-top: 40px; */
+    padding-bottom: 30px !important;
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,.075);
+}
+
+@media screen and (max-width: 600px) { 
+  .formContainer1 { 
+    height :  1150px;
+  }
+  .textpd{
+    margin-top: 10px;
+  }    
+  .textpd1{
+    margin-top: 10px;
+  }
+  .textpd2{
+    margin-left: 10px;
+  }
+  .mt10{
+    margin-top: 20px;
+  }
+  .smsetMargin{
+    /* margin-left: 10px; */
+  }
+
+}
+@media screen and (min-width: 992px) { 
+ 
+
+}
+.setZindex{
+    z-index: 1;
+}
+.setplusZindex{
+    z-index: 2;
+}
+.ml10{
+    margin-left: 10px;
+}
+.ml5{
+    margin-left: 5px !important;
+}
+.page{
+	height : auto;
+}
+.mgt{
+    margin-top: 70px !important ;
+}
+.mt30{
+    margin-top: 30px ;
+}
+.mt40{
+    margin-top: 15px ;
+    margin-bottom: 15px ;
+}
+    
+
+.mt50{
+    margin-top: 50px ;
+}
+
+
+.mb20{
+    margin-bottom: 20px ;
+}
+
+.mt50{
+    margin-top: 100px !important;
+}
+.submitButton{
+	margin-top: 50px;
+}
+.paddingtop{
+    padding-top: 0px !important;
+}
+.inputContainerRP1 {
+    padding-top: 20px;
+    height: 200px;
+}
+.ApplicationName{
+	font-size: 15px;
+	font-weight: bold;
+}
+.sm-mt30{
+    margin-top: 120px !important;
+}
+
+.marginTop{
+    margin-top: 15px !important;
+}
+.setFont{
+    /* color: #fff; */
+    font-weight: 500 !important ;
+    font-family: arial;
+    padding-bottom: 5px;
+}
+
+.mtcustomInputKF {
+    display: block !important;
+    width: 100%;
+    height: 34px;
+    padding: 3px 0px;
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    border: none;
+}
+.marginT{
+    margin-top: 15px;
+}
+
+.distributerTitle2 {
+    font-size: 20px;
+    margin-top: 8%;
+    margin-bottom: 5%;
+    /* color: #333333; */
+    color: #f04723;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'PT Sans', sans-serif !important;
+    /* font-family: 'Roboto-BoldCondensed'; */
+}
+
+
+

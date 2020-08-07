@@ -26,7 +26,7 @@
 .productchartcontent{
     margin-bottom: 40px;
 }
-.table-responsive {
+.bulkEmployeeContent .table-responsive {
     max-height: 580px;
     overflow-y: scroll;
 }

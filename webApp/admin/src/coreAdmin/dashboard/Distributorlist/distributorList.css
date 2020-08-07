@@ -1,0 +1,46 @@
+.mt70{
+	margin-top: 25px;
+	margin-bottom: 20px;
+}
+.customTablePP tr> td, th {
+	cursor: pointer;
+    /* border: 1px solid #aaa; */
+    padding: 10px !important;
+}
+.ml{
+	cursor: pointer;
+	margin-left: 40px;
+	margin-top: 20px;
+}
+.fa-thumbs-down{
+	cursor: pointer;
+	color: red;
+}
+.fa-thumbs-up{
+	cursor: pointer;
+	color: green;
+}
+.fa-user{
+	cursor: pointer;
+	color: blue;
+}
+
+.fontSize{
+	font-size: 18px !important;	
+}
+
+
+/*=================distributer edit==============*/
+
+.formNameTitle1 {
+    font-size: 30px;
+    margin-top: 0%;
+    /* margin-bottom: 13%; */
+    padding: 10px;
+    color: #201a47 !important;
+    font-weight: bold;
+    font-family: 'PT Sans', sans-serif !important;
+}
+.cursor{
+	cursor: pointer;
+}
