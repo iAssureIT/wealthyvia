@@ -315,7 +315,7 @@ export default class JoinAsPartnerForm extends Component {
                 .then((res)=>{
                            if(res.status === 200){
                             this.props.history.push('/'); 
-                            
+
                            // this.props.history.push('/'); 
                            //  Swal("Thank you for contacting us. We will get back to you shortly.")
                             }
@@ -636,7 +636,7 @@ export default class JoinAsPartnerForm extends Component {
                       </div>
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd2 textpd1 boxMarg">
                         <span className="blocking-span noIb">   
-                          <input type="email" className="form-control abacusTextbox oesSignUpForm sentanceCase" name="email"  ref="email" required
+                          <input type="email" className="form-control abacusTextbox oesSignUpForm" name="email"  ref="email" required
                             onChange={this.handleChange.bind(this)}
                             value={this.state.email}
                           />
