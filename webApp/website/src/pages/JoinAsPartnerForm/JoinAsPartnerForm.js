@@ -314,6 +314,8 @@ export default class JoinAsPartnerForm extends Component {
                 .post('/send-email',formValues1)
                 .then((res)=>{
                            if(res.status === 200){
+                            this.props.history.push('/'); 
+                            swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");    
                            // this.props.history.push('/'); 
                            //  Swal("Thank you for contacting us. We will get back to you shortly.")
                             }
@@ -345,8 +347,8 @@ export default class JoinAsPartnerForm extends Component {
             })
             .catch((error) => { console.log('notification error: ',error)})
           //console.log("Distributer Master Data inserted successfully!", response);
-          swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");    
-          this.setState(this.baseState);
+          
+          //this.setState(this.baseState);
           // this.props.history.push('/'); 
 
         })
