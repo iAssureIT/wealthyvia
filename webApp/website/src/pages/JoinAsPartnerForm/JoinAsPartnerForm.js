@@ -234,8 +234,8 @@ export default class JoinAsPartnerForm extends Component {
             "state"           : this.state.state,
             "stateCode"       : this.state.stateCode,
             "city"            : this.state.city,
-            // "latitude"        : this.state.latLng, 
-        // "longitude"           : this.state.latLng,   
+            "latitude"        : this.state.latLng, 
+         "longitude"           : this.state.latLng,   
         "latitude"            : this.state.latLng ? this.state.latLng.lat : "",
         "longitude"           : this.state.latLng ? this.state.latLng.lng : "",        
         // "fileUpload"          : this.state.fileUpload,
@@ -344,8 +344,8 @@ export default class JoinAsPartnerForm extends Component {
             console.log('sendDataToUser in result==>>>', res.data)
             })
             .catch((error) => { console.log('notification error: ',error)})
-          console.log("Distributer Master Data inserted successfully!", response);
-          swal('Congrats!','Distributer Master Data Submitted Successfully!' , 'success');
+          //console.log("Distributer Master Data inserted successfully!", response);
+          swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");    
           this.setState(this.baseState);
           // this.props.history.push('/'); 
 
@@ -577,9 +577,9 @@ export default class JoinAsPartnerForm extends Component {
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  marginLeft page">
             <div className="row">
-              <div className="col-lg-8 col-lg-offset-2  col-md-12 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10  col-xs-offset-1 formContainer1 ">                
+              <div className="col-lg-8 col-lg-offset-2  col-md-12 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10  col-xs-offset-1 formContainer2 ">                
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter marginT headerSet">
-                  <h4 className="formNameTitle"><span className="">Join as a Partner form</span></h4>
+                  <h4 className="formNameTitle"><span className="">Join as a Partner</span></h4>
                   <h6 className="ApplicationName"><span className="">Distributor Application </span></h6>
                 </div>
                 <form>
@@ -790,7 +790,7 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 mt10">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent  textpd boxMarg">
                         <span className="blocking-span noIb">
                         <span>
@@ -814,7 +814,7 @@ export default class JoinAsPartnerForm extends Component {
                           <div className="errorMsg">{this.state.errors2.ownOffice}</div>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 mt10 ">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent textpd mt40 boxMarg">
                         <span className="blocking-span noIb">
                         <span>

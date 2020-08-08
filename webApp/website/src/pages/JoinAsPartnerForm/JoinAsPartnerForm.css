@@ -1,4 +1,4 @@
-.formContainer1{
+.formContainer2{
     height: 840px;
     margin: 10px;
     margin-top: 80px;
@@ -9,8 +9,8 @@
     box-shadow: 0px 0px 5px 5px rgba(0,0,0,.075);
 }
 
-@media screen and (max-width: 600px) { 
-  .formContainer1 { 
+/* @media screen and (max-width: 600px) { 
+  .formContainer2 { 
     height :  1150px;
   }
   .textpd{
@@ -26,14 +26,11 @@
     margin-top: 20px;
   }
   .smsetMargin{
-    /* margin-left: 10px; */
+    margin-left: 10px;
   }
 
-}
-@media screen and (min-width: 992px) { 
- 
+} */
 
-}
 .setZindex{
     z-index: 1;
 }
