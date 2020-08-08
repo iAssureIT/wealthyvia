@@ -167,7 +167,7 @@ export default class FreeResearchReport extends Component {
 												                            report.researchreport.map((reportpdf, j)=>{
 												                            return(
 												                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
-									                                                <img src="/images/Pdf-download.ico" title="Download as Pdf" className="downloadpdf-img" />
+									                                                <img src="/images/Pdf-download.ico" title="Download as PDF" className="downloadpdf-img" />
 									                                            </a>
 												                             )})  
 												                            :
@@ -200,7 +200,7 @@ export default class FreeResearchReport extends Component {
 												                            report.researchreport.map((reportpdf, j)=>{
 												                            return(
 												                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
-									                                                <img src="/images/Pdf-download.ico" title="Download as Pdf" className="downloadpdf-img" />
+									                                                <img src="/images/Pdf-download.ico" title="Download as PDF" className="downloadpdf-img" />
 									                                            </a>
 												                             )})  
 												                            :

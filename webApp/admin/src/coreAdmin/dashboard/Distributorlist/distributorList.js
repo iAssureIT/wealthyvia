@@ -248,7 +248,7 @@ export default class distributerList extends Component{
         }
         else if(status === "Rejected" ){
            swal({
-              title: 'Are you sure you want to Reject this distrobutor information?',
+              title: 'Are you sure you want to Reject this distributor information?',
               dangerMode: true,
               buttons: true,
               icon: 'warning',
