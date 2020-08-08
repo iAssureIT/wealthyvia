@@ -94,7 +94,67 @@ export default class disProfile extends Component{
       }
     })    
   }  
-    setDistributorstatus(event){   
+  //   setDistributorstatus(event){   
+  //   event.preventDefault(); 
+  //   var id = event.currentTarget.id;
+  //   var firstname = $(event.currentTarget).attr('data-firstname');
+  //   var lastname = $(event.currentTarget).attr('data-lastname');
+  //   var email = $(event.currentTarget).attr('data-email');
+  //   var phone = $(event.currentTarget).attr('data-phone');
+  //   var idnstatusarray = id.split("-");
+  //   var id = idnstatusarray[0];
+  //   var status = idnstatusarray[1];
+  //     console.log("status",status);
+    
+  //   var formValues = {
+  //     id: id,
+  //     status: status
+  //   }
+
+  //   Axios
+  //     .patch("api/distributormaster/set/status",formValues)
+  //      .then((response)=>{
+  //         console.log("status .data = ",response.data);
+  //        if(response.data){
+  //         Swal.fire("Distributer Status updated");
+  //         this.getDistributorFormData();      
+  //       }
+  //       if(status === "Active" ){
+  //           var auth={
+  //             fullName      : firstname + " "+ lastname,
+  //             firstName     : firstname,
+  //             lastName      : lastname,
+  //             email         : email,
+  //             mobNumber     : phone,
+  //             pwd           : "welcome@123",
+  //             role          : 'users',
+  //             status        : 'Active',
+  //         }
+  //         console.log("auth",auth);
+  //         console.log("auth",auth.role);
+  //         Axios.post("/api/users/post/signup/user",auth)
+  //        .then((res) => {
+  //             console.log('sendDataToUser in result==>>>', res.data)
+  //             if(status === 'Active'){
+  //                 Swal.fire('Congrats!','Distributor Data Approved  Successfully!' , 'success');
+  //             }
+  //         })
+  //         .catch((error) => { console.log('notification error: ',error)})
+  //         // console.log("Distributer Master Data inserted successfully!", response.data);
+  //       }else{   
+  //               Swal.fire('Oops!','Distributor  Data reject Successfully!' , 'success');
+  //             }
+  //      })
+
+  //      .catch((error)=>{
+  //       console.log("Error during get Status Data = ", error);
+  //       Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
+  //      });    
+  // }
+
+
+
+   setDistributorstatus(event){   
     event.preventDefault(); 
     var id = event.currentTarget.id;
     var firstname = $(event.currentTarget).attr('data-firstname');
@@ -105,52 +165,237 @@ export default class disProfile extends Component{
     var id = idnstatusarray[0];
     var status = idnstatusarray[1];
       console.log("status",status);
+      console.log("firstname", firstname);
     
     var formValues = {
       id: id,
       status: status
     }
 
-    Axios
+  if(status === "Active" ){
+   Axios
       .patch("api/distributormaster/set/status",formValues)
        .then((response)=>{
           console.log("status .data = ",response.data);
          if(response.data){
-          Swal.fire("Distributer Status updated");
+           swal( "Distributor information approved successfully!" ,
+            "Login credentials have been created & email has been sent to the Distributor.",
+                 "success"); 
+          // Swal.fire("Distributer Status updated");
           this.getDistributorFormData();      
-        }
-        if(status === "Active" ){
+        }             
             var auth={
               fullName      : firstname + " "+ lastname,
               firstName     : firstname,
               lastName      : lastname,
               email         : email,
               mobNumber     : phone,
-              pwd           : "welcome@123",
+              pwd           : "Welcome@123",
               role          : 'users',
               status        : 'Active',
           }
           console.log("auth",auth);
           console.log("auth",auth.role);
           Axios.post("/api/users/post/signup/user",auth)
-         .then((res) => {
-              console.log('sendDataToUser in result==>>>', res.data)
-              if(status === 'Active'){
-                  Swal.fire('Congrats!','Distributor Data Approved  Successfully!' , 'success');
-              }
-          })
-          .catch((error) => { console.log('notification error: ',error)})
-          // console.log("Distributer Master Data inserted successfully!", response.data);
-        }else{   
-                Swal.fire('Oops!','Distributor  Data reject Successfully!' , 'success');
-              }
-       })
+           .then((res) => {
+                console.log('sendDataToUser in result==>>>', res.data);
 
-       .catch((error)=>{
-        console.log("Error during get Status Data = ", error);
-        Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
-       });    
+                      Axios.get("/api/users/get/list/role/admin/1")
+                        .then((adminusers) => {
+                                    console.log('admin data', adminusers.data);
+                                    var adminemaillist = [];
+                                    var admindata = adminusers.data;
+                                    if(admindata && admindata.length > 0){
+                                      for(let i = 0 ; i < admindata.length ; i++){
+                                        adminemaillist.push(admindata[i].email);
+                                      }
+                                    }
+                                    console.log("admin email list", adminemaillist);
+                                    const formValues2 = {
+                                      "emaillist"     : adminemaillist ,
+                                      "subject"       : "A Distributor Profile has been Approved!",
+                                      "text"          : "", 
+                                      "mail"          : 'Dear Admin,' + '<br/>'+
+                                                        'You have successfully approved a distributor profile on Wealthyvia! Now the distributor can login to the system & use the Wealthyvia services. Following are the details of the Distributor:'+                          
+                                                        "<br/>"+
+                                                        "Name: " + firstname + " "+ lastname + "<br/>" +
+                                                        "Email:  " + email + "<br/>" +
+                                                        "Contact:  " + phone + "<br/>" +
+                                                        "<br/><br/> " +
+                                                        "Regards<br/> " +
+                                                        "Team Wealthyvia. " ,
+                                                        
+
+                                    };
+                                    console.log("notification",formValues2); 
+                                    
+                                      Axios
+                                      .post('/send-email-admin',formValues2)
+                                      .then((res)=>{
+                                                if(res.status === 200){
+                                                  console.log("Mail Sent TO ADMIN successfully!")
+                                                }
+                                              })
+                                              .catch((error)=>{
+                                                console.log("error = ", error);
+                                                
+                                              });
+
+                                    const formValues1 = {
+                                      "email"         : email ,
+                                      "subject"       : "Your Distributor Profile has been Approved!",
+                                      "text"          : "", 
+                                      "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
+                                                        "Congratulations! Your distributor profile has been approved on Wealthyvia! Now you can login to the system & use the Wealthyvia services. Following are your login credentials: <br/> " + 
+                                                        "Email: " + email +
+                                                        "<br/>Default Password: " + "Welcome@123" +
+                                                        "<br/> <br/> " + 
+                                                        "Hope you enjoy being a Partner of Wealthyvia! " + 
+                                                        "<br/><br/> " +
+                                                        "Regards<br/> " +
+                                                        "Team Wealthyvia. " ,
+
+                                    };
+                                    //console.log("notification",formValues1); 
+                                    
+                                      Axios
+                                      .post('/send-email',formValues1)
+                                      .then((res)=>{
+                                                 if(res.status === 200){
+                                                   Swal("Thank you for contacting us. We will get back to you shortly.")
+                                                  }
+                                              })
+                                              .catch((error)=>{
+                                                console.log("error = ", error);
+                                                
+                                              });        
+                   })
+                  .catch((error) => { console.log('user error: ',error)})
+
+                  if(status === 'Active'){
+                     Swal.fire(
+                    'Congrats!',
+                    'Distributor information approved successfully!',
+                    'Login credentials have been created & email has been sent to the Distributor.',
+                    'success'
+                  );
+                  }
+              })
+              .catch((error) => { console.log('user error: ',error)})
+              // console.log("Distributer Master Data inserted successfully!", response.data);
+               })            
+           .catch((error)=>{
+            console.log("Error during get Status Data = ", error);
+            Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
+           });   
+        }
+        else if(status === "Rejected" ){
+           swal({
+              title: 'Are you sure you want to Reject this distrobutor information?',
+              dangerMode: true,
+              buttons: true,
+              icon: 'warning',
+            }).then((result) => {
+              if (result) {
+                Axios
+                  .patch("api/distributormaster/set/status",formValues)
+                   .then((response)=>{
+                      console.log("status .data = ",response.data);
+                      // swal("Distributer Status rejected");
+                     if(response.data){
+                      this.getDistributorFormData();  
+                        console.log("reject");
+                        Axios.get("/api/users/get/list/role/admin/1")
+                          .then((adminusers) => {
+                            console.log('admin data', adminusers.data);
+                            var adminemaillist = [];
+                            var admindata = adminusers.data;
+                            if(admindata && admindata.length > 0){
+                              for(let i = 0 ; i < admindata.length ; i++){
+                                adminemaillist.push(admindata[i].email);
+                              }
+                            }
+                            console.log("admin email list", adminemaillist);
+                            const formValues2 = {
+                              "emaillist"     : adminemaillist ,
+                              "subject"       : "A Distributor Profile has been Rejected",
+                              "text"          : "", 
+                              "mail"          : 'Dear Admin,' + '<br/>'+
+                                                'A distributor profile has been rejected on Wealthyvia. <br/>'+  
+                                                'Following are the details of the Distributor: <br/>' +                      
+                                                "Name: " + firstname + " "+ lastname + "<br/>" +
+                                                "Email:  " + email + "<br/>" +
+                                                "Contact:  " + phone + "<br/>" +
+                                                "<br/><br/> " +
+                                                "Regards<br/> " +
+                                                "Team Wealthyvia. " ,
+                            };
+                            console.log("notification",formValues2); 
+                            
+                              Axios
+                              .post('/send-email-admin',formValues2)
+                              .then((res)=>{
+                                        if(res.status === 200){
+                                          console.log("Mail Sent TO ADMIN successfully!")
+                                        }
+                                      })
+                                      .catch((error)=>{
+                                        console.log("error = ", error);
+                                        
+                                      });
+
+                            const formValues1 = {
+                              "email"         : email ,
+                              "subject"       : "Your Distributor Profile has been Rejected",
+                              "text"          : "", 
+                              "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
+                                                "Your distributor profile has been rejected on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
+                                                "<br/><br/> " +
+                                                "Regards<br/> " +
+                                                "Team Wealthyvia. " ,
+
+                            };
+                            console.log("notification",formValues1); 
+                            
+                              Axios
+                              .post('/send-email',formValues1)
+                              .then((res)=>{
+                                         if(res.status === 200){
+                                           swal("Thank you for contacting us. We will get back to you shortly.")
+                                          }
+                                      })
+                                      .catch((error)=>{
+                                        console.log("error = ", error);
+                                        
+                                      });  
+                          })
+                        .catch((error) => { console.log('user error: ',error)})
+                                
+                        swal('Distributor information rejected successfully!');    
+                    } 
+                  })
+                  .catch((error)=>{
+                    console.log("Error during get Status Data = ", error);
+                    Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
+                  });  
+              } else{
+                swal(
+                  'Cancelled',
+                  'Your Distributor Record is NOT rejected',
+                  'success'
+                )
+          }
+    })
+          
+        }
+        else{   
+                Swal.fire('Oops!','status not defined!');
+              }
+    
   }
+
+
+
 
 
 
