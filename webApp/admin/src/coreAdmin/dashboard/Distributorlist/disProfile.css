@@ -48,3 +48,22 @@
 .fontWeight{
 	font-weight: 400;
 }
+.pl{
+	padding-left: 0px;
+}
+
+.panel-heading{
+	text-align: center;
+}
+.panel-heading h4 b{
+	margin-left: 70px;
+}
+.mt19{
+	margin-top: 19px;
+}
+.pt{
+	padding-top: 20px;
+}
+.pl100{
+	padding-left: 180px;
+}

@@ -74,14 +74,19 @@
     font-size: 20px;
 }
 .downloadpdf-img{
-    width: 80px;
+    width: 72px;
 }
-
+.leftspace{
+    margin-left: 5px;
+}
 @media only screen and (max-width: 767px){
 .pageheading {
     font-size: 24px;
     padding-top: 20px;
 } 
+.leftspace{
+    margin-left: 5px !important;
+}
 .reportborder {
     margin-top: 0px;
     margin-bottom: 30px;

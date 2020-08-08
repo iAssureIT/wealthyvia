@@ -36,3 +36,11 @@
 .zeromargin{
     margin: 0px;
 }
+.setpdf{
+    margin-left: -17px;
+    margin-top: 5px;
+}
+
+.setp{
+    padding-left: 15px
+}

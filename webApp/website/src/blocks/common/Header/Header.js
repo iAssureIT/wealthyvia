@@ -1432,7 +1432,7 @@ export default class Header extends Component {
                                       </li>                                     
                                       }
                                        <li className="dropdown">
-                                        <a href="/join-as-partner" >join as a Partner </a>
+                                        <a href="/join-as-partner" >Join as a Partner </a>
                                       </li>
                                       {
                                         token ?

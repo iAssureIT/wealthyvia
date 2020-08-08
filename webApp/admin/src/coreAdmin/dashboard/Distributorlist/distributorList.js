@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-// import "./distributorList.css";
+import "./distributorList.css";
 
 import Axios  from 'axios';
 import Swal   from 'sweetalert2';
+import swal    from 'sweetalert';
 import moment from 'moment';
 import $      from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,7 +41,77 @@ export default class distributerList extends Component{
   }
 
 
-  setDistributorstatus(event){   
+  /*setDistributorstatus(event){   
+    event.preventDefault(); 
+    var id = event.currentTarget.id;
+    var firstname = $(event.currentTarget).attr('data-firstname');
+    var lastname = $(event.currentTarget).attr('data-lastname');
+    var email = $(event.currentTarget).attr('data-email');
+    var phone = $(event.currentTarget).attr('data-phone');
+    var idnstatusarray = id.split("-");
+    var id = idnstatusarray[0];
+    var status = idnstatusarray[1];
+      console.log("status",status);
+    
+    var formValues = {
+      id: id,
+      status: status
+    }
+
+    Axios
+      .patch("api/distributormaster/set/status",formValues)
+       .then((response)=>{
+          this.getDistributorFormData();      
+          console.log("status .data = ",response.data);
+        //  if(response.data){
+        //   Swal.fire("Distributer Status updated");
+        // }
+        if(status === "Active" ){
+              //   ,
+          swal( "Distributor information approved successfully!" ,"Login credentials have been created & email has been sent to the Distributor.",
+                 "success"); 
+             Swal.fire(
+                'Congrats!',
+                'Distributor information approved successfully!',
+                // 'Login credentials have been created & email has been sent to the Distributor.',
+                'success'
+              );
+            var auth={
+              fullName      : firstname + " "+ lastname,
+              firstName     : firstname,
+              lastName      : lastname,
+              email         : email,
+              mobNumber     : phone,
+              pwd           : "welcome@123",
+              role          : 'users',
+              status        : 'Active',
+          }
+          console.log("auth",auth);
+          Axios.post("/api/users/post/signup/user",auth)
+         .then((res) => {
+              console.log('sendDataToUser in result==>>>', res.data)
+              // if(status === 'Active'){
+                //    Swal.fire(
+                //   'Congrats!',
+                //   'Distributor information approved successfully!',
+                //   'Login credentials have been created & email has been sent to the Distributor.',
+                //   'success'
+              // );
+              // }
+          })
+          .catch((error) => { console.log('user error: ',error)})
+        }else{   
+                swal('Oops!','Distributor information rejected!' , 'warning');
+              }
+       })
+
+       .catch((error)=>{
+        // console.log("Error during get Status Data = ", error);
+        swal("Oops...","Something went wrong! <br/>"+error, "error");
+       });    
+  }
+*/
+   setDistributorstatus(event){   
     event.preventDefault(); 
     var id = event.currentTarget.id;
     var firstname = $(event.currentTarget).attr('data-firstname');
@@ -58,18 +129,18 @@ export default class distributerList extends Component{
       status: status
     }
 
+  if(status === "Active" ){
    Axios
       .patch("api/distributormaster/set/status",formValues)
        .then((response)=>{
           console.log("status .data = ",response.data);
          if(response.data){
-          Swal.fire("Distributer Status updated");
+           swal( "Distributor information approved successfully!" ,
+            "Login credentials have been created & email has been sent to the Distributor.",
+                 "success"); 
+          // Swal.fire("Distributer Status updated");
           this.getDistributorFormData();      
-        }
-                
-                      
-               
-        if(status === "Active" ){
+        }             
             var auth={
               fullName      : firstname + " "+ lastname,
               firstName     : firstname,
@@ -83,177 +154,203 @@ export default class distributerList extends Component{
           console.log("auth",auth);
           console.log("auth",auth.role);
           Axios.post("/api/users/post/signup/user",auth)
-         .then((res) => {
-              console.log('sendDataToUser in result==>>>', res.data);
+           .then((res) => {
+                console.log('sendDataToUser in result==>>>', res.data);
 
-          Axios.get("/api/users/get/list/role/admin/1")
-            .then((adminusers) => {
-              console.log('admin data', adminusers.data);
-              var adminemaillist = [];
-              var admindata = adminusers.data;
-              if(admindata && admindata.length > 0){
-                for(let i = 0 ; i < admindata.length ; i++){
-                  adminemaillist.push(admindata[i].email);
-                }
-              }
-              console.log("admin email list", adminemaillist);
-              const formValues2 = {
-                "emaillist"     : adminemaillist ,
-                "subject"       : "A Distributor Profile has been Approved!",
-                "text"          : "", 
-                "mail"          : 'Dear Admin,' + '<br/>'+
-                                  'You have successfully approved a distributor profile on Wealthyvia! Now the distributor can login to the system & use the Wealthyvia services. Following are the details of the Distributor:'+                          
-                                  "<br/>"+
-                                  "Name: " + firstname + " "+ lastname + "<br/>" +
-                                  "Email:  " + email + "<br/>" +
-                                  "Contact:  " + phone + "<br/>" +
-                                  "<br/><br/> " +
-                                  "Regards<br/> " +
-                                  "Team Wealthyvia. " ,
-                                  
+                      Axios.get("/api/users/get/list/role/admin/1")
+                        .then((adminusers) => {
+                                    console.log('admin data', adminusers.data);
+                                    var adminemaillist = [];
+                                    var admindata = adminusers.data;
+                                    if(admindata && admindata.length > 0){
+                                      for(let i = 0 ; i < admindata.length ; i++){
+                                        adminemaillist.push(admindata[i].email);
+                                      }
+                                    }
+                                    console.log("admin email list", adminemaillist);
+                                    const formValues2 = {
+                                      "emaillist"     : adminemaillist ,
+                                      "subject"       : "A Distributor Profile has been Approved!",
+                                      "text"          : "", 
+                                      "mail"          : 'Dear Admin,' + '<br/>'+
+                                                        'You have successfully approved a distributor profile on Wealthyvia! Now the distributor can login to the system & use the Wealthyvia services. Following are the details of the Distributor:'+                          
+                                                        "<br/>"+
+                                                        "Name: " + firstname + " "+ lastname + "<br/>" +
+                                                        "Email:  " + email + "<br/>" +
+                                                        "Contact:  " + phone + "<br/>" +
+                                                        "<br/><br/> " +
+                                                        "Regards<br/> " +
+                                                        "Team Wealthyvia. " ,
+                                                        
 
-              };
-              console.log("notification",formValues2); 
-              
-                Axios
-                .post('/send-email-admin',formValues2)
-                .then((res)=>{
-                          if(res.status === 200){
-                            console.log("Mail Sent TO ADMIN successfully!")
-                          }
-                        })
-                        .catch((error)=>{
-                          console.log("error = ", error);
-                          
-                        });
+                                    };
+                                    console.log("notification",formValues2); 
+                                    
+                                      Axios
+                                      .post('/send-email-admin',formValues2)
+                                      .then((res)=>{
+                                                if(res.status === 200){
+                                                  console.log("Mail Sent TO ADMIN successfully!")
+                                                }
+                                              })
+                                              .catch((error)=>{
+                                                console.log("error = ", error);
+                                                
+                                              });
 
-              const formValues1 = {
-                "email"         : email ,
-                "subject"       : "Your Distributor Profile has been Approved!",
-                "text"          : "", 
-                "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
-                                  "Congratulations! Your distributor profile has been approved on Wealthyvia! Now you can login to the system & use the Wealthyvia services. Following are your login credentials: <br/> " + 
-                                  "Email: " + email +
-                                  "<br/>Default Password: " + "Welcome@123" +
-                                  "<br/> <br/> " + 
-                                  "Hope you enjoy being a Partner of Wealthyvia! " + 
-                                  "<br/><br/> " +
-                                  "Regards<br/> " +
-                                  "Team Wealthyvia. " ,
+                                    const formValues1 = {
+                                      "email"         : email ,
+                                      "subject"       : "Your Distributor Profile has been Approved!",
+                                      "text"          : "", 
+                                      "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
+                                                        "Congratulations! Your distributor profile has been approved on Wealthyvia! Now you can login to the system & use the Wealthyvia services. Following are your login credentials: <br/> " + 
+                                                        "Email: " + email +
+                                                        "<br/>Default Password: " + "Welcome@123" +
+                                                        "<br/> <br/> " + 
+                                                        "Hope you enjoy being a Partner of Wealthyvia! " + 
+                                                        "<br/><br/> " +
+                                                        "Regards<br/> " +
+                                                        "Team Wealthyvia. " ,
 
-              };
-              console.log("notification",formValues1); 
-              
-                Axios
-                .post('/send-email',formValues1)
-                .then((res)=>{
-                           if(res.status === 200){
-                             Swal("Thank you for contacting us. We will get back to you shortly.")
-                            }
-                        })
-                        .catch((error)=>{
-                          console.log("error = ", error);
-                          
-                        });        
+                                    };
+                                    //console.log("notification",formValues1); 
+                                    
+                                      Axios
+                                      .post('/send-email',formValues1)
+                                      .then((res)=>{
+                                                 if(res.status === 200){
+                                                   //Swal("Thank you for contacting us. We will get back to you shortly.")
+                                                  }
+                                              })
+                                              .catch((error)=>{
+                                                console.log("error = ", error);
+                                                
+                                              });        
+                   })
+                  .catch((error) => { console.log('user error: ',error)})
 
-              
-          })
-          .catch((error) => { console.log('user error: ',error)})
-
-              if(status === 'Active'){
-                 Swal.fire(
-                'Congrats!',
-                'Distributor information approved successfully!',
-                'Login credentials have been created & email has been sent to the Distributor.',
-                'success'
-              );
-              }
-          })
-          .catch((error) => { console.log('user error: ',error)})
-          // console.log("Distributer Master Data inserted successfully!", response.data);
+                  if(status === 'Active'){
+                     Swal.fire(
+                    'Congrats!',
+                    'Distributor information approved successfully!',
+                    'Login credentials have been created & email has been sent to the Distributor.',
+                    'success'
+                  );
+                  }
+              })
+              .catch((error) => { console.log('user error: ',error)})
+              // console.log("Distributer Master Data inserted successfully!", response.data);
+               })            
+           .catch((error)=>{
+            console.log("Error during get Status Data = ", error);
+            Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
+           });   
         }
         else if(status === "Rejected" ){
-          console.log("reject");
-          Axios.get("/api/users/get/list/role/admin/1")
-            .then((adminusers) => {
-              console.log('admin data', adminusers.data);
-              var adminemaillist = [];
-              var admindata = adminusers.data;
-              if(admindata && admindata.length > 0){
-                for(let i = 0 ; i < admindata.length ; i++){
-                  adminemaillist.push(admindata[i].email);
-                }
-              }
-              console.log("admin email list", adminemaillist);
-              const formValues2 = {
-                "emaillist"     : adminemaillist ,
-                "subject"       : "A Distributor Profile has been Rejected",
-                "text"          : "", 
-                "mail"          : 'Dear Admin,' + '<br/>'+
-                                  'A distributor profile has been rejected on Wealthyvia. <br/>'+  
-                                  'Following are the details of the Distributor: <br/>' +                      
-                                  "Name: " + firstname + " "+ lastname + "<br/>" +
-                                  "Email:  " + email + "<br/>" +
-                                  "Contact:  " + phone + "<br/>" +
-                                  "<br/><br/> " +
-                                  "Regards<br/> " +
-                                  "Team Wealthyvia. " ,
-                                  
-
-              };
-              console.log("notification",formValues2); 
-              
+           swal({
+              title: 'Are you sure you want to Reject this distrobutor information?',
+              dangerMode: true,
+              buttons: true,
+              icon: 'warning',
+            }).then((result) => {
+              if (result) {
                 Axios
-                .post('/send-email-admin',formValues2)
-                .then((res)=>{
-                          if(res.status === 200){
-                            console.log("Mail Sent TO ADMIN successfully!")
-                          }
-                        })
-                        .catch((error)=>{
-                          console.log("error = ", error);
-                          
-                        });
-
-              const formValues1 = {
-                "email"         : email ,
-                "subject"       : "Your Distributor Profile has been Rejected",
-                "text"          : "", 
-                "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
-                                  "Your distributor profile has been rejected on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
-                                  "<br/><br/> " +
-                                  "Regards<br/> " +
-                                  "Team Wealthyvia. " ,
-
-              };
-              console.log("notification",formValues1); 
-              
-                Axios
-                .post('/send-email',formValues1)
-                .then((res)=>{
-                           if(res.status === 200){
-                             Swal("Thank you for contacting us. We will get back to you shortly.")
+                  .patch("api/distributormaster/set/status",formValues)
+                   .then((response)=>{
+                      console.log("status .data = ",response.data);
+                      // swal("Distributer Status rejected");
+                     if(response.data){
+                      this.getDistributorFormData();  
+                        console.log("reject");
+                        Axios.get("/api/users/get/list/role/admin/1")
+                          .then((adminusers) => {
+                            console.log('admin data', adminusers.data);
+                            var adminemaillist = [];
+                            var admindata = adminusers.data;
+                            if(admindata && admindata.length > 0){
+                              for(let i = 0 ; i < admindata.length ; i++){
+                                adminemaillist.push(admindata[i].email);
+                              }
                             }
-                        })
-                        .catch((error)=>{
-                          console.log("error = ", error);
-                          
-                        });  
-            })
-          .catch((error) => { console.log('user error: ',error)})
-                  
-          Swal.fire('Distributor information rejected successfully!');
+                            console.log("admin email list", adminemaillist);
+                            const formValues2 = {
+                              "emaillist"     : adminemaillist ,
+                              "subject"       : "A Distributor Profile has been Rejected",
+                              "text"          : "", 
+                              "mail"          : 'Dear Admin,' + '<br/>'+
+                                                'A distributor profile has been rejected on Wealthyvia. <br/>'+  
+                                                'Following are the details of the Distributor: <br/>' +                      
+                                                "Name: " + firstname + " "+ lastname + "<br/>" +
+                                                "Email:  " + email + "<br/>" +
+                                                "Contact:  " + phone + "<br/>" +
+                                                "<br/><br/> " +
+                                                "Regards<br/> " +
+                                                "Team Wealthyvia. " ,
+                            };
+                            console.log("notification",formValues2); 
+                            
+                              Axios
+                              .post('/send-email-admin',formValues2)
+                              .then((res)=>{
+                                        if(res.status === 200){
+                                          console.log("Mail Sent TO ADMIN successfully!")
+                                        }
+                                      })
+                                      .catch((error)=>{
+                                        console.log("error = ", error);
+                                        
+                                      });
+
+                            const formValues1 = {
+                              "email"         : email ,
+                              "subject"       : "Your Distributor Profile has been Rejected",
+                              "text"          : "", 
+                              "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
+                                                "Your distributor profile has been rejected on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
+                                                "<br/><br/> " +
+                                                "Regards<br/> " +
+                                                "Team Wealthyvia. " ,
+
+                            };
+                            console.log("notification",formValues1); 
+                            
+                              Axios
+                              .post('/send-email',formValues1)
+                              .then((res)=>{
+                                         if(res.status === 200){
+                                           //swal("Thank you for contacting us. We will get back to you shortly.")
+                                          }
+                                      })
+                                      .catch((error)=>{
+                                        console.log("error = ", error);
+                                        
+                                      });  
+                          })
+                        .catch((error) => { console.log('user error: ',error)})
+                                
+                        swal('Distributor information rejected successfully!');    
+                    } 
+                  })
+                  .catch((error)=>{
+                    console.log("Error during get Status Data = ", error);
+                    Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
+                  });  
+              } else{
+                swal(
+                  'Cancelled',
+                  'Your Distributor Record is NOT rejected',
+                  'success'
+                )
+          }
+    })
+          
         }
         else{   
-                Swal.fire('Oops!','Distributor information rejected successfully!');
+                Swal.fire('Oops!','status not defined!');
               }
-    })
-
-       .catch((error)=>{
-        console.log("Error during get Status Data = ", error);
-        Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
-       });    
+    
   }
+
 
 
 
@@ -308,7 +405,7 @@ export default class distributerList extends Component{
   	return(
 
   	   <div className="row">
-       <div className="col-lg-11 col-md-12 col-sm-12 col-xs-12  mt70 page">
+       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt70 page">
     		  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
               <h2>Distributor List</h2>
           <hr/>
@@ -319,13 +416,12 @@ export default class distributerList extends Component{
           <table className="table table-bordered">
             <thead>
               <tr>
-                <th>Sr #</th>
+                <th>Sr No</th>
                 <th>Distributor Name</th>
-                <th>Date Of Application</th>
+                <th>Date of Application</th>
                 <th>Phone</th>
                 <th>Email</th>
                 <th>Address</th>
-                <th>GST Number</th>
                 <th>Actions</th>
                 <th>Status</th>
               </tr>
@@ -344,17 +440,18 @@ export default class distributerList extends Component{
                 <td>{DistributorData.phone}</td>
                 <td>{DistributorData.email}</td>
                 <td>{DistributorData.address ? DistributorData.address.adressLine : null}</td>
-                <td>{DistributorData.gst}</td>
                 <td> 
-                  <a href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-user fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
+                  <a className="blueColor" href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
                   <a href={"/distributorEditForm/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a> &nbsp;&nbsp;
                   <a><i id={"d-"+DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;
-                    {DistributorData.status==='New' ? 
+
+                     {DistributorData.status==='New' ? 
                   <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={DistributorData._id+"-"+"Active"} title="Approve Distributor Profile" 
                           data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
                     <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;</span>:null}
+
                </td>
-                <td><div className={DistributorData.status ==='Active' ? 'label label-primary' : 'label label-danger'}>{DistributorData.status}</div></td>
+               <td className ="centeralign"><div className={DistributorData.status === "Rejected" ? 'label label-danger' : DistributorData.status ==='Active' ? 'label label-success' : 'label label-info'}>{DistributorData.status}</div></td>
 
               </tr>
             )

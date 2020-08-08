@@ -12,14 +12,6 @@
 	margin-left: 40px;
 	margin-top: 20px;
 }
-.fa-thumbs-down{
-	cursor: pointer;
-	color: red;
-}
-.fa-thumbs-up{
-	cursor: pointer;
-	color: green;
-}
 .fa-user{
 	cursor: pointer;
 	color: blue;
@@ -43,4 +35,34 @@
 }
 .cursor{
 	cursor: pointer;
+}
+td .centeralign{
+	text-align: center;
+}
+td a .blueColor i{
+	color: blue;
+}
+
+.fa-eye:hover{
+	color: blue;
+}
+.fa-edit:hover{
+	color: blue;
+}
+.fa-trash:hover{
+	color: red;
+}
+.fa-thumbs-up:hover{
+	color: green;
+}
+.fa-thumbs-down:hover{
+	color: red;
+	cursor: pointer;
+}
+.danger{
+	background-color: red;
+	color: white;
+}
+.centeralign .label-danger{
+	background-color: #d9534f !important;
 }

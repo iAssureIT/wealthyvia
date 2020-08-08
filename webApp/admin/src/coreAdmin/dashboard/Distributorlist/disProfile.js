@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import "./distributerList.css";
 import "./disProfile.css";
 
 import Axios from 'axios';
@@ -164,7 +163,7 @@ export default class disProfile extends Component{
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12  col-xs-12 mt20"> 
               <div className = "panel panel-default">
-                <div className = "panel-heading"><h4 ><b>Distributer Profile </b> <b className="pull-right"> <a href={"/distributorEditForm/"+ this.state.DistributorData._id} ><i id={"e-"+this.state.DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a>&nbsp;&nbsp;&nbsp;
+                <div className = "panel-heading"><h4 className="pl100"><b >Distributor Profile </b> <b className="pull-right"> <a href={"/distributorEditForm/"+ this.state.DistributorData._id} ><i id={"e-"+this.state.DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a>&nbsp;&nbsp;&nbsp;
                       <a><i id={"d-"+this.state.DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;</b>
                     {this.state.DistributorData.status==='New' ? 
                   <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={this.state.DistributorData._id+"-"+"Active"} title="Approve Distributor Profile" 
@@ -176,32 +175,32 @@ export default class disProfile extends Component{
                      <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" 
                           className = "img-circle img-responsive"/> 
                   </div>
-                  <div className = "col-md-4 col-xs-3 col-sm-3 col-lg-4">
-                    <h2>{this.state.DistributorData.firstname} &nbsp;{this.state.DistributorData.lastname}</h2>
-                    
+                  <div className = "col-md-9 col-xs-7 col-sm-7 col-lg-9">
+
+                    <b className="pull-right pt">Status:&nbsp;&nbsp;<div className={this.state.DistributorData.status === "Active" ? 'label label-success' : this.state.DistributorData.status ==='New' ? 'label label-info' : 'label label-danger'}>{this.state.DistributorData.status}</div></b>
+                    <h2>{this.state.DistributorData.firstname} {this.state.DistributorData.lastname}</h2>
                     <hr className="mt10 mb10"/>
-                    <div >
-                      <ul className="container noMl fontWeight">
-                        <li><p><span className = "fa fa-mobile fontWeight"></span>&nbsp; &nbsp;{this.state.DistributorData.phone}</p></li>
-                        <li><p><span className = "glyphicon glyphicon-envelope one"></span>&nbsp; &nbsp;{this.state.DistributorData.email}</p></li>
-                        <li><p>GST: &nbsp; {this.state.DistributorData.gst}</p></li>
-                        <li><p>DOB: &nbsp; {this.state.DistributorData.dob}</p></li>
-                        <li><p>Submit Application: &nbsp; {this.state.DistributorData.dob}</p></li>
+                    <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                      <ul className="container noMl fontWeight pl">
+                        <li><p><b>Contact:</b>&nbsp;{this.state.DistributorData.phone}</p></li>
+                        <li><p><b>Email:</b>&nbsp;{this.state.DistributorData.email}</p></li>
+                        <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li>
+                        <li><p><b>DOB:</b>&nbsp;{this.state.DistributorData.dob}</p></li>
+                        <li><p><b>Submitted On:</b>&nbsp;{this.state.DistributorData.currentDate}</p></li>
+                      </ul>
+                    </div>
+                    <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                      <ul className="container noMl fontWeight pl">
+                        <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
+                        <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
+                        <li><p><b>Distributor has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
+                        <li><p><b>PAN/Aadhar Document:</b> &nbsp; <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload}> <img src="/images/pdf.png" height="50" width="50"/></a></p></li>
                       </ul>
                     </div>
                   </div>
-                  <div className = "col-md-5 col-xs-6 col-sm-6 col-lg-5 mt20">
-                    <p><b>&nbsp; &nbsp;Status :&nbsp; &nbsp;{this.state.DistributorData.status}</b></p>
-                  </div>
+                  
                   <hr/>
-                  <div className = "col-md-5 col-xs-4 col-sm-4 col-lg-5" >
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-12 tital setMargin" >Address : {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}</div>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-12 tital setMargin" >Education : {this.state.DistributorData.education}</div>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-12 tital setMargin" >Do you have your own Office? : &nbsp;&nbsp;{this.state.DistributorData.ownOffice}</div>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-12 tital setMargin" >Attach PAN and Aadhar self attested copies  : &nbsp;&nbsp; <a href={this.state.DistributorData.fileUpload}> <img src="/images/pdf.png" height="50" width="50"/></a></div>
-                  </div>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" >How long you have been doing Financial Product distribution, Broking, planning or 
-                           insurance selling? Please Brief about your profession or business : &nbsp;&nbsp;{this.state.DistributorData.description}</div>
+                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Distributor's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
                 </div>  
 
               </div>
@@ -216,8 +215,8 @@ export default class disProfile extends Component{
                   <table className="table table-bordered">
                     <thead>
                       <tr>
-                        <th></th>
-                        <th></th>
+                        <th>Clients</th>
+                        <th>Investment</th>
                         <th>Cap Inv</th>
                         <th>My Share</th>
                       </tr>

@@ -161,76 +161,54 @@ export default class FreeResearchReport extends Component {
 							                                    
 						                                    </div>
 						                                    
-						                                    
-						                                   
-						                                <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 datebox">
-						                                    	
-
-							                                    <div className="publish-slugs col-lg-6 text-right datebox">
-							                                        {	report.researchreport ? 
-											                            report.researchreport.map((reportpdf, j)=>{
-											                            return(
-											                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
-								                                                <img src="/images/Pdf-download.ico" title="Download as Pdf" className="downloadpdf-img" />
-								                                            </a>
-											                             )})  
-											                            :
-											                            null
-											                        }			                                        
-							                                        
-							                                    </div>
-						                                    
-						                                    
-						                                </div>
+						                                    <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 datebox">
+							                                    <div className="publish-slugs col-lg-12 text-center datebox">
+								                                        {	report.researchreport ? 
+												                            report.researchreport.map((reportpdf, j)=>{
+												                            return(
+												                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
+									                                                <img src="/images/Pdf-download.ico" title="Download as Pdf" className="downloadpdf-img" />
+									                                            </a>
+												                             )})  
+												                            :
+												                            null
+												                        }			                                        
+								                                </div>					                                    
+							                                </div>
 						                                </div>
 					                                </div>
 				                                	:
 
 				                                	
 					                                <div className="data col-lg-12 col-md-12 col-sm-12 col-xs-12 datebox">
-
-					                                	<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 datebox">
-					                                    	<div className="publish-slugs col-lg-6 datebox">
-						                                        <span className="date ng-binding">
-						                                        	{Moment(report.createdAt).format("Do MMMM YYYY")} | By Wealthvia
-						                                        </span>				                                        
-						                                        
+					                                	<div className="col-lg-10 col-md-10 col-sm-12 col-xs-12 datebox">
+						                                    	<div className="publish-slugs datebox">
+							                                        <span className="date ng-binding">
+							                                        	{Moment(report.createdAt).format("Do MMMM YYYY")} | By Wealthvia
+							                                        </span>				                                        
+							                                        
+							                                    </div>
+							                                    <div className="reportdescription">
+						                                    		{report.description? <div dangerouslySetInnerHTML={ { __html: report.description } }></div> : "" }
+						                                    	</div>
+							                                    
 						                                    </div>
-
-						                                    <div className="publish-slugs col-lg-6 text-right datebox">
-						                                        {	report.researchreport ? 
-										                            report.researchreport.map((reportpdf, j)=>{
-										                            return(
-										                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
-					                                                      	<i className="fa fa-download"></i>
-					                                                    </a>
-										                             )})  
-										                            :
-										                            null
-										                        }			                                        
-						                                        
-						                                    </div>
-					                                    </div>
-					                                    
-					                                    <div className="reportdescription">
-					                                    	{report.description? <div dangerouslySetInnerHTML={ { __html: report.description } }></div> : "" }
-					                                    </div>
-					                                    <div className="report">
-					                                    	{ /*
-									                            report.researchreport ? 
-									                            report.researchreport.map((reportpdf, j)=>{
-									                            return(
-									                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
-									                                                    <div >
-									                                                      <i className="fa fa-download"></i> &nbsp;
-									                                                      {reportpdf.name} 
-									                                                    </div>
-									                                                    </a>
-									                             )})  
-									                            :
-									                            null
-									                        */}
-					                                    </div>
+						                                    
+						                                    <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 datebox">
+							                                    <div className="publish-slugs col-lg-12 text-center datebox leftspace">
+								                                        {	report.researchreport ? 
+												                            report.researchreport.map((reportpdf, j)=>{
+												                            return(
+												                              <a key= {j} href={axios.defaults.baseURL+"/api/fileUpload/image/"+reportpdf.key} download data-key={reportpdf.key?reportpdf.key:""} onClick={this.getData.bind(this)}>
+									                                                <img src="/images/Pdf-download.ico" title="Download as Pdf" className="downloadpdf-img" />
+									                                            </a>
+												                             )})  
+												                            :
+												                            null
+												                        }			                                        
+								                                </div>					                                    
+							                                </div>
+					                                	
 					                                </div>
 					                            }
 				                                </div>

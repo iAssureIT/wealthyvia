@@ -90,6 +90,7 @@ exports.fetch_distributor_list = (req,res,next) => {
 
 exports.fetch_All_distributor_list = (req,res,next) => {
     Distributormaster.find({})
+        .sort({createdAt : -1})
          .exec()
          .then(data=>{
             if(data.length > 0){

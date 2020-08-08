@@ -116,7 +116,7 @@ export default class distributeEditForm extends Component{
               "ownOffice"     : DistributorData.ownOffice,
               "fileUpload"    : DistributorData.fileUpload,
             };
-            console.log("Distribiter.adressLine = " , DistributorData.adressLine);
+            console.log("Distribiter.fiels2 = " , DistributorData);
 
             this.setState({
               "firstname"     : DistributorData.firstname,
@@ -136,7 +136,7 @@ export default class distributeEditForm extends Component{
               "fileUpload"    : DistributorData.fileUpload,
                fields2        :  fields2
             });            
-            console.log("Distribiter.address = " , DistributorData.fileUpload);
+            console.log("Distribiter.setstate = " , res.data);
 
         })
          .catch((error)=>{
@@ -474,15 +474,24 @@ export default class distributeEditForm extends Component{
             "state"        :this.state.state,
             "ownOffice"    :this.state.ownOffice,
             "education"    :this.state.education,
-            "fileUpload"   :this.state.fileUpload,
+            "fileUpload"   :this.state.fileUpload,     
+            "country"         : this.state.country,
+            "countryCode"     : this.state.countryCode,
+            "state"           : this.state.state,
+            "stateCode"       : this.state.stateCode,
+            "city"            : this.state.city,
+            "latitude"        : this.state.latLng, 
+            "longitude"           : this.state.latLng,   
+            "latitude"            : this.state.latLng ? this.state.latLng.lat : "",
+            "longitude"           : this.state.latLng ? this.state.latLng.lng : "",        
             "education"    :this.state.education,
             "description"  :this.state.description,
       }
-      console.log("firstname",this.state.adressLine);
+      console.log("formvalues",formvalues);
         axios.patch('/api/distributormaster/patch/'+disid,formvalues)
         .then((response)=> {    
           console.log("response",response);
-          swal("Distributor Information updated successfully.","", "success");    
+          swal("Distributor information updated Succesfully","", "success");    
            this.props.history.push('/new-distributor-list'); 
            // console.log('response --====================',response);
 
@@ -649,9 +658,9 @@ export default class distributeEditForm extends Component{
                                   <label className="pull-right custFaTimes zeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
                                  {
                                   (this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "") === "pdf" || (this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "") === "PDF" ?
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pdfContainerPM" id="LogoImageUpOne">
-                                      <img src={this.state.fileUpload}/>
-                                      <span>{(this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "")}</span>
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
+                                      <img src="/images/pdf.png"/>
+                                      <span className="setp">{(this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "")}</span>
                                     </div>
                                     :
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
