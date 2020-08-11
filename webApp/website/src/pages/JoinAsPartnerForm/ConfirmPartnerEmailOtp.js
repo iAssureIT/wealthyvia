@@ -4,7 +4,7 @@ import swal     from 'sweetalert';
 import $        from "jquery";
 import axios    from 'axios';
 
-//import './SignUp.css';
+import './confirmpartnerotp.css';
 
 class ConfirmPartnerEmailOtp extends Component {
     constructor(props){
