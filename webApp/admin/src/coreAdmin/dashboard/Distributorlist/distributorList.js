@@ -570,8 +570,8 @@ export default class distributerList extends Component{
                     <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;
                     </span>
                     :null}
-                    <a className="cursor"><i className="fa fa-close fontSize"  value="Disable" id={DistributorData._id+"-"+"Disable"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>
-                    
+                   {DistributorData.status!=='Disable' ? <a className="cursor"><i className="fa fa-close fontSize"  value="Disable" id={DistributorData._id+"-"+"Disable"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>
+                    : null }
                </td>
                <td className ="centeralign"><div className={DistributorData.status === "Rejected" ? 'label label-danger' : DistributorData.status ==='Active' ? 'label label-success' : DistributorData.status ==='Disable' ? 'label label-default' : 'label label-info'}>{DistributorData.status}</div>
                &nbsp;<div className={!DistributorData.email.verified ? 'label label-danger' : 'label label-success' }>{DistributorData.email.verified ? "Verified" : "Not verified"}</div></td>
