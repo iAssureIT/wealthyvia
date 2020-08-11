@@ -82,7 +82,7 @@ class ConfirmPartnerEmailOtp extends Component {
                         "text"          : "", 
                         "mail"          : 'Dear' + distributor.firstname +' '+ distributor.lastname + ', <br/><br/>'+                          
                                           "Thank you for joining Wealthyvia as a Partner! <br/> " + 
-                                          "Your Distributor Profile will be approved soon by Admin & you will be notified with your login credentials after approval." +
+                                          "Your Partner Profile will be approved soon by Admin & you will be notified with your login credentials after approval." +
                                           "<br/> <br/> " + 
                                           "Regards<br/> " +
                                           "Team Wealthyvia. " ,

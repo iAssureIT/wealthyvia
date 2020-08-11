@@ -286,11 +286,11 @@ export default class distributerList extends Component{
                             console.log("admin email list", adminemaillist);
                             const formValues2 = {
                               "emaillist"     : adminemaillist ,
-                              "subject"       : "A Distributor Profile has been Rejected",
+                              "subject"       : "A Partner Profile has been Rejected",
                               "text"          : "", 
                               "mail"          : 'Dear Admin,' + '<br/>'+
-                                                'A distributor profile has been rejected on Wealthyvia. <br/>'+  
-                                                'Following are the details of the Distributor: <br/>' +                      
+                                                'A partner profile has been rejected on Wealthyvia. <br/>'+  
+                                                'Following are the details of the Partner: <br/>' +                      
                                                 "Name: " + firstname + " "+ lastname + "<br/>" +
                                                 "Email:  " + email + "<br/>" +
                                                 "Contact:  " + phone + "<br/>" +
@@ -314,10 +314,10 @@ export default class distributerList extends Component{
 
                             const formValues1 = {
                               "email"         : email ,
-                              "subject"       : "Your Distributor Profile has been Rejected",
+                              "subject"       : "Your Partner Profile has been Rejected",
                               "text"          : "", 
                               "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
-                                                "Your distributor profile has been rejected on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
+                                                "Your partner profile has been rejected on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
                                                 "<br/><br/> " +
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. " ,
@@ -385,11 +385,11 @@ export default class distributerList extends Component{
                             console.log("admin email list", adminemaillist);
                             const formValues2 = {
                               "emaillist"     : adminemaillist ,
-                              "subject"       : "A Distributor Profile has been Disabled",
+                              "subject"       : "A Partner Profile has been Disabled",
                               "text"          : "", 
                               "mail"          : 'Dear Admin,' + '<br/>'+
-                                                'A distributor profile has been disabled on Wealthyvia. <br/>'+  
-                                                'Following are the details of the Distributor: <br/>' +                      
+                                                'A partner profile has been disabled on Wealthyvia. <br/>'+  
+                                                'Following are the details of the Partner: <br/>' +                      
                                                 "Name: " + firstname + " "+ lastname + "<br/>" +
                                                 "Email:  " + email + "<br/>" +
                                                 "Contact:  " + phone + "<br/>" +
@@ -413,10 +413,10 @@ export default class distributerList extends Component{
 
                             const formValues1 = {
                               "email"         : email ,
-                              "subject"       : "Your Distributor Profile has been Disabled",
+                              "subject"       : "Your partner Profile has been Disabled",
                               "text"          : "", 
                               "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
-                                                "Your distributor profile has been disabled on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
+                                                "Your partner profile has been disabled on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
                                                 "<br/><br/> " +
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. " ,
