@@ -305,8 +305,8 @@ exports.distributor_join_email_otp = (req,res,next)=>{
                                                         "url"       : "http://localhost:"+globalVariable.port+"/send-email",
                                                         "body"      : {
                                                                             email   : req.body.email, 
-                                                                            subject : "Successfully Creation of your Account on Wealthyvia",
-                                                                            text    : "Dear "+req.body.firstname+" "+req.body.lastname+" Your OTP is "+ emailOTP, 
+                                                                            subject : "Verify your Account of Wealthyvia",
+                                                                            text    : "Dear "+req.body.firstname+" "+req.body.lastname+"\n To verify your account of Wealthyvia, please enter following OTP. \n Your OTP is "+ emailOTP+ "\n Regards, \n Team Wealthyvia.", 
                                                                        },
                                                         "json"      : true,
                                                         "headers"   : {

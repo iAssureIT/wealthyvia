@@ -151,10 +151,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["dob"] = "This field is required.";
         } */         
-        /*if (!fields["fileUpload"]) {
+        if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
-        }   */       
+        }          
         if (!fields["phone"]) {
           formIsValid = false;
           errors["phone"] = "This field is required.";

@@ -32,7 +32,7 @@ export default class OneAdvice extends Component {
                     <p >Quality is something that is remembered long after it's price is paid. Aspirations and needs of young newly settling middle class or married couples are catered by few dominant companies in India for a very long period. Stability and scale of these companies makes them invincible. Many other companies come and try to compete or fetch market shares from such giants but these behemoth elephants continue to march North. How to make consistent wealth with them ?</p>
                      <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
                     &nbsp;&nbsp;
-                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">View Performance </a>
+                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                     </div>
                    
                   </div>
@@ -57,7 +57,7 @@ export default class OneAdvice extends Component {
 
                      <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
                      &nbsp;&nbsp;
-                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">View Performance </a>
+                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                     </div>
                   </div>
                 </div>

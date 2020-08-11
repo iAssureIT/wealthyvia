@@ -34,7 +34,7 @@ export default class Superfocusedblock extends Component {
                       Higher the Conviction and higher the strength and continuation , Higher should be the  allocation ! Returns are most dependent variable on Risk Reward and position sizing! 
                       If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  
                     </p><a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a> &nbsp;&nbsp;
-                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">View Performance </a>
+                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                     </div>
                    
                   </div>
@@ -56,7 +56,7 @@ export default class Superfocusedblock extends Component {
                               If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  </p>
                               <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
                               &nbsp;&nbsp;
-                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">View Performance </a>
+                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                             </div>
                           </div>
                         </div>

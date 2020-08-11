@@ -1293,6 +1293,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/#superfocused">Super Focused</a>
                                           <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
@@ -1460,6 +1461,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/#superfocused">Super Focused</a>
                                           <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
@@ -1537,6 +1539,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/#superfocused">Super Focused</a>
                                           <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>

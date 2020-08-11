@@ -14,12 +14,12 @@ export default class BottomDiv extends Component {
 			  	<div className="row">
 			  		<div className="blogHeading hidden-lg col-md-12 col-sm-12 col-xs-12"> Products </div>
 
-			  		<a href="#5gcpm" className="scroll"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+			  		<a href="/offerings/5gcpm#productchart" className="scroll"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ab2.jpg" alt=""/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">5GCPM</label><br/><br/>
-				          <span className="shopNowButtonFilters">Read More</span><br/>
+				          <span className="shopNowButtonFilters">Check Perhormance</span><br/>
 				        </div>
 				          <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">5GCPM</label><br/>
@@ -28,12 +28,12 @@ export default class BottomDiv extends Component {
 			  		</div>
 				</div></a>
 
-					<a href="#safeHeavenMoats"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+					<a href="/offerings/safeHeavenMoats#productchart"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
 			  			<img src="/images/ab3.jpg" alt=""/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">Safe Heaven Moats</label><br/><br/>
-				          <span className="shopNowButtonFilters">Read More</span><br/>
+				          <span className="shopNowButtonFilters">Check Performance</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">Safe Heaven Moats</label><br/>
@@ -41,12 +41,12 @@ export default class BottomDiv extends Component {
 
 			  		</div>
 				</div></a>
-				<a href="#safeHeavenAlpha"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+				<a href="/offerings/safeHeavenAlpha#productchart"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
 			  			<img src="/images/ab1.jpg" alt=""/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">SHM and MF alpha</label><br/><br/>
-				          <span className="shopNowButtonFilters">Read More</span><br/>
+				          <span className="shopNowButtonFilters">Check Performance</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">SHM and MF alpha</label><br/>
