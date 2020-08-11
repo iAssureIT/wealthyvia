@@ -2,6 +2,7 @@ import React, { Component } 		     from 'react';
 import NoFees        				         from "../../blocks/NoFees/NoFees.js";
 import OneAdvice        				     from "../../blocks/OneAdvice/OneAdvice.js";
 import StartTrading        				   from "../../blocks/StartTrading/StartTrading.js";
+import Superfocusedblock             from "../../blocks/Superfocusedblock/Superfocusedblock.js";
 import HandFreeInvesting        		 from "../../blocks/HandFreeInvesting/HandFreeInvesting.js";
 import UsStocksInvest             from "../../blocks/UsStocksInvest/UsStocksInvest.js";
 import Carousel                        from "../../blocks/Carousel/Carousel.js";
@@ -32,8 +33,9 @@ export default class Homepage extends Component {
               <BottomDiv />
       				<NoFees/>
       				<OneAdvice/>
+              <Superfocusedblock/>
       				<StartTrading/>
-      				<HandFreeInvesting/>
+              <HandFreeInvesting/>
               <UsStocksInvest/>
       				<ReadyToGo/>
 					</div>

@@ -10,6 +10,7 @@ import ProductPage                               from "../pages/ProductPage/Prod
 import RiskProfilePage                           from "../pages/RiskProfilePage/RiskProfilePage.js";
  
 import JoinAsPartnerForm                         from "../pages/JoinAsPartnerForm/JoinAsPartnerForm.js";
+import ConfirmPartnerEmailOtp                    from "../pages/JoinAsPartnerForm/ConfirmPartnerEmailOtp.js";
 //import BlogViewPage                              from "../pages/BlogViewPage/BlogViewPage.js";
 import AllBlogs                                  from "../pages/AllBlogs/AllBlogs.js";
 import SingleBlogPage                            from "../pages/SingleBlogPage/SingleBlogPage.js";
@@ -55,6 +56,7 @@ const WebLayout = () => (
               <Route path="/InvoicePage/:order_id"            exact strict component={InvoicePage}  />
               <Route path="/PlanPage"                         exact strict component={PlanPage}  />
               <Route path="/join-as-partner"                  exact strict component={JoinAsPartnerForm}  />
+              <Route path="/partner-emailotp/:user_ID"         exact strict component={ ConfirmPartnerEmailOtp } />
               <Route path="/MyOrders"                        exact strict component={OrderPage}  />
               <Route path="/blogsform"                        exact strict component={BlogsFormPage}  />
               <Route path="/offeringformpage"                 exact strict component={offeringFormPage}  />

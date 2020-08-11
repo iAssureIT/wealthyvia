@@ -7,6 +7,8 @@ import swal    from 'sweetalert';
 import moment from 'moment';
 import $      from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+
 
 export default class distributerList extends Component{
   constructor(props){
@@ -130,14 +132,20 @@ export default class distributerList extends Component{
     }
 
   if(status === "Active" ){
+     swal({
+              title: 'Are you sure you want to Approve this distributor information?',
+              dangerMode: true,
+              buttons: true,
+              icon: 'warning',
+            })
    Axios
       .patch("api/distributormaster/set/status",formValues)
        .then((response)=>{
           console.log("status .data = ",response.data);
          if(response.data){
-           swal( "Distributor information approved successfully!" ,
-            "Login credentials have been created & email has been sent to the Distributor.",
-                 "success"); 
+           // swal( "Distributor information approved successfully!" ,
+           //  "Login credentials have been created & email has been sent to the Distributor.",
+           //       "success"); 
           // Swal.fire("Distributer Status updated");
           this.getDistributorFormData();      
         }             
@@ -148,7 +156,7 @@ export default class distributerList extends Component{
               email         : email,
               mobNumber     : phone,
               pwd           : "Welcome@123",
-              role          : 'users',
+              role          : 'distributor',
               status        : 'Active',
           }
           console.log("auth",auth);
@@ -170,10 +178,10 @@ export default class distributerList extends Component{
                                     console.log("admin email list", adminemaillist);
                                     const formValues2 = {
                                       "emaillist"     : adminemaillist ,
-                                      "subject"       : "A Distributor Profile has been Approved!",
+                                      "subject"       : "A Partner Profile has been Approved!",
                                       "text"          : "", 
                                       "mail"          : 'Dear Admin,' + '<br/>'+
-                                                        'You have successfully approved a distributor profile on Wealthyvia! Now the distributor can login to the system & use the Wealthyvia services. Following are the details of the Distributor:'+                          
+                                                        'You have successfully approved a Partner profile on Wealthyvia! Now the Partner can login to the system & can refer client to Wealthyvia. Following are the details of the Partner:'+                          
                                                         "<br/>"+
                                                         "Name: " + firstname + " "+ lastname + "<br/>" +
                                                         "Email:  " + email + "<br/>" +
@@ -200,17 +208,18 @@ export default class distributerList extends Component{
 
                                     const formValues1 = {
                                       "email"         : email ,
-                                      "subject"       : "Your Distributor Profile has been Approved!",
+                                      "subject"       : "Your Partner Profile has been Approved!",
                                       "text"          : "", 
                                       "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
-                                                        "Congratulations! Your distributor profile has been approved on Wealthyvia! Now you can login to the system & use the Wealthyvia services. Following are your login credentials: <br/> " + 
+                                                        "Congratulations! Your Partner profile has been approved on Wealthyvia! Now you can login to the system & can refer client to Wealthyvia. Following are your login credentials: <br/> " + 
                                                         "Email: " + email +
                                                         "<br/>Default Password: " + "Welcome@123" +
                                                         "<br/> <br/> " + 
-                                                        "Hope you enjoy being a Partner of Wealthyvia! " + 
+                                                        "Hope you enjoy being a Partner of Wealthyvia! " +
+                                                        "& can refer client to Wealthyvia." + 
                                                         "<br/><br/> " +
                                                         "Regards<br/> " +
-                                                        "Team Wealthyvia. " ,
+                                                        "Team Wealthyvia. ",
 
                                     };
                                     //console.log("notification",formValues1); 
@@ -227,7 +236,9 @@ export default class distributerList extends Component{
                                                 
                                               });        
                    })
-                  .catch((error) => { console.log('user error: ',error)})
+                  .catch((error) => { console.log('user error: ',error)}
+                      // swal('Distributor information Approved successfully!')    
+                    )
 
                   if(status === 'Active'){
                      Swal.fire(
@@ -239,7 +250,7 @@ export default class distributerList extends Component{
                   }
               })
               .catch((error) => { console.log('user error: ',error)})
-              // console.log("Distributer Master Data inserted successfully!", response.data);
+                      // swal('Distributor information rejected successfully!')    
                })            
            .catch((error)=>{
             console.log("Error during get Status Data = ", error);
@@ -345,6 +356,105 @@ export default class distributerList extends Component{
     })
           
         }
+        else if(status === "Disable" ){
+           swal({
+              title: 'Are you sure you want to Disable this distributor information?',
+              dangerMode: true,
+              buttons: true,
+              icon: 'warning',
+            }).then((result) => {
+              if (result) {
+                Axios
+                  .patch("api/distributormaster/set/status",formValues)
+                   .then((response)=>{
+                      console.log("status .data = ",response.data);
+                      // swal("Distributer Status rejected");
+                     if(response.data){
+                      this.getDistributorFormData();  
+                        console.log("reject");
+                        Axios.get("/api/users/get/list/role/admin/1")
+                          .then((adminusers) => {
+                            console.log('admin data', adminusers.data);
+                            var adminemaillist = [];
+                            var admindata = adminusers.data;
+                            if(admindata && admindata.length > 0){
+                              for(let i = 0 ; i < admindata.length ; i++){
+                                adminemaillist.push(admindata[i].email);
+                              }
+                            }
+                            console.log("admin email list", adminemaillist);
+                            const formValues2 = {
+                              "emaillist"     : adminemaillist ,
+                              "subject"       : "A Distributor Profile has been Disabled",
+                              "text"          : "", 
+                              "mail"          : 'Dear Admin,' + '<br/>'+
+                                                'A distributor profile has been disabled on Wealthyvia. <br/>'+  
+                                                'Following are the details of the Distributor: <br/>' +                      
+                                                "Name: " + firstname + " "+ lastname + "<br/>" +
+                                                "Email:  " + email + "<br/>" +
+                                                "Contact:  " + phone + "<br/>" +
+                                                "<br/><br/> " +
+                                                "Regards<br/> " +
+                                                "Team Wealthyvia. " ,
+                            };
+                            console.log("notification",formValues2); 
+                            
+                              Axios
+                              .post('/send-email-admin',formValues2)
+                              .then((res)=>{
+                                        if(res.status === 200){
+                                          console.log("Mail Sent TO ADMIN successfully!")
+                                        }
+                                      })
+                                      .catch((error)=>{
+                                        console.log("error = ", error);
+                                        
+                                      });
+
+                            const formValues1 = {
+                              "email"         : email ,
+                              "subject"       : "Your Distributor Profile has been Disabled",
+                              "text"          : "", 
+                              "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
+                                                "Your distributor profile has been disabled on Wealthyvia. Please contact Admin for further details.<br/> <br/> " + 
+                                                "<br/><br/> " +
+                                                "Regards<br/> " +
+                                                "Team Wealthyvia. " ,
+
+                            };
+                            console.log("notification",formValues1); 
+                            
+                              Axios
+                              .post('/send-email',formValues1)
+                              .then((res)=>{
+                                         if(res.status === 200){
+                                           //swal("Thank you for contacting us. We will get back to you shortly.")
+                                          }
+                                      })
+                                      .catch((error)=>{
+                                        console.log("error = ", error);
+                                        
+                                      });  
+                          })
+                        .catch((error) => { console.log('user error: ',error)})
+                                
+                        swal('Distributor information disabled successfully!');    
+                    } 
+                  })
+                  .catch((error)=>{
+                    console.log("Error during get Status Data = ", error);
+                    Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
+                  });  
+              } else{
+                swal(
+                  'Cancelled',
+                  'Your Distributor Record is NOT  disabled',
+                  'success'
+                )
+          }
+    })
+          
+        }
         else{   
                 Swal.fire('Oops!','status not defined!');
               }
@@ -409,11 +519,20 @@ export default class distributerList extends Component{
     		  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
               <h2>Distributor List</h2>
           <hr/>
+           <ReactHTMLTableToExcel
+                id="test-table-xls-button"
+                className="download-table-xls-button fa fa-download mt70 tableicons pull-right"
+                table="table-to-xls"
+                filename="Distributor List"
+                sheet="tablexls"
+                buttonText=""
+          />
           </div>			
+
 		      <br/>
        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div className="table-responsive">
-          <table className="table table-bordered">
+          <table className="table table-bordered" id="table-to-xls">
             <thead>
               <tr>
                 <th>Sr No</th>
@@ -438,20 +557,24 @@ export default class distributerList extends Component{
                 <td>{DistributorData.firstname}  {DistributorData.lastname}</td>
                 <td>{moment(DistributorData.currentDate).format("Do MMM YYYY")}</td>
                 <td>{DistributorData.phone}</td>
-                <td>{DistributorData.email}</td>
+                <td>{DistributorData.email.address}</td>
                 <td>{DistributorData.address ? DistributorData.address.adressLine : null}</td>
                 <td> 
                   <a className="blueColor" href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
                   <a href={"/distributorEditForm/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a> &nbsp;&nbsp;
                   <a><i id={"d-"+DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;
 
-                     {DistributorData.status==='New' ? 
+                  {DistributorData.status==='New' ? 
                   <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={DistributorData._id+"-"+"Active"} title="Approve Distributor Profile" 
-                          data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
-                    <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;</span>:null}
-
+                          data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
+                    <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;
+                    </span>
+                    :null}
+                    <a className="cursor"><i className="fa fa-close fontSize"  value="Disable" id={DistributorData._id+"-"+"Disable"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>
+                    
                </td>
-               <td className ="centeralign"><div className={DistributorData.status === "Rejected" ? 'label label-danger' : DistributorData.status ==='Active' ? 'label label-success' : 'label label-info'}>{DistributorData.status}</div></td>
+               <td className ="centeralign"><div className={DistributorData.status === "Rejected" ? 'label label-danger' : DistributorData.status ==='Active' ? 'label label-success' : DistributorData.status ==='Disable' ? 'label label-default' : 'label label-info'}>{DistributorData.status}</div>
+               &nbsp;<div className={!DistributorData.email.verified ? 'label label-danger' : 'label label-success' }>{DistributorData.email.verified ? "Verified" : "Not verified"}</div></td>
 
               </tr>
             )

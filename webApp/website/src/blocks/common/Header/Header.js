@@ -514,6 +514,148 @@ export default class Header extends Component {
       }
     }
   }
+
+  
+  handleChange1(event){
+      this.setState({
+        "nameModal"             : this.refs.nameModal.value,
+        "contactNumberModal"    : this.refs.contactNumberModal.value,
+        "emailModal"            : this.refs.emailModal.value,
+        });
+       
+        let fields1 = this.state.fields1;
+      fields1[event.target.name] = event.target.value;
+      this.setState({
+        fields1
+      });
+      if (this.validateFormModal() && this.validateFormReqModal()) {
+        let errors1 = {};
+        errors1[event.target.name] = "";
+        this.setState({
+          errors1: errors1
+        });
+      }
+    }
+
+    validateFormModal() {
+    let fields = this.state.fields1;
+    let errors = {};
+    let formIsValid = true;
+      if (typeof fields["emailModal"] !== "undefined") {
+        //regular expression for email validation
+        var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+        if (!pattern.test(fields["emailModal"])) {
+          formIsValid = false;
+          errors["emailModal"] = "Please enter valid email-ID.";
+        }
+      }
+      if (typeof fields["contactNumberModal"] !== "undefined") {
+        if (!fields["contactNumberModal"].match(/^[0-9]{10}$/)) {
+          formIsValid = false;
+          errors["contactNumberModal"] = "Please enter valid mobile no.";
+        }
+      }
+     
+      this.setState({
+        errors1: errors
+      });
+      return formIsValid;
+  } 
+
+  validateFormReqModal() {
+    let fields = this.state.fields1;
+    let errors = {};
+    let formIsValid = true;
+      
+        if (!fields["nameModal"]) {
+        formIsValid = false;
+        errors["nameModal"] = "This field is required.";
+      }     
+     
+        if (!fields["emailModal"]) {
+        formIsValid = false;
+        errors["emailModal"] = "This field is required.";
+      }          
+   
+       if (!fields["contactNumberModal"]) {
+        formIsValid = false;
+        errors["contactNumberModal"] = "This field is required.";
+      }
+       
+      this.setState({
+        errors1: errors
+      });
+      return formIsValid;
+  }
+
+    SubmitEnquire(event){
+    event.preventDefault();
+    if (this.validateFormModal() && this.validateFormReqModal()) {
+       
+       /* ======================= Send Email to user ==================================*/
+      var adminEmail = "kycwealthyvia@gmail.com";
+      const dataArray = {
+          "email"         : this.state.emailModal ,
+          "subject"       : "Your query is sent successfully!",
+          "message"       : "", 
+          "mail"          : 'Dear  ' + this.state.nameModal + ', <br/><br/>'+
+                            "Your query has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
+                            "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
+        };
+      
+       axios
+        .post('/send-email',dataArray)
+        .then((res)=>{
+                   if(res.status === 200){
+                      swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+                    }
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                  
+                });
+       const formValues2 = {
+        "email"         : adminEmail ,
+        "subject"       : "New query/feedback arrived from Website!",
+        "message"       : "",
+        "mail"          : 'Dear Admin, <br/>'+
+                          "Following new query/feedback came from website! <br/> <br/> " + 
+                          "<br/>User Details <br/> " + 
+                          "<b>Name: </b>"   + this.state.nameModal + '<br/>'+
+                          "<b>Email: </b>"  + this.state.emailModal + '<br/>'+
+                          "<b>Contact Number: </b>"  + this.state.contactNumberModal + '<br/><br/>'+
+                          "<br/><br/> " ,
+
+        };
+        axios
+        .post('/send-email',formValues2)
+        .then((res)=>{
+                  if(res.status === 200){
+                   swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+                  }
+                })
+                .catch((error)=>{
+                  console.log("error = ", error);
+                  
+                });
+       /* ======================= Send Email to user ==================================*/
+       let fields1 = {};
+       fields1["nameModal"]            = "";
+       fields1["emailModal"]           = "";
+       fields1["contactNumberModal"]   = "";
+        $("#EnquireModal").hide();
+        $("#EnquireModal").removeClass('in');
+        $(".modal-backdrop").remove();
+        $("body").removeClass("modal-open");
+          this.setState({
+            "nameModal"            : "",
+            "emailModal"            : "",
+            "contactNumberModal"    : "",
+            "fields1"               : fields1
+          });
+      }
+  }
+
   /*get checkbox value*/  
   getCheckValue(event){
     var checked = event.target.checked;
@@ -1456,6 +1598,68 @@ export default class Header extends Component {
                           </div>
                         </div>
           </div>
+          <div className="row">
+          <div className="modal fade in " id="EnquireModal" role="dialog">
+                                <div className="modal-dialog modal-lg  customModalEN" >
+                                 <div className="modal-header textAlignCenter modalHeaderCustom">
+                                    <button type="button" className="close" data-dismiss="modal" > <i className="fa fa-times"></i></button>
+                                    <h4 className="modal-title">Enquire Now</h4>
+                                  </div>
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad40">
+                                    <form>
+                                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                        <div className="row">
+                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <label>Name <span className="asterix">*</span></label>
+                                            </div>
+                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <input type="text" className="customInputKF inputBox nameParts" id="nameModal" name="nameModal" placeholder="Enter here" ref="nameModal" value={this.state.nameModal} onChange={this.handleChange1.bind(this)}/>
+                                             <div className="errorMsg">{this.state.errors1.nameModal}</div>
+
+                                            </div>
+
+                                        </div>
+
+                                      </div>
+                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                        <div className="row"> 
+                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <label>Mobile Number <span className="asterix">*</span></label>
+                                            </div>
+                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <input type="number" className="customInputKF inputBox nameParts" name="contactNumberModal" placeholder="Enter here" ref="contactNumberModal" value={this.state.contactNumberModal} onChange={this.handleChange1.bind(this)}/>
+                                            <div className="errorMsg">{this.state.errors1.contactNumberModal}</div>
+
+                                            </div>
+                                        </div>
+                                      </div>
+                                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                                        <div className="row">
+                                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                              <label>Email ID <span className="asterix">*</span></label>
+                                            </div>
+                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                 <input type="email" className="customInputKF inputBox nameParts" name="emailModal" placeholder="Enter here" ref="emailModal" value={this.state.emailModal}  onChange={this.handleChange1.bind(this)}/>
+                                            <div className="errorMsg">{this.state.errors1.emailModal}</div>
+
+                                            </div>
+                                        </div>
+                                      </div>
+                                       
+                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
+                                            <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
+                                              Submit
+                                            </div>
+                                             
+                                      </div>
+                                    </form>
+                                  </div>
+                        
+                                </div>
+                             </div>
+                     
+                      <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+     </div> 
       </div>    
     );
   }

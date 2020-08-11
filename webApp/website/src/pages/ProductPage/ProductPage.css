@@ -376,6 +376,16 @@ a:hover,a:focus{
 */ font-family:Arial;
   height: 100%;
 }
+.bannerContainerSF{
+    margin-top: -1px;
+
+  background-image: url("/images/superfocused.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+/*  padding: 60px !important;
+*/ font-family:Arial;
+  height: 100%;
+}
 .bannerContainerUS{
   margin-top: -1px;
   background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/bannerImg1.jpg");
@@ -432,6 +442,13 @@ a:hover,a:focus{
   color: #fff;
   background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/introToSHM.jpg");
 }
+.SftestimonialDivPP{
+  background-size: 100% 100%;
+  margin-top: 40px;
+  /*background-attachment: fixed;*/
+  color: #fff;
+  background-image: url("/images/SFtestimonial.png");
+}
 .riskDivPP p{
 
 }
@@ -443,10 +460,26 @@ a:hover,a:focus{
 
 }
 .blogQuate{
-   margin-top:20px;
+  margin-top:20px;
   line-height: 70px;
   font-weight: bolder;
   font-size: 40px; 
+}
+.sfblogQuate {
+    margin-top: 20px;
+    line-height: 32px;
+    font-weight: 500;
+    font-size: 22px;
+    /*border: none;*/
+    padding-left:0px;
+}
+.centeredDiv{
+  padding-top: 70px;
+}
+.text-left{
+  text-align: left;
+  padding-left: 20px;
+  float:left;
 }
 .blogQuateSmall{
    margin-top:20px;

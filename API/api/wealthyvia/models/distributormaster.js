@@ -7,7 +7,11 @@ const distributorSchema = mongoose.Schema({
 	phone			: String,
 	ownOffice		: String,
 	gst				: String,
-	email 			: String,
+	email 			: {
+							address: String,
+							verified: Boolean,
+							optEmail: String,
+					},
 	address 		: {
 		adressLine		: String,
 		pincode 		: String,
@@ -20,8 +24,10 @@ const distributorSchema = mongoose.Schema({
 	currentDate		: String, 
 	education		: String,
 	description		: String,
+	website			: String,
 	// pan 			: [], 
 	fileUpload 		: String, 
+	fileUpload1 	: String, 
 	status 			: String,
     createdAt   	: Date,
     createdBy   	: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },

@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import "./NoFees.css";
+import "./Superfocusedblock.css";
 
-export default class NoFees extends Component {
+export default class Superfocusedblock extends Component {
 
   constructor(props) {
     super(props);
         this.state = {
-          nameOfDiv:"5gcpm"
+          nameOfDiv:"superFocused"
         };
     }
   ScrollTop(event){
@@ -29,12 +29,11 @@ export default class NoFees extends Component {
                 <div className="col-lg-10 col-md-6 hidden-sm hidden-xs startTrandingContent  padding40 backColorGray">
                   <div className="row">
                     <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 learnMoreST">
-                    <label><span className="iceBlueColor">5GCPM </span></label>
-                    <p> Wealth is a function of investing in intelligent ideas with conviction. 
-                        It's not only about patience but also about disciplined approach. Such gem stocks that compound at higher rate 
-                        and produce significant growth of investments are rare. Our self-designed & developed 5GCPM framework 
-                        helps you to invest in such stocks..</p><a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
-                        &nbsp;&nbsp;
+                    <label><span className="iceBlueColor">Super Focused </span></label>
+                    <p> A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. 
+                      Higher the Conviction and higher the strength and continuation , Higher should be the  allocation ! Returns are most dependent variable on Risk Reward and position sizing! 
+                      If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  
+                    </p><a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a> &nbsp;&nbsp;
                         <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">View Performance </a>
                     </div>
                    
@@ -51,9 +50,12 @@ export default class NoFees extends Component {
                         <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContentSmall  backColorGray">
                           <div className="row">
                             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
-                            <label><span className="iceBlueColor">5GCPM </span></label>
-                            <p>Wealth is a function of investing in intelligent ideas with conviction. Its not only about patience but also about disciplined approach. Such rare gem stocks that compound at higher rate and produce considerable growth In portfolio are Rare. Our self-designed & developed 5GCPM framework helps you to invest in such stocks..</p><a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
-                            &nbsp;&nbsp;
+                            <label><span className="iceBlueColor">Super Focused </span></label>
+                            <p>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. 
+                              Higher the Conviction and higher the strength and continuation , Higher should be the  allocation ! Returns are most dependent variable on Risk Reward and position sizing! 
+                              If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  </p>
+                              <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
+                              &nbsp;&nbsp;
                         <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">View Performance </a>
                             </div>
                           </div>

@@ -36,8 +36,10 @@ export default class JoinAsPartnerForm extends Component {
           "state"        :"",
           "pincode"      :"",
           "ownOffice"    :"",
+          "website"      :"",
           "education"    :"",
           "fileUpload"   :[],
+          "fileUpload1"   :[],
           "education"    :"",
           "description"  :"",
           "errors"       :{},
@@ -106,7 +108,7 @@ export default class JoinAsPartnerForm extends Component {
     })
   }
 
- handleChange(event){
+  handleChange(event){
     var name = event.currentTarget.name;
     this.setState({ [name] : event.currentTarget.value });
     let fields2 = this.state.fields2;  
@@ -114,17 +116,8 @@ export default class JoinAsPartnerForm extends Component {
     this.setState({
       fields2
     });
-   /* if (this.validateFormReview() && this.validateFormReqReview()) {
-      let errors2 = {};
-      errors2[event.target.name] = "";
-      this.setState({
-        errors2: errors2
-      });
-
-    }*/
+  
   }
-
-
 
   validateFormReqReview() {
       let fields = this.state.fields2;
@@ -142,10 +135,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["email"] = "This field is required.";
         }     
-         if (!fields["education"]) {
+        /* if (!fields["education"]) {
           formIsValid = false;
           errors["education"] = "This field is required.";
-        }
+        }*/
         // if (!fields["adressLine"]) {
         //   formIsValid = false;
         //   errors["adressLine"] = "This field is required.";
@@ -154,24 +147,26 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["address"] = "This field is required.";
         }*/
-       
-       
-        if (!fields["dob"]) {
+        /*if (!fields["dob"]) {
           formIsValid = false;
           errors["dob"] = "This field is required.";
-        }          
-        if (!fields["fileUpload"]) {
+        } */         
+        /*if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
-        }          
+        }   */       
         if (!fields["phone"]) {
           formIsValid = false;
           errors["phone"] = "This field is required.";
         }
-        if (!fields["gst"]) {
+        /*if (!fields["gst"]) {
           formIsValid = false;
           errors["gst"] = "This field is required.";
         }
+        if (!fields["website"]) {
+          formIsValid = false;
+          errors["website"] = "This field is required.";
+        }   */ 
         if (!fields["description"]) {
           formIsValid = false;
           errors["description"] = "This field is required.";
@@ -186,6 +181,7 @@ export default class JoinAsPartnerForm extends Component {
         console.log("errors",errors);
 
         return formIsValid;
+  
   }
 
   validateFormReview() {
@@ -193,7 +189,6 @@ export default class JoinAsPartnerForm extends Component {
     let errors = {};
     let formIsValid = true;
       if (typeof fields["email"] !== "undefined") {
-        //regular expression for email validation
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (!pattern.test(fields["email"])) {
           formIsValid = false;
@@ -211,6 +206,7 @@ export default class JoinAsPartnerForm extends Component {
         errors2: errors
       });
       return formIsValid;
+  
   }
 
   SubmitReview(event){
@@ -238,10 +234,10 @@ export default class JoinAsPartnerForm extends Component {
          "longitude"           : this.state.latLng,   
         "latitude"            : this.state.latLng ? this.state.latLng.lat : "",
         "longitude"           : this.state.latLng ? this.state.latLng.lng : "",        
-        // "fileUpload"          : this.state.fileUpload,
         "fileUpload"          : this.state.portfolioImage1,
-
+        "fileUpload1"          : this.state.portfolioImage2,
         "ownOffice"           : this.state.ownOffice,
+        "website"             : this.state.website,
         "education"           : this.refs.education.value,
         "description"         : this.refs.description.value,
         "status"              : "New",
@@ -249,8 +245,60 @@ export default class JoinAsPartnerForm extends Component {
 
         }
       console.log("dataArray1",dataArray1);
-      console.log("dataArray1 this.state.latLng ",this.state.address);
-      axios
+      console.log("dataArray1 fileUpload1 ",this.state.portfolioImage2);
+
+      axios.post('/api/distributormaster/post/distributor/emailotp',dataArray1)
+                    .then((response)=> {
+                      console.log("res", response);
+                      if(response)
+                      {
+                        if(response.data.message === 'Email Id already exits.'){
+                          var partnerdata = response.data.distributor;
+
+                          if(partnerdata.status == 'New' && !partnerdata.email.verified ){
+                            swal("","Your Email address is not verified");
+                            this.props.history.push("/partner-emailotp/"+partnerdata._id);
+                          }
+                          else if(partnerdata.status == 'New'){
+                            swal("","Your profile is already pending for Approval. You'll receive an Email after Admin approves your Profile.");
+                            this.props.history.push("/");
+                            window.location.reload();
+                          }
+                          else if(partnerdata.status == 'Active'){
+                            swal("","You are already an Active partner. Please login with your registered email id to continue.");
+                            this.props.history.push("/");
+                          }
+                          else if(partnerdata.status == 'Rejected'){
+                            swal("","To activate your profile again, please contact wealthyvia@gmail.com Email ID.");
+                            this.props.history.push("/");
+                          }
+                        }
+                        else{
+                          swal("Great","Information submitted successfully and OTP is sent to your registered Email ID.");
+                          this.props.history.push("/partner-emailotp/"+response.data.ID);
+                        }
+                      }else{
+                      swal("Warning","Something went wrong...","warning");
+
+                      }
+                    })
+                    .catch(error=> {
+                      
+                        console.log(error);
+                    this.setState({
+                        buttonHeading : 'Sign Up',
+                      });
+                        if(error === "Error: Request failed with status code 409")
+                        {
+                      swal("Warning..","Email id already exist..","warning");
+                    
+
+                        }else{
+                      swal("Something went wrong..","Unable to submit data.","warning");
+                      }
+                    })  
+
+    /*  axios
         .post("api/distributormaster/post",dataArray1)
         .then((response) =>{
 
@@ -356,7 +404,7 @@ export default class JoinAsPartnerForm extends Component {
           console.log("Some Error occured in Insert = ", error);
           swal("Oops... ", "Somthing went wrong <br/> "+ error, "error" );
         });
-
+*/
    
       }
   }
@@ -391,13 +439,11 @@ export default class JoinAsPartnerForm extends Component {
     this.setState({
       fields2
     });
-    // if (this.validateForm() && this.validateFormReq()) {
       let errors2 = {};
       errors2[event.target.name] = "";
       this.setState({
         errors2: errors2
       });
-    // }
     var index = event.target.getAttribute('id');
 
     console.log("index--------------->",index);
@@ -476,6 +522,95 @@ export default class JoinAsPartnerForm extends Component {
             console.error("Not-Deletedddd...",err)
           })
       }
+  }
+  uploadLogoImage1(event){
+   event.preventDefault();
+    var file = event.target.files[0];
+
+    if(file){
+     if(file.size>=2097152)
+     {
+        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+        event.target.value ="";
+     }else{
+          this.setState({
+              "fileUpload1":event.target.value,
+            });
+        }
+      }
+      let fields2 = this.state.fields2;
+    fields2[event.target.name] = event.target.value;
+    this.setState({
+      fields2
+    });
+      let errors2 = {};
+      errors2[event.target.name] = "";
+      this.setState({
+        errors2: errors2
+      });
+    var index = event.target.getAttribute('id');
+
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+        fileUpload1 : newFile.name,
+      })
+      console.log("file",newFile);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
+          if (newFile) {
+            if(this.state.fileUpload1 && this.state.fileUpload1.length === 0){
+            console.log("this.state.confiq",this.state.config);
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{ 
+                  this.setState({
+                    portfolioImage2 : Data.location,
+                  },()=>{console.log("this.state.portfolioImage2",this.state.portfolioImage2)})
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            this.setState({
+                              portfolioImage2 : Data.location,
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+        }
+      }
+    }
   }
 
   validateForm() {
@@ -777,17 +912,32 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
                         <span>
-                            <div className="setFont">Attach PAN and Aadhar self attested copies </div> 
+                            <div className="setFont">Attach Aadhar copy </div> 
                           </span>
                            <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload"  ref="fileUpload" id="upload-file2"
                                 onChange={this.uploadLogoImage.bind(this)} id="upload-file2"
                             />
                             {this.state.errors2.fileUpload  && (
                             <span className="text-danger">{this.state.errors2.fileUpload}</span> 
+                          )}               
+                        </span>
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
+                        <span className="blocking-span noIb">
+                        <span>
+                            <div className="setFont">Attach PAN  copy </div> 
+                          </span>
+                           <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload1"  ref="fileUpload1"
+                                onChange={this.uploadLogoImage1.bind(this)} id="upload-file3"
+                            />
+                            {this.state.errors2.fileUpload1  && (
+                            <span className="text-danger">{this.state.errors2.fileUpload1}</span> 
                           )}               
                         </span>
                       </div>
@@ -814,6 +964,23 @@ export default class JoinAsPartnerForm extends Component {
                         </div>
                         </span>
                           <div className="errorMsg">{this.state.errors2.ownOffice}</div>
+                      </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
+                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent textpd mt40 boxMarg">
+                        <span className="blocking-span noIb">
+                        <span>
+                            <div className="setFont">Website (If there is an existing website) 
+                                 </div> 
+                          </span>
+                           <input type="text" className="customInputKF inputBox nameParts" name="website" ref="website"
+                                  value={this.state.website}  onChange={this.handleChange.bind(this)} 
+                            />
+                          
+                          {this.state.errors2.website  && (
+                            <span className="text-danger">{this.state.errors2.website}</span> 
+                          )}               
+                        </span>
                       </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 ">

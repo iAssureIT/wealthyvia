@@ -526,6 +526,198 @@ export default class ProductPage extends Component {
 			</div>
 		);
 	}
+  else if(this.state.divID === "superFocused")
+  {
+    return (
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div className="row">
+              
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerContainerSF img-responsive">
+              <div className="row">
+                <div className="col-lg-12 col-md-12 hidden-xs hidden-sm backColorBlack blackDivPP">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      Wealthyvia Super Focused
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>UNLEASH THE POWER OF FOCUS </p>
+                      </div>
+                    </div>
+
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" alt=""/><br/>
+                          <span>Scroll down to know how</span>
+                      </div>
+                </div>
+                </div>
+                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorBlack blackDivPPSmall">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12  bannerContent">
+                    
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 divHeading" >
+                      <div className="row">
+                      Wealthyvia Super Focused
+                      </div>
+                    </div>  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 bannerPara">
+                      <div className="row">
+                        <p>UNLEASH THE POWER OF FOCUS </p>
+                      </div>
+                    </div>
+
+                </div>
+                   <div className="col-lg-1 col-lg-offset-6 col-md-4 hidden-xs hidden-sm slideDownButton" onClick={this.srollDiv.bind(this)}>
+                      <div className="row">
+                          <img src="/images/down.png" alt="" /><br/>
+                          <span>Scroll down to know how</span>
+                      </div>
+                </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 imgInfo backColorYellow imageContainer">
+                <label className="investLabel">The philosophy of Super Focused</label>
+                <p className="col-lg-10 col-lg-offset-1">A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. </p>
+                <p className="col-lg-10 col-lg-offset-1" >Higher the Conviction and higher the strength and continuation, Higher should be the  allocation! Returns are most dependent variable on Risk Reward and position sizing! <br/>
+                If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners! </p>
+            </div> 
+            <div className="hidden-lg hidden-md hidden-sm hidden-xs backColorWhite onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer  ">
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive" alt=""/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">The philosophy of Super Focused </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                        <li>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. </li>
+                        <li>Higher the Conviction and higher the strength and continuation, Higher should be the  allocation! Returns are most dependent variable on Risk Reward and position sizing! </li>
+                        <li>If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  </li>
+
+                        </ul>
+                      </p>                 
+                    </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/over.jpg" className="img-responsive" alt=""/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">The philosophy of Super Focused </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. </li>
+                          <li>Higher the Conviction and higher the strength and continuation, Higher should be the  allocation! Returns are most dependent variable on Risk Reward and position sizing! </li>
+                          <li>If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners! </li>
+
+                        </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+              </div>
+              <ProductChart offeringName="Super Focused" />
+              <div className="col-lg-12 col-md-12 hidden-xs hidden-sm SftestimonialDivPP">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDiv textAlignCenter"> 
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 "></div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 centeredDiv">
+                        <blockquote className="sfblogQuate text-left">“As time goes on, I get more and more convinced that the right method of investment is to put large sums into enterprises which one thinks one knows something about and in the management of which one thoroughly believes. It is a mistake to think one limit’s one’s risk by spreading too much between enterprises about which one knows little and has no reason for special confidence.” 
+                        </blockquote>
+                        <label className="text-left"> - John Maynard Keynes</label>
+                      </div>
+                    </div>    
+                </div>  
+            </div>
+            <div className="hidden-md hidden-lg col-sm-12 col-xs-12 SftestimonialDivPP">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorBlack blackDivOther textAlignCenter"> 
+                    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 "></div>
+                      <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 centeredDiv">
+                        <blockquote className=".blogQuateSmall text-left">“As time goes on, I get more and more convinced that the right method of investment is to put large sums into enterprises which one thinks one knows something about and in the management of which one thoroughly believes. It is a mistake to think one limit’s one’s risk by spreading too much between enterprises about which one knows little and has no reason for special confidence.” 
+                        </blockquote>
+                        <label className="text-left"> - John Maynard Keynes</label>
+                      </div>
+                    </div>  
+                </div>  
+            </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorGray onHoverEffect" >
+                <div className="row">
+               
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Our Strategy & Process </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                        <li>High return Mind-set and target to start with Stock selection based on in-built proprietary Outperformance Ranking System.</li>
+                        <li>Pre-defined Sell strategies & Drawdown avoidance system for risk management & high CAGR maintenance.</li>
+                        <li>Upsizing or Downsizing of existing positions as per the fundamental developments & trend conditions and risk /reward stage.</li>
+                        </ul>
+                      </p>                 
+                    </div>
+                       <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="/images/workWith.jpg"  alt=""/>
+                    </div>
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="/images/workWith.jpg" alt=""/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Our Strategy & Process  </span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>High return Mind-set and target to start with Stock selection based on in-built proprietary Outperformance Ranking System.</li>
+                          <li>Pre-defined Sell strategies & Drawdown avoidance system for risk management & high CAGR maintenance.</li>
+                          <li>Upsizing or Downsizing of existing positions as per the fundamental developments & trend conditions and risk /reward stage.</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+              </div>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
+                <div className="row">
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png" alt=""/>
+                    </div>
+                  <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Why Super Focused ?</span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>Abnormal returns can only come from abnormal portfolios. </li>
+                          <li>The higher the quality of the individual bets, the more concentrated you can be.</li>
+                          <li>Buying a stock way too early and waiting for it to turnaround, is as equal as buying a trending stock at its peak.</li>
+                          <li>Choosing the BEST from the GOOD.</li>
+                          <li>Powered by 5GCPM approach but with a concentration !</li>
+                        </ul>
+                      </p>                 
+                    </div>
+                     
+                <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
+                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png" alt=""/>
+                    </div>
+                  <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
+                    <label><span className="iceBlueColor">Why Super Focused ?</span></label>
+                      <p className="col-lg-12 col-md-10 col-sm-12 col-xs-12 specifications" id="5g">
+                        <ul className="customOl listStyle">
+                          <li>Abnormal returns can only come from abnormal portfolios. </li>
+                          <li>The higher the quality of the individual bets, the more concentrated you can be.</li>
+                          <li>Buying a stock way too early and waiting for it to turnaround, is as equal as buying a trending stock at its peak.</li>
+                          <li>Choosing the BEST from the GOOD.</li>
+                          <li>Powered by 5GCPM approach but with a concentration !</li>
+                        </ul>
+                      </p>                  
+                    </div>
+                
+                </div>
+              </div>
+               
+            <ReadyToGo />
+        </div>  
+      </div>
+    );
+  }
 	else if(this.state.divID === "5gcpm"){
 		return( 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">

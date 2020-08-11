@@ -1,10 +1,16 @@
 const mongoose	        = require("mongoose");
 const Distributormaster = require('../models/distributormaster.js');
+var request             = require('request-promise');
+const globalVariable    = require("../../../nodemon.js");
 
-
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+};
 
 exports.create_distributor = (req, res, next) => {
-	Distributormaster.findOne({email:req.body.email})
+	Distributormaster.findOne({email:{$elemMatch:{address:req.body.email}}})
 		.exec()
 		.then(data =>{
 			if(data){
@@ -19,7 +25,10 @@ exports.create_distributor = (req, res, next) => {
                         "lastname"          : req.body.lastname, 
                         "dob"               : req.body.dob,
                         "phone"             : req.body.phone,
-                        "email"             : req.body.email,
+                        "email"             : {
+                            "address" : req.body.email,
+                            "verified": true
+                        },
                         "ownOffice"         : req.body.ownOffice,   
                         "address"         : {
                             "adressLine"        : req.body.adressLine,
@@ -32,8 +41,10 @@ exports.create_distributor = (req, res, next) => {
                         },
                         "currentDate"          : req.body.currentDate, 
                         "fileUpload"           : req.body.fileUpload, 
+                        "fileUpload1"           : req.body.fileUpload1, 
                         "education"            : req.body.education, 
                         "description"          : req.body.description, 
+                        "website"            : req.body.website, 
                         "gst"               : req.body.gst, 
                         "status"            : "New", 
                         "createdBy"         : req.body.createdBy, //_id of User or null
@@ -117,7 +128,10 @@ exports.patch_distributor = (req,res,next) => {
                                 "lastname"          : req.body.lastname, 
                                 "dob"               : req.body.dob,
                                 "phone"             : req.body.phone,
-                                "email"             : req.body.email, 
+                                "email"             : {
+                                    "address" : req.body.email,
+                                    "verified": true
+                                },
                                 "ownOffice"         : req.body.ownOffice,
                                 "address"           : {
                                     "adressLine"        : req.body.adressLine,
@@ -128,7 +142,10 @@ exports.patch_distributor = (req,res,next) => {
                                 }, 
                                 "gst"               : req.body.gst, 
                                 "education"         : req.body.education, 
+                                "description"          : req.body.description, 
                                 "fileUpload"        : req.body.fileUpload, 
+                                "fileUpload1"        : req.body.fileUpload1, 
+                                "website"        : req.body.website, 
                                 // "status"            : req.body.status, 
                                 "updateLog"         :[{
                                             updatedBy : req.body.updatedBy, 
@@ -227,4 +244,207 @@ exports.fetch_distributor_name = (req,res,next) => {
                 });
 };
 
+exports.distributor_join_email_otp = (req,res,next)=>{
+    
+        Distributormaster.findOne({ "email.address"  : req.body.email })
+            .exec()
+            .then(distributor =>{
+                console.log("distributor", distributor);
+                if(distributor){
+                    return res.status(200).json({
+                        message: 'Email Id already exits.',
+                        distributor: distributor
+                    });
+                }
+                else{
+                    
+                    var emailOTP = getRandomInt(1000,9999);
+                    if(emailOTP){
+                            const distributermaster = new Distributormaster({
+                                    "_id"               : mongoose.Types.ObjectId(), 
+                                        "firstname"         : req.body.firstname,
+                                        "lastname"          : req.body.lastname, 
+                                        "dob"               : req.body.dob,
+                                        "phone"             : req.body.phone,
+                                        "email"             : {
+                                            "address" : req.body.email,
+                                            "verified": false,
+                                            "optEmail": emailOTP
+                                        },
+                                        "ownOffice"         : req.body.ownOffice,   
+                                        "address"         : {
+                                            "adressLine"        : req.body.adressLine,
+                                            "pincode"           : req.body.pincode,
+                                            "city"              : req.body.city,
+                                            "state"             : req.body.state,
+                                            "stateCode"         : req.body.stateCode,         
+                                            "latitude"          : req.body.latitude,
+                                            "longitude"         : req.body.longitude
+                                        },
+                                        "currentDate"          : req.body.currentDate, 
+                                        "fileUpload"           : req.body.fileUpload, 
+                                        "fileUpload1"           : req.body.fileUpload1, 
+                                        "education"            : req.body.education, 
+                                        "description"          : req.body.description, 
+                                        "website"            : req.body.website, 
+                                        "gst"               : req.body.gst, 
+                                        "status"            : "New", 
+                                        "createdBy"         : req.body.createdBy, //_id of User or null
+                                        "createdAt"         : new Date(),    
+                                        "updateLog"         :[{
+                                                            updatedBy : req.body.updatedBy, 
+                                                            updatedAt :new Date,
+                                                        }] 
+                                });
+                                console.log("distributermaster",distributermaster);
+                                distributermaster.save()
+                                    .then(result=>{
+                                            if(result){
+                                                request({
+                                                        "method"    : "POST", 
+                                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                                        "body"      : {
+                                                                            email   : req.body.email, 
+                                                                            subject : "Successfully Creation of your Account on Wealthyvia",
+                                                                            text    : "Dear "+req.body.firstname+" "+req.body.lastname+" Your OTP is "+ emailOTP, 
+                                                                       },
+                                                        "json"      : true,
+                                                        "headers"   : {
+                                                                        "User-Agent": "Test Agent"
+                                                                    }
+                                                    })
+                                                    .then(source=>{
+                                                        res.status(201).json({message:"Distributer__CREATED",ID:result._id})
+                                                    })
+                                                    .catch(err =>{
+                                                        console.log(err);
+                                                        res.status(500).json({
+                                                            error: err
+                                                        });
+                                                    });        
+                                            }else{
+                                                res.status(200).json({message:"Distributor_NOT_CREATED"})
+                                            }
 
+                                        })
+                                        .catch(err =>{
+                                            console.log(err);
+                                            res.status(500).json({
+                                                error: err
+                                            });
+                                        });
+                             
+                   }
+                }
+            })
+            .catch(err =>{
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
+    
+};
+
+exports.check_DistributorEmailOTP = (req,res,next)=>{
+    Distributormaster.findOne({_id : req.params.ID, "email.optEmail" : req.params.emailotp})
+        .exec()
+        .then(data=>{
+            if(data){
+                Distributormaster.updateOne(
+                            {_id : req.params.ID}, 
+                            {
+                                $set:{
+                                    "email.verified" : true,
+                                    "email.optEmail" : 0
+                                }
+                            }
+                    )
+                    .exec()
+                    .then(updateddata=>{
+                        if(updateddata.nModified === 1){
+                            res.status(200).json({message:"SUCCESS", distributor: data});
+                        }else{
+                            res.status(200).json({message:"SUCCESS_OTP_NOT_RESET"});            
+                        }
+                    })
+                    .catch(err =>{
+                        console.log('user error ',err);
+                        res.status(500).json({
+                            error: err
+                        });
+                    })
+            }else{
+                res.status(200).json({message:"FAILED"});
+            }
+        })
+        .catch(err =>{
+            console.log('Distributor error ',err);
+            res.status(500).json({
+                error: err
+            });
+        });     
+};
+
+exports.distributor_update_email_otp = (req,res,next) =>{
+    var optEmail = getRandomInt(1000,9999);
+    //console.log("otp", optEmail);
+    Distributormaster.findOne({ _id  : req.params.ID })
+            .exec()
+            .then(distributor =>{
+                //console.log("distributor", distributor);
+                if(distributor){
+                    Distributormaster.updateOne(
+                        {_id:req.params.ID},
+                        {
+                            $set:{
+                                "email.optEmail"      : optEmail,
+                            },
+                        }
+                    )
+                    .exec()
+                    .then(data=>{
+                        if(data.nModified == 1){
+                            //console.log("data", data);
+                            request({
+                                        "method"    : "POST", 
+                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                        "body"      : {
+                                                            email   : distributor.email.address, 
+                                                            subject : "Wealthyvia OTP",
+                                                            text    : "Wealthyvia updated OTP is "+ optEmail, 
+                                                       },
+                                        "json"      : true,
+                                        "headers"   : {
+                                                        "User-Agent": "Test Agent"
+                                                    }
+                                    })
+                                    .then(source=>{
+                                        res.status(201).json({message:"OTP_UPDATED"})
+                                    })
+                                    .catch(err =>{
+                                        console.log(err);
+                                        res.status(500).json({
+                                            error: err
+                                        });
+                                    });
+                        }else{
+                            res.status(401).status("USER_NOT_UPDATED")
+                        }
+                    })
+                    .catch(err =>{
+                        console.log('user error ',err);
+                        res.status(500).json({
+                            error: err
+                        });
+                    });
+                }
+            })
+            .catch(err =>{
+                console.log(err);
+                res.status(500).json({
+                    error: err
+                });
+            });
+    
+};

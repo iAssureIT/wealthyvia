@@ -173,14 +173,20 @@ export default class disProfile extends Component{
     }
 
   if(status === "Active" ){
+     swal({
+              title: 'Are you sure you want to Approve this distributor information?',
+              dangerMode: true,
+              buttons: true,
+              icon: 'warning',
+            })
    Axios
       .patch("api/distributormaster/set/status",formValues)
        .then((response)=>{
           console.log("status .data = ",response.data);
          if(response.data){
-           swal( "Distributor information approved successfully!" ,
-            "Login credentials have been created & email has been sent to the Distributor.",
-                 "success"); 
+           // swal( "Distributor information approved successfully!" ,
+           //  "Login credentials have been created & email has been sent to the Distributor.",
+           //       "success"); 
           // Swal.fire("Distributer Status updated");
           this.getDistributorFormData();      
         }             
@@ -191,7 +197,7 @@ export default class disProfile extends Component{
               email         : email,
               mobNumber     : phone,
               pwd           : "Welcome@123",
-              role          : 'users',
+              role          : 'distributor',
               status        : 'Active',
           }
           console.log("auth",auth);
@@ -213,10 +219,10 @@ export default class disProfile extends Component{
                                     console.log("admin email list", adminemaillist);
                                     const formValues2 = {
                                       "emaillist"     : adminemaillist ,
-                                      "subject"       : "A Distributor Profile has been Approved!",
+                                      "subject"       : "A Partner Profile has been Approved!",
                                       "text"          : "", 
                                       "mail"          : 'Dear Admin,' + '<br/>'+
-                                                        'You have successfully approved a distributor profile on Wealthyvia! Now the distributor can login to the system & use the Wealthyvia services. Following are the details of the Distributor:'+                          
+                                                        'You have successfully approved a Partner profile on Wealthyvia! Now the Partner can login to the system & can refer client to Wealthyvia. Following are the details of the Partner:'+                          
                                                         "<br/>"+
                                                         "Name: " + firstname + " "+ lastname + "<br/>" +
                                                         "Email:  " + email + "<br/>" +
@@ -243,17 +249,18 @@ export default class disProfile extends Component{
 
                                     const formValues1 = {
                                       "email"         : email ,
-                                      "subject"       : "Your Distributor Profile has been Approved!",
+                                      "subject"       : "Your Partner Profile has been Approved!",
                                       "text"          : "", 
                                       "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
-                                                        "Congratulations! Your distributor profile has been approved on Wealthyvia! Now you can login to the system & use the Wealthyvia services. Following are your login credentials: <br/> " + 
+                                                        "Congratulations! Your Partner profile has been approved on Wealthyvia! Now you can login to the system & can refer client to Wealthyvia. Following are your login credentials: <br/> " + 
                                                         "Email: " + email +
                                                         "<br/>Default Password: " + "Welcome@123" +
                                                         "<br/> <br/> " + 
-                                                        "Hope you enjoy being a Partner of Wealthyvia! " + 
+                                                        "Hope you enjoy being a Partner of Wealthyvia! " +
+                                                        "& can refer client to Wealthyvia." + 
                                                         "<br/><br/> " +
                                                         "Regards<br/> " +
-                                                        "Team Wealthyvia. " ,
+                                                        "Team Wealthyvia. ",
 
                                     };
                                     //console.log("notification",formValues1); 
@@ -262,7 +269,7 @@ export default class disProfile extends Component{
                                       .post('/send-email',formValues1)
                                       .then((res)=>{
                                                  if(res.status === 200){
-                                                   Swal("Thank you for contacting us. We will get back to you shortly.")
+                                                   //Swal("Thank you for contacting us. We will get back to you shortly.")
                                                   }
                                               })
                                               .catch((error)=>{
@@ -270,7 +277,9 @@ export default class disProfile extends Component{
                                                 
                                               });        
                    })
-                  .catch((error) => { console.log('user error: ',error)})
+                  .catch((error) => { console.log('user error: ',error)}
+                      // swal('Distributor information Approved successfully!')    
+                    )
 
                   if(status === 'Active'){
                      Swal.fire(
@@ -282,7 +291,7 @@ export default class disProfile extends Component{
                   }
               })
               .catch((error) => { console.log('user error: ',error)})
-              // console.log("Distributer Master Data inserted successfully!", response.data);
+                      // swal('Distributor information rejected successfully!')    
                })            
            .catch((error)=>{
             console.log("Error during get Status Data = ", error);
@@ -291,7 +300,7 @@ export default class disProfile extends Component{
         }
         else if(status === "Rejected" ){
            swal({
-              title: 'Are you sure you want to Reject this distrobutor information?',
+              title: 'Are you sure you want to Reject this distributor information?',
               dangerMode: true,
               buttons: true,
               icon: 'warning',
@@ -361,7 +370,7 @@ export default class disProfile extends Component{
                               .post('/send-email',formValues1)
                               .then((res)=>{
                                          if(res.status === 200){
-                                           swal("Thank you for contacting us. We will get back to you shortly.")
+                                           //swal("Thank you for contacting us. We will get back to you shortly.")
                                           }
                                       })
                                       .catch((error)=>{
@@ -398,7 +407,6 @@ export default class disProfile extends Component{
 
 
 
-
   render(){
     var params = this.props.match.params;
         console.log("params = ",params);
@@ -412,8 +420,8 @@ export default class disProfile extends Component{
                       <a><i id={"d-"+this.state.DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;</b>
                     {this.state.DistributorData.status==='New' ? 
                   <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={this.state.DistributorData._id+"-"+"Active"} title="Approve Distributor Profile" 
-                          data-firstname={this.state.DistributorData.firstname} data-lastname={this.state.DistributorData.lastname} data-email={this.state.DistributorData.email} data-phone={this.state.DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
-                      <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={this.state.DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;</span>:null}</h4>
+                          data-firstname={this.state.DistributorData.firstname} data-lastname={this.state.DistributorData.lastname} data-email={this.state.DistributorData.email ? this.state.DistributorData.email.address : ''} data-phone={this.state.DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
+                      <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={this.state.DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" data-firstname={this.state.DistributorData.firstname} data-lastname={this.state.DistributorData.lastname} data-email={this.state.DistributorData.email ? this.state.DistributorData.email.address : ''} data-phone={this.state.DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;</span>:null}</h4>
                 </div>
                 <div className = "panel-body">
                   <div className = "col-md-3 col-xs-3 col-sm-3 col-lg-3">
@@ -428,7 +436,7 @@ export default class disProfile extends Component{
                     <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
                       <ul className="container noMl fontWeight pl">
                         <li><p><b>Contact:</b>&nbsp;{this.state.DistributorData.phone}</p></li>
-                        <li><p><b>Email:</b>&nbsp;{this.state.DistributorData.email}</p></li>
+                        <li><p><b>Email:</b>&nbsp;{this.state.DistributorData.email ? this.state.DistributorData.email.address : ''}</p></li>
                         <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li>
                         <li><p><b>DOB:</b>&nbsp;{this.state.DistributorData.dob}</p></li>
                         <li><p><b>Submitted On:</b>&nbsp;{this.state.DistributorData.currentDate}</p></li>

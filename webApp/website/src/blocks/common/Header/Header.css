@@ -809,3 +809,13 @@ hr{
 .mr15{
   margin-top:15px !important;
 }
+.enquirenowsidebtn{
+  transform: rotate(90deg);
+  position: fixed !important;
+  right: -43px;
+  top: 41%;
+  background-color: #201a47 !important;
+  color: #FFF !important;
+  z-index: 1;
+  padding: 14px 19px !important;
+}
