@@ -415,17 +415,16 @@ export default class FreeResearchReport extends Component {
 
 								<div className="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 nopadding ">
 									<div className="col-lg-12 ">
-										<div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+										<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 											<h4 className="pageheading">Research Reports</h4>
 										</div>
-										<div  className="col-lg-7 col-md-7 col-sm-12 col-xs-12 ">
+										<div  className="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
 											<div className="row">
-												<div className="outerborder noPadding reportborder col-lg-5 col-md-5 col-sm-12 col-xs-12"><input type="text" name="search" placeholder="Search.." className="pull-right customInputAllBlog searchinput searchreportinput" ref="searchBox" onKeyUp={this.searchResearchreport.bind(this)}/><i className="fa fa-search pad10search"></i></div>
-											    
+												
 											    <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 reportborder">
 								                     <div className="reportWrapper col-lg-12 nopadding">
 								                          
-								                           <div className="tab-content col-lg-12 col-md-12 col-sm-12 col-xs-12">
+								                           <div className="tab-content col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding">
 						                                        <div className="tab-pane" id="Daily">
 						                                          <div className="marginStyle col-lg-12 nopadding">
 						                                            <div className="col-lg-12 col-md-6 col-sm-12 col-xs-12 searchBoxBugt margintopReport">
@@ -464,6 +463,11 @@ export default class FreeResearchReport extends Component {
 
 								                     </div>
 								                </div>
+								            
+									            <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 outerborder noPadding reportborder ">
+									            	<input type="text" name="search" placeholder="Search.." className="pull-right customInputAllBlog searchinput searchreportinput" ref="searchBox" onKeyUp={this.searchResearchreport.bind(this)}/>
+									            	<i className="fa fa-search pad10search"></i>
+									            </div>
 								            </div>
 									    </div>
 										

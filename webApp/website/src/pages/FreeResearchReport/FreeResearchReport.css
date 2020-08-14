@@ -57,6 +57,7 @@
 }
 .reportborder {
     margin-top: 30px;
+    margin-right: 0px !important;
 }
 .imgpdf{
     width:100%;
@@ -103,4 +104,15 @@
 .top-border-block {
     padding: 20px 10px 20px 10px;
 }
+}
+
+input[type="month"]::-webkit-inner-spin-button,
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-clear-button {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.todaysdate{
+    text-align: center;
 }

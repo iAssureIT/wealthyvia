@@ -518,19 +518,17 @@ export default class Header extends Component {
   
   handleChange1(event){
       this.setState({
-        "nameModal"             : this.refs.nameModal.value,
-        "contactNumberModal"    : this.refs.contactNumberModal.value,
-        "emailModal"            : this.refs.emailModal.value,
+        [event.currentTarget.name]: event.currentTarget.value
         });
        
         let fields1 = this.state.fields1;
-      fields1[event.target.name] = event.target.value;
+      fields1[event.currentTarget.name] = event.currentTarget.value;
       this.setState({
         fields1
       });
-      if (this.validateFormModal() && this.validateFormReqModal()) {
+      if (this.validateFormModal() ) {
         let errors1 = {};
-        errors1[event.target.name] = "";
+        errors1[event.currentTarget.name] = "";
         this.setState({
           errors1: errors1
         });
@@ -1292,9 +1290,9 @@ export default class Header extends Component {
                                         </a>
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
@@ -1361,8 +1359,8 @@ export default class Header extends Component {
                                         </a>
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
@@ -1460,9 +1458,9 @@ export default class Header extends Component {
                                         </a>
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
@@ -1538,9 +1536,9 @@ export default class Header extends Component {
                                         </a>
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
