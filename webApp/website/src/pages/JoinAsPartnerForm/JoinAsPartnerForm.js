@@ -151,10 +151,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["dob"] = "This field is required.";
         } */         
-        if (!fields["fileUpload"]) {
+        /*if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
-        }          
+        }  */        
         if (!fields["phone"]) {
           formIsValid = false;
           errors["phone"] = "This field is required.";
@@ -262,7 +262,7 @@ export default class JoinAsPartnerForm extends Component {
                           else if(partnerdata.status == 'New'){
                             swal("","Your profile is already pending for Approval. You'll receive an Email after Admin approves your Profile.");
                             this.props.history.push("/");
-                            window.location.reload();
+                            //window.location.reload();
                           }
                           else if(partnerdata.status == 'Active'){
                             swal("","You are already an Active partner. Please login with your registered email id to continue.");

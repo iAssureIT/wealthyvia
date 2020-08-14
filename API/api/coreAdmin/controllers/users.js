@@ -160,6 +160,84 @@ exports.user_signup_user = (req,res,next)=>{
 		res.status(200).json({message:"Email , pwd and Role are mandatory"});
 	}
 };
+
+exports.user_signup_distributor = (req,res,next)=>{
+	if(req.body.role && req.body.email && req.body.pwd){
+		User.find({emails:{$elemMatch:{address:req.body.email}}})
+			.exec()
+			.then(user =>{
+				if(user.length >= 1){
+					return res.status(409).json({
+						message: 'Email Id already exits.'
+					});
+				}else{
+					bcrypt.hash(req.body.pwd,10,(err,hash)=>{
+						if(err){
+							return res.status(500).json({
+								error:err
+							});
+						}else{
+							const user = new User({
+											_id: new mongoose.Types.ObjectId(),
+											createdAt	: new Date,
+											createdBy   : req.body.createdBy,
+											services	: {
+												password:{
+															bcrypt:hash
+															
+														},
+											},
+											username	: req.body.email,
+											emails		: [
+													{
+														address  : req.body.email,
+														verified : true 
+													}
+											],
+											profile		:
+													{
+														firstname     : req.body.firstname,
+														lastname      : req.body.lastname,
+														fullName      : req.body.firstname+' '+req.body.lastname,
+														emailId       : req.body.email,
+														mobNumber     : req.body.mobNumber,
+														createdOn     : new Date(),
+														status		  : req.body.status,
+														passwordreset : false
+													},
+											roles 		: [req.body.role]
+							});	
+							if(!req.body.firstname){
+								user.profile.fullName = req.body.fullName;
+							}
+							user.save()
+								.then(result =>{
+									res.status(201).json({
+										message	: 'User created',
+										ID 		: result._id,
+									})
+								})
+								.catch(err =>{
+									console.log(err);
+									res.status(500).json({
+										error: err
+									});
+								});
+						}			
+					});
+				}
+			})
+			.catch(err =>{
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	}else{
+		res.status(200).json({message:"Email , pwd and Role are mandatory"});
+	}
+};
+
 exports.user_signup_user_email_otp = (req,res,next)=>{
 	if(req.body.role && req.body.email && req.body.pwd){
 		User.find({emails:{$elemMatch:{address:req.body.email}}})
@@ -418,26 +496,26 @@ exports.admin_login = (req,res,next) =>{
 		});
 };
 exports.distributor_login = (req,res,next) =>{
-	console.log("distributor login")
+	//console.log("distributor login")
 	User.findOne({
 					emails	: {$elemMatch:{address:req.body.email}},
 					roles   : ["distributor"]
 				})
 		.exec()
 		.then(user => {
-			console.log("user ",user);
+			//console.log("user ",user);
 			if(user != null && user != undefined){
 				var pwd = user.services.password.bcrypt;
 				if(pwd){
 					bcrypt.compare(req.body.password,pwd,(err,result)=>{
-						console.log("distributor err ",err,"result",result);
+						//console.log("distributor err ",err,"result",result);
 						if(err || !result){
 							return res.status(401).json({
 								message: 'Auth failed'
 							});		
 						}
 						if(result){
-							console.log("distributor result ====> ",globalVariable); 
+							//console.log("distributor result ====> ",globalVariable); 
 							const token = jwt.sign({
 								email 	: req.body.email,
 								userId	:  user._id ,
@@ -1009,4 +1087,49 @@ exports.change_password_email_verify = (req,res,next)=>{
 					error: err
 				});
 			})
+};
+
+exports.reset_distributor_password = (req,res,next)=>{
+	console.log("user_update_password_ID params ",req.params);
+	console.log("user_update_password_ID body ",req.body);
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(user=>{
+			if(user){
+				bcrypt.hash(req.body.pwd,10,(err,hash)=>{
+				    User.updateOne(
+				        {_id:req.params.ID},  
+				        {
+				            $set:{
+								"services.password.bcrypt" : hash,
+								"profile.passwordreset"    : true								
+							}			
+				        }
+				    )
+				    .exec()
+				    .then(data=>{
+				        // console.log('data ',data);
+				        if(data.nModified == 1){
+				            res.status(200).json("PASSWORD_RESET");
+				        }else{
+				            res.status(401).json("PASSWORD_NOT_RESET");
+				        }
+				    })
+				    .catch(err =>{
+				        console.log(err);
+				        res.status(500).json({
+				            error: err
+				        });
+					});
+				});
+			}else{
+				res.status(404).json("User Not Found");
+			}
+		})
+		.catch(err=>{
+			// console.log('update user status error ',err);
+			res.status(500).json({
+				error:err
+			});
+		});
 };

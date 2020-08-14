@@ -175,3 +175,27 @@ exports.search_researchreport = async (req,res,next) =>{
 
 };
 
+exports.fetch_researchreport_list_bydate = (req,res,next) => {
+    console.log("grater",new Date(req.body.startDate),"less",new Date(req.body.endDate));
+    ResearchReport.aggregate([
+        {$match:{'createdAt':{$gte : new Date(req.body.startDate), $lt : new Date(req.body.endDate) }}},
+        { "$sort": { "createdAt": -1 } },        
+    ])
+    .exec()
+    .then(data=>{
+        if(data.length > 0 ){
+                res.status(200).json(data);
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+    })
+    .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+         
+};
+
+

@@ -14,6 +14,8 @@ router.patch('/set/status'				, distributormaster.setstatus_distributor);
 router.post('/post/distributor/emailotp', distributormaster.distributor_join_email_otp);
 router.get('/get/checkotp/:ID/:emailotp', distributormaster.check_DistributorEmailOTP);
 router.patch('/update/optEmail/:ID'      , distributormaster.distributor_update_email_otp);
+router.get('/get/one/byuserid/:ID'		, distributormaster.fetch_distributor_by_userid);
+router.patch('/patch/additionalinfo/:ID', distributormaster.add_additional_info_distributor);
 //**************************Set status approve or reject *************************//
 
 

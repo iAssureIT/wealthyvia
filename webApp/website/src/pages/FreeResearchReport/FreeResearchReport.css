@@ -79,6 +79,15 @@
 .leftspace{
     margin-left: 5px;
 }
+.searchreportinput{
+    width:84%;
+}
+.lineheightdate{
+    line-height: 1.8
+}
+.lineheightarrw{
+    line-height: 1.26 !important
+}
 @media only screen and (max-width: 767px){
 .pageheading {
     font-size: 24px;

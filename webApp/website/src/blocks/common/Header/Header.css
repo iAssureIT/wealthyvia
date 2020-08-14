@@ -810,12 +810,18 @@ hr{
   margin-top:15px !important;
 }
 .enquirenowsidebtn{
-  transform: rotate(90deg);
+  /*transform: rotate(90deg);*/
   position: fixed !important;
-  right: -43px;
-  top: 41%;
-  background-color: #201a47 !important;
+  right: 0px;
+  top: 42%;
+  background-color: #009dd7 !important;
+  border: 2px #009dd7 solid !important;
   color: #FFF !important;
   z-index: 1;
   padding: 14px 19px !important;
+
+}
+
+.modal-open{
+  padding-right: 0px !important
 }

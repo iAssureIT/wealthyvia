@@ -447,7 +447,20 @@ export default class disProfile extends Component{
                         <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
                         <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
                         <li><p><b>Distributor has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
-                        <li><p><b>PAN/Aadhar Document:</b> &nbsp; <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload}> <img src="/images/pdf.png" height="50" width="50"/></a></p></li>
+                        <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload}> 
+                           {
+                              (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
+                                  <img src="/images/pdf.png"/>
+                                :
+                                  <img src={this.state.DistributorData.fileUpload} height="50" width="50"/>
+                            }  </a></p></li>
+                        <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload1}>{
+                              (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
+                                  <img src="/images/pdf.png"/>
+                                :
+                                  <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
+                            }  </a></p></li>
+                            
                       </ul>
                     </div>
                   </div>

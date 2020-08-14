@@ -59,6 +59,16 @@ class ConfirmPartnerEmailOtp extends Component {
                                           "<br/><br/> " +
                                           "Regards<br/> " +
                                           "Team Wealthyvia. " ,
+                        "attachments" : [   
+                                          {
+                                            "name" : "Adhar",
+                                            "path" : distributor.fileUpload
+                                              },
+                                              {
+                                            "name" : "PAN",
+                                            "path" : distributor.fileUpload1
+                                              },
+                                        ]                  
                                           
 
                       };
@@ -80,7 +90,7 @@ class ConfirmPartnerEmailOtp extends Component {
                         "email"         : distributor.email.address ,
                         "subject"       : "Welcome to Wealthyvia!",
                         "text"          : "", 
-                        "mail"          : 'Dear' + distributor.firstname +' '+ distributor.lastname + ', <br/><br/>'+                          
+                        "mail"          : 'Dear ' + distributor.firstname +' '+ distributor.lastname + ', <br/><br/>'+                          
                                           "Thank you for joining Wealthyvia as a Partner! <br/> " + 
                                           "Your Partner Profile will be approved soon by Admin & you will be notified with your login credentials after approval." +
                                           "<br/> <br/> " + 

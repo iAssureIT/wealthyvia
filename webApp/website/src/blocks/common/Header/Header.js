@@ -1291,13 +1291,13 @@ export default class Header extends Component {
                                           Offerings <span className="caret"></span>
                                         </a>
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
-                                          <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
-                                          <a className="dropdown-item" href="/#superfocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
-                                          <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
-                                          <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
                                           <a className="dropdown-item" href="#">Multibagger</a>
                                         </ul>
                                       </li>
@@ -1360,12 +1360,12 @@ export default class Header extends Component {
                                           Offerings <span className="caret"></span>
                                         </a>
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
-                                          <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
-                                          <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
-                                          <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
-                                          <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
                                           <a className="dropdown-item" href="#">Multibagger</a>
                                         </ul>
                                       </li>
@@ -1459,13 +1459,13 @@ export default class Header extends Component {
                                           Offerings <span className="caret"></span>
                                         </a>
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
-                                          <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
-                                          <a className="dropdown-item" href="/#superfocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
-                                          <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
-                                          <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
                                           <a className="dropdown-item" href="#">Multibagger</a>
                                         </ul>
                                       </li>
@@ -1537,13 +1537,13 @@ export default class Header extends Component {
                                           Offerings <span className="caret"></span>
                                         </a>
                                         <ul className="dropdown-menu customDropdown " aria-labelledby="navbarDropdownMenuLink">
-                                          <a  className="dropdown-item" href="/#5gcpm">5GCPM</a>
-                                          <a className="dropdown-item" href="/#safeHeavenMoats">Safe Heavan Moats</a>
-                                          <a className="dropdown-item" href="/#superfocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
+                                          <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heavan Moats</a>
+                                          <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
+                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heavan Stocks + Alpha</a>
                                          <a className="dropdown-item" href="#">Nifty Algo Trading</a>
-                                          <a className="dropdown-item" href="/#USAStocks">USA Stocks</a>
-                                          <a className="dropdown-item" href="/#unlistedStocks">Unlisted Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
+                                          <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
                                           <a className="dropdown-item" href="#">Multibagger</a>
                                         </ul>
                                       </li>
@@ -1603,7 +1603,7 @@ export default class Header extends Component {
           </div>
           <div className="row">
           <div className="modal fade in " id="EnquireModal" role="dialog">
-                                <div className="modal-dialog modal-lg  customModalEN" >
+                                <div className="modal-dialog customModalEN" >
                                  <div className="modal-header textAlignCenter modalHeaderCustom">
                                     <button type="button" className="close" data-dismiss="modal" > <i className="fa fa-times"></i></button>
                                     <h4 className="modal-title">Enquire Now</h4>

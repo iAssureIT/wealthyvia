@@ -2,6 +2,7 @@ const mongoose	        = require("mongoose");
 const Distributormaster = require('../models/distributormaster.js');
 var request             = require('request-promise');
 const globalVariable    = require("../../../nodemon.js");
+const User              = require('../../coreAdmin/models/users.js');
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -47,6 +48,7 @@ exports.create_distributor = (req, res, next) => {
                         "website"            : req.body.website, 
                         "gst"               : req.body.gst, 
                         "status"            : "New", 
+                        "userId"            : null,
                         "createdBy"         : req.body.createdBy, //_id of User or null
                         "createdAt"         : new Date(),    
                         "updateLog"         :[{
@@ -177,6 +179,68 @@ exports.patch_distributor = (req,res,next) => {
             console.log("else data",data);*/         
 }
 
+exports.add_additional_info_distributor = (req,res,next) => {
+    console.log("inside a additional info update function");
+    Distributormaster.updateOne(
+                        {userId:req.params.ID},
+                        {
+                            $set : {
+                                "firstname"         : req.body.firstname,
+                                "lastname"          : req.body.lastname, 
+                                "dob"               : req.body.dob,
+                                "phone"             : req.body.phone,
+                                "ownOffice"         : req.body.ownOffice,
+                                "address"           : {
+                                    "adressLine"        : req.body.adressLine,
+                                    "pincode"           : req.body.pincode,
+                                    "city"              : req.body.city,
+                                    "state"             : req.body.state,
+                                    "stateCode"         : req.body.stateCode,         
+                                }, 
+                                "gst"               : req.body.gst, 
+                                "education"         : req.body.education, 
+                                "description"          : req.body.description, 
+                                "fileUpload"        : req.body.fileUpload, 
+                                "fileUpload1"        : req.body.fileUpload1, 
+                                "website"        : req.body.website, 
+                                "aadharnumber"   : req.body.aadharnumber,
+                                "pannumber"    : req.body.pannumber,
+                                "accountnumber": req.body.accountnumber,
+                                "bankname"     : req.body.bankname,
+                                "branchname"   : req.body.branchname,
+                                "IFSCcode"     : req.body.IFSCcode,
+                                "MICRcode"     : req.body.MICRcode,
+                                // "status"            : req.body.status, 
+                                "updateLog"         :[{
+                                            updatedBy : req.body.updatedBy, 
+                                            updatedAt :new Date,
+                                        }] 
+                            }
+                        }
+                    )
+        .exec()
+        .then(data=>{
+            console.log("data",data);
+            res.status(200).json({
+                data : data,
+                message :"DISTRIBUTOR_UPDATED"
+            })
+        })
+        .catch(error=>{
+                res.status(500).json({
+                    error : error,
+                    message : "Some issue occurred while updating Distributer Data!"
+                })
+        });
+            // console.log("if data",data);
+            /*if(data.nModified === 1){
+               return  res.status(200).json({message : "DISTRIBUTOR_UPDATED"})
+
+            }else{
+               return  res.status(200).json({message : "DISTRIBUTOR_NOT_UPDATED"})
+            console.log("else data",data);*/         
+}
+
 //*****************set Status (approve Or reject) Update Function *********************//
 
 exports.setstatus_distributor = (req,res,next) => {
@@ -186,6 +250,7 @@ exports.setstatus_distributor = (req,res,next) => {
                         {
                             $set : {
                                  "status"            : req.body.status, 
+                                 "userId"            : req.body.userId,
                                 "updateLog"          : [{
                                         updatedBy    : req.body.updatedBy, 
                                         updatedAt    : new Date,
@@ -212,20 +277,63 @@ exports.setstatus_distributor = (req,res,next) => {
 
 
 exports.delete_distributor = (req,res,next) =>{
-    Distributormaster.deleteOne({_id:req.params.ID})
+    Distributormaster.findOneAndRemove({_id:req.params.ID})
          .exec()
          .then(data=>{
-            if(data.deletedCount === 1){
-                res.status(200).json({message : "DISTRIBUTOR_DELETED"})
-            }else{
-                res.status(200).json({message : "DISTRIBUTOR_NOT_DELETED"})
-            }
+            //console.log("deleted record", data);
+            User.findOneAndRemove({
+                    emails  : {$elemMatch:{address:data.email.address}},
+                    roles   : ["distributor"]
+                })
+            .exec()
+            .then(userdata => {
+                //console.log("user deleted", userdata)
+                if(data.deletedCount === 1){
+                    res.status(200).json({message : "DISTRIBUTOR_AND_USERDELETED"})
+                }else{
+                    res.status(200).json({message : "DISTRIBUTOR_AND_USER_NOT_DELETED"})
+                }
+            })
+            .catch(error=>{
+                res.status(500).json({
+                    error : error,
+                    message : "Some issue occurred while deleting user Data!"
+                })
+            });
+            
          })
+         .catch(error=>{
+                res.status(500).json({
+                    error : error,
+                    message : "Some issue occurred while deleting distributor Data!"
+                })
+          });
 };
 
 exports.fetch_distributor_name = (req,res,next) => {
     console.log("inside fun");
     Distributormaster.findOne({_id : req.params.ID})
+         .exec()
+         .then(data=>{
+                    console.log("data",data);
+
+            if(data){
+                res.status(200).json(data);
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+
+exports.fetch_distributor_by_userid = (req,res,next) => {
+    console.log("inside fun");
+    Distributormaster.findOne({ userId : req.params.ID })
          .exec()
          .then(data=>{
                     console.log("data",data);
@@ -289,6 +397,7 @@ exports.distributor_join_email_otp = (req,res,next)=>{
                                         "website"            : req.body.website, 
                                         "gst"               : req.body.gst, 
                                         "status"            : "New", 
+                                        "userId"            : null,
                                         "createdBy"         : req.body.createdBy, //_id of User or null
                                         "createdAt"         : new Date(),    
                                         "updateLog"         :[{
@@ -306,7 +415,7 @@ exports.distributor_join_email_otp = (req,res,next)=>{
                                                         "body"      : {
                                                                             email   : req.body.email, 
                                                                             subject : "Verify your Account of Wealthyvia",
-                                                                            text    : "Dear "+req.body.firstname+" "+req.body.lastname+"\n To verify your account of Wealthyvia, please enter following OTP. \n Your OTP is "+ emailOTP+ "\n Regards, \n Team Wealthyvia.", 
+                                                                            mail    : "Dear "+req.body.firstname+" "+req.body.lastname+",<br/> To verify your account of Wealthyvia, please enter following OTP. <br/> Your OTP is "+ emailOTP+ "<br/><br/> Regards, <br/> Team Wealthyvia.", 
                                                                        },
                                                         "json"      : true,
                                                         "headers"   : {

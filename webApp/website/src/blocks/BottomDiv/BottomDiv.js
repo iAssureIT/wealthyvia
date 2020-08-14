@@ -19,7 +19,7 @@ export default class BottomDiv extends Component {
 			  			<img src="/images/ab2.jpg" alt=""/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">5GCPM</label><br/><br/>
-				          <span className="shopNowButtonFilters">Check Perhormance</span><br/>
+				          <span className="shopNowButtonFilters">Check Performance</span><br/>
 				        </div>
 				          <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">5GCPM</label><br/>

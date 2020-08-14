@@ -10,6 +10,7 @@ router.get('/get/all/list/:pageno', ResearchReportController.fetch_researchrepor
 router.get('/get/search/list/:searchtxt', ResearchReportController.search_researchreport);
 router.patch('/patch/:ID', ResearchReportController.patch_researchreport);
 router.delete('/delete/:ID', ResearchReportController.delete_researchreport);
+router.post('/get/all/list/bydate', ResearchReportController.fetch_researchreport_list_bydate);
 
 
 module.exports = router;

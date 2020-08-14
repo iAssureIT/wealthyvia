@@ -5,6 +5,7 @@ const UserController = require('../controllers/users.js');
 
 router.post('/post/signup/admin', UserController.user_signup_admin); //Working
 router.post('/post/signup/user', UserController.user_signup_user); //Working
+router.post('/post/signup/distributor', UserController.user_signup_distributor); //Working
 router.post('/post/signup/user/emailotp', UserController.user_signup_user_email_otp); //Working
 router.post('/post/login',UserController.user_login); //Working
 router.post('/post/login/admin',UserController.admin_login); //Working
@@ -24,6 +25,7 @@ router.get('/get/checkotp/:ID/:emailotp',UserController.check_EmailOTP);
 router.get('/get/:ID',UserController.fetch_user_ID);
 router.delete('/delete/:ID',UserController.delete_user_ID);
 
+router.patch('/patch/distributor/resetpassword/:ID',UserController.reset_distributor_password);
 
 
 // router.get('/list', checkAuth,UserController.users_list); //Working

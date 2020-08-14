@@ -38,6 +38,7 @@ const userSchema = mongoose.Schema({
 						optEmail	  			: String,
 						createdOn 				: String,
 						clientId 				: String,
+						passwordreset           : Boolean
 					},
 	roles : [String],
 	heartbeat : Date

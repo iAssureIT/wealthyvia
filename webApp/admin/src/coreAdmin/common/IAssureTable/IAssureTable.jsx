@@ -665,7 +665,7 @@ class IAssureTableUM extends Component {
 		
 		// var newID 			= FlowRouter.getParam("mailId");
 		var formValues ={
-			"password" 	 : conPassword,
+			"pwd" 	 : conPassword,
 		}
 
 		var newID 		=  $(event.target).attr('id');
@@ -686,6 +686,7 @@ class IAssureTableUM extends Component {
 					  		  var modal = document.getElementById(modalid);
 					  		  modal.style.display = "none";
 	             			  $('.modal-backdrop').remove();
+	             			  window.location.reload();
 					      })
 					      .catch((error)=>{
 					        console.log("error = ",error);
