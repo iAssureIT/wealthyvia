@@ -32,17 +32,17 @@
 .onHoverEffect:hover{
 
 }
-.fiveG img {
+.sfocusedG img {
     height: 400px;
     width: 100%;
 }
-.fiveG {
+.sfocusedG {
     height: 400px;
-    margin-top: -380px;
+    margin-top: -600px;
     background-image: url("/images/loading.gif");
     background-repeat: no-repeat;
 }
-.fiveG p{
+.sfocusedG p{
         justify-content: center;
 
 }

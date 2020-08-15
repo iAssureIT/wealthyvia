@@ -658,10 +658,10 @@ export default class ProductPage extends Component {
                       </p>                 
                     </div>
                        <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="/images/workWith.jpg"  alt=""/>
+                        <img src="/images/superfocusedstrategy.jpg"  alt=""/>
                     </div>
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="/images/workWith.jpg" alt=""/>
+                        <img src="/images/superfocusedstrategy.jpg" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Our Strategy & Process  </span></label>
@@ -679,7 +679,7 @@ export default class ProductPage extends Component {
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite onHoverEffect" >
                 <div className="row">
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png" alt=""/>
+                        <img src="/images/whysuperfocus.jpg" alt=""/>
                     </div>
                   <div className="col-lg-6 col-md-6 hidden-sm hidden-xs   typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Why Super Focused ?</span></label>
@@ -695,7 +695,7 @@ export default class ProductPage extends Component {
                     </div>
                      
                 <div className="hidden-lg hidden-md col-sm-12 col-xs-12 imageContainer ">
-                        <img src="https://wealthyvia.s3.ap-south-1.amazonaws.com/website/companiesWeAvoid.png" alt=""/>
+                        <img src="/images/whysuperfocus.jpg" alt=""/>
                     </div>
                   <div className="hidden-lg hidden-md col-sm-12 col-xs-12 typesOfGrouth learnMoreST">
                     <label><span className="iceBlueColor">Why Super Focused ?</span></label>

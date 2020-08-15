@@ -30,16 +30,16 @@ export default class Superfocusedblock extends Component {
                   <div className="row">
                     <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">Super Focused </span></label>
-                    <p> A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. 
-                      Higher the Conviction and higher the strength and continuation , Higher should be the  allocation ! Returns are most dependent variable on Risk Reward and position sizing! 
-                      If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  
-                    </p><a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a> &nbsp;&nbsp;
+                    <p> Abnormal returns can only come from abnormal portfolios. If you need some form of concentration to deliver significant alpha, it all boils down to the intrinsic quality of the individual investments you put in the portfolio. The higher the quality of the individual bets, the more concentrated you can be. 
+                    </p>
+                    <p>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate above average CAGR. Typically, portfolio managers would sell the shares of companies that are considered overvalued to raise cash to buy shares of companies that are considered undervalued. And this is exactly the reason for mediocre returns of the Fund Managers.</p>
+                    <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a> &nbsp;&nbsp;
                         <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                     </div>
                    
                   </div>
                 </div>
-               <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-sm hidden-xs padding40 fiveG para1 ">
+               <div className="col-lg-6 col-lg-offset-6 col-md-6  hidden-sm hidden-xs padding40 sfocusedG para1 ">
                     <img className="row" src="/images/superfocused.png" alt=""/>
                 </div>
                   <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
@@ -51,9 +51,8 @@ export default class Superfocusedblock extends Component {
                           <div className="row">
                             <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
                             <label><span className="iceBlueColor">Super Focused </span></label>
-                            <p>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. 
-                              Higher the Conviction and higher the strength and continuation , Higher should be the  allocation ! Returns are most dependent variable on Risk Reward and position sizing! 
-                              If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  </p>
+                            <p>Abnormal returns can only come from abnormal portfolios. If you need some form of concentration to deliver significant alpha, it all boils down to the intrinsic quality of the individual investments you put in the portfolio. The higher the quality of the individual bets, the more concentrated you can be. </p>
+                            <p>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate above average CAGR. Typically, portfolio managers would sell the shares of companies that are considered overvalued to raise cash to buy shares of companies that are considered undervalued. And this is exactly the reason for mediocre returns of the Fund Managers.</p>
                               <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
                               &nbsp;&nbsp;
                         <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>

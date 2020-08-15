@@ -116,3 +116,9 @@ input[type="month"]::-webkit-clear-button {
 .todaysdate{
     text-align: center;
 }
+
+.margintopReport{
+    margin-right: -20px;
+    float: right !important;
+}
+    

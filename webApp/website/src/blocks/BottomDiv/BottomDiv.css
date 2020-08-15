@@ -183,3 +183,10 @@
 .shopNowButtonFilters:hover{
     cursor: pointer;
 }
+
+.miniDiv1Filter.ht162:hover .miniFilterTextDiv1{
+    margin-top: -220px !important;
+}
+.miniDiv1Filterother.height170:hover .miniFilterTextDiv2{
+    margin-top: -220px !important;
+}

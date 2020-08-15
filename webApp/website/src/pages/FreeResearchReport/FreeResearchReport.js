@@ -441,7 +441,7 @@ export default class FreeResearchReport extends Component {
 						                                        </div>
 						                                        
 						                                        <div className="tab-pane active" id="Monthly">
-						                                          <div className="marginStyle col-lg-12 col-md-12 col-sm-12 col-xs-12  searchBoxBugt  margintopReport nopadding">
+						                                          <div className="marginStyle col-lg-12 col-md-12 col-sm-12 col-xs-12  searchBoxBugt  margintopReport nopadding monthfieldright">
 						                                          
 						                                            <div className="input-group-addon HRMSAddon col-lg-2 col-md-2 col-sm-2 col-xs-2 lineheightarrw" id="previousDate" onClick={this.previousMonth.bind(this)}>
 						                                              <span className="fa fa-caret-left nextarrow"></span>
