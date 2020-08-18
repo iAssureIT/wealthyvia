@@ -1,0 +1,47 @@
+.seperatevideo{
+	margin: 15px;
+}
+.setTopMargin{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.setMb{
+	margin-bottom: 10px;
+}
+.ml45{
+	margin-left: 70px;
+}
+.setMarginRight{
+	margin-right: 24px;
+}
+.setMarginLeft{
+	margin-left: 25px;
+}
+.zeroMarginB{
+	margin-bottom: 0px;
+}
+label .zeroMarginB{
+	margin-bottom: 0px;
+
+}
+.nppadding{
+	padding: 0px 0px;
+}
+
+h3 .heading b{
+	font-family: montserrat-regular;
+}
+
+
+td a .pl50{
+	margin-left: 41px;
+}
+td .textAlign{
+	text-align: center;
+}
+.td_title{
+	width: 25%;
+}
+td a .pt30{
+	padding-top: 30px;
+}

@@ -151,10 +151,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["dob"] = "This field is required.";
         } */         
-        /*if (!fields["fileUpload"]) {
+        if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
-        }  */        
+        }          
         if (!fields["phone"]) {
           formIsValid = false;
           errors["phone"] = "This field is required.";
@@ -262,7 +262,7 @@ export default class JoinAsPartnerForm extends Component {
                           else if(partnerdata.status == 'New'){
                             swal("","Your profile is already pending for Approval. You'll receive an Email after Admin approves your Profile.");
                             this.props.history.push("/");
-                            //window.location.reload();
+                            window.location.reload();
                           }
                           else if(partnerdata.status == 'Active'){
                             swal("","You are already an Active partner. Please login with your registered email id to continue.");
@@ -720,7 +720,7 @@ export default class JoinAsPartnerForm extends Component {
                   <h6 className="ApplicationName"><span className="">Distributor Application </span></h6>
                 </div>
                 <form>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP setTopMargin">
                     <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
@@ -733,7 +733,7 @@ export default class JoinAsPartnerForm extends Component {
                           )}
                           <span className="floating-label">
                             <i className="fa fa-user-circle-o signupIconFont" aria-hidden="true"/> 
-                            First Name
+                            First Name <span className="fontSize"> *</span> 
                           </span>                 
                         </span>
                       </div>
@@ -748,7 +748,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label1 lbfloatpass">
                               <i className="fa fa-user-circle-o signupIconFont" aria-hidden="true"/> 
-                              Last Name
+                              Last Name <span className="fontSize"> *</span>
                             </span>                 
                         </span>
                       </div>
@@ -765,7 +765,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label">
                               <i className="fa fa-mobile signupIconFont" aria-hidden="true"/> 
-                              Mobile Number
+                              Mobile Number <span className="fontSize"> *</span>
                             </span>                 
                         </span>
                       </div>
@@ -780,7 +780,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label1 lbfloatpass smsetMargin">
                               <i className="fa fa-envelope-o signupIconFont" aria-hidden="true"/> 
-                              Email ID
+                              Email ID <span className="fontSize"> *</span>
                             </span>                 
                         </span>
                       </div>
@@ -797,7 +797,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label">
                               <i className="fa fa-graduation-cap signupIconFont" aria-hidden="true"/> 
-                              Education
+                              Education 
                             </span>                 
                         </span>
                       </div>
@@ -812,7 +812,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label1 lbfloatpass">
                               <i className="fa fa-id-card signupIconFont" aria-hidden="true"/> 
-                              GST Number
+                              GST Number 
                             </span>                 
                         </span>
                       </div>
@@ -837,7 +837,7 @@ export default class JoinAsPartnerForm extends Component {
                                 />
                                 <span className="floating-label">
                                   <i className="fa fa-map-marker signupIconFont" aria-hidden="true"/> 
-                                    Location
+                                    Location 
                                 </span>
                                 <div className="autocomplete-dropdown-container">
                                   {loading && <div>Loading...</div>}
@@ -891,7 +891,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label1 lbfloatpass">   
                               <i className="signupIconFont fa fa-calendar-o" aria-hidden="true"/> 
-                                    Date Of Birth
+                                    Date Of Birth <span className="fontSize"> *</span>
                             </span>                 
                         </span>
                       </div>
@@ -908,7 +908,8 @@ export default class JoinAsPartnerForm extends Component {
                             <span className="floating-label1 lbfloatpass ml5 ">   
                               <i className="signupIconFont fa fa-calendar-o ml5" aria-hidden="true"/> 
                                     Date Of Birth
-                            </span>                 
+                              <span className="asterix"> *</span>                  
+                            </span>
                         </span>
                       </div>
                     </div>
@@ -916,7 +917,7 @@ export default class JoinAsPartnerForm extends Component {
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
                         <span>
-                            <div className="setFont">Attach Aadhar copy </div> 
+                            <div className="setFont">Attach Aadhar copy <span className="asterix"> *</span>  </div> 
                           </span>
                            <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload"  ref="fileUpload" id="upload-file2"
                                 onChange={this.uploadLogoImage.bind(this)} id="upload-file2"
@@ -931,7 +932,7 @@ export default class JoinAsPartnerForm extends Component {
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
                         <span>
-                            <div className="setFont">Attach PAN  copy </div> 
+                            <div className="setFont">Attach PAN  copy  <span className="asterix"> *</span> </div> 
                           </span>
                            <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload1"  ref="fileUpload1"
                                 onChange={this.uploadLogoImage1.bind(this)} id="upload-file3"
@@ -971,7 +972,8 @@ export default class JoinAsPartnerForm extends Component {
                         <span className="blocking-span noIb">
                         <span>
                             <div className="setFont">Website (If there is an existing website) 
-                                 </div> 
+                            <span className="asterix"> *</span> 
+                            </div> 
                           </span>
                            <input type="text" className="customInputKF inputBox nameParts" name="website" ref="website"
                                   value={this.state.website}  onChange={this.handleChange.bind(this)} 
@@ -989,7 +991,7 @@ export default class JoinAsPartnerForm extends Component {
                         <span>
                             <div className="setFont">How long you have been doing Financial Product distribution, Broking, planning or 
                                insurance selling? Please Brief about your profession or business 
-                                <span className="asterix"> *</span> </div> 
+                                <span className="asterix"> *</span>  </div> 
                           </span>
                            <input type="text" className="customInputKF inputBox nameParts" name="description" ref="description"
                                   value={this.state.description}  onChange={this.handleChange.bind(this)} 
@@ -1025,264 +1027,6 @@ export default class JoinAsPartnerForm extends Component {
 
 
 
-/*
-
-
-
-
-
-                      {/*<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 boxMarg">
-                        <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent textpd boxMarg">
-                          <span className="blocking-span noIb">
-                          <span>
-                            <div className="setFont marginT">Do you have your own Office? </div> 
-                          </span>
-                             <input type="radio" name="ownOffice" ref="ownOffice" value="yes" autoComplete="off" 
-                                  checked={this.state.ownOffice === "yes" ? "checked" : false}
-                                  onChange= {this.selectownOffice.bind(this)}/> Yes
-
-                            {this.state.errors2.adressLine  && (
-                              <span className="text-danger">{this.state.errors2.adressLine}</span> 
-                            )}               
-                          </span>
-                        </div>*/
-                        
-                      /*</div>*/
-                      /*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                        <div className="col-lg-12 col-md-12 hidden-xs hidden-sm">
-                          <label>Attach PAN and Aadhar self attested copies <span className="asterix"> *</span></label>
-                        </div>
-                        <div className="hidden-lg hidden-md col-sm-12 col-xs-12 mt30">
-                          <label>Attach PAN and Aadhar self attested copies <span className="asterix"> *</span></label>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                          <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" id="upload-file2"
-                            onChange={this.uploadLogoImage.bind(this)} id="upload-file2"
-                          />
-                            <div className="errorMsg">{this.state.errors2.fileUpload}</div>
-                         </div>
-                      </div>
-                    </div>*/
-
-
-   {/*<div className="col-lg-2 col-md-2 hidden-xs hidden-sm submitButton pull-right mgt"
-                        onClick={this.SubmitReview.bind(this)}>
-                      </div>
-                        { 
-                        this.state.editId ? 
-                        <button onClick={this.update.bind(this)} className="btn lightbluebg commentBoxbtn buttonhover">Update</button>
-                        :
-                        <button onClick={this.SubmitReview.bind(this)}  className="btn lightbluebg commentBoxbtn buttonhover">Submit</button>
-                      }*/}
-                      {/*</div>*/}
-/*
- <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                     {/* <div className="row"> 
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>Mobile Number</label><span className="asterix">*</span>
-                          </div>
-                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <input type="number" className="customInputKF inputBox nameParts" placeholder="Enter Mobile Number"
-                              name="phone" placeholder="Your answer" ref="phone"
-                              onChange={this.handleChange.bind(this)}
-                              value={this.state.phone}
-                            />
-                            <div className="errorMsg">{this.state.errors2.phone}</div>
-                          </div>
-                      </div>*/
-                    /*</div>/*
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      {/*<div className="row">
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>Email ID</label><span className="asterix">*</span>
-                          </div>
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                              <input type="email" className="customInputKF inputBox nameParts" name="email" placeholder="Enter Email ID" ref="email"
-                                  onChange={this.handleChange.bind(this)}
-                                  value={this.state.email}
-                              />
-                              <div className="errorMsg">{this.state.errors2.email}</div>
-                          </div>
-                      </div>*/
-                    /*</div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      {/*<div className="row">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <label>Date Of Birth <span className="asterix"> *</span></label>                          
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <input type="date" className="customInputKF inputBox nameParts" name="dob" ref="dob" 
-                            max={moment(oldDate).format("YYYY-MM-DD")}
-                            placeholder="Your Date Of Birth"
-                            onChange={this.handleChange.bind(this)}
-                            value={this.state.dob}
-                          />
-                           <div className="errorMsg">{this.state.errors2.dob}</div> 
-                        </div>
-                      </div>*/
-                 /*   </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      {/*<div className="row">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <label>GST Number <span className="asterix"> *</span></label>                          
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <input type="text" maxLength="16" className="customInputKF inputBox nameParts"
-                                placeholder="Your answer" name="gst"  ref="gst"
-                                value={this.state.gst}
-                                onChange={this.handleChange.bind(this)}
-                            />
-                            <div className="errorMsg">{this.state.errors2.gst}</div>
-                        </div>
-                      </div>*/
-                 /*   </div>
-                    {/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>Location <span className="asterix"> *</span></label>                      
-                          </div>  
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          {this.state.gmapsLoaded ?                        
-                            <PlacesAutocomplete
-                                  value         ={this.state.adressLine} 
-                                  onChange      ={this.handleChangePlaces}
-                                  onSelect      ={this.handleSelect}
-                                  searchOptions ={searchOptions}
-                            >
-                            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                              <div>
-                                  <input  className="customInputKF inputBox nameParts"
-                                    {...getInputProps({
-                                      className: 'location-search-input customInputKF inputBox nameParts',
-                                    })}
-                                    required
-                                  />
-                                  <div className="autocomplete-dropdown-container">
-                                    {loading && <div>Loading...</div>}
-                                    {suggestions.map(suggestion => {
-                                      const className = suggestion.active
-                                        ? 'suggestion-item--active'
-                                        : 'suggestion-item';
-                                      // inline style for demonstration purpose
-                                      const style = suggestion.active
-                                        ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                                        : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                                      return (
-                                        <div
-                                          {...getSuggestionItemProps(suggestion, {
-                                            className,
-                                            style,
-                                          })}
-                                        >
-                                          <span>{suggestion.description}</span>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>
-                              </div>
-                              )}
-                            </PlacesAutocomplete>
-                            :
-                            <input type="text" className="customInputKF inputBox nameParts" name="adressLine" ref="adressLine" 
-                                onChange={this.handleChange}
-                                value={this.state.adressLine} 
-                              />
-                        }
-                   /*         {/*<div className="errorMsg">{this.state.errors2.adressLine}</div>*/
-                         /*}
-                   
-                    {/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                              <input type="number" maxLength="6" className="customInputKF inputBox nameParts"
-                                name="pincode" placeholder="Pincode" ref="pincode"
-                                onChange={this.handleChange.bind(this)}
-                                // onChange={this.handlePincode.bind(this)}
-                                value   ={this.state.pincode}
-                                onKeyDown={this.keyPressNumber.bind(this)}
-                              />
-                              <div className="errorMsg">{this.state.errors2.pincode}</div>
-                        </div>
-                      </div>
-                    </div>*/
-                    /*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <label>Education</label><span className="asterix">*</span>
-                        </div>
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <input type="text" maxLength="16" className="customInputKF inputBox nameParts"
-                                placeholder="Your answer" name="education"  ref="education"
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.education}
-                            />
-                            <div className="errorMsg">{this.state.errors2.education}</div>
-                         </div>
-                      </div>
-                    </div>*/
-                 /*   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>Do you have your own Office? <span className="asterix"> *</span> </label>
-                          </div>
-                          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                              <input type="radio" name="ownOffice" ref="ownOffice" value="yes" autoComplete="off" 
-                                  checked={this.state.ownOffice === "yes" ? "checked" : false}
-                                  onChange= {this.selectownOffice.bind(this)}/> Yes
-                            </div>
-                            <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                              <input type="radio" name="ownOffice" ref="ownOffice"  value="no" autoComplete="off"                       
-                                  // value   = {this.state.ownOffice}
-                                  onChange={this.selectownOffice.bind(this)}
-                                  checked={this.state.ownOffice === "no" ? "checked" : false} /> No
-                            </div>
-                            {<div className="errorMsg">{this.state.errors2.ownOffice}</div>}
-                          </div>      
-                      </div>
-                    </div>*/
-                    /*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                        <div className="col-lg-12 col-md-12 hidden-xs hidden-sm">
-                          <label>Attach PAN and Aadhar self attested copies <span className="asterix"> *</span></label>
-                        </div>
-                        <div className="hidden-lg hidden-md col-sm-12 col-xs-12 mt30">
-                          <label>Attach PAN and Aadhar self attested copies <span className="asterix"> *</span></label>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                          <input type="file" className="customInputKF inputBox nameParts" name="fileUpload"  ref="fileUpload" id="upload-file2"
-                            onChange={this.uploadLogoImage.bind(this)} id="upload-file2"
-                          />
-                            <div className="errorMsg">{this.state.errors2.fileUpload}</div>
-                         </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
-                      <div className="row">
-                        <div className="col-lg-12 col-md-12 hidden-xs hidden-sm ">
-                          <label>How long you have been doing Financial Product distribution, Broking, planning or 
-                                 insurance selling? Please Brief about your profession or business 
-                                  <span className="asterix"> *</span>
-                          </label>
-                        </div>
-                        <div className="hidden-lg hidden-md col-sm-12 col-xs-12 mt50 ">
-                          <label>How long you have been doing Financial Product distribution, Broking, planning or 
-                                 insurance selling? Please Brief about your profession or business 
-                                  <span className="asterix"> *</span>
-                          </label>
-                        </div>
-                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                          <input type="text" className="customInputKF inputBox nameParts"
-                            placeholder="Your answer" name="description"  ref="description"
-                            onChange={this.handleChange.bind(this)}
-                            value={this.state.description}
-                          />
-                        </div>
-                          <div className="errorMsg">{this.state.errors2.description}</div>
-
-                      </div>
-                    </div>*/
 
 
 

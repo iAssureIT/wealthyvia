@@ -37,10 +37,26 @@
     margin: 0px;
 }
 .setpdf{
-    margin-left: -17px;
-    margin-top: 5px;
+    margin-left: -15px;
+    margin-top: 10px;
 }
 
 .setp{
     padding-left: 15px
 }
+.labelColor{
+    cursor:  pointer;
+    /* background-color: #ff0; */
+}
+
+
+.custFaTimes{
+    cursor:  pointer;
+    /* background-color:  #f00; */
+}
+
+.mb30{
+    margin-bottom: 20px;
+}
+
+

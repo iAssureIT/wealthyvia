@@ -36,6 +36,7 @@ import ViewTemplates    from '../NotificationManagement/ViewTemplates.js';
 import distributorList    from '../dashboard/Distributorlist/distributorList.js';
 import disProfile         from '../dashboard/Distributorlist/disProfile.js';
 import distributorEditForm from '../dashboard/Distributorlist/distributorEditForm.js';
+import tools              from '../dashboard/Tools/tools.js';
 
 import AdminContent       from '../dashboard/DashboardNew.js';
 /*============================ /Blog==============================================*/
@@ -156,6 +157,8 @@ componentDidMount(){
                           <Route path="/distributor-profile-view/:ID"     component={disProfile} exact  />
                           <Route path="/distributorEditForm/"          component={distributorEditForm} exact  />
                           <Route path="/distributorEditForm/:ID"          component={distributorEditForm} exact  />
+                          <Route path="/tools"              component={tools} exact  />
+                          <Route path="/tools/:editId"              component={tools} exact  />
                           <Route path="/productchart" component={ProductChart} exact />
                           <Route path="/filewiseproductrates" component={FilewiseProductratesList} exact />
                           <Route path="/free-research-reports" component={FreeResearchReport} exact />

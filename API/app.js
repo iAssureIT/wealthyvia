@@ -25,6 +25,7 @@ const invoiceRoutes 				= require('./api/wealthyvia/routes/invoice.js');
 const productratesRoutes 			= require('./api/wealthyvia/routes/productrates.js');
 const researchreportRoutes 			= require('./api/wealthyvia/routes/researchreport.js');
 const distributorMasterRoutes 		= require('./api/wealthyvia/routes/distributormaster.js');
+const toolsRoutes 	 				= require('./api/wealthyvia/routes/uploadurl.js');
 // global.JWT_KEY = "secret";
 
 mongoose.connect('mongodb://localhost/'+globalVariable.dbname,{
@@ -76,6 +77,7 @@ app.use('/api/invoice',invoiceRoutes);
 app.use('/api/productrates',productratesRoutes);
 app.use('/api/researchreport',researchreportRoutes);
 app.use('/api/distributormaster',distributorMasterRoutes);
+app.use('/api/uploadVideoUrl',toolsRoutes);
 
 app.post('/send-email', (req, res)=> {
 	// console.log('req',req.body);

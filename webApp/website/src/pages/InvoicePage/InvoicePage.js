@@ -58,7 +58,7 @@ export default class InvoicePage extends Component {
         this.setState({
           orderDetails : orderDetails.data,
         }) 
-        console.log("orderDetails",orderDetails.data);
+        //console.log("orderDetails",orderDetails.data);
       })
       .catch(function(error){
           if(error.message === "Request failed with status code 401")

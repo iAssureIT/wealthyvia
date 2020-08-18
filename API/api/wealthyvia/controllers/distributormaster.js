@@ -11,7 +11,7 @@ function getRandomInt(min, max) {
 };
 
 exports.create_distributor = (req, res, next) => {
-	Distributormaster.findOne({email:{$elemMatch:{address:req.body.email}}})
+	Distributormaster.findOne({"email.address":req.body.email })
 		.exec()
 		.then(data =>{
 			if(data){
@@ -245,34 +245,55 @@ exports.add_additional_info_distributor = (req,res,next) => {
 
 exports.setstatus_distributor = (req,res,next) => {
     console.log("inside a set statusfunction");
-    Distributormaster.updateOne(
-                        {_id:req.body.id},
-                        {
-                            $set : {
-                                 "status"            : req.body.status, 
-                                 "userId"            : req.body.userId,
-                                "updateLog"          : [{
-                                        updatedBy    : req.body.updatedBy, 
-                                        updatedAt    : new Date,
-                                        }] 
-                            }
+    var distributorCode = 100;
+    Distributormaster.find({ _id: { $ne: req.body.id }, status: "Active"}).sort({_id:-1}).limit(1)
+                    .exec()
+                    .then(distributorlast=>{
+                        console.log("distributor", distributorlast);
+                        if(distributorlast.length > 0 ){
+                            distributorCode = distributorlast[0].distributorCode + 1;
                         }
-                    )
-        .exec()
-        .then(data=>{
-            console.log("data",data);
-            res.status(200).json({
-                data : data,
-                message :"DISTRIBUTOR_UPDATED"
-            })
-        })
-        .catch(error=>{
-                res.status(500).json({
-                    error : error,
-                    message : "Some issue occurred while updating Distributer Data!"
-                })
-        });
- 
+                        else{
+                            distributorCode = 100;
+                        }
+                        console.log("ds code", distributorCode);
+                        Distributormaster.updateOne(
+                            {_id:req.body.id},
+                            {
+                                $set : {
+                                     "status"            : req.body.status, 
+                                     "userId"            : req.body.userId,
+                                     "distributorCode"   : distributorCode,
+                                    "updateLog"          : [{
+                                            updatedBy    : req.body.updatedBy, 
+                                            updatedAt    : new Date,
+                                            }] 
+                                }
+                            }
+                        )
+                        .exec()
+                        .then(data=>{
+                            console.log("data",data);
+                            res.status(200).json({
+                                data : data,
+                                message :"DISTRIBUTOR_UPDATED"
+                            })
+                        })
+                        .catch(error=>{
+                                res.status(500).json({
+                                    error : error,
+                                    message : "Some issue occurred while updating Distributer Data!"
+                                })
+                        });
+                        
+                    })
+                    .catch(error=>{
+                            res.status(500).json({
+                                error : error,
+                                message : "Some issue occurred while getting last Distributer Data!"
+                            })
+                    });
+     
 }
 
 
