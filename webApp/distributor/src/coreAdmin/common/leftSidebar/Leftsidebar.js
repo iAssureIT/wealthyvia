@@ -95,7 +95,7 @@ export default class Leftsidebar extends Component{
                       </Link>
                     </li>  
                     <li  className="add " onClick={this.eventclk1.bind(this)}>
-                        <Link aria-expanded="false" to="/ClientTable">
+                        <Link aria-expanded="false" to="/myclients">
                             <i className="fa fa-file"></i>
                             My direct Clients
                         </Link>
@@ -123,13 +123,13 @@ export default class Leftsidebar extends Component{
                       </Link>
                     </li>  
 
-                    <li  className="add " onClick={this.eventclk1.bind(this)}>
+                    {/*<li  className="add " onClick={this.eventclk1.bind(this)}>
                         <Link aria-expanded="false">
                             <i className="fa fa-file"></i>
                             Create Client
                         </Link>
                         
-                    </li>
+                    </li>*/}
 
                     {/*<li className="add" onClick={this.eventclk.bind(this)}>
                       <Link to="/productchart">

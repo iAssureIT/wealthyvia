@@ -4,6 +4,8 @@ import axios                      from 'axios';
 import swal                       from 'sweetalert';
 import moment from 'moment';
 import $ from 'jquery';
+import InputMask      from 'react-input-mask';
+
 // import S3 from 'react-aws-s3';
 import S3FileUpload               from 'react-s3';
 import { deleteFile }             from 'react-s3';
@@ -18,11 +20,9 @@ import "./JoinAsPartnerForm.css";
 export default class JoinAsPartnerForm extends Component {
 
   constructor(props) {
-
     var today = new Date(),
-    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-
-   
+    date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate(); 
+    
     super(props);
       this.state = {
           "firstname"    :"",
@@ -50,20 +50,14 @@ export default class JoinAsPartnerForm extends Component {
           gmapsLoaded    : false,
 
           currentDate: date,
-        
         "editId"          : this.props.match.params ? this.props.match.params.ID : ''
-
-
-
       }
+      
       this.baseState = this.state;
-
-    this.handleChange = this.handleChange.bind(this);
-
+      this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount () {
-
     axios
           .get('/api/projectsettings/get/S3')
           .then((response)=>{
@@ -116,7 +110,6 @@ export default class JoinAsPartnerForm extends Component {
     this.setState({
       fields2
     });
-  
   }
 
   validateFormReqReview() {
@@ -154,6 +147,10 @@ export default class JoinAsPartnerForm extends Component {
         if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
+        }
+        if (!fields["fileUpload1"]) {
+          formIsValid = false;
+          errors["fileUpload1"] = "This field is required.";
         }          
         if (!fields["phone"]) {
           formIsValid = false;
@@ -162,15 +159,15 @@ export default class JoinAsPartnerForm extends Component {
         /*if (!fields["gst"]) {
           formIsValid = false;
           errors["gst"] = "This field is required.";
-        }
+        }*/
         if (!fields["website"]) {
           formIsValid = false;
           errors["website"] = "This field is required.";
-        }   */ 
-        if (!fields["description"]) {
+        }  
+        /*if (!fields["description"]) {
           formIsValid = false;
           errors["description"] = "This field is required.";
-        }   
+        }*/   
          if (!fields["ownOffice"]) {
           formIsValid = false;
           errors["ownOffice"] = "This field is required.";
@@ -181,7 +178,6 @@ export default class JoinAsPartnerForm extends Component {
         console.log("errors",errors);
 
         return formIsValid;
-  
   }
 
   validateFormReview() {
@@ -205,8 +201,7 @@ export default class JoinAsPartnerForm extends Component {
       this.setState({
         errors2: errors
       });
-      return formIsValid;
-  
+      return formIsValid; 
   }
 
   SubmitReview(event){
@@ -297,115 +292,6 @@ export default class JoinAsPartnerForm extends Component {
                       swal("Something went wrong..","Unable to submit data.","warning");
                       }
                     })  
-
-    /*  axios
-        .post("api/distributormaster/post",dataArray1)
-        .then((response) =>{
-
-          axios.get("/api/users/get/list/role/admin/1")
-            .then((adminusers) => {
-              console.log('admin data', adminusers.data);
-              var adminemaillist = [];
-              var admindata = adminusers.data;
-              if(admindata && admindata.length > 0){
-                for(let i = 0 ; i < admindata.length ; i++){
-                  adminemaillist.push(admindata[i].email);
-                }
-              }
-              console.log("admin email list", adminemaillist);
-              const formValues2 = {
-                "emaillist"     : adminemaillist ,
-                "subject"       : "Distributor joined Wealthyvia!",
-                "text"          : "", 
-                "mail"          : 'Dear Admin,' + '<br/>'+
-                                  'A Distributor has joined Wealthyvia as a Partner!'+                          
-                                  "<br/>"+
-                                  "Please Approve/Reject Distributor's Profile after reviewing it. Following are the details of the Distributor:<br/>"+ 
-                                  "Name: " + firstname +' '+ lastname+  "<br/>" +
-                                  "Email:  " + email + "<br/>" +
-                                  "Contact:  " + phone + "<br/>" +
-                                  "<br/><br/> " +
-                                  "Regards<br/> " +
-                                  "Team Wealthyvia. " ,
-                                  
-
-              };
-              console.log("notification",formValues2); 
-              
-                axios
-                .post('/send-email-admin',formValues2)
-                .then((res)=>{
-                          if(res.status === 200){
-                            //console.log("Mail Sent TO ADMIN successfully!")
-                          }
-                        })
-                        .catch((error)=>{
-                          console.log("error = ", error);
-                          
-                        });
-
-              const formValues1 = {
-                "email"         : email ,
-                "subject"       : "Welcome to Wealthyvia!",
-                "text"          : "", 
-                "mail"          : 'Dear' + firstname +' '+ lastname + ', <br/><br/>'+                          
-                                  "Thank you for joining Wealthyvia as a Partner! <br/> " + 
-                                  "Your Distributor Profile will be approved soon by Admin & you will be notified with your login credentials after approval." +
-                                  "<br/> <br/> " + 
-                                  "Regards<br/> " +
-                                  "Team Wealthyvia. " ,
-
-              };
-              console.log("notification",formValues1); 
-              
-                axios
-                .post('/send-email',formValues1)
-                .then((res)=>{
-                           if(res.status === 200){
-                            this.props.history.push('/'); 
-
-                           // this.props.history.push('/'); 
-                           //  Swal("Thank you for contacting us. We will get back to you shortly.")
-                            }
-                        })
-                        .catch((error)=>{
-                          console.log("error = ", error);
-                          
-                        });        
-
-              
-          })
-          .catch((error) => { console.log('user error: ',error)})
-
-             
-          var sendData = {
-                  "event"         : "Distributer_Event", //Event Name
-                  "toUser_id"     : "", // ref:toDistributerRole _id
-                  "toUserRole"    :"Distributer", // toDistributerRole role
-                  "variables": {
-                    "FullName"    : this.refs.firstname.value +' '+ this.refs.lastname.value,
-                    "Mobile"      : this.refs.phone.value,
-                    "Email"       : this.refs.email.value
-                    }
-                  }
-                  console.log('sendDataToUser==>', sendData)
-                  axios.post('/api/masternotifications/post', sendData)
-            .then((res) => {
-            console.log('sendDataToUser in result==>>>', res.data)
-            })
-            .catch((error) => { console.log('notification error: ',error)})
-          //console.log("Distributer Master Data inserted successfully!", response);
-          swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");    
-          //this.setState(this.baseState);
-          // this.props.history.push('/'); 
-
-        })
-        .catch((error) =>{
-          console.log("Some Error occured in Insert = ", error);
-          swal("Oops... ", "Somthing went wrong <br/> "+ error, "error" );
-        });
-*/
-   
       }
   }
 
@@ -708,21 +594,21 @@ export default class JoinAsPartnerForm extends Component {
 
 
   render() {
-  	     var oldDate = new Date();
-		    oldDate.setFullYear(oldDate.getFullYear() - 18);
+         var oldDate = new Date();
+        oldDate.setFullYear(oldDate.getFullYear() - 18);
         const searchOptions = {componentRestrictions: {country: "in"}}
     return (
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  marginLeft page">
             <div className="row">
-              <div className="col-lg-8 col-lg-offset-2  col-md-12 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10  col-xs-offset-1 formContainer2 ">                
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter marginT headerSet">
+              <div className="col-lg-8 col-lg-offset-2  col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10  col-xs-offset-1 formContainer2 ">                
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter marginT headerSet marginB">
                   <h4 className="formNameTitle"><span className="">Join as a Partner</span></h4>
                   <h6 className="ApplicationName"><span className="">Distributor Application </span></h6>
                 </div>
                 <form>
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP setTopMargin">
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd boxMarg">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP ">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
                           <input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" name="firstname" ref="firstname" id="firstname"  
                             onChange={this.handleChange.bind(this)}
@@ -737,39 +623,40 @@ export default class JoinAsPartnerForm extends Component {
                           </span>                 
                         </span>
                       </div>
-                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent textpd1 boxMarg">
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent setMobileResponsive textpd2 textpd1 boxMarg">
                         <span className="blocking-span noIb">   
-                          <input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" name="lastname" ref="lastname" id="lastname" required
+                          <input type="email" className="form-control abacusTextbox oesSignUpForm" name="lastname"  ref="lastname" required
                             onChange={this.handleChange.bind(this)}
-                            value={this.state.lastname} 
+                            value={this.state.lastname}
                           />
                             {this.state.errors2.lastname  && (
                               <span className="text-danger">{this.state.errors2.lastname}</span> 
                             )}
-                            <span className="floating-label1 lbfloatpass">
+                            <span className="floating-label1 lbfloatpass smsetMargin">
                               <i className="fa fa-user-circle-o signupIconFont" aria-hidden="true"/> 
                               Last Name <span className="fontSize"> *</span>
                             </span>                 
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd boxMarg">
-                        <span className="blocking-span noIb">
-                            <input type="text" maxLength="10" className="form-control abacusTextbox oesSignUpForm sentanceCase" id="phone" ref="phone" name="phone"  
-                                onChange={this.handleChange.bind(this)}
-                                value={this.state.phone} required
+                          <span className="blocking-span noIb">
+                            <InputMask mask="9999-999-999" maskChar=" " className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="phone" ref="phone" id="phone" 
+                            // <input type="text" maxLength="10" className="form-control abacusTextbox oesSignUpForm sentanceCase" name="phone" ref="phone" id="phone"  
+                              onChange={this.handleChange.bind(this)}
+                              value={this.state.phone}  required
                             />
                             {this.state.errors2.phone  && (
                               <span className="text-danger">{this.state.errors2.phone}</span> 
                             )}
                             <span className="floating-label">
                               <i className="fa fa-mobile signupIconFont" aria-hidden="true"/> 
-                              Mobile Number <span className="fontSize"> *</span>
+                              Mobile Number <span className="fontSize"> *</span> 
                             </span>                 
-                        </span>
-                      </div>
-                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd2 textpd1 boxMarg">
+                          </span>
+                        </div>
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent setMobileResponsive textpd2 textpd1 boxMarg">
                         <span className="blocking-span noIb">   
                           <input type="email" className="form-control abacusTextbox oesSignUpForm" name="email"  ref="email" required
                             onChange={this.handleChange.bind(this)}
@@ -780,12 +667,12 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                             <span className="floating-label1 lbfloatpass smsetMargin">
                               <i className="fa fa-envelope-o signupIconFont" aria-hidden="true"/> 
-                              Email ID <span className="fontSize"> *</span>
+                               &nbsp;Email ID <span className="fontSize"> *</span>
                             </span>                 
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent  textpd boxMarg">
                         <span className="blocking-span noIb">
                             <input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" id="education" ref="education" name="education"  
@@ -801,7 +688,7 @@ export default class JoinAsPartnerForm extends Component {
                             </span>                 
                         </span>
                       </div>
-                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd2 textpd1 boxMarg">
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent setMobileResponsive textpd2 textpd1 boxMarg">
                         <span className="blocking-span noIb">   
                           <input type="number" className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="gst"  ref="gst"
                             onChange={this.handleChange.bind(this)}
@@ -810,15 +697,15 @@ export default class JoinAsPartnerForm extends Component {
                             {this.state.errors2.gst  && (
                               <span className="text-danger">{this.state.errors2.gst}</span> 
                             )}
-                            <span className="floating-label1 lbfloatpass">
+                            <span className="floating-label1 setResPad lbfloatpass">
                               <i className="fa fa-id-card signupIconFont" aria-hidden="true"/> 
                               GST Number 
                             </span>                 
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                      <div className="form-group form-group1 col-lg-7 col-md-7 col-xs-12 col-sm-12 inputContent textpd setplusZindex boxMarg">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd setplusZindex boxMarg">
                         <span className="blocking-span noIb">
                          {this.state.gmapsLoaded ?                        
                           <PlacesAutocomplete
@@ -873,16 +760,12 @@ export default class JoinAsPartnerForm extends Component {
                           {this.state.errors2.address  && (
                             <span className="text-danger">{this.state.errors2.address}</span> 
                           )}
-                          {/*<span className="floating-label">
-                            <i className="fa fa-user-circle-o signupIconFont" aria-hidden="true"/> 
-                            Location
-                          </span>*/}
                         </span>                 
                       </div> 
-                      <div className="form-group form-group1 col-lg-5 col-md-5 hidden-xs hidden-sm  inputContent textpd1 boxMarg">
+                      <div className="form-group form-group1 col-lg-6 col-md-6 hidden-xs hidden-sm  inputContent textpd1 boxMarg">
                         <span className="blocking-span noIb">   
-                          <input type="date" className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="dob"  ref="dob"
-                            max={moment(oldDate).format("YYYY-MM-DD")}
+                          <input type="date" className="form-control abacusTextbox  oesSignUpForm sentanceCase"  name="dob"  ref="dob"
+                            // max={moment(oldDate).format("YYYY-MM-DD")}
                             onChange={this.handleChange.bind(this)}
                             value={this.state.dob}
                           />
@@ -897,7 +780,7 @@ export default class JoinAsPartnerForm extends Component {
                       </div>
                       <div className="form-group form-group1 hidden-lg hidden-md col-xs-12 col-sm-12 textpd  inputContent boxMarg">
                         <span className="blocking-span noIb">   
-                          <input type="date" className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="dob"  ref="dob"
+                          <input type="date" className="form-control abacusTextbox dobMarginT oesSignUpForm sentanceCase"  name="dob"  ref="dob"
                             max={moment(oldDate).format("YYYY-MM-DD")}
                             onChange={this.handleChange.bind(this)}
                             value={this.state.dob}
@@ -913,7 +796,7 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12">
+                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
                         <span>
@@ -928,8 +811,8 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12">
-                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
+                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd Mt30 boxMarg">
                         <span className="blocking-span noIb">
                         <span>
                             <div className="setFont">Attach PAN  copy  <span className="asterix"> *</span> </div> 
@@ -943,14 +826,14 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
-                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent  textpd boxMarg">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent  textpd boxMarg ">
                         <span className="blocking-span noIb">
                         <span>
                             <div className="setFont marginT">Do you have your own Office? 
                                 <span className="asterix"> *</span> </div> 
                           </span>
-                          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                           <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                             <input type="radio" name="ownOffice" ref="ownOffice" value="yes" autoComplete="off" 
                                 checked={this.state.ownOffice === "yes" ? "checked" : false}
@@ -963,13 +846,13 @@ export default class JoinAsPartnerForm extends Component {
                                 checked={this.state.ownOffice === "no" ? "checked" : false} /> No
                           </div>
                         </div>
-                        </span>
                           <div className="errorMsg">{this.state.errors2.ownOffice}</div>
+                        </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
-                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent textpd mt40 boxMarg">
-                        <span className="blocking-span noIb">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent textpd Mt55  boxMarg">
+                        <span className="blocking-span noIb ">
                         <span>
                             <div className="setFont">Website (If there is an existing website) 
                             <span className="asterix"> *</span> 
@@ -985,13 +868,12 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 ">
+                    <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent textpd mt40 boxMarg">
                         <span className="blocking-span noIb">
                         <span>
                             <div className="setFont">How long you have been doing Financial Product distribution, Broking, planning or 
-                               insurance selling? Please Brief about your profession or business 
-                                <span className="asterix"> *</span>  </div> 
+                               insurance selling? Please Brief about your profession or business  </div> 
                           </span>
                            <input type="text" className="customInputKF inputBox nameParts" name="description" ref="description"
                                   value={this.state.description}  onChange={this.handleChange.bind(this)} 
@@ -1003,7 +885,6 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
-                 
                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
                       <div className="col-lg-2 col-md-2 hidden-xs hidden-sm submitButton pull-right mgt"
                         onClick={this.SubmitReview.bind(this)}>Submit
@@ -1021,7 +902,6 @@ export default class JoinAsPartnerForm extends Component {
     );
   }
 }
-
 
 
 

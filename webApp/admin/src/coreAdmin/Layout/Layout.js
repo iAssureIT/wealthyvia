@@ -36,7 +36,11 @@ import ViewTemplates    from '../NotificationManagement/ViewTemplates.js';
 import distributorList    from '../dashboard/Distributorlist/distributorList.js';
 import disProfile         from '../dashboard/Distributorlist/disProfile.js';
 import distributorEditForm from '../dashboard/Distributorlist/distributorEditForm.js';
+import Myclients           from '../dashboard/Distributorlist/Myclients.js';
 import tools              from '../dashboard/Tools/tools.js';
+import ProductPricing       from '../dashboard/ProductPricing/ProductPricing.js';
+import Clientlist           from '../dashboard/Clientlist/Clientlist.js';
+import Clientmapping           from '../dashboard/Clientlist/Clientmapping.js';
 
 import AdminContent       from '../dashboard/DashboardNew.js';
 /*============================ /Blog==============================================*/
@@ -157,12 +161,17 @@ componentDidMount(){
                           <Route path="/distributor-profile-view/:ID"     component={disProfile} exact  />
                           <Route path="/distributorEditForm/"          component={distributorEditForm} exact  />
                           <Route path="/distributorEditForm/:ID"          component={distributorEditForm} exact  />
+                          <Route path="/distributor/myclients/:ID"          component={Myclients} exact  />
                           <Route path="/tools"              component={tools} exact  />
                           <Route path="/tools/:editId"              component={tools} exact  />
                           <Route path="/productchart" component={ProductChart} exact />
                           <Route path="/filewiseproductrates" component={FilewiseProductratesList} exact />
                           <Route path="/free-research-reports" component={FreeResearchReport} exact />
                           <Route path="/free-research-reports/:reportid"  exact strict component={FreeResearchReport}  />
+                          <Route path="/product-pricing" component={ProductPricing} exact />
+                          <Route path="/product-pricing/:productid"  exact strict component={ProductPricing}  />
+                          <Route path="/clientlist" component={Clientlist} exact />
+                          <Route path="/clientmapping/:ID" component={Clientmapping} exact />
                           <Route path="/OfferingCheckForm" component={OfferingCheckForm} exact />
                           <Route path="/ClientTable" component={ClientTable} exact />
                          <Route path="/bankReport" component={BankReport} exact />

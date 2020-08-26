@@ -105,6 +105,7 @@ class ClientTable extends Component {
                               <th className="text-center">SHM Alpha Enhancer</th>
                               <th className="text-center">Safe Heavan</th>
                               <th className="text-center">5GCPM</th>
+                              <th className="text-center">Super Focused</th>
                               {/* {
                                 this.state.offeringTitle.map((b, j)=>{
                                   return(

@@ -18,6 +18,7 @@ const offeringsSchema = mongoose.Schema({
 					}],
 	videos 			: String, //(YouTube Link only)
 	typeOfOffering 	: String, //(Regular/Premium)
+	price           : Number,
     createdAt   : Date,
     createdBy   : { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
 });

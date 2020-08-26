@@ -4,11 +4,13 @@ const uploadUrlSchema = mongoose.Schema({
 	url 			: String, 
 	title 			: String,
 	fileUpload 		: String,
+	tag 			: String,
 
     createdAt   	: Date,
     createdBy   	: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
 	
 
 });
+uploadUrlSchema.index({ title: 'text', tag: 'text' });
 
 module.exports = mongoose.model('tools',uploadUrlSchema);

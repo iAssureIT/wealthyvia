@@ -46,6 +46,7 @@ export default class Profileheader extends Component{
   }
   logout(){
       var token = localStorage.removeItem("token");
+      var userid = localStorage.removeItem("user_id");
       if(token!==null){
       this.setState({
         loggedIn : false,

@@ -47,6 +47,7 @@ export default class Header extends Component{
   }
   logout(){
       var token = localStorage.removeItem("token");
+      var token = localStorage.removeItem("user_id");
       if(token!==null){
       this.setState({
         loggedIn : false,

@@ -35,6 +35,8 @@ class SignUp extends Component {
                 role 			: ''
                
             },
+            distributorCode     : '',
+            distributorName     : ''
         }
          this.handleChange = this.handleChange.bind(this);
     }
@@ -43,8 +45,39 @@ class SignUp extends Component {
   		this.setState({destination : parsed.destination});
   		
    		localStorage.setItem("destination",parsed.destination);
+   		if(parsed){
+   			const decryptcode = parsed.x;
+   			if(decryptcode){
+   				var distributorcode = decryptcode / 298564 ;
+	   		    console.log("distributorcode", distributorcode);
+	   		    this.setState({distributorCode : distributorcode});
+	   		    this.getDistributorData(distributorcode);
+   			}   		    
+   		}
+   		
 
     }
+
+    getDistributorData(distributorcode){
+    
+    axios.get("api/distributormaster/get/one/bydistributorcode/"+distributorcode)
+    .then(res=>{
+      console.log("response from api=>",res.data);
+
+      if(res && res.data){
+        
+        this.setState({
+          distributorName: res.data.firstname + " " + res.data.lastname
+        });
+      }
+    })
+    .catch(err=>{
+      console.log("err",err);
+      swal("Oops...","Something went wrong! <br/>"+err, "error");
+
+    })
+  }
+
  	usersignup(event){
 	 	event.preventDefault();
      if (this.validateForm() && this.validateFormReq()) {
@@ -58,6 +91,7 @@ class SignUp extends Component {
 	            role 			: 'user',
 	            status 			: 'Active',
 	            fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
+	            distributorCode : this.state.distributorCode
 	        }
 		            
 		    
@@ -79,6 +113,7 @@ class SignUp extends Component {
 				            	if(response)
 				            	{
 			            			swal("Great","Information submitted successfully and OTP is sent to your registered Email ID.");
+				                	$("html,body").scrollTop(0);
 				                	this.props.history.push("/confirm-otp/"+response.data.ID);
 				                }else{
 			            			swal("Warning","Something went wrong...","warning");
@@ -87,13 +122,13 @@ class SignUp extends Component {
 				            })
 				            .catch(error=> {
 				            	
-				                console.log(error);
+				                console.log(error, error.response.status, error.response);
 						        this.setState({
 					            	buttonHeading : 'Sign Up',
 					            });
-				                if(error === "Error: Request failed with status code 409")
+				                if(error.response.status === 409)
 				                {
-	        						swal("Warning..","Email id already exist..","warning");
+	        						swal("Warning","Email id already exists.","warning");
 	        					
 
 				                }else{
@@ -275,7 +310,7 @@ class SignUp extends Component {
 		return(
 
 			<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 signUpWrapper loginbg">
-        		<div className="col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-10 col-xs-offset-1 signupPadding signUpFormWrap">
+        		<div className={this.state.distributorName ? "col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-10 col-xs-offset-1 signupPadding signUpFormWrap" : "col-lg-4 col-lg-offset-4 col-md-4 col-md-offset-7 col-sm-8 col-xs-10 col-xs-offset-1 signUpFormWrapold" } >
 				<div className="row">
 					<div className="divLoginInWrap">
 						
@@ -325,6 +360,20 @@ class SignUp extends Component {
 							    		<span className="floating-label"><i className="fa fa-envelope-o signupIconFont" aria-hidden="true"></i>Email ID</span>					   			
 									</span>
 							    </div>
+							    {
+							    	this.state.distributorName ?
+							    		<div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMargreferedby">
+											<span className="blocking-span noIb">  
+											<span className="referredbytext">Referred By</span> 
+												<input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" id="referredby" ref="referredby" name="referredby" 
+												value={this.state.distributorName+" (ID: "+this.state.distributorCode+")"} disabled/>
+																   			
+											</span>
+									    </div>
+							    	:
+							    	null
+							    }
+							    
 						   		<div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent marBtm">
 								    <div className="form-group form-group1 fltlft input-group col-lg-6 col-md-6 col-xs-12 col-sm-6 inputContent">
 							   			{/*<span className="blocking-span noIb">

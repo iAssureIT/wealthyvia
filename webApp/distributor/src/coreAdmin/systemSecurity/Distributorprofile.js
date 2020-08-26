@@ -135,10 +135,10 @@ export default class Distributorprofile extends Component{
               "phone"         : DistributorData.phone,
               "email"         : DistributorData.email.address,
               "dob"           : DistributorData.dob,
-              "adressLine"    : DistributorData.address.adressLine,
-              "city"          : DistributorData.address.city,
-              "state"         : DistributorData.address.state,
-              "country"       : DistributorData.address.country,
+              "adressLine"    : DistributorData.address ? DistributorData.address.adressLine : '',
+              "city"          : DistributorData.address ? DistributorData.address.city : '',
+              "state"         : DistributorData.address ? DistributorData.address.state : '',
+              "country"       : DistributorData.address ? DistributorData.address.country : '',
               "status"        : DistributorData.status,
               "gst"           : DistributorData.gst,
               "education"     : DistributorData.education,
@@ -635,7 +635,7 @@ export default class Distributorprofile extends Component{
         axios.patch('/api/distributormaster/patch/additionalinfo/'+userid,formvalues)
         .then((response)=> {    
           console.log("response",response);
-          swal("Distributor information updated Succesfully","", "success");    
+          //swal("Distributor information updated Succesfully","", "success");    
           localStorage.setItem("token",localStorage.getItem('tokenbackup'));
            localStorage.setItem("tokenbackup",'');
            this.props.history.push("/dashboard");
@@ -790,7 +790,7 @@ export default class Distributorprofile extends Component{
                         </div>
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                            <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label htmlFor='filrUpload' className="formLable">Attach PAN and Aadhar self attested copies <label className="requiredsign">*</label></label>
+                            <label htmlFor='filrUpload' className="formLable">Attach Aadhar self attested copy <label className="requiredsign">*</label></label>
                               <span className="blocking-span">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
@@ -827,7 +827,7 @@ export default class Distributorprofile extends Component{
                               </div>
                             </div>  
                             <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label htmlFor='filrUpload' className="formLable">Attach PAN and Aadhar self attested copies <label className="requiredsign">*</label></label>
+                            <label htmlFor='filrUpload' className="formLable">Attach PAN self attested copy <label className="requiredsign">*</label></label>
                               <span className="blocking-span">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">

@@ -19,6 +19,7 @@ router.patch('/patch/password/email',UserController.change_password_email_verify
 router.patch('/patch/password/:ID',UserController.user_update_password_ID);
 router.get('/get/list/role/:role/:pageno',UserController.fetch_users_roles);
 router.get('/get/list/status/:status/:pageno',UserController.fetch_users_status);
+router.get('/get/list/bydistributorcode/:role/:distributorCode',UserController.fetch_users_by_distibutorcode);
 // router.get('/get/list/optemail/:optEmail/:pageno',UserController.fetch_users_status);
 router.get('/get/list/:pageno',UserController.fetch_users);
 router.get('/get/checkotp/:ID/:emailotp',UserController.check_EmailOTP);
@@ -26,7 +27,7 @@ router.get('/get/:ID',UserController.fetch_user_ID);
 router.delete('/delete/:ID',UserController.delete_user_ID);
 
 router.patch('/patch/distributor/resetpassword/:ID',UserController.reset_distributor_password);
-
+router.patch('/patch/mapping/distributorcode',UserController.map_distributor_code_to_client);
 
 // router.get('/list', checkAuth,UserController.users_list); //Working
 

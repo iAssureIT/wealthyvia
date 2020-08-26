@@ -3,12 +3,48 @@ const Distributormaster = require('../models/distributormaster.js');
 var request             = require('request-promise');
 const globalVariable    = require("../../../nodemon.js");
 const User              = require('../../coreAdmin/models/users.js');
+const Counter = require('../models/counter.js');
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+function getNextSequence(code) {
+    return new Promise( (resolve, reject)=>{ 
+        Counter.findByIdAndUpdate(
+            { "_id": code },
+            { "$inc": { "seq": 1 } }
+            )
+            .then(counter => {
+                if(counter){
+                    resolve( counter.seq ) ;
+                }
+                else{
+                    const distributorCounter = new Counter({
+                        "_id"   : code, 
+                        "seq"   : 100,
+                     });
+                
+                    distributorCounter.save()
+                        .then(data=>{
+                            resolve( data.seq ) ;
+
+                            })
+                            .catch(err =>{
+                                reject(error);
+                            });
+                }
+                
+            })
+            .catch(error=>{
+                reject(error);
+            });
+
+    });  
+      
+}
 
 exports.create_distributor = (req, res, next) => {
 	Distributormaster.findOne({"email.address":req.body.email })
@@ -101,13 +137,47 @@ exports.fetch_distributor_list = (req,res,next) => {
                 });
 };
 
+function getusercountsbycode(distributorCode) {
+  return new Promise((resolve, reject) => {
+    User.find({distributorCode:distributorCode, roles:'user'})
+        .count()
+        .exec()
+        .then(countuser=>{          
+                    resolve(countuser);            
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+  })
+}
+
 exports.fetch_All_distributor_list = (req,res,next) => {
     Distributormaster.find({})
         .sort({createdAt : -1})
          .exec()
          .then(data=>{
             if(data.length > 0){
-                res.status(200).json(data);
+                let promises = data.map(element => {
+                return getusercountsbycode(element.distributorCode)
+                    .then(usercount => {
+                        var obj = element.toObject();
+                        obj.usercount = usercount;
+                        //console.log("Record ",obj);
+                        
+                      return obj;
+                    })
+                });
+
+                // Wait for all Promises to complete
+                Promise.all(promises)
+                  .then(results => {
+                    //console.log("result", results);
+                    res.status(200).json(results);
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  })
+                
             }else{
                 res.status(200).json({message : "DATA_NOT_FOUND"})
             }
@@ -245,54 +315,41 @@ exports.add_additional_info_distributor = (req,res,next) => {
 
 exports.setstatus_distributor = (req,res,next) => {
     console.log("inside a set statusfunction");
-    var distributorCode = 100;
-    Distributormaster.find({ _id: { $ne: req.body.id }, status: "Active"}).sort({_id:-1}).limit(1)
-                    .exec()
-                    .then(distributorlast=>{
-                        console.log("distributor", distributorlast);
-                        if(distributorlast.length > 0 ){
-                            distributorCode = distributorlast[0].distributorCode + 1;
-                        }
-                        else{
-                            distributorCode = 100;
-                        }
-                        console.log("ds code", distributorCode);
-                        Distributormaster.updateOne(
-                            {_id:req.body.id},
-                            {
-                                $set : {
-                                     "status"            : req.body.status, 
-                                     "userId"            : req.body.userId,
-                                     "distributorCode"   : distributorCode,
-                                    "updateLog"          : [{
-                                            updatedBy    : req.body.updatedBy, 
-                                            updatedAt    : new Date,
-                                            }] 
-                                }
-                            }
-                        )
-                        .exec()
-                        .then(data=>{
-                            console.log("data",data);
-                            res.status(200).json({
-                                data : data,
-                                message :"DISTRIBUTOR_UPDATED"
-                            })
-                        })
-                        .catch(error=>{
-                                res.status(500).json({
-                                    error : error,
-                                    message : "Some issue occurred while updating Distributer Data!"
-                                })
-                        });
-                        
+    
+    getdistributorcode();
+    async function getdistributorcode(){
+        var distributorCode = await getNextSequence("distributorcode");
+        console.log("ds code", distributorCode);
+            Distributormaster.updateOne(
+                {_id:req.body.id},
+                {
+                    $set : {
+                         "status"            : req.body.status, 
+                         "userId"            : req.body.userId,
+                         "distributorCode"   : distributorCode,
+                        "updateLog"          : [{
+                                updatedBy    : req.body.updatedBy, 
+                                updatedAt    : new Date,
+                                }] 
+                    }
+                }
+            )
+            .exec()
+            .then(data=>{
+                console.log("data",data);
+                res.status(200).json({
+                    data : data,
+                    message :"DISTRIBUTOR_UPDATED"
+                })
+            })
+            .catch(error=>{
+                    res.status(500).json({
+                        error : error,
+                        message : "Some issue occurred while updating Distributer Data!"
                     })
-                    .catch(error=>{
-                            res.status(500).json({
-                                error : error,
-                                message : "Some issue occurred while getting last Distributer Data!"
-                            })
-                    });
+            });
+        }
+                   
      
 }
 
@@ -577,4 +634,25 @@ exports.distributor_update_email_otp = (req,res,next) =>{
                 });
             });
     
+};
+
+exports.fetch_distributor_by_distributorcode = (req,res,next) => {
+    console.log("inside fun get by distributor code");
+    Distributormaster.findOne({ distributorCode : req.params.ID })
+         .exec()
+         .then(data=>{
+                    console.log("data",data);
+
+            if(data){
+                res.status(200).json(data);
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
 };

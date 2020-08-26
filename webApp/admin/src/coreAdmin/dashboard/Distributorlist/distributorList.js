@@ -551,11 +551,12 @@ export default class distributerList extends Component{
             <thead>
               <tr>
                 <th>Sr No</th>
+                <th>Distributor Code</th>
                 <th>Distributor Name</th>
                 <th>Date of Application</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Address</th>
+                <th>No of clients</th>
                 <th>Actions</th>
                 <th>Status</th>
               </tr>
@@ -569,11 +570,12 @@ export default class distributerList extends Component{
               <tr key={index}>
               {console.log("address",DistributorData.address)}
                 <td>{index+1}</td>
-                <td>{DistributorData.firstname}  {DistributorData.lastname}</td>
+                <td>{DistributorData.distributorCode} </td>
+                <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.firstname}  {DistributorData.lastname}</a></td>
                 <td>{moment(DistributorData.currentDate).format("Do MMM YYYY")}</td>
                 <td>{DistributorData.phone}</td>
                 <td>{DistributorData.email.address}</td>
-                <td>{DistributorData.address ? DistributorData.address.adressLine : null}</td>
+                <td>{DistributorData.usercount}</td>
                 <td> 
                   <a className="blueColor" href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
                   <a href={"/distributorEditForm/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a> &nbsp;&nbsp;

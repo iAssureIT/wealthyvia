@@ -18,8 +18,9 @@ import Distributorprofile   from '../systemSecurity/Distributorprofile.js';
 import Header             from '../common/header/Header.js';
 import Footer             from '../common/footer/Footer.js';
 import Dashboard          from '../dashboard/Dashboard.js';
+import Clientlist         from '../dashboard/Directclients/Clientlist.js';
 import ClientTable        from '../dashboard/ClientTable/ClientTable.js';
-import AboutUsVideo       from "../dashboard/AboutUsVideo/AboutUsVideo.js";
+import AboutUsVideo       from "../dashboard/Tools/AboutUsVideo.js"; 
 import Leftsidebar        from '../common/leftSidebar/Leftsidebar.js';
 import Rightsidebar       from '../common/rightSidebar/Rightsidebar.js';
 
@@ -83,6 +84,7 @@ componentDidMount(){
 
   logout(){
     var token = localStorage.removeItem("token");
+    var userid = localStorage.removeItem("user_id");
       if(token!==null){
       console.log("Header Token = ",token);
       this.setState({
@@ -116,6 +118,7 @@ componentDidMount(){
                           <Route path="/dashboard" component={Dashboard} exact />
                           <Route path="/myprofile" component={Myprofile} exact />
                           <Route path="/editprofile" component={Editprofile} exact />
+                          <Route path="/myclients" component={Clientlist} exact />
                           <Route path="/tools"          exact strict component={AboutUsVideo}  /> 
                           <Route path="/"               exact strict component={ Login } />
                           <Route path="/login"          exact strict component={ Login } />

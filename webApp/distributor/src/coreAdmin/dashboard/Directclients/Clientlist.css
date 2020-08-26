@@ -1,0 +1,17 @@
+.tableboxclient{
+	margin-top: 40px;
+}
+.compySettingHr {
+    border-top: 1px solid #eee;
+    width: 100%;
+}
+.MasterBudgetTitle {
+    font-size: 24px !important;
+}
+.shareinputbox {
+    background-color: transparent;
+    border: 1px solid #aaa !important;
+}
+.reserachtable td, .reserachtable th{
+	border: 1px solid #ccc;
+}

@@ -921,7 +921,8 @@ export default class distributeEditForm extends Component{
                                  </div>   
                               </span>
                             </div> 
-                        </div>                                                                             
+                        </div>  
+                                                                                                   
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 setZindex">
                            <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent setZindex">
                             <label className="formLable">How long you have been doing Financial Product distribution, Broking, planning or 
@@ -958,7 +959,7 @@ export default class distributeEditForm extends Component{
                                 </div>
                             </div>
                         </div>
-
+{/*
                          <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                            <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin setplusZindex inputContent">
                             <label className="formLable">Location <label className="requiredsign">*</label></label>
@@ -1016,7 +1017,7 @@ export default class distributeEditForm extends Component{
                                  </div>   
                               </span>
                             </div> 
-                        </div> 
+                        </div>*/} 
 
                       </div>
                        

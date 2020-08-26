@@ -92,7 +92,7 @@ exports.fetch_offering_all_list = (req,res,next) => {
          .sort({createdAt : -1})
          .skip(startRange)
          .limit(limitRange)
-         .select("offeringTitle bannerImage createdBy createdAt")
+         .select("offeringTitle bannerImage price createdBy createdAt")
          .exec()
          .then(data=>{
             if(data.length > 0 ){
@@ -206,5 +206,24 @@ exports.fetch_offering_name = (req,res,next) => {
                         error: err
                     });
                 });
+};
+
+exports.patch_pricingoffering = (req,res,next) => {
+    Offering.updateOne(
+                        {_id:req.params.ID},
+                        {
+                            $set : {
+                                "price"     : req.body.price
+                            }
+                        }
+                    )
+         .exec()
+         .then(data=>{
+            if(data.nModified === 1){
+                res.status(200).json({message : "OFFERING_UPDATED"})
+            }else{
+                res.status(200).json({message : "OFFERING_NOT_UPDATED"})
+            }
+         })
 };
 

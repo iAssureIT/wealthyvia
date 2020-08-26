@@ -7,30 +7,12 @@
     padding-bottom: 30px !important;
     box-shadow: 0px 0px 5px 5px rgba(0,0,0,.075);
 }
-.setTopMargin{
+  .setTopMargin{
     margin-top: 30px;
-}
-/* @media screen and (max-width: 600px) { 
-  .formContainer2 { 
-    height :  1150px;
   }
-  .textpd{
-    margin-top: 10px;
-  }    
-  .textpd1{
-    margin-top: 10px;
+  .Mt55{
+    margin-top: 30px;
   }
-  .textpd2{
-    margin-left: 10px;
-  }
-  .mt10{
-    margin-top: 20px;
-  }
-  .smsetMargin{
-    margin-left: 10px;
-  }
-
-} */
 
 .setZindex{
     z-index: 1;
@@ -45,7 +27,7 @@
     margin-left: 5px !important;
 }
 .page{
-	height : auto;
+    height : auto;
 }
 .mgt{
     margin-top: 70px !important ;
@@ -72,7 +54,7 @@
     margin-top: 100px !important;
 }
 .submitButton{
-	margin-top: 50px;
+    margin-top: 50px;
 }
 .paddingtop{
     padding-top: 0px !important;
@@ -82,8 +64,8 @@
     height: 200px;
 }
 .ApplicationName{
-	font-size: 15px;
-	font-weight: bold;
+    font-size: 15px;
+    font-weight: bold;
 }
 .sm-mt30{
     margin-top: 120px !important;
@@ -111,8 +93,12 @@
     background-color: #fff;
     border: none;
 }
+
 .marginT{
     margin-top: 15px;
+}
+.marginB{
+    margin-bottom: 19px;
 }
 
 .distributerTitle2 {
@@ -133,4 +119,97 @@
     font-size: 13px;
     color: red;
     
+}
+
+
+/*============@media screen=====================*/
+
+@media (max-width: 767px) { 
+
+  .formContainer2 { 
+    height :  1400px;
+  }
+  .textpd{
+    margin-top: 10px;
+  }    
+  .textpd1{
+    margin-top: 10px;
+  }
+  .Zeropadding{
+    padding: 0px 0px !important;
+  }
+  .Mt30{
+    margin-top: 30px;
+  }
+  .Mt55{
+    margin-top: 59px;
+  }
+  .setMobileResponsive{
+    margin: 10px 0px 20px 0px !important;
+    padding: 0px 7px 0px 15px !important;
+  }
+  .lbfloatpass {
+      padding-left: 5px;
+  }
+  .setResPad{
+      padding-left: 14px !important;
+  }
+  .textpd2{
+    margin-left: 10px;
+  }
+  .mt10{
+    margin-top: 20px;
+  }
+  .smsetMargin{
+    margin-left: 10px;
+  }
+  .dobMarginT{
+    margin-top: 8px !important;
+  }
+
+}
+
+@media (min-width: 768px) and  (max-width: 991px){ 
+  .formContainer2 { 
+    height :  1400px;
+    margin-top:250px;
+  }
+  .textpd{
+    margin-top: 10px;
+  }    
+  .textpd1{
+    margin-top: 10px;
+  } 
+  .Zeropadding{
+    padding: 0px 0px !important;
+  }
+  .Mt30{
+    margin-top: 30px;
+  }
+  .Mt55{
+    margin-top: 40px;
+  }
+  .setMobileResponsive{
+    margin: 10px 0px 20px 0px !important;
+    padding: 0px 7px 0px 15px !important;
+  }
+  .lbfloatpass {
+      padding-left: 5px;
+  }
+  .setResPad{
+      padding-left: 14px !important;
+  }
+  .textpd2{
+    margin-left: 10px;
+  }
+  .mt10{
+    margin-top: 20px;
+  }
+  .smsetMargin{
+    margin-left: 10px;
+  }
+  .dobMarginT{
+    margin-top: 8px !important;
+  }
+
 }

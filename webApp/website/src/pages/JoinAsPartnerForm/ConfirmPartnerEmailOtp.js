@@ -44,6 +44,7 @@ class ConfirmPartnerEmailOtp extends Component {
                           adminemaillist.push(admindata[i].email);
                         }
                       }
+                      adminemaillist.push("kycwealthyvia@gmail.com");
                       // console.log("admin email list", adminemaillist);
                       const formValues2 = {
                         "emaillist"     : adminemaillist ,
