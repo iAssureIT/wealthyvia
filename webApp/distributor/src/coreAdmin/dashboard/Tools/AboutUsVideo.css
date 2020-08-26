@@ -76,7 +76,7 @@
 }
 .AllblogImgB{
 	height: 173px!important;
-	width: 100%;
+	/*width: 100%;*/
 }
 
 .toolFile{
@@ -275,7 +275,7 @@ input[type="month"]::-webkit-clear-button {
   position: relative;
     text-align: center;
     color: white;
-    background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png");
+    background-image: url("/images/ceo.png");
     background-size: 100% 100%;
 
 }
@@ -340,7 +340,7 @@ input[type="month"]::-webkit-clear-button {
 }
 .AllblogImgB{
 	height: 173px!important;
-	width: 100%;
+	/*width: 100%;*/
 }
 .AllblogImgList{
 	height: 80px!important;

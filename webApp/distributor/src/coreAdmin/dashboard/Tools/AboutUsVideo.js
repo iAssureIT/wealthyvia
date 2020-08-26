@@ -92,6 +92,7 @@ export default class sendYoutubeUrl extends Component {
   
   
   getUrl(){
+    console.log("inside");
     axios.get("api/uploadVideoUrl/get/list")
           .then((response) =>{
             console.log("response getUrl",response);
@@ -441,31 +442,35 @@ export default class sendYoutubeUrl extends Component {
                               data.url !== ""
                               ?
                                 <div onClick={this.openNewTab.bind(this)} data-url={data.url}>
-                                    <ReactPlayer url={data.url} className="AllblogImgB" width='347px' height='170px' controls loop  />
+                                    <ReactPlayer url={data.url} className="AllblogImgB" width='241px' height='170px' controls loop  />
                                 </div> 
                               :
                                 <div>
-                                    <img src="/images/noVideo.jpg" className="AllblogImgB" width='347px' height='170px'/>
+                                    <img src="/images/safeH.jpg" className="AllblogImgB"  width='241px' height='170px'/>
                                 </div> 
                             }
-                              <p className="toolDate p10 col-lg-12 mtop20 graycolor"><ReactMoment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</ReactMoment></p>
+                              <p className="toolDate  col-lg-12 mtop20 graycolor"><ReactMoment format="DD/MM/YYYY HH:mm" className="pull-right">{data.createdAt}</ReactMoment></p>
                               <p className="toolFile p10">
                                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                  { 
-                                    data.fileUpload 
-                                      ?
-                                      (data.fileUpload ? data.fileUpload.split('.').pop() : "") === "pdf" || (data.fileUpload ? data.fileUpload.split('.').pop() : "") === "PDF" 
+                                    { 
+                                      data.fileUpload 
                                         ?
-                                          <a title="Click to View"  target="_blank" href={data.fileUpload}> 
-                                            <img src="/images/pdf.png" height="60" width="60"/><br/>
-                                          </a>
-                                        :
-                                          <a title="Click to View"  target="_blank" href={data.fileUpload}> 
-                                            <img src="/images/ppt.png" height="60" width="60"/><br/>
-                                          </a>
+                                        (data.fileUpload ? data.fileUpload.split('.').pop() : "") === "pdf" || (data.fileUpload ? data.fileUpload.split('.').pop() : "") === "PDF" 
+                                          ?
+                                            <a title="Click to View"  target="_blank" href={data.fileUpload}> 
+                                              <img src="/images/pdf.png" height="60" width="60"/><br/>
+                                            </a>
+                                          :
+                                            <a title="Click to View"  target="_blank" href={data.fileUpload}> 
+                                              <img src="/images/ppt.png" height="60" width="60"/><br/>
+                                            </a>
 
-                                    : null
-                                  }
+                                      : 
+                                        <a title="No File Available"> 
+                                          <img src="/images/noFile.webp" height="60" width="60"/><br/>
+                                        </a>
+                                    }  
+                                  
                                 </div>
                               </p>
                               <h4 className="blogTitle pl25" ><b>{data.title}</b></h4>

@@ -28,6 +28,7 @@ export default class tools extends Component {
         updateID        : "",
         submit          : true,
       };
+      console.log("fileUpload",this.state.fileUpload)
   }
 
   componentDidMount(){
@@ -231,6 +232,8 @@ export default class tools extends Component {
       var value      = event.target.value;
       //console.log(name, value);
       this.setState({ [name] : value })
+      console.log("fileUpload",this.state.fileUpload)
+      // console.log("fileUpload",this.state.portfolioImage1)
   }
 
   handleSubmit(event){
@@ -247,6 +250,7 @@ export default class tools extends Component {
               "fileUpload": this.state.portfolioImage1,
         }
          console.log("dataArray1", dataArray1);
+         console.log("dataArray1", dataArray1.fileUpload);
       axios
         .post("api/uploadVideoUrl/post",dataArray1)
         .then((response) =>{
@@ -259,6 +263,7 @@ export default class tools extends Component {
                 "tag"       : "" ,
                 "url"       : "", 
                 "fileUpload": "",
+                "portfolioImage1": "",
             });
           
         })
@@ -279,13 +284,14 @@ export default class tools extends Component {
           console.log("Url Upload  successfully!", response);
             swal("Congrats..!", "Tools Updated successfully","success" );
             this.getDataList();
-            this.props.history.push('/tools');
             this.setState({
                 "title"     : "" ,
                 "tag"       : "" ,
                 "url"       : "", 
                 "fileUpload": "",
+                "portfolioImage1": "",
             }); 
+            this.props.history.push('/tools');
 
         })
       }else{
@@ -306,6 +312,7 @@ export default class tools extends Component {
         this.setState({
             "fileUpload":event.target.value,
           });
+        console.log("fileUpload inside Function",this.state.fileUpload.length)
         }
       }
     var index = event.target.getAttribute('id');
@@ -323,6 +330,7 @@ export default class tools extends Component {
         var ext = newFile.name.split('.').pop();
         if(  ext==="PDF" ||  ext==="pdf" || ext==="PPT" || ext==="PPTX"|| ext==="pptx"){ 
           if (newFile) {
+            console.log("newFile")
             if(this.state.fileUpload && this.state.fileUpload.length === 0){
               console.log("this.state.confiq",this.state.config);
               S3FileUpload
@@ -513,10 +521,10 @@ export default class tools extends Component {
                   { this.state.portfolioImage1 !== "" 
                     ? 
                     <div>
-                        <label className="pull-right custFaTimes zeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
+                        <label className="pull-right custFaTimes pptZeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
                        {
                         (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
-                          <div className="col-lg-12 col-md-12 col-sm-10 col-xs-12 setpdf" id="LogoImageUpOne">
+                          <div className="col-lg-12 col-md-12 col-sm-10 col-xs-12 " id="LogoImageUpOne">
                             <img src="/images/pdf.png" height="50" width="50"/>
                             <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
                           </div>
@@ -577,7 +585,12 @@ export default class tools extends Component {
                                 <td className="td_title">{data.title}</td>
                                 <td>{data.tag}</td>
                                 <td>
-                                   <a data-url={data.url}  onClick={this.openNewTab.bind(this)} ><ReactPlayer url={data.url}  width='100px' height='70px'  target="_blank" controls loop  /></a>
+                                  {data.url !== ""
+                                    ?
+                                      <a data-url={data.url}  onClick={this.openNewTab.bind(this)} ><ReactPlayer url={data.url}  width='100px' height='70px'  target="_blank" controls loop  /></a>
+                                    :
+                                      <div><h5>File not Found</h5></div>
+                                  }
                                 </td>
                                 <td className="td_pdf">
                                   {data.fileUpload 
@@ -591,7 +604,7 @@ export default class tools extends Component {
                                         <a  title="Click to View"  target="_blank" href={data.fileUpload}> 
                                           <img src="/images/ppt.png" className="pl50" height="50" width="50"/><br/>
                                         </a>
-                                    : null
+                                    : <div><h5>File not Found</h5></div>
                                   }
                                 </td>
                                 <td className="text-center td_action">  
