@@ -177,7 +177,7 @@ class Clientmapping extends Component{
             </form>
 
             :
-            <div>Error in fetching distributor and client</div>
+            <div>Active distributor not found</div>
 
             }
 
