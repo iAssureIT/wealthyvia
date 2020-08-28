@@ -154,7 +154,7 @@ class Clientlist extends Component {
       console.log("not error");
       const formValues = {
         "email"         : this.state.email ,
-        "subject"       : "wealthyvia - client register",
+        "subject"       : "Register on Wealthyvia",
         "text"          : "", 
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
                           "<b>Welcome to wealthvia <br/><br/>"+

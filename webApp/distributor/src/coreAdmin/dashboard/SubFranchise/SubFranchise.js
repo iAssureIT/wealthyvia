@@ -155,7 +155,7 @@ class SubFranchise extends Component {
       console.log("not error");
       const formValues = {
         "email"         : this.state.email ,
-        "subject"       : "wealthyvia - client register",
+        "subject"       : "Wealthyvia - Join as a Partner",
         "text"          : "", 
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
                           "<b>Welcome to wealthvia <br/><br/>"+
