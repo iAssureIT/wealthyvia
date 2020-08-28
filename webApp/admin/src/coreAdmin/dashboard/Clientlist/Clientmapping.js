@@ -56,9 +56,15 @@ class Clientmapping extends Component{
     Axios.get("api/distributormaster/get/list")
        .then((response)=>{
          if(response.data){
-          this.setState({
-             DistributorData : response.data,
-           });
+          if(response.data.length > 0){
+            var DistributorData =  response.data.filter(function(disdata) {
+              return disdata.status == "Active";
+            })
+            this.setState({
+              DistributorData : DistributorData,
+            });
+          }
+          
         console.log("response.data.DistributorData = ",response.data);
         }
        })
@@ -124,7 +130,7 @@ class Clientmapping extends Component{
          </div>
           <hr className="compySettingHr"/>
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-           { this.state.DistributorData && this.state.clientName ?
+           { this.state.DistributorData && this.state.DistributorData.length > 0 && this.state.clientName ?
              <form id="researchreportForm"  >
                
                 
@@ -158,12 +164,11 @@ class Clientmapping extends Component{
 
                         </div>
                       </div>
-	                  
-                    </div>
-                    
-                     <div className="formcontent col-lg-offset-8 col-lg-4 col-md-3 col-sm-12 col-xs-12">
-                      <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
-                    </div> 
+  	                  <div className="formcontent  col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div onClick={this.Submit.bind(this)} className="submitOffering pull-right" >Submit</div>
+                      </div> 
+                    </div>                    
+                     
                   </div>
                   
                 </div> 

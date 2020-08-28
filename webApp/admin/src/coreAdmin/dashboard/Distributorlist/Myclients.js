@@ -42,19 +42,27 @@ class Myclients extends Component {
       console.log("response from api=>", ID);
     Axios.get("api/distributormaster/get/one/"+ID)
     .then(res=>{
-      console.log("response from api=>",res.data);
+      // console.log("response from api=>",res.data);
       var distributorCode = res.data.distributorCode;
-        this.getmyclients(distributorCode); 
-        this.getmySubfranchise(distributorCode); 
-        var encryptcode = distributorCode * 298564;
-      //  var jobData:res.data.jobManage;
-      if(res.data && res.data){
-        this.setState({
-          DistributorData : res.data,
-          clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode,
-          subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
-        });
-      }
+        if(distributorCode){
+          this.getmyclients(distributorCode); 
+          this.getmySubfranchise(distributorCode); 
+          var encryptcode = distributorCode * 298564;
+          //  var jobData:res.data.jobManage;
+          if(res.data && res.data){
+            this.setState({
+              DistributorData : res.data,
+              clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode,
+              subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
+            });
+          }
+        }
+        else{
+          this.setState({
+              DistributorData : res.data,              
+            });
+        }
+        
     })
     .catch(err=>{
       console.log("err",err);

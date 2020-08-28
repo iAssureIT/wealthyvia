@@ -261,7 +261,7 @@ class RiskProfile extends Component {
               .post('/send-email',formValues2)
               .then((res)=>{
                         if(res.status === 200){
-                             swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
+                             swal("Thank You!", "Your risk profile details submitted successfully.", "success")
                         }
                         this.setState({
                           buttonHeading : 'Sign Up',

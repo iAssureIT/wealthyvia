@@ -209,7 +209,8 @@ export default class distributerList extends Component{
                               "text"          : "", 
                               "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
                                                 "Congratulations! Your Partner profile has been approved on Wealthyvia! Now you can login to the system & can refer client to Wealthyvia. Following are your login credentials: <br/> " + 
-                                                "Email: " + email +
+                                                "Login Url: <a href='http://qawealthyviadistributor.iassureit.com/' target='_blank'>http://qawealthyviadistributor.iassureit.com/</a></br/>"+
+                                                "<br/>Email: " + email +
                                                 "<br/>Default Password: " + "Welcome@123" +
                                                 "<br/> <br/> " + 
                                                 "Hope you enjoy being a Partner of Wealthyvia! " +

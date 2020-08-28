@@ -1659,7 +1659,11 @@ export default class Header extends Component {
                                 </div>
                              </div>
                      
-                      <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                     {
+                       !token ? <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                       :
+                       null 
+                     }
      </div> 
       </div>    
     );

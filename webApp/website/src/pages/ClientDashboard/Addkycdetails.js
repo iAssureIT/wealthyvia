@@ -130,17 +130,27 @@ class Addkycdetails extends Component {
     if (!fields["amountInvesting"]) {
       formIsValid = false;
       errors["amountInvesting"] = "This field is required.";
-    }
+    } 
       
     this.setState({
       errors: errors
     });
     return formIsValid;
   }
+
   validateForm() {
     let fields = this.state.fields;
     let errors = {};
     let formIsValid = true;
+
+
+    if (typeof fields["amountInvesting"] !== "undefined") {
+      if (!fields["amountInvesting"].match(/^[0-9]/)) {
+        formIsValid = false;
+        errors["amountInvesting"] = "Please enter valid amount.";
+      }
+
+    } 
     
     this.setState({
       errors: errors
@@ -243,11 +253,12 @@ class Addkycdetails extends Component {
 
   Submit(event){
     event.preventDefault();
-    this.setState({
-        buttonHeading : 'We are processing. Please Wait...',
-    })
+    
     // console.log("this.state", this.state);
       if (this.validateForm() && this.validateFormReq()) {
+        this.setState({
+          buttonHeading : 'We are processing. Please Wait...',
+        });
        // console.log("userinfo", this.state.userinfo);
         var dataArray1={
           "name"             : this.state.userinfo.fullName,
@@ -314,11 +325,21 @@ class Addkycdetails extends Component {
               .post('/send-email',formValues2)
               .then((res)=>{
                         if(res.status === 200){
-                             swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
-                             this.setState(this.baseState);
-                             $("html,body").scrollTop(0);
-                             this.props.history.push("#riskprofileform");
-                             window.location.reload();
+                              $("html,body").scrollTop(0);
+                              swal({
+                                  title: "Thank You!",
+                                  text: "Your KYC details submitted successfully.",
+                                  type: "success"
+                                  }).then(function() {                                  
+                                    // this.setState(this.baseState);
+                                     
+                                     // this.props.history.push("#riskprofileform");
+                                     window.location = "#riskprofileform";
+                                     window.location.reload();
+                                  });
+                             //swal("Thank You!", "Your KYC details submitted successfully.", "success")
+                             
+                             //window.location.reload();
                         }
                       })
                       .catch((error)=>{
@@ -331,26 +352,7 @@ class Addkycdetails extends Component {
               console.log("error = ", error);
             });    
           }
-          let fields = {};
-          fields["panNumber"]     = "";
-          fields["addressProof"]     = "";
-          fields["name"]            = "";
-          fields["email"]           = "";
-          fields["contactNumber"]   = "";
-        
-             this.setState({
-            "panNumber"       : "",
-            "addressProof"      : "",
-            "name"             : "",
-            "email"            : "",
-            "contactNumber"    : "",
-           
-            "fields"           : fields
-          });
-          $("#kycModalHeader").hide();
-        $("#kycModalHeader").removeClass('in');
-        $(".modal-backdrop").remove();
-        $("body").removeClass("modal-open");
+          
       }
     }
   
@@ -446,7 +448,7 @@ class Addkycdetails extends Component {
                             <label>Amount Investing <span className="asterix">*</span></label>
                           </div>
                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                               <input type="number" className="customInputKF inputBox nameParts" name="amountInvesting" placeholder="Enter Amount Investing" ref="amountInvesting" onChange={this.handleChange.bind(this)}  />
+                               <input type="number" className="customInputKF inputBox nameParts" name="amountInvesting" placeholder="Enter Amount Investing" min="0" ref="amountInvesting" onChange={this.handleChange.bind(this)}  />
                             <div className="errorMsg">{this.state.errors.amountInvesting}</div>
 
                          </div>

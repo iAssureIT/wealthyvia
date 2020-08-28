@@ -20,11 +20,12 @@ export default class Dashboard extends Component{
     
   render(){
     return(
-      <div className="">
+      <div className="row">
         <div className="col-lg-12">
-            <div className="log-lg-12 pull-left ">
-              <h3>Dashboard</h3>
-            </div>
+            
+              
+              <img src="/images/partner-dashboard.jpg" style={{width: '100%'}}/>
+           
           </div>
           
       </div>     

@@ -101,8 +101,8 @@ export default class Myprofile extends Component{
             </div>
 
             <div className="col-lg-12 col-md-12 col-sm-12  col-xs-12 nopadding setArea mt20">
-              <div className = "panel panel-default setBackground">
-                  <div className = "panel-heading"><h4 ><b className="bankheading">Bank details </b></h4></div>
+              <div className = "panel panel-default setBackgroundAccountdetails">
+                  <div className = "panel-heading"><h4 ><b className="bankheading">Bank Details </b></h4></div>
                   <br/>
              
                  <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >

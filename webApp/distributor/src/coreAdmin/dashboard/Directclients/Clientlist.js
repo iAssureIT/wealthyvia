@@ -47,7 +47,7 @@ class Clientlist extends Component {
         var encryptcode = distributorCode * 298564;
         this.setState({
           distributorCode  : distributorCode,
-          clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode
+          clientsignupurl  : "http://wealthyvia.iassureit.com/signup?x="+ encryptcode
         });
       }
     })
@@ -129,7 +129,7 @@ class Clientlist extends Component {
       var pattern = new RegExp(/^[a-zA-Z]+$/);
       if (!pattern.test(fields["fullName"])) {
         formIsValid = false;
-        errors["firstNameV"] = "Please enter valid full name.";
+        errors["fullName"] = "Please enter valid full name.";
       }
     }     
     if (typeof fields["email"] !== "undefined") {
@@ -172,6 +172,13 @@ class Clientlist extends Component {
         .then((res)=>{
                    if(res.status === 200){
                     swal("Signup url email sent to this "+this.state.email)
+                    this.setState({
+                      fullName : '',
+                      email    : ''
+                    })
+                    }
+                    else{
+                      swal("Something went wrong");
                     }
                 })
                 .catch((error)=>{
@@ -191,7 +198,7 @@ class Clientlist extends Component {
           { this.state.distributorCode ?
             <div>
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader ">
-                <h4 className="h5lettersp MasterBudgetTitle">My direct clients</h4>
+                <h4 className="h5lettersp MasterBudgetTitle">My Direct Clients</h4>
               </div> 
               <hr class="compySettingHr" />
               <form id="signUpUser" className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onSubmit={this.shareurl.bind(this)} >
@@ -232,7 +239,7 @@ class Clientlist extends Component {
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                             <tr>
-                              <th className="text-left">Client code</th>
+                              <th className="text-left">Client Code</th>
                               <th className="text-left">Client Name</th>
                               <th className="text-left">Mobile</th>
                               <th className="text-left">Mail</th>

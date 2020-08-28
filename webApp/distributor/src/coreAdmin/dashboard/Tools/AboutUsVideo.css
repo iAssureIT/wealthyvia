@@ -275,7 +275,7 @@ input[type="month"]::-webkit-clear-button {
   position: relative;
     text-align: center;
     color: white;
-    background-image: url("/images/ceo.png");
+    background-image: url(https://wealthyvia.s3.ap-south-1.amazonaws.com/website/ceo.png);
     background-size: 100% 100%;
 
 }

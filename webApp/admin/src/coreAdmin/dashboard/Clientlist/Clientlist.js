@@ -97,7 +97,7 @@ class Clientlist extends Component {
       <div className="row">
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
-          <h4 className="h5lettersp MasterBudgetTitle">Client list
+          <h4 className="h5lettersp MasterBudgetTitle">Client List
               <div className=" pull-right" style={{ textAlign: 'right', marginTop: '2px', fontSize: '16px'}}>
                 <ExportCSV csvData={this.exportClientdata()} fileName="clients" />&nbsp;
               </div> 
@@ -113,11 +113,11 @@ class Clientlist extends Component {
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                               <tr>
-                                <th>Client code</th>
+                                <th>Client Code</th>
                                 <th>Full Name</th> 
                                 <th>Email</th>
                                 <th>Mobile Number</th> 
-                                <th>Distributor code</th>
+                                <th>Distributor Code</th>
                                 <th>Actions</th>                                 
                               </tr>
                                                      
@@ -134,15 +134,17 @@ class Clientlist extends Component {
                                           <td className="col-lg-1"> {b.email} </td> 
                                           <td className="col-lg-1"> {b.mobNumber} </td>  
                                           <td className="col-lg-1"> 
-                                            { b.distributorCode === '-' ? 
-                                            <button><a href={"/clientmapping/"+ b._id} >
-                                                Map distributor 
-                                            </a> </button> 
-                                            :
-                                             <div>{b.distributorCode}</div>
-                                            }
+                                            { b.distributorCode }                                            
                                           </td>
-                                          <td className="col-lg-1"></td> 
+                                          <td className="col-lg-1">
+                                            { b.distributorCode === '-' ? 
+                                            <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
+                                                Map distributor 
+                                            </a>  
+                                            :
+                                             null
+                                            }
+                                          </td> 
                                         </tr>                                         
                                         )
                                       })

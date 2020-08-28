@@ -114,7 +114,7 @@ export default class Productpricing extends Component {
                                 a.price ?
                                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 PlanDetailsPlan">
                                      <label className="productName"> {a.offeringTitle}</label><br/>
-                                     <label className="productPrice"> <i className="fa fa-rupee">&nbsp;</i>{a.price}</label><br/>
+                                     <label className="productPrice"> <i className="fa fa-rupee">&nbsp;</i>{a.price.toLocaleString("en-IN")}</label><br/>
                                      <button className="btn btn-primary buyNowPlan" data-planname={a.offeringTitle} data-price={a.price} data-validityinmonths="6" onClick={this.placeOrder.bind(this)}> Invest Now </button>
                                   </div> 
                                 :

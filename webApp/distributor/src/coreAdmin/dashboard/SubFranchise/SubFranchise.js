@@ -48,7 +48,7 @@ class SubFranchise extends Component {
         var encryptcode = distributorCode * 298564;
         this.setState({
           distributorCode  : distributorCode,
-          subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
+          subfranchiseurl  : "http://wealthyvia.iassureit.com/join-as-partner?x="+ encryptcode
         });
       }
     })
@@ -130,7 +130,7 @@ class SubFranchise extends Component {
       var pattern = new RegExp(/^[a-zA-Z]+$/);
       if (!pattern.test(fields["fullName"])) {
         formIsValid = false;
-        errors["firstNameV"] = "Please enter valid full name.";
+        errors["fullName"] = "Please enter valid full name.";
       }
     }     
     if (typeof fields["email"] !== "undefined") {
@@ -172,7 +172,14 @@ class SubFranchise extends Component {
         .post('/send-email',formValues)
         .then((res)=>{
                    if(res.status === 200){
-                    swal("Signup url email sent to this "+this.state.email)
+                    swal("Signup url email sent to this "+this.state.email);
+                    this.setState({
+                      fullName : '',
+                      email    : ''
+                    })
+                    }
+                    else{
+                      swal("Something went wrong");
                     }
                 })
                 .catch((error)=>{
@@ -261,7 +268,7 @@ class SubFranchise extends Component {
                           </thead>
                           <tbody>     
                           {
-                            this.state.subfranchiseList?
+                            this.state.subfranchiseList && this.state.subfranchiseList.length > 0?
                             this.state.subfranchiseList.map((a, i)=>{
                                 return(
                                     <tr key={i}> 

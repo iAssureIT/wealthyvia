@@ -113,7 +113,7 @@ componentDidMount(){
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mainContentBackground">                  
                         <Switch>
                           <Route path="/" component={AdminContent} exact />                
-                          <Route path="/dashboard" component={AdminContent} exact />                
+                          {/*<Route path="/dashboard" component={AdminContent} exact /> */}            
                           <Route path="/dashboard" component={Dashboard} exact />
                           <Route path="/ClientTable" component={ClientTable} exact />
                           <Route path="/dashboard" component={Dashboard} exact />
