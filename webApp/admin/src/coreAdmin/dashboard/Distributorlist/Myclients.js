@@ -22,7 +22,9 @@ class Myclients extends Component {
       errors          : {},
       fields          : {},
       clientsignupurl : '',
-      clientList      : []
+      clientList      : [],
+      subfranchiseurl : '',
+      subfranchiseList : []
     }   
   }
   handleChange(event){
@@ -43,12 +45,14 @@ class Myclients extends Component {
       console.log("response from api=>",res.data);
       var distributorCode = res.data.distributorCode;
         this.getmyclients(distributorCode); 
+        this.getmySubfranchise(distributorCode); 
         var encryptcode = distributorCode * 298564;
       //  var jobData:res.data.jobManage;
       if(res.data && res.data){
         this.setState({
           DistributorData : res.data,
-          clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode
+          clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode,
+          subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
         });
       }
     })
@@ -79,6 +83,26 @@ class Myclients extends Component {
     })
   }
 
+  getmySubfranchise(distributorCode){
+    
+    Axios.get("api/distributormaster/get/all/myfranchiselist/"+distributorCode)
+    .then(res=>{
+      console.log("response from api=>client",res.data);
+
+      if(res && res.data){
+        
+        this.setState({
+          subfranchiseList : res.data 
+        });
+      }
+    })
+    .catch(err=>{
+      console.log("err",err);
+      swal("Oops...","Something went wrong! <br/>"+err, "error");
+
+    })
+  }
+
   exportClientdata = () => {
       let client = []
       if(this.state.clientList && this.state.clientList.length > 0)
@@ -92,6 +116,20 @@ class Myclients extends Component {
       
       return client;
     }
+
+  exportsubfranchisedata = () => {
+      let subfranchise = []
+      if(this.state.subfranchiseList && this.state.subfranchiseList.length > 0)
+      {
+          var data = this.state.subfranchiseList;
+          for (let i = 0; i < data.length; i++) {
+              subfranchise.push({" Name": data[i].firstname+" "+data[i].lastname, "email" : data[i].email.address,
+                          "Contact" : data[i].phone });        
+            }
+      }
+      
+      return subfranchise;
+    }  
  
   render(){
     
@@ -186,7 +224,8 @@ class Myclients extends Component {
                <hr className="compySettingHr"/>
 
 
-                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="tab-content customTabContent col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <h4 style={{paddingBottom: '14px' }}>Client signup url:  <a href={this.state.clientsignupurl} style={{color: '#337ab7' }} target="_blank"> {this.state.clientsignupurl} </a></h4>
                   <div id="home" className="tab-pane fade in active">
                     <div className="col-lg-12 NOpadding">
                         <table className="table tableCustom table-striped reserachtable">
@@ -224,6 +263,63 @@ class Myclients extends Component {
                       </div>    
               </form>
             </div>
+            {
+              this.state.subfranchiseList && this.state.subfranchiseList.length > 0 ?
+            <div className="row">  
+              
+            <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader" style={{marginTop: '20px'}}>
+                <h4 className="h5lettersp MasterBudgetTitle" >My Sub Franchise
+                <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px'}}>
+                  <ExportCSV csvData={this.exportsubfranchisedata()} fileName="Subfranchise" />&nbsp;
+                </div></h4>
+
+              </div>
+               <hr className="compySettingHr"/>
+                <h4 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style={{paddingBottom: '14px' }}>Sub Franchise url:  <a href={this.state.subfranchiseurl} style={{color: '#337ab7' }} target="_blank"> {this.state.subfranchiseurl} </a></h4>
+                  <div id="home" className="tab-pane fade in active">
+                    <div className="col-lg-12 NOpadding">
+                        <table className="table tableCustom table-striped reserachtable">
+                          <thead className="bgThead">
+                            <tr>
+                              <th className="text-left">Code</th>
+                              <th className="text-left">Name</th>
+                              <th className="text-left">Mobile</th>
+                              <th className="text-left">Mail</th>
+                              <th className="text-left">No of clients</th>
+                              <th className="text-left">Total AUM</th>
+                              <th className="text-left">Total fees pending</th>
+                            </tr>
+                                                   
+                          </thead>
+                          <tbody>     
+                          {
+                            this.state.subfranchiseList?
+                            this.state.subfranchiseList.map((a, i)=>{
+                                return(
+                                    <tr key={i}> 
+                                      <td className="">{a.distributorCode} </td> 
+                                      <td className="">{a.firstname+" "+a.lastname} </td>
+                                      <td>{a.phone}</td>
+                                      <td>{a.email ? a.email.address : '' }</td>
+                                      <td>{a.usercount}</td> 
+                                      <td></td>   
+                                      <td></td>  
+                               </tr>
+                                )
+                              }):
+                            null
+                            }
+                            </tbody>
+                          
+                        </table>
+              </div>    
+            </div>
+          </div>
+          </div>
+          :
+           null
+            }
             
         </div>
         :

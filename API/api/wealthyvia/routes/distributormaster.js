@@ -17,6 +17,7 @@ router.patch('/update/optEmail/:ID'      , distributormaster.distributor_update_
 router.get('/get/one/byuserid/:ID'		, distributormaster.fetch_distributor_by_userid);
 router.patch('/patch/additionalinfo/:ID', distributormaster.add_additional_info_distributor);
 router.get('/get/one/bydistributorcode/:ID'		, distributormaster.fetch_distributor_by_distributorcode);
+router.get('/get/all/myfranchiselist/:distributorCode'		, distributormaster.fetch_my_subfranchise_list);
 
 //**************************Set status approve or reject *************************//
 

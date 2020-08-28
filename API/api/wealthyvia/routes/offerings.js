@@ -13,6 +13,7 @@ router.get('/get/all/list/:pageno', OfferingController.fetch_offering_all_list);
 router.patch('/patch/:ID', OfferingController.patch_offering);
 router.patch('/patch/pricing/:ID', OfferingController.patch_pricingoffering);
 router.delete('/delete/:ID', OfferingController.delete_offering);
+router.get('/get/all/price/list', OfferingController.fetch_offering_price_list);
 
 
 module.exports = router;

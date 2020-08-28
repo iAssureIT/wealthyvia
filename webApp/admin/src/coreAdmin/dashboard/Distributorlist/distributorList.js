@@ -8,7 +8,7 @@ import moment from 'moment';
 import $      from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-
+import {ExportCSV} from '../../common/Export/ExportCSV.js';
 
 export default class distributerList extends Component{
   constructor(props){
@@ -524,6 +524,19 @@ export default class distributerList extends Component{
     })    
   }
 
+  exportdistributordata = () => {
+      let distributor = []
+      if(this.state.DistributorData && this.state.DistributorData.length > 0)
+      {
+          var data = this.state.DistributorData;
+          for (let i = 0; i < data.length; i++) {
+              distributor.push({"Code": data[i].distributorCode, "Name": data[i].firstname+" "+data[i].lastname, "email" : data[i].email.address,
+                          "Contact" : data[i].phone, "Date of Application": moment(data[i].currentDate).format("Do MMM YYYY"), "No of clients": data[i].usercount,  });        
+            }
+      }
+      
+      return distributor;
+    } 
 
   render(){
     console.log("Distributor Data",this.state.DistributorData)
@@ -534,14 +547,9 @@ export default class distributerList extends Component{
     		  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
               <h2>Distributor List</h2>
           <hr/>
-           <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className="download-table-xls-button fa fa-download mt70 tableicons pull-right"
-                table="table-to-xls"
-                filename="Distributor List"
-                sheet="tablexls"
-                buttonText=""
-          />
+           <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px'}}>
+                  <ExportCSV csvData={this.exportdistributordata()} fileName="Distributor List" />&nbsp;
+                </div>
           </div>			
 
 		      <br/>

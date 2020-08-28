@@ -158,7 +158,8 @@ exports.fetch_All_distributor_list = (req,res,next) => {
          .then(data=>{
             if(data.length > 0){
                 let promises = data.map(element => {
-                return getusercountsbycode(element.distributorCode)
+                if(element.distributorCode){
+                    return getusercountsbycode(element.distributorCode)
                     .then(usercount => {
                         var obj = element.toObject();
                         obj.usercount = usercount;
@@ -166,6 +167,61 @@ exports.fetch_All_distributor_list = (req,res,next) => {
                         
                       return obj;
                     })
+                }
+                else{
+                    var obj = element.toObject();
+                    obj.usercount = 0;                        
+                    return obj;                    
+                }
+                
+                });
+
+                // Wait for all Promises to complete
+                Promise.all(promises)
+                  .then(results => {
+                    //console.log("result", results);
+                    res.status(200).json(results);
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  })
+                
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+
+
+exports.fetch_my_subfranchise_list = (req,res,next) => {
+    Distributormaster.find({franchiseCode: req.params.distributorCode})
+        .sort({createdAt : -1})
+         .exec()
+         .then(data=>{
+            if(data.length > 0){
+                let promises = data.map(element => {
+                if(element.distributorCode){
+                    return getusercountsbycode(element.distributorCode)
+                    .then(usercount => {
+                        var obj = element.toObject();
+                        obj.usercount = usercount;
+                        //console.log("Record ",obj);
+                        
+                      return obj;
+                    })
+                }
+                else{
+                    var obj = element.toObject();
+                    obj.usercount = 0;                        
+                    return obj;                    
+                }
+                
                 });
 
                 // Wait for all Promises to complete
@@ -475,6 +531,7 @@ exports.distributor_join_email_otp = (req,res,next)=>{
                                         "website"            : req.body.website, 
                                         "gst"               : req.body.gst, 
                                         "status"            : "New", 
+                                        "franchiseCode"     : req.body.franchiseCode, 
                                         "userId"            : null,
                                         "createdBy"         : req.body.createdBy, //_id of User or null
                                         "createdAt"         : new Date(),    

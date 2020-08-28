@@ -108,6 +108,26 @@ exports.fetch_offering_all_list = (req,res,next) => {
                     });
                 });
 };
+exports.fetch_offering_price_list = (req,res,next) => {
+    
+    Offering.find({"price" : { $ne : null }})
+         .sort({createdAt : -1})
+         .select("offeringTitle bannerImage price createdBy createdAt")
+         .exec()
+         .then(data=>{
+            if(data.length > 0 ){
+                res.status(200).json(data);
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
 exports.fetch_offering_all_type = (req,res,next) => {
     var limitRange    = 10;
     var countNum2   = limitRange * req.params.pageno;

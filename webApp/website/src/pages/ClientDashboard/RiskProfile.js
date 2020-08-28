@@ -84,6 +84,20 @@ class RiskProfile extends Component {
       
         var array = this.state.questionsArray;
         var answersarray = [];
+
+        let fields = this.state.fields;
+        fields[event.target.name] = event.target.value;
+        this.setState({
+          fields
+        });
+        if (this.validateForm() ) {
+          let errors = {};
+          errors[event.target.name] = "";
+          this.setState({
+            errors: errors
+          });
+        }
+
         if(array){
 
           
@@ -136,12 +150,54 @@ class RiskProfile extends Component {
     }
   }
 
-  
+  validateFormReq() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+    // console.log("questions1", this.state.Question1);
+    // console.log("field", fields[this.state.Question1]);   
+    if (!fields[this.state.Question1]) {
+      formIsValid = false;
+      errors[this.state.Question1] = "This field is required.";
+    }
+    if (!fields[this.state.Question2]) {
+      formIsValid = false;
+      errors[this.state.Question2] = "This field is required.";
+    }
+    if (!fields[this.state.Question3]) {
+      formIsValid = false;
+      errors[this.state.Question3] = "This field is required.";
+    }
+    if (!fields[this.state.Question4]) {
+      formIsValid = false;
+      errors[this.state.Question4] = "This field is required.";
+    }
+    if (!fields[this.state.Question5]) {
+      formIsValid = false;
+      errors[this.state.Question5] = "This field is required.";
+    }
+    
+      
+    this.setState({
+      errors: errors
+    });
+    return formIsValid;
+  }
+  validateForm() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+    
+    this.setState({
+      errors: errors
+    });
+    return formIsValid;
+  }
 
   Submit(event){
     event.preventDefault();
     // console.log("ok");
-      // if (this.validateForm() && this.validateFormReq()) {
+      if (this.validateForm() && this.validateFormReq()) {
         this.setState({
             buttonHeading : 'We are processing. Please Wait...',
         })
@@ -231,7 +287,7 @@ class RiskProfile extends Component {
           });
           
       }
-    // }
+    }
   }
 
   render() {
@@ -281,6 +337,7 @@ class RiskProfile extends Component {
                                              </div>
                                             <span className="centreDetaillistItem ansoptions">I am day trader, daily play with markets. I want continuous smart trades.</span>
                                       </div>
+                                      <div className="errorMsg">{this.state.errors[this.state.Question1]}</div>
                                     </div>
                                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                                       <p><b>{this.state.Question2}</b><span className="asterix">*</span></p>
@@ -304,7 +361,8 @@ class RiskProfile extends Component {
                                                     <span className="radioCheck"></span>
                                                  </div>
                                                 <span className="centreDetaillistItem ansoptions">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
-                                        </div>                                            
+                                        </div> 
+                                        <div className="errorMsg">{this.state.errors[this.state.Question2]}</div>                                           
                                     </div>
 
                                     {this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
@@ -324,7 +382,8 @@ class RiskProfile extends Component {
                                                 <span className="radioCheck"></span>
                                              </div>
                                             <span className="centreDetaillistItem ansoptions col-xs-9">No</span>
-                                      </div>                                                 
+                                      </div> 
+                                      <div className="errorMsg">{this.state.errors[this.state.Question3]}</div>                                                
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                                         <p><b>{this.state.Question4}</b><span className="asterix">*</span></p>
@@ -360,7 +419,8 @@ class RiskProfile extends Component {
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">2-15 plus years</span>
 
-                                      </div>            
+                                      </div>
+                                      <div className="errorMsg">{this.state.errors[this.state.Question4]}</div>            
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
                                         <p><b>{this.state.Question5}</b><span className="asterix">*</span></p>
@@ -393,7 +453,8 @@ class RiskProfile extends Component {
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">More than -75%</span>
 
-                                      </div> 
+                                      </div>
+                                      <div className="errorMsg">{this.state.errors[this.state.Question5]}</div> 
                                     </div>
                                    
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">

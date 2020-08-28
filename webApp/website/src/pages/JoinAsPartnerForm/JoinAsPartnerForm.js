@@ -4,6 +4,7 @@ import axios                      from 'axios';
 import swal                       from 'sweetalert';
 import moment from 'moment';
 import $ from 'jquery';
+import queryString          from "query-string";
 import InputMask      from 'react-input-mask';
 
 // import S3 from 'react-aws-s3';
@@ -45,7 +46,8 @@ export default class JoinAsPartnerForm extends Component {
           "errors"       :{},
           "fields2"      :{},
           "errors2"      :{},
-
+          "franchiseCode":"",
+          "franchiseName":"",
           submit         :true,
           gmapsLoaded    : false,
 
@@ -75,7 +77,7 @@ export default class JoinAsPartnerForm extends Component {
 
           })
           .catch(function(error){
-            console.log(error);
+            // console.log(error);
               if(error.message === "Request failed with status code 401")
                   {
                        swal("Your session is expired! Please login again.","", "error");
@@ -91,8 +93,39 @@ export default class JoinAsPartnerForm extends Component {
   
 //==================edit=================// 
   
+      const parsed = queryString.parse(this.props.location.search);
+     
+      if(parsed){
+        const decryptcode = parsed.x;
+        if(decryptcode){
+          var franchisecode = decryptcode / 298564 ;
+            // console.log("franchiseCode", franchisecode);
+            this.setState({franchiseCode : franchisecode});
+            this.getDistributorData(franchisecode);
+        }           
+      }
+      
 
-  
+}
+
+    getDistributorData(distributorcode){
+    
+    axios.get("api/distributormaster/get/one/bydistributorcode/"+distributorcode)
+    .then(res=>{
+      // console.log("response from api=>",res.data);
+
+      if(res && res.data){
+        
+        this.setState({
+          franchiseName: res.data.firstname + " " + res.data.lastname
+        });
+      }
+    })
+    .catch(err=>{
+      // console.log("err",err);
+      swal("Oops...","Something went wrong! <br/>"+err, "error");
+
+    })
   }
 
 
@@ -175,7 +208,7 @@ export default class JoinAsPartnerForm extends Component {
         this.setState({
           errors2: errors
         });
-        console.log("errors",errors);
+        // console.log("errors",errors);
 
         return formIsValid;
   }
@@ -191,13 +224,13 @@ export default class JoinAsPartnerForm extends Component {
           errors["email"] = "Please enter valid email-ID.";
         }
       }
-      if (typeof fields["phone"] !== "undefined") {
+      /*if (typeof fields["phone"] !== "undefined") {
         if (!fields["phone"].match(/^[0-9]{10}$/)) {
           formIsValid = false;
           errors["phone"] = "Please enter valid mobile no.";
         }
         console.log("phone",errors["phone"]);
-      }     
+      }   */  
       this.setState({
         errors2: errors
       });
@@ -237,14 +270,14 @@ export default class JoinAsPartnerForm extends Component {
         "description"         : this.refs.description.value,
         "status"              : "New",
         "currentDate"         :  this.state.currentDate ,
-
+        "franchiseCode"       :  this.state.franchiseCode ,
         }
-      console.log("dataArray1",dataArray1);
-      console.log("dataArray1 fileUpload1 ",this.state.portfolioImage2);
+      // console.log("dataArray1",dataArray1);
+      // console.log("dataArray1 fileUpload1 ",this.state.portfolioImage2);
 
       axios.post('/api/distributormaster/post/distributor/emailotp',dataArray1)
                     .then((response)=> {
-                      console.log("res", response);
+                      // console.log("res", response);
                       if(response)
                       {
                         if(response.data.message === 'Email Id already exits.'){
@@ -279,7 +312,7 @@ export default class JoinAsPartnerForm extends Component {
                     })
                     .catch(error=> {
                       
-                        console.log(error);
+                        // console.log(error);
                     this.setState({
                         buttonHeading : 'Sign Up',
                       });
@@ -332,7 +365,7 @@ export default class JoinAsPartnerForm extends Component {
       });
     var index = event.target.getAttribute('id');
 
-    console.log("index--------------->",index);
+    // console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -341,19 +374,19 @@ export default class JoinAsPartnerForm extends Component {
       this.setState({
         fileUpload : newFile.name,
       })
-      console.log("file",newFile);
+      // console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
           if (newFile) {
             if(this.state.fileUpload && this.state.fileUpload.length === 0){
-            console.log("this.state.confiq",this.state.config);
+            // console.log("this.state.confiq",this.state.config);
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
                     portfolioImage1 : Data.location,
-                  },()=>{console.log("this.state.portfolioImage1",this.state.portfolioImage1)})
+                  })
                   this.deleteimageLogo(index)
                 })
                 .catch((error)=>{
@@ -401,7 +434,7 @@ export default class JoinAsPartnerForm extends Component {
         S3FileUpload
           .deleteFile(imageName,this.state.config)
           .then((response) =>{
-            console.log("Deletedddd...",response)
+            // console.log("Deletedddd...",response)
             swal("Image deleted successfully");
           })
           .catch((err) => {
@@ -436,7 +469,7 @@ export default class JoinAsPartnerForm extends Component {
       });
     var index = event.target.getAttribute('id');
 
-    console.log("index--------------->",index);
+    // console.log("index--------------->",index);
     let self = this;
     if (event.currentTarget.files && event.currentTarget.files[0]) {
       var file = event.currentTarget.files[0];
@@ -445,19 +478,19 @@ export default class JoinAsPartnerForm extends Component {
       this.setState({
         fileUpload1 : newFile.name,
       })
-      console.log("file",newFile);
+      // console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
           if (newFile) {
             if(this.state.fileUpload1 && this.state.fileUpload1.length === 0){
-            console.log("this.state.confiq",this.state.config);
+            // console.log("this.state.confiq",this.state.config);
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
                   this.setState({
                     portfolioImage2 : Data.location,
-                  },()=>{console.log("this.state.portfolioImage2",this.state.portfolioImage2)})
+                  })
                   this.deleteimageLogo(index)
                 })
                 .catch((error)=>{
@@ -530,7 +563,7 @@ export default class JoinAsPartnerForm extends Component {
   };
 
   handleSelect = address => {
-   console.log("address=>",address);
+   // console.log("address=>",address);
     geocodeByAddress(address)
      .then((results) =>{ 
       for (var i = 0; i < results[0].address_components.length; i++) {
@@ -574,9 +607,6 @@ export default class JoinAsPartnerForm extends Component {
         pincode: pincode,
         stateCode:stateCode,
         countryCode:countryCode
-      },()=>{
-        console.log("countrt=>",this.state.country)
-        console.log("countryCode=>",this.state.countryCode)
       })
 
        
@@ -625,7 +655,7 @@ export default class JoinAsPartnerForm extends Component {
                       </div>
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent setMobileResponsive textpd2 textpd1 boxMarg">
                         <span className="blocking-span noIb">   
-                          <input type="email" className="form-control abacusTextbox oesSignUpForm" name="lastname"  ref="lastname" required
+                          <input type="text" className="form-control abacusTextbox oesSignUpForm" name="lastname"  ref="lastname" required
                             onChange={this.handleChange.bind(this)}
                             value={this.state.lastname}
                           />
@@ -827,19 +857,19 @@ export default class JoinAsPartnerForm extends Component {
                       </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
-                      <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent  textpd boxMarg ">
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent  textpd boxMarg ">
                         <span className="blocking-span noIb">
                         <span>
                             <div className="setFont marginT">Do you have your own Office? 
                                 <span className="asterix"> *</span> </div> 
                           </span>
-                          <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                          <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                          <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                          <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                             <input type="radio" name="ownOffice" ref="ownOffice" value="yes" autoComplete="off" 
                                 checked={this.state.ownOffice === "yes" ? "checked" : false}
                                 onChange= {this.selectownOffice.bind(this)}/> Yes
                           </div>
-                          <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                          <div className="col-lg-5 col-md-5 col-sm-6 col-xs-6">
                             <input type="radio" name="ownOffice" ref="ownOffice"  value="no" autoComplete="off"                       
                                 // value   = {this.state.ownOffice}
                                 onChange={this.selectownOffice.bind(this)}
@@ -848,6 +878,21 @@ export default class JoinAsPartnerForm extends Component {
                         </div>
                           <div className="errorMsg">{this.state.errors2.ownOffice}</div>
                         </span>
+                      </div>  
+                      <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent  textpd boxMarg ">
+                        {
+                          this.state.franchiseName ?
+                            <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent marginT">
+                            <span className="blocking-span noIb marginT">  
+                            <span className="setFont marginT">Referred By</span> 
+                              <input type="text" className="form-control abacusTextbox oesSignUpForm sentanceCase" id="referredby" ref="referredby" name="referredby" 
+                              value={this.state.franchiseName+" (ID: "+this.state.franchiseCode+")"} disabled/>
+                                              
+                            </span>
+                            </div>
+                          :
+                          null
+                        }
                       </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">

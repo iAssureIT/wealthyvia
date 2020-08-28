@@ -109,7 +109,7 @@ export default class Leftsidebar extends Component{
                     </li>  
 
                     <li  className="add " onClick={this.eventclk1.bind(this)}>
-                        <Link aria-expanded="false">
+                        <Link to="/subfranchise">
                             <i className="fa fa-file"></i>
                             Sub Franchise
                         </Link>

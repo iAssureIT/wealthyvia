@@ -26,7 +26,8 @@ import Rightsidebar       from '../common/rightSidebar/Rightsidebar.js';
 
 import AdminContent       from '../dashboard/DashboardNew.js';
 import Myprofile          from '../dashboard/Myprofile/Myprofile.js';
-import Editprofile          from '../dashboard/Myprofile/Editprofile.js';
+import Editprofile        from '../dashboard/Myprofile/Editprofile.js';
+import SubFranchise       from '../dashboard/SubFranchise/SubFranchise.js';
 /*============================ /Blog==============================================*/
 
 /*import Rightsidebar     from '../common/rightSidebar/Rightsidebar.js';*/
@@ -119,6 +120,7 @@ componentDidMount(){
                           <Route path="/myprofile" component={Myprofile} exact />
                           <Route path="/editprofile" component={Editprofile} exact />
                           <Route path="/myclients" component={Clientlist} exact />
+                          <Route path="/subfranchise" component={SubFranchise} exact />
                           <Route path="/tools"          exact strict component={AboutUsVideo}  /> 
                           <Route path="/"               exact strict component={ Login } />
                           <Route path="/login"          exact strict component={ Login } />

@@ -28,17 +28,18 @@ export default class tools extends Component {
         updateID        : "",
         submit          : true,
       };
-      console.log("fileUpload",this.state.fileUpload)
+      this.baseState = this.state;
+
   }
 
   componentDidMount(){
       this.getDataList();
-      console.log("this.props.match.params = ",this.props.match.params);
+      // console.log("this.props.match.params = ",this.props.match.params);
 
       var editId = this.props.match.params.editId;
 
       if(editId){
-        console.log("2 editId = ",editId);
+        // console.log("2 editId = ",editId);
         this.setState({submit : false});
         this.getOneData(editId);
       }
@@ -68,89 +69,89 @@ export default class tools extends Component {
   uploadppt(event){
     event.preventDefault();
     var file = event.target.files[0];
-    console.log("file",file)
+    // console.log("file",file)
     if(file){
-     if(file.size>=2097152)
-     {
-        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
-        event.target.value ="";
-     }else{
-          this.setState({
-              "fileUpload":event.target.value,
-            });
-        }
-      }
-    var index = event.target.getAttribute('id');
+       if(file.size>=2097152)
+       {
+          swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+          event.target.value ="";
+       }
+       else{
+          var index = event.target.getAttribute('id');
 
-    console.log("index--------------->",index);
-    let self = this;
-    if (event.currentTarget.files && event.currentTarget.files[0]) {
-      var file = event.currentTarget.files[0];
-      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
-      var newFile = new File([file],newFileName);
-      this.setState({
-        fileUpload : newFile.name,
-      })
-      console.log("file",newFile);
-      if (newFile) {
-        var ext = newFile.name.split('.').pop();
-        if(ext==="PDF" ||  ext==="pdf"||  ext==="ppt"||  ext==="pdf"){ 
-          if (newFile) {
-            if(this.state.fileUpload && this.state.fileUpload.length === 0){
-            console.log("this.state.fileUpload",this.state.fileUpload)
-            console.log("this.state.confiq",this.state.config);
-              S3FileUpload
-                .uploadFile(newFile,this.state.config)
-                .then((Data)=>{ 
-                  this.setState({
-                    portfolioImage1 : Data.location,
-                  },()=>{console.log("this.state.portfolioImage1",this.state.portfolioImage1)})
-                  this.deleteimageLogo(index)
-                })
-                .catch((error)=>{
-                  console.log(error);
-                })
-            }else{
-              swal({
-                    title: "Are you sure you want to replace?",
-                    text: "Once replaced, you will not be able to recover!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((success) => {
-                      if (success) {
-                        S3FileUpload
-                          .uploadFile(newFile,this.state.config)
-                          .then((Data)=>{
-                            this.setState({
-                              portfolioImage1 : Data.location,
-                            })
-                            console.log("portfolio",Data.location);
-                            this.deleteimageLogo(index)
-                          })
-                          .catch((error)=>{
-                            console.log(error);
-                          })
-                      } else {
-                      swal("Your information is safe!");
-                    }
-                  });
-            }         
-          }else{         
-            swal("File not uploaded","Something went wrong","error"); 
-          }    
-        }else{
-          swal("Format is incorrect","Only Upload (jpg,pdf,jpeg)","warning");  
+          // console.log("index--------------->",index);
+          let self = this;
+          if (event.currentTarget.files && event.currentTarget.files[0]) {
+            var file = event.currentTarget.files[0];
+            var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+            var newFile = new File([file],newFileName);
+            this.setState({
+              fileUpload : newFile.name,
+            })
+            // console.log("file",newFile);
+            if (newFile) {
+              var ext = newFile.name.split('.').pop();
+              if(ext==="PDF" ||  ext==="pdf"||  ext==="ppt"||  ext==="PPT" ||  ext==="PPTX" ||  ext==="pptx"){ 
+                if (newFile) {
+                  if(this.state.fileUpload && this.state.fileUpload.length === 0){
+                  // console.log("this.state.fileUpload",this.state.fileUpload)
+                  // console.log("this.state.confiq",this.state.config);
+                    S3FileUpload
+                      .uploadFile(newFile,this.state.config)
+                      .then((Data)=>{ 
+                        this.setState({
+                          portfolioImage1 : Data.location,
+                        },()=>{console.log("this.state.portfolioImage1",this.state.portfolioImage1)})
+                        this.deleteimageLogo(index)
+                      })
+                      .catch((error)=>{
+                        console.log(error);
+                      })
+                  }else{
+                    swal({
+                          title: "Are you sure you want to replace?",
+                          text: "Once replaced, you will not be able to recover!",
+                          icon: "warning",
+                          buttons: true,
+                          dangerMode: true,
+                        })
+                        .then((success) => {
+                            if (success) {
+                              S3FileUpload
+                                .uploadFile(newFile,this.state.config)
+                                .then((Data)=>{
+                                  this.setState({
+                                    portfolioImage1 : Data.location,
+                                  })
+                                  // console.log("portfolio",Data.location);
+                                  this.deleteimageLogo(index)
+                                })
+                                .catch((error)=>{
+                                  console.log(error);
+                                })
+                            } else {
+                            swal("Your information is safe!");
+                          }
+                        });
+                  }         
+                }else{         
+                  swal("File not uploaded","Something went wrong","error"); 
+                }    
+              }else{
+                swal("Format is incorrect","Only Upload (jpg,pdf,jpeg)","warning");  
+              }
+            }
+          }
+            
         }
-      }
     }
+    
   }
   
   getDataList(){
     axios.get("api/uploadVideoUrl/get/list")
           .then((response) =>{
-            console.log("response",response);
+            // console.log("response",response);
             this.setState({
               videoData :response.data
             })
@@ -161,20 +162,21 @@ export default class tools extends Component {
   }
 
   getOneData(editId){
-    console.log("2 editId = ",editId);
+    // console.log("2 editId = ",editId);
     axios
       .get("/api/uploadVideoUrl/get/"+editId)
       .then((response)=>{
-        console.log("===>",response);
+        // console.log("===>",response);
         this.setState({
           "title"           : response.data.title,
           "url"             : response.data.url,
           "fileUpload"      : response.data.fileUpload,
           "portfolioImage1" : response.data.fileUpload, 
           "updateID"        : response.data._id,
+          "tag"             : response.data.tag,
         });
-        console.log("response===>",response.data._id);
-        console.log("fileUpload===>",response.data.fileUpload);
+        // console.log("response===>",response.data._id);
+        // console.log("fileUpload===>",response.data.fileUpload);
       })
       .catch((error)=>{
          console.log("error = ", error);              
@@ -184,19 +186,16 @@ export default class tools extends Component {
   deletetools(event){
     event.preventDefault(); 
     var disid = event.currentTarget.id.substr(2);
-    console.log("disid = ",disid);
-    Swal.fire({
+    // console.log("disid = ",disid);
+    swal({
       title: 'Are you sure, you want to Delete this Data?',
       text: 'You will not be able to recover this record!',
       icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',     
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
+      buttons: true,
+      dangerMode: true,
     }).then((result) => {
-      console.log("result",result)
-      if (result.value) {
+      // console.log("result",result)
+      if (result) {
         axios.delete("api/uploadVideoUrl/delete/"+disid)
           .then((data)=>{
             this.getDataList();
@@ -216,11 +215,11 @@ export default class tools extends Component {
           });
 
 
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your Distributor Record is NOT Deleted :)',
-          'error'
+      } else  {
+        swal(
+          'Ok Fine!',
+          'Your data is safe!',
+          'info'
         )
       }
     })    
@@ -232,7 +231,7 @@ export default class tools extends Component {
       var value      = event.target.value;
       //console.log(name, value);
       this.setState({ [name] : value })
-      console.log("fileUpload",this.state.fileUpload)
+      // console.log("fileUpload",this.state.fileUpload)
       // console.log("fileUpload",this.state.portfolioImage1)
   }
 
@@ -249,14 +248,17 @@ export default class tools extends Component {
               "url"       : this.state.url, 
               "fileUpload": this.state.portfolioImage1,
         }
-         console.log("dataArray1", dataArray1);
-         console.log("dataArray1", dataArray1.fileUpload);
+         // console.log("dataArray1", dataArray1);
+         // console.log("dataArray1", dataArray1.fileUpload);
       axios
         .post("api/uploadVideoUrl/post",dataArray1)
         .then((response) =>{
-            console.log("Url Upload  successfully!", response);
-            swal("Congrats..!", "Tools Updated successfully","success" );
+            // console.log("Url Upload  successfully!", response);
+            swal("Congrats..!", "Tools submitted successfully.","success" );
             this.getDataList();
+            this.refs.fileUpload.value = '';
+            this.setState(this.baseState);
+            this.refs.fileUpload.value = null;
             this.props.history.push('/tools'); 
             this.setState({
                 "title"     : "" ,
@@ -277,13 +279,14 @@ export default class tools extends Component {
               "tag"     : this.state.tag ,
               "fileUpload": this.state.portfolioImage1,
             }
-     console.log("dataArray1", this.state.portfolioImage1);
+     // console.log("dataArray1", this.state.portfolioImage1);
       axios
         .post("api/uploadVideoUrl/post",dataArray1)
         .then((response) =>{
-          console.log("Url Upload  successfully!", response);
-            swal("Congrats..!", "Tools Updated successfully","success" );
+          // console.log("Url Upload  successfully!", response);
+            swal("Congrats..!", "Tools submitted successfully.","success" );
             this.getDataList();
+            this.refs.fileUpload.value = ''
             this.setState({
                 "title"     : "" ,
                 "tag"       : "" ,
@@ -291,6 +294,8 @@ export default class tools extends Component {
                 "fileUpload": "",
                 "portfolioImage1": "",
             }); 
+            this.setState(this.baseState);
+            this.refs.fileUpload.value = null;
             this.props.history.push('/tools');
 
         })
@@ -309,76 +314,74 @@ export default class tools extends Component {
       swal("Warning!", "File size should not be greater than 3 MB..!", "warning")
       event.target.value ="";
      }else{
-        this.setState({
-            "fileUpload":event.target.value,
-          });
-        console.log("fileUpload inside Function",this.state.fileUpload.length)
+          var index = event.target.getAttribute('id');
+            // console.log("index--------------->",index);
+            let self = this;
+            if (event.currentTarget.files && event.currentTarget.files[0]) {
+              var file = event.currentTarget.files[0];
+              var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+              var newFile = new File([file],newFileName);
+              this.setState({
+                fileUpload : newFile.name,
+              })
+              // console.log("file",newFile);
+              if (newFile) {
+                var ext = newFile.name.split('.').pop();
+                if(  ext==="PDF" ||  ext==="pdf" || ext==="PPT" || ext==="ppt" || ext==="PPTX"|| ext==="pptx" ){ 
+                  if (newFile) {
+                    // console.log("newFile")
+                    if(this.state.fileUpload && this.state.fileUpload.length === 0){
+                      // console.log("this.state.confiq",this.state.config);
+                      S3FileUpload
+                        .uploadFile(newFile,this.state.config)
+                        .then((Data)=>{ 
+                          this.setState({
+                            portfolioImage1 : Data.location,
+                          },()=>{console.log("this.state.portfolioImage1",this.state.portfolioImage1)})
+                          this.deleteimageLogo(index)
+                        })
+                        .catch((error)=>{
+                          console.log(error);
+                        })
+                    }else{
+                      swal({
+                            title: "Are you sure you want to replace this File?",
+                            text: "Once replaced, you will not be able to recover this File!",
+                            icon: "warning",
+                            buttons: true,
+                            dangerMode: true,
+                          })
+                          .then((success) => {
+                              if (success) {
+                                S3FileUpload
+                                  .uploadFile(newFile,this.state.config)
+                                  .then((Data)=>{
+                                    this.setState({
+                                      portfolioImage1 : Data.location,
+                                    })
+                                    console.log("portfolioImage1",this.state.portfolioImage1);
+                                    this.deleteimageLogo(index)
+                                  })
+                                  .catch((error)=>{
+                                    console.log(error);
+                                  })
+                              } else {
+                              swal("Your information is safe!");
+                            }
+                          });
+                    }         
+                  }else{         
+                    swal("File not uploaded","Something went wrong","error"); 
+                  }    
+                }else{
+                  swal("This file format is not supported","Supported formats are: pdf, ppt, pptx","warning");  
+                  this.refs.fileUpload.value = null; 
+                }
+              }
+            }
         }
       }
-    var index = event.target.getAttribute('id');
-    console.log("index--------------->",index);
-    let self = this;
-    if (event.currentTarget.files && event.currentTarget.files[0]) {
-      var file = event.currentTarget.files[0];
-      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
-      var newFile = new File([file],newFileName);
-      this.setState({
-        fileUpload : newFile.name,
-      })
-      console.log("file",newFile);
-      if (newFile) {
-        var ext = newFile.name.split('.').pop();
-        if(  ext==="PDF" ||  ext==="pdf" || ext==="PPT" || ext==="PPTX"|| ext==="pptx"){ 
-          if (newFile) {
-            console.log("newFile")
-            if(this.state.fileUpload && this.state.fileUpload.length === 0){
-              console.log("this.state.confiq",this.state.config);
-              S3FileUpload
-                .uploadFile(newFile,this.state.config)
-                .then((Data)=>{ 
-                  this.setState({
-                    portfolioImage1 : Data.location,
-                  },()=>{console.log("this.state.portfolioImage1",this.state.portfolioImage1)})
-                  this.deleteimageLogo(index)
-                })
-                .catch((error)=>{
-                  console.log(error);
-                })
-            }else{
-              swal({
-                    title: "Are you sure you want to replace this File?",
-                    text: "Once replaced, you will not be able to recover this File!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((success) => {
-                      if (success) {
-                        S3FileUpload
-                          .uploadFile(newFile,this.state.config)
-                          .then((Data)=>{
-                            this.setState({
-                              portfolioImage1 : Data.location,
-                            })
-                            console.log("portfolioImage1",this.state.portfolioImage1);
-                            this.deleteimageLogo(index)
-                          })
-                          .catch((error)=>{
-                            console.log(error);
-                          })
-                      } else {
-                      swal("Your information is safe!");
-                    }
-                  });
-            }         
-          }else{         
-            swal("File not uploaded","Something went wrong","error"); 
-          }    
-        }else{
-          swal("Format is incorrect","Only Upload format (pdf,ppt,pptx,jpg,jpeg,png)","warning");  
-        }
-      }
-    }
+    
   }
 
   deleteimageLogo(index){
@@ -388,7 +391,7 @@ export default class tools extends Component {
         S3FileUpload
           .deleteFile(imageName,this.state.config)
           .then((response) =>{
-            console.log("Deletedddd...",response)
+            // console.log("Deletedddd...",response)
             swal("Image deleted successfully");
           })
           .catch((err) => {
@@ -398,9 +401,9 @@ export default class tools extends Component {
   }
 
   update(event){
-    console.log("inside update id");
+    // console.log("inside update id");
     var id = this.state.updateID;
-    console.log("id",id);
+    // console.log("id",id);
     const formValues = {
       "title"         :this.state.title,
       "tag"           :this.state.tag,
@@ -408,14 +411,23 @@ export default class tools extends Component {
       "fileUpload"    :this.state.portfolioImage1,
       "videoData"     :this.state.videoData,
    };
-    console.log("portfolioImage1",formValues);
+    // console.log("portfolioImage1",formValues);
     axios
     .patch('/api/uploadVideoUrl/patch/'+id,formValues)
     .then((res)=>{
-        console.log("res",res);
-        swal("Congrats..!","Your Tools Data Update successfully","success");
+        // console.log("res",res);
+        swal("Congrats..!","Tools have been updated successfully.","success");
         this.getDataList();
-        this.props.history.push("/");
+        this.setState(this.baseState);
+        this.refs.fileUpload.value = null; 
+        this.setState({
+                "title"     : "" ,
+                "tag"       : "" ,
+                "url"       : "", 
+                "fileUpload": "",
+                "portfolioImage1": "",
+            }); 
+        this.props.history.push("/tools");
 
       })
     .catch((error)=>{
@@ -433,15 +445,16 @@ export default class tools extends Component {
           dangerMode: true,
           })
           .then((success) => {
-            console.log("inside success",success);
+            // console.log("inside success",success);
               if (success) {
                 swal("Your image is deleted!");
+                this.refs.fileUpload.value = ''
                 this.setState({
                   portfolioImage1 : "",
                   fileUpload      : "", 
                 })
 
-            console.log("inside fileUpload",this.state.fileUpload);
+            // console.log("inside fileUpload",this.state.fileUpload);
               } else {
               swal("Your image is safe!");
             }
@@ -480,7 +493,7 @@ export default class tools extends Component {
                 </div>
                 <div className="col-lg-6 col-sm-12 col-xs-12 col-md-12 setMb nppadding">  
                   <div className=" col-lg-10 col-md-10 col-xs-12 col-sm-12 inputContent">
-                    <label className="zeroMarginB">Tag <label className="requiredsign">*</label></label>
+                    <label className="zeroMarginB">Tags <label className="requiredsign">*</label></label>
                   </div>
                   <br/>
                   <div className=" col-lg-12 col-md-10 col-xs-12 col-sm-12 inputContent ">
@@ -525,13 +538,13 @@ export default class tools extends Component {
                        {
                         (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
                           <div className="col-lg-12 col-md-12 col-sm-10 col-xs-12 " id="LogoImageUpOne">
-                            <img src="/images/pdf.png" height="50" width="50"/>
+                            <a href={this.state.portfolioImage1} target="_blank"><img src="/images/pdf.png" height="50" width="50"/></a>
                             <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
                           </div>
                           :
                         (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pptx" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "ppt" ?
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
-                            <img src="/images/ppt.png" height="50" width="50"/>
+                            <a href={this.state.portfolioImage1}  target="_blank"><img src="/images/ppt.png" height="50" width="50"/></a>
                             <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
                           </div>
                           :
@@ -558,7 +571,7 @@ export default class tools extends Component {
                 }
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setTopMargin">
-                <h3 className="heading"><b>Uploaded Training List</b></h3>
+                <h3 className="heading"><b>Tools List</b></h3>
                 <hr/>
               </div>      
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -568,7 +581,7 @@ export default class tools extends Component {
                       <tr>
                         <th className="text-center">Sr No</th>
                         <th className="text-center">Title</th>
-                        <th className="text-center">Tag </th>
+                        <th className="text-center">Tags </th>
                         <th className="text-center">Youtube Video </th>
                         <th className="text-center">File </th>
                         <th className="text-center">Actions</th>
@@ -581,18 +594,18 @@ export default class tools extends Component {
                           this.state.videoData.map((data, index)=>{
                             return(
                               <tr key={index}>
-                                <td>{index+1}</td>
+                                <td className="text-center">{index+1}</td>
                                 <td className="td_title">{data.title}</td>
                                 <td>{data.tag}</td>
-                                <td>
+                                <td className="text-center">
                                   {data.url !== ""
                                     ?
-                                      <a data-url={data.url}  onClick={this.openNewTab.bind(this)} ><ReactPlayer url={data.url}  width='100px' height='70px'  target="_blank" controls loop  /></a>
+                                      <a data-url={data.url}  onClick={this.openNewTab.bind(this)} ><ReactPlayer url={data.url}  width='100px' height='70px' style={{margin: 'auto'}}  target="_blank" controls loop  /></a>
                                     :
                                       <div><h5>File not Found</h5></div>
                                   }
                                 </td>
-                                <td className="td_pdf">
+                                <td className="td_pdf text-center">
                                   {data.fileUpload 
                                     ?
                                     (data.fileUpload ? data.fileUpload.split('.').pop() : "") === "pdf" || (data.fileUpload ? data.fileUpload.split('.').pop() : "") === "PDF" 
