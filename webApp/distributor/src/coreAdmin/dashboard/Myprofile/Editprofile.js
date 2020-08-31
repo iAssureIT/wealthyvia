@@ -612,7 +612,7 @@ export default class Editprofile extends Component{
   handleSubmit(event) {
     var userid = localStorage.getItem('user_id');
     // console.log("userid-----------------------------------------",userid);
-    if (this.validateFormReview() && this.validateFormReqReview()) {
+    if (this.validateFormReqReview()) {
       var formvalues = {
             "firstname"    :this.state.firstname,
             "lastname"     :this.state.lastname,

@@ -259,3 +259,35 @@
     font-size: 16px;
     padding: 15px!important;
 }
+
+#overlayproductexpired{
+	position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0.5;
+}
+
+#productexpiredModal .modalHeaderCustom {
+	z-index: 1111 !important;
+}
+
+.productexpiredbtn{
+	color: #ffffff !important;
+	padding:10px;
+}	
+
+@media (min-width: 768px){ 
+.productexpiredmodal-dialog {
+    width: 510px !important;
+    margin: 30px auto;
+    height: 360px !important;
+    margin-top: 12%!important;
+}
+.pad50new{
+	padding: 0px 50px 30px 50px !important;
+}
+}

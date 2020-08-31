@@ -9,6 +9,7 @@ const offeringsubscriptionsSchema = mongoose.Schema({
 	startDate 			: String, //"YYYY-MM-DD"
 	endDate 			: String, //"YYYY-MM-DD"
 	offeringStatus 		: String, //"Active or Inactive"
+	amountPaid          : Number,
 	statements 			: [{
 								name	: String,
 								key 		: String,

@@ -8,5 +8,6 @@ router.post('/payment-response/:order_id', OfferingOrderController.payment_respo
 router.get('/paymentOrderDetails/all', OfferingOrderController.paymentOrderDetails_all);
 router.get('/paymentOrderDetails/:paymentOrderId', OfferingOrderController.paymentOrderDetails);
 router.get('/paymentOrderDetailsUser/:userId', OfferingOrderController.paymentOrderDetails_user);
+router.get('/get/allpaymentorder/byclientist', OfferingOrderController.get_clientRevenue);
 
 module.exports = router;

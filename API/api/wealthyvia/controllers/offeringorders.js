@@ -12,6 +12,8 @@ var globalVariable  = require("../../../nodemon.js");
 const Orders        = require('../models/offeringorders.js');
 const Invoice 		= require('../models/invoice.js');
 
+const OfferSub      = require('../models/offeringsubscriptions.js');
+const WMSub 		= require('../models/wmsubscriptions.js');
 
 var instance 		= new Razorpay({
   key_id     : 'rzp_test_lQNmCUfCX3Wkh4',
@@ -46,10 +48,47 @@ exports.payment_response = (req,res,next) =>{
          			console.log("orderDetails--",orderDetails);
          			console.log("globalVariable.url ",globalVariable.url);
          			
-         			var url = globalVariable.url+"payment-response/"+orderDetails.paymentOrderId;
-         			if(url){
-						res.redirect(url);
+         			setofferingsubscription();
+         			async function setofferingsubscription(){
+         				var paymentinfo = await paymentOrderDetailsforemail(orderDetails.paymentOrderId);
+         				request({
+                                        "method"    : "POST", 
+                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                        "body"      : {
+                                                            email   : "anuja.kate@iassureit.com", 
+                                                            subject : "A Client has invested in a Product",
+                                                            mail    : "Dear admin, <br/>"+
+                                                            			"Following are the details of the Client & his investment:<br/>"+
+                                                            			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
+											                          	"<b>Client Name: </b>"+paymentinfo.userName+"<br/>"+
+											                          	"<b>Phone Number: </b>"+paymentinfo.mobileNumber+"<br/>"+
+											                          	"<b>Email: </b>"+paymentinfo.email+"<br/>"+
+											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
+											                          	"<b>Amount Paid: </b>"+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
+											                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
+											                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>",
+											                          
+                                                       },
+                                        "json"      : true,
+                                        "headers"   : {
+                                                        "User-Agent": "Test Agent"
+                                                    }
+                                    })
+                                    .then(source=>{
+                                    	console.log("mail sent")
+                                        //res.status(201).json({message:"OTP_UPDATED"})
+                                    })
+                                    .catch(err =>{
+                                        console.log(err);
+                                        
+                                    });
+         				var result = await create_offerSub_wsSub(orderDetails);
+         				var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
+	         			if(url){
+							res.redirect(url);
+	         			}
          			}
+         			
          		})
 	            .catch(err =>{
 	                console.log(err);
@@ -82,7 +121,7 @@ exports.payment_response = (req,res,next) =>{
          		.then((orderDetails)=>{
          			console.log("orderDetails--",orderDetails);
          			console.log("globalVariable.url ",globalVariable.url);
-         			var url = globalVariable.url+"payment-response/"+orderDetails.paymentOrderId;
+         			var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
          			if(url){
 						res.redirect(url);
          			}
@@ -120,18 +159,21 @@ exports.create_order = (req, res, next) => {
 			Orders  .find()
 					.count()
 				    .then((maxInvoiceNum)=>{
-
+				    	var invoicenumber = maxInvoiceNum + 1,
+				    	invoicenumber = invoicenumber.toString().padStart(5, "0");
+				    	invoicenumber = "Aa"+invoicenumber;
 						var order = new Orders({
 												"_id"           	: mongoose.Types.ObjectId(), 
-												"invoiceNum" 		: maxInvoiceNum + 1,
-												"plan_ID"			: req.body.planID,
+												"invoiceNum" 		: invoicenumber,
+												"offering_ID"		: req.body.productID,
 											    "userID"			: req.body.userID,
-											    "planName"			: req.body.planName,
-												"planAmount"  		: req.body.planAmount, 
+											    "offeringTitle"		: req.body.offeringTitle,
+											    "offering_ID"		: req.body.offering_ID,
+												"offeringAmount"  	: req.body.offeringAmount, 
 												"validityPeriod" 	: req.body.validityPeriod, //1 month or 1 year
 												"purchaseDate"		: req.body.purchaseDate, //"YYYY-MM-DD"
 												"startDate" 		: req.body.startDate, //"YYYY-MM-DD"
-												"endDate" 			: req.body.endDate, //"YYYY-MM-DD"
+												"endDate" 			: moment(req.body.startDate).add(req.body.validityPeriod, 'M').format("YYYY-MM-DD"), //"YYYY-MM-DD"
 												"paymentOrderId" 	: payment_order.id,
 												"amountPaid"		: payment_order.amount,
 												"paymentStatus"		: "unPaid",
@@ -192,7 +234,7 @@ exports.paymentOrderDetails = (req,res,next) =>{
 											"user_ID"		: 1,
 											"amountPaid"	: 1,
 											"paymentOrderId": 1,
-											"planName"		: 1,
+											"offeringTitle"	: 1,
 											"user_ID"		: "$user._id",
 											"userName"		: "$user.profile.fullName",
 											"email"			: "$user.profile.emailId",
@@ -240,7 +282,7 @@ exports.paymentOrderDetails_user = (req,res,next) =>{
 											"user_ID"		: 1,
 											"amountPaid"	: 1,
 											"paymentOrderId": 1,
-											"planName"		: 1,
+											"offeringTitle"	: 1,
 											"user_ID"		: "$user._id",
 											"userName"		: "$user.profile.fullName",
 											"email"			: "$user.profile.emailId",
@@ -284,7 +326,7 @@ exports.paymentOrderDetails_all = (req,res,next) =>{
 											"user_ID"		: 1,
 											"amountPaid"	: 1,
 											"paymentOrderId": 1,
-											"planName"		: 1,
+											"offeringTitle"	: 1,
 											"user_ID"		: "$user._id",
 											"userName"		: "$user.profile.fullName",
 											"email"			: "$user.profile.emailId",
@@ -306,4 +348,264 @@ exports.paymentOrderDetails_all = (req,res,next) =>{
 };
 
 
+exports.get_clientRevenue = (req,res,next)=>{
 
+			var clientList = JSON.parse(req.query.clientList);
+			// console.log("clientList => ", clientList);
+			getData();
+			var newTransArr = [];
+
+			async function getData(){
+				var totalAmount = 0;
+				for(var i=0; i<clientList.length; i++){
+					// Get User Name 
+					var user_id = clientList[i]._id;
+					// console.log("userid", user_id);
+					orderData = await getUserOrderdetails(user_id); 
+					// console.log("order", orderData);
+					if(orderData && orderData.length > 0){
+						for(let k=0; k<orderData.length; k++){
+							newTransArr.push({
+								clientCode : clientList[i].clientId,
+								clientName : clientList[i].fullName,
+								invoiceNum : orderData[k].invoiceNum,
+								offeringTitle : orderData[k].offeringTitle,
+								offeringAmount : orderData[k].amountPaid / 100,
+								purchaseDate : orderData[k].purchaseDate,
+								startDate : orderData[k].startDate,
+								endDate : orderData[k].endDate,
+								paymentStatus : orderData[k].paymentStatus,
+								createdAt : orderData[k].createdAt,
+								
+							});
+						}
+						
+					}
+					
+
+				}
+
+				if(i === clientList.length){
+					res.status(200).json({clientRevenue : newTransArr});
+				}
+
+			}//async function ends
+
+		
+}
+
+
+
+function getUserOrderdetails(user_id){
+	return new Promise( (resolve, reject)=>{ 
+
+			Orders.find({userID : user_id})
+				.then(userData => {
+					resolve( userData ) ;
+				})
+				.catch(error=>{
+					reject(error);
+				});
+
+	});
+}
+
+function update_offering(offering){
+	return new Promise(function (resolve, reject) {
+		console.log("offering", offering.wmSub_ID, offering.user_ID,offering.offering_ID );
+		OfferSub.findOne({
+						"wmSubscription_ID" : offering.wmSub_ID,
+						"user_ID"			: offering.user_ID,
+						"offering_ID"		: offering.offering_ID,
+						
+				})
+				.sort({createdAt:1})
+				.exec()
+				.then(offersub=>{
+					console.log("off", offersub);
+					if(!offersub ){
+						console.log("active", offering.offeringStatus);
+						const offersub = new OfferSub({
+												"_id"           	: mongoose.Types.ObjectId(), 
+												"user_ID" 			: offering.user_ID,
+												"offering_ID"		: offering.offering_ID,
+												"offeringTitle"		: offering.offeringTitle,
+												"amountPaid"		: offering.offeringAmount,
+												"wmSubscription_ID"	: offering.wmSub_ID,
+												"startDate" 		: offering.startDate,
+												"endDate" 			: offering.endDate,
+												"offeringStatus" 	: "Active",
+												"createdAt"			: new Date(),
+											});
+						offersub.save()
+			                    .then(data=>{
+			                    		resolve(true);
+			                        })
+			                        .catch(err =>{
+			                            console.log(err);
+			                            res.status(500).json({
+			                                error: err
+			                            });
+			                        });
+					}else if(offersub && offersub.offeringStatus != "Active"){
+						console.log("not", offering.offeringStatus);
+						OfferSub.updateOne(
+										{ "_id" : offersub._id},
+										{
+											$set : {
+												"endDate" 			: offering.endDate,
+												"offeringStatus"	: "Active",
+											}
+										}
+								)
+								.exec()
+								.then(data=>{
+									resolve(true);
+								})
+								.catch(err =>{
+					                console.log(err);
+					                reject(err);
+					            });								
+					}else{
+						resolve(true);
+					}
+				})
+				.catch(err =>{
+		                console.log(err);
+		                reject(err);
+		            });				
+
+	});
+}
+
+function create_offerSub_wsSub (offeringorder) {
+	return new Promise(function (resolve, reject) {
+		console.log("offeringorder", offeringorder);
+	WMSub.findOne({
+						"user_ID" 		: offeringorder.userID,
+						"wsSubStatus"	: "Active"
+			})
+		 .sort({createdAt:-1})
+		 .exec()
+		 .then(wssub=>{
+			 	if(wssub){
+			 		
+			 		    getdata();
+			 		    async function getdata(){
+			 		    	var date = new Date();
+					 		date.setDate(date.getDate()+365);
+					 		//need to check for leap year
+							var FullDate =  date; 
+	            			
+	                        var j = 0;
+	                        
+	                        	var status = await update_offering({
+	                        								"wmSub_ID" 		: wssub._id,
+	                        								"user_ID"  		: offeringorder.userID,
+	                        								"offering_ID"	: offeringorder.offering_ID,
+	                        								"offeringAmount": (offeringorder.amountPaid) / 100,
+	                        								"offeringStatus": 'Active',
+	                        								"offeringTitle"	: offeringorder.offeringTitle,
+	                        								"startDate"		: moment(new Date()).format("YYYY-MM-DD"),
+	                        								"endDate"		: wssub.endDate,
+	                        							});
+	                        
+	                        resolve(true);
+			 		    }
+            			            		
+			 	}else{
+			 		
+			 			var date = new Date();
+			 		date.setDate(date.getDate()+365);
+			 		//need to check for leap year
+					var FullDate =  date; 
+			 		const wmsub_var = new WMSub({
+			                    "_id"           	: mongoose.Types.ObjectId(), 
+			                    // "wmSubscription_ID"	: wssub._id,
+			                    "user_ID"			: offeringorder.userID,
+								"startDate" 		: moment(new Date()).format("YYYY-MM-DD"),
+								"endDate" 			: moment(FullDate).format("YYYY-MM-DD"),
+								"wsSubStatus" 		: "Active",
+			                    "createdBy"     	: null, //_id of User or null
+			                    "createdAt"     	: new Date(),     
+			                });		 		
+	                wmsub_var.save()
+	                    .then(data=>{
+	                    		console.log("data ",data);
+	                    		getdata();
+			 					async function getdata(){
+			                            	var status = await update_offering({
+			                            								"wmSub_ID" 		: data._id,
+			                            								"user_ID"  		: offeringorder.userID,
+			                            								"offering_ID"	: offeringorder.offering_ID,
+			                            								"offeringAmount": (offeringorder.amountPaid) / 100,
+			                            								"offeringStatus": 'Active',
+			                            								"offeringTitle"	: offeringorder.offeringTitle,
+			                            								"startDate"		: moment(new Date()).format("YYYY-MM-DD"),
+			                            								"endDate"		: moment(FullDate).format("YYYY-MM-DD")
+			                            							});
+			                            resolve(true)
+			                    }     
+	                    		
+	                        })
+	                        .catch(err =>{
+	                            reject(err);
+	                        });
+			 					 		
+			 	}
+		 	})
+		 .catch(err =>{
+                reject(err);
+            });	
+		});
+};
+
+
+function paymentOrderDetailsforemail(paymentOrderId){ 
+	return new Promise(function (resolve, reject) {
+	Invoice.find()
+	Orders.aggregate([
+						{
+							$match : {  
+								"paymentOrderId" : paymentOrderId
+							}
+						},
+						{
+							$lookup : {
+										   	from 			: "users",
+									       	localField		: "userID",
+									       	foreignField	: "_id",
+									       	as 				: "user"
+										}
+						},
+						{
+							$unwind : "$user"
+						},
+						{
+							$project : {
+											"transactionId"	: 1,
+											"paymentStatus"	: 1,
+											"invoiceNum"	: 1,
+											"createdAt"		: 1,
+											"user_ID"		: 1,
+											"amountPaid"	: 1,
+											"paymentOrderId": 1,
+											"offeringTitle"	: 1,
+											"user_ID"		: "$user._id",
+											"userName"		: "$user.profile.fullName",
+											"email"			: "$user.profile.emailId",
+											"mobileNumber"	: "$user.profile.mobNumber",
+											"_id"			: 1,
+											"validityPeriod": 1,
+									}
+						}
+					])
+		  .then(orders=>{
+		  	resolve(orders[0]);
+		  })
+		  .catch(err =>{
+                console.log(err);
+               reject(err)
+            })
+	})	  
+};

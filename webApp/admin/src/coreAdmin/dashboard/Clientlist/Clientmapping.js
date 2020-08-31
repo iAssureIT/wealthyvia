@@ -81,10 +81,11 @@ class Clientmapping extends Component{
     var name       = event.target.name;
     var disvalue      = event.target.value;
     if(disvalue.includes(")")){
+      //console.log("disvalue", disvalue);
       var dis1 = disvalue.split("(");
       var dis2 = dis1[1].split(")");
-      var distributorCode = parseInt(dis2);
-      console.log(name, distributorCode);
+      var distributorCode = dis2[0];
+      //console.log(name, distributorCode);
       this.setState({ distributorCode : distributorCode })
     }    
     

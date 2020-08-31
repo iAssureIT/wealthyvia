@@ -48,3 +48,12 @@
     margin-top: 120px !important;
     font-family: Arial !important;
 }
+
+.paidtag {
+    padding: 15px !important;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+}    

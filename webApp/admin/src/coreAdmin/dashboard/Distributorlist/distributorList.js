@@ -579,7 +579,7 @@ export default class distributerList extends Component{
               <tr key={index}>
               {console.log("address",DistributorData.address)}
                 <td>{index+1}</td>
-                <td>{DistributorData.distributorCode} </td>
+                <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.distributorCode}</a> </td>
                 <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.firstname}  {DistributorData.lastname}</a></td>
                 <td>{moment(DistributorData.currentDate).format("Do MMM YYYY")}</td>
                 <td>{DistributorData.phone}</td>

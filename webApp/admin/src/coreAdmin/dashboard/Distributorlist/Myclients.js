@@ -24,7 +24,8 @@ class Myclients extends Component {
       clientsignupurl : '',
       clientList      : [],
       subfranchiseurl : '',
-      subfranchiseList : []
+      subfranchiseList : [],
+      clientSubscription: []
     }   
   }
   handleChange(event){
@@ -47,13 +48,14 @@ class Myclients extends Component {
         if(distributorCode){
           this.getmyclients(distributorCode); 
           this.getmySubfranchise(distributorCode); 
-          var encryptcode = distributorCode * 298564;
+          var discode = parseInt(distributorCode.substring(3));
+          var encryptcode = discode * 298564;
           //  var jobData:res.data.jobManage;
           if(res.data && res.data){
             this.setState({
               DistributorData : res.data,
-              clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode,
-              subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
+              clientsignupurl  : "http://wealthyvia.iassureit.com/signup?x="+ encryptcode,
+              subfranchiseurl  : "http://wealthyvia.iassureit.com/join-as-partner?x="+ encryptcode
             });
           }
         }
@@ -81,6 +83,36 @@ class Myclients extends Component {
         
         this.setState({
           clientList : res.data 
+        },()=>{
+          
+          this.getclientofferingsubscription();
+        });
+      }
+    })
+    .catch(err=>{
+      console.log("err",err);
+      swal("Oops...","Something went wrong! <br/>"+err, "error");
+
+    })
+  }
+
+
+
+  getclientofferingsubscription(){
+    console.log("clientList", this.state.clientList);
+    var query = {
+      params: {
+          clientList : JSON.stringify(this.state.clientList)
+        }
+    }
+    Axios.get("api/offeringsubscriptions/get/allofferingsub/byclientist", query)
+    .then(res=>{
+      console.log("response from api=>client subscription",res.data);
+
+      if(res && res.data){
+        
+        this.setState({
+          clientSubscription : res.data.clientRevenue 
         });
       }
     })
@@ -224,7 +256,7 @@ class Myclients extends Component {
                 </div>
               </div>
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader" style={{marginTop: '20px'}}>
-                <h4 className="h5lettersp MasterBudgetTitle" >My clients
+                <h4 className="h5lettersp MasterBudgetTitle" >Client List
                 <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px'}}>
                   <ExportCSV csvData={this.exportClientdata()} fileName="clients" />&nbsp;
                 </div></h4>
@@ -277,7 +309,7 @@ class Myclients extends Component {
               
             <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader" style={{marginTop: '20px'}}>
-                <h4 className="h5lettersp MasterBudgetTitle" >My Sub Franchise
+                <h4 className="h5lettersp MasterBudgetTitle" >Sub Franchise List
                 <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px'}}>
                   <ExportCSV csvData={this.exportsubfranchisedata()} fileName="Subfranchise" />&nbsp;
                 </div></h4>
@@ -333,6 +365,54 @@ class Myclients extends Component {
         :
             null
           }
+
+          {
+            this.state.clientSubscription ?
+                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                  <div id="home" className="tab-pane fade in active">
+                    <div className="col-lg-12 NOpadding">
+                        <table className="table tableCustom table-striped reserachtable">
+                          <thead className="bgThead">
+                            <tr>
+                              <th className="text-left">Client Code</th>
+                              <th className="text-left">Client Name</th>
+                              <th className="text-left">Start Date</th>
+                              <th className="text-left">End Date</th>
+                              <th className="text-left">Product Opted</th>
+                              <th className="text-left">Fees Paid</th>
+                              <th className="text-left">Fees Pending</th>
+                              
+                            </tr>
+                                                   
+                          </thead>
+                          <tbody>     
+                          {
+                            this.state.clientSubscription && this.state.clientSubscription.length > 0 ?
+                            this.state.clientSubscription.map((a, i)=>{
+                                return(
+                                    <tr key={i}> 
+                                      <td className="">{a.clientCode} </td> 
+                                      <td className="">{a.clientName} </td>
+                                      <td>{a.startDate}</td>
+                                      <td>{a.endDate}</td>
+                                      <td>{a.offeringTitle}</td> 
+                                      <td className="text-center">{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : ''}</td>
+                                      <td className="text-center">{a.endDate > moment().format('YYYY-MM-DD') ? '0' : a.offeringAmount}</td>
+                               </tr>
+                                )
+                              }):
+                            null
+                            }
+                            </tbody>
+                          
+                        </table>
+              </div>    
+            </div>
+          </div>
+            :
+            null
+          }
+          
           
       </div>
      );

@@ -22,7 +22,8 @@ class Clientlist extends Component {
       errors          : {},
       fields          : {},
       clientsignupurl : '',
-      clientList      : []
+      clientList      : [],
+      clientSubscription : []
     }   
   }
   handleChange(event){
@@ -32,7 +33,23 @@ class Clientlist extends Component {
 
   componentDidMount(){
     this.getallusers();    
-     
+     this.getallclients(); 
+  }
+
+   getallclients(){
+    
+    axios.get('/api/offeringsubscriptions/get/offersub/allclientsubscription')
+    .then( (res)=>{      
+      this.setState({clientSubscription: res.data})
+      
+    })
+    .catch((error)=>{
+      if(error.message === "Request failed with status code 401")
+        {
+             swal("Your session is expired! Please login again.","", "error");
+             this.props.history.push("/");
+        }
+    });
   }
 
   getallusers(){
@@ -117,41 +134,83 @@ class Clientlist extends Component {
                                 <th>Full Name</th> 
                                 <th>Email</th>
                                 <th>Mobile Number</th> 
+                                <th>Product Opted</th>
+                                <th>Fees paid</th>
+                                <th>Fees pending</th>
                                 <th>Distributor Code</th>
                                 <th>Actions</th>                                 
                               </tr>
                                                      
                             </thead>
-                            <tbody>     
+                               
                              
                             {
-                              this.state.tableData?
-                              this.state.tableData.map((b,j)=>{
+                              this.state.clientSubscription.length > 0 ?
+                              this.state.clientSubscription.map((b,j)=>{
                                   return(
-                                        <tr key={j}>
-                                        <td className="col-lg-1"> {b.clientId} </td>
-                                          <td className="col-lg-1"> {b.fullName} </td> 
-                                          <td className="col-lg-1"> {b.email} </td> 
-                                          <td className="col-lg-1"> {b.mobNumber} </td>  
-                                          <td className="col-lg-1"> 
-                                            { b.distributorCode }                                            
-                                          </td>
-                                          <td className="col-lg-1">
-                                            { b.distributorCode === '-' ? 
-                                            <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                Map distributor 
-                                            </a>  
-                                            :
-                                             null
-                                            }
-                                          </td> 
-                                        </tr>                                         
+                                      <tbody> 
+                                        {
+                                          b.productdata && b.productdata.length > 0 ?
+                                          b.productdata.map((sub,k)=>{
+                                              return(
+                                                <tr key={k}>
+                                                <td className="col-lg-1"> {b.clientId} </td>
+                                                <td className="col-lg-1"> {b.fullName} </td> 
+                                                <td className="col-lg-1"> {b.email} </td> 
+                                                <td className="col-lg-1"> {b.mobNumber} </td> 
+                                                <td className="col-lg-1"> {sub.offeringTitle} </td> 
+                                                <td className="text-center">{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : ''}</td>
+                                                <td className="text-center">{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
+                                                <td className="col-lg-1"> 
+                                                  { b.distributorCode }                                            
+                                                </td>
+                                                <td className="col-lg-1">
+                                                  { b.distributorCode === '-' ? 
+                                                  <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
+                                                      Map distributor 
+                                                  </a>  
+                                                  :
+                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
+                                                      Map distributor 
+                                                  </a> 
+                                                  }
+                                                </td>
+                                                 </tr> 
+                                                )
+                                            })
+                                          :
+                                          <tr key={j}>
+                                                <td className="col-lg-1"> {b.clientId} </td>
+                                                <td className="col-lg-1"> {b.fullName} </td> 
+                                                <td className="col-lg-1"> {b.email} </td> 
+                                                <td className="col-lg-1"> {b.mobNumber} </td> 
+                                                <td className="col-lg-1"> {b.offeringTitle} </td> 
+                                                <td className="text-center"></td>
+                                                <td className="text-center"></td>
+                                                <td className="col-lg-1"> 
+                                                  { b.distributorCode }                                            
+                                                </td>
+                                                <td className="col-lg-1">
+                                                  { b.distributorCode === '-' ? 
+                                                  <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
+                                                      Map distributor 
+                                                  </a>  
+                                                  :
+                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
+                                                      Map distributor 
+                                                  </a> 
+                                                  }
+                                                </td>
+                                                 </tr> 
+                                        }
+                                         </tbody>
+                                                                               
                                         )
                                       })
                               :null
                                 } 
                                 
-                               </tbody>
+                               
                           </table>
                         </div>
                       </div>

@@ -35,6 +35,7 @@ import PaymentSuccess                           from "../pages/PaymentProcess/Pa
 import FreeResearchReport                       from "../pages/FreeResearchReport/FreeResearchReport.js";
 
 import ProductInvoicePage                       from "../pages/ProductInvoicePage/ProductInvoicePage.js";
+import ProductPaymentResponse                   from "../pages/ProductPaymentProcess/ProductPaymentResponse.js";
 
 
 // Section: 1 - SystemSecurity ******************************************************
@@ -53,6 +54,7 @@ const WebLayout = () => (
               <Route path="/riskprofile"                           exact strict component={RiskProfile}  />
               <Route path="/product-pricing"                  exact strict component={Productpricing}  />
               <Route path="/ProductInvoicePage/:order_id"     exact strict component={ProductInvoicePage}  />
+              <Route path="/product-payment-response/:orderId"  exact strict component={ProductPaymentResponse}  />
               
               <Route path="/"                                 exact strict component={Homepage}  />
               <Route path="/about-us"                         exact strict component={AboutUs}  />

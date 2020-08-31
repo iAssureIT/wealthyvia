@@ -100,6 +100,10 @@ export default class JoinAsPartnerForm extends Component {
         if(decryptcode){
           var franchisecode = decryptcode / 298564 ;
             // console.log("franchiseCode", franchisecode);
+            if(franchisecode < 1000){
+            franchisecode =franchisecode.toString().padStart(4, "0")
+          }
+            franchisecode = "WVP"+franchisecode;
             this.setState({franchiseCode : franchisecode});
             this.getDistributorData(franchisecode);
         }           
@@ -193,10 +197,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["gst"] = "This field is required.";
         }*/
-        if (!fields["website"]) {
+        /*if (!fields["website"]) {
           formIsValid = false;
           errors["website"] = "This field is required.";
-        }  
+        }*/
         /*if (!fields["description"]) {
           formIsValid = false;
           errors["description"] = "This field is required.";
@@ -900,7 +904,6 @@ export default class JoinAsPartnerForm extends Component {
                         <span className="blocking-span noIb ">
                         <span>
                             <div className="setFont">Website (If there is an existing website) 
-                            <span className="asterix"> *</span> 
                             </div> 
                           </span>
                            <input type="text" className="customInputKF inputBox nameParts" name="website" ref="website"

@@ -35,6 +35,7 @@ export default class SubscribedServices extends Component {
           subscribed            : false,
           blogSubscribed        : "",
           subscriptionData      : [],
+          expiredproductSub     : []
         };
     }
   ScrollTop(event){
@@ -47,8 +48,51 @@ export default class SubscribedServices extends Component {
           });
     }
   }
+
+  closeproductexpiremodal(event){
+    event.preventDefault();
+    $("#productexpiredModal").hide();  
+    $("body").removeClass("modal-open");
+    $("#overlayproductexpired").hide(); 
+    $("#productexpiredModal").removeClass('in'); 
+  }
+
   componentDidMount()
   {
+    var user_ID = localStorage.getItem("user_ID");
+    axios.get("/api/offeringsubscriptions/get/offsubscription/"+user_ID)
+            .then((response)=>{ 
+              // console.log("off sub", response.data);
+              var offeringsubscription = response.data;
+              var expiredproductsub = [];
+              if(offeringsubscription.length > 0){
+                for(let i=0; i<offeringsubscription.length; i++){
+                  // console.log("1->", offeringsubscription[i].endDate, Moment().format('YYYY-MM-DD'));
+                  if(offeringsubscription[i].endDate < Moment().format('YYYY-MM-DD')){
+                    // console.log("expired");
+                    var expiredsub = {
+                      productname : offeringsubscription[i].offeringTitle,
+                      startdate   : offeringsubscription[i].startDate,
+                      endDate     : offeringsubscription[i].endDate
+                    }
+                    expiredproductsub.push(expiredsub);
+                    this.setState({expiredproductSub : expiredproductsub});
+                    $("#productexpiredModal").show();  
+                    $("body").addClass("modal-open ");
+                    $("#overlayproductexpired").show(); 
+                    $("#productexpiredModal").addClass('in'); 
+                  }
+                }
+                
+              }
+                           
+
+            })
+            .catch((error)=>{
+                  console.log('error', error);
+            }) 
+
+    
     var url = window.location.href;
     var activeTab = url.substring(url.indexOf("#") + 1);
     // console.log("hash", activeTab);
@@ -57,7 +101,7 @@ export default class SubscribedServices extends Component {
        $("#" + activeTab).addClass("active in");
 
     }
-    var user_ID = localStorage.getItem("user_ID");
+    
     // console.log("user_ID",user_ID)
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
@@ -163,6 +207,8 @@ export default class SubscribedServices extends Component {
         }
     });  
   }
+
+
   getDate(event){
     event.preventDefault();
      var startDate = event.target.getAttribute("data-startDate");
@@ -503,6 +549,37 @@ export default class SubscribedServices extends Component {
                               
                                   
                      }
+
+                            <div className="modal fade in " id="productexpiredModal" role="dialog">
+                              <div className="modal-dialog customModalEN productexpiredmodal-dialog" >
+                                <div className="modal-header textAlignCenter ">
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.closeproductexpiremodal.bind(this)}> <i className="fa fa-times"></i></button>
+                                    
+                                </div>
+                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad40 pad50new">
+                                   <h3>Your subscription for the following product(s) has been expired. Please renew your subscription.</h3>
+                                    <br/>
+                                    {
+                                      this.state.expiredproductSub.length > 0 ?
+                                      this.state.expiredproductSub.map((data, index) => {
+                                        return(
+                                          <div>
+                                            <h4>ProductName: {data.productname}</h4>
+                                            <h4>Expired Date: {data.endDate}</h4>                               
+                                          </div>
+                                          )
+                                      })
+                                      :
+                                      null
+
+                                    }
+                                    <a className="col-lg-4 col-lg-offset-8 col-md-12 col-sm-12 col-xs-12 btn btn-primary productexpiredbtn" href="/product-pricing" >Renew</a> 
+                                    
+                                </div>                        
+                              </div>
+                            </div> 
+                            <div id="overlayproductexpired"></div>
+
                 </div>
               </div>
     );

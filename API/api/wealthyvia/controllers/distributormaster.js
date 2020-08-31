@@ -19,17 +19,24 @@ function getNextSequence(code) {
             )
             .then(counter => {
                 if(counter){
-                    resolve( counter.seq ) ;
+                    console.log("counter", counter);
+                    let num = counter.seq;
+                    let str = num.toString().padStart(4, "0")
+                    console.log(str) 
+                    resolve( str ) ;
                 }
                 else{
                     const distributorCounter = new Counter({
                         "_id"   : code, 
-                        "seq"   : 100,
+                        "seq"   : 101,
                      });
                 
                     distributorCounter.save()
                         .then(data=>{
-                            resolve( data.seq ) ;
+                            let num = 100;
+                            let str = num.toString().padStart(4, "0")
+                            console.log(str) 
+                            resolve( str ) ;
 
                             })
                             .catch(err =>{
@@ -374,7 +381,7 @@ exports.setstatus_distributor = (req,res,next) => {
     
     getdistributorcode();
     async function getdistributorcode(){
-        var distributorCode = await getNextSequence("distributorcode");
+        var distributorCode = await getNextSequence("distributorCode");
         console.log("ds code", distributorCode);
             Distributormaster.updateOne(
                 {_id:req.body.id},
@@ -382,7 +389,7 @@ exports.setstatus_distributor = (req,res,next) => {
                     $set : {
                          "status"            : req.body.status, 
                          "userId"            : req.body.userId,
-                         "distributorCode"   : distributorCode,
+                         "distributorCode"   : "WVP"+distributorCode,
                         "updateLog"          : [{
                                 updatedBy    : req.body.updatedBy, 
                                 updatedAt    : new Date,
@@ -445,11 +452,11 @@ exports.delete_distributor = (req,res,next) =>{
 };
 
 exports.fetch_distributor_name = (req,res,next) => {
-    console.log("inside fun");
+    // console.log("inside fun");
     Distributormaster.findOne({_id : req.params.ID})
          .exec()
          .then(data=>{
-                    console.log("data",data);
+                    // console.log("data",data);
 
             if(data){
                 res.status(200).json(data);
@@ -466,11 +473,11 @@ exports.fetch_distributor_name = (req,res,next) => {
 };
 
 exports.fetch_distributor_by_userid = (req,res,next) => {
-    console.log("inside fun");
+    // console.log("inside fun");
     Distributormaster.findOne({ userId : req.params.ID })
          .exec()
          .then(data=>{
-                    console.log("data",data);
+                    // console.log("data",data);
 
             if(data){
                 res.status(200).json(data);
@@ -694,11 +701,11 @@ exports.distributor_update_email_otp = (req,res,next) =>{
 };
 
 exports.fetch_distributor_by_distributorcode = (req,res,next) => {
-    console.log("inside fun get by distributor code");
+    // console.log("inside fun get by distributor code");
     Distributormaster.findOne({ distributorCode : req.params.ID })
          .exec()
          .then(data=>{
-                    console.log("data",data);
+                    // console.log("data",data);
 
             if(data){
                 res.status(200).json(data);

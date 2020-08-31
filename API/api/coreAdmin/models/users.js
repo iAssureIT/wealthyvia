@@ -40,7 +40,7 @@ const userSchema = mongoose.Schema({
 						clientId 				: String,
 						passwordreset           : Boolean
 					},
-	distributorCode	: Number,				
+	distributorCode	: String,				
 	roles : [String],
 	heartbeat : Date
 });

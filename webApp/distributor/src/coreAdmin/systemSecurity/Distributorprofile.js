@@ -390,7 +390,7 @@ export default class Distributorprofile extends Component{
       let fields = this.state.fields2;
       let errors = {};
       let formIsValid = true;
-        if (!fields["firstname"]) {
+        /*if (!fields["firstname"]) {
           formIsValid = false;
           errors["firstname"] = "This field is required.";
         }     
@@ -433,7 +433,7 @@ export default class Distributorprofile extends Component{
         if (!fields["description"]) {
           formIsValid = false;
           errors["description"] = "This field is required.";
-        } 
+        } */
         if (!fields["aadharnumber"]) {
           formIsValid = false;
           errors["aadharnumber"] = "This field is required.";
@@ -598,7 +598,7 @@ export default class Distributorprofile extends Component{
   handleSubmit(event) {
     var userid = localStorage.getItem('user_id');
     // console.log("userid-----------------------------------------",userid);
-    if (this.validateFormReview() && this.validateFormReqReview()) {
+    if ( this.validateFormReqReview()) {
       var formvalues = {
             "firstname"    :this.state.firstname,
             "lastname"     :this.state.lastname,

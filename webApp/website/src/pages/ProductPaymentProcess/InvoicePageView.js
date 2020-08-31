@@ -3,19 +3,18 @@ import axios                 from 'axios';
 import swal                  from 'sweetalert';
 import Moment                from 'moment';
 
-import "./ProductInvoicePage.css";
 var CurrentURL="";
-export default class ProductInvoicePage extends Component {
+export default class InvoicePageView extends Component {
 
   constructor(props) {
     super(props);
         this.state = {
-          paymentDetails : "", 
-          orderDetails : "",
+          paymentDetails : "",
           companysettings : "",
           CurrentURL     : "",
           user_ID        : "",
           date           : "",
+          orderDetails   : "",
         };
     }
   ScrollTop(event){
@@ -27,46 +26,75 @@ export default class ProductInvoicePage extends Component {
       date: Moment(new Date()).format("DD-MM-YYYY")
     });
   }
+/*  componentDidUpdate(prevProps, prevState){
+    if(prevState.orderDetails.length!==this.state.orderDetails.length){
+      this.setState({
+            orderDetails:this.state.orderDetails
+          });
+    }
+  }*/
   componentDidMount(){
-    var order_id = this.props.match.params.order_id;
     CurrentURL = window.location.href;
-    this.getDate();
+    var order_id = this.props.match.params.order_Id;
 
+     this.getDate();
+  /*   var myDate=new Date(2019,12,24,0,0,0).getTime();
+      var day_milli= 1000*60*60*24;
+      var newDate=new Date(myDate + day_milli * (6 -1));
+      alert(newDate);*/
     this.setState({
       CurrentURL : CurrentURL,
     })
-
-    axios
-      .get('/api/companysettings/list')
+    // var calculate = parseInt(this.props.match.params.validityPeriod);
+     var user_ID = localStorage.getItem('user_ID')
+     this.setState({
+      user_ID : user_ID,
+     })
+     axios.get("/api/users/get/"+user_ID)
       .then((response)=>{ 
-        this.setState({
-          companysettings : response.data,
-        },()=>{
-        })
+          this.setState({
+              userinfo : response.data
+          })
+
       })
-      .catch(function(error){
-          if(error.message === "Request failed with status code 401"){
-             swal("Your session is expired! Please login again.","", "error");
-             this.props.history.push("/");
-          }
+      .catch((error)=>{
+            console.log('error', error);
       })
 
-       /* get orderDetails */
+    /* get orderDetails */
+        axios
+        .get('/api/subscriptionorders/paymentOrderDetails/'+order_id)
+        .then((orderDetails)=>{ 
+          this.setState({
+            orderDetails : orderDetails.data,
+          }) 
+
+        })
+        .catch(function(error){
+          console.log(error);
+            if(error.message === "Request failed with status code 401")
+            {
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+            }
+        })
+      /* get company settings value*/
       axios
-      .get('/api/offeringorders/paymentOrderDetails/'+order_id)
-      .then((orderDetails)=>{ 
-        this.setState({
-          orderDetails : orderDetails.data,
-        }) 
-        //console.log("orderDetails",orderDetails.data);
-      })
-      .catch(function(error){
-          if(error.message === "Request failed with status code 401")
-          {
-             swal("Your session is expired! Please login again.","", "error");
-             this.props.history.push("/");
-          }
-      })
+        .get('/api/companysettings/list')
+        .then((response)=>{ 
+          this.setState({
+            companysettings : response.data,
+          })
+          
+        })
+        .catch(function(error){
+          console.log(error);
+            if(error.message === "Request   failed with status code 401")
+            {
+               swal("Your session is expired! Please login again.","", "error");
+               this.props.history.push("/");
+            }
+        })
   }
   makePayment(event)
   {
@@ -80,30 +108,40 @@ export default class ProductInvoicePage extends Component {
           return (
            loggedIn ?
             <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite  ">
-              {
-              this.state.orderDetails.paymentOrderId ?
+             
                 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan">
                   <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 logoContainerIP">
                   {
                   this.state.companysettings && this.state.companysettings.length>0?
-                    <img src={this.state.companysettings[0].logoFilename} className=""/>
+                      // <img src={this.state.companysettings[0].logoFilename} className=""/>
+                      <img src="/images/WealthyVia_Logo.png" className=""/>
                     :
                     null
                   }
                   </div>
+                  {this.state.orderDetails?
                   <div className="col-lg-6 col-lg-offset-4 col-md-12 col-sm-12 col-xs-12 iconContainerIP">
                       <label className="col-lg-12 invoiceHead "><span className="pull-right">INVOICE</span></label>
                       <label className="col-lg-12 dateContain "><span className="pull-right">Date : <span className="noBold">{this.state.date}</span></span></label>
                       <label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
-                      <label className="col-lg-12 dateContain "><span className="pull-right">GST No. : <span className="noBold">xxxxxxxxxxxx</span></span></label>
+
                   </div>
+                  :
+                  null
+                  }
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 userDetails noPadding">
-                      <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <li className="userName">&nbsp;{this.state.orderDetails.userName}</li>
-                        <li className="dateContain">&nbsp;{this.state.orderDetails.email}</li>
-                        <li className="dateContain">&nbsp;{this.state.orderDetails.mobileNumber}</li>
-                      </ul>
+                        {
+                        this.state.userinfo
+                        ?
+                          <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <li className="userName">&nbsp;{this.state.userinfo.fullName}</li>
+                            <li className="dateContain">&nbsp;{this.state.userinfo.email}</li>
+                            <li className="dateContain">&nbsp;{this.state.userinfo.mobNumber}</li>
+                          </ul>
+                      :
+                      null
+                      }
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 paymentDetails">
                       <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -120,63 +158,47 @@ export default class ProductInvoicePage extends Component {
                         <th>PRICE</th>
                         <th>TOTAL</th>
                       </tr>
+                      {this.state.orderDetails?
                       <tr >
-                        <td className="customTableIPTD">{this.state.orderDetails.offeringTitle} </td>
+                        <td className="customTableIPTD">{this.state.orderDetails.planName} </td>
                         <td className="customTableIPTD">1</td>
-                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</td>
-                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</td>
+                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{(this.state.orderDetails.amountPaid)/100 }</td>
+                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{(this.state.orderDetails.amountPaid)/100 }</td>
                       </tr>
+                      :
+                      null
+                    }
                      
                     </table>
                   </div> 
                   <div className=" col-lg-12 mt20 noPadding">
                     <ul className="customUlIPFeatures col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         <li className="listStyleNone"><b>Features</b></li>
-                        <li className="dateContain">Product details</li>
-                        
+                        <li className="dateContain">Unlimited blogs for 6 months</li>
+                        <li className="dateContain">Lastest blogs to read</li> 
                       </ul>
                       
                      <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
                         <li className="dateContain">Subtotal</li>
-                        <li className="dateContain">IGST (18%)</li>
+                        <li className="dateContain">Tax (18%)</li>
                         <li className="dateContain"><b>Grand Total</b></li>
                       </ul>
+                      {this.state.orderDetails ?
                       <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
-                    
                         <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</li>
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(parseInt((this.state.orderDetails.amountPaid/100)) - parseInt(((this.state.orderDetails.amountPaid)/100)/1.18))}</li>
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100))}</li>
-                      
+                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)-((this.state.orderDetails.amountPaid/100)/1.18))}</li>
+                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{(this.state.orderDetails.amountPaid/100)}</li>
                       </ul>
+                      :
+                      null
+                      }
                   </div>  
-                  {/*<div className="bottomDiv col-lg-12  noPadding">https://clockify.me/tracker
+                  <div className="bottomDiv col-lg-12  noPadding">
                       <div className=" thankYouDiv col-lg-3 pull-right">
                         <label className="">THANK YOU !</label>
                       </div>
-                  </div>  */}
-                  <div className="bottomDiv col-lg-12  noPadding">
-                      <div className="col-lg-8 col-lg-offset-4  col-md-12 col-sm-12 col-xs-12 btnContainer">
-                         <div>
-                            <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
-                            
-                              <input type="hidden" name="key_id" value="rzp_test_lQNmCUfCX3Wkh4"/>
-                              <input type="hidden" name="order_id" value={this.state.orderDetails.paymentOrderId}/>
-                              <input type="hidden" name="name" value="Wealthyvia"/>
-                              <input type="hidden" name="description" value=""/>
-                              <input type="hidden" name="image" value="https://cdn.razorpay.com/logos/BUVwvgaqVByGp2_large.png"/>
-                              <input type="hidden" name="prefill[name]" value="Gaurav Kumar"/>
-                              <input type="hidden" name="prefill[contact]" value="9123456780"/>
-                              <input type="hidden" name="prefill[email]" value="gaurav.kumar@example.com"/>
-                              <input type="hidden" name="notes[shipping address]" value="L-16, The Business Centre, 61 Wellfield Road, New Delhi - 110001"/>
-                              <input type="hidden" name="callback_url" value={axios.defaults.baseURL+"/api/offeringorders/payment-response/"+this.state.orderDetails._id}/>
-                              <input type="hidden" name="cancel_url" value={CurrentURL}/>
-                              <button className="col-lg-4 pull-right col-md-12 col-sm-12 col-xs-12 makePaymentButton NoPrint">
-                                 Make Payment
-                              </button>
-                            </form>
-                         </div>    
-                      </div>
                   </div> 
+                 
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 receiptFooter ">
                           {this.state.companysettings && this.state.companysettings.length>0?
                   
@@ -186,17 +208,16 @@ export default class ProductInvoicePage extends Component {
                           }
                       </div>
                 </div>
-              :
-              <div className="loadingImageContainer col-lg-4 col-lg-offset-4"><img src="/images/Loadingsome.gif"/></div>
-              }
+             
             </div>
             :
             <div>
               {this.props.history.push("/login")}
             </div>
             
-            );
+          );
         
-      
+            
+                        
   }
 }

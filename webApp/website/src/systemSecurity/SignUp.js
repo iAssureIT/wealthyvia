@@ -49,6 +49,10 @@ class SignUp extends Component {
    			const decryptcode = parsed.x;
    			if(decryptcode){
    				var distributorcode = decryptcode / 298564 ;
+   				if(distributorcode < 1000){
+   					distributorcode =distributorcode.toString().padStart(4, "0")
+   				}
+   				distributorcode = "WVP"+distributorcode;
 	   		    console.log("distributorcode", distributorcode);
 	   		    this.setState({distributorCode : distributorcode});
 	   		    this.getDistributorData(distributorcode);

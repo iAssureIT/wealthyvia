@@ -45,7 +45,8 @@ class SubFranchise extends Component {
       if(res && res.data){
         var distributorCode = res.data.distributorCode;
         this.getmySubfranchise(distributorCode); 
-        var encryptcode = distributorCode * 298564;
+        var discode = parseInt(distributorCode.substring(3));
+        var encryptcode = discode * 298564;
         this.setState({
           distributorCode  : distributorCode,
           subfranchiseurl  : "http://wealthyvia.iassureit.com/join-as-partner?x="+ encryptcode

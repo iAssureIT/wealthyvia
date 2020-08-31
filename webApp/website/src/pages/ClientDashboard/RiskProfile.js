@@ -21,11 +21,10 @@ class RiskProfile extends Component {
           "questionsArray"     : [],
           "answersArray"       : [],
           "answersofQ1"        : [],
-          "Question1"          : "1) What is the primary goal for the funds invested through WealthyVia?",
-          "Question2"          : "2) Any near term need for the funds invested with us ?",
-          "Question3"          : "3) Is there any emergency need associated with the funds you are investing with the help of this advisory?",
-          "Question4"          : "4) What is number of years you have spent in stock market investments",
-          "Question5"          : "5) What is your biggest drawdown on your entire portfolio ?",
+          "Question1"          : "1) What is the primary goal for the funds invested using WealthyVia research?",
+          "Question2"          : "2) Is there any emergency need associated with the funds you are investing with the help of this advisory?",
+          "Question3"          : "3) What is number of years you have spent in stock market investments?",
+          "Question4"          : "4) What is the biggest drawdown on your entire portfolio ?",
           buttonHeading        : "Submit",
         }
         this.baseState = this.state;
@@ -111,34 +110,29 @@ class RiskProfile extends Component {
             })
           }
             answersarray.push(event.target.value);
-          if(event.target.name === "1) What is the primary goal for the funds invested through WealthyVia?")
+          if(event.target.name === "1) What is the primary goal for the funds invested using WealthyVia research?")
           {
+            var answer = this.state.answersofQ1.concat(event.target.value);
             this.setState({
-              answersofQ1    : answersarray,
+              answersofQ1    : answer,
             },()=>{
             })
-          }else  if(event.target.name === "2) Any near term need for the funds invested with us ?"){
+          }else  if(event.target.name === "2) Is there any emergency need associated with the funds you are investing with the help of this advisory?"){
             this.setState({
               answersofQ2    : event.target.value,
             },()=>{
           
           })
           }
-          else  if(event.target.name === "3) Is there any emergency need associated with the funds you are investing with the help of this advisory?"){
+          else  if(event.target.name === "3) What is number of years you have spent in stock market investments?"){
             this.setState({
               answersofQ3    : event.target.value,
             },()=>{
           })
-          }
-           else  if(event.target.name === "4) What is number of years you have spent in stock market investments"){
-            this.setState({
-              answersofQ4    : event.target.value,
-            },()=>{
-        })
-          }
+          }          
           else {
             this.setState({
-              answersofQ5    : event.target.value,
+              answersofQ4    : event.target.value,
             },()=>{
           })
         }
@@ -172,10 +166,7 @@ class RiskProfile extends Component {
       formIsValid = false;
       errors[this.state.Question4] = "This field is required.";
     }
-    if (!fields[this.state.Question5]) {
-      formIsValid = false;
-      errors[this.state.Question5] = "This field is required.";
-    }
+    
     
       
     this.setState({
@@ -226,8 +217,6 @@ class RiskProfile extends Component {
                                 "Ans : "+this.state.answersofQ3+"<br/><br/>"+
                                  ""+this.state.questionsArray[3]+"<br/>"+
                                 "Ans : "+this.state.answersofQ4+"<br/><br/>"+
-                                ""+this.state.questionsArray[4]+"<br/>"+
-                                "Ans : "+this.state.answersofQ5+"<br/><br/>"+
                                 "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
 
           };
@@ -253,8 +242,6 @@ class RiskProfile extends Component {
                                   "Ans : "+this.state.answersofQ3+"<br/><br/>"+
                                    ""+this.state.questionsArray[3]+"<br/>"+
                                   "Ans : "+this.state.answersofQ4+"<br/><br/>"+
-                                  ""+this.state.questionsArray[4]+"<br/>"+
-                                  "Ans : "+this.state.answersofQ5+"<br/><br/>"+
                                   "" ,
                  };
               axios
@@ -339,58 +326,33 @@ class RiskProfile extends Component {
                                       </div>
                                       <div className="errorMsg">{this.state.errors[this.state.Question1]}</div>
                                     </div>
-                                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                      <p><b>{this.state.Question2}</b><span className="asterix">*</span></p>
-                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                          <div className="centreDetailContainer col-lg-1 row">
-                                                  <input type="radio" name={this.state.Question2} value="Yes after two years" onChange={this.getCheckValue.bind(this)} required/>
-                                                  <span className="radioCheck"></span>
-                                               </div>
-                                              <span className="centreDetaillistItem ansoptions">Yes after two years</span>
-                                        </div>
-                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                            <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="radio" name={this.state.Question2} value="Yes after  6 -8 months" onChange={this.getCheckValue.bind(this)}/>
-                                                    <span className="radioCheck"></span>
-                                                 </div>
-                                                <span className="centreDetaillistItem ansoptions">Yes after 6 -8 months</span>
-                                        </div>
-                                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                            <div className="centreDetailContainer col-lg-1 row">
-                                                    <input type="radio" name={this.state.Question2} value="It’s a separate capital to invest apart from my needs. I want to build good portfolio." onChange={this.getCheckValue.bind(this)}/>
-                                                    <span className="radioCheck"></span>
-                                                 </div>
-                                                <span className="centreDetaillistItem ansoptions">It’s a separate capital to invest apart from my needs. I want to build good portfolio.</span>
-                                        </div> 
-                                        <div className="errorMsg">{this.state.errors[this.state.Question2]}</div>                                           
-                                    </div>
-
+                                  
                                     {this.state.compalsaroy === false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 ">
-                                        <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
+                                        <p><b>{this.state.Question2}</b><span className="asterix">*</span></p>
                                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                  
                                           <div className="centreDetailContainer col-lg-1 col-xs-3 row ">
-                                                  <input type="radio" name={this.state.Question3} value="Yes" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question2} value="Yes" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9 ">Yes</span>
                                       </div>
                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                                         <div className="centreDetailContainer col-lg-1 col-xs-3 row">
-                                                <input type="radio" name={this.state.Question3} value="No" onChange={this.getCheckValue.bind(this)}/>
+                                                <input type="radio" name={this.state.Question2} value="No" onChange={this.getCheckValue.bind(this)}/>
                                                 <span className="radioCheck"></span>
                                              </div>
                                             <span className="centreDetaillistItem ansoptions col-xs-9">No</span>
                                       </div> 
-                                      <div className="errorMsg">{this.state.errors[this.state.Question3]}</div>                                                
+                                      <div className="errorMsg">{this.state.errors[this.state.Question2]}</div>                                                
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                        <p><b>{this.state.Question4}</b><span className="asterix">*</span></p>
+                                        <p><b>{this.state.Question3}</b><span className="asterix">*</span></p>
                                         <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                  
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                  <input type="radio" name={this.state.Question4} value="0-2 years" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question3} value="0-2 years" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">0-2 years  </span>
@@ -398,7 +360,7 @@ class RiskProfile extends Component {
                                       </div>
                                       <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                  <input type="radio" name={this.state.Question4} value="3-5 years" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question3} value="3-5 years" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">3-5 years</span>
@@ -406,7 +368,7 @@ class RiskProfile extends Component {
                                       </div>
                                        <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                  <input type="radio" name={this.state.Question4} value="5 years plus" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question3} value="5 years plus" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">5 years plus</span>
@@ -414,33 +376,33 @@ class RiskProfile extends Component {
                                       </div>   
                                       <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                  <input type="radio" name={this.state.Question4} value="2-15 plus years" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question3} value="2-15 plus years" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">2-15 plus years</span>
 
                                       </div>
-                                      <div className="errorMsg">{this.state.errors[this.state.Question4]}</div>            
+                                      <div className="errorMsg">{this.state.errors[this.state.Question3]}</div>            
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                        <p><b>{this.state.Question5}</b><span className="asterix">*</span></p>
+                                        <p><b>{this.state.Question4}</b><span className="asterix">*</span></p>
                                         <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                <input type="radio" name={this.state.Question5} value="0 to -25%" onChange={this.getCheckValue.bind(this)}/>
+                                                <input type="radio" name={this.state.Question4} value="0 to -25%" onChange={this.getCheckValue.bind(this)}/>
                                                 <span className="radioCheck"></span>
                                              </div>
                                             <span className="centreDetaillistItem ansoptions col-xs-9 ">0 to -25%</span>
                                         </div>
                                         <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                <input type="radio" name={this.state.Question5} value="-25% to -50%" onChange={this.getCheckValue.bind(this)}/>
+                                                <input type="radio" name={this.state.Question4} value="-25% to -50%" onChange={this.getCheckValue.bind(this)}/>
                                                 <span className="radioCheck"></span>
                                              </div>
                                             <span className="centreDetaillistItem ansoptions col-xs-9">-25% to -50%</span>
                                       </div>
                                        <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                  <input type="radio" name={this.state.Question5} value="-51% to -75%" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question4} value="-51% to -75%" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">-51% to -75%</span>
@@ -448,13 +410,13 @@ class RiskProfile extends Component {
                                       </div>   
                                       <div className="col-lg-6 col-md-12 col-sm-12 col-xs-12 noPadding">
                                           <div className="centreDetailContainer col-lg-2 col-xs-3 row">
-                                                  <input type="radio" name={this.state.Question5} value="More than -75%" onChange={this.getCheckValue.bind(this)}/>
+                                                  <input type="radio" name={this.state.Question4} value="More than -75%" onChange={this.getCheckValue.bind(this)}/>
                                                   <span className="radioCheck"></span>
                                                </div>
                                               <span className="centreDetaillistItem ansoptions col-xs-9">More than -75%</span>
 
                                       </div>
-                                      <div className="errorMsg">{this.state.errors[this.state.Question5]}</div> 
+                                      <div className="errorMsg">{this.state.errors[this.state.Question4]}</div> 
                                     </div>
                                    
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20 textAlignCenter">

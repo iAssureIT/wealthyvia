@@ -5,6 +5,7 @@ const OfferSub      = require('../models/offeringsubscriptions.js');
 const WMSub 		= require('../models/wmsubscriptions.js');
 const Offering 		= require('../models/offerings.js');
 var ObjectID 		= require('mongodb').ObjectID;
+const User              = require('../../coreAdmin/models/users.js');
 	
 function getOfferingStatus(wmsub_id,offering_ID){
 	return new Promise(function (resolve, reject) {
@@ -15,6 +16,7 @@ function getOfferingStatus(wmsub_id,offering_ID){
 				.sort({"createdAt":-1})
 				.exec()
 				.then(data=>{
+						console.log("subscr", data);
 						resolve(data);
 					})
 				.catch(err=>{
@@ -212,7 +214,7 @@ exports.list_offerSub_wsSub = (req,res,next) => {
 							 			for(j = 0 ; j < returnData.offering.length; j++){
 								 			var offeringStatus = await getOfferingStatus(wmsub._id,returnData.offering[j].offering_ID);
 								 			if(offeringStatus && offeringStatus.offeringStatus === 'Active'){
-									 			console.log("offeringStatus ",offeringStatus);
+									 			//console.log("offeringStatus ",offeringStatus);
 								 				returnData.offering[j].offeringStatus = 'Active';
 								 				returnData.offering[j].startDate 	  = offeringStatus.startDate;
 								 				returnData.offering[j].endDate 	  	  = offeringStatus.endDate;
@@ -308,7 +310,7 @@ exports.list_offerSub = (req,res,next) =>{
 										for(j = 0; j < offeringData[i].offering.length; j++){
 											var offeringStatus = await getOfferingStatus(offeringData[i].wmSub_id,offeringData[i].offering[j].offering_ID);
 											if(offeringStatus){
-									 			console.log("offeringStatus ",offeringStatus);
+									 			//console.log("offeringStatus ",offeringStatus);
 								 				offeringData[i].offering[j].offeringStatus = offeringStatus.offeringStatus;
 								 				offeringData[i].offering[j].startDate 	   = offeringStatus.startDate;
 								 				offeringData[i].offering[j].endDate 	   = offeringStatus.endDate;
@@ -359,7 +361,7 @@ function fetch_user_wmsub(user_ID){
 				 			for(j = 0 ; j < returnData.offering.length; j++){
 					 			var offeringStatus = await getOfferingStatus(wmsub._id,returnData.offering[j].offering_ID);
 					 			if(offeringStatus && offeringStatus.offeringStatus === 'Active'){
-						 			console.log("offeringStatus ",offeringStatus);
+						 			//console.log("offeringStatus ",offeringStatus);
 					 				returnData.offering[j].offeringStatus = 'Active';
 					 				returnData.offering[j].startDate 	  = offeringStatus.startDate;
 					 				returnData.offering[j].endDate 	  	  = offeringStatus.endDate;
@@ -482,3 +484,190 @@ exports.update_statements = (req,res,next)=>{
                 	});
 				});
 };
+
+
+exports.get_clientRevenue = (req,res,next)=>{
+
+			var clientList = JSON.parse(req.query.clientList);
+			// console.log("clientList => ", clientList);
+			getData();
+			var newTransArr = [];
+
+			async function getData(){
+				var totalAmount = 0;
+				for(var i=0; i<clientList.length; i++){
+					// Get User Name 
+					var user_id = clientList[i]._id;
+					// console.log("userid", user_id);
+					orderData = await getUserOrderdetails(user_id); 
+					// console.log("order", orderData);
+					if(orderData && orderData.length > 0){
+						for(let k=0; k<orderData.length; k++){
+							newTransArr.push({
+								clientCode : clientList[i].clientId,
+								clientName : clientList[i].fullName,
+								offeringTitle : orderData[k].offeringTitle,
+								offeringAmount : orderData[k].amountPaid,
+								startDate : orderData[k].startDate,
+								endDate : orderData[k].endDate,
+								offeringStatus : orderData[k].offeringStatus,
+								createdAt : orderData[k].createdAt,
+								
+							});
+						}
+						
+					}
+					
+
+				}
+
+				if(i === clientList.length){
+					res.status(200).json({clientRevenue : newTransArr});
+				}
+
+			}//async function ends
+
+		
+}
+
+
+
+function getUserOrderdetails(user_id){
+	return new Promise( (resolve, reject)=>{ 
+
+			OfferSub.find({user_ID : user_id})
+				.then(userData => {
+					resolve( userData ) ;
+				})
+				.catch(error=>{
+					reject(error);
+				});
+
+	});
+}
+
+exports.patch_offering_status = (req,res,next)=>{
+		//console.log("date", req.body.id);
+		OfferSub.updateOne({ offering_ID : req.body.id,
+						"offeringStatus"	: "Active" },
+						{$set: {"offeringStatus"	: "Inactive"}}
+				)
+				.exec()
+				.then(offersub=>{
+					console.log("offersub", offersub);
+					res.status(200).json(offersub);	
+				})
+				.catch(err =>{
+		                res.status(500).json(err);	
+		            });				
+
+	
+}
+
+
+exports.list_offerSub_byuserid = (req,res,next) => {
+	OfferSub.find({ user_ID : req.params.user_ID })
+			.sort({createdAt : 1})
+			.exec()
+			.then(offeringData=>{
+				res.status(200).json(offeringData);	
+			})
+			.catch(err =>{
+	                console.log(err);
+	                res.status(500).json({
+	                    error: err
+	                });
+	            });	
+}; 
+
+
+exports.list_offerSubforclients_admin = (req,res,next) => {
+	
+	User.find({roles:'user'})
+		.exec()
+		.then(data=>{
+			if(data){
+				var i = 0;
+				var userData = [];
+				
+				for(i = 0 ; i < data.length ; i++){
+					userData.push({
+										"_id"		: data[i]._id,
+										"firstname" : data[i].profile.firstname,
+										"lastname"	: data[i].profile.lastname,
+										"email"		: data[i].profile.emailId, //Mandatory 
+										"mobNumber" : data[i].profile.mobNumber,
+										"role"      : data[i].roles, //Mandatory
+										"status"	: data[i].profile.status, //Either "Active" or "Inactive"
+										"fullName"	: data[i].profile.fullName,
+										"clientId"	: data[i].profile.clientId,
+										"distributorCode"	: data[i].distributorCode,
+									});
+				}
+				if( i >= userData.length){
+					getdatasub();
+					var j=0;
+					async function getdatasub(){
+						for(j = 0 ; j < userData.length; j++){
+							console.log(userData[j]._id);
+				 			var offeringSub = await getOfferingsubscriptionbyuserid(userData[j]._id);
+				 			if(offeringSub.length > 0){
+				 				var offarray = [];
+				 				var k = 0;
+				 				for( k=0; k<offeringSub.length; k++){
+				 					var subscription = {
+					 					offeringTitle : offeringSub[k].offeringTitle,
+					 					offeringAmount : offeringSub[k].amountPaid,
+					 					offeringStatus : offeringSub[k].offeringStatus,
+					 					startDate 	   : offeringSub[k].startDate,
+					 					endDate 	   : offeringSub[k].endDate,
+					 				}
+					 				offarray.push(subscription);
+				 				}
+				 				if(k >= offeringSub.length){				 					
+				 					userData[j].productdata 	 = offarray;	
+				 				}
+
+				 				
+				 			}
+				 							 				
+				 			
+			 			}
+			 			if(j >= userData.length){
+			 				res.status(200).json(userData);
+			 			}
+					}
+					
+		 		}
+											 
+				
+			}else{
+				res.status(200).json({message:"USER_NOT_FOUND"});
+			}
+		})
+		.catch(err =>{
+			console.log('user error ',err);
+			res.status(500).json({
+				error: err
+			});
+		});
+				
+}; 
+
+
+function getOfferingsubscriptionbyuserid(user_ID){
+	return new Promise(function (resolve, reject) {
+		OfferSub.find({
+							"user_ID" 			: user_ID
+					})
+				.sort({"createdAt":-1})
+				.exec()
+				.then(data=>{
+						console.log("subscr", data);
+						resolve(data);
+					})
+				.catch(err=>{
+						reject(err);
+					});
+	});
+}
