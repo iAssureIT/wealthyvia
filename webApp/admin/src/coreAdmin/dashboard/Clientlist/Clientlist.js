@@ -175,7 +175,7 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {sub.offeringTitle} </td> 
                                                 <td className="col-lg-1"> {sub.startDate} </td> 
                                                 <td className="col-lg-1"> {sub.endDate} </td> 
-                                                <td className="text-center">{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : ''}</td>
+                                                <td className="text-center">{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : '0'}</td>
                                                 <td className="text-center">{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
                                                 <td className="col-lg-1"> 
                                                   { b.distributorCode }                                            

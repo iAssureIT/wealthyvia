@@ -4,6 +4,10 @@ var request             = require('request-promise');
 const globalVariable    = require("../../../nodemon.js");
 const User              = require('../../coreAdmin/models/users.js');
 const Counter = require('../models/counter.js');
+const OfferSub      = require('../models/offeringsubscriptions.js');
+var moment          = require('moment');
+
+
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -205,7 +209,162 @@ exports.fetch_All_distributor_list = (req,res,next) => {
                 });
 };
 
+function getfranchiseclient(distributorCode) {
+  return new Promise((resolve, reject) => {
+    User.find({distributorCode:distributorCode, roles:'user'})
+        .exec()
+        .then(user=>{          
+                    if(user && user.length > 0){
+                        let promises = user.map(element => {
+                        
+                            return getUserOrderdetails(element._id)
+                            .then(offsub => {
+                                if(offsub && offsub.length > 0){
+                                    var i=0;
+                                    var feespaid = 0;
+                                    var feespending = 0;
+                                    for(i=0; i<offsub.length; i++){
+                                        if(offsub[i].endDate >= moment(new Date()).format("YYYY-MM-DD") ){
+                                            feespaid += offsub[i].amountPaid ? offsub[i].amountPaid : 0 ;                                            
+                                        }
+                                        else{
+                                            feespending += offsub[i].amountPaid ? offsub[i].amountPaid : 0;
+                                        }
+                                    }
+                                    if(i === offsub.length){
+                                        var obj = {};
+                                        obj.feespaid = feespaid;
+                                        obj.feespending = feespending;
+                                        
+                                        return obj;
+                                    }
+                                }
+                                else{
+                                    
+                                    var obj = {};
+                                    obj.feespaid = 0;
+                                    obj.feespending = 0
+                                    
+                                    return obj;
+                                }
+                                
+                            })                        
+                        
+                        });
 
+                        // Wait for all Promises to complete
+                        Promise.all(promises)
+                          .then(results => {
+                            //console.log("result", results);
+                            resolve(results);
+                          })
+                          .catch(e => {
+                            reject(e);
+                          })
+                    }
+                    else{
+                        resolve(user);
+                    }          
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+  })
+}
+
+function getUserOrderdetails(user_id){
+    return new Promise( (resolve, reject)=>{ 
+            //console.log("call");
+            OfferSub.find({user_ID : user_id})
+                .then(userData => {
+                    resolve( userData ) ;
+                })
+                .catch(error=>{
+                    reject(error);
+                });
+
+    });
+}
+
+exports.fetch_my_subfranchise_list = (req,res,next) => {
+    Distributormaster.find({franchiseCode: req.params.distributorCode})
+        .sort({createdAt : -1})
+         .exec()
+         .then(data=>{
+            if(data.length > 0){
+                let promises = data.map(element => {
+                if(element.distributorCode){
+                    return getfranchiseclient(element.distributorCode)
+                    .then(user => {
+                        // console.log("userdata", user);
+                        var feespaid = 0;
+                        var feespending = 0;
+                        // console.log(user.length);
+                        if(user && user.length>0){
+                            // console.log(user);
+                            var obj = element.toObject();
+                            
+                            for(i=0; i<user.length; i++){
+                                    feespaid += user[i].feespaid;                                            
+                                    feespending += user[i].feespending;
+                            }
+                            if(i === user.length){
+                                var obj = element.toObject();
+                                //console.log("obj>", obj);
+                                obj.usercount = user.length;
+                                obj.feespaid = feespaid;
+                                obj.feespending = feespending;
+                                
+                                return obj;
+                            }
+                             
+                            
+                        }
+                        else{
+
+                            var obj = element.toObject();
+                            //console.log("obj>", obj);
+                            obj.usercount = 0;
+                            obj.feespaid = feespaid;
+                            obj.feespending = feespending;
+                            //console.log("Record ",obj);
+                            
+                            return obj;
+                        }
+                        
+                    })
+                }
+                else{
+                    var obj = element.toObject();
+                    obj.usercount = 0;                        
+                    return obj;                    
+                }
+                
+                });
+
+                // Wait for all Promises to complete
+                Promise.all(promises)
+                  .then(results => {
+                    //console.log("result", results);
+                    res.status(200).json(results);
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  })
+                
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+
+/*
 exports.fetch_my_subfranchise_list = (req,res,next) => {
     Distributormaster.find({franchiseCode: req.params.distributorCode})
         .sort({createdAt : -1})
@@ -252,7 +411,7 @@ exports.fetch_my_subfranchise_list = (req,res,next) => {
                     });
                 });
 };
-
+*/
 exports.patch_distributor = (req,res,next) => {
     console.log("inside a update function");
     Distributormaster.updateOne(

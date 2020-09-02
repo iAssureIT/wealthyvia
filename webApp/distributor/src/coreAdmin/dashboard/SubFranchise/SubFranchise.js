@@ -157,7 +157,6 @@ class SubFranchise extends Component {
       const formValues = {
         "email"         : this.state.email ,
         "subject"       : "Wealthyvia - Join as a Partner",
-        "text"          : "", 
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
                           "<b>Welcome to wealthvia <br/><br/>"+
                           "Distributor has shared the Referral link with you to Sign Up on Wealthyvia. By Singing Up, the doors for incredible investments will open for you!<br/>"+
@@ -197,7 +196,8 @@ class SubFranchise extends Component {
           var data = this.state.subfranchiseList;
           for (let i = 0; i < data.length; i++) {
               subfranchise.push({" Name": data[i].firstname+" "+data[i].lastname, "email" : data[i].email.address,
-                          "Contact" : data[i].phone });        
+                          "Contact" : data[i].phone, "No of clients" : data[i].usercount, "Fees Paid": data[i].feespaid, 
+                          "Fees Pending": data[i].feespending});        
             }
       }
       
@@ -269,6 +269,7 @@ class SubFranchise extends Component {
                               <th className="text-left">Mail</th>
                               <th className="text-left">No of clients</th>
                               <th className="text-left">Total AUM</th>
+                              <th className="text-left">Total fees paid</th>
                               <th className="text-left">Total fees pending</th>
                             </tr>
                                                    
@@ -285,7 +286,8 @@ class SubFranchise extends Component {
                                       <td>{a.email ? a.email.address : '' }</td>
                                       <td>{a.usercount}</td> 
                                       <td></td>   
-                                      <td></td>  
+                                      <td>{a.feespaid}</td> 
+                                      <td>{a.feespending}</td> 
                                </tr>
                                 )
                               }):

@@ -211,7 +211,6 @@ class Clientlist extends Component {
       const formValues = {
         "email"         : this.state.email ,
         "subject"       : "Register on Wealthyvia",
-        "text"          : "", 
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
                           "<b>Welcome to wealthvia <br/><br/>"+
                           "Distributor has shared the Referral link with you to Sign Up on Wealthyvia. By Singing Up, the doors for incredible investments will open for you!<br/>"+
@@ -413,7 +412,7 @@ class Clientlist extends Component {
                                       <td>{a.startDate}</td>
                                       <td>{a.endDate}</td>
                                        
-                                      <td className="text-center">{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : ''}</td>
+                                      <td className="text-center">{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : '0'}</td>
                                       <td className="text-center">{a.endDate > moment().format('YYYY-MM-DD') ? '0' : a.offeringAmount}</td>
                                </tr>
                                 )

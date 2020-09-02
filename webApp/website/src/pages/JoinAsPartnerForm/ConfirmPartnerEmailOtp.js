@@ -49,7 +49,6 @@ class ConfirmPartnerEmailOtp extends Component {
                       const formValues2 = {
                         "emaillist"     : adminemaillist ,
                         "subject"       : "Distributor joined Wealthyvia!",
-                        "text"          : "", 
                         "mail"          : 'Dear Admin,' + '<br/>'+
                                           'A Distributor has joined Wealthyvia as a Partner!'+                          
                                           "<br/>"+
@@ -90,7 +89,6 @@ class ConfirmPartnerEmailOtp extends Component {
                       const formValues1 = {
                         "email"         : distributor.email.address ,
                         "subject"       : "Welcome to Wealthyvia!",
-                        "text"          : "", 
                         "mail"          : 'Dear ' + distributor.firstname +' '+ distributor.lastname + ', <br/><br/>'+                          
                                           "Thank you for joining Wealthyvia as a Partner! <br/> " + 
                                           "Your Partner Profile will be approved soon by Admin & you will be notified with your login credentials after approval." +

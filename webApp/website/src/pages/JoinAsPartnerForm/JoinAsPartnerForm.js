@@ -147,6 +147,33 @@ export default class JoinAsPartnerForm extends Component {
     this.setState({
       fields2
     });
+
+    if(name === 'dob'){
+      if (this.validatedob() ) {
+      
+      }
+    }
+    
+  }
+
+   validatedob() {
+    let fields = this.state.fields2;
+    let errors = {};
+    let formIsValid = true;
+      
+      if (typeof fields["dob"] !== "undefined") {
+      var oldDate = new Date();
+      oldDate.setFullYear(oldDate.getFullYear() - 18);
+      if (fields["dob"] > moment(oldDate).format("YYYY-MM-DD") ) {
+        formIsValid = false;
+        errors["dob"] = "Please enter 18+ date of birth";
+      }
+    }
+
+      this.setState({
+        errors2: errors
+      });
+      return formIsValid; 
   }
 
   validateFormReqReview() {
@@ -177,10 +204,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["address"] = "This field is required.";
         }*/
-        /*if (!fields["dob"]) {
+        if (!fields["dob"]) {
           formIsValid = false;
           errors["dob"] = "This field is required.";
-        } */         
+        }        
         if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
@@ -234,7 +261,17 @@ export default class JoinAsPartnerForm extends Component {
           errors["phone"] = "Please enter valid mobile no.";
         }
         console.log("phone",errors["phone"]);
-      }   */  
+      }   */
+
+      if (typeof fields["dob"] !== "undefined") {
+      var oldDate = new Date();
+      oldDate.setFullYear(oldDate.getFullYear() - 18);
+      if (fields["dob"] > moment(oldDate).format("YYYY-MM-DD") ) {
+        formIsValid = false;
+        errors["dob"] = "Please enter 18+ date of birth";
+      }
+    }
+
       this.setState({
         errors2: errors
       });
@@ -553,7 +590,10 @@ export default class JoinAsPartnerForm extends Component {
         formIsValid = false;
         errors["phone"] = "Please enter valid mobile no.";
       }
-    }        
+    }
+
+    
+
     this.setState({
       errors: errors
     });
@@ -562,12 +602,8 @@ export default class JoinAsPartnerForm extends Component {
 
 //====================Auto places=====================================//
   
-  handleChangePlaces = address => {
-        this.setState({ adressLine : address});
-  };
-
   handleSelect = address => {
-   // console.log("address=>",address);
+   console.log("address=>",address);
     geocodeByAddress(address)
      .then((results) =>{ 
       for (var i = 0; i < results[0].address_components.length; i++) {
@@ -611,6 +647,10 @@ export default class JoinAsPartnerForm extends Component {
         pincode: pincode,
         stateCode:stateCode,
         countryCode:countryCode
+      },()=>{
+        console.log("countrt=>",this.state.country)
+        console.log("countrt=>",this.state.area)
+        console.log("countryCode=>",this.state.district)
       })
 
        
@@ -623,8 +663,14 @@ export default class JoinAsPartnerForm extends Component {
       .then(latLng => this.setState({'latLng': latLng}))
       .catch(error => console.error('Error', error));
      
-      this.setState({ addressLine1 : address});
+      this.setState({ adressLine : address});
   };
+
+  handleChangePlaces = address => {
+        this.setState({ adressLine : address});
+  };
+
+  
 
 
   render() {
@@ -786,7 +832,7 @@ export default class JoinAsPartnerForm extends Component {
                             )}
                           </PlacesAutocomplete>
                           :
-                          <input type="text" className="form-control setplusZindex abacusTextbox oesSignUpForm sentanceCase" name="adressLine" ref="adressLine"
+                          <input type="text" className="disableInput form-control setplusZindex abacusTextbox oesSignUpForm sentanceCase" name="adressLine" ref="adressLine"
                               onChange={this.handleChange} 
                               value={this.state.adressLine}
                             />
@@ -799,7 +845,7 @@ export default class JoinAsPartnerForm extends Component {
                       <div className="form-group form-group1 col-lg-6 col-md-6 hidden-xs hidden-sm  inputContent textpd1 boxMarg">
                         <span className="blocking-span noIb">   
                           <input type="date" className="form-control abacusTextbox  oesSignUpForm sentanceCase"  name="dob"  ref="dob"
-                            // max={moment(oldDate).format("YYYY-MM-DD")}
+                             max={moment(oldDate).format("YYYY-MM-DD")}
                             onChange={this.handleChange.bind(this)}
                             value={this.state.dob}
                           />
