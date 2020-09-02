@@ -1330,10 +1330,17 @@ export default class Header extends Component {
                                       }
                                       {
                                           token ?
-                                            <li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
+                                            <li className="dropdown investNowHeadBefore">
+                                              <a href="/clientDashboard" className="newinvestlink">
+                                                <span className="newinvestspan">Invest Now</span>
+                                                
+                                                {/*<li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
                                                     <span  className="investNowHeadOtherSmall hidden-md hidden-lg" >Invest Now</span>
                                                     <label  className="investNowHead  hidden-sm hidden-xs" >Invest Now</label>
-                                            </li>                     
+                                            </li>  */}
+                                              </a>
+                                              </li>
+                                                                 
                                           :
                                             <a  href="/login" ><li className="dropdown investNowHeadBefore">
                                               <span >Invest Now</span>
@@ -1401,10 +1408,16 @@ export default class Header extends Component {
                                       </li>  
                                       {
                                         token ?
-                                          <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
+                                          <li className="dropdown investNowHeadBefore">
+                                              <a href="/clientDashboard" className="newinvestlink">
+                                                <span className="newinvestspan">Invest Now</span>
+                                                {/*<li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
                                                   <span  className="investNowHeadOtherSmall hidden-md hidden-lg" >Invest Now</span>
                                                   <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
-                                          </li>                     
+                                          </li>  */}
+                                              </a>
+                                              </li>
+                                                              
                                         :
                                           <a  href="/login" >
                                           <li className="dropdown">
@@ -1507,10 +1520,19 @@ export default class Header extends Component {
                                       }
                                       {
                                           token ?
-                                            <li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
+                                            
+                                              <li className="dropdown investNowHeadBefore">
+                                              <a href="/clientDashboard" className="newinvestlink">
+                                                <span className="newinvestspan">Invest Now</span>
+                                                {/*<li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
                                                     <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
                                                     <label  className="investNowHead  hidden-sm hidden-xs" >Invest Now</label>
-                                            </li>                     
+                                            </li> */}
+                                              </a>
+                                              </li>
+                                              
+                                             
+                                                              
                                           :
                                             <a  href="/login" ><li className="dropdown investNowHeadBefore">
                                               <span >Invest Now</span>
@@ -1579,10 +1601,16 @@ export default class Header extends Component {
                                       </li>
                                       {
                                         token ?
-                                          <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
+                                          <li className="dropdown investNowHeadBefore">
+                                              <a href="/clientDashboard" className="newinvestlink">
+                                                <span className="newinvestspan">Invest Now</span>
+                                                {/*<li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
                                                   <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
                                                   <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
-                                          </li>                     
+                                          </li>   */}
+                                              </a>
+                                              </li>
+                                                             
                                         :
                                           <a  href="/login" ><li className="dropdown investNowHeadBefore">
                                             <span >Invest Now</span>

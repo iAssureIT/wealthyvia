@@ -1,4 +1,22 @@
+@media all and (max-width : 768px) {
 
+  .customUl li> a.newinvestlink{
+    padding: 0px !important;
+    padding-left: 0px !important;
+    padding-bottom: 0px !important;
+    width: 100%;
+    margin: 0px;
+  }   
+  .newinvestspan{
+    padding: 0px !important;
+    width: 100%;
+    text-align: center;
+  }
+  .investNowHeadBefore{
+    width:100% !important;
+  }
+
+}
 .investNowHead{
   margin-top: 8px;
   padding:8px;
@@ -203,6 +221,20 @@ background-color: #5f9c30 !important;
 
 }*/
 
+.customUl li> a.newinvestlink{
+    padding: 5px !important;
+    padding-left: 7px !important;
+    padding-bottom: 7px !important;
+    width: 100%;
+    margin: 0px;
+}
+.newinvestspan{
+  padding: 9px !important;
+  width: 100%;
+  text-align: center;
+}
+
+
 .headLi{
     font-size: 15px;
     font-weight:bold;
@@ -347,6 +379,7 @@ li > a:only-child:after { content: ''; }
 
 
 @media all and (max-width : 768px) {
+
 
 #logo {
   display: block;
@@ -831,3 +864,4 @@ hr{
     width: 75% !important;
   }
 }
+

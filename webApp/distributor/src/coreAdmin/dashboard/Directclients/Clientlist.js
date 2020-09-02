@@ -182,7 +182,7 @@ class Clientlist extends Component {
     let formIsValid = true;
     if (typeof fields["fullName"] !== "undefined") {
       //regular expression for email validation
-      var pattern = new RegExp(/^[a-zA-Z]+$/);
+      var pattern = new RegExp(/^[a-zA-Z ]+$/);
       if (!pattern.test(fields["fullName"])) {
         formIsValid = false;
         errors["fullName"] = "Please enter valid full name.";
@@ -258,7 +258,7 @@ class Clientlist extends Component {
               </div> 
               <hr class="compySettingHr" />
               <form id="signUpUser" className="col-lg-12 col-md-12 col-sm-12 col-xs-12" onSubmit={this.shareurl.bind(this)} >
-                <h4 style={{paddingBottom: '14px' }}>My client url:  <a href={this.state.clientsignupurl} style={{color: '#337ab7' }} target="_blank"> {this.state.clientsignupurl} </a></h4>
+                <h4 style={{paddingBottom: '14px' }}>My Client URL:  <a href={this.state.clientsignupurl} style={{color: '#337ab7' }} target="_blank"> {this.state.clientsignupurl} </a></h4>
                 <div className="row">
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 ">
                             <div className=" col-lg-5 col-md-5 col-xs-12 col-sm-12 inputContent btmmargin">                              
@@ -289,9 +289,14 @@ class Clientlist extends Component {
             null
           }
           
-          <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+          <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">
+                  
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader ">
+                      <h4 className="h5lettersp MasterBudgetTitle">Signed Up Clients</h4>
+                  </div> 
+                  <hr class="compySettingHr" />
                   <div id="home" className="tab-pane fade in active">
-                    <div className="col-lg-12 NOpadding">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                             <tr>
@@ -375,9 +380,13 @@ class Clientlist extends Component {
           
           {
             this.state.clientSubscription ?
-                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader ">
+                      <h4 className="h5lettersp MasterBudgetTitle">Client Revenue</h4>
+                  </div> 
+                  <hr class="compySettingHr" />
                   <div id="home" className="tab-pane fade in active">
-                    <div className="col-lg-12 NOpadding">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                             <tr>

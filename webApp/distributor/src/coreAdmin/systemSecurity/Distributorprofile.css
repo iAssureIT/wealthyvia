@@ -50,3 +50,21 @@
     font-weight: 600;
     /*font-size: 30px;*/
 }
+
+.profileeditinput{
+    border: none !important;
+    border-left: 1px solid #ccc !important;
+}
+
+.placecontainercss{
+    z-index: 111;
+    position: absolute;
+    top: 36px;
+    background-color: #fff;
+    left: 0px;    
+}
+
+.placepadding{
+    padding: 5px 10px;
+    
+}

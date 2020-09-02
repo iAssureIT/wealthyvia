@@ -304,7 +304,7 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 											                "body"      : {
 											                					email 	: req.body.email, 
 											                					subject : "Successfully Creation of your Account on Wealthyvia",
-											                					text    : "Dear "+result.profile.fullName+"Your OTP is "+ emailOTP, 
+											                					mail    : "Dear "+result.profile.fullName+" Your OTP is "+ emailOTP, 
 											                			   },
 											                "json"      : true,
 											                "headers"   : {

@@ -157,6 +157,22 @@ class Myclients extends Component {
       return client;
     }
 
+    exportClientRevenue = () => {
+      let client = []
+      if(this.state.clientSubscription && this.state.clientSubscription.length > 0)
+      {
+          var data = this.state.clientSubscription;
+          for (let i = 0; i < data.length; i++) {
+              client.push({"Client Code": data[i].clientCode, "Client Name": data[i].clientName, "email" : data[i].email,
+                          "Contact" : data[i].mobNumber, "Product Opted" : data[i].offeringTitle, "Start Date" : data[i].startDate,
+                            "End Date" : data[i].endDate, "Fees Paid" : (data[i].endDate >= moment().format('YYYY-MM-DD')) ? data[i].offeringAmount : '',
+                            "Fees Pending" : ( data[i].endDate > moment().format('YYYY-MM-DD') ) ? '0' : data[i].offeringAmount, "Distributor Code": data[i].distributorCode });        
+            }
+      }
+      
+      return client;
+    }
+
   exportsubfranchisedata = () => {
       let subfranchise = []
       if(this.state.subfranchiseList && this.state.subfranchiseList.length > 0)
@@ -271,7 +287,7 @@ class Myclients extends Component {
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                               <tr>
-
+                                <th className="text-left">Client Code</th>
                                 <th className="text-left">Client Name</th>
                                 <th className="text-left">Mobile</th>
                                 <th className="text-left">Mail</th>
@@ -285,6 +301,7 @@ class Myclients extends Component {
                               this.state.clientList.map((a, i)=>{
                                   return(
                                       <tr key={i}>  
+                                        <td className="">{a.clientId} </td> 
                                         <td className="">{a.fullName} </td>
                                         <td>{a.mobNumber}</td>
                                         <td>{a.email}</td>
@@ -303,7 +320,64 @@ class Myclients extends Component {
                       </div>    
               </form>
             </div>
-            {
+            
+
+          {
+            this.state.clientSubscription ?
+                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding">
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader ">
+                      <h4 className="h5lettersp MasterBudgetTitle">Client Revenue
+                      <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px'}}>
+                        <ExportCSV csvData={this.exportClientRevenue()} fileName="Clients" />&nbsp;
+                      </div>
+                      </h4>
+                  </div> 
+                  <hr class="compySettingHr" />
+                  <div id="home" className="tab-pane fade in active">
+                    <div className="col-lg-12 ">
+                        <table className="table tableCustom table-striped reserachtable">
+                          <thead className="bgThead">
+                            <tr>
+                              <th className="text-left">Client Code</th>
+                              <th className="text-left">Client Name</th>
+                              <th className="text-left">Product Opted</th>
+                              <th className="text-left">Start Date</th>
+                              <th className="text-left">End Date</th>                              
+                              <th className="text-left">Fees Paid</th>
+                              <th className="text-left">Fees Pending</th>
+                              
+                            </tr>
+                                                   
+                          </thead>
+                          <tbody>     
+                          {
+                            this.state.clientSubscription && this.state.clientSubscription.length > 0 ?
+                            this.state.clientSubscription.map((a, i)=>{
+                                return(
+                                    <tr key={i}> 
+                                      <td className="">{a.clientCode} </td> 
+                                      <td className="">{a.clientName} </td>
+                                      <td>{a.offeringTitle}</td>
+                                      <td>{a.startDate}</td>
+                                      <td>{a.endDate}</td>                                       
+                                      <td className="text-center">{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : ''}</td>
+                                      <td className="text-center">{a.endDate > moment().format('YYYY-MM-DD') ? '0' : a.offeringAmount}</td>
+                               </tr>
+                                )
+                              }):
+                            null
+                            }
+                            </tbody>
+                          
+                        </table>
+              </div>    
+            </div>
+          </div>
+            :
+            null
+          }
+
+          {
               this.state.subfranchiseList && this.state.subfranchiseList.length > 0 ?
             <div className="row">  
               
@@ -318,7 +392,7 @@ class Myclients extends Component {
                <hr className="compySettingHr"/>
                 <h4 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style={{paddingBottom: '14px' }}>Sub Franchise url:  <a href={this.state.subfranchiseurl} style={{color: '#337ab7' }} target="_blank"> {this.state.subfranchiseurl} </a></h4>
                   <div id="home" className="tab-pane fade in active">
-                    <div className="col-lg-12 NOpadding">
+                    <div className="col-lg-12 ">
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                             <tr>
@@ -363,53 +437,6 @@ class Myclients extends Component {
             
         </div>
         :
-            null
-          }
-
-          {
-            this.state.clientSubscription ?
-                <div className="tab-content customTabContent mt40 col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                  <div id="home" className="tab-pane fade in active">
-                    <div className="col-lg-12 NOpadding">
-                        <table className="table tableCustom table-striped reserachtable">
-                          <thead className="bgThead">
-                            <tr>
-                              <th className="text-left">Client Code</th>
-                              <th className="text-left">Client Name</th>
-                              <th className="text-left">Start Date</th>
-                              <th className="text-left">End Date</th>
-                              <th className="text-left">Product Opted</th>
-                              <th className="text-left">Fees Paid</th>
-                              <th className="text-left">Fees Pending</th>
-                              
-                            </tr>
-                                                   
-                          </thead>
-                          <tbody>     
-                          {
-                            this.state.clientSubscription && this.state.clientSubscription.length > 0 ?
-                            this.state.clientSubscription.map((a, i)=>{
-                                return(
-                                    <tr key={i}> 
-                                      <td className="">{a.clientCode} </td> 
-                                      <td className="">{a.clientName} </td>
-                                      <td>{a.startDate}</td>
-                                      <td>{a.endDate}</td>
-                                      <td>{a.offeringTitle}</td> 
-                                      <td className="text-center">{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : ''}</td>
-                                      <td className="text-center">{a.endDate > moment().format('YYYY-MM-DD') ? '0' : a.offeringAmount}</td>
-                               </tr>
-                                )
-                              }):
-                            null
-                            }
-                            </tbody>
-                          
-                        </table>
-              </div>    
-            </div>
-          </div>
-            :
             null
           }
           

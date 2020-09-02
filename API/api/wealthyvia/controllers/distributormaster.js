@@ -663,7 +663,7 @@ exports.distributor_update_email_otp = (req,res,next) =>{
                                         "body"      : {
                                                             email   : distributor.email.address, 
                                                             subject : "Wealthyvia OTP",
-                                                            text    : "Wealthyvia updated OTP is "+ optEmail, 
+                                                            mail    : "Wealthyvia updated OTP is "+ optEmail, 
                                                        },
                                         "json"      : true,
                                         "headers"   : {

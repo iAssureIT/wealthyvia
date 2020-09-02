@@ -127,7 +127,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                           <li><b>Transaction Status</b></li>
                           <li><b>Transaction Number</b></li>
                           <li><b>Transaction Date</b></li>
-                          <li><b>name</b></li>
+                          <li><b>Name</b></li>
                           <li><b>Mobile Number</b></li>
                           <li><b>Email Id</b></li>
                           <li><b>Product Name</b></li>

@@ -286,9 +286,9 @@ class RiskProfile extends Component {
                       <h4 className="formNameTitle"><span className="">Add Risk Profile</span></h4>
                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
                         <form id="riskform">
-                            <label className="titileName">Please spend just 1 min to answer below . It helps us to serve you better!!</label>{this.state.compalsaroy ===false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
+                            <label className="titileName">Please spend just 1 min to answer below. It helps us to serve you better!!</label>{this.state.compalsaroy ===false ? <span className="errorMsg pull-right">All questions are mandatory</span>: null}
                             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt20">
-                                <p id="Q1">{this.state.Question1} <span className="asterix">*</span></p>
+                                <p id="Q1"><b>{this.state.Question1} </b><span className="asterix">*</span></p>
                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                          <div className="centreDetailContainer col-lg-1 row">
                                                 <input type="checkbox"  name={this.state.Question1} value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />

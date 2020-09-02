@@ -506,6 +506,8 @@ exports.get_clientRevenue = (req,res,next)=>{
 							newTransArr.push({
 								clientCode : clientList[i].clientId,
 								clientName : clientList[i].fullName,
+								mobNumber : clientList[i].mobNumber,
+								email : clientList[i].email,
 								offeringTitle : orderData[k].offeringTitle,
 								offeringAmount : orderData[k].amountPaid,
 								startDate : orderData[k].startDate,

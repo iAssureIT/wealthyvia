@@ -87,14 +87,14 @@ export default class Myprofile extends Component{
                       <ul className="noMl fontWeight pl">
                         <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
                         <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
-                        <li><p><b>Distributor has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
+                        <li><p><b>Referral has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
                         
                       </ul>
                     </div>
                   </div>
                   
                   <hr/>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Distributor's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
+                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Referral's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
                 </div>  
 
               </div>

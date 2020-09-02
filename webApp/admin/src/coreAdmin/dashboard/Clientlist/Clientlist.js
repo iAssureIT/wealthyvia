@@ -9,7 +9,7 @@ import $                        from "jquery";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import {ExportCSV} from '../../common/Export/ExportCSV.js';
-// import './Clientlist.css';
+import './Clientlist.css';
 
 
 class Clientlist extends Component {
@@ -32,7 +32,7 @@ class Clientlist extends Component {
   }
 
   componentDidMount(){
-    this.getallusers();    
+    /*this.getallusers(); */   
      this.getallclients(); 
   }
 
@@ -95,13 +95,25 @@ class Clientlist extends Component {
 
   exportClientdata = () => {
         let client = []
-        if(this.state.tableData && this.state.tableData.length > 0)
+        if(this.state.clientSubscription && this.state.clientSubscription.length > 0)
         {
-            var data = this.state.tableData;
+            var data = this.state.clientSubscription;
             for (let i = 0; i < data.length; i++) {
-                client.push({"Client Code": data[i].clientId, "Client Name": data[i].fullName, "email" : data[i].email,
-                            "Contact" : data[i].mobNumber });        
+              var productdata =  data[i].productdata;
+              if(productdata){
+                for (let j = 0; j < productdata.length; j++) {
+                client.push({"Client Code": data[i].clientId, "Client Name": data[i].fullName, "Email" : data[i].email,
+                            "Contact" : data[i].mobNumber, "Product Opted" : productdata[j].offeringTitle, "Start Date" : productdata[j].startDate,
+                            "End Date" : productdata[j].endDate, "Fees Paid" : (productdata[j].endDate >= moment().format('YYYY-MM-DD')) ? productdata[j].offeringAmount : '',
+                            "Fees Pending" : ( productdata[j].endDate > moment().format('YYYY-MM-DD') ) ? '0' : productdata[j].offeringAmount, "Distributor Code": data[i].distributorCode  });        
+                }
               }
+              else{
+                client.push({"Client Code": data[i].clientId, "Client Name": data[i].fullName, "Email" : data[i].email,
+                            "Contact" : data[i].mobNumber, "Distributor Code": data[i].distributorCode  }); 
+              }
+              
+            }  
         }
         
         return client;
@@ -126,7 +138,7 @@ class Clientlist extends Component {
                
               <div className="tab-content customTabContent col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                   <div id="home" className="tab-pane fade in active">
-                    <div className="col-lg-12 NOpadding">
+                    <div className="col-lg-12 NOpadding scrollhz">
                         <table className="table tableCustom table-striped reserachtable">
                           <thead className="bgThead">
                               <tr>
@@ -135,6 +147,8 @@ class Clientlist extends Component {
                                 <th>Email</th>
                                 <th>Mobile Number</th> 
                                 <th>Product Opted</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
                                 <th>Fees paid</th>
                                 <th>Fees pending</th>
                                 <th>Distributor Code</th>
@@ -148,7 +162,7 @@ class Clientlist extends Component {
                               this.state.clientSubscription.length > 0 ?
                               this.state.clientSubscription.map((b,j)=>{
                                   return(
-                                      <tbody> 
+                                      <tbody key={j}> 
                                         {
                                           b.productdata && b.productdata.length > 0 ?
                                           b.productdata.map((sub,k)=>{
@@ -159,6 +173,8 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {b.email} </td> 
                                                 <td className="col-lg-1"> {b.mobNumber} </td> 
                                                 <td className="col-lg-1"> {sub.offeringTitle} </td> 
+                                                <td className="col-lg-1"> {sub.startDate} </td> 
+                                                <td className="col-lg-1"> {sub.endDate} </td> 
                                                 <td className="text-center">{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : ''}</td>
                                                 <td className="text-center">{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
                                                 <td className="col-lg-1"> 
@@ -167,12 +183,10 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1">
                                                   { b.distributorCode === '-' ? 
                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                      Map distributor 
+                                                      Map Distributor 
                                                   </a>  
                                                   :
-                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                      Map distributor 
-                                                  </a> 
+                                                   null 
                                                   }
                                                 </td>
                                                  </tr> 
@@ -184,21 +198,21 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {b.fullName} </td> 
                                                 <td className="col-lg-1"> {b.email} </td> 
                                                 <td className="col-lg-1"> {b.mobNumber} </td> 
-                                                <td className="col-lg-1"> {b.offeringTitle} </td> 
+                                                <td className="col-lg-1">  </td> 
+                                                <td className="col-lg-1">  </td> 
+                                                <td className="col-lg-1"> </td>
                                                 <td className="text-center"></td>
                                                 <td className="text-center"></td>
                                                 <td className="col-lg-1"> 
                                                   { b.distributorCode }                                            
                                                 </td>
                                                 <td className="col-lg-1">
-                                                  { b.distributorCode === '-' ? 
+                                                  { b.distributorCode === '' ? 
                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                      Map distributor 
+                                                      Map Distributor 
                                                   </a>  
                                                   :
-                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                      Map distributor 
-                                                  </a> 
+                                                   null 
                                                   }
                                                 </td>
                                                  </tr> 

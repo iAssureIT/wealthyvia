@@ -36,6 +36,7 @@ export default class Distributorprofile extends Component{
           "ownOffice"    : "",
           "education"    : "",
           "fileUpload"   : "",
+          "website"      : "",
           "portfolioImage1" : "",
           "fileUpload1"     : "",
           "portfolioImage2" : "",
@@ -121,6 +122,7 @@ export default class Distributorprofile extends Component{
               "country"       : DistributorData.country,
               "status"        : DistributorData.status,
               "gst"           : DistributorData.gst,
+              "website"         : DistributorData.website,
               "education"     : DistributorData.education,
               "description"   : DistributorData.description,
               "ownOffice"     : DistributorData.ownOffice,
@@ -142,6 +144,7 @@ export default class Distributorprofile extends Component{
               "status"        : DistributorData.status,
               "gst"           : DistributorData.gst,
               "education"     : DistributorData.education,
+              "website"         : DistributorData.website,
               "description"   : DistributorData.description,
               "ownOffice"     : DistributorData.ownOffice,
               "fileUpload"    : DistributorData.fileUpload,
@@ -169,13 +172,13 @@ export default class Distributorprofile extends Component{
       fields2
     });
 
-   /* if (this.validateFormReview() && this.validateFormReqReview()) {
+   if (  this.validateFormReview() ) {
       let errors2 = {};
-      errors2[event.target.name] = "";
+      
       this.setState({
         errors2: errors2
       });
-      }*/
+      }
   
   }
 
@@ -478,7 +481,7 @@ export default class Distributorprofile extends Component{
     let fields = this.state.fields2;
     let errors = {};
     let formIsValid = true;
-      if (typeof fields["email"] !== "undefined") {
+      /*if (typeof fields["email"] !== "undefined") {
         //regular expression for email validation
         var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
         if (!pattern.test(fields["email"])) {
@@ -492,7 +495,19 @@ export default class Distributorprofile extends Component{
           errors["phone"] = "Please enter valid mobile no.";
         }
         // console.log("phone",errors["phone"]);
-      }     
+      }     */
+      if (typeof fields["aadharnumber"] !== "undefined") {
+        if (!fields["aadharnumber"].match(/^[0-9]/)) {
+          formIsValid = false;
+          errors["aadharnumber"] = "Please enter valid Aadhar Number.";
+        }
+      }
+      if (typeof fields["accountnumber"] !== "undefined") {
+        if (!fields["accountnumber"].match(/^[0-9]/)) {
+          formIsValid = false;
+          errors["accountnumber"] = "Please enter valid Account Number";
+        }
+      }
       this.setState({
         errors2: errors
       });
@@ -598,7 +613,7 @@ export default class Distributorprofile extends Component{
   handleSubmit(event) {
     var userid = localStorage.getItem('user_id');
     // console.log("userid-----------------------------------------",userid);
-    if ( this.validateFormReqReview()) {
+    if ( this.validateFormReqReview() && this.validateFormReview() ) {
       var formvalues = {
             "firstname"    :this.state.firstname,
             "lastname"     :this.state.lastname,
@@ -686,7 +701,7 @@ export default class Distributorprofile extends Component{
               <div className="row">
                 <div className="col-lg-8 col-lg-offset-2 col-md-12 col-xs-12 col-sm-12 mheight mainContentBackground">                
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12   marginT ">
-                      <h4 className="HeadDistributer">Edit Distributor Form</h4>
+                      <h4 className="HeadDistributer">Edit Partner Profile</h4>
                    <hr/>
                    </div>        
                   <div className=" with-border boxMinHeight">                    
@@ -700,7 +715,7 @@ export default class Distributorprofile extends Component{
                                  <div className="input-group-addon remove_brdr inputIcon">
                                  <i className="fa fa-user-circle fa "></i>
                                 </div>  
-                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="firstname" ref="firstname" name="firstname" placeholder="First Name" 
+                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content profileeditinput" id="firstname" ref="firstname" name="firstname" placeholder="First Name" 
                                       value={this.state.firstname} 
                                       onChange={this.handleChange}  />
                                     <div className="errorMsg">{this.state.errors2.firstname}</div>
@@ -714,7 +729,7 @@ export default class Distributorprofile extends Component{
                                    <div className="input-group-addon remove_brdr inputIcon">
                                     <i className="fa fa-user-circle fa "></i>
                                   </div>  
-                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls" id="lastname" ref="lastname" name="lastname"   placeholder="Last Name"
+                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls profileeditinput" id="lastname" ref="lastname" name="lastname"   placeholder="Last Name"
                                       value={this.state.lastname} 
                                       onChange={this.handleChange}
                                     />
@@ -732,7 +747,7 @@ export default class Distributorprofile extends Component{
                                        <i className="fa fa-mobile"></i>
                                     </div>  
                                     <InputMask  mask="9999999999"  type="text" 
-                                        className="form-control UMname inputText form-control  has-content" placeholder="mobile number" id="phone" ref="phone" name="phone" 
+                                        className="form-control UMname inputText form-control  has-content profileeditinput" placeholder="mobile number" id="phone" ref="phone" name="phone" 
                                           value={this.state.phone} 
                                           onChange={this.handleChange}/>
                                         <div className="errorMsg">{this.state.errors2.phone}</div>
@@ -745,9 +760,9 @@ export default class Distributorprofile extends Component{
                               <span className="blocking-span">
                                <div className="input-group inputBox-main  new_inputbx " >
                                  <div className="input-group-addon remove_brdr inputIcon">
-                                 <i className="fa fa-user-circle fa "></i>
+                                 <i className="fa fa-envelope fa "></i>
                                 </div>  
-                                <input type="email"  className="disableInput inputMaterial form-control inputText" id="email" ref="email"  name="email" required
+                                <input type="email"  className="disableInput inputMaterial form-control inputText profileeditinput" id="email" ref="email"  name="email" required
                                     value={this.state.email || ''}
                                     onChange={this.handleChange}
                                 />
@@ -758,13 +773,13 @@ export default class Distributorprofile extends Component{
                         </div>
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                            <div className="col-lg-6 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label className="formLable">GST Number <label className="requiredsign">*</label></label>
+                            <label className="formLable">GST Number </label>
                               <span className="blocking-span">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
                                        <i className="fa fa-id-card"></i>
                                     </div>  
-                                    <input type="number"  className="disableInput inputMaterial form-control inputText" ref="gst"  name="gst" required
+                                    <input type="number"  className="disableInput inputMaterial form-control inputText profileeditinput" ref="gst"  name="gst" required
                                         value={this.state.gst}
                                         onChange={this.handleChange}
                                     />
@@ -773,13 +788,13 @@ export default class Distributorprofile extends Component{
                               </span>
                             </div>
                             <div className=" col-lg-6 col-md-12 col-xs-12 col-sm-6 inputContent">
-                            <label className="formLable">Education <label className="requiredsign">*</label></label>
+                            <label className="formLable">Education </label>
                               <span className="blocking-span">
                                <div className="input-group inputBox-main  new_inputbx " >
                                  <div className="input-group-addon remove_brdr inputIcon">
                                  <i className="fa fa-graduation-cap"></i>
                                 </div>  
-                                <input type="text"  className="disableInput inputMaterial form-control inputText" ref="education"  name="education" required
+                                <input type="text"  className="disableInput inputMaterial form-control inputText profileeditinput" ref="education"  name="education" required
                                   value={this.state.education}
                                   onChange={this.handleChange}
                                 />
@@ -796,7 +811,7 @@ export default class Distributorprofile extends Component{
                                     <div className="input-group-addon remove_brdr inputIcon">
                                        <i className="fa fa-user-circle"></i>
                                     </div>  
-                                    <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload" ref="fileUpload"
+                                    <input type="file"  className="disableInput inputMaterial form-control inputText profileeditinput" id="upload-file2" name="fileUpload" ref="fileUpload"
                                          onChange={this.uploadLogoImage.bind(this)} 
                                     />
                                     <div className="errorMsg">{this.state.errors2.fileUpload}</div>
@@ -833,7 +848,7 @@ export default class Distributorprofile extends Component{
                                     <div className="input-group-addon remove_brdr inputIcon">
                                        <i className="fa fa-user-circle"></i>
                                     </div>  
-                                    <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload1" ref="fileUpload1"
+                                    <input type="file"  className="disableInput inputMaterial form-control inputText profileeditinput" id="upload-file2" name="fileUpload1" ref="fileUpload1"
                                          onChange={this.uploadLogoImage1.bind(this)} 
                                     />
                                     <div className="errorMsg">{this.state.errors2.fileUpload1}</div>
@@ -865,14 +880,14 @@ export default class Distributorprofile extends Component{
                             </div>
                           </div> 
                           <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">                        
-                            <div className=" col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
+                            <div className=" col-lg-6 col-md-6 col-xs-6 col-sm-6 group btmmargin setplusZindex inputContent">
                               <label className="formLable">Date Of Birth <label className="requiredsign">*</label></label>
-                                <span className="blocking-span">
+                                <span className="blocking-span setplusZindex">
                                    <div className="input-group inputBox-main  new_inputbx " >
                                       <div className="input-group-addon remove_brdr inputIcon">
                                          <i className="fa fa-birthday-cake fa"></i>
                                       </div>  
-                                      <input type="date" className="disableInput inputMaterial form-control inputText" name="dob" ref="dob" 
+                                      <input type="date" className="disableInput inputMaterial form-control inputText profileeditinput" name="dob" ref="dob" 
                                           onChange={this.handleChange}
                                           value={this.state.dob}  required
                                           max={moment(oldDate).format("YYYY-MM-DD")}
@@ -882,7 +897,7 @@ export default class Distributorprofile extends Component{
                                 </span>
                             </div>
                             <div className="col-lg-6 col-sm-6 col-xs-6 col-md-6 group btmmargin setplusZindex inputContent">
-                            <label className="formLable">Location <label className="requiredsign">*</label></label>
+                            <label className="formLable">Location </label>
                               <span className="blocking-span setplusZindex">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
@@ -903,7 +918,7 @@ export default class Distributorprofile extends Component{
                                                   ,
                                                 })} 
                                               />
-                                              <div className="autocomplete-dropdown-container">
+                                              <div className="autocomplete-dropdown-container placecontainercss">
                                                 {loading && <div>Loading...</div>}
                                                 {suggestions.map(suggestion => {
                                                   const className = suggestion.active
@@ -920,7 +935,7 @@ export default class Distributorprofile extends Component{
                                                         style,
                                                       })}
                                                     >
-                                                      <span>{suggestion.description}</span>
+                                                      <span className="placepadding">{suggestion.description}</span>
                                                     </div>
                                                   );
                                                 })}
@@ -929,7 +944,7 @@ export default class Distributorprofile extends Component{
                                           )}
                                         </PlacesAutocomplete>
                                         : 
-                                    <input type="text"  className="disableInput inputMaterial setplusZindex form-control inputText" name="adressLine" ref="adressLine" required 
+                                    <input type="text"  className="disableInput inputMaterial setplusZindex form-control inputText profileeditinput" name="adressLine" ref="adressLine" required 
                                       onChange={this.handleChange}
                                       value={this.state.adressLine}  
                                       />
@@ -937,30 +952,13 @@ export default class Distributorprofile extends Component{
                                  </div>   
                               </span>
                             </div> 
-                          </div>                                                                             
-                        <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 setZindex">
-                           <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent setZindex">
-                            <label className="formLable">How long you have been doing Financial Product distribution, Broking, planning or 
-                               insurance selling? Please Brief about your profession or business<label className="requiredsign">*</label></label>
-                              <span className="blocking-span">
-                                 <div className="input-group inputBox-main  new_inputbx " >
-                                    <div className="input-group-addon remove_brdr inputIcon">
-                                       <i className="fa fa-user-circle"></i>
-                                    </div>  
-                                    <input type="text" className="disableInput inputMaterial form-control inputText" ref="description"  name="description" required
-                                        onChange={this.handleChange.bind(this)}
-                                        value={this.state.description}
-                                    />
-                                    <div className="errorMsg">{this.state.errors2.description}</div>
-                                 </div>   
-                              </span>
-                            </div>                          
-                        </div>
-                        <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                           <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent">
-                             <label className="formLable">Do you have your own Office? <label className="requiredsign">*</label></label>
-                            </div>  
+                          </div>     
+                          <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                            
                             <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent nopadding">
+                               <label className="formLable">Do you have your own Office? <label className="requiredsign">*</label></label>
+                              </div> 
                                 <div className="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                   <input type="radio" name="ownOffice" ref="ownOffice" value="yes" autoComplete="off" 
                                       checked={this.state.ownOffice === "yes" ? "checked" : false}
@@ -973,7 +971,40 @@ export default class Distributorprofile extends Component{
                                       checked={this.state.ownOffice === "no" ? "checked" : false} /> No
                                 </div>
                             </div>
+                            <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent btmmargin">
+                              <label className="formLable">Website (If there is an existing website) </label>
+                              <span className="blocking-span">
+                               <div className="input-group inputBox-main  new_inputbx " >
+                                 <div className="input-group-addon remove_brdr inputIcon">
+                                 <i className="fa fa-user-circle fa "></i>
+                                </div>  
+                                  <input type="text" className="form-control UMname inputText form-control  has-content profileeditinput" id="website" ref="website" name="website"  
+                                      value={this.state.website} 
+                                      onChange={this.handleChange}  />
+                                    <div className="errorMsg">{this.state.errors2.website}</div>
+                               </div>   
+                              </span>
+                           </div>
+                        </div>                                                                        
+                        <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 setZindex">
+                           <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent setZindex">
+                            <label className="formLable">How long you have been doing Financial Product distribution, Broking, planning or 
+                               insurance selling? Please Brief about your profession or business</label>
+                              <span className="blocking-span">
+                                 <div className="input-group inputBox-main  new_inputbx " >
+                                    <div className="input-group-addon remove_brdr inputIcon">
+                                       <i className="fa fa-user-circle"></i>
+                                    </div>  
+                                    <input type="text" className="disableInput inputMaterial form-control inputText profileeditinput" ref="description"  name="description" required
+                                        onChange={this.handleChange.bind(this)}
+                                        value={this.state.description}
+                                    />
+                                    <div className="errorMsg">{this.state.errors2.description}</div>
+                                 </div>   
+                              </span>
+                            </div>                          
                         </div>
+                        
                         <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent btmmargin">
                           <h4 className="additionalinfoh4">Additional information</h4>
                         </div>
@@ -985,11 +1016,12 @@ export default class Distributorprofile extends Component{
                                  <div className="input-group-addon remove_brdr inputIcon">
                                  <i className="fa fa-user-circle fa "></i>
                                 </div>  
-                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="aadharnumber" ref="aadharnumber" name="aadharnumber" placeholder="Aadhar Number" 
+                                  <input type="number"  className="form-control UMname inputText form-control  has-content profileeditinput" id="aadharnumber" min="0" ref="aadharnumber" name="aadharnumber" placeholder="Aadhar Number" 
                                       value={this.state.aadharnumber} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.aadharnumber}</div>
-                               </div>   
+                                    
+                               </div> 
+                               <div className="errorMsg">{this.state.errors2.aadharnumber}</div>  
                               </span>
                            </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -999,12 +1031,13 @@ export default class Distributorprofile extends Component{
                                    <div className="input-group-addon remove_brdr inputIcon">
                                     <i className="fa fa-user-circle fa "></i>
                                   </div>  
-                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls" id="pannumber" ref="pannumber" name="pannumber"   placeholder="Pan Number"
+                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls profileeditinput" id="pannumber" ref="pannumber" name="pannumber"   placeholder="Pan Number"
                                       value={this.state.pannumber} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.pannumber}</div>
-                                </div>   
+                                    
+                                </div> 
+                                <div className="errorMsg">{this.state.errors2.pannumber}</div>  
                                 </span>
                             </div>
                         </div>
@@ -1016,11 +1049,12 @@ export default class Distributorprofile extends Component{
                                  <div className="input-group-addon remove_brdr inputIcon">
                                  <i className="fa fa-bank fa "></i>
                                 </div>  
-                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="accountnumber" ref="accountnumber" name="accountnumber" placeholder="Account Number" 
+                                  <input type="number"  className="form-control UMname inputText form-control  has-content profileeditinput" id="accountnumber" min="0" ref="accountnumber" name="accountnumber" placeholder="Account Number" 
                                       value={this.state.accountnumber} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.accountnumber}</div>
-                               </div>   
+                                    
+                               </div> 
+                               <div className="errorMsg">{this.state.errors2.accountnumber}</div>  
                               </span>
                            </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -1030,12 +1064,13 @@ export default class Distributorprofile extends Component{
                                    <div className="input-group-addon remove_brdr inputIcon">
                                     <i className="fa fa-bank fa "></i>
                                   </div>  
-                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls" id="bankname" ref="bankname" name="bankname"   placeholder="Bank Name"
+                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls profileeditinput" id="bankname" ref="bankname" name="bankname"   placeholder="Bank Name"
                                       value={this.state.bankname} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.bankname}</div>
-                                </div>   
+                                    
+                                </div>  
+                                <div className="errorMsg">{this.state.errors2.bankname}</div> 
                                 </span>
                             </div>
                         </div>
@@ -1047,11 +1082,12 @@ export default class Distributorprofile extends Component{
                                  <div className="input-group-addon remove_brdr inputIcon">
                                  <i className="fa fa-bank fa "></i>
                                 </div>  
-                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="branchname" ref="branchname" name="branchname" placeholder="Branch Name" 
+                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content profileeditinput" id="branchname" ref="branchname" name="branchname" placeholder="Branch Name" 
                                       value={this.state.branchname} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.branchname}</div>
+                                    
                                </div>   
+                               <div className="errorMsg">{this.state.errors2.branchname}</div>
                               </span>
                            </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -1061,12 +1097,13 @@ export default class Distributorprofile extends Component{
                                    <div className="input-group-addon remove_brdr inputIcon">
                                     <i className="fa fa-bank fa "></i>
                                   </div>  
-                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls" id="IFSCcode" ref="IFSCcode" name="IFSCcode"   placeholder="IFSC Code"
+                                   <input type="text"className="form-control UMname inputText form-control  has-content indexcls profileeditinput" id="IFSCcode" ref="IFSCcode" name="IFSCcode"   placeholder="IFSC Code"
                                       value={this.state.IFSCcode} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.IFSCcode}</div>
+                                    
                                 </div>   
+                                <div className="errorMsg">{this.state.errors2.IFSCcode}</div>
                                 </span>
                             </div>
                         </div>
@@ -1078,11 +1115,12 @@ export default class Distributorprofile extends Component{
                                  <div className="input-group-addon remove_brdr inputIcon">
                                  <i className="fa fa-bank fa "></i>
                                 </div>  
-                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="MICRcode" ref="MICRcode" name="MICRcode" placeholder="MICR Code" 
+                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content profileeditinput" id="MICRcode" ref="MICRcode" name="MICRcode" placeholder="MICR Code" 
                                       value={this.state.MICRcode} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.MICRcode}</div>
-                               </div>   
+                                    
+                               </div> 
+                               <div className="errorMsg">{this.state.errors2.MICRcode}</div>  
                               </span>
                            </div>
                             

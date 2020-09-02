@@ -1716,7 +1716,8 @@ validateFormReqReview() {
                      {token === "" ?
                       <a  href="/login" ><div className="buyNowButtonPP col-lg-3">Invest Now</div></a>
                         :
-                      <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
+                      <a href="/clientDashboard"><div className="buyNowButtonPP col-lg-3" >Invest Now</div></a>  
+                      
                       }
                       {token ==="" ?
                       <a  href="/login" ><div className="col-lg-offset-1 col-lg-3 enquireNow">Enquire Now</div></a>
