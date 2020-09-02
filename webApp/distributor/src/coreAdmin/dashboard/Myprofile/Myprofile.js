@@ -87,7 +87,7 @@ export default class Myprofile extends Component{
                       <ul className="noMl fontWeight pl">
                         <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
                         <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
-                        <li><p><b>Referral has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
+                        <li><p><b>Referrer has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
                         
                       </ul>
                     </div>

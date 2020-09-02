@@ -546,7 +546,7 @@ export default class distributerList extends Component{
   	   <div className="row">
        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt70 page">
     		  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-              <h2>Referral List</h2>
+              <h2>Referrer List</h2>
           <hr/>
            <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px', marginBottom: '5px'}}>
                   <ExportCSV csvData={this.exportdistributordata()} fileName="Distributor List" />&nbsp;

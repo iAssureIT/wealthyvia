@@ -360,8 +360,8 @@ class Myclients extends Component {
                                       <td>{a.offeringTitle}</td>
                                       <td>{a.startDate}</td>
                                       <td>{a.endDate}</td>                                       
-                                      <td className="text-center">{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : '0'}</td>
-                                      <td className="text-center">{a.endDate > moment().format('YYYY-MM-DD') ? '0' : a.offeringAmount}</td>
+                                      <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{a.endDate >= moment().format('YYYY-MM-DD') ? a.offeringAmount : '0'}</td>
+                                      <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{a.endDate > moment().format('YYYY-MM-DD') ? '0' : a.offeringAmount}</td>
                                </tr>
                                 )
                               }):
@@ -419,8 +419,8 @@ class Myclients extends Component {
                                       <td>{a.email ? a.email.address : '' }</td>
                                       <td>{a.usercount}</td> 
                                       <td></td>   
-                                      <td>{a.feespaid}</td> 
-                                      <td>{a.feespending}</td>  
+                                      <td><i class="fa fa-rupee"></i>&nbsp;{a.feespaid}</td> 
+                                      <td><i class="fa fa-rupee"></i>&nbsp;{a.feespending}</td>  
                                </tr>
                                 )
                               }):

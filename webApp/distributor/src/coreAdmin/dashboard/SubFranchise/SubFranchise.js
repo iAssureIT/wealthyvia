@@ -159,7 +159,7 @@ class SubFranchise extends Component {
         "subject"       : "Wealthyvia - Join as a Partner",
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
                           "<b>Welcome to wealthvia <br/><br/>"+
-                          "Distributor has shared the Referral link with you to Sign Up on Wealthyvia. By Singing Up, the doors for incredible investments will open for you!<br/>"+
+                          "Distributor has shared the Referrer link with you to Sign Up on Wealthyvia. By Singing Up, the doors for incredible investments will open for you!<br/>"+
                           "Please click the following link to Sign Up: <br/>" + 
                           "<pre> " + this.state.subfranchiseurl+ "</pre>" + 
                           " <br/> <br/> =============================== " + 
@@ -286,8 +286,8 @@ class SubFranchise extends Component {
                                       <td>{a.email ? a.email.address : '' }</td>
                                       <td>{a.usercount}</td> 
                                       <td></td>   
-                                      <td>{a.feespaid}</td> 
-                                      <td>{a.feespending}</td> 
+                                      <td><i class="fa fa-rupee"></i>&nbsp;{a.feespaid}</td> 
+                                      <td><i class="fa fa-rupee"></i>&nbsp;{a.feespending}</td> 
                                </tr>
                                 )
                               }):

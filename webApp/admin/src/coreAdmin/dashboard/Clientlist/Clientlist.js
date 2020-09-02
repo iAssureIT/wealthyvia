@@ -151,7 +151,7 @@ class Clientlist extends Component {
                                 <th>End Date</th>
                                 <th>Fees paid</th>
                                 <th>Fees pending</th>
-                                <th>Distributor Code</th>
+                                <th>Referrer Code</th>
                                 <th>Actions</th>                                 
                               </tr>
                                                      
@@ -175,8 +175,8 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {sub.offeringTitle} </td> 
                                                 <td className="col-lg-1"> {sub.startDate} </td> 
                                                 <td className="col-lg-1"> {sub.endDate} </td> 
-                                                <td className="text-center">{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : '0'}</td>
-                                                <td className="text-center">{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
+                                                <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : '0'}</td>
+                                                <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
                                                 <td className="col-lg-1"> 
                                                   { b.distributorCode }                                            
                                                 </td>

@@ -83,7 +83,7 @@ export default class ProductInvoicePage extends Component {
               {
               this.state.orderDetails.paymentOrderId ?
                 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan">
-                  <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 logoContainerIP">
+                  <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">
                   {
                   this.state.companysettings && this.state.companysettings.length>0?
                     <img src={this.state.companysettings[0].logoFilename} className=""/>
@@ -91,48 +91,58 @@ export default class ProductInvoicePage extends Component {
                     null
                   }
                   </div>
-                  <div className="col-lg-6 col-lg-offset-4 col-md-12 col-sm-12 col-xs-12 iconContainerIP">
-                      <label className="col-lg-12 invoiceHead "><span className="pull-right">INVOICE</span></label>
-                      <label className="col-lg-12 dateContain "><span className="pull-right">Date : <span className="noBold">{this.state.date}</span></span></label>
-                      <label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
-                      <label className="col-lg-12 dateContain "><span className="pull-right">GST No. : <span className="noBold">xxxxxxxxxxxx</span></span></label>
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 iconContainerIP">
+                       <h4 className="invoiceHead">Invoice From:</h4> 
+                       <p>
+                        PRITAM PRABODH DEUSKAR <br/>
+                        D1 706, MAYUR KILBIL, DHANORI, <br/>
+                        NEAR VITTHAL MANDIR, PUNE CITY, Pune, Maharashtra, 411015 </p>
+
+                       <h5> GSTIN: 27ALFPD0936Q1ZU </h5>
+
+                    </div>
+
+                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 iconContainerIP mt20">                        
+                        <h4></h4><label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
+                        <label className="col-lg-12 dateContain "><span className="pull-right">Date : <span className="noBold">{this.state.date}</span></span></label>
+                    </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 userDetails noPadding">
                       <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <li className="userName">&nbsp;{this.state.orderDetails.userName}</li>
-                        <li className="dateContain">&nbsp;{this.state.orderDetails.email}</li>
-                        <li className="dateContain">&nbsp;{this.state.orderDetails.mobileNumber}</li>
+                      <h4 className="invoiceHead">Invoice To: </h4>
+
+                        <li className="userName">{this.state.orderDetails.userName}</li>
+                        <li className="dateContain">{this.state.orderDetails.email}</li>
+                        <li className="dateContain">{this.state.orderDetails.mobileNumber}</li>
+                        <li className="dateContain">PAN: </li>
+                        <li className="dateContain">GSTIN:</li>
+                        <li className="dateContain">State Name: </li>
                       </ul>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 paymentDetails">
-                      <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                          <li className="PaymentContainer pull-right">Payment Method</li><br/>
-                          <li className="dateContain "><span className="pull-right"><span className="noBold">Online Payment</span></span></li><br/>
-                        </ul>
+                      
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
                     <table className="customTableIP col-lg-12">
                       <tr>
-                        <th>ITEM</th>
-                        <th>QTY</th>
-                        <th>PRICE</th>
-                        <th>TOTAL</th>
+                        <th><p style={{textAlign: 'left' }}>description</p></th>
+                        <th>Amount</th>
                       </tr>
                       <tr >
-                        <td className="customTableIPTD">{this.state.orderDetails.offeringTitle} </td>
-                        <td className="customTableIPTD">1</td>
-                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</td>
-                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</td>
+                        <td className="customTableIPTD">
+                        <p style={{textAlign: 'left' }}>12 Months Subscription for Wealthyvia-{this.state.orderDetails.offeringTitle} <br/> 
+                        {Moment().format("Do MMM, YYYY")} to {Moment().add(1, 'years').format("Do MMM, YYYY")}</p></td>
+                        
+                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</td>
                       </tr>
                      
                     </table>
                   </div> 
                   <div className=" col-lg-12 mt20 noPadding">
                     <ul className="customUlIPFeatures col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                        <li className="listStyleNone"><b>Features</b></li>
-                        <li className="dateContain">Product details</li>
                         
                       </ul>
                       
@@ -143,9 +153,9 @@ export default class ProductInvoicePage extends Component {
                       </ul>
                       <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
                     
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)}</li>
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(parseInt((this.state.orderDetails.amountPaid/100)) - parseInt(((this.state.orderDetails.amountPaid)/100)/1.18))}</li>
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100))}</li>
+                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</li>
+                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(parseInt((this.state.orderDetails.amountPaid/100)) - parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)).toLocaleString("en-IN")}</li>
+                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)).toLocaleString("en-IN")}</li>
                       
                       </ul>
                   </div>  
