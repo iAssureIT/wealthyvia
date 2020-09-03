@@ -38,6 +38,10 @@ const userSchema = mongoose.Schema({
 						optEmail	  			: String,
 						createdOn 				: String,
 						clientId 				: String,
+						panNumber 				: String,
+						gstNumber 				: String,
+						kycsubmit           	: Boolean,
+						risksubmit           	: Boolean,
 						passwordreset           : Boolean
 					},
 	distributorCode	: String,				

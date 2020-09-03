@@ -168,24 +168,35 @@ exports.fetch_All_distributor_list = (req,res,next) => {
          .exec()
          .then(data=>{
             if(data.length > 0){
-                let promises = data.map(element => {
-                if(element.distributorCode){
-                    return getusercountsbycode(element.distributorCode)
-                    .then(usercount => {
-                        var obj = element.toObject();
-                        obj.usercount = usercount;
-                        //console.log("Record ",obj);
-                        
-                      return obj;
-                    })
-                }
-                else{
-                    var obj = element.toObject();
-                    obj.usercount = 0;                        
-                    return obj;                    
-                }
+
                 
+                let promises = data.map(async element => {
+                    var obj = element.toObject();
+                        // console.log("element.franchiseCode", element.franchiseCode);
+                        if(element.distributorCode){
+                            var usercount = await getusercountsbycode(element.distributorCode);  
+                            if(element.franchiseCode){
+                                 var  franchiseuser =   await getdistributoridbydistricode(element.franchiseCode);
+                                obj.franchiseuser = franchiseuser;
+                                // console.log("franchiseuser", franchiseuser);
+                            }
+                            else{
+                                obj.franchiseuser = null
+                            }
+                           
+                                                    
+                            obj.usercount = usercount;
+                                //console.log("Record ",obj);                                
+                            return obj;
+                            
+                        }
+                        else{                            
+                            obj.usercount = 0;                        
+                            return obj;                    
+                        }
+                    
                 });
+
 
                 // Wait for all Promises to complete
                 Promise.all(promises)
@@ -196,6 +207,7 @@ exports.fetch_All_distributor_list = (req,res,next) => {
                   .catch(e => {
                     console.error(e);
                   })
+              
                 
             }else{
                 res.status(200).json({message : "DATA_NOT_FOUND"})
@@ -879,3 +891,26 @@ exports.fetch_distributor_by_distributorcode = (req,res,next) => {
                     });
                 });
 };
+
+function getdistributoridbydistricode(distributorCode){
+    return new Promise((resolve, reject) => {
+         // console.log("distri", distributorCode);
+    Distributormaster.findOne({distributorCode:distributorCode})
+        .exec()
+        .then(user=>{ 
+         // console.log("user", user); 
+            if(user){
+                // console.log("user", user); 
+                resolve(user._id);   
+            }  
+            else{
+                console.log("user", null); 
+                resolve(null);   
+            }      
+                             
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+  })
+}

@@ -28,6 +28,8 @@ class Addkycdetails extends Component {
           "uploadPhotoName"       : "",
           "uploadPhotoLocation"   : "",
           "amountInvesting"           : "",
+          "panNumber"           : "",
+          "gstNumber"           : "",
           "fields"                : {},
           "errors"                : {}, 
           "userinfo"              : {}, 
@@ -130,6 +132,10 @@ class Addkycdetails extends Component {
     if (!fields["amountInvesting"]) {
       formIsValid = false;
       errors["amountInvesting"] = "This field is required.";
+    } 
+    if (!fields["panNumber"]) {
+      formIsValid = false;
+      errors["panNumber"] = "This field is required.";
     } 
       
     this.setState({
@@ -259,15 +265,32 @@ class Addkycdetails extends Component {
         this.setState({
           buttonHeading : 'We are processing. Please Wait...',
         });
+
+        var userid = localStorage.getItem('user_ID');
+        var formvalues = {
+          panNumber : this.state.panNumber,
+          gstNumber : this.state.gstNumber
+        }
+        axios.patch("/api/users/patch/updatekyc/user/"+userid, formvalues)
+        .then((response)=>{ 
+           //console.log("userinfo data=>", response.data);           
+
+        })
+        .catch((error)=>{
+              console.log('error', error);
+        })
+
        // console.log("userinfo", this.state.userinfo);
         var dataArray1={
           "name"             : this.state.userinfo.fullName,
           "email"            : this.state.userinfo.email,
           "contactNumber"    : this.state.userinfo.mobNumber,
-          "amountInvesting"  : this.state.amountInvesting
+          "amountInvesting"  : this.state.amountInvesting,
+          "panNumber"        : this.state.panNumber,
+          "gstNumber"        : this.state.gstNumber
         }
         if(dataArray1){
-          var adminEmail = "anuja.kate@iassureit.com";
+          var adminEmail = "monikapawashe25@gmail.com";
 
               const dataArray = {
               "email"         : dataArray1.email ,
@@ -295,7 +318,9 @@ class Addkycdetails extends Component {
                                   "<b> Email: </b>"  + dataArray1.email + '<br/>'+
                                   "<b> Contact Number: </b>"  + dataArray1.contactNumber + '<br/><br/>'+
                               
-                                  "<b> Amount Investment </b>"+ dataArray1.amountInvesting + " <br/><br/>"+
+                                  "<b> Amount Investment: </b>"+ dataArray1.amountInvesting + " <br/>"+
+                                  "<b> Pan Number:  </b>"+ dataArray1.panNumber + " <br/>"+
+                                  "<b> GST Number </b>"+ dataArray1.gstNumber + " <br/>"+
                                   "" ,
                  "attachments" : [{
                         "name" : this.state.panDocumentName,
@@ -450,6 +475,30 @@ class Addkycdetails extends Component {
                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                <input type="number" className="customInputKF inputBox nameParts" name="amountInvesting" placeholder="Enter Amount Investing" min="0" ref="amountInvesting" onChange={this.handleChange.bind(this)}  />
                             <div className="errorMsg">{this.state.errors.amountInvesting}</div>
+
+                         </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                      <div className="row">
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label>Pan Number <span className="asterix">*</span></label>
+                          </div>
+                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <input type="text" className="customInputKF inputBox nameParts" name="panNumber" placeholder="Enter Pan Number" min="0" ref="panNumber" onChange={this.handleChange.bind(this)}  />
+                            <div className="errorMsg">{this.state.errors.panNumber}</div>
+
+                         </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
+                      <div className="row">
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label>GST Number </label>
+                          </div>
+                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                               <input type="text" className="customInputKF inputBox nameParts" name="gstNumber" placeholder="Enter GST Number" min="0" ref="gstNumber" onChange={this.handleChange.bind(this)}  />
+                            <div className="errorMsg">{this.state.errors.gstNumber}</div>
 
                          </div>
                       </div>

@@ -16,6 +16,8 @@ export default class ProductInvoicePage extends Component {
           CurrentURL     : "",
           user_ID        : "",
           date           : "",
+          panNumber      : "",
+          gstNumber      : "",
         };
     }
   ScrollTop(event){
@@ -35,6 +37,22 @@ export default class ProductInvoicePage extends Component {
     this.setState({
       CurrentURL : CurrentURL,
     })
+
+    var user_ID = localStorage.getItem("user_ID");
+    axios.get("/api/users/get/kycrisk/user/"+user_ID)
+      .then((response)=>{ 
+        var userinfo = response.data;
+              
+          if(userinfo){           
+            this.setState({
+              panNumber: userinfo.panNumber,
+              gstNumber : userinfo.gstNumber
+            })
+          }        
+      })
+      .catch((error)=>{
+            console.log('error', error);
+      })
 
     axios
       .get('/api/companysettings/list')
@@ -116,8 +134,8 @@ export default class ProductInvoicePage extends Component {
                         <li className="userName">{this.state.orderDetails.userName}</li>
                         <li className="dateContain">{this.state.orderDetails.email}</li>
                         <li className="dateContain">{this.state.orderDetails.mobileNumber}</li>
-                        <li className="dateContain">PAN: </li>
-                        <li className="dateContain">GSTIN:</li>
+                        <li className="dateContain">PAN: {this.state.panNumber}</li>
+                        <li className="dateContain">GSTIN: {this.state.gstNumber}</li>
                         <li className="dateContain">State Name: </li>
                       </ul>
                     </div>
@@ -164,7 +182,7 @@ export default class ProductInvoicePage extends Component {
                         <label className="">THANK YOU !</label>
                       </div>
                   </div>  */}
-                  <div className="bottomDiv col-lg-12  noPadding">
+                  <div className="margintopad col-lg-12  noPadding">
                       <div className="col-lg-8 col-lg-offset-4  col-md-12 col-sm-12 col-xs-12 btnContainer">
                          <div>
                             <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
@@ -187,14 +205,14 @@ export default class ProductInvoicePage extends Component {
                          </div>    
                       </div>
                   </div> 
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 receiptFooter ">
+                  {/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 receiptFooter ">
                           {this.state.companysettings && this.state.companysettings.length>0?
                   
                              <label className="noBold">{this.state.companysettings?this.state.companysettings[0].companywebsite:null} - {this.state.companysettings?this.state.companysettings[0].companyaddress :null} </label>
                             :
                             null
                           }
-                      </div>
+                      </div>*/}
                 </div>
               :
               <div className="loadingImageContainer col-lg-4 col-lg-offset-4"><img src="/images/Loadingsome.gif"/></div>

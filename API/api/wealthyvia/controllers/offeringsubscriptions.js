@@ -6,6 +6,7 @@ const WMSub 		= require('../models/wmsubscriptions.js');
 const Offering 		= require('../models/offerings.js');
 var ObjectID 		= require('mongodb').ObjectID;
 const User              = require('../../coreAdmin/models/users.js');
+const Distributormaster = require('../models/distributormaster.js');
 	
 function getOfferingStatus(wmsub_id,offering_ID){
 	return new Promise(function (resolve, reject) {
@@ -591,8 +592,11 @@ exports.list_offerSubforclients_admin = (req,res,next) => {
 			if(data){
 				var i = 0;
 				var userData = [];
-				
+				getdatasub();
+					var j=0;
+				async function getdatasub(){
 				for(i = 0 ; i < data.length ; i++){
+					var distributorid = await getdistributoridbyuserid(data[i].distributorCode);
 					userData.push({
 										"_id"		: data[i]._id,
 										"firstname" : data[i].profile.firstname,
@@ -604,14 +608,13 @@ exports.list_offerSubforclients_admin = (req,res,next) => {
 										"fullName"	: data[i].profile.fullName,
 										"clientId"	: data[i].profile.clientId,
 										"distributorCode"	: data[i].distributorCode,
+										distributorid  : distributorid
 									});
 				}
 				if( i >= userData.length){
-					getdatasub();
-					var j=0;
-					async function getdatasub(){
+					
 						for(j = 0 ; j < userData.length; j++){
-							console.log(userData[j]._id);
+							
 				 			var offeringSub = await getOfferingsubscriptionbyuserid(userData[j]._id);
 				 			if(offeringSub.length > 0){
 				 				var offarray = [];
@@ -665,11 +668,32 @@ function getOfferingsubscriptionbyuserid(user_ID){
 				.sort({"createdAt":-1})
 				.exec()
 				.then(data=>{
-						console.log("subscr", data);
+						// console.log("subscr", data);
 						resolve(data);
 					})
 				.catch(err=>{
 						reject(err);
 					});
+	});
+}
+
+function getdistributoridbyuserid(distributorCode){
+	return new Promise(function (resolve, reject) {
+		// console.log("user", distributorCode);
+		Distributormaster.findOne({"distributorCode" : distributorCode})
+			.then(data=>{
+				// console.log("data", data);
+					if(data){
+						resolve(data._id);
+					}
+					else{
+						resolve(null);
+					}
+						
+				})
+				.catch(err=>{
+					reject(err);
+				});
+		
 	});
 }

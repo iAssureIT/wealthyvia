@@ -166,7 +166,7 @@ export default class JoinAsPartnerForm extends Component {
       oldDate.setFullYear(oldDate.getFullYear() - 18);
       if (fields["dob"] > moment(oldDate).format("YYYY-MM-DD") ) {
         formIsValid = false;
-        errors["dob"] = "Please enter 18+ date of birth";
+        errors["dob"] = "Age of partner should be greater than 18";
       }
     }
 

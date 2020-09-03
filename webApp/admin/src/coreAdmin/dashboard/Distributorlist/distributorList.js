@@ -213,8 +213,6 @@ export default class distributerList extends Component{
                                                 "<br/>Email: " + email +
                                                 "<br/>Default Password: " + "Welcome@123" +
                                                 "<br/> <br/> " + 
-                                                "Hope you enjoy being a Partner of Wealthyvia! " +
-                                                "<br/><br/> " +
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. ",
 
@@ -560,12 +558,13 @@ export default class distributerList extends Component{
             <thead>
               <tr>
                 <th>Sr No</th>
-                <th>Referral Code</th>
-                <th>Referral Name</th>
+                <th>Code</th>
+                <th>Referrer Name</th>
                 <th>Date of Application</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>No of clients</th>
+                <th>No of Clients</th>
+                <th>Referred By</th>
                 <th>Actions</th>
                 <th>Status</th>
               </tr>
@@ -585,6 +584,7 @@ export default class distributerList extends Component{
                 <td>{DistributorData.phone}</td>
                 <td>{DistributorData.email.address}</td>
                 <td>{DistributorData.usercount}</td>
+                <td><a href={"/distributor/myclients/"+ DistributorData.franchiseuser}>{DistributorData.franchiseCode}</a></td>
                 <td> 
                   <a className="blueColor" href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
                   <a href={"/distributorEditForm/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a> &nbsp;&nbsp;

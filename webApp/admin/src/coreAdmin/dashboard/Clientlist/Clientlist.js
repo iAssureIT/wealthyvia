@@ -178,7 +178,7 @@ class Clientlist extends Component {
                                                 <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : '0'}</td>
                                                 <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
                                                 <td className="col-lg-1"> 
-                                                  { b.distributorCode }                                            
+                                                 <a href={"/distributor/myclients/"+ b.distributorid}> { b.distributorCode }  </a>                                          
                                                 </td>
                                                 <td className="col-lg-1">
                                                   { b.distributorCode === '-' ? 
@@ -204,7 +204,7 @@ class Clientlist extends Component {
                                                 <td className="text-center"></td>
                                                 <td className="text-center"></td>
                                                 <td className="col-lg-1"> 
-                                                  { b.distributorCode }                                            
+                                                  <a href={"/distributor/myclients/"+ b.distributorid}>{ b.distributorCode }  </a>                                          
                                                 </td>
                                                 <td className="col-lg-1">
                                                   { b.distributorCode === '' ? 

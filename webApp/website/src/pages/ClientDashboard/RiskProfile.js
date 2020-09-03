@@ -192,6 +192,18 @@ class RiskProfile extends Component {
         this.setState({
             buttonHeading : 'We are processing. Please Wait...',
         })
+
+        var userid = localStorage.getItem('user_ID');
+        
+        axios.patch("/api/users/patch/updaterisk/user/"+userid)
+        .then((response)=>{ 
+           console.log("userinfo data=>", response.data);           
+
+        })
+        .catch((error)=>{
+              console.log('error', error);
+        })
+
         var dataArray1={
           "name"             : this.state.userinfo.fullName,
           "email"            : this.state.userinfo.email,

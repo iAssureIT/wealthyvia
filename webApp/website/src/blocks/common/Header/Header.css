@@ -559,7 +559,7 @@ dropdown-submenu {
 }
 .width50{
   /*width: 56% !important;*/
-  width: 69% !important;
+  /*width: 69% !important;*/
 }
 .customUl li>a{
   font-weight: normal !important;
@@ -861,7 +861,7 @@ hr{
 
 @media only screen and (min-width:1000px)  and (max-width:1250px){
   .width50{
-    width: 75% !important;
+    /*width: 75% !important;*/
   }
 }
 

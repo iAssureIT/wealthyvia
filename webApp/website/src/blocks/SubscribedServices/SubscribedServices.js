@@ -35,7 +35,8 @@ export default class SubscribedServices extends Component {
           subscribed            : false,
           blogSubscribed        : "",
           subscriptionData      : [],
-          expiredproductSub     : []
+          expiredproductSub     : [],
+          riskkycMsg            : ''
         };
     }
   ScrollTop(event){
@@ -60,6 +61,31 @@ export default class SubscribedServices extends Component {
   componentDidMount()
   {
     var user_ID = localStorage.getItem("user_ID");
+
+    axios.get("/api/users/get/kycrisk/user/"+user_ID)
+      .then((response)=>{ 
+        var userinfo = response.data;
+        console.log("risk",userinfo.risksubmit, userinfo.kycsubmit);
+          if(userinfo){
+            if(!userinfo.risksubmit || !userinfo.kycsubmit){
+              if(!userinfo.risksubmit && userinfo.kycsubmit){
+                this.setState({ riskkycMsg : "To start investing, please fill Risk Profile first"})
+              }
+              else if(userinfo.risksubmit && !userinfo.kycsubmit){
+                this.setState({ riskkycMsg : "To start investing, please fill KYC details first"})                
+              }
+              else{                
+                this.setState({ riskkycMsg : "To start investing, please fill KYC details and Risk Profile first"})
+              }
+            }
+            
+          }         
+
+      })
+      .catch((error)=>{
+            console.log('error', error);
+      })
+
     axios.get("/api/offeringsubscriptions/get/offsubscription/"+user_ID)
             .then((response)=>{ 
               // console.log("off sub", response.data);
@@ -227,6 +253,18 @@ export default class SubscribedServices extends Component {
   onDocumentLoadSuccess = ({ numPages }) => {
     this.setState({ numPages });
   }
+
+  checkkycandrisk(event){
+    event.preventDefault();
+    console.log("risk", this.state.riskkycMsg);
+    if(this.state.riskkycMsg){
+      swal(this.state.riskkycMsg,"", "warning");
+    }
+    else{
+      window.location = "/product-pricing" ;
+    }
+  }
+
   render() {
     var date = "09-10-2019  5:30PM";
     var dateArray  = [];
@@ -437,7 +475,7 @@ export default class SubscribedServices extends Component {
                       </ul>
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                             <ul className="customOl myULSS textAlignCenter mt20 productinvestbtn">
-                              <a href="/product-pricing"><li>Click Here to Invest in product</li></a>
+                              <a  href="" onClick={this.checkkycandrisk.bind(this)} ><li>Click Here to Invest in product</li></a>
                              </ul>
                       </div>
                     <h4 className="headerBlogCD col-lg-12"> Your Blog Subscription</h4>
@@ -501,7 +539,7 @@ export default class SubscribedServices extends Component {
                       </ul>
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
                             <ul className="customOl myULSS textAlignCenter mt20 productinvestbtn">
-                              <a href="/product-pricing"><li>Click Here to Invest in product</li></a>
+                              <a href="" onClick={this.checkkycandrisk.bind(this)}><li>Click Here to Invest in product</li></a>
                              </ul>
                           </div>
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">

@@ -779,6 +779,37 @@ exports.fetch_user_ID = (req,res,next)=>{
 			});
 		});
 };
+
+exports.fetch_users_kycrisk = (req,res,next)=>{
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(data=>{
+			if(data){
+				res.status(200).json({
+									"firstname" : data.profile.firstname,
+									"lastname"	: data.profile.lastname,
+									"email"		: data.profile.emailId, //Mandatory 
+									"mobNumber" : data.profile.mobNumber,
+									"role"      : data.roles, //Mandatory
+									"status"	: data.profile.status, //Either "Active" or "Inactive"
+									"fullName"	: data.profile.fullName,
+									"kycsubmit" : data.profile.kycsubmit,
+									"risksubmit" : data.profile.risksubmit,
+									"panNumber" : data.profile.panNumber,
+									"gstNumber" : data.profile.gstNumber,
+							});
+			}else{
+				res.status(200).json({message:"USER_NOT_FOUND"});
+			}
+		})
+		.catch(err =>{
+			console.log('user error ',err);
+			res.status(500).json({
+				error: err
+			});
+		});
+};
+
 exports.fetch_users = (req,res,next)=>{
 	var limitRange    = 10;
     var countNum2   = limitRange * req.params.pageno;
@@ -1205,4 +1236,87 @@ exports.map_distributor_code_to_client = (req,res,next) =>{
 						error: err
 					});
 				});
+};
+
+exports.user_update_kyc = (req,res,next)=>{
+	console.log("userkyc",req.params.ID, req.body.panNumber );
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(user=>{
+			if(user){
+				console.log("found");
+				User.updateOne(
+					{_id:req.params.ID},
+					{
+						$set:{
+							"profile.panNumber"     : req.body.panNumber,
+							"profile.gstNumber"     : req.body.gstNumber,
+							"profile.kycsubmit"     : true,     
+							
+						},
+					}
+				)
+				.exec()
+				.then(data=>{
+					if(data.nModified == 1){
+						res.status(200).json("USER_UPDATED");
+					}else{
+						res.status(401).status("USER_NOT_UPDATED")
+					}
+				})
+				.catch(err =>{
+					console.log('user error ',err);
+					res.status(500).json({
+						error: err
+					});
+				});
+			}else{
+				res.status(404).json("User Not Found");
+			}
+		})
+		.catch(err=>{
+			console.log('update user error ',err);
+			res.status(500).json({
+				error:err
+			});
+		});
+};
+
+exports.user_update_risk = (req,res,next)=>{
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(user=>{
+			if(user){
+				User.updateOne(
+					{_id:req.params.ID},
+					{
+						$set:{
+							"profile.risksubmit"     : true,     							
+						},
+					}
+				)
+				.exec()
+				.then(data=>{
+					if(data.nModified == 1){
+						res.status(200).json("USER_UPDATED");
+					}else{
+						res.status(401).status("USER_NOT_UPDATED")
+					}
+				})
+				.catch(err =>{
+					console.log('user error ',err);
+					res.status(500).json({
+						error: err
+					});
+				});
+			}else{
+				res.status(404).json("User Not Found");
+			}
+		})
+		.catch(err=>{
+			console.log('update user error ',err);
+			res.status(500).json({
+				error:err
+			});
+		});
 };

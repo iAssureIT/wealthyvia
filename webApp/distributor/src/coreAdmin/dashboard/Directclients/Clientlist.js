@@ -213,7 +213,7 @@ class Clientlist extends Component {
         "subject"       : "Register on Wealthyvia",
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
                           "<b>Welcome to wealthvia <br/><br/>"+
-                          "Distributor has shared the Referrer link with you to Sign Up on Wealthyvia. By Singing Up, the doors for incredible investments will open for you!<br/>"+
+                          "Partner has shared the reference link with you to Sign Up on Wealthyvia. Wish you happy investing journey!<br/>"+
                           "Please click the following link to Sign Up: <br/>" + 
                           "<pre> " + this.state.clientsignupurl+ "</pre>" + 
                           " <br/> <br/> =============================== " + 

@@ -29,9 +29,14 @@ export default class Productpricing extends Component {
      })
      axios.get("/api/users/get/"+user_ID)
       .then((response)=>{ 
-          this.setState({
-              userinfo : response.data
-          })
+        var userinfo = response.data;
+          if(userinfo){
+            
+            this.setState({
+                userinfo : response.data
+            })
+          }
+          
 
       })
       .catch((error)=>{

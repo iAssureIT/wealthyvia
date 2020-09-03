@@ -29,6 +29,10 @@ router.delete('/delete/:ID',UserController.delete_user_ID);
 router.patch('/patch/distributor/resetpassword/:ID',UserController.reset_distributor_password);
 router.patch('/patch/mapping/distributorcode',UserController.map_distributor_code_to_client);
 
+router.patch('/patch/updatekyc/user/:ID',UserController.user_update_kyc);
+router.patch('/patch/updaterisk/user/:ID',UserController.user_update_risk);
+router.get('/get/kycrisk/user/:ID',UserController.fetch_users_kycrisk);
+
 // router.get('/list', checkAuth,UserController.users_list); //Working
 
 // router.get('/singleuser/:user_ID',UserController.list_cuser_framework_stage);
