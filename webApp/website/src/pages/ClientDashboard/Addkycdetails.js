@@ -290,7 +290,7 @@ class Addkycdetails extends Component {
           "gstNumber"        : this.state.gstNumber
         }
         if(dataArray1){
-          var adminEmail = "monikapawashe25@gmail.com";
+          var adminEmail = "anuja.kate@iassureit.com";
 
               const dataArray = {
               "email"         : dataArray1.email ,
