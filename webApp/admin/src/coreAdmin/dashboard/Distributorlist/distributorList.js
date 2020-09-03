@@ -8,7 +8,7 @@ import moment from 'moment';
 import $      from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-
+import {ExportCSV} from '../../common/Export/ExportCSV.js';
 
 export default class distributerList extends Component{
   constructor(props){
@@ -209,11 +209,10 @@ export default class distributerList extends Component{
                               "text"          : "", 
                               "mail"          : 'Dear ' + firstname + ' '+lastname+', <br/><br/>'+                          
                                                 "Congratulations! Your Partner profile has been approved on Wealthyvia! Now you can login to the system & can refer client to Wealthyvia. Following are your login credentials: <br/> " + 
-                                                "Email: " + email +
+                                                "Login Url: <a href='http://qawealthyviadistributor.iassureit.com/' target='_blank'>http://qawealthyviadistributor.iassureit.com/</a></br/>"+
+                                                "<br/>Email: " + email +
                                                 "<br/>Default Password: " + "Welcome@123" +
                                                 "<br/> <br/> " + 
-                                                "Hope you enjoy being a Partner of Wealthyvia! " +
-                                                "<br/><br/> " +
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. ",
 
@@ -524,6 +523,19 @@ export default class distributerList extends Component{
     })    
   }
 
+  exportdistributordata = () => {
+      let distributor = []
+      if(this.state.DistributorData && this.state.DistributorData.length > 0)
+      {
+          var data = this.state.DistributorData;
+          for (let i = 0; i < data.length; i++) {
+              distributor.push({"Code": data[i].distributorCode, "Name": data[i].firstname+" "+data[i].lastname, "email" : data[i].email.address,
+                          "Contact" : data[i].phone, "Date of Application": moment(data[i].currentDate).format("Do MMM YYYY"), "No of clients": data[i].usercount,  });        
+            }
+      }
+      
+      return distributor;
+    } 
 
   render(){
     console.log("Distributor Data",this.state.DistributorData)
@@ -532,16 +544,11 @@ export default class distributerList extends Component{
   	   <div className="row">
        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  mt70 page">
     		  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-              <h2>Distributor List</h2>
+              <h2>Referrer List</h2>
           <hr/>
-           <ReactHTMLTableToExcel
-                id="test-table-xls-button"
-                className="download-table-xls-button fa fa-download mt70 tableicons pull-right"
-                table="table-to-xls"
-                filename="Distributor List"
-                sheet="tablexls"
-                buttonText=""
-          />
+           <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px', marginBottom: '5px'}}>
+                  <ExportCSV csvData={this.exportdistributordata()} fileName="Distributor List" />&nbsp;
+                </div>
           </div>			
 
 		      <br/>
@@ -551,11 +558,13 @@ export default class distributerList extends Component{
             <thead>
               <tr>
                 <th>Sr No</th>
-                <th>Distributor Name</th>
+                <th>Code</th>
+                <th>Referrer Name</th>
                 <th>Date of Application</th>
                 <th>Phone</th>
                 <th>Email</th>
-                <th>Address</th>
+                <th>No of Clients</th>
+                <th>Referred By</th>
                 <th>Actions</th>
                 <th>Status</th>
               </tr>
@@ -569,11 +578,13 @@ export default class distributerList extends Component{
               <tr key={index}>
               {console.log("address",DistributorData.address)}
                 <td>{index+1}</td>
-                <td>{DistributorData.firstname}  {DistributorData.lastname}</td>
+                <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.distributorCode}</a> </td>
+                <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.firstname}  {DistributorData.lastname}</a></td>
                 <td>{moment(DistributorData.currentDate).format("Do MMM YYYY")}</td>
                 <td>{DistributorData.phone}</td>
                 <td>{DistributorData.email.address}</td>
-                <td>{DistributorData.address ? DistributorData.address.adressLine : null}</td>
+                <td>{DistributorData.usercount}</td>
+                <td><a href={"/distributor/myclients/"+ DistributorData.franchiseuser}>{DistributorData.franchiseCode}</a></td>
                 <td> 
                   <a className="blueColor" href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
                   <a href={"/distributorEditForm/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a> &nbsp;&nbsp;

@@ -2,8 +2,11 @@ import React, { Component }       from 'react';
 import OwlCarousel                from 'react-owl-carousel';
 import axios                      from "axios";
 import swal                       from 'sweetalert';
+import $                          from 'jquery';
 import moment               from 'moment';
 import Moment                from 'moment';
+import RiskProfile               from '../../pages/ClientDashboard/RiskProfile.js';
+import Addkycdetails             from '../../pages/ClientDashboard/Addkycdetails.js';
 
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
@@ -32,6 +35,8 @@ export default class SubscribedServices extends Component {
           subscribed            : false,
           blogSubscribed        : "",
           subscriptionData      : [],
+          expiredproductSub     : [],
+          riskkycMsg            : ''
         };
     }
   ScrollTop(event){
@@ -44,14 +49,90 @@ export default class SubscribedServices extends Component {
           });
     }
   }
+
+  closeproductexpiremodal(event){
+    event.preventDefault();
+    $("#productexpiredModal").hide();  
+    $("body").removeClass("modal-open");
+    $("#overlayproductexpired").hide(); 
+    $("#productexpiredModal").removeClass('in'); 
+  }
+
   componentDidMount()
   {
     var user_ID = localStorage.getItem("user_ID");
-    console.log("user_ID",user_ID)
+
+    axios.get("/api/users/get/kycrisk/user/"+user_ID)
+      .then((response)=>{ 
+        var userinfo = response.data;
+        console.log("risk",userinfo.risksubmit, userinfo.kycsubmit);
+          if(userinfo){
+            if(!userinfo.risksubmit || !userinfo.kycsubmit){
+              if(!userinfo.risksubmit && userinfo.kycsubmit){
+                this.setState({ riskkycMsg : "To start investing, please fill Risk Profile first"})
+              }
+              else if(userinfo.risksubmit && !userinfo.kycsubmit){
+                this.setState({ riskkycMsg : "To start investing, please fill KYC details first"})                
+              }
+              else{                
+                this.setState({ riskkycMsg : "To start investing, please fill KYC details and Risk Profile first"})
+              }
+            }
+            
+          }         
+
+      })
+      .catch((error)=>{
+            console.log('error', error);
+      })
+
+    axios.get("/api/offeringsubscriptions/get/offsubscription/"+user_ID)
+            .then((response)=>{ 
+              // console.log("off sub", response.data);
+              var offeringsubscription = response.data;
+              var expiredproductsub = [];
+              if(offeringsubscription.length > 0){
+                for(let i=0; i<offeringsubscription.length; i++){
+                  // console.log("1->", offeringsubscription[i].endDate, Moment().format('YYYY-MM-DD'));
+                  if(offeringsubscription[i].endDate < Moment().format('YYYY-MM-DD')){
+                    // console.log("expired");
+                    var expiredsub = {
+                      productname : offeringsubscription[i].offeringTitle,
+                      startdate   : offeringsubscription[i].startDate,
+                      endDate     : offeringsubscription[i].endDate
+                    }
+                    expiredproductsub.push(expiredsub);
+                    this.setState({expiredproductSub : expiredproductsub});
+                    $("#productexpiredModal").show();  
+                    $("body").addClass("modal-open ");
+                    $("#overlayproductexpired").show(); 
+                    $("#productexpiredModal").addClass('in'); 
+                  }
+                }
+                
+              }
+                           
+
+            })
+            .catch((error)=>{
+                  console.log('error', error);
+            }) 
+
+    
+    var url = window.location.href;
+    var activeTab = url.substring(url.indexOf("#") + 1);
+    // console.log("hash", activeTab);
+    if(url.includes("#")){
+       $(".tab-pane").removeClass("active in");
+       $("#" + activeTab).addClass("active in");
+
+    }
+    
+    // console.log("user_ID",user_ID)
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
         .then((userStatus)=>{
-          console.log("userStatus",userStatus)
+          // console.log("userStatus",userStatus)
           this.setState({
               userStatus    :userStatus.data[0].paymentStatus,
               blogSubscribed:userStatus.data[0],
@@ -74,7 +155,7 @@ export default class SubscribedServices extends Component {
           }
         })
         .catch(function(error){
-          console.log(error);
+          // console.log(error);
             if(error.message === "Request failed with status code 401")
                 {
                      swal("Your session is expired! Please login again.","", "error");
@@ -120,7 +201,7 @@ export default class SubscribedServices extends Component {
 
      axios.get('/api/offeringsubscriptions/get/'+ user_ID )
           .then( (res)=>{ 
-          console.log("res",res.data);     
+          // console.log("res",res.data);     
             this.setState({
                   subscriptionData        : res.data.offering,
                   listOfPerformanceDoc    : res.data.performanceDoc,          
@@ -128,7 +209,7 @@ export default class SubscribedServices extends Component {
             })
           })
           .catch((error)=>{
-            console.log("error",error);
+            // console.log("error",error);
             if(error.message === "Request failed with status code 401")
               { 
                    swal("Your session is expired! Please login again.","", "error");
@@ -139,7 +220,7 @@ export default class SubscribedServices extends Component {
   getData(event)
   {
       var Filekey  =  event.currentTarget.getAttribute("data-key");
-      console.log("Filekey",event.currentTarget.getAttribute("data-key"))
+      // console.log("Filekey",event.currentTarget.getAttribute("data-key"))
         axios.get('/api/fileUpload/image/'+Filekey) 
       .then( (UploadedImg)=>{      
         this.setState({
@@ -152,6 +233,8 @@ export default class SubscribedServices extends Component {
         }
     });  
   }
+
+
   getDate(event){
     event.preventDefault();
      var startDate = event.target.getAttribute("data-startDate");
@@ -170,6 +253,18 @@ export default class SubscribedServices extends Component {
   onDocumentLoadSuccess = ({ numPages }) => {
     this.setState({ numPages });
   }
+
+  checkkycandrisk(event){
+    event.preventDefault();
+    console.log("risk", this.state.riskkycMsg);
+    if(this.state.riskkycMsg){
+      swal(this.state.riskkycMsg,"", "warning");
+    }
+    else{
+      window.location = "/product-pricing" ;
+    }
+  }
+
   render() {
     var date = "09-10-2019  5:30PM";
     var dateArray  = [];
@@ -202,7 +297,7 @@ export default class SubscribedServices extends Component {
           dateArray  = [...new Set(dateArray)];
         }
       }
-      console.log("2 dateArray 1 = ", dateArray);         
+      // console.log("2 dateArray 1 = ", dateArray);         
     }//if
     if(this.state.listOfPerformanceDoc && this.state.listOfPerformanceDoc.length > 0){
       for(let j=0;j<this.state.listOfPerformanceDoc.length;j++){
@@ -218,21 +313,21 @@ export default class SubscribedServices extends Component {
           dateArray1  = [...new Set(dateArray1)];
         }
       }
-      console.log("2 dateArray  = ", dateArray1);         
+      // console.log("2 dateArray  = ", dateArray1);         
     }//if
 
     return (
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 mainContainerSS padding100">
                 <div className="row">
-                  <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 mt40 ">  
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite planContainer ">
+                  <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12 mt40 tab-content">  
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite planContainer tab-pane fade in active " id="services">
                       <label className="headerServices col-lg-12">Services you subscribed for</label>
                       <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12 mt40 "> 
-                          <ul class="nav nav-pills nav-stacked customStack textAlignCenter">
+                          <ul className="nav nav-pills nav-stacked customStack textAlignCenter">
                            {this.state.subscriptionData?
                              this.state.subscriptionData.map((a, i)=>{
                                 return(
-                                  <li>
+                                  <li key={i}>
                                     { 
                                       this.state.subscriptionData[i].offeringStatus == "Active" ?
                                         <a data-toggle="pill" className="activeSubscription" data-startDate={a.startDate?a.startDate:""} data-endDate={a.endDate?a.endDate:""} onClick={this.getDate.bind(this)} href={"#"+a.offering_ID}>{a.offeringTitle}</a>
@@ -245,13 +340,12 @@ export default class SubscribedServices extends Component {
                               })
                               :null
                             }
-                            <li className="performancetabSmall hidden-lg hidden-md"><a data-toggle="pill" href="#performance">Performance Report</a></li>
-                            <li className=" performancetab hidden-xs hidden-sm"><a data-toggle="pill" href="#performance">Performance Report</a></li>
+                            
                           </ul>
 
                       </div>
-                       <div class="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
-                          <div id="performance" class="tab-pane fade in active ">
+                       <div className="tab-content customTabContent mt40 col-lg-8 col-md-8 col-sm-8 col-xs-12 ">
+                          <div id="performance" className="tab-pane fade in active ">
                             <h3>Performance Reports</h3>
                             {
                               this.state.listOfPerformanceDoc &&this.state.listOfPerformanceDoc[lengthOfPer-1] ?
@@ -300,7 +394,7 @@ export default class SubscribedServices extends Component {
                             ?
                              this.state.subscriptionData.map((a, i)=>{
                                 return(
-                                    <div id={a.offering_ID} class="tab-pane fade in ">
+                                    <div id={a.offering_ID} className="tab-pane fade in " key={i}>
                                     <h6 className="pull-right"><span>Start Date :  {this.state.StartDate} </span> - <span>End Date :  {this.state.EndDate} </span> </h6><br/>
                                      {/* <h6 className="col-lg-12"><span className=" col-lg-4 pull-right"><b className="pull-right">Start Date  <br/>{this.state.StartDate} </b> </span>
                                      <span className="col-lg-4  pull-right"><b className="pull-right">End Date<br/> {this.state.EndDate} </b> </span></h6><br/>
@@ -358,16 +452,35 @@ export default class SubscribedServices extends Component {
 
                             }
                         </div>  
-                    </div>  
+                    </div> 
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite planContainer tab-pane" id="kycform">
+                      <Addkycdetails history={this.props.history} />
+                    </div> 
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite planContainer tab-pane" id="riskprofileform">
+                      <RiskProfile history={this.props.history} />
+                    </div>
                   </div>  
                   {
                     subscribed ?
                       
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite">
+                      <ul className="nav nav-pills nav-stacked  textAlignCenter">
+                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a  data-toggle="pill" href="#kycform">Add KYC details</a></li>
+                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href="#kycform">Add KYC details</a></li>
+                        <li className=" kycprofilebtnsmall hidden-lg hidden-md"><a data-toggle="pill" href="#riskprofileform">Submit Risk Profile</a></li>
+                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href="#riskprofileform">Submit Risk Profile</a></li>
+                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a href="/clientDashboard">Performance Report</a></li>
+                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a href="/clientDashboard">Performance Report</a></li>
+                      </ul>
+                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
+                            <ul className="customOl myULSS textAlignCenter mt20 productinvestbtn">
+                              <a  href="" onClick={this.checkkycandrisk.bind(this)} ><li>Click Here to Invest in product</li></a>
+                             </ul>
+                      </div>
                     <h4 className="headerBlogCD col-lg-12"> Your Blog Subscription</h4>
                       <ul className="myULCDSP mt20">
-                          <li>{this.state.blogSubscribed.planName} Subsription  <span className="pull-right"><i class="fa fa-rupee">&nbsp;</i> {(this.state.blogSubscribed.amountPaid)/100} </span></li>
+                          <li>{this.state.blogSubscribed.planName} Subsription  <span className="pull-right"><i className="fa fa-rupee">&nbsp;</i> {(this.state.blogSubscribed.amountPaid)/100} </span></li>
                           <li>Subscribed on <span className="pull-right">{this.state.createdAt}</span></li>
                           <li>Subscription end date  <span className="pull-right">{this.state.calculatedDate}</span></li>
 
@@ -416,8 +529,21 @@ export default class SubscribedServices extends Component {
                   : 
                    <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12  ">   
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite ">
+                          <ul className="nav nav-pills nav-stacked textAlignCenter">
+                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a  data-toggle="pill" href="#kycform">Add KYC details</a></li>
+                        <li className="kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href="#kycform">Add KYC details</a></li>
+                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a data-toggle="pill" href="#riskprofileform">Submit Risk Profile</a></li>
+                        <li className="kycprofilebtn  hidden-xs hidden-sm"><a data-toggle="pill" href="#riskprofileform">Submit Risk Profile</a></li>
+                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a href="/clientDashboard">Performance Report</a></li>
+                        <li className="kycprofilebtn hidden-xs hidden-sm"><a href="/clientDashboard">Performance Report</a></li>
+                      </ul>
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
-                            <ul className="customOl myULSS textAlignCenter mt20">
+                            <ul className="customOl myULSS textAlignCenter mt20 productinvestbtn">
+                              <a href="" onClick={this.checkkycandrisk.bind(this)}><li>Click Here to Invest in product</li></a>
+                             </ul>
+                          </div>
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding">
+                            <ul className="customOl myULSS textAlignCenter mt20 sbscribblogbtn">
                               <a href="/planPage"><li>Click Here to Subscribe Blogs</li></a>
                              </ul>
                           </div>
@@ -461,6 +587,37 @@ export default class SubscribedServices extends Component {
                               
                                   
                      }
+
+                            <div className="modal fade in " id="productexpiredModal" role="dialog">
+                              <div className="modal-dialog customModalEN productexpiredmodal-dialog" >
+                                <div className="modal-header textAlignCenter ">
+                                    <button type="button" className="close" data-dismiss="modal" onClick={this.closeproductexpiremodal.bind(this)}> <i className="fa fa-times"></i></button>
+                                    
+                                </div>
+                                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad40 pad50new">
+                                   <h3>Your subscription for the following product(s) has been expired. Please renew your subscription.</h3>
+                                    <br/>
+                                    {
+                                      this.state.expiredproductSub.length > 0 ?
+                                      this.state.expiredproductSub.map((data, index) => {
+                                        return(
+                                          <div>
+                                            <h4>ProductName: {data.productname}</h4>
+                                            <h4>Expired Date: {data.endDate}</h4>                               
+                                          </div>
+                                          )
+                                      })
+                                      :
+                                      null
+
+                                    }
+                                    <a className="col-lg-4 col-lg-offset-8 col-md-12 col-sm-12 col-xs-12 btn btn-primary productexpiredbtn" href="/product-pricing" >Renew</a> 
+                                    
+                                </div>                        
+                              </div>
+                            </div> 
+                            <div id="overlayproductexpired"></div>
+
                 </div>
               </div>
     );

@@ -37,6 +37,8 @@ const distributorSchema = mongoose.Schema({
 	branchname   	: String,
 	IFSCcode     	: String,
 	MICRcode     	: String,
+	distributorCode : String,
+	franchiseCode 	: String,
     createdAt   	: Date,
     createdBy   	: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     updateLog		:[

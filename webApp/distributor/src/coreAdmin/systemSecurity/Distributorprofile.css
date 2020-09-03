@@ -1,0 +1,70 @@
+.box-header.with-border {
+    border-bottom: 1px solid #f4f4f4;
+    margin-top: 50px;
+}
+
+.marginT{
+    margin-top: 40px !important;
+    margin-bottom: 30px;
+
+}
+
+.marginT .HeadDistributer{
+    font-weight: 700;
+    font-size: 30px;
+    margin-left: 40px;
+}
+.viewContent{
+	box-shadow: 0px 0px 5px 5px rgba(0,0,0,.075);
+
+}
+.mheight{
+	height: auto;
+
+}
+.setZindex{
+	z-index: 1;
+	/* display: block; */
+}
+.setplusZindex{
+	z-index: 22;
+}
+
+.nopadding{
+    padding: 0px 0px;
+}
+.zeromargin{
+    margin: 0px;
+}
+.setpdf{
+    margin-left: -17px;
+    margin-top: 5px;
+}
+
+.setp{
+    padding-left: 15px
+}
+
+.additionalinfoh4{
+    padding: 25px 10px;
+    font-weight: 600;
+    /*font-size: 30px;*/
+}
+
+.profileeditinput{
+    border: none !important;
+    border-left: 1px solid #ccc !important;
+}
+
+.placecontainercss{
+    z-index: 111;
+    position: absolute;
+    top: 36px;
+    background-color: #fff;
+    left: 0px;    
+}
+
+.placepadding{
+    padding: 5px 10px;
+    
+}

@@ -10,7 +10,7 @@
 
 	border: 1px solid #aaa;
 	padding: 20px !important;
-	padding-top: 70px !important;
+	padding-top: 30px !important;
 }
 .blogContainCD h4{
 
@@ -68,14 +68,14 @@
 	color: #666;
 	margin-bottom:10px !important; 
 }
-.performancetab a{
+.performancetab a, .kyctab a, .riskprofiletab a  {
 	border:none !important;
 	background-color: #201a47 !important;
     color: #fff !important;
     width: 370px;
     border: none !important;
 }
-.performancetab li:hover a{
+.performancetab li:hover a, .kyctab li:hover a, .riskprofiletab li:hover a{
 	background-color: #337ab7 !important;
 }
 .customTabContent h3{
@@ -168,14 +168,44 @@
 .performancetab{
 	position: absolute !important;
     left: 324%;
-    top: -116px;
+    top: 6px;
     width: 100%;
     z-index: 1000 !important
 }
 .performancetabSmall{
 	position: absolute;
     left: 0px;
+    top: 101em;
+    width: 100%;
+    z-index: 1000 !important;
+
+}
+.kyctab{
+	position: absolute !important;
+    left: 324%;
+    top: -116px;
+    width: 100%;
+    z-index: 1000 !important
+}
+.kyctabSmall{
+	position: absolute;
+    left: 0px;
     top: 61em;
+    width: 100%;
+    z-index: 1000 !important;
+
+}
+.riskprofiletab{
+	position: absolute !important;
+    left: 324%;
+    top: -55px;
+    width: 100%;
+    z-index: 1000 !important
+}
+.riskprofiletabSmall{
+	position: absolute;
+    left: 0px;
+    top: 81em;
     width: 100%;
     z-index: 1000 !important;
 
@@ -209,4 +239,55 @@
 }
 .mt15{
 	margin-top: 15px !important;
+}
+.sbscribblogbtn{
+	margin-top: 10px !important;
+}
+.productinvestbtn{
+	margin-top: 30px !important;
+}
+.kycprofilebtn{
+	margin-bottom: 6px;
+}
+.nav .kycprofilebtn a:hover, .nav .kycprofilebtn a:active{
+	background-color: #0edaef !important;
+    color: #333!important;
+}
+.kycprofilebtn a{
+	background-color: #201a47;
+    color: #fff !important;
+    font-size: 16px;
+    padding: 15px!important;
+}
+
+#overlayproductexpired{
+	position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    display: none;
+    opacity: 0.5;
+}
+
+#productexpiredModal .modalHeaderCustom {
+	z-index: 1111 !important;
+}
+
+.productexpiredbtn{
+	color: #ffffff !important;
+	padding:10px;
+}	
+
+@media (min-width: 768px){ 
+.productexpiredmodal-dialog {
+    width: 510px !important;
+    margin: 30px auto;
+    height: 360px !important;
+    margin-top: 12%!important;
+}
+.pad50new{
+	padding: 0px 50px 30px 50px !important;
+}
 }

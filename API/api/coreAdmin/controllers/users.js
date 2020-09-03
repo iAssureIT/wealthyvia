@@ -13,7 +13,7 @@ function getRandomInt(min, max) {
 };
 exports.user_signup_admin = (req,res,next)=>{
 	if(req.body.email && req.body.pwd){
-		User.find({emails:{$elemMatch:{address:req.body.email}}})
+		User.find({"emails.address":req.body.email })
 			.exec()
 			.then(user =>{
 				if(user.length >= 1){
@@ -87,7 +87,7 @@ exports.user_signup_admin = (req,res,next)=>{
 };
 exports.user_signup_user = (req,res,next)=>{
 	if(req.body.role && req.body.email && req.body.pwd){
-		User.find({emails:{$elemMatch:{address:req.body.email}}})
+		User.find({"emails.address":req.body.email })
 			.exec()
 			.then(user =>{
 				if(user.length >= 1){
@@ -163,7 +163,7 @@ exports.user_signup_user = (req,res,next)=>{
 
 exports.user_signup_distributor = (req,res,next)=>{
 	if(req.body.role && req.body.email && req.body.pwd){
-		User.find({emails:{$elemMatch:{address:req.body.email}}})
+		User.find({"emails.address":req.body.email})
 			.exec()
 			.then(user =>{
 				if(user.length >= 1){
@@ -240,7 +240,7 @@ exports.user_signup_distributor = (req,res,next)=>{
 
 exports.user_signup_user_email_otp = (req,res,next)=>{
 	if(req.body.role && req.body.email && req.body.pwd){
-		User.find({emails:{$elemMatch:{address:req.body.email}}})
+		User.find({"emails.address":req.body.email})
 			.exec()
 			.then(user =>{
 				if(user.length >= 1){
@@ -279,16 +279,17 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 														],
 														profile		:
 																{
-																	firstname     : req.body.firstname,
-																	lastname      : req.body.lastname,
-																	fullName      : req.body.firstname+' '+req.body.lastname,
-																	emailId       : req.body.email,
-																	mobNumber     : req.body.mobNumber,
-																	createdOn     : new Date(),
-																	optEmail 	  : emailOTP,
-																	status		  : req.body.status,
+																	firstname     	: req.body.firstname,
+																	lastname      	: req.body.lastname,
+																	fullName      	: req.body.firstname+' '+req.body.lastname,
+																	emailId       	: req.body.email,
+																	mobNumber     	: req.body.mobNumber,
+																	createdOn     	: new Date(),
+																	optEmail 	  	: emailOTP,
+																	status		  	: req.body.status,																	
 																	clientId 	  : "WL"+(countuser+1)
 																},
+														distributorCode	: req.body.distributorCode,		
 														roles 		: [req.body.role]
 										});	
 										if(!req.body.firstname){
@@ -303,7 +304,7 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 											                "body"      : {
 											                					email 	: req.body.email, 
 											                					subject : "Successfully Creation of your Account on Wealthyvia",
-											                					text    : "Dear "+result.profile.fullName+"Your OTP is "+ emailOTP, 
+											                					mail    : "Dear "+result.profile.fullName+" Your OTP is "+ emailOTP, 
 											                			   },
 											                "json"      : true,
 											                "headers"   : {
@@ -352,7 +353,7 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 	}
 };
 exports.user_login = (req,res,next) =>{
-	User.findOne({emails:{$elemMatch:{address:req.body.email}}})
+	User.findOne({"emails.address":req.body.email})
 		.exec()
 		.then(user => {
 			if(user){
@@ -376,7 +377,7 @@ exports.user_login = (req,res,next) =>{
 							}
 							);
 							User.updateOne(
-									{ emails:{$elemMatch:{address:req.body.email}}},
+									{ "emails.address":req.body.email},
 									{
 										$push : {
 											"services.resume.loginTokens" : {
@@ -423,7 +424,7 @@ exports.user_login = (req,res,next) =>{
 exports.admin_login = (req,res,next) =>{
 	console.log("admin login")
 	User.findOne({
-					emails	: {$elemMatch:{address:req.body.email}},
+					"emails.address":req.body.email,
 					roles   : ["admin"]
 				})
 		.exec()
@@ -450,7 +451,7 @@ exports.admin_login = (req,res,next) =>{
 							}
 							);
 							User.updateOne(
-									{ emails:{$elemMatch:{address:req.body.email}}},
+									{ "emails.address":req.body.email },
 									{
 										$push : {
 											"services.resume.loginTokens" : {
@@ -498,7 +499,7 @@ exports.admin_login = (req,res,next) =>{
 exports.distributor_login = (req,res,next) =>{
 	//console.log("distributor login")
 	User.findOne({
-					emails	: {$elemMatch:{address:req.body.email}},
+					"emails.address" :req.body.email ,
 					roles   : ["distributor"]
 				})
 		.exec()
@@ -525,7 +526,7 @@ exports.distributor_login = (req,res,next) =>{
 							}
 							);
 							User.updateOne(
-									{ emails:{$elemMatch:{address:req.body.email}}},
+									{ "emails.address":req.body.email },
 									{
 										$push : {
 											"services.resume.loginTokens" : {
@@ -778,6 +779,37 @@ exports.fetch_user_ID = (req,res,next)=>{
 			});
 		});
 };
+
+exports.fetch_users_kycrisk = (req,res,next)=>{
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(data=>{
+			if(data){
+				res.status(200).json({
+									"firstname" : data.profile.firstname,
+									"lastname"	: data.profile.lastname,
+									"email"		: data.profile.emailId, //Mandatory 
+									"mobNumber" : data.profile.mobNumber,
+									"role"      : data.roles, //Mandatory
+									"status"	: data.profile.status, //Either "Active" or "Inactive"
+									"fullName"	: data.profile.fullName,
+									"kycsubmit" : data.profile.kycsubmit,
+									"risksubmit" : data.profile.risksubmit,
+									"panNumber" : data.profile.panNumber,
+									"gstNumber" : data.profile.gstNumber,
+							});
+			}else{
+				res.status(200).json({message:"USER_NOT_FOUND"});
+			}
+		})
+		.catch(err =>{
+			console.log('user error ',err);
+			res.status(500).json({
+				error: err
+			});
+		});
+};
+
 exports.fetch_users = (req,res,next)=>{
 	var limitRange    = 10;
     var countNum2   = limitRange * req.params.pageno;
@@ -819,11 +851,12 @@ exports.fetch_users = (req,res,next)=>{
 			});
 		});
 };
-exports.fetch_users_roles = (req,res,next)=>{
-	var limitRange    = 10;
-    var countNum2   = limitRange * req.params.pageno;
-    var startRange  = countNum2 - limitRange;
-	User.find({roles:req.params.role})
+
+exports.fetch_users_by_distibutorcode = (req,res,next)=>{
+	//var limitRange    = 10;
+    //var countNum2   = limitRange * req.params.pageno;
+    //var startRange  = countNum2 - limitRange;
+	User.find({distributorCode:req.params.distributorCode, roles:req.params.role})
 		.select("profile.firstname profile.lastname profile.status profile.fullName roles profile.emailId profile.mobNumber profile.clientId")
 		.sort({createdAt : -1})
         // .skip(startRange)
@@ -844,6 +877,49 @@ exports.fetch_users_roles = (req,res,next)=>{
 										"status"	: data[i].profile.status, //Either "Active" or "Inactive"
 										"fullName"	: data[i].profile.fullName,
 										"clientId"	: data[i].profile.clientId
+									});
+				}
+				if( i >= data.length){
+					res.status(200).json(returnData);
+				}
+			}else{
+				res.status(200).json({message:"USER_NOT_FOUND"});
+			}
+		})
+		.catch(err =>{
+			console.log('user error ',err);
+			res.status(500).json({
+				error: err
+			});
+		});
+};
+
+exports.fetch_users_roles = (req,res,next)=>{
+	var limitRange    = 10;
+    var countNum2   = limitRange * req.params.pageno;
+    var startRange  = countNum2 - limitRange;
+	User.find({roles:req.params.role})
+		.select("profile.firstname profile.lastname profile.status profile.fullName roles profile.emailId profile.mobNumber profile.clientId distributorCode")
+		.sort({createdAt : -1})
+        // .skip(startRange)
+        // .limit(limitRange)
+		.exec()
+		.then(data=>{
+			if(data){
+				var i = 0;
+				var returnData = [];
+				for(i = 0 ; i < data.length ; i++){
+					returnData.push({
+										"_id"		: data[i]._id,
+										"firstname" : data[i].profile.firstname,
+										"lastname"	: data[i].profile.lastname,
+										"email"		: data[i].profile.emailId, //Mandatory 
+										"mobNumber" : data[i].profile.mobNumber,
+										"role"      : data[i].roles, //Mandatory
+										"status"	: data[i].profile.status, //Either "Active" or "Inactive"
+										"fullName"	: data[i].profile.fullName,
+										"clientId"	: data[i].profile.clientId,
+										"distributorCode"	: data[i].distributorCode,
 									});
 				}
 				if( i >= data.length){
@@ -920,6 +996,7 @@ exports.delete_user_ID = (req,res,next)=>{
 		});
 };
 exports.check_EmailOTP = (req,res,next)=>{
+	console.log("email otp: ",req.params.ID, req.params.emailotp);
 	User.find({_id : req.params.ID, "profile.optEmail" : req.params.emailotp})
 		.exec()
 		.then(data=>{
@@ -934,6 +1011,7 @@ exports.check_EmailOTP = (req,res,next)=>{
 					)
 				    .exec()
 				    .then(data=>{
+				    	console.log("data", data);
 				    	if(data.nModified === 1){
 							res.status(200).json({message:"SUCCESS"});
 				    	}else{
@@ -1128,6 +1206,115 @@ exports.reset_distributor_password = (req,res,next)=>{
 		})
 		.catch(err=>{
 			// console.log('update user status error ',err);
+			res.status(500).json({
+				error:err
+			});
+		});
+};
+
+exports.map_distributor_code_to_client = (req,res,next) =>{
+	console.log("patch",req.body.ID, req.body.distributorCode);
+	User.updateOne(
+					{_id:req.body.ID},
+					{
+						$set:{
+							"distributorCode"     : req.body.distributorCode,
+						},
+					}
+				)
+				.exec()
+				.then(data=>{
+					if(data.nModified == 1){					
+					    res.status(201).json({message:"User_UPDATED"})					
+					}else{
+						res.status(401).status("USER_NOT_UPDATED")
+					}
+				})
+				.catch(err =>{
+					console.log('user error ',err);
+					res.status(500).json({
+						error: err
+					});
+				});
+};
+
+exports.user_update_kyc = (req,res,next)=>{
+	console.log("userkyc",req.params.ID, req.body.panNumber );
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(user=>{
+			if(user){
+				console.log("found");
+				User.updateOne(
+					{_id:req.params.ID},
+					{
+						$set:{
+							"profile.panNumber"     : req.body.panNumber,
+							"profile.gstNumber"     : req.body.gstNumber,
+							"profile.kycsubmit"     : true,     
+							
+						},
+					}
+				)
+				.exec()
+				.then(data=>{
+					if(data.nModified == 1){
+						res.status(200).json("USER_UPDATED");
+					}else{
+						res.status(401).status("USER_NOT_UPDATED")
+					}
+				})
+				.catch(err =>{
+					console.log('user error ',err);
+					res.status(500).json({
+						error: err
+					});
+				});
+			}else{
+				res.status(404).json("User Not Found");
+			}
+		})
+		.catch(err=>{
+			console.log('update user error ',err);
+			res.status(500).json({
+				error:err
+			});
+		});
+};
+
+exports.user_update_risk = (req,res,next)=>{
+	User.findOne({_id:req.params.ID})
+		.exec()
+		.then(user=>{
+			if(user){
+				User.updateOne(
+					{_id:req.params.ID},
+					{
+						$set:{
+							"profile.risksubmit"     : true,     							
+						},
+					}
+				)
+				.exec()
+				.then(data=>{
+					if(data.nModified == 1){
+						res.status(200).json("USER_UPDATED");
+					}else{
+						res.status(401).status("USER_NOT_UPDATED")
+					}
+				})
+				.catch(err =>{
+					console.log('user error ',err);
+					res.status(500).json({
+						error: err
+					});
+				});
+			}else{
+				res.status(404).json("User Not Found");
+			}
+		})
+		.catch(err=>{
+			console.log('update user error ',err);
 			res.status(500).json({
 				error:err
 			});

@@ -33,8 +33,13 @@ export default class distributeEditForm extends Component{
           "state"        :"",
           "pincode"      :"",
           "ownOffice"    :"",
+          "website"      :"",
+          "config"       : "",
           "education"    :"",
-          "fileUpload"   :"",
+          "fileUpload"   : "",
+          "portfolioImage1" : "",
+          "fileUpload1"     : "",
+          "portfolioImage2" : "",
           "education"    :"",
           "description"  :"",
           "errors"       :{},
@@ -105,16 +110,18 @@ export default class distributeEditForm extends Component{
               "phone"         : DistributorData.phone,
               "email"         : DistributorData.email.address,
               "dob"           : DistributorData.dob,
-              "adressLine"    : DistributorData.adressLine,
-              "city"          : DistributorData.city,
-              "state"         : DistributorData.state,
-              "country"       : DistributorData.country,
+              "adressLine"    : DistributorData.address ? DistributorData.address.adressLine : '',
+              "city"          : DistributorData.address ? DistributorData.address.city : '',
+              "state"         : DistributorData.address ? DistributorData.address.state : '',
+              "country"       : DistributorData.address ? DistributorData.address.country : '',
               "status"        : DistributorData.status,
               "gst"           : DistributorData.gst,
+              "website"           : DistributorData.website,
               "education"     : DistributorData.education,
               "description"   : DistributorData.description,
               "ownOffice"     : DistributorData.ownOffice,
               "fileUpload"    : DistributorData.fileUpload,
+              "fileUpload1"    : DistributorData.fileUpload1,
             };
             console.log("Distribiter.fiels2 = " , DistributorData);
 
@@ -124,19 +131,24 @@ export default class distributeEditForm extends Component{
               "phone"         : DistributorData.phone,
               "email"         : DistributorData.email.address,
               "dob"           : DistributorData.dob,
-              "adressLine"    : DistributorData.address.adressLine,
-              "city"          : DistributorData.address.city,
-              "state"         : DistributorData.address.state,
-              "country"       : DistributorData.address.country,
+              "adressLine"    : DistributorData.address ? DistributorData.address.adressLine : '',
+              "city"          : DistributorData.address ? DistributorData.address.city : '',
+              "state"         : DistributorData.address ? DistributorData.address.state : '',
+              "country"       : DistributorData.address ? DistributorData.address.country : '',
               "status"        : DistributorData.status,
               "gst"           : DistributorData.gst,
+              "website"       : DistributorData.website,
               "education"     : DistributorData.education,
               "description"   : DistributorData.description,
               "ownOffice"     : DistributorData.ownOffice,
               "fileUpload"    : DistributorData.fileUpload,
+              "fileUpload1"    : DistributorData.fileUpload1,
+              "portfolioImage1"    : DistributorData.fileUpload,
+              "portfolioImage2"    : DistributorData.fileUpload1,
                fields2        :  fields2
             });            
-            console.log("Distribiter.setstate = " , res.data);
+            console.log("Distribiter.setstate = " , res.data.fileUpload);
+            console.log("Distribiter.setstate = " , res.data.fileUpload1);
 
         })
          .catch((error)=>{
@@ -154,14 +166,6 @@ export default class distributeEditForm extends Component{
     this.setState({
       fields2
     });
-
-   /* if (this.validateFormReview() && this.validateFormReqReview()) {
-      let errors2 = {};
-      errors2[event.target.name] = "";
-      this.setState({
-        errors2: errors2
-      });
-      }*/
   
   }
 
@@ -178,7 +182,6 @@ export default class distributeEditForm extends Component{
   uploadLogoImage(event){
    event.preventDefault();
     var file = event.target.files[0];
-
     if(file){
      if(file.size>=2097152)
      {
@@ -219,6 +222,7 @@ export default class distributeEditForm extends Component{
         if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf" ||  ext==="xlsx"||  ext==="xls"||  ext==="csv"){ 
           if (newFile) {
             if(this.state.fileUpload===""){
+              console.log("newFile",newFile);
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
@@ -270,6 +274,7 @@ export default class distributeEditForm extends Component{
     var data = index.split("/");
     var imageName = data[4];
       if(index){
+          console.log("index",index);
         S3FileUpload
           .deleteFile(imageName,this.state.config)
           .then((response) =>{
@@ -282,6 +287,96 @@ export default class distributeEditForm extends Component{
       }
   }
 
+  uploadLogoImage1(event){
+   event.preventDefault();
+    var file = event.target.files[0];
+    if(file){
+     if(file.size>=2097152)
+     {
+        swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
+        event.target.value ="";
+     }else{
+          this.setState({
+              "fileUpload1":event.target.value,
+            });
+        }
+      }
+      let fields2 = this.state.fields2;
+    fields2[event.target.name] = event.target.value;
+    this.setState({
+      fields2
+    });
+      let errors2 = {};
+      errors2[event.target.name] = "";
+      this.setState({
+        errors2: errors2
+      });
+    var index = event.target.getAttribute('id');
+
+    console.log("index--------------->",index);
+    let self = this;
+    if (event.currentTarget.files && event.currentTarget.files[0]) {
+      var file = event.currentTarget.files[0];
+      var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
+      var newFile = new File([file],newFileName);
+      this.setState({
+        fileUpload1 : newFile.name,
+      })
+      console.log("fileUpload1",this.state.fileUpload1);
+      if (newFile) {
+        var ext = newFile.name.split('.').pop();
+        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
+          if (newFile) {
+            if(this.state.fileUpload1 && this.state.fileUpload1.length === 0){
+            console.log("this.state.confiq",this.state.config);
+              S3FileUpload
+                .uploadFile(newFile,this.state.config)
+                .then((Data)=>{
+                 console.log("fileUpload1 data",Data)
+                  this.setState({
+                    portfolioImage2 : Data.location,
+                  },()=>{console.log("this.state.portfolioImage2",this.state.portfolioImage2)})
+                  this.deleteimageLogo(index)
+                })
+                .catch((error)=>{
+                  console.log(error);
+                })
+            }else{
+              swal({
+                    title: "Are you sure you want to replace this image?",
+                    text: "Once replaced, you will not be able to recover this image!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                  })
+                  .then((success) => {
+                      if (success) {
+                        S3FileUpload
+                          .uploadFile(newFile,this.state.config)
+                          .then((Data)=>{
+                            this.setState({
+                              portfolioImage2 : Data.location,
+                            })
+                            this.deleteimageLogo(index)
+                          })
+                          .catch((error)=>{
+                            console.log(error);
+                          })
+                      } else {
+                      swal("Your information is safe!");
+                    }
+                  });
+            }         
+          }else{         
+            swal("File not uploaded","Something went wrong","error"); 
+          }    
+        }else{
+          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+        }
+      }
+    }
+  
+  }
   validateFormReqReview() {
       let fields = this.state.fields2;
       let errors = {};
@@ -326,10 +421,6 @@ export default class distributeEditForm extends Component{
           formIsValid = false;
           errors["description"] = "This field is required.";
         }  
-/*        if (!fields["adressLine"]) {
-          formIsValid = false;
-          errors["adressLine"] = "This field is required.";
-        }*/ 
         this.setState({
           errors2: errors
         });
@@ -362,7 +453,6 @@ export default class distributeEditForm extends Component{
       });
       return formIsValid;
   }
-
 
   validateForm() {
     let fields = this.state.fields;
@@ -457,9 +547,8 @@ export default class distributeEditForm extends Component{
   };
 
 
-
-
   handleSubmit(event) {
+   event.preventDefault();
     var disid = this.props.match.params.ID;
     // console.log("userid-----------------------------------------",userid);
     if (this.validateFormReview() && this.validateFormReqReview()) {
@@ -474,11 +563,13 @@ export default class distributeEditForm extends Component{
             "state"        :this.state.state,
             "ownOffice"    :this.state.ownOffice,
             "education"    :this.state.education,
-            "fileUpload"   :this.state.fileUpload,     
+            "fileUpload"   :this.state.portfolioImage1, 
+            "fileUpload1"   :this.state.portfolioImage2,          
             "country"         : this.state.country,
             "countryCode"     : this.state.countryCode,
             "state"           : this.state.state,
             "stateCode"       : this.state.stateCode,
+            "website"         : this.state.website,
             "city"            : this.state.city,
             "latitude"        : this.state.latLng, 
             "longitude"           : this.state.latLng,   
@@ -488,37 +579,65 @@ export default class distributeEditForm extends Component{
             "description"  :this.state.description,
       }
       console.log("formvalues",formvalues);
+
         axios.patch('/api/distributormaster/patch/'+disid,formvalues)
         .then((response)=> {    
-          console.log("response",response);
           swal("Distributor information updated Succesfully","", "success");    
            this.props.history.push('/new-distributor-list'); 
-           // console.log('response --====================',response);
+           console.log('response --====================',response);
 
         })
       }
   }
 
   deleteBlogimage(event){
-    event.preventDefault();
+    // event.preventDefault();
     swal({
-          title: "Are you sure you want to delete this image?",
-          text: "Once deleted, you will not be able to recover this image!",
-          icon: "warning",
-          buttons: true,
-          dangerMode: true,
+        title: "Are you sure you want to delete this image?",
+        text: "Once deleted, you will not be able to recover this image!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
         })
         .then((success) => {
+          console.log("inside success",success);
             if (success) {
               swal("Your image is deleted!");
               this.setState({
-                fileUpload : ""
+                portfolioImage1 : ""
               })
+
+          console.log("inside fileUpload",this.state.portfolioImage1);
             } else {
             swal("Your image is safe!");
           }
         });
   }
+  deleteBlogimage1(event){
+    event.preventDefault();
+    console.log("inside deleteBlogimage1")
+      swal({
+            title: "Are you sure you want to delete this image?",
+            text: "Once deleted, you will not be able to recover this image!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+        .then((success) => {
+          console.log("success",success);
+            if (success) {
+              swal("Your image is deleted!");
+
+              this.setState({
+                portfolioImage2 : ""
+              })
+              console.log("portfolioImage2",this.state.portfolioImage2)
+            } else {
+            swal("Your image is safe!");
+          }
+        });
+  }
+
 
 
   render(){
@@ -620,60 +739,6 @@ export default class distributeEditForm extends Component{
                                  </div>   
                               </span>
                             </div>
-                            <div className=" col-lg-6 col-md-12 col-xs-12 col-sm-6 inputContent">
-                            <label className="formLable">Education <label className="requiredsign">*</label></label>
-                              <span className="blocking-span">
-                               <div className="input-group inputBox-main  new_inputbx " >
-                                 <div className="input-group-addon remove_brdr inputIcon">
-                                 <i className="fa fa-graduation-cap"></i>
-                                </div>  
-                                <input type="text"  className="disableInput inputMaterial form-control inputText" ref="education"  name="education" required
-                                  value={this.state.education}
-                                  onChange={this.handleChange}
-                                />
-                                  <div className="errorMsg">{this.state.errors2.education}</div>
-                               </div>   
-                              </span>
-                           </div>
-                        </div>
-                        <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
-                           <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label htmlFor='filrUpload' className="formLable">Attach PAN and Aadhar self attested copies <label className="requiredsign">*</label></label>
-                              <span className="blocking-span">
-                                 <div className="input-group inputBox-main  new_inputbx " >
-                                    <div className="input-group-addon remove_brdr inputIcon">
-                                       <i className="fa fa-user-circle"></i>
-                                    </div>  
-                                    <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload" ref="fileUpload"
-                                         onChange={this.uploadLogoImage.bind(this)} 
-                                    />
-                                    <div className="errorMsg">{this.state.errors2.fileUpload}</div>
-                                 </div>   
-                              </span>
-                            </div>  
-                            <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
-                              <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 row nopadding">
-                              { this.state.fileUpload!=="" ? 
-                                <div>
-                                  <label className="pull-right custFaTimes zeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
-                                 {
-                                  (this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "") === "pdf" || (this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "") === "PDF" ?
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
-                                      <img src="/images/pdf.png"/>
-                                      <span className="setp">{(this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "")}</span>
-                                    </div>
-                                    :
-                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
-                                      <img src={this.state.fileUpload} height="50" width="50"/>
-                                    </div>
-                                }
-
-                                </div>
-                                : 
-                                <div> </div>
-                              }
-                              </div>
-                            </div>                        
                             <div className=" col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
                               <label className="formLable">Date Of Birth <label className="requiredsign">*</label></label>
                                 <span className="blocking-span">
@@ -691,6 +756,114 @@ export default class distributeEditForm extends Component{
                                 </span>
                             </div>
                         </div>
+                          <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                            <div className="col-lg-6 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
+                              <label className="formLable">Education <label className="requiredsign">*</label></label>
+                              <span className="blocking-span">
+                               <div className="input-group inputBox-main  new_inputbx " >
+                                 <div className="input-group-addon remove_brdr inputIcon">
+                                 <i className="fa fa-graduation-cap"></i>
+                                </div>  
+                                <input type="text"  className="disableInput inputMaterial form-control inputText" ref="education"  name="education" required
+                                  value={this.state.education}
+                                  onChange={this.handleChange}
+                                />
+                                  <div className="errorMsg">{this.state.errors2.education}</div>
+                               </div>   
+                              </span>
+                            </div>
+                            <div className=" col-lg-6 col-md-6 col-xs-6 col-sm-6 inputContent">
+                              <label className="formLable">Website (If there is an existing website)<label className="requiredsign">*</label></label>
+                              <span className="blocking-span">
+                                 <div className="input-group inputBox-main  new_inputbx " >
+                                    <div className="input-group-addon remove_brdr inputIcon">
+                                       <i className="fa fa-user-circle"></i>
+                                    </div>  
+                                    <input type="text" className="disableInput inputMaterial form-control inputText" ref="website"  name="website" required
+                                        onChange={this.handleChange.bind(this)}
+                                        value={this.state.website}
+                                    />
+                                    <div className="errorMsg">{this.state.errors2.website}</div>
+                                 </div>   
+                              </span>
+                            </div>
+                          </div>
+                          <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                            <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
+                              <label htmlFor='fileUpload' className="formLable">Attach PAN <label className="requiredsign">*</label></label>
+                                <span className="blocking-span">
+                                   <div className="input-group inputBox-main  new_inputbx " >
+                                      <div className="input-group-addon remove_brdr inputIcon">
+                                         <i className="fa fa-user-circle"></i>
+                                      </div>  
+                                      <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload" ref="fileUpload"
+                                           onChange={this.uploadLogoImage.bind(this)} 
+                                      />
+                                      <div className="errorMsg">{this.state.errors2.fileUpload}</div>
+                                   </div>   
+                                </span>
+                            </div>  
+                            <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
+                              <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 row nopadding">
+                              { this.state.portfolioImage1!=="" ? 
+                                <div>
+                                  <label className="pull-right custFaTimes zeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
+                                 {
+                                  (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
+                                      <img src="/images/pdf.png"/>
+                                      <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
+                                    </div>
+                                    :
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
+                                      <img src={this.state.portfolioImage1} height="50" width="50"/>
+                                    </div> 
+                                }
+
+                                </div>
+                                : 
+                                <div> </div>
+                              }
+                              </div>
+                            </div>  
+                            <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
+                              <label htmlFor='filrUpload' className="formLable">Attach Aadhar <label className="requiredsign">*</label></label>
+                                <span className="blocking-span">
+                                   <div className="input-group inputBox-main  new_inputbx " >
+                                      <div className="input-group-addon remove_brdr inputIcon">
+                                         <i className="fa fa-user-circle"></i>
+                                      </div>  
+                                      <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload1" ref="fileUpload1"
+                                           onChange={this.uploadLogoImage1.bind(this)} 
+                                      />
+                                      <div className="errorMsg">{this.state.errors2.fileUpload1}</div>
+                                   </div>   
+                                </span>
+                            </div>  
+                            <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
+                              <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 row nopadding">
+                              { this.state.portfolioImage2!=="" ? 
+                                <div>
+                                  <label className="pull-right custFaTimes zeromargin labelColor" title="Delete image"  onClick={this.deleteBlogimage1.bind(this)}>X</label>
+                                 {
+                                  (this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "") === "pdf" || (this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "") === "PDF" ?
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
+                                      <img src="/images/pdf.png"/>
+                                      <span className="setp">{(this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "")}</span>
+                                    </div>
+                                    :
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
+                                      <img src={this.state.portfolioImage2} height="50" width="50"/>
+                                    </div>
+                                }
+
+                                </div>
+                                : 
+                                <div> </div>
+                              }
+                              </div>
+                            </div>
+                          </div>
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                            <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin setplusZindex inputContent">
                             <label className="formLable">Location <label className="requiredsign">*</label></label>
@@ -748,7 +921,8 @@ export default class distributeEditForm extends Component{
                                  </div>   
                               </span>
                             </div> 
-                          </div>                                                                             
+                        </div>  
+                                                                                                   
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 setZindex">
                            <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent setZindex">
                             <label className="formLable">How long you have been doing Financial Product distribution, Broking, planning or 
@@ -767,7 +941,7 @@ export default class distributeEditForm extends Component{
                               </span>
                             </div>                          
                         </div>
-                        <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                        <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 mb30">
                            <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin inputContent">
                              <label className="formLable">Do you have your own Office? <label className="requiredsign">*</label></label>
                             </div>  
@@ -785,6 +959,66 @@ export default class distributeEditForm extends Component{
                                 </div>
                             </div>
                         </div>
+{/*
+                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+                           <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 group btmmargin setplusZindex inputContent">
+                            <label className="formLable">Location <label className="requiredsign">*</label></label>
+                              <span className="blocking-span setplusZindex">
+                                 <div className="input-group inputBox-main  new_inputbx " >
+                                    <div className="input-group-addon remove_brdr inputIcon">
+                                       <i className="fa fa-map-marker"></i>
+                                    </div> 
+                                      {this.state.gmapsLoaded ?                        
+                                        <PlacesAutocomplete
+                                              value         ={this.state.adressLine} 
+                                              onChange      ={this.handleChangePlaces}
+                                              onSelect      ={this.handleSelect}
+                                              searchOptions ={searchOptions}
+                                        >
+                                        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                                          <div>
+                                              <input 
+                                                {...getInputProps({
+                                                  className: 'form-control  abacusTextbox oesSignUpForm sentanceCase'
+                                                  ,
+                                                })} 
+                                              />
+                                              <div className="autocomplete-dropdown-container">
+                                                {loading && <div>Loading...</div>}
+                                                {suggestions.map(suggestion => {
+                                                  const className = suggestion.active
+                                                    ? 'suggestion-item--active'
+                                                    : 'suggestion-item';
+                                                  // inline style for demonstration purpose
+                                                  const style = suggestion.active
+                                                    ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                                                    : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                                                  return (
+                                                    <div
+                                                      {...getSuggestionItemProps(suggestion, {
+                                                        className,
+                                                        style,
+                                                      })}
+                                                    >
+                                                      <span>{suggestion.description}</span>
+                                                    </div>
+                                                  );
+                                                })}
+                                              </div>
+                                          </div>
+                                          )}
+                                        </PlacesAutocomplete>
+                                        : 
+                                    <input type="text"  className="disableInput inputMaterial setplusZindex form-control inputText" name="adressLine" ref="adressLine" required 
+                                      onChange={this.handleChange}
+                                      value={this.state.adressLine}  
+                                      />
+                                    }
+                                 </div>   
+                              </span>
+                            </div> 
+                        </div>*/} 
+
                       </div>
                        
                       

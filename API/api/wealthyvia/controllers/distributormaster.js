@@ -3,6 +3,11 @@ const Distributormaster = require('../models/distributormaster.js');
 var request             = require('request-promise');
 const globalVariable    = require("../../../nodemon.js");
 const User              = require('../../coreAdmin/models/users.js');
+const Counter = require('../models/counter.js');
+const OfferSub      = require('../models/offeringsubscriptions.js');
+var moment          = require('moment');
+
+
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -10,8 +15,50 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+function getNextSequence(code) {
+    return new Promise( (resolve, reject)=>{ 
+        Counter.findByIdAndUpdate(
+            { "_id": code },
+            { "$inc": { "seq": 1 } }
+            )
+            .then(counter => {
+                if(counter){
+                    console.log("counter", counter);
+                    let num = counter.seq;
+                    let str = num.toString().padStart(4, "0")
+                    console.log(str) 
+                    resolve( str ) ;
+                }
+                else{
+                    const distributorCounter = new Counter({
+                        "_id"   : code, 
+                        "seq"   : 101,
+                     });
+                
+                    distributorCounter.save()
+                        .then(data=>{
+                            let num = 100;
+                            let str = num.toString().padStart(4, "0")
+                            console.log(str) 
+                            resolve( str ) ;
+
+                            })
+                            .catch(err =>{
+                                reject(error);
+                            });
+                }
+                
+            })
+            .catch(error=>{
+                reject(error);
+            });
+
+    });  
+      
+}
+
 exports.create_distributor = (req, res, next) => {
-	Distributormaster.findOne({email:{$elemMatch:{address:req.body.email}}})
+	Distributormaster.findOne({"email.address":req.body.email })
 		.exec()
 		.then(data =>{
 			if(data){
@@ -101,13 +148,67 @@ exports.fetch_distributor_list = (req,res,next) => {
                 });
 };
 
+function getusercountsbycode(distributorCode) {
+  return new Promise((resolve, reject) => {
+    User.find({distributorCode:distributorCode, roles:'user'})
+        .count()
+        .exec()
+        .then(countuser=>{          
+                    resolve(countuser);            
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+  })
+}
+
 exports.fetch_All_distributor_list = (req,res,next) => {
     Distributormaster.find({})
         .sort({createdAt : -1})
          .exec()
          .then(data=>{
             if(data.length > 0){
-                res.status(200).json(data);
+
+                
+                let promises = data.map(async element => {
+                    var obj = element.toObject();
+                        // console.log("element.franchiseCode", element.franchiseCode);
+                        if(element.distributorCode){
+                            var usercount = await getusercountsbycode(element.distributorCode);  
+                            if(element.franchiseCode){
+                                 var  franchiseuser =   await getdistributoridbydistricode(element.franchiseCode);
+                                obj.franchiseuser = franchiseuser;
+                                // console.log("franchiseuser", franchiseuser);
+                            }
+                            else{
+                                obj.franchiseuser = null
+                            }
+                           
+                                                    
+                            obj.usercount = usercount;
+                                //console.log("Record ",obj);                                
+                            return obj;
+                            
+                        }
+                        else{                            
+                            obj.usercount = 0;                        
+                            return obj;                    
+                        }
+                    
+                });
+
+
+                // Wait for all Promises to complete
+                Promise.all(promises)
+                  .then(results => {
+                    //console.log("result", results);
+                    res.status(200).json(results);
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  })
+              
+                
             }else{
                 res.status(200).json({message : "DATA_NOT_FOUND"})
             }
@@ -120,6 +221,209 @@ exports.fetch_All_distributor_list = (req,res,next) => {
                 });
 };
 
+function getfranchiseclient(distributorCode) {
+  return new Promise((resolve, reject) => {
+    User.find({distributorCode:distributorCode, roles:'user'})
+        .exec()
+        .then(user=>{          
+                    if(user && user.length > 0){
+                        let promises = user.map(element => {
+                        
+                            return getUserOrderdetails(element._id)
+                            .then(offsub => {
+                                if(offsub && offsub.length > 0){
+                                    var i=0;
+                                    var feespaid = 0;
+                                    var feespending = 0;
+                                    for(i=0; i<offsub.length; i++){
+                                        if(offsub[i].endDate >= moment(new Date()).format("YYYY-MM-DD") ){
+                                            feespaid += offsub[i].amountPaid ? offsub[i].amountPaid : 0 ;                                            
+                                        }
+                                        else{
+                                            feespending += offsub[i].amountPaid ? offsub[i].amountPaid : 0;
+                                        }
+                                    }
+                                    if(i === offsub.length){
+                                        var obj = {};
+                                        obj.feespaid = feespaid;
+                                        obj.feespending = feespending;
+                                        
+                                        return obj;
+                                    }
+                                }
+                                else{
+                                    
+                                    var obj = {};
+                                    obj.feespaid = 0;
+                                    obj.feespending = 0
+                                    
+                                    return obj;
+                                }
+                                
+                            })                        
+                        
+                        });
+
+                        // Wait for all Promises to complete
+                        Promise.all(promises)
+                          .then(results => {
+                            //console.log("result", results);
+                            resolve(results);
+                          })
+                          .catch(e => {
+                            reject(e);
+                          })
+                    }
+                    else{
+                        resolve(user);
+                    }          
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+  })
+}
+
+function getUserOrderdetails(user_id){
+    return new Promise( (resolve, reject)=>{ 
+            //console.log("call");
+            OfferSub.find({user_ID : user_id})
+                .then(userData => {
+                    resolve( userData ) ;
+                })
+                .catch(error=>{
+                    reject(error);
+                });
+
+    });
+}
+
+exports.fetch_my_subfranchise_list = (req,res,next) => {
+    Distributormaster.find({franchiseCode: req.params.distributorCode})
+        .sort({createdAt : -1})
+         .exec()
+         .then(data=>{
+            if(data.length > 0){
+                let promises = data.map(element => {
+                if(element.distributorCode){
+                    return getfranchiseclient(element.distributorCode)
+                    .then(user => {
+                        // console.log("userdata", user);
+                        var feespaid = 0;
+                        var feespending = 0;
+                        // console.log(user.length);
+                        if(user && user.length>0){
+                            // console.log(user);
+                            var obj = element.toObject();
+                            
+                            for(i=0; i<user.length; i++){
+                                    feespaid += user[i].feespaid;                                            
+                                    feespending += user[i].feespending;
+                            }
+                            if(i === user.length){
+                                var obj = element.toObject();
+                                //console.log("obj>", obj);
+                                obj.usercount = user.length;
+                                obj.feespaid = feespaid;
+                                obj.feespending = feespending;
+                                
+                                return obj;
+                            }
+                             
+                            
+                        }
+                        else{
+
+                            var obj = element.toObject();
+                            //console.log("obj>", obj);
+                            obj.usercount = 0;
+                            obj.feespaid = feespaid;
+                            obj.feespending = feespending;
+                            //console.log("Record ",obj);
+                            
+                            return obj;
+                        }
+                        
+                    })
+                }
+                else{
+                    var obj = element.toObject();
+                    obj.usercount = 0;                        
+                    return obj;                    
+                }
+                
+                });
+
+                // Wait for all Promises to complete
+                Promise.all(promises)
+                  .then(results => {
+                    //console.log("result", results);
+                    res.status(200).json(results);
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  })
+                
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+
+/*
+exports.fetch_my_subfranchise_list = (req,res,next) => {
+    Distributormaster.find({franchiseCode: req.params.distributorCode})
+        .sort({createdAt : -1})
+         .exec()
+         .then(data=>{
+            if(data.length > 0){
+                let promises = data.map(element => {
+                if(element.distributorCode){
+                    return getusercountsbycode(element.distributorCode)
+                    .then(usercount => {
+                        var obj = element.toObject();
+                        obj.usercount = usercount;
+                        //console.log("Record ",obj);
+                        
+                      return obj;
+                    })
+                }
+                else{
+                    var obj = element.toObject();
+                    obj.usercount = 0;                        
+                    return obj;                    
+                }
+                
+                });
+
+                // Wait for all Promises to complete
+                Promise.all(promises)
+                  .then(results => {
+                    //console.log("result", results);
+                    res.status(200).json(results);
+                  })
+                  .catch(e => {
+                    console.error(e);
+                  })
+                
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+*/
 exports.patch_distributor = (req,res,next) => {
     console.log("inside a update function");
     Distributormaster.updateOne(
@@ -245,34 +549,42 @@ exports.add_additional_info_distributor = (req,res,next) => {
 
 exports.setstatus_distributor = (req,res,next) => {
     console.log("inside a set statusfunction");
-    Distributormaster.updateOne(
-                        {_id:req.body.id},
-                        {
-                            $set : {
-                                 "status"            : req.body.status, 
-                                 "userId"            : req.body.userId,
-                                "updateLog"          : [{
-                                        updatedBy    : req.body.updatedBy, 
-                                        updatedAt    : new Date,
-                                        }] 
-                            }
-                        }
-                    )
-        .exec()
-        .then(data=>{
-            console.log("data",data);
-            res.status(200).json({
-                data : data,
-                message :"DISTRIBUTOR_UPDATED"
-            })
-        })
-        .catch(error=>{
-                res.status(500).json({
-                    error : error,
-                    message : "Some issue occurred while updating Distributer Data!"
+    
+    getdistributorcode();
+    async function getdistributorcode(){
+        var distributorCode = await getNextSequence("distributorCode");
+        console.log("ds code", distributorCode);
+            Distributormaster.updateOne(
+                {_id:req.body.id},
+                {
+                    $set : {
+                         "status"            : req.body.status, 
+                         "userId"            : req.body.userId,
+                         "distributorCode"   : "WVP"+distributorCode,
+                        "updateLog"          : [{
+                                updatedBy    : req.body.updatedBy, 
+                                updatedAt    : new Date,
+                                }] 
+                    }
+                }
+            )
+            .exec()
+            .then(data=>{
+                console.log("data",data);
+                res.status(200).json({
+                    data : data,
+                    message :"DISTRIBUTOR_UPDATED"
                 })
-        });
- 
+            })
+            .catch(error=>{
+                    res.status(500).json({
+                        error : error,
+                        message : "Some issue occurred while updating Distributer Data!"
+                    })
+            });
+        }
+                   
+     
 }
 
 
@@ -311,11 +623,11 @@ exports.delete_distributor = (req,res,next) =>{
 };
 
 exports.fetch_distributor_name = (req,res,next) => {
-    console.log("inside fun");
+    // console.log("inside fun");
     Distributormaster.findOne({_id : req.params.ID})
          .exec()
          .then(data=>{
-                    console.log("data",data);
+                    // console.log("data",data);
 
             if(data){
                 res.status(200).json(data);
@@ -332,11 +644,11 @@ exports.fetch_distributor_name = (req,res,next) => {
 };
 
 exports.fetch_distributor_by_userid = (req,res,next) => {
-    console.log("inside fun");
+    // console.log("inside fun");
     Distributormaster.findOne({ userId : req.params.ID })
          .exec()
          .then(data=>{
-                    console.log("data",data);
+                    // console.log("data",data);
 
             if(data){
                 res.status(200).json(data);
@@ -397,6 +709,7 @@ exports.distributor_join_email_otp = (req,res,next)=>{
                                         "website"            : req.body.website, 
                                         "gst"               : req.body.gst, 
                                         "status"            : "New", 
+                                        "franchiseCode"     : req.body.franchiseCode, 
                                         "userId"            : null,
                                         "createdBy"         : req.body.createdBy, //_id of User or null
                                         "createdAt"         : new Date(),    
@@ -521,7 +834,7 @@ exports.distributor_update_email_otp = (req,res,next) =>{
                                         "body"      : {
                                                             email   : distributor.email.address, 
                                                             subject : "Wealthyvia OTP",
-                                                            text    : "Wealthyvia updated OTP is "+ optEmail, 
+                                                            mail    : "Wealthyvia updated OTP is "+ optEmail, 
                                                        },
                                         "json"      : true,
                                         "headers"   : {
@@ -557,3 +870,47 @@ exports.distributor_update_email_otp = (req,res,next) =>{
             });
     
 };
+
+exports.fetch_distributor_by_distributorcode = (req,res,next) => {
+    // console.log("inside fun get by distributor code");
+    Distributormaster.findOne({ distributorCode : req.params.ID })
+         .exec()
+         .then(data=>{
+                    // console.log("data",data);
+
+            if(data){
+                res.status(200).json(data);
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+
+function getdistributoridbydistricode(distributorCode){
+    return new Promise((resolve, reject) => {
+         // console.log("distri", distributorCode);
+    Distributormaster.findOne({distributorCode:distributorCode})
+        .exec()
+        .then(user=>{ 
+         // console.log("user", user); 
+            if(user){
+                // console.log("user", user); 
+                resolve(user._id);   
+            }  
+            else{
+                console.log("user", null); 
+                resolve(null);   
+            }      
+                             
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+  })
+}

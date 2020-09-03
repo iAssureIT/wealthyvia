@@ -25,6 +25,8 @@ const invoiceRoutes 				= require('./api/wealthyvia/routes/invoice.js');
 const productratesRoutes 			= require('./api/wealthyvia/routes/productrates.js');
 const researchreportRoutes 			= require('./api/wealthyvia/routes/researchreport.js');
 const distributorMasterRoutes 		= require('./api/wealthyvia/routes/distributormaster.js');
+const toolsRoutes 	 				= require('./api/wealthyvia/routes/uploadurl.js');
+const offeringorderRoutes 			= require('./api/wealthyvia/routes/offeringorders.js');
 // global.JWT_KEY = "secret";
 
 mongoose.connect('mongodb://localhost/'+globalVariable.dbname,{
@@ -76,6 +78,8 @@ app.use('/api/invoice',invoiceRoutes);
 app.use('/api/productrates',productratesRoutes);
 app.use('/api/researchreport',researchreportRoutes);
 app.use('/api/distributormaster',distributorMasterRoutes);
+app.use('/api/uploadVideoUrl',toolsRoutes);
+app.use('/api/offeringorders',offeringorderRoutes);
 
 app.post('/send-email', (req, res)=> {
 	// console.log('req',req.body);
@@ -135,8 +139,8 @@ app.post('/send-email-admin', (req, res)=> {
 			port: 587,
 			// port: 465,
 			auth: {
-				user: 'wealthyviaapp@gmail.com',
-				pass: 'Wealthyvia@123'
+				user: 'Partner@wealthyvia.com',
+				pass: 'Wealthy19$'
 				// user : 'iassureitmail@gmail.com',
 				// pass : 'iAssureIT@123'
 			}
@@ -144,7 +148,7 @@ app.post('/send-email-admin', (req, res)=> {
 		console.log('after transport', req.body.emaillist);
 		let mailOptions = {
 			
-			from   : '"Wealthyvia" <kycwealthyvia@gmail.com>', // sender address
+			from   : '"Wealthyvia" <Partner@wealthyvia.com>', // sender address
 			// from   : '"Wealthyvia" <iassureitmail@gmail.com>', // sender address
 			to     : req.body.emaillist,
 			subject: req.body.subject, // Subject line

@@ -93,64 +93,8 @@ export default class disProfile extends Component{
         )
       }
     })    
-  }  
-  //   setDistributorstatus(event){   
-  //   event.preventDefault(); 
-  //   var id = event.currentTarget.id;
-  //   var firstname = $(event.currentTarget).attr('data-firstname');
-  //   var lastname = $(event.currentTarget).attr('data-lastname');
-  //   var email = $(event.currentTarget).attr('data-email');
-  //   var phone = $(event.currentTarget).attr('data-phone');
-  //   var idnstatusarray = id.split("-");
-  //   var id = idnstatusarray[0];
-  //   var status = idnstatusarray[1];
-  //     console.log("status",status);
-    
-  //   var formValues = {
-  //     id: id,
-  //     status: status
-  //   }
+  }
 
-  //   Axios
-  //     .patch("api/distributormaster/set/status",formValues)
-  //      .then((response)=>{
-  //         console.log("status .data = ",response.data);
-  //        if(response.data){
-  //         Swal.fire("Distributer Status updated");
-  //         this.getDistributorFormData();      
-  //       }
-  //       if(status === "Active" ){
-  //           var auth={
-  //             fullName      : firstname + " "+ lastname,
-  //             firstName     : firstname,
-  //             lastName      : lastname,
-  //             email         : email,
-  //             mobNumber     : phone,
-  //             pwd           : "welcome@123",
-  //             role          : 'users',
-  //             status        : 'Active',
-  //         }
-  //         console.log("auth",auth);
-  //         console.log("auth",auth.role);
-  //         Axios.post("/api/users/post/signup/user",auth)
-  //        .then((res) => {
-  //             console.log('sendDataToUser in result==>>>', res.data)
-  //             if(status === 'Active'){
-  //                 Swal.fire('Congrats!','Distributor Data Approved  Successfully!' , 'success');
-  //             }
-  //         })
-  //         .catch((error) => { console.log('notification error: ',error)})
-  //         // console.log("Distributer Master Data inserted successfully!", response.data);
-  //       }else{   
-  //               Swal.fire('Oops!','Distributor  Data reject Successfully!' , 'success');
-  //             }
-  //      })
-
-  //      .catch((error)=>{
-  //       console.log("Error during get Status Data = ", error);
-  //       Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
-  //      });    
-  // }
 
 
 
@@ -165,7 +109,6 @@ export default class disProfile extends Component{
     var id = idnstatusarray[0];
     var status = idnstatusarray[1];
       console.log("status",status);
-      console.log("firstname", firstname);
     
     var formValues = {
       id: id,
@@ -403,10 +346,6 @@ export default class disProfile extends Component{
     
   }
 
-
-
-
-
   render(){
     var params = this.props.match.params;
         console.log("params = ",params);
@@ -440,26 +379,36 @@ export default class disProfile extends Component{
                         <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li>
                         <li><p><b>DOB:</b>&nbsp;{this.state.DistributorData.dob}</p></li>
                         <li><p><b>Submitted On:</b>&nbsp;{this.state.DistributorData.currentDate}</p></li>
+                        <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload1}>{
+                              (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "PDF" ?
+                                  <img src="/images/pdf.png"/>
+                                :
+                                (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "png"
+                                ?
+                                  <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
+                                :
+                                  null
+                            }  </a></p>
+                        </li>
                       </ul>
                     </div>
                     <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
                       <ul className="container noMl fontWeight pl">
                         <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
                         <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
+                        <li><p><b>Website:</b> &nbsp;{this.state.DistributorData.website}</p></li>
                         <li><p><b>Distributor has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
                         <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload}> 
                            {
                               (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
                                   <img src="/images/pdf.png"/>
                                 :
+                                (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "png"?
                                   <img src={this.state.DistributorData.fileUpload} height="50" width="50"/>
-                            }  </a></p></li>
-                        <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload1}>{
-                              (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
-                                  <img src="/images/pdf.png"/>
                                 :
-                                  <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
+                                  null
                             }  </a></p></li>
+
                             
                       </ul>
                     </div>

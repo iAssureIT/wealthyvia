@@ -92,7 +92,27 @@ exports.fetch_offering_all_list = (req,res,next) => {
          .sort({createdAt : -1})
          .skip(startRange)
          .limit(limitRange)
-         .select("offeringTitle bannerImage createdBy createdAt")
+         .select("offeringTitle bannerImage price createdBy createdAt")
+         .exec()
+         .then(data=>{
+            if(data.length > 0 ){
+                res.status(200).json(data);
+            }else{
+                res.status(200).json({message : "DATA_NOT_FOUND"})
+            }
+         })
+         .catch(err =>{
+                    console.log(err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
+exports.fetch_offering_price_list = (req,res,next) => {
+    
+    Offering.find({"price" : { $ne : null }})
+         .sort({createdAt : -1})
+         .select("offeringTitle bannerImage price createdBy createdAt")
          .exec()
          .then(data=>{
             if(data.length > 0 ){
@@ -206,5 +226,24 @@ exports.fetch_offering_name = (req,res,next) => {
                         error: err
                     });
                 });
+};
+
+exports.patch_pricingoffering = (req,res,next) => {
+    Offering.updateOne(
+                        {_id:req.params.ID},
+                        {
+                            $set : {
+                                "price"     : req.body.price
+                            }
+                        }
+                    )
+         .exec()
+         .then(data=>{
+            if(data.nModified === 1){
+                res.status(200).json({message : "OFFERING_UPDATED"})
+            }else{
+                res.status(200).json({message : "OFFERING_NOT_UPDATED"})
+            }
+         })
 };
 

@@ -27,7 +27,7 @@ class ForgotPassword extends Component {
   
            axios.patch('/api/users/patch/password/email',{emailId:this.refs.enterEmail.value})
           .then((response)=> {
-            console.log("response.data.ID",response.data.ID);
+            //console.log("response.data.ID",response.data.ID);
             if(response.data.ID !== undefined && response.data.ID !== "undefined"){
               swal("Great","Information submitted successfully and OTP is sent to your registered Email ID");
               this.props.history.push("/confirm-otp/"+response.data.ID);

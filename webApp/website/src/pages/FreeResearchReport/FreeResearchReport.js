@@ -75,7 +75,7 @@ export default class FreeResearchReport extends Component {
   	getData(event)
   {
       var Filekey  =  event.currentTarget.getAttribute("data-key");
-      console.log("Filekey",event.currentTarget.getAttribute("data-key"))
+      // console.log("Filekey",event.currentTarget.getAttribute("data-key"))
         axios.get('/api/fileUpload/image/'+Filekey) 
       .then( (UploadedImg)=>{      
         this.setState({
@@ -398,7 +398,7 @@ export default class FreeResearchReport extends Component {
         
         axios.post('/api/researchreport/get/all/list/bydate',formValues)
       .then((response) => {
-      	console.log("response", response.data);
+      	// console.log("response", response.data);
         this.setState({researchreportlist:response.data})
       })
       .catch((error) =>{

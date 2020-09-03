@@ -156,9 +156,30 @@ export default class Leftsidebar extends Component{
                     <li className="add" onClick={this.eventclk.bind(this)}>
                       <Link to="/new-distributor-list">
                         <i className="fa fa-file"></i>
-                          Distributor List
+                          Referrer List
                       </Link>
-                    </li>                  
+                    </li>
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/clientlist">
+                        <i className="fa fa-file"></i>
+                          Client List
+                      </Link>
+                    </li>
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/tools">
+                        <i className="fa fa-file"></i>
+                          Tools Management
+                      </Link>
+                    </li>  
+
+                    <li className="add" onClick={this.eventclk.bind(this)}>
+                      <Link to="/product-pricing">
+                        <i className="fa fa-file"></i>
+                          Product Pricing
+                      </Link>
+                    </li>                   
                                  
                 </ul>
 

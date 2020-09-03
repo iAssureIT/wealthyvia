@@ -5,7 +5,7 @@ import axios                              from 'axios';
 import S3FileUpload                       from 'react-s3';
 import "./Header.css";
 var array        = [];
-var answersarray = [];
+var answersarray = []; 
 
 export default class Header extends Component {
 
@@ -1614,7 +1614,11 @@ export default class Header extends Component {
                                 </div>
                              </div>
                      
-                      <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                     {
+                       !token ? <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                       :
+                       null 
+                     }
      </div> 
       </div>    
     );

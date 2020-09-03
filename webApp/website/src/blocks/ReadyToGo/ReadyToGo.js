@@ -1712,7 +1712,7 @@ validateFormReqReview() {
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter backColorYellow mt20">
                      <label className="readyTo">Ready to go?</label><br/>
                      <span className="logoText"><b><i>Start your Wealth Creation with us, Today!!</i> </b></span><br/>
-                     <div className="col-lg-11 col-lg-offset-1 noPadding">
+                     <div className="col-lg-8 col-lg-offset-2 noPadding">
                      
                       {token ==="" ?
                       <a  href="/login" ><div className="col-lg-3 col-lg-offset-3 enquireNow">Enquire Now</div></a>

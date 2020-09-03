@@ -44,11 +44,11 @@ class ConfirmPartnerEmailOtp extends Component {
                           adminemaillist.push(admindata[i].email);
                         }
                       }
-                      console.log("admin email list", adminemaillist);
+                      adminemaillist.push("kycwealthyvia@gmail.com");
+                      // console.log("admin email list", adminemaillist);
                       const formValues2 = {
                         "emaillist"     : adminemaillist ,
                         "subject"       : "Distributor joined Wealthyvia!",
-                        "text"          : "", 
                         "mail"          : 'Dear Admin,' + '<br/>'+
                                           'A Distributor has joined Wealthyvia as a Partner!'+                          
                                           "<br/>"+
@@ -72,7 +72,7 @@ class ConfirmPartnerEmailOtp extends Component {
                                           
 
                       };
-                      console.log("notification",formValues2); 
+                      // console.log("notification",formValues2); 
                       
                         axios
                         .post('/send-email-admin',formValues2)
@@ -89,7 +89,6 @@ class ConfirmPartnerEmailOtp extends Component {
                       const formValues1 = {
                         "email"         : distributor.email.address ,
                         "subject"       : "Welcome to Wealthyvia!",
-                        "text"          : "", 
                         "mail"          : 'Dear ' + distributor.firstname +' '+ distributor.lastname + ', <br/><br/>'+                          
                                           "Thank you for joining Wealthyvia as a Partner! <br/> " + 
                                           "Your Partner Profile will be approved soon by Admin & you will be notified with your login credentials after approval." +
@@ -98,7 +97,7 @@ class ConfirmPartnerEmailOtp extends Component {
                                           "Team Wealthyvia. " ,
 
                       };
-                      console.log("notification",formValues1); 
+                      // console.log("notification",formValues1); 
                       
                         axios
                         .post('/send-email',formValues1)
