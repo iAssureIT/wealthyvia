@@ -1713,15 +1713,11 @@ validateFormReqReview() {
                      <label className="readyTo">Ready to go?</label><br/>
                      <span className="logoText"><b><i>Start your Wealth Creation with us, Today!!</i> </b></span><br/>
                      <div className="col-lg-11 col-lg-offset-1 noPadding">
-                     {token === "" ?
-                      <a  href="/login" ><div className="buyNowButtonPP col-lg-3">Invest Now</div></a>
-                        :
-                      <div className="buyNowButtonPP col-lg-3"  data-toggle="modal" data-target="#myModal">Invest Now</div>
-                      }
+                     
                       {token ==="" ?
-                      <a  href="/login" ><div className="col-lg-offset-1 col-lg-3 enquireNow">Enquire Now</div></a>
+                      <a  href="/login" ><div className="col-lg-3 col-lg-offset-3 enquireNow">Enquire Now</div></a>
                         :
-                      <div className="col-lg-offset-1 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                      <div className="col-lg-offset-3 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
                       }
                       
                       <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>

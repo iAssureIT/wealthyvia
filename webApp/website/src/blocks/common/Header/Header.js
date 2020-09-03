@@ -1328,18 +1328,7 @@ export default class Header extends Component {
                                         <a href="/login">Login/Signup </a>
                                       </li>
                                       }
-                                      {
-                                          token ?
-                                            <li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
-                                                    <span  className="investNowHeadOtherSmall hidden-md hidden-lg" >Invest Now</span>
-                                                    <label  className="investNowHead  hidden-sm hidden-xs" >Invest Now</label>
-                                            </li>                     
-                                          :
-                                            <a  href="/login" ><li className="dropdown investNowHeadBefore">
-                                              <span >Invest Now</span>
-                                            </li>   
-                                            </a>                    
-                                      }
+                                      
                                     </ul>
                                     :
                                     <ul className="nav navbar-nav navbar-right customUlSmall width50">
@@ -1399,19 +1388,7 @@ export default class Header extends Component {
                                       <li className="dropdown">
                                         <a href="/join-as-partner">Join as a Partner </a>
                                       </li>  
-                                      {
-                                        token ?
-                                          <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
-                                                  <span  className="investNowHeadOtherSmall hidden-md hidden-lg" >Invest Now</span>
-                                                  <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
-                                          </li>                     
-                                        :
-                                          <a  href="/login" >
-                                          <li className="dropdown">
-                                            <span className="investNowHeadOtherSmall" >Invest Now</span>
-                                          </li>   
-                                          </a>                    
-                                      }
+                                      
                                                                         
                                     </ul>
                                   }
@@ -1505,18 +1482,7 @@ export default class Header extends Component {
                                         <a href="/login">Login/Signup </a>
                                       </li>
                                       }
-                                      {
-                                          token ?
-                                            <li className="dropdown " data-toggle="modal" data-target="#myModalHeader">
-                                                    <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
-                                                    <label  className="investNowHead  hidden-sm hidden-xs" >Invest Now</label>
-                                            </li>                     
-                                          :
-                                            <a  href="/login" ><li className="dropdown investNowHeadBefore">
-                                              <span >Invest Now</span>
-                                            </li>   
-                                            </a>                    
-                                      }
+                                      
                                     </ul>
                                     :
                                     <ul className="nav navbar-nav navbar-right customUl width50">
@@ -1577,18 +1543,7 @@ export default class Header extends Component {
                                        <li className="dropdown">
                                         <a href="/join-as-partner" >Join as a Partner </a>
                                       </li>
-                                      {
-                                        token ?
-                                          <li className="dropdown mt8 " data-toggle="modal" data-target="#myModalHeader">
-                                                  <span  className="investNowHeadOther hidden-md hidden-lg" >Invest Now</span>
-                                                  <label  className="investNowHead hidden-sm hidden-xs" >Invest Now</label>
-                                          </li>                     
-                                        :
-                                          <a  href="/login" ><li className="dropdown investNowHeadBefore">
-                                            <span >Invest Now</span>
-                                          </li>   
-                                          </a>                    
-                                      }
+                                      
 
                                     </ul>
                                   }
