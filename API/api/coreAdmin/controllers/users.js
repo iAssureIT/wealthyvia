@@ -287,7 +287,10 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 																	createdOn     	: new Date(),
 																	optEmail 	  	: emailOTP,
 																	status		  	: req.body.status,																	
-																	clientId 	  : "WL"+(countuser+1)
+																	clientId 	  : "WL"+(countuser+1),
+																	city          : req.body.city,
+																	states        : req.body.states,
+																	dob           : req.body.dob
 																},
 														distributorCode	: req.body.distributorCode,		
 														roles 		: [req.body.role]
@@ -797,6 +800,9 @@ exports.fetch_users_kycrisk = (req,res,next)=>{
 									"risksubmit" : data.profile.risksubmit,
 									"panNumber" : data.profile.panNumber,
 									"gstNumber" : data.profile.gstNumber,
+									"city" 		: data.profile.city,
+									"states" 	: data.profile.states,
+									"dob" 		: data.profile.dob,
 							});
 			}else{
 				res.status(200).json({message:"USER_NOT_FOUND"});

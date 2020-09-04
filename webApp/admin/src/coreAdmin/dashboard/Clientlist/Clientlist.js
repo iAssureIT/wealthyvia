@@ -146,6 +146,9 @@ class Clientlist extends Component {
                                 <th>Full Name</th> 
                                 <th>Email</th>
                                 <th>Mobile Number</th> 
+                                <th>City</th> 
+                                <th>State</th> 
+                                <th>Age</th>
                                 <th>Product Opted</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
@@ -172,6 +175,9 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {b.fullName} </td> 
                                                 <td className="col-lg-1"> {b.email} </td> 
                                                 <td className="col-lg-1"> {b.mobNumber} </td> 
+                                                <td className="col-lg-1"> {b.city} </td> 
+                                                <td className="col-lg-1"> {b.states} </td> 
+                                                <td className="col-lg-1"> {b.dob ? moment().diff(b.dob, 'years') : '' } </td> 
                                                 <td className="col-lg-1"> {sub.offeringTitle} </td> 
                                                 <td className="col-lg-1"> {sub.startDate} </td> 
                                                 <td className="col-lg-1"> {sub.endDate} </td> 
@@ -197,7 +203,10 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {b.clientId} </td>
                                                 <td className="col-lg-1"> {b.fullName} </td> 
                                                 <td className="col-lg-1"> {b.email} </td> 
-                                                <td className="col-lg-1"> {b.mobNumber} </td> 
+                                                <td className="col-lg-1"> {b.mobNumber} </td>
+                                                <td className="col-lg-1"> {b.city} </td> 
+                                                <td className="col-lg-1"> {b.states} </td> 
+                                                <td className="col-lg-1"> {b.dob ? moment().diff(b.dob, 'years') : '' } </td> 
                                                 <td className="col-lg-1">  </td> 
                                                 <td className="col-lg-1">  </td> 
                                                 <td className="col-lg-1"> </td>

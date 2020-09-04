@@ -603,6 +603,9 @@ exports.list_offerSubforclients_admin = (req,res,next) => {
 										"lastname"	: data[i].profile.lastname,
 										"email"		: data[i].profile.emailId, //Mandatory 
 										"mobNumber" : data[i].profile.mobNumber,
+										"city" 		: data[i].profile.city,
+										"states" 	: data[i].profile.states,
+										"dob" 		: data[i].profile.dob,
 										"role"      : data[i].roles, //Mandatory
 										"status"	: data[i].profile.status, //Either "Active" or "Inactive"
 										"fullName"	: data[i].profile.fullName,

@@ -20,6 +20,7 @@ export default class Header extends Component{
         email    : "",
         mobile   : "",
         logo     : "",
+        distributorCode : ''
     }
   }
    
@@ -28,6 +29,7 @@ export default class Header extends Component{
    
     axios.get("/api/users/get/"+Uid)
       .then((response)=>{ 
+        console.log("disuser", response.data);
           this.setState({
               userinfo : response.data
           })
@@ -35,6 +37,20 @@ export default class Header extends Component{
       })
       .catch((error)=>{
       })
+
+    axios.get("api/distributormaster/get/one/byuserid/"+Uid)
+    .then(res=>{
+      console.log("response from api=>",res.data);
+      //  var jobData:res.data.jobManage;
+      if(res.data && res.data){
+        this.setState({
+          distributorCode : res.data.distributorCode,
+        });
+      }
+    })
+    .catch(err=>{
+      console.log("err",err);      
+    })  
    
   }
   openNav() {
@@ -91,7 +107,7 @@ export default class Header extends Component{
                         </div>
                       </div>*/}
                       <div className="col-lg-10 col-md-10 col-xs-8 col-sm-12 pull-right hover" onClick={this.LogoutSectionHover.bind(this)}>
-                        <div className="headiconName pull-right">Wealthyvia Referrer&nbsp;&nbsp;<i className="fa fa-angle-down"></i></div>
+                        <div className="headiconName pull-right">Wealthyvia Partner&nbsp;&nbsp;<i className="fa fa-angle-down"></i></div>
                       </div>
                       <div className="arrow-up showme"></div>
                       <div className="col-lg-12 user-footer showme">
@@ -102,6 +118,7 @@ export default class Header extends Component{
                           <p>Name: {this.state.userinfo ?this.state.userinfo.fullName :null}</p>
                           <p>Mobile: {this.state.userinfo ?this.state.userinfo.mobNumber :null}</p>
                           <p>Email: {this.state.userinfo ?this.state.userinfo.email :null}</p>
+                          <p>Distributor Code: {this.state.distributorCode ? this.state.distributorCode :null}</p>
                         </div>
                         <div className="logoutDiv">
                       {/*    <div className="pull-left" data-toggle="modal" aria-labelledby="myModals" data-target="#myModals" aria-hidden="true">

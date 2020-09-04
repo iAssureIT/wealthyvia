@@ -5,11 +5,15 @@ import swal 				from 'sweetalert';
 import $ 					from "jquery";
 import axios 				from 'axios';
 import queryString          from "query-string";
+import moment from 'moment';
 
 import 'bootstrap/js/tab.js';
 import 'font-awesome/css/font-awesome.min.css';
 import './SignUp.css';
-
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
 
 class SignUp extends Component {
 
@@ -35,12 +39,27 @@ class SignUp extends Component {
                 role 			: ''
                
             },
+            city                : '',
+            states               : '',
+            location            : '',
+            dob                 : '',
+            dobV                : '',
             distributorCode     : '',
             distributorName     : ''
         }
          this.handleChange = this.handleChange.bind(this);
     }
     componentWillMount() {
+
+    	//================placeautocomplete==============//
+
+		    window.initMap = this.initMap
+		    const gmapScriptEl = document.createElement(`script`)
+		    gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCrzFPcpBm_YD5DfBl9zJ2KwOjiRpOQ1lE&libraries=places&callback=initMap`    
+		    document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
+		  
+		//==================edit=================// 
+
     	const parsed = queryString.parse(this.props.location.search);
   		this.setState({destination : parsed.destination});
   		
@@ -61,6 +80,12 @@ class SignUp extends Component {
    		
 
     }
+
+    initMap = () => {
+    this.setState({
+      gmapsLoaded: true,
+    })
+  }
 
     getDistributorData(distributorcode){
     
@@ -84,7 +109,7 @@ class SignUp extends Component {
 
  	usersignup(event){
 	 	event.preventDefault();
-     if (this.validateForm() && this.validateFormReq()) {
+     if (this.validateForm() && this.validateFormReq() ) {
 
 			var auth={
 	            firstName       : this.refs.firstname.value,
@@ -95,7 +120,10 @@ class SignUp extends Component {
 	            role 			: 'user',
 	            status 			: 'Active',
 	            fullName        : this.refs.firstname.value + " "+ this.refs.lastname.value,
-	            distributorCode : this.state.distributorCode
+	            distributorCode : this.state.distributorCode,
+	            city            : this.state.city,
+	            states          : this.state.states,
+	            dob             : this.state.dob
 	        }
 		            
 		    
@@ -167,6 +195,44 @@ class SignUp extends Component {
 		}
 	
  	}
+
+ 	handleChangedate(event){
+    var name = event.currentTarget.name;
+    this.setState({ [name] : event.currentTarget.value });
+    let fields = this.state.fields;  
+    fields[event.target.name] = event.target.value;
+    this.setState({
+      fields
+    });
+
+    if(name === 'dob'){
+      if (this.validatedob() ) {
+      
+      }
+    }
+    
+  }
+
+ 	validatedob() {
+    let fields = this.state.fields;
+    let errors = {};
+    let formIsValid = true;
+      
+      if (typeof fields["dob"] !== "undefined") {
+      var oldDate = new Date();
+      oldDate.setFullYear(oldDate.getFullYear() - 18);
+      if (fields["dob"] > moment(oldDate).format("YYYY-MM-DD") ) {
+        formIsValid = false;
+        errors["dob"] = "Age of partner should be greater than 18";
+      }
+    }
+
+      this.setState({
+        errors: errors
+      });
+      return formIsValid; 
+  }
+
  	handleChange(event){
 	    // const target = event.target;
 	    // const {name , value}   = event.target;
@@ -180,7 +246,7 @@ class SignUp extends Component {
 	      this.setState({
 	        fields
 	      });
-	      if (this.validateForm() && this.validateFormReq()) {
+	      if (this.validateForm() ) {
 	        let errors = {};
 	        errors[event.target.name] = "";
 	        this.setState({
@@ -248,6 +314,14 @@ class SignUp extends Component {
       formIsValid = false;
       errors["emailIDV"] = "This field is required.";
     }
+    if (!fields["locationV"]) {
+      formIsValid = false;
+      errors["locationV"] = "This field is required.";
+    }
+    if (!fields["dob"]) {
+      formIsValid = false;
+      errors["dob"] = "This field is required.";
+    }
    /* if (!fields["signupPassword"]) {
       formIsValid = false;
       errors["signupPassword"] = "This field is required.";
@@ -293,6 +367,34 @@ class SignUp extends Component {
           errors["mobileV"] = "Please enter valid mobile no.";
         }
       }
+
+      if (typeof fields["locationV"] !== "undefined") {
+      	if(this.state.location){
+      		var location = this.state.location;
+      		console.log("location",location.length);      		
+      		if(location.length <= 1){
+      			console.log("ture");
+      			formIsValid = false;
+          		errors["locationV"] = "Please select full location from suggestion list.";
+      		}
+      	}
+	    else if (this.state.city === '' || this.state.states === '') {
+	        formIsValid = false;
+	          errors["locationV"] = "Please select full location from suggestion list.";
+	        
+	    }
+  	}
+       console.log("city states", this.state.city, this.state.states);
+
+      if (typeof fields["dob"] !== "undefined") {
+      var oldDate = new Date();
+      oldDate.setFullYear(oldDate.getFullYear() - 18);
+      if (fields["dob"] > moment(oldDate).format("YYYY-MM-DD") ) {
+        formIsValid = false;
+        errors["dob"] = "Age of partner should be greater than 18";
+      }
+    }
+
    /* if (typeof fields["signupPassword"] !== "undefined") {
       if (!fields["signupPassword"].match(/^[a-zA-Z0-9]$/)) {
         formIsValid = false;
@@ -306,10 +408,73 @@ class SignUp extends Component {
     return formIsValid;
   }
 
+  handleChangePlaces = address => {
+	this.setState({ location : address });
+	let fields = this.state.fields;
+	      fields['locationV'] = address;
+	      this.setState({
+	        fields
+	      });
+	      
+};
+
+handleSelectLocation = address => {
+    
+geocodeByAddress(address)
+ .then((results) =>{ 
+
+  for (var i = 0; i < results[0].address_components.length; i++) {
+      for (var b = 0; b < results[0].address_components[i].types.length; b++) {
+          switch (results[0].address_components[i].types[b]) {
+              case 'sublocality_level_1':
+                  var area = results[0].address_components[i].long_name;
+                  break;
+              case 'sublocality_level_2':
+                  var area = results[0].address_components[i].long_name;
+                  break;
+              case 'locality':
+                  var city = results[0].address_components[i].long_name;
+                  console.log("city",city);
+                  this.setState({city: city});
+                  break;
+              case 'administrative_area_level_1':
+                  var state = results[0].address_components[i].long_name;
+                  console.log("state",state);
+                  this.setState({states: state});
+                  break;
+              case 'country':
+                 var country = results[0].address_components[i].long_name;
+                  break;
+              case 'postal_code':
+                 var pincode = results[0].address_components[i].long_name;
+                  break;
+          }
+      }
+    }
+})
+.catch(error => console.error('Error', error));
+geocodeByAddress(address)
+  .then(results => getLatLng(results[0]))
+  .then(latLng => this.setState({'fromLatLng': latLng}))
+  .catch(error => console.error('Error', error));
+  
+  this.setState({ location : address ? address.split(",") :"" });
+  if (this.validateForm() ) {
+
+  }
+
+};
 
 	render(){
 		// var winHeight = window.innerHeight;
   //       var divHeight = winHeight/4.5+'px';
+  		var oldDate = new Date();
+  		oldDate.setFullYear(oldDate.getFullYear() - 18);
+
+  		 const searchOptions = {
+          types: ['(cities)'],
+          componentRestrictions: {country: "in"}
+        }
 		
 		return(
 
@@ -364,6 +529,84 @@ class SignUp extends Component {
 							    		<span className="floating-label"><i className="fa fa-envelope-o signupIconFont" aria-hidden="true"></i>Email ID</span>					   			
 									</span>
 							    </div>
+							    <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMargadd">
+							    	<span className="blocking-span noIb">  
+									    {this.state.gmapsLoaded ?       
+									    <PlacesAutocomplete
+								            value={this.state.location}
+								            name="location"
+								            ref="location"
+								            onChange={this.handleChangePlaces}
+								            onSelect={this.handleSelectLocation}
+								            searchOptions={searchOptions}
+
+								          >
+								            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+								              <div>
+								                <input
+								                  {...getInputProps({
+								                    className: 'form-control abacusTextbox oesSignUpForm  sentanceCase',
+								                    id:"location"
+								                  })}
+								                />
+
+								                <span className="floating-label">
+				                                  <i className="fa fa-map-marker signupIconFont" aria-hidden="true"/> 
+				                                    Location 
+				                                </span>
+								                <div className="autocomplete-dropdown-container placecontainercss">
+								                  {loading && <div>Loading...</div>}
+								                  {suggestions.map(suggestion => {
+								                    const className = suggestion.active
+								                      ? 'suggestion-item--active'
+								                      : 'suggestion-item';
+								                    // inline style for demonstration purpose
+								                    const style = suggestion.active
+								                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+								                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+								                    return (
+								                      <div
+								                        {...getSuggestionItemProps(suggestion, {
+								                          className,
+								                          style,
+								                        })}
+								                      >
+								                        
+								                    <span className="placepadding">{(suggestion.description )}</span>
+
+								                      </div>
+								                    );
+								                  })}
+								                </div>
+								              </div>
+								            )}
+								        </PlacesAutocomplete>
+								        :
+		                          null
+		                          }
+			                          {this.state.errors.locationV  && (
+				                        <span className="text-danger">{this.state.errors.locationV}</span> 
+				                      )}
+		                        </span>  
+                          </div>
+                          <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMargadd">
+                          	<span className="blocking-span noIb">     
+	                          <input type="date" className="form-control abacusTextbox  oesSignUpForm sentanceCase"  name="dob"  ref="dob" data-text="dobV"
+	                             max={moment(oldDate).format("YYYY-MM-DD")}
+	                            onChange={this.handleChangedate.bind(this)}
+	                            value={this.state.dob}
+	                          />
+	                        	 {this.state.errors.dob  && (
+				                        <span className="text-danger">{this.state.errors.dob}</span> 
+				                      )}
+	                            <span className="floating-label1 lbfloatpass col-lg-12">   
+	                              <i className="signupIconFont fa fa-calendar-o" aria-hidden="true"/> 
+	                                    Date Of Birth <span className="fontSize"> *</span>
+	                            </span>                 
+                        	</span>
+                          </div>
+                          
+						        
 							    {
 							    	this.state.distributorName ?
 							    		<div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 inputContent boxMargreferedby">

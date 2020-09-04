@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import axios                 from 'axios';
 import swal                  from 'sweetalert';
 import Moment                from 'moment';
+import Converter from 'number-to-words';
 
 import "./ProductInvoicePage.css";
 var CurrentURL="";
@@ -46,7 +47,10 @@ export default class ProductInvoicePage extends Component {
           if(userinfo){           
             this.setState({
               panNumber: userinfo.panNumber,
-              gstNumber : userinfo.gstNumber
+              gstNumber : userinfo.gstNumber,
+              city      : userinfo.city,
+              states    : userinfo.states,
+              dob       : userinfo.dob,
             })
           }        
       })
@@ -112,7 +116,7 @@ export default class ProductInvoicePage extends Component {
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 iconContainerIP">
                        <h4 className="invoiceHead">Invoice From:</h4> 
-                       <p>
+                       <p className="paracontent">
                         PRITAM PRABODH DEUSKAR <br/>
                         D1 706, MAYUR KILBIL, DHANORI, <br/>
                         NEAR VITTHAL MANDIR, PUNE CITY, Pune, Maharashtra, 411015 </p>
@@ -128,15 +132,15 @@ export default class ProductInvoicePage extends Component {
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 userDetails noPadding">
-                      <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                      <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                       <h4 className="invoiceHead">Invoice To: </h4>
 
                         <li className="userName">{this.state.orderDetails.userName}</li>
-                        <li className="dateContain">{this.state.orderDetails.email}</li>
-                        <li className="dateContain">{this.state.orderDetails.mobileNumber}</li>
-                        <li className="dateContain">PAN: {this.state.panNumber}</li>
-                        <li className="dateContain">GSTIN: {this.state.gstNumber}</li>
-                        <li className="dateContain">State Name: </li>
+                        <p className="paracontent">{this.state.orderDetails.email}<br />
+                        {this.state.orderDetails.mobileNumber}<br />
+                        PAN: {this.state.panNumber}<br />
+                        GSTIN: {this.state.gstNumber}<br />
+                        State Name: {this.state.states}</p>
                       </ul>
                     </div>
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 paymentDetails">
@@ -146,7 +150,7 @@ export default class ProductInvoicePage extends Component {
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
                     <table className="customTableIP col-lg-12">
                       <tr>
-                        <th><p style={{textAlign: 'left' }}>description</p></th>
+                        <th><p style={{textAlign: 'left' }}>Description</p></th>
                         <th>Amount</th>
                       </tr>
                       <tr >
@@ -163,19 +167,43 @@ export default class ProductInvoicePage extends Component {
                     <ul className="customUlIPFeatures col-lg-4 col-md-12 col-sm-12 col-xs-12">
                         
                       </ul>
-                      
-                     <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
-                        <li className="dateContain">Subtotal</li>
-                        <li className="dateContain">IGST (18%)</li>
-                        <li className="dateContain"><b>Grand Total</b></li>
-                      </ul>
-                      <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
-                    
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</li>
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(parseInt((this.state.orderDetails.amountPaid/100)) - parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)).toLocaleString("en-IN")}</li>
-                        <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)).toLocaleString("en-IN")}</li>
-                      
-                      </ul>
+
+                    {
+                      this.state.states === 'Maharashtra' ?
+                        <div> 
+                         <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
+                            <li className="dateContain">Subtotal</li>
+                            <li className="dateContain">CGST @ 9% </li>
+                            <li className="dateContain">SGST @ 9% </li>
+                            <li className="dateContain"><b>Grand Total</b></li>
+                          </ul>
+                          <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
+                        
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{(parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{(parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)).toLocaleString("en-IN")}</li>
+                          
+                          </ul>
+                        </div>
+                      :
+ 
+                       <div> 
+                         <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
+                            <li className="dateContain">Subtotal</li>
+                            <li className="dateContain">IGST @18%  </li>
+                            <li className="dateContain"><b>Grand Total</b></li>
+                          </ul>
+                          <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
+                        
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(parseInt((this.state.orderDetails.amountPaid/100)) - parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)).toLocaleString("en-IN")}</li>
+                          
+                          </ul>
+                        </div>
+                    }
+                    <div className="margintopad col-lg-12  noPadding sentanceCase pull-right amountwords"> Total in words: {Converter.toWords(parseInt((this.state.orderDetails.amountPaid/100)))} only</div>
                   </div>  
                   {/*<div className="bottomDiv col-lg-12  noPadding">https://clockify.me/tracker
                       <div className=" thankYouDiv col-lg-3 pull-right">

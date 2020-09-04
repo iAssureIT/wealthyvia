@@ -95,7 +95,7 @@ class Addkycdetails extends Component {
     this.setState({
       fields
     });
-    if (this.validateForm() && this.validateFormReq()) {
+    if (this.validateForm() ) {
       let errors = {};
       errors[event.target.name] = "";
       this.setState({

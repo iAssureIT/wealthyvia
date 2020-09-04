@@ -39,7 +39,7 @@
   background-image: url("https://wealthyvia.s3.ap-south-1.amazonaws.com/website/signIn.jpg");
   padding: 0px !important;
   margin-right: -15px !important;
-  height: 650px !important;
+  height: 680px !important;
 }
 .signupPadding{
 }
@@ -2431,4 +2431,27 @@ input[type="radio"]:checked:before {
 .boxMargreferedby{
   height: 52px;
   margin-bottom: 20px !important;
+}
+
+.placecontainercss{
+    z-index: 111111;
+    position: absolute;
+    top: 35px;
+    background-color: #fff;
+    left: 15px;
+    right:0px; 
+    width:93%;   
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  }
+
+.placepadding{
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    display: block;
+}
+
+.boxMargadd{
+  margin-bottom: 30px !important;
 }

@@ -72,7 +72,9 @@ export default class Myprofile extends Component{
                   </div>
                   <div className = "col-md-9 col-xs-7 col-sm-7 col-lg-9">
 
-                    <b className="pull-right pt">Status:&nbsp;&nbsp;<div className={this.state.DistributorData.status === "Active" ? 'label label-success' : this.state.DistributorData.status ==='New' ? 'label label-info' : 'label label-danger'}>{this.state.DistributorData.status}</div></b>
+                    <b className="pull-right pt">
+                    Referrer Code: &nbsp;<span style={{paddingTop: '8px'}}>{this.state.DistributorData.distributorCode}</span>&nbsp;&nbsp;
+                    Status:&nbsp;&nbsp;<div className={this.state.DistributorData.status === "Active" ? 'label label-success' : this.state.DistributorData.status ==='New' ? 'label label-info' : 'label label-danger'}>{this.state.DistributorData.status}</div></b>
                     <h2>{this.state.DistributorData.firstname} {this.state.DistributorData.lastname}</h2>
                     <hr className="mt10 mb10"/>
                     <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
@@ -94,7 +96,7 @@ export default class Myprofile extends Component{
                   </div>
                   
                   <hr/>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Referral's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
+                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Referrer's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
                 </div>  
 
               </div>

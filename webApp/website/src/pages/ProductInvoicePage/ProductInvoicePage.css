@@ -136,7 +136,7 @@
 .userName{
   color: #10a4e2;
   text-transform: capitalize;
-  font-size: 24px;
+  font-size: 20px;
 }
 .PaymentContainer{
   color: #10a4e2;
@@ -184,4 +184,12 @@ padding-bottom: 50px !important;
 
 .margintopad{
   margin-top:40px;
+}
+.amountwords{
+  text-align: right;
+}
+.paracontent{
+  line-height: 1.6;
+  font-size: 15px;
+  font-family: Arial !important;
 }
