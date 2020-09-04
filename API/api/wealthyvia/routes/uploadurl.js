@@ -11,5 +11,6 @@ router.get('/get/:ID'					, tools.fetch_url);
 router.get('/get/search/list/:searchtext', tools.search_tool);
 router.patch('/patch/:ID'				, tools.patch_url);
 router.delete('/delete/:ID'				, tools.delete_url);
+router.patch('/patch/pinorder/:ID'		, tools.patch_pinOrder);
 
 module.exports = router;

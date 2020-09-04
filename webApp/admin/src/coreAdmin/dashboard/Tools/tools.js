@@ -468,6 +468,37 @@ export default class tools extends Component {
        window.open(youtubeUrl, "_blank"); 
   }
 
+  handlePinClick(event){
+    event.preventDefault();
+    var id = event.currentTarget.id;
+    // console.log("id", id);
+    axios
+    .patch('/api/uploadVideoUrl/patch/pinorder/'+id)
+    .then((res)=>{
+        // console.log("res",res);
+        if(res.data.message === "MAX_PIN"){
+          swal("Limit","Only max 3 pin allowed remove previous pins to apply new","warning");
+        }
+        else if(res.data.message === "Unpin_successfully"){
+          swal("Congrats..!","Unpin tools successfully","success");
+        }
+        else if(res.data.message === "Pin_successfully"){
+          swal("Congrats..!","Pin for tool added successfully","success");
+        }
+        else{
+          swal("Congrats..!","Tools have been updated successfully.","success");
+             
+        }
+        this.getDataList();     
+        this.props.history.push("/tools");
+
+      })
+    .catch((error)=>{
+      console.log("error = ", error);
+    });
+
+  }
+
     render(){
       // console.log("this.state.portfolioImage1",this.state.fileUpload);
         return(
@@ -580,6 +611,7 @@ export default class tools extends Component {
                     <thead>
                       <tr>
                         <th className="text-center">Sr No</th>
+                        <th className="text-center">Pin</th>
                         <th className="text-center">Title</th>
                         <th className="text-center">Tags </th>
                         <th className="text-center">Youtube Video </th>
@@ -595,6 +627,13 @@ export default class tools extends Component {
                             return(
                               <tr key={index}>
                                 <td className="text-center">{index+1}</td>
+                                <td className="text-center">
+                                  { data.pinOrder ?
+                                    <i class="fa fa-thumb-tack unpinicon" id={data._id} aria-hidden="true" title="Unpin" onClick={this.handlePinClick.bind(this)}></i>
+                                    :
+                                    <i class="fa fa-thumb-tack pinicon" id={data._id} aria-hidden="true" title="Pin" onClick={this.handlePinClick.bind(this)}></i>
+                                  }
+                                </td>
                                 <td className="td_title">{data.title}</td>
                                 <td>{data.tag}</td>
                                 <td className="text-center">

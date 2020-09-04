@@ -59,3 +59,15 @@ td a .pt30{
     margin-top: -11px;
     margin-right: -35px;
 }
+
+.unpinicon:before{
+	font-size: 18px;
+	cursor: pointer;
+	color: #3c8dbc;
+}
+
+.pinicon:before{
+	font-size: 18px;
+	cursor: pointer;
+	color: #000;
+}

@@ -5,7 +5,7 @@ const uploadUrlSchema = mongoose.Schema({
 	title 			: String,
 	fileUpload 		: String,
 	tag 			: String,
-
+	pinOrder		: Number,
     createdAt   	: Date,
     createdBy   	: { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
 	

@@ -820,14 +820,14 @@ export default class Distributorprofile extends Component{
                             </div>  
                             <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
                               <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 row nopadding">
-                              { this.state.fileUpload!=="" ? 
+                              { this.state.portfolioImage1!=="" ? 
                                 <div>
                                   <label className="pull-right custFaTimes zeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
                                  {
-                                  (this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "") === "pdf" || (this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "") === "PDF" ?
+                                  (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
                                       <img src="/images/pdf.png"/>
-                                      <span className="setp">{(this.state.fileUpload ? this.state.fileUpload.split('.').pop() : "")}</span>
+                                      <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
                                     </div>
                                     :
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
@@ -857,14 +857,14 @@ export default class Distributorprofile extends Component{
                             </div>  
                             <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
                               <div className="col-lg-4 col-md-12 col-sm-12 col-xs-12 row nopadding">
-                              { this.state.fileUpload1!=="" ? 
+                              { this.state.portfolioImage2!=="" ? 
                                 <div>
                                   <label className="pull-right custFaTimes zeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
                                  {
-                                  (this.state.fileUpload1 ? this.state.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.fileUpload1 ? this.state.fileUpload1.split('.').pop() : "") === "PDF" ?
+                                  (this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "") === "pdf" || (this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "") === "PDF" ?
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
                                       <img src="/images/pdf.png"/>
-                                      <span className="setp">{(this.state.fileUpload1 ? this.state.fileUpload1.split('.').pop() : "")}</span>
+                                      <span className="setp">{(this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "")}</span>
                                     </div>
                                     :
                                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
