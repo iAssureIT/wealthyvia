@@ -18,6 +18,7 @@ exports.create_blogs = (req, res, next) => {
                     "bannerImage"   : req.body.bannerImage,
                     "blogURL"       : req.body.blogURL,
                     "images"        : req.body.images,
+                    "videoURL"      : req.body.videoURL,
                     "videos"        : req.body.videos, //(YouTube Link only)
                     "typeOfBlog"    : req.body.typeOfBlog, //(Regular/Premium)
                     "summary"       : req.body.summary,
@@ -142,7 +143,7 @@ exports.fetch_blog_all_list = (req,res,next) => {
          .sort({createdAt : -1})
          // .skip(startRange)
          // .limit(limitRange)
-         .select("blogTitle bannerImage summary createdBy createdAt")
+         .select("blogTitle bannerImage summary videoURL createdBy createdAt")
          .exec()
          .then(data=>{
             if(data.length > 0){
@@ -190,7 +191,7 @@ exports.fetch_blog_all_type_list = (req,res,next) => {
          .sort({createdAt : -1})
          // .skip(startRange)
          // .limit(limitRange)
-         .select("blogTitle bannerImage summary createdBy createdAt")
+         .select("blogTitle bannerImage summary videoURL createdBy createdAt")
          .exec()
          .then(data=>{
             if(data.length > 0){
@@ -219,6 +220,7 @@ exports.patch_blog = (req,res,next) => {
                                 "videos"        : req.body.videos, //(YouTube Link only)
                                 "typeOfBlog"    : req.body.typeOfBlog, //(Regular/Premium)
                                 "summary"       : req.body.summary,
+                                "videoURL"      : req.body.videoURL,
                                 "createdBy"     : req.body.createdBy, //_id of User or null
                             }
                         }

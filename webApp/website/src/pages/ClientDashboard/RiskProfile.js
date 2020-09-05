@@ -306,7 +306,7 @@ class RiskProfile extends Component {
                                                 <input type="checkbox"  name={this.state.Question1} value="15% is fine with me but don’t wanna lose at all . Safety first . Long term." onChange={this.getCheckValue.bind(this)} required />
                                                 <span className="centreDetailCheck"></span>
                                              </div>
-                                            <span className="centreDetaillistItem ansoptions">Pending15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
+                                            <span className="centreDetaillistItem ansoptions">Pending 15% is fine with me but don’t wanna lose at all . Safety first . Long term. </span>
                                       </div>
                                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                           <div className="centreDetailContainer col-lg-1 row">

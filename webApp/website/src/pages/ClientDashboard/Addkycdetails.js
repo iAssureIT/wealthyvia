@@ -494,7 +494,7 @@ class Addkycdetails extends Component {
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP">
                       <div className="row">
                           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <label>GST Number </label>
+                            <label>GST Number (If any) </label>
                           </div>
                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                <input type="text" className="customInputKF inputBox nameParts" name="gstNumber" placeholder="Enter GST Number" min="0" ref="gstNumber" onChange={this.handleChange.bind(this)}  />

@@ -33,6 +33,8 @@ router.patch('/patch/updatekyc/user/:ID',UserController.user_update_kyc);
 router.patch('/patch/updaterisk/user/:ID',UserController.user_update_risk);
 router.get('/get/kycrisk/user/:ID',UserController.fetch_users_kycrisk);
 
+router.patch('/patch/optEmailadmin/verify',UserController.send_otp_for_admin_verify);
+
 // router.get('/list', checkAuth,UserController.users_list); //Working
 
 // router.get('/singleuser/:user_ID',UserController.list_cuser_framework_stage);

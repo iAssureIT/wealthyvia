@@ -6,6 +6,8 @@ import RelatedBlogs          from "../../blocks/RelatedBlogs/RelatedBlogs.js";
 import axios                 from 'axios';
 import swal                  from 'sweetalert2';
 import Moment                from 'react-moment';
+import $                     from "jquery";
+import ReactPlayer           from 'react-player'
 import "./SingleBlogPage.css";
 var id;
 export default class SingleBlogPage extends React.Component {
@@ -19,6 +21,7 @@ export default class SingleBlogPage extends React.Component {
 		      "blogContent"       : "",
           "bannerImage"       : {},
           "viewCount"         : "",
+          "videoURL"          : "",
 
 		};
 	}
@@ -38,6 +41,7 @@ export default class SingleBlogPage extends React.Component {
         "typeOfBlog"	:response.data.typeOfBlog,
         "blogContent"	:response.data.blogContent,
         "bannerImage" :response.data.bannerImage.path,
+        "videoURL"    :response.data.videoURL,
         "createdAt"   :response.data.createdAt
 
           
@@ -72,6 +76,13 @@ export default class SingleBlogPage extends React.Component {
     return true;
   }
 
+  openNewTab(event){
+      event.preventDefault(); 
+      var id = event.currentTarget.id;
+      var youtubeUrl = $(event.currentTarget).attr('data-url');
+       window.open(youtubeUrl, "_blank"); 
+  }
+
 	render() {
    var url = this.props.location.pathname;
     localStorage.setItem("lastUrl",url);
@@ -86,6 +97,14 @@ export default class SingleBlogPage extends React.Component {
                 <div className="container-fluid" style={{padding:"0px"}}>
                   <SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={encodeURI(this.state.bannerImage)}/>
                   <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
+                    <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 mt40">
+                      {this.state.videoURL !== ""
+                          ?
+                            <a data-url={this.state.videoURL}  onClick={this.openNewTab.bind(this)} ><ReactPlayer url={this.state.videoURL}  width='100%' height='380px' style={{margin: 'auto'}}  target="_blank" controls loop  /></a>
+                          :
+                            null
+                        }
+                    </div> 
                     <BlogContent blogContent={this.state.blogContent}/>
                     <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
                       <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a>
@@ -122,7 +141,15 @@ export default class SingleBlogPage extends React.Component {
            
             		<SingleBlogBanner blogTitle={this.state.blogTitle} summary={this.state.summary} bannerImage={this.state.bannerImage}/>
                 <div className="mt40 col-lg-10"><label className="blogDateSBP pull-right"><b>Date :</b> <Moment format="DD-MM-YYYY HH:mm">{this.state.createdAt}</Moment></label></div>
-            		  <BlogContent blogContent={this.state.blogContent}/>
+            		  <div className="col-lg-8 col-lg-offset-2 col-md-10 col-sm-12 col-xs-12 mt40">
+                      {this.state.videoURL !== ""
+                          ?
+                            <a data-url={this.state.videoURL}  onClick={this.openNewTab.bind(this)} ><ReactPlayer url={this.state.videoURL}  width='100%' height='380px' style={{margin: 'auto'}}  target="_blank" controls loop  /></a>
+                          :
+                            null
+                        }
+                    </div> 
+                  <BlogContent blogContent={this.state.blogContent}/>
                   <div className="col-lg-8 col-lg-offset-2 col-md-10 hidden-xs hidden-sm likeDiv mt40">
                     <a href={"https://www.facebook.com/sharer/sharer.php?u="+ this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer"><i className="fa fa-facebook" href=""></i></a><a class="twitter-share-button"
                     href={"https://twitter.com/intent/tweet?url="+this.state.CurrentUrl} target="_blank"  rel="noopener noreferrer">

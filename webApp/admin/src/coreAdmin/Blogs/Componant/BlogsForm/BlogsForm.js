@@ -30,6 +30,7 @@ class BlogsForm extends Component{
       "imgInTextPath"     : {},
       "blog1Img"          : [],
       "blogContent"       : '',
+      "videoURL"          : '',
       "formerrors"        :{
           "clientName"    : " ",
           "clientEmail"   : " ", 
@@ -66,6 +67,7 @@ class BlogsForm extends Component{
           "blogTitle":response.data.blogTitle,
           "pageUrl"  :response.data.blogURL,
           "summary":response.data.summary,
+          "videoURL":response.data.videoURL,
           "typeOfBlog":response.data.typeOfBlog,
           "blogContent":response.data.blogContent,
           "updateID": response.data._id,
@@ -73,6 +75,21 @@ class BlogsForm extends Component{
             path:response.data.bannerImage.path
           },
         });
+        this.setState({
+          fields: {
+            "blogTitle":response.data.blogTitle,
+            "pageUrl"  :response.data.blogURL,
+            "summary":response.data.summary,
+            "videoURL":response.data.videoURL,
+            "typeOfBlog":response.data.typeOfBlog,
+            "blogContent":response.data.blogContent,
+            "updateID": response.data._id,
+            "imgbPath":{
+              path:response.data.bannerImage.path
+            },
+            "bannerImg" : response.data.bannerImage.path,
+          }
+        })
       })
       .catch((error)=>{
          console.log("error = ", error);              
@@ -118,7 +135,7 @@ class BlogsForm extends Component{
         "blogTitle"       :this.refs.blogTitle.value,
         "summary"         :this.refs.summary.value,
         "typeOfBlog"      : this.refs.typeOfBlog.value,
-
+        "videoURL"        :this.refs.videoURL.value,
         "pageUrl"         : this.refs.blogTitle.value.replace(/[^a-zA-Z0-9]/g, " ").toLowerCase().split(" ").join("-"),
        
       });
@@ -305,6 +322,7 @@ uploadBlogImage(event){
       "blogTitle"           :this.state.blogTitle,
       "bannerImage"         :this.state.imgbPath,
       "blogURL"             :this.state.pageUrl,
+      "videoURL"             :this.state.videoURL,
 
 
    };
@@ -328,6 +346,7 @@ uploadBlogImage(event){
         "blogTitle"           :this.state.blogTitle,
         "bannerImage"         :this.state.imgbPath,
         "blogURL"             :this.state.pageUrl,
+        "videoURL"             :this.state.videoURL,
          };
      if (this.validateForm() && this.validateFormReq()) {
       axios
@@ -616,6 +635,15 @@ uploadBlogImage(event){
                     </div>
                 }
                 </div>*/}
+
+                  <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Upload YouTube Video Link </label>
+                    <div className="">
+                      <input className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12" id="videoURL" type="text" name="videoURL"  ref="videoURL" value={this.state.videoURL}  onChange={this.handleChange.bind(this)} placeholder="" />
+                      <div className="errorMsg">{this.state.errors.videoURL}</div>
+
+                    </div>
+                  </div>
                  
                   <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12 ckbox mt20">
                     <label htmlFor="userName">Blog Content<span className="redFont">*</span></label>

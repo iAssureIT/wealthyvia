@@ -21,6 +21,7 @@ const blogsSchema = mongoose.Schema({
 	videos 		: String, //(YouTube Link only)
 	typeOfBlog 	: String, //(Regular/Premium)
 	summary 	: String,
+	videoURL 	: String,
     createdAt   : Date,
     createdBy   : { type: mongoose.Schema.Types.ObjectId, ref: 'users' },
     comments 	: [

@@ -942,15 +942,28 @@ class IAssureTableUM extends Component {
 														)
 													}
 													<td className="textAlignCenter">
+													{ value.role === 'admin' ?
 														<span className="pointer pointerCls">
 															{/*<div  className="deleteNotif"  data-toggle="modal" data-target={"#editNotifyModal-"+this.props.emailtemplateValues._id} id={this.props.emailtemplateValues._id}>
+													}
 							    	*/}
+															<i className="fa fa-pencil " title="Edit" id={value._id} onClick={this.showprofile.bind(this)} ></i>&nbsp; &nbsp; 
+															
+														
+														
+														</span>
+														:
+														<span className="pointer pointerCls">
+															{/*<div  className="deleteNotif"  data-toggle="modal" data-target={"#editNotifyModal-"+this.props.emailtemplateValues._id} id={this.props.emailtemplateValues._id}>
+													}
+							    	*/}
+
 															<i className="fa fa-pencil " title="Edit" id={value._id} onClick={this.showprofile.bind(this)} ></i>&nbsp; &nbsp; 
 															{this.props.editId && this.props.editId == value._id? null :<i className={"fa fa-trash redFont "+value._id} id={value._id+'-Delete'} data-toggle="modal" title="Delete" data-target={`#${value._id}-rm`} ></i>}&nbsp; &nbsp; 
 															<i className="fa fa-key" title="Reset Password" id={value._id} data-toggle="modal" data-target={"#RestpwdModal-"+value._id}></i>
 														
 														</span>
-
+													}	
 													{/*	<UsereditModal userNot={value._id} data={value}/>*/}
 
 														{/*this.state.show == true ? */

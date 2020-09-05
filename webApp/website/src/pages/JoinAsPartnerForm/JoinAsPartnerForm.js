@@ -683,7 +683,7 @@ export default class JoinAsPartnerForm extends Component {
               <div className="col-lg-8 col-lg-offset-2  col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10  col-xs-offset-1 formContainer2 ">                
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter marginT headerSet marginB">
                   <h4 className="formNameTitle"><span className="">Join as a Partner</span></h4>
-                  <h6 className="ApplicationName"><span className="">Distributor Application </span></h6>
+                  <h6 className="ApplicationName"><span className="">Referrer Application </span></h6>
                 </div>
                 <form>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP ">

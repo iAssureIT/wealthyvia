@@ -306,8 +306,12 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 											                "url"       : "http://localhost:"+globalVariable.port+"/send-email",
 											                "body"      : {
 											                					email 	: req.body.email, 
-											                					subject : "Successfully Creation of your Account on Wealthyvia",
-											                					mail    : "Dear "+result.profile.fullName+" Your OTP is "+ emailOTP, 
+											                					subject : "Verify your Account on Wealthyvia",
+											                					mail    : "Dear "+result.profile.fullName+",<br/>"+
+											                								"To verify your account of Wealthyvia, please enter following OTP: <br/>"+
+											                								"Your OTP is "+ emailOTP+"<br/><br/>"+
+											                								"Regards,<br/>"+
+											                								"Team Wealthyvia.", 
 											                			   },
 											                "json"      : true,
 											                "headers"   : {
@@ -1325,4 +1329,53 @@ exports.user_update_risk = (req,res,next)=>{
 				error:err
 			});
 		});
+};
+
+exports.send_otp_for_admin_verify = (req,res,next) =>{
+	var optEmail = getRandomInt(1000,9999);
+	User.updateOne(
+					{ username:req.body.emailId},
+					{
+						$set:{
+							"profile.optEmail"     : optEmail,
+						},
+					}
+				)
+				.exec()
+				.then(data=>{
+					console.log("data",data);
+					if(data.nModified == 1){
+						request({
+					                "method"    : "POST", 
+					                "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+					                "body"      : {
+					                					email 	: "anuja.kate@iassureit.com", 
+					                					subject : "Admin want to change password on wealthyvia",
+					                					mail    : "Wealthyvia OTP is: "+ optEmail, 
+					                			   },
+					                "json"      : true,
+					                "headers"   : {
+					                                "User-Agent": "Test Agent"
+					                            }
+					            })
+					            .then(source=>{
+					            	console.log("email sent");
+					            	res.status(200).json({message:"OTP_UPDATED"})
+					            })
+					    		.catch(err =>{
+									console.log(err);
+									res.status(500).json({
+										error: err
+									});
+								});
+					}else{
+						res.status(401).status("USER_NOT_UPDATED")
+					}
+				})
+				.catch(err =>{
+					console.log('user error ',err);
+					res.status(500).json({
+						error: err
+					});
+				});
 };

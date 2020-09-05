@@ -31,7 +31,7 @@ class ConfirmOtp extends Component {
     }
     axios.get('/api/users/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
     .then((response)=>{
-      console.log("response",response);
+      // console.log("response",response);
       if(response.data.message === 'FAILED'){
         swal("OTP not matched","Please enter correct OTP", "error");
       }
@@ -50,14 +50,14 @@ class ConfirmOtp extends Component {
                   .then((userStatus)=>{
                     if(userStatus.data.length>0)
                     {
-                      console.log("userStatus.data[0].paymentStatus0",userStatus.data[0].paymentStatus)
+                      // console.log("userStatus.data[0].paymentStatus0",userStatus.data[0].paymentStatus)
                       if(userStatus.data[0].paymentStatus === "Paid" )
                       {
-                      console.log("userStatus.data[0].paymentStatus1")
+                      // console.log("userStatus.data[0].paymentStatus1")
 
                            this.props.history.push(destination);
                        }else{
-                          console.log("userStatus.data[0].paymentStatuspla")
+                          // console.log("userStatus.data[0].paymentStatuspla")
                           this.props.history.push("/planPage");
                      }
                     }else{
@@ -150,7 +150,7 @@ class ConfirmOtp extends Component {
                   <button type="submit" className="btn btn-info submitBtn col-lg-12 col-md-12 col-sm-12 col-xs-12 UMloginbutton">Submit</button>
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-4 col-xs-4 pdcls">
-                  <a href='/' className="UMGrey signInbtn veriemailmr veriemail col-lg-12">Sign In</a>  
+                  <a href='/login' className="UMGrey signInbtn veriemailmr veriemail col-lg-12">Sign In</a>  
                 </div>
                {/* <div id="resendOtpBtn" className={"col-lg-4 col-md-4 col-sm-4 col-xs-4 resendOtpColor "+resendOtpWrap}>
                   {resendOtp}

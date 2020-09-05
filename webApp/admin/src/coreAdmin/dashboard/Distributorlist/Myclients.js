@@ -196,7 +196,7 @@ class Myclients extends Component {
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
 
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
-          <h4 className="h5lettersp MasterBudgetTitle">Distributor Profile
+          <h4 className="h5lettersp MasterBudgetTitle">Referrer Profile
             <b className="pull-right"> 
               <a href={"/distributorEditForm/"+ this.state.DistributorData._id} >
                 <i id={"e-"+this.state.DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i>
@@ -266,7 +266,7 @@ class Myclients extends Component {
                     </div>
                     
                     <hr/>
-                      <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Distributor's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
+                      <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Referrer's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
                   </div>  
 
                 </div>
@@ -281,7 +281,7 @@ class Myclients extends Component {
 
 
                 <div className="tab-content customTabContent col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                <h4 style={{paddingBottom: '14px' }}>Client signup url:  <a href={this.state.clientsignupurl} style={{color: '#337ab7' }} target="_blank"> {this.state.clientsignupurl} </a></h4>
+                <h4 style={{paddingBottom: '14px' }}>Client Sign Up URL:  <a href={this.state.clientsignupurl} style={{color: '#337ab7' }} target="_blank"> {this.state.clientsignupurl} </a></h4>
                   <div id="home" className="tab-pane fade in active">
                     <div className="col-lg-12 NOpadding">
                         <table className="table tableCustom table-striped reserachtable">
@@ -390,7 +390,7 @@ class Myclients extends Component {
 
               </div>
                <hr className="compySettingHr"/>
-                <h4 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style={{paddingBottom: '14px' }}>Sub Franchise url:  <a href={this.state.subfranchiseurl} style={{color: '#337ab7' }} target="_blank"> {this.state.subfranchiseurl} </a></h4>
+                <h4 className="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style={{paddingBottom: '14px' }}>Sub Franchise URL:  <a href={this.state.subfranchiseurl} style={{color: '#337ab7' }} target="_blank"> {this.state.subfranchiseurl} </a></h4>
                   <div id="home" className="tab-pane fade in active">
                     <div className="col-lg-12 ">
                         <table className="table tableCustom table-striped reserachtable">

@@ -238,7 +238,7 @@ export default class tools extends Component {
   handleSubmit(event){
     // event.preventDefault();
     // || this.state.url === ''|| this.state.fileUpload.length <= 0
-      if(this.state.title === '' || this.state.tag === ''){
+      if(this.state.title === '' ){
         swal("", "Please fill required fields", "error")
       }else if(this.state.url !== '' || this.state.fileUpload.length <= 0){
         // swal("", "Submitted", "success")
@@ -477,16 +477,16 @@ export default class tools extends Component {
     .then((res)=>{
         // console.log("res",res);
         if(res.data.message === "MAX_PIN"){
-          swal("Limit","Only max 3 pin allowed remove previous pins to apply new","warning");
+          swal("Restricted","Maximum 3 tools can be pinned at a time. Remove previous pin to pinned new tools","warning");
         }
         else if(res.data.message === "Unpin_successfully"){
-          swal("Congrats..!","Unpin tools successfully","success");
+          swal("Congrats..!","Tool unpinned successfully","success");
         }
         else if(res.data.message === "Pin_successfully"){
-          swal("Congrats..!","Pin for tool added successfully","success");
+          swal("Congrats..!","Tool pinned successfully","success");
         }
         else{
-          swal("Congrats..!","Tools have been updated successfully.","success");
+          swal("Congrats..!","Tool have been updated successfully.","success");
              
         }
         this.getDataList();     
@@ -524,6 +524,17 @@ export default class tools extends Component {
                 </div>
                 <div className="col-lg-6 col-sm-12 col-xs-12 col-md-12 setMb nppadding">  
                   <div className=" col-lg-10 col-md-10 col-xs-12 col-sm-12 inputContent">
+                  <label className="zeroMarginB">Upload YouTube Video Link <label className="requiredsign">*</label></label>
+                  </div>
+                  <div className=" col-lg-12 col-md-10 col-xs-12 col-sm-12 inputContent ">
+                    <input type="text" className="form-control inputText form-control has-content" name="url" ref="url" 
+                        onChange={this.handleChange.bind(this)}
+                        value   ={this.state.url}
+                    />
+                  </div>
+                </div>
+                {/* <div className="col-lg-6 col-sm-12 col-xs-12 col-md-12 setMb nppadding">  
+                  <div className=" col-lg-10 col-md-10 col-xs-12 col-sm-12 inputContent">
                     <label className="zeroMarginB">Tags <label className="requiredsign">*</label></label>
                   </div>
                   <br/>
@@ -535,20 +546,10 @@ export default class tools extends Component {
                         value   ={this.state.tag} 
                    />
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className="col-lg-10  col-lg-offset-1 col-sm-12 col-xs-12 col-md-12 setMb nppadding">  
-                <div className="col-lg-6 col-sm-12 col-xs-12 col-md-12 setMb nppadding">  
-                  <div className=" col-lg-10 col-md-10 col-xs-12 col-sm-12 inputContent">
-                  <label className="zeroMarginB">Upload YouTube Video Link <label className="requiredsign">*</label></label>
-                  </div>
-                  <div className=" col-lg-12 col-md-10 col-xs-12 col-sm-12 inputContent ">
-                    <input type="text" className="form-control inputText form-control has-content" name="url" ref="url" 
-                        onChange={this.handleChange.bind(this)}
-                        value   ={this.state.url}
-                    />
-                </div>
-                </div>
+                
                 <div className="col-lg-6 col-sm-12 col-xs-12 col-md-12 setMb nppadding">  
                   <div className=" col-lg-10 col-md-10 col-xs-12 col-sm-12 inputContent">
                     <label className="zeroMarginB">Upload File <label className="requiredsign">*</label></label>
@@ -559,48 +560,51 @@ export default class tools extends Component {
                         onChange={this.uploadLogoImage.bind(this)}
                     />
                   </div>
-                </div>
-                <div className="col-lg-7 col-md-7 col-xs-5  col-sm-12 nopadding ">
-                  <div className="col-lg-1 col-md-12 col-sm-12 col-xs-6 row pull-right nopadding setMarginRight">
-                  { this.state.portfolioImage1 !== "" 
-                    ? 
-                    <div>
-                        <label className="pull-right custFaTimes pptZeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
-                       {
-                        (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
-                          <div className="col-lg-12 col-md-12 col-sm-10 col-xs-12 " id="LogoImageUpOne">
-                            <a href={this.state.portfolioImage1} target="_blank"><img src="/images/pdf.png" height="50" width="50"/></a>
-                            <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
-                          </div>
-                          :
-                        (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pptx" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "ppt" ?
-                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
-                            <a href={this.state.portfolioImage1}  target="_blank"><img src="/images/ppt.png" height="50" width="50"/></a>
-                            <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
-                          </div>
-                          :
-                          null
-                        }
+                
+
+                  <div className="col-lg-12 col-md-12 col-xs-12  col-sm-12 nopadding setTopMargin ">
+                    <div className="col-lg-2 col-md-2 col-sm-12 col-xs-6 row pull-right nopadding setMarginRight">
+                    { this.state.portfolioImage1 !== "" 
+                      ? 
+                      <div>
+                          <label className="pull-right custFaTimes pptZeromargin" title="Delete image"  onClick={this.deleteBlogimage.bind(this)}>X</label>
+                         {
+                          (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
+                            <div className="col-lg-12 col-md-12 col-sm-10 col-xs-12 " id="LogoImageUpOne">
+                              <a href={this.state.portfolioImage1} target="_blank"><img src="/images/pdf.png" height="50" width="50"/></a>
+                              <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
+                            </div>
+                            :
+                          (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pptx" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "ppt" ?
+                            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
+                              <a href={this.state.portfolioImage1}  target="_blank"><img src="/images/ppt.png" height="50" width="50"/></a>
+                              <span className="setp">{(this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "")}</span>
+                            </div>
+                            :
+                            null
+                          }
+                      </div>
+                      : null
+                    }
                     </div>
-                    : null
-                  }
                   </div>
-              </div>
-              </div>
-              
-              <div className="col-lg-12   col-sm-12 col-xs-9 col-md-12 mt20 ">  
+                </div>
+              <div className="col-lg-6  col-sm-4 col-xs-9 col-md-12 mt20 ">  
                 {
                   this.state.submit 
                   ?
-                    <div className="col-lg-2 col-sm-2 col-xs-2 col-md-2 pull-right  mr20 ">
-                      <button className="btn btn-primary" onClick={this.handleSubmit.bind(this)}>&nbsp; &nbsp;Submit&nbsp; &nbsp;</button>
+                    <div className="col-lg-2 col-sm-2 col-xs-2 col-md-2 pull-right  ">
+                      <button className="btn btn-primary pull-right " onClick={this.handleSubmit.bind(this)}>&nbsp; &nbsp;Submit&nbsp; &nbsp;</button>
                     </div>
                   :
-                    <div className="col-lg-2 col-sm-2 col-xs-2 col-md-2 pull-right mr20">
-                      <button className="btn btn-primary" onClick={this.update.bind(this)}>&nbsp; &nbsp;Update&nbsp; &nbsp;</button>
+                    <div className="col-lg-8 col-sm-8 col-xs-2 col-md-2 pull-right ">
+                      <button className="btn btn-primary pull-right" onClick={this.update.bind(this)}>&nbsp; &nbsp;Update&nbsp; &nbsp;</button>
                     </div>
                 }
               </div>
+              </div>
+              
+              
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setTopMargin">
                 <h3 className="heading"><b>Tools List</b></h3>
                 <hr/>
@@ -613,7 +617,6 @@ export default class tools extends Component {
                         <th className="text-center">Sr No</th>
                         <th className="text-center">Pin</th>
                         <th className="text-center">Title</th>
-                        <th className="text-center">Tags </th>
                         <th className="text-center">Youtube Video </th>
                         <th className="text-center">File </th>
                         <th className="text-center">Actions</th>
@@ -635,7 +638,7 @@ export default class tools extends Component {
                                   }
                                 </td>
                                 <td className="td_title">{data.title}</td>
-                                <td>{data.tag}</td>
+                                
                                 <td className="text-center">
                                   {data.url !== ""
                                     ?

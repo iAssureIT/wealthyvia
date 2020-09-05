@@ -72,7 +72,7 @@ class SignUp extends Component {
    					distributorcode =distributorcode.toString().padStart(4, "0")
    				}
    				distributorcode = "WVP"+distributorcode;
-	   		    console.log("distributorcode", distributorcode);
+	   		    // console.log("distributorcode", distributorcode);
 	   		    this.setState({distributorCode : distributorcode});
 	   		    this.getDistributorData(distributorcode);
    			}   		    
@@ -91,7 +91,7 @@ class SignUp extends Component {
     
     axios.get("api/distributormaster/get/one/bydistributorcode/"+distributorcode)
     .then(res=>{
-      console.log("response from api=>",res.data);
+      // console.log("response from api=>",res.data);
 
       if(res && res.data){
         
@@ -154,7 +154,7 @@ class SignUp extends Component {
 				            })
 				            .catch(error=> {
 				            	
-				                console.log(error, error.response.status, error.response);
+				                // console.log(error, error.response.status, error.response);
 						        this.setState({
 					            	buttonHeading : 'Sign Up',
 					            });
@@ -371,9 +371,9 @@ class SignUp extends Component {
       if (typeof fields["locationV"] !== "undefined") {
       	if(this.state.location){
       		var location = this.state.location;
-      		console.log("location",location.length);      		
+      		// console.log("location",location.length);      		
       		if(location.length <= 1){
-      			console.log("ture");
+      			// console.log("ture");
       			formIsValid = false;
           		errors["locationV"] = "Please select full location from suggestion list.";
       		}
@@ -384,7 +384,7 @@ class SignUp extends Component {
 	        
 	    }
   	}
-       console.log("city states", this.state.city, this.state.states);
+       // console.log("city states", this.state.city, this.state.states);
 
       if (typeof fields["dob"] !== "undefined") {
       var oldDate = new Date();
@@ -434,12 +434,12 @@ geocodeByAddress(address)
                   break;
               case 'locality':
                   var city = results[0].address_components[i].long_name;
-                  console.log("city",city);
+                  // console.log("city",city);
                   this.setState({city: city});
                   break;
               case 'administrative_area_level_1':
                   var state = results[0].address_components[i].long_name;
-                  console.log("state",state);
+                  // console.log("state",state);
                   this.setState({states: state});
                   break;
               case 'country':

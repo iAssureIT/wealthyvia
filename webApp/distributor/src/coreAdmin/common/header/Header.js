@@ -125,6 +125,9 @@ export default class Header extends Component{
                             <p className="btn btnhvr btn-Profile ">Reset Password</p>
                           </div>*/}
                           <div className="pull-right">
+                            <a href="/reset-password" className="btn btnhvr btn-logout" >
+                              Reset Password
+                            </a> &nbsp; &nbsp;
                             <a href="/login" className="btn btnhvr btn-logout" onClick={this.logout.bind(this)}>
                               Logout
                             </a> 

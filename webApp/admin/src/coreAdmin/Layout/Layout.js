@@ -42,6 +42,10 @@ import ProductPricing       from '../dashboard/ProductPricing/ProductPricing.js'
 import Clientlist           from '../dashboard/Clientlist/Clientlist.js';
 import Clientmapping           from '../dashboard/Clientlist/Clientmapping.js';
 
+import ResetPasswordconfirmotp     from '../common/ResetPasswordOtp/ResetPasswordconfirmotp.js';
+import ResetPasswordafterlogin     from '../common/ResetPasswordOtp/ResetPasswordafterlogin.js';
+
+
 import AdminContent       from '../dashboard/DashboardNew.js';
 /*============================ /Blog==============================================*/
 
@@ -174,6 +178,9 @@ componentDidMount(){
                           <Route path="/clientmapping/:ID" component={Clientmapping} exact />
                           <Route path="/OfferingCheckForm" component={OfferingCheckForm} exact />
                           <Route path="/ClientTable" component={ClientTable} exact />
+                          <Route path="/resetpwd/reset" component={ResetPasswordafterlogin} exact />
+                          <Route path="/resetpwd/confirmotp" component={ResetPasswordconfirmotp} exact />
+
                          <Route path="/bankReport" component={BankReport} exact />
                         {/* Blog  */}
                           <Route path="/blogsform/id/:blogID"                exact strict component={BlogsFormPage}  />

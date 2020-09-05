@@ -116,13 +116,7 @@ export default class Leftsidebar extends Component{
                         
                     </li>
 
-                     <li  className="add " onClick={this.eventclk1.bind(this)}>
-                        <Link to="/reset-password">
-                            <i className="fa fa-file"></i>
-                            Reset Password
-                        </Link>
-                        
-                    </li>
+                    
 
                     {/*<li  className="add " onClick={this.eventclk1.bind(this)}>
                         <Link aria-expanded="false">

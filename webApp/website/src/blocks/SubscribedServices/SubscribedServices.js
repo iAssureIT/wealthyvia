@@ -36,7 +36,8 @@ export default class SubscribedServices extends Component {
           blogSubscribed        : "",
           subscriptionData      : [],
           expiredproductSub     : [],
-          riskkycMsg            : ''
+          riskkycMsg            : '',
+          newredirect           : '',
         };
     }
   ScrollTop(event){
@@ -69,13 +70,13 @@ export default class SubscribedServices extends Component {
           if(userinfo){
             if(!userinfo.risksubmit || !userinfo.kycsubmit){
               if(!userinfo.risksubmit && userinfo.kycsubmit){
-                this.setState({ riskkycMsg : "To start investing, please fill Risk Profile first"})
+                this.setState({ riskkycMsg : "To start investing, please fill Risk Profile first", newredirect:"risk"})
               }
               else if(userinfo.risksubmit && !userinfo.kycsubmit){
-                this.setState({ riskkycMsg : "To start investing, please fill KYC details first"})                
+                this.setState({ riskkycMsg : "To start investing, please fill KYC details first", newredirect:"kyc"})                
               }
               else{                
-                this.setState({ riskkycMsg : "To start investing, please fill KYC details and Risk Profile first"})
+                this.setState({ riskkycMsg : "To start investing, please fill KYC details and Risk Profile first", newredirect:"kyc"})
               }
             }
             
@@ -258,7 +259,27 @@ export default class SubscribedServices extends Component {
     event.preventDefault();
     console.log("risk", this.state.riskkycMsg);
     if(this.state.riskkycMsg){
-      swal(this.state.riskkycMsg,"", "warning");
+      if(this.state.newredirect == 'risk'){
+        swal({
+              title: this.state.riskkycMsg,
+              text: "",
+              type: "warning"
+              }).then(function() {                                  
+                 window.location = "#riskprofileform";
+                 window.location.reload();
+              });
+      }
+      else{
+        swal({
+              title: this.state.riskkycMsg,
+              text: "",
+              type: "warning"
+              }).then(function() {                                  
+                 window.location = "#kycform";
+                 window.location.reload();
+              });
+      }
+      
     }
     else{
       window.location = "/product-pricing" ;

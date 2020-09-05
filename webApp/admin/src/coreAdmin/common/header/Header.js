@@ -28,6 +28,7 @@ export default class Header extends Component{
    
     axios.get("/api/users/get/"+Uid)
       .then((response)=>{ 
+        console.log("response==>", response.data);
           this.setState({
               userinfo : response.data
           })
@@ -61,6 +62,28 @@ export default class Header extends Component{
   LogoutSectionHover(event){
     $('.showme').toggle(); 
   }
+
+  resetpassword(event){
+    event.preventDefault();
+    var formvalues= {
+      emailId : this.state.userinfo.email
+    }
+    axios.patch('/api/users/patch/optEmailadmin/verify', formvalues)
+        .then((response)=> {
+          console.log("response");
+          swal("Great","OTP is sent to admin.");
+          // ?his.props.history.push("/resetpwd/confirmotp");
+          window.location = "/resetpwd/confirmotp";
+                 // window.location.reload();
+         
+        })
+        .catch(error=> {
+          
+            
+          swal("Something went wrong..","Unable to submit data.","warning");
+         
+        })  
+    }
 
   render(){
     return(
@@ -101,12 +124,15 @@ export default class Header extends Component{
                           <p>Name: {this.state.userinfo ?this.state.userinfo.fullName :null}</p>
                           <p>Mobile: {this.state.userinfo ?this.state.userinfo.mobNumber :null}</p>
                           <p>Email: {this.state.userinfo ?this.state.userinfo.email :null}</p>
-                        </div>
+                        </div> 
                         <div className="logoutDiv">
                       {/*    <div className="pull-left" data-toggle="modal" aria-labelledby="myModals" data-target="#myModals" aria-hidden="true">
                             <p className="btn btnhvr btn-Profile ">Reset Password</p>
                           </div>*/}
                           <div className="pull-right">
+                            <a href="" className="btn btnhvr btn-logout" onClick={this.resetpassword.bind(this)}>
+                              Reset Password
+                            </a> &nbsp;&nbsp;
                             <a href="/login" className="btn btnhvr btn-logout" onClick={this.logout.bind(this)}>
                               Logout
                             </a> 
