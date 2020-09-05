@@ -64,7 +64,7 @@ exports.payment_response = (req,res,next) =>{
 											                          	"<b>Phone Number: </b>"+paymentinfo.mobileNumber+"<br/>"+
 											                          	"<b>Email: </b>"+paymentinfo.email+"<br/>"+
 											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
-											                          	"<b>Amount Paid: </b>"+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
+											                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
 											                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
 											                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>",
 											                          
@@ -82,6 +82,34 @@ exports.payment_response = (req,res,next) =>{
                                         console.log(err);
                                         
                                     });
+                        request({
+                                        "method"    : "POST", 
+                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                        "body"      : {
+                                                            email   : paymentinfo.email, 
+                                                            subject : "Thank you for investing in Wealthyvia. Your payment has been successful",
+                                                            mail    : "Dear "+paymentinfo.userName+", <br/>"+
+                                                            			"Following are the details of your latest investment in our product:<br/>"+
+                                                            			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
+											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
+											                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
+											                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
+											                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>"+
+											                			"<br/><br/> Thank You, <br/> Team, <br/> www.wealthyvia.com " ,         
+                                                       },
+                                        "json"      : true,
+                                        "headers"   : {
+                                                        "User-Agent": "Test Agent"
+                                                    }
+                                    })
+                                    .then(source=>{
+                                    	console.log("mail sent")
+                                        //res.status(201).json({message:"OTP_UPDATED"})
+                                    })
+                                    .catch(err =>{
+                                        console.log(err);
+                                        
+                                    });            
          				var result = await create_offerSub_wsSub(orderDetails);
          				var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
 	         			if(url){

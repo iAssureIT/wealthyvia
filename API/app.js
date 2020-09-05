@@ -86,8 +86,8 @@ app.post('/send-email', (req, res)=> {
 	let transporter = nodeMailer.createTransport({
 			// service: 'Gmail',
 			host: 'smtp.gmail.com',
-			port: 587,
-			// port: 465,
+			// port: 587,
+			port: 465,
 			auth: {
 				user: 'wealthyviaapp@gmail.com',
 				pass: 'Wealthyvia@123'
@@ -98,7 +98,7 @@ app.post('/send-email', (req, res)=> {
 		console.log('after transport');
 		let mailOptions = {
 			
-			from   : '"Wealthyvia" <kycwealthyvia@gmail.com>', // sender address
+			from   : '"Wealthyvia" <wealthyviaapp@gmail.com>', // sender address
 			// from   : '"Wealthyvia" <iassureitmail@gmail.com>', // sender address
 			to     : req.body.email, // list of receivers
 			subject: req.body.subject, // Subject line
@@ -136,8 +136,8 @@ app.post('/send-email-admin', (req, res)=> {
 	let transporter = nodeMailer.createTransport({
 			// service: 'Gmail',
 			host: 'smtp.gmail.com',
-			port: 587,
-			// port: 465,
+			// port: 587,
+			port: 465,
 			auth: {
 				user: 'Partner@wealthyvia.com',
 				pass: 'Wealthy19$'
