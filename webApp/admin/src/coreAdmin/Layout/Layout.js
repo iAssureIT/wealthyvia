@@ -37,6 +37,7 @@ import distributorList    from '../dashboard/Distributorlist/distributorList.js'
 import disProfile         from '../dashboard/Distributorlist/disProfile.js';
 import distributorEditForm from '../dashboard/Distributorlist/distributorEditForm.js';
 import Myclients           from '../dashboard/Distributorlist/Myclients.js';
+import Referrermapping     from '../dashboard/Distributorlist/Referrermapping.js';
 import tools              from '../dashboard/Tools/tools.js';
 import ProductPricing       from '../dashboard/ProductPricing/ProductPricing.js';
 import Clientlist           from '../dashboard/Clientlist/Clientlist.js';
@@ -166,6 +167,7 @@ componentDidMount(){
                           <Route path="/distributorEditForm/"          component={distributorEditForm} exact  />
                           <Route path="/distributorEditForm/:ID"          component={distributorEditForm} exact  />
                           <Route path="/distributor/myclients/:ID"          component={Myclients} exact  />
+                          <Route path="/distributormapping/:ID"          component={Referrermapping} exact  />
                           <Route path="/tools"              component={tools} exact  />
                           <Route path="/tools/:editId"              component={tools} exact  />
                           <Route path="/productchart" component={ProductChart} exact />

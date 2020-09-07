@@ -18,6 +18,7 @@ router.get('/get/one/byuserid/:ID'		, distributormaster.fetch_distributor_by_use
 router.patch('/patch/additionalinfo/:ID', distributormaster.add_additional_info_distributor);
 router.get('/get/one/bydistributorcode/:ID'		, distributormaster.fetch_distributor_by_distributorcode);
 router.get('/get/all/myfranchiselist/:distributorCode'		, distributormaster.fetch_my_subfranchise_list);
+router.patch('/patch/mapping/franchisecode',distributormaster.map_subfrnchise_to_distributor);
 
 //**************************Set status approve or reject *************************//
 

@@ -1350,8 +1350,10 @@ exports.send_otp_for_admin_verify = (req,res,next) =>{
 					                "url"       : "http://localhost:"+globalVariable.port+"/send-email",
 					                "body"      : {
 					                					email 	: "anuja.kate@iassureit.com", 
-					                					subject : "Admin want to change password on wealthyvia",
-					                					mail    : "Wealthyvia OTP is: "+ optEmail, 
+					                					subject : "Admin- Reset Password",
+					                					mail    : "Admin wants to reset the password from Wealthyvia admin<br /> "+
+					                								"Following is the OTP to complete reset password process<br />"+
+					                								"OTP: "+optEmail, 
 					                			   },
 					                "json"      : true,
 					                "headers"   : {

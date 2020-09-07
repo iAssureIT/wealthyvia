@@ -248,7 +248,7 @@ class Myclients extends Component {
                           <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
                           <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
                           <li><p><b>Website:</b> &nbsp;{this.state.DistributorData.website}</p></li>
-                          <li><p><b>Distributor has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
+                          <li><p><b>Referrer has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
                           <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload}> 
                              {
                                 (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?

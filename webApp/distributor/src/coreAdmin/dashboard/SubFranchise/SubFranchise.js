@@ -158,8 +158,8 @@ class SubFranchise extends Component {
         "email"         : this.state.email ,
         "subject"       : "Wealthyvia - Join as a Partner",
         "mail"          : 'Dear ' + this.state.fullName + ', <br/><br/>'+                          
-                          "<b>Welcome to wealthvia <br/><br/>"+
-                          "Partner has shared the Referrer link with you to join Wealthyvia. <br/>"+
+                          "<b>Welcome to Wealthyvia <br/><br/>"+
+                          "Partner has shared the reference link with you to join Wealthyvia. <br/>"+
                           "Please click the following link to Sign Up: <br/>" + 
                           "<pre> " + this.state.subfranchiseurl+ "</pre>" + 
                           " <br/> <br/> =============================== " + 

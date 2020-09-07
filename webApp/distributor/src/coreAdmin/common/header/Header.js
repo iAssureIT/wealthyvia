@@ -118,7 +118,7 @@ export default class Header extends Component{
                           <p>Name: {this.state.userinfo ?this.state.userinfo.fullName :null}</p>
                           <p>Mobile: {this.state.userinfo ?this.state.userinfo.mobNumber :null}</p>
                           <p>Email: {this.state.userinfo ?this.state.userinfo.email :null}</p>
-                          <p>Distributor Code: {this.state.distributorCode ? this.state.distributorCode :null}</p>
+                          <p>Referrer Code: {this.state.distributorCode ? this.state.distributorCode :null}</p>
                         </div>
                         <div className="logoutDiv">
                       {/*    <div className="pull-left" data-toggle="modal" aria-labelledby="myModals" data-target="#myModals" aria-hidden="true">

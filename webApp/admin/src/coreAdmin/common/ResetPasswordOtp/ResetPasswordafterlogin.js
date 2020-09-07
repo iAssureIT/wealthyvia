@@ -58,7 +58,7 @@ class ResetPasswordafterlogin extends Component {
      axios
       .patch('/api/users/patch/distributor/resetpassword/'+localStorage.getItem('admin_id'),body)
       .then((response)=> {   
-          swal("Congrats..!","Password Reset successful", "success");
+          swal("Congrats..!","Your password has been reset, next time you will have to login with your new password", "success");
                this.props.history.push("/dashboard");      
       })
       .catch(function (error) {

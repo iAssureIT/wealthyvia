@@ -770,7 +770,7 @@ export default class JoinAsPartnerForm extends Component {
                       </div>
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent setMobileResponsive textpd2 textpd1 boxMarg">
                         <span className="blocking-span noIb">   
-                          <input type="number" className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="gst"  ref="gst"
+                          <input type="text" className="form-control abacusTextbox oesSignUpForm "  name="gst"  ref="gst"
                             onChange={this.handleChange.bind(this)}
                             value={this.state.gst} required
                           />

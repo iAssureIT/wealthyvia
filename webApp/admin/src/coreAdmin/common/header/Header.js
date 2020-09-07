@@ -70,10 +70,18 @@ export default class Header extends Component{
     }
     axios.patch('/api/users/patch/optEmailadmin/verify', formvalues)
         .then((response)=> {
-          console.log("response");
-          swal("Great","OTP is sent to admin.");
+          // console.log("response");
+          // swal("Great","OTP has been sent to admin's email. To get OTP please contact Pritam Deuskar.");
           // ?his.props.history.push("/resetpwd/confirmotp");
-          window.location = "/resetpwd/confirmotp";
+          swal({
+              title: "",
+              text: "OTP has been sent to admin's email. To get OTP please contact Pritam Deuskar.",
+              type: "success"
+              }).then(function() {                                  
+                 window.location = "/resetpwd/confirmotp";
+                 // window.location.reload();
+              });
+          // window.location = "/resetpwd/confirmotp";
                  // window.location.reload();
          
         })

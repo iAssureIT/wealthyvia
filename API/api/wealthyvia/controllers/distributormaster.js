@@ -914,3 +914,30 @@ function getdistributoridbydistricode(distributorCode){
         });   
   })
 }
+
+
+exports.map_subfrnchise_to_distributor = (req,res,next) =>{
+    console.log("patch",req.body.ID, req.body.distributorCode);
+    Distributormaster.updateOne(
+                    {_id:req.body.ID},
+                    {
+                        $set:{
+                            "franchiseCode"     : req.body.distributorCode,
+                        },
+                    }
+                )
+                .exec()
+                .then(data=>{
+                    if(data.nModified == 1){                    
+                        res.status(201).json({message:"franchisecode_UPDATED"})                  
+                    }else{
+                        res.status(401).status("franchisecode_NOT_UPDATED")
+                    }
+                })
+                .catch(err =>{
+                    console.log('franchise code error ',err);
+                    res.status(500).json({
+                        error: err
+                    });
+                });
+};
