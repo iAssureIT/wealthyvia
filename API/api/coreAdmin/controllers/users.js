@@ -5,12 +5,57 @@ const globalVariable 	= require("../../../nodemon.js");
 var ObjectID 			= require('mongodb').ObjectID;
 var request             = require('request-promise');
 const User 				= require('../../coreAdmin/models/users.js');
+const Counter = require('../../wealthyvia/models/counter.js');
 
 function getRandomInt(min, max) {
 	min = Math.ceil(min);
 	max = Math.floor(max);
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+function getNextSequence(code) {
+    return new Promise( (resolve, reject)=>{ 
+        Counter.findByIdAndUpdate(
+            { "_id": code },
+            { "$inc": { "seq": 1 } }
+            )
+            .then(counter => {
+                if(counter){
+                    console.log("counter", counter);
+                    let num = counter.seq;
+                    let str = num.toString().padStart(5, "0")
+                    console.log(str) 
+                    resolve( str ) ;
+                }
+                else{
+                    const distributorCounter = new Counter({
+                        "_id"   : code, 
+                        "seq"   : 2,
+                     });
+                
+                    distributorCounter.save()
+                        .then(data=>{
+                            let num = 1;
+                            let str = num.toString().padStart(5, "0")
+                            console.log(str) 
+                            resolve( str ) ;
+
+                            })
+                            .catch(err =>{
+                                reject(error);
+                            });
+                }
+                
+            })
+            .catch(error=>{
+                reject(error);
+            });
+
+    });  
+      
+}
+
+
 exports.user_signup_admin = (req,res,next)=>{
 	if(req.body.email && req.body.pwd){
 		User.find({"emails.address":req.body.email })
@@ -254,6 +299,122 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 								error:err
 							});
 						}else{
+							getclientcode();
+    						async function getclientcode(){
+							var clientCode = await getNextSequence("clientCode");
+							
+									var emailOTP = getRandomInt(1000,9999);
+									if(emailOTP){
+										const user = new User({
+														_id: new mongoose.Types.ObjectId(),
+														createdAt	: new Date,
+														createdBy   : req.body.createdBy,
+														services	: {
+															password:{
+																		bcrypt:hash
+																		
+																	},
+														},
+														username	: req.body.email,
+														emails		: [
+																{
+																	address  : req.body.email,
+																	verified : true 
+																}
+														],
+														profile		:
+																{
+																	firstname     	: req.body.firstname,
+																	lastname      	: req.body.lastname,
+																	fullName      	: req.body.firstname+' '+req.body.lastname,
+																	emailId       	: req.body.email,
+																	mobNumber     	: req.body.mobNumber,
+																	createdOn     	: new Date(),
+																	optEmail 	  	: emailOTP,
+																	status		  	: req.body.status,																	
+																	clientId 	  : "WVC"+clientCode,
+																	city          : req.body.city,
+																	states        : req.body.states,
+																	dob           : req.body.dob
+																},
+														distributorCode	: req.body.distributorCode,		
+														roles 		: [req.body.role]
+										});	
+										if(!req.body.firstname){
+											user.profile.fullName = req.body.fullName;
+										}
+										user.save()
+											.then(result =>{
+												if(result){
+													request({
+											                "method"    : "POST", 
+											                "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+											                "body"      : {
+											                					email 	: req.body.email, 
+											                					subject : "Verify your Account on Wealthyvia",
+											                					mail    : "Dear "+result.profile.fullName+",<br/>"+
+											                								"To verify your account of Wealthyvia, please enter following OTP: <br/>"+
+											                								"Your OTP is "+ emailOTP+"<br/><br/>"+
+											                								"Regards,<br/>"+
+											                								"Team Wealthyvia.", 
+											                			   },
+											                "json"      : true,
+											                "headers"   : {
+											                                "User-Agent": "Test Agent"
+											                            }
+											            })
+											            .then(source=>{
+											            	res.status(201).json({message:"USER__CREATED",ID:result._id})
+											            })
+											    		.catch(err =>{
+															console.log(err);
+															res.status(500).json({
+																error: err
+															});
+														});        
+												}else{
+													res.status(200).json({message:"USER_NOT_CREATED"})
+												}
+											})
+											.catch(err =>{
+												console.log(err);
+												res.status(500).json({
+													error: err
+												});
+											})
+										}
+									}									
+						}			
+					});
+				}
+			})
+			.catch(err =>{
+				console.log(err);
+				res.status(500).json({
+					error: err
+				});
+			});
+	}else{
+		res.status(200).json({message:"Email , pwd and Role are mandatory"});
+	}
+};
+
+/*exports.user_signup_user_email_otp = (req,res,next)=>{
+	if(req.body.role && req.body.email && req.body.pwd){
+		User.find({"emails.address":req.body.email})
+			.exec()
+			.then(user =>{
+				if(user.length >= 1){
+					return res.status(409).json({
+						message: 'Email Id already exits.'
+					});
+				}else{
+					bcrypt.hash(req.body.pwd,10,(err,hash)=>{
+						if(err){
+							return res.status(500).json({
+								error:err
+							});
+						}else{
 							User.find({"roles":"user"})
 								.count()
 								.exec()
@@ -359,6 +520,7 @@ exports.user_signup_user_email_otp = (req,res,next)=>{
 		res.status(200).json({message:"Email , pwd and Role are mandatory"});
 	}
 };
+*/
 exports.user_login = (req,res,next) =>{
 	User.findOne({"emails.address":req.body.email})
 		.exec()

@@ -3,6 +3,7 @@ import axios                 from 'axios';
 import swal                  from 'sweetalert';
 import Moment                from 'moment';
 import "./ProductPaymentResponse.css";
+import Converter from 'number-to-words';
 
 var CurrentURL="";
 
@@ -13,6 +14,7 @@ export default class ProdutctPaymentResponse extends React.Component {
       paymentDetails  : "",
       date            : "",
       orderDetails    : "",
+      
     }
 	}
 
@@ -82,6 +84,151 @@ export default class ProdutctPaymentResponse extends React.Component {
   }
 
 	render() {
+    const loggedIn = localStorage.getItem("user_ID");
+        
+          return (
+           loggedIn ?
+            <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite  ">
+              {
+              this.state.orderDetails.paymentOrderId ?
+                <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan">
+                  <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">
+                  {
+                  this.state.companysettings && this.state.companysettings.length>0?
+                    <img src={this.state.companysettings[0].logoFilename} className=""/>
+                    :
+                    null
+                  }
+                  </div>
+                  {
+                    this.state.orderDetails && 
+                    this.state.orderDetails.paymentStatus == "Paid" ?
+                    <label className="note mt20"> Thank you for investing in Wealthyvia. Your payment is successful.</label>
+                    :
+                    null
+
+                  }
+                  {
+                    this.state.orderDetails && 
+                    this.state.orderDetails.paymentStatus == "Failed" ?
+                    <label className="noteRed mt20"> Something went wrong</label>
+                    :
+                    null
+
+                  }
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
+                    <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 iconContainerIP">
+                       <h4 className="invoiceHead">Invoice From:</h4> 
+                       <p className="paracontent">
+                        PRITAM PRABODH DEUSKAR <br/>
+                        D1 706, MAYUR KILBIL, DHANORI, <br/>
+                        NEAR VITTHAL MANDIR, PUNE CITY, Pune, Maharashtra, 411015 </p>
+
+                       <h5> GSTIN: 27ALFPD0936Q1ZU </h5>
+
+                    </div>
+
+                    <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 iconContainerIP mt20">                        
+                        <h4></h4><label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
+                        <label className="col-lg-12 dateContain "><span className="pull-right">Date : <span className="noBold">{this.state.date}</span></span></label>
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
+                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 userDetails noPadding">
+                      <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                      <h4 className="invoiceHead">Invoice To: </h4>
+
+                        <li className="userName">{this.state.orderDetails.userName}</li>
+                        <p className="paracontent">{this.state.orderDetails.email}<br />
+                        {this.state.orderDetails.mobileNumber}<br />
+                        PAN: {this.state.orderDetails.panNumber}<br />
+                        GSTIN: {this.state.orderDetails.gstNumber}<br />
+                        State Name: {this.state.orderDetails.states}</p>
+                      </ul>
+                    </div>
+                    <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 paymentDetails">
+                      
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
+                    <table className="customTableIP col-lg-12">
+                      <tr>
+                        <th><p style={{textAlign: 'left' }}>Description</p></th>
+                        <th>Amount</th>
+                      </tr>
+                      <tr >
+                        <td className="customTableIPTD">
+                        <p style={{textAlign: 'left' }}>12 Months Subscription for Wealthyvia-{this.state.orderDetails.offeringTitle} <br/> 
+                        {Moment().format("Do MMM, YYYY")} to {Moment().add(1, 'years').format("Do MMM, YYYY")}</p></td>
+                        
+                        <td className="customTableIPTD"><i class="fa fa-rupee">&nbsp;</i>{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</td>
+                      </tr>
+                     
+                    </table>
+                  </div> 
+                  <div className=" col-lg-12 mt20 noPadding">
+                    <ul className="customUlIPFeatures col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        
+                      </ul>
+
+                    {
+                      this.state.states === 'Maharashtra' ?
+                        <div> 
+                         <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
+                            <li className="dateContain">Subtotal</li>
+                            <li className="dateContain">CGST @ 9% </li>
+                            <li className="dateContain">SGST @ 9% </li>
+                            <li className="dateContain"><b>Grand Total</b></li>
+                          </ul>
+                          <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
+                        
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{(parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{(parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)).toLocaleString("en-IN")}</li>
+                          
+                          </ul>
+                        </div>
+                      :
+ 
+                       <div> 
+                         <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
+                            <li className="dateContain">Subtotal</li>
+                            <li className="dateContain">IGST @18%  </li>
+                            <li className="dateContain"><b>Grand Total</b></li>
+                          </ul>
+                          <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
+                        
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(((this.state.orderDetails.amountPaid)/100)/1.18).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt(parseInt((this.state.orderDetails.amountPaid/100)) - parseInt(((this.state.orderDetails.amountPaid)/100)/1.18)).toLocaleString("en-IN")}</li>
+                            <li className="dateContain"><i class="fa fa-rupee"></i>&nbsp;{parseInt((this.state.orderDetails.amountPaid/100)).toLocaleString("en-IN")}</li>
+                          
+                          </ul>
+                        </div>
+                    }
+                    <div className="margintopad col-lg-12  noPadding sentanceCase pull-right amountwords"> Total in words: {Converter.toWords(parseInt((this.state.orderDetails.amountPaid/100)))} only</div>
+                  </div>
+                  <div className="col-lg-12  col-md-12 col-sm-12 col-xs-12 btnContainer noPadding NoPrint mt20">                
+                    <div className="col-lg-2  col-md-12 col-sm-12 col-xs-12 makePaymentButton mt20 " >
+                      <a href="/clientDashboard"> Back </a>
+                    </div>
+                     <div className="col-lg-2 pull-right  col-md-12 col-sm-12 col-xs-12 makePaymentButton NoPrint" onClick={this.printContent.bind(this)}>
+                       Print
+                    </div>
+                  </div>    
+                </div>
+                :
+                null 
+              }
+            </div>
+            :
+            <div>
+              {this.props.history.push("/login")}
+            </div> 
+                     
+          
+          );
+   {/*     
 		  return (
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite ">
               <div className="col-lg-8 col-lg-offset-2 col-md-12 col-sm-12 col-xs-12 ">
@@ -119,7 +266,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                   }
                     {/*<label className="warning"> IMPORTANT: Please be aware that while you may receive a notification from your bank that your payment
                       amount has been debited from your bank account, the amount would be credited to your American Express
-                      Card in the next 1-2 working days*.</label>*/}
+                      Card in the next 1-2 working days*.</label>
                   </div>
                   <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 PlanDetails mt20">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 noPadding ">
@@ -174,6 +321,6 @@ export default class ProdutctPaymentResponse extends React.Component {
                   </div>  
               </div>
             </div>
-         )
+         ) */}
 	}
 }

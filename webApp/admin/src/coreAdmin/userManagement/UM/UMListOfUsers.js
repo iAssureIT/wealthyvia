@@ -10,7 +10,8 @@ import IAssureTableUM               from '../../common/IAssureTable/IAssureTable
 import UMDelRolRow                  from './UMDelRolRow.jsx';
 import UMAddRolRow                  from './UMAddRolRow.jsx';
 import UMSelectRoleUsers            from './UMSelectRoleUsers.jsx';
-
+import moment                   from "moment";
+import {ExportCSV} from '../../common/Export/ExportCSV.js';
 
 class UMListOfUsers extends Component{
 
@@ -758,6 +759,23 @@ class UMListOfUsers extends Component{
 
   }
 
+  exportAlluserdata = () => {
+        let user = []
+        if(this.state.tableData && this.state.tableData.length > 0)
+        {
+            var data = this.state.tableData;
+            for (let i = 0; i < data.length; i++) {
+              
+                user.push({"Name": data[i].fullName, "Email id": data[i].email, "Phone Number" : data[i].mobNumber,
+                            "Status" : data[i].status, "Role" : data[i].role
+                          })               
+              
+            }  
+        }
+        
+        return user;
+      }
+
   closeModal(event){
 
      $('#deleteModal').removeClass("in");
@@ -824,7 +842,9 @@ class UMListOfUsers extends Component{
                         </div>
                       </div>
                       {console.log("count=",this.state.completeDataCount)}
-
+                      <div className=" pull-right" style={{ textAlign: 'right', marginTop: '2px', marginRight: '15px', fontSize: '14px'}}>
+                        <ExportCSV csvData={this.exportAlluserdata()} fileName="Userslist" />&nbsp;
+                      </div> 
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  usrmgnhead">
                         <IAssureTableUM
                             completeDataCount={this.state.completeDataCount}

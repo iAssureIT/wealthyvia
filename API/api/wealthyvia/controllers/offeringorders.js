@@ -51,11 +51,21 @@ exports.payment_response = (req,res,next) =>{
          			setofferingsubscription();
          			async function setofferingsubscription(){
          				var paymentinfo = await paymentOrderDetailsforemail(orderDetails.paymentOrderId);
+         				if(paymentinfo.states === 'Maharashtra'){
+         					var taxinfo = 	"Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
+         									"CGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>"+
+         									"SGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>";
+         				}
+         				else{
+         					var taxinfo = "Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
+         									"IGST @18%: </b>₹ "+parseInt(parseInt((paymentinfo.amountPaid/100)) - parseInt(((paymentinfo.amountPaid)/100)/1.18)).toLocaleString("en-IN")+"</b><br/>";
+         				}
+         				 
          				request({
                                         "method"    : "POST", 
                                         "url"       : "http://localhost:"+globalVariable.port+"/send-email",
                                         "body"      : {
-                                                            email   : "anuja.kate@iassureit.com", 
+                                                            email   : "monikapawashe25@gmail.com", 
                                                             subject : "A Client has invested in a Product",
                                                             mail    : "Dear admin, <br/>"+
                                                             			"Following are the details of the Client & his investment:<br/>"+
@@ -63,7 +73,11 @@ exports.payment_response = (req,res,next) =>{
 											                          	"<b>Client Name: </b>"+paymentinfo.userName+"<br/>"+
 											                          	"<b>Phone Number: </b>"+paymentinfo.mobileNumber+"<br/>"+
 											                          	"<b>Email: </b>"+paymentinfo.email+"<br/>"+
+											                          	"<b>Pan Number: </b>"+paymentinfo.panNumber+"<br/>"+
+											                          	"<b>GST Number: </b>"+paymentinfo.gstNumber+"<br/>"+
+											                          	"<b>State: </b>"+paymentinfo.states+"<br/>"+											                          	
 											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
+											                          	""+taxinfo+"<br/>"+
 											                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
 											                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
 											                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>",
@@ -267,6 +281,10 @@ exports.paymentOrderDetails = (req,res,next) =>{
 											"userName"		: "$user.profile.fullName",
 											"email"			: "$user.profile.emailId",
 											"mobileNumber"	: "$user.profile.mobNumber",
+											"panNumber"		: "$user.profile.panNumber",
+											"gstNumber"		: "$user.profile.gstNumber",
+											"city"			: "$user.profile.city",
+											"states"		: "$user.profile.states",
 											"_id"			: 1,
 											"validityPeriod": 1,
 									}
@@ -536,7 +554,7 @@ function create_offerSub_wsSub (offeringorder) {
 	                        								"offeringStatus": 'Active',
 	                        								"offeringTitle"	: offeringorder.offeringTitle,
 	                        								"startDate"		: moment(new Date()).format("YYYY-MM-DD"),
-	                        								"endDate"		: wssub.endDate,
+	                        								"endDate"		: moment(FullDate).format("YYYY-MM-DD"),
 	                        							});
 	                        
 	                        resolve(true);
@@ -624,6 +642,10 @@ function paymentOrderDetailsforemail(paymentOrderId){
 											"userName"		: "$user.profile.fullName",
 											"email"			: "$user.profile.emailId",
 											"mobileNumber"	: "$user.profile.mobNumber",
+											"panNumber"		: "$user.profile.panNumber",
+											"gstNumber"		: "$user.profile.gstNumber",
+											"city"			: "$user.profile.city",
+											"states"		: "$user.profile.states",
 											"_id"			: 1,
 											"validityPeriod": 1,
 									}

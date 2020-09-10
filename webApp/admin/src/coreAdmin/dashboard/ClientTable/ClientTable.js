@@ -99,20 +99,23 @@ class ClientTable extends Component {
 
                               <th className="text-center">Client ID</th>
                               <th className="text-center">Client Details</th>
-                              <th className="text-center">Multibagger</th>
+                              {/*<th className="text-center">Multibagger</th>
                               <th className="text-center">Fly Nifty</th>
                               <th className="text-center">US Stocks</th>
                               <th className="text-center">SHM Alpha Enhancer</th>
                               <th className="text-center">Safe Heavan</th>
                               <th className="text-center">5GCPM</th>
-                              <th className="text-center">Super Focused</th>
-                              {/* {
-                                this.state.offeringTitle.map((b, j)=>{
+                              <th className="text-center">Super Focused</th>*/}
+                               {
+                                this.state.subscriptionData && this.state.subscriptionData.length > 0 && this.state.subscriptionData[0].offering ? 
+                                this.state.subscriptionData[0].offering.map((b, j)=>{
                                   return(
                                           <th className="text-center">{b.offeringTitle}</th>
                                       )
                                     })
-                                } */}
+                                :
+                                null
+                                } 
                             </tr>
                                                    
                           </thead>

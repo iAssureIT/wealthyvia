@@ -4,3 +4,10 @@
      max-height: 580px;
     overflow-y: scroll;
 }
+.strip_green{
+	background-color: #22ff99;
+}
+
+.strip_red{
+	background-color: #ffccca;
+}

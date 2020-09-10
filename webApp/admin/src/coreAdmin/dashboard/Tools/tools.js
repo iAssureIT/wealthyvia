@@ -477,7 +477,7 @@ export default class tools extends Component {
     .then((res)=>{
         // console.log("res",res);
         if(res.data.message === "MAX_PIN"){
-          swal("Restricted","Maximum 3 tools can be pinned at a time. Remove previous pin to pinned new tools","warning");
+          swal("Restricted","Maximum 3 tools can be pinned at a time. Remove previous pin to pin new tools","warning");
         }
         else if(res.data.message === "Unpin_successfully"){
           swal("Congrats..!","Tool unpinned successfully","success");

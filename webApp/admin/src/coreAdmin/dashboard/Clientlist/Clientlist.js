@@ -103,14 +103,14 @@ class Clientlist extends Component {
               if(productdata){
                 for (let j = 0; j < productdata.length; j++) {
                 client.push({"Client Code": data[i].clientId, "Client Name": data[i].fullName, "Email" : data[i].email,
-                            "Contact" : data[i].mobNumber, "Product Opted" : productdata[j].offeringTitle, "Start Date" : productdata[j].startDate,
+                            "Contact" : data[i].mobNumber, "City" : data[i].city, "State" : data[i].states, "Age": data[i].dob ? moment().diff(data[i].dob, 'years') : '' , "Product Opted" : productdata[j].offeringTitle, "Start Date" : productdata[j].startDate,
                             "End Date" : productdata[j].endDate, "Fees Paid" : (productdata[j].endDate >= moment().format('YYYY-MM-DD')) ? productdata[j].offeringAmount : '',
-                            "Fees Pending" : ( productdata[j].endDate > moment().format('YYYY-MM-DD') ) ? '0' : productdata[j].offeringAmount, "Distributor Code": data[i].distributorCode  });        
+                            "Fees Pending" : ( productdata[j].endDate > moment().format('YYYY-MM-DD') ) ? '0' : productdata[j].offeringAmount, "Referrer Code": data[i].distributorCode  });        
                 }
               }
               else{
                 client.push({"Client Code": data[i].clientId, "Client Name": data[i].fullName, "Email" : data[i].email,
-                            "Contact" : data[i].mobNumber, "Distributor Code": data[i].distributorCode  }); 
+                            "Contact" : data[i].mobNumber, "City" : data[i].city, "State" : data[i].states, "Age": data[i].dob ? moment().diff(data[i].dob, 'years') : '' , "Referrer Code": data[i].distributorCode  }); 
               }
               
             }  
@@ -139,7 +139,7 @@ class Clientlist extends Component {
               <div className="tab-content customTabContent col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                   <div id="home" className="tab-pane fade in active">
                     <div className="col-lg-12 NOpadding scrollhz">
-                        <table className="table tableCustom table-striped reserachtable">
+                        <table className="table tableCustom reserachtable">
                           <thead className="bgThead">
                               <tr>
                                 <th>Client Code</th>
@@ -170,7 +170,7 @@ class Clientlist extends Component {
                                           b.productdata && b.productdata.length > 0 ?
                                           b.productdata.map((sub,k)=>{
                                               return(
-                                                <tr key={k}>
+                                                <tr key={k} className={sub.endDate >= moment().format('YYYY-MM-DD') ? "strip_green" : "strip_red" }>
                                                 <td className="col-lg-1"> {b.clientId} </td>
                                                 <td className="col-lg-1"> {b.fullName} </td> 
                                                 <td className="col-lg-1"> {b.email} </td> 
@@ -181,16 +181,21 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1"> {sub.offeringTitle} </td> 
                                                 <td className="col-lg-1"> {sub.startDate} </td> 
                                                 <td className="col-lg-1"> {sub.endDate} </td> 
-                                                <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : '0'}</td>
-                                                <td className="text-center"><i class="fa fa-rupee"></i>&nbsp;{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
+                                                <td className="text-center"><i className="fa fa-rupee"></i>&nbsp;{sub.endDate >= moment().format('YYYY-MM-DD') ? sub.offeringAmount : '0'}</td>
+                                                <td className="text-center"><i className="fa fa-rupee"></i>&nbsp;{sub.endDate > moment().format('YYYY-MM-DD') ? '0' : sub.offeringAmount}</td>
                                                 <td className="col-lg-1"> 
                                                  <a href={"/distributor/myclients/"+ b.distributorid}> { b.distributorCode }  </a>                                          
                                                 </td>
                                                 <td className="col-lg-1">
-                                                  { b.distributorCode === '-' ? 
-                                                  <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                      Map Distributor 
-                                                  </a>  
+                                                  { b.distributorCode === '' ? 
+                                                    <span>{ k === 0 ?
+                                                      <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
+                                                        Map Distributor 
+                                                      </a> 
+                                                      :
+                                                      null 
+                                                    } 
+                                                    </span> 
                                                   :
                                                    null 
                                                   }
