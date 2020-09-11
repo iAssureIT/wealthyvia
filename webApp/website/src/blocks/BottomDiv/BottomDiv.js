@@ -41,15 +41,15 @@ export default class BottomDiv extends Component {
 
 			  		</div>
 				</div></a>
-				<a href="/offerings/safeHeavenAlpha#productchart"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
+				<a href="/offerings/superFocused#productchart"><div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 miniDiv1Filterother height170 ">
 						<div className="row">
 			  			<img src="/images/ab1.jpg" alt=""/>
 						 <div className="miniFilterTextDivother col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="pad20">SHM and MF alpha</label><br/><br/>
+				          <label className="pad20">Super Focused</label><br/><br/>
 				          <span className="shopNowButtonFilters">Check Performance</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv2 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				          <label className="margins">SHM and MF alpha</label><br/>
+				          <label className="margins">Super Focused</label><br/>
 				      	</div>
 
 			  		</div>
