@@ -97,7 +97,7 @@ export default class Leftsidebar extends Component{
                     <li  className="add " onClick={this.eventclk1.bind(this)}>
                         <Link aria-expanded="false" to="/myclients">
                             <i className="fa fa-file"></i>
-                            My direct Clients
+                            My Direct Clients
                         </Link>
                       
                     </li>

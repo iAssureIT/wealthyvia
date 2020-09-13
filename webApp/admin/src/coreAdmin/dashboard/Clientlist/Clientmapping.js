@@ -102,7 +102,7 @@ class Clientmapping extends Component{
       Axios.patch("api/users/patch/mapping/distributorcode", formvalues)
        .then((response)=>{
          if(response.data){
-         Swal.fire("Mapping successfull");
+         Swal.fire("Mapping successful");
          this.props.history.push("/clientlist");
         }
         else{
@@ -127,7 +127,7 @@ class Clientmapping extends Component{
       <div className="row">
         <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12">
          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader">
-          <h4 className="h5lettersp MasterBudgetTitle">Map Client distributor</h4>
+          <h4 className="h5lettersp MasterBudgetTitle">Map Client Referrer</h4>
          </div>
           <hr className="compySettingHr"/>
            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -148,7 +148,7 @@ class Clientmapping extends Component{
 		                    </div>
 	                  	</div>
                       <div className="formcontent col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label>Select Distributor</label><span className="astrick">*</span>
+                        <label>Select Referrer</label><span className="astrick">*</span>
                         <div className="">
                           <input list="distributors" name="distributor" id="distributor" className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12"  onChange={this.handleChange.bind(this)}/>
                             <datalist id="distributors">

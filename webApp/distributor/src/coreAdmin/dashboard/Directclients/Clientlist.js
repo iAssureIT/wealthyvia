@@ -23,7 +23,8 @@ class Clientlist extends Component {
       clientsignupurl : '',
       clientList      : [],
       clientRevenue   : [],
-      clientSubscription : []
+      clientSubscription : [],
+      shareHeading     : 'Share'
     }   
   }
   handleChange(event){
@@ -50,7 +51,7 @@ class Clientlist extends Component {
         var encryptcode = discode * 298564;
         this.setState({
           distributorCode  : distributorCode,
-          clientsignupurl  : "http://wealthyvia.iassureit.com/signup?x="+ encryptcode
+          clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode
         });
       }
     })
@@ -207,7 +208,9 @@ class Clientlist extends Component {
     event.preventDefault();
     console.log("values", this.state.fullName, this.state.email);
     if (this.validateForm() && this.validateFormReq()) {
-      console.log("not error");
+      this.setState({shareHeading: "Processing..."})
+      $( ".shareclbtn" ).prop( "disabled", true );
+      // console.log("not error");
       const formValues = {
         "email"         : this.state.email ,
         "subject"       : "Register on Wealthyvia",
@@ -220,7 +223,7 @@ class Clientlist extends Component {
                           "<br/><br/> Thank You, <br/> Wealthyvia Team, <br/> www.wealthyvia.com " ,
 
       };
-      console.log("notification",formValues); 
+      // console.log("notification",formValues); 
       
         Axios
         .post('/send-email',formValues)
@@ -231,6 +234,8 @@ class Clientlist extends Component {
                       fullName : '',
                       email    : ''
                     })
+                    this.setState({shareHeading: "Share"});
+                    $( ".shareclbtn" ).prop( "disabled", false );
                     }
                     else{
                       swal("Something went wrong");
@@ -260,7 +265,7 @@ class Clientlist extends Component {
                 <h4 style={{paddingBottom: '14px' }}>My Client URL:  <a href={this.state.clientsignupurl} style={{color: '#337ab7' }} target="_blank"> {this.state.clientsignupurl} </a></h4>
                 <div className="row">
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 ">
-                            <div className=" col-lg-5 col-md-5 col-xs-12 col-sm-12 inputContent btmmargin">                              
+                            <div className=" col-lg-4 col-md-4 col-xs-12 col-sm-12 inputContent btmmargin">                              
                               
                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12 shareinputbox" id="fullName" ref="fullName" name="fullName" placeholder="Full Name*" 
                                       value={this.state.fullName} 
@@ -269,7 +274,7 @@ class Clientlist extends Component {
                                 
                               
                             </div>
-                            <div className="col-lg-5 col-md-5 col-xs-12 col-sm-12 inputContent">                            
+                            <div className="col-lg-4 col-md-4 col-xs-12 col-sm-12 inputContent">                            
                                <input type="email"  className="disableInput inputMaterial form-control inputText shareinputbox" id="email" ref="email"  name="email" placeholder="Email address*"  required
                                     value={this.state.email || ''}
                                     onChange={this.handleChange.bind(this)}
@@ -278,7 +283,7 @@ class Clientlist extends Component {
                                
                             </div>
                             <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
-                              <button className="btn btn-primary " onClick={this.shareurl.bind(this)}>&nbsp; &nbsp;Share&nbsp; &nbsp;</button>
+                              <button className="btn btn-primary shareclbtn" onClick={this.shareurl.bind(this)}>&nbsp; &nbsp;{this.state.shareHeading}&nbsp; &nbsp;</button>
                             </div>
                         </div>
                     </div>  
@@ -309,7 +314,7 @@ class Clientlist extends Component {
                           </thead>
                           <tbody>     
                           {
-                            this.state.clientList?
+                            this.state.clientList && this.state.clientList.length > 0 ?
                             this.state.clientList.map((a, i)=>{
                                 return(
                                     <tr key={i}> 
@@ -320,8 +325,9 @@ class Clientlist extends Component {
                                         
                                </tr>
                                 )
-                              }):
-                            null
+                              })
+                            :
+                            <tr><td colspan='10'>No record found.</td></tr>
                             }
                             </tbody>
                           
@@ -417,7 +423,7 @@ class Clientlist extends Component {
                                </tr>
                                 )
                               }):
-                            null
+                            <tr><td colspan='10'>No clients Revenue found</td></tr>
                             }
                             </tbody>
                           

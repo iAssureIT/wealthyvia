@@ -211,7 +211,7 @@ class RiskProfile extends Component {
           
         }
         if(dataArray1){
-          var adminEmail = "anuja.kate@iassureit.com";
+          var adminEmail = "kycwealthyvia@gmail.com";
           const dataArray = {
               "email"         : dataArray1.email ,
               "subject"       : "Your investment risk profile is sent successfully.",

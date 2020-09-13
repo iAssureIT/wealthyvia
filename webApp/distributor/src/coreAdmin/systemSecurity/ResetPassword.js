@@ -72,7 +72,7 @@ class ResetPassword extends Component {
          });
      }
      else{
-       swal("","Password and confirm password must be same");
+       swal("","Passwords do not match");
      }
       
 

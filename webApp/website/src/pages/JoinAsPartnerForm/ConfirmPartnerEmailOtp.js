@@ -10,7 +10,8 @@ class ConfirmPartnerEmailOtp extends Component {
     constructor(props){
       super(props);
       this.state ={
-       
+       buttonHeading     : "Submit",
+       otpHeading        : "Resend OTP",
       }
     }
   componentDidMount(){
@@ -32,6 +33,9 @@ class ConfirmPartnerEmailOtp extends Component {
     axios.get('/api/distributormaster/get/checkotp/'+formValues.ID+'/'+formValues.emailotp)
     .then((response)=>{
               if(response.data.message == 'SUCCESS'){
+                this.setState({
+                    buttonHeading : 'We are processing. Please Wait...',
+                  });
                 var distributor = response.data.distributor;
                 //console.log("res after otpcheck",response);
                 axios.get("/api/users/get/list/role/admin/1")
@@ -103,6 +107,7 @@ class ConfirmPartnerEmailOtp extends Component {
                         .post('/send-email',formValues1)
                         .then((res)=>{
                                    if(res.status === 200){
+                                    swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");
                                     this.props.history.push('/'); 
 
                                    // this.props.history.push('/'); 
@@ -114,7 +119,7 @@ class ConfirmPartnerEmailOtp extends Component {
                                   
                                 });        
 
-                      swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");
+                      
                   })
                   .catch((error) => { console.log('user error: ',error)})
 
@@ -140,6 +145,9 @@ class ConfirmPartnerEmailOtp extends Component {
 
   resendOtp(event){
     event.preventDefault();
+    this.setState({
+                    otpHeading : 'We are processing. Please Wait...',
+                  });
     var element = document.getElementById("resendOtpBtn");
     element.classList.add("btn-success");
     element.classList.remove("resendOtpColor");
@@ -149,6 +157,9 @@ class ConfirmPartnerEmailOtp extends Component {
     .then((response)=>{
       // console.log('response', response);
       swal("","New OTP is sent to your registered Email ID.");
+      this.setState({
+                    otpHeading : 'Resend OTP',
+      });
     })
     .catch((error)=>{
       console.log('error', error);
@@ -158,7 +169,7 @@ class ConfirmPartnerEmailOtp extends Component {
 
   render(){
     
-      var resendOtpWrap = "resendOtpWrap resendOtpWrapcss";
+      var resendOtpWrap = "parteroptresent ";
       var mobileEmail = 'Mobile Number';
       var resendOtp = <span onClick={this.resendOtp.bind(this)}>Resend OTP</span>;
 
@@ -188,11 +199,11 @@ class ConfirmPartnerEmailOtp extends Component {
                   </div>
                 </div>
                 <div className="submitButtonWrapper col-lg-12 col-md-12 col-sm-12 col-xs-12 veriemail">
-                  <button type="submit" className="btn btn-info submitBtn col-lg-12 col-md-12 col-sm-12 col-xs-12 UMloginbutton">Submit</button>
+                  <button type="submit" className="btn btn-info submitBtn col-lg-12 col-md-12 col-sm-12 col-xs-12 UMloginbutton">{this.state.buttonHeading}</button>
                 </div>
                 
-               { <div id="resendOtpBtn" className={"col-lg-4 col-md-4 col-sm-4 col-xs-4 resendOtpColor "+resendOtpWrap}>
-                  {resendOtp}
+               { <div id="resendOtpBtn" className={"col-lg-12 col-md-12 col-sm-12 col-xs-12 resendOtpColor "+resendOtpWrap} onClick={this.resendOtp.bind(this)}>
+                  <span >{this.state.otpHeading}</span>
                 </div> }
               </form>
             </div>

@@ -52,6 +52,7 @@ export default class disProfile extends Component{
   deleteDistributor(event){
     event.preventDefault(); 
     var disid = event.currentTarget.id.substr(2);
+
     console.log("disid = ",disid);
 
     Swal.fire({
@@ -355,8 +356,8 @@ export default class disProfile extends Component{
           <div className="row">
             <div className="col-lg-12 col-md-12 col-sm-12  col-xs-12 mt20"> 
               <div className = "panel panel-default">
-                <div className = "panel-heading"><h4 className="pl100"><b >Distributor Profile </b> <b className="pull-right"> <a href={"/distributorEditForm/"+ this.state.DistributorData._id} ><i id={"e-"+this.state.DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a>&nbsp;&nbsp;&nbsp;
-                      <a><i id={"d-"+this.state.DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;</b>
+                <div className = "panel-heading"><h4 className="pl100"><b >Referrer Profile </b> <b className="pull-right"> <a href={"/distributorEditForm/"+ this.state.DistributorData._id} ><i id={"e-"+this.state.DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a>&nbsp;&nbsp;&nbsp;
+                      &nbsp;</b>
                     {this.state.DistributorData.status==='New' ? 
                   <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={this.state.DistributorData._id+"-"+"Active"} title="Approve Distributor Profile" 
                           data-firstname={this.state.DistributorData.firstname} data-lastname={this.state.DistributorData.lastname} data-email={this.state.DistributorData.email ? this.state.DistributorData.email.address : ''} data-phone={this.state.DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
@@ -379,13 +380,13 @@ export default class disProfile extends Component{
                         <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li>
                         <li><p><b>DOB:</b>&nbsp;{this.state.DistributorData.dob}</p></li>
                         <li><p><b>Submitted On:</b>&nbsp;{this.state.DistributorData.currentDate}</p></li>
-                        <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload1}>{
-                              (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "PDF" ?
+                        <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload}>{
+                              (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
                                   <img src="/images/pdf.png"/>
                                 :
-                                (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "png"
+                                (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "png"
                                 ?
-                                  <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
+                                  <img src={this.state.DistributorData.fileUpload} height="50" width="50"/>
                                 :
                                   null
                             }  </a></p>
@@ -397,14 +398,14 @@ export default class disProfile extends Component{
                         <li><p><b>Address:</b> {this.state.DistributorData.address ? this.state.DistributorData.address.adressLine : null}:&nbsp;</p></li>
                         <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
                         <li><p><b>Website:</b> &nbsp;{this.state.DistributorData.website}</p></li>
-                        <li><p><b>Distributor has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
-                        <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload}> 
+                        <li><p><b>Referrer has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
+                        <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload1}> 
                            {
-                              (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
+                              (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "PDF" ?
                                   <img src="/images/pdf.png"/>
                                 :
-                                (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "png"?
-                                  <img src={this.state.DistributorData.fileUpload} height="50" width="50"/>
+                                (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "png"?
+                                  <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
                                 :
                                   null
                             }  </a></p></li>
@@ -415,66 +416,38 @@ export default class disProfile extends Component{
                   </div>
                   
                   <hr/>
-                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Distributor's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
+                    <div className = "col-md-12 col-xs-12 col-sm-12 col-lg-9 tital  pull-right" ><b>Brief about Referrer 's Profession or Business:</b>&nbsp;{this.state.DistributorData.description}</div>
                 </div>  
 
               </div>
             </div>
-            <div className="col-lg-12 col-md-12 col-sm-12  col-xs-12 nopadding setArea mt20">
-                <div className = "panel panel-default setBackground">
-                  <div className = "panel-heading"><h4 ><b>Earning Table </b></h4></div>
+
+            <div className="col-lg-12 col-md-12 col-sm-12  col-xs-12 setArea mt20">
+              <div className = "panel panel-default setBackgroundAccountdetails">
+                  <div className = "panel-heading"><h4 ><b className="bankheading">Bank Details </b></h4></div>
                   <br/>
              
-             <div className="col-lg-10 col-lg-offset-1 col-md-8 col-lg-offset-2 col-sm-10 col-xs-10">
-                <div className="table-responsive">
-                  <table className="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Clients</th>
-                        <th>Investment</th>
-                        <th>Cap Inv</th>
-                        <th>My Share</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Client-1</td>
-                        <td>1 Crore</td>
-                        <td>2</td>
-                        <td>1</td>
-                      </tr>
-                      <tr>
-                        <td>Client-2</td>
-                        <td>2 Crore</td>
-                        <td>4</td>
-                        <td>2</td>
-                      </tr>
-                      <tr>
-                        <td>Client-3</td>
-                        <td>2 Crore</td>
-                        <td>4</td>
-                        <td>2</td>
-                      </tr>
-                      <tr>
-                        <td>Client-4</td>
-                        <td>1.5 Crore</td>
-                        <td>3</td>
-                        <td>1.5</td>
-                      </tr>
-                       <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>6.5</td>
-                      </tr>
-                    </tbody>
-                  </table>
-
+                 <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                      <ul className="noMl fontWeight pl">
+                        <li><p><b>Bank Account Number:</b>&nbsp;{this.state.DistributorData.accountnumber}</p></li>
+                        <li><p><b>Bank Name:</b>&nbsp;{this.state.DistributorData.bankname }</p></li>
+                        <li><p><b>Branch Name:</b>&nbsp;{this.state.DistributorData.branchname}</p></li>
+                        <li><p><b>IFSC code:</b>&nbsp;{this.state.DistributorData.IFSCcode}</p></li>
+                        <li><p><b>MICR code:</b>&nbsp;{this.state.DistributorData.MICRcode}</p></li>   
+                                                                  
+                      </ul>
                   </div>
-                  </div>
-                      </div>
-          
-            </div>
+                  <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                      <ul className="noMl fontWeight pl">
+                        <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li> 
+                        <li><p><b>Aadhar Number:</b>&nbsp;{this.state.DistributorData.aadharnumber}</p></li>                                                                       
+                        <li><p><b>Pan Number:</b>&nbsp;{this.state.DistributorData.pannumber}</p></li>  
+                                              
+                      </ul>
+                  </div>  
+              </div>
+            </div> 
+            
           </div>
 
       </div>  

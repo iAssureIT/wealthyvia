@@ -1,3 +1,4 @@
+ 
 import React, { Component }               from 'react';
 import $                                  from 'jquery';
 import swal                               from 'sweetalert';
@@ -197,7 +198,7 @@ class Addkycdetails extends Component {
                           [uploadfilelocation] : Data.location,
                           [targetname]         : targetvalue
                         },()=>{
-                              this.deleteimageLogo(this.state[uploadfilelocation])
+                              // this.deleteimageLogo(this.state[uploadfilelocation])
                           })
                         
                       })
@@ -220,7 +221,7 @@ class Addkycdetails extends Component {
                                   this.setState({
                                     uploadfilelocation : Data.location,
                                   },()=>{
-                                    this.deleteimageLogo(this.state[uploadfilelocation])
+                                    // this.deleteimageLogo(this.state[uploadfilelocation])
                                   })
                                   
                                 })
@@ -290,7 +291,7 @@ class Addkycdetails extends Component {
           "gstNumber"        : this.state.gstNumber
         }
         if(dataArray1){
-          var adminEmail = "anuja.kate@iassureit.com";
+          var adminEmail = "kycwealthyvia@gmail.com";
 
               const dataArray = {
               "email"         : dataArray1.email ,
@@ -350,6 +351,7 @@ class Addkycdetails extends Component {
               .post('/send-email',formValues2)
               .then((res)=>{
                         if(res.status === 200){
+                          this.deleteimageLogo(this.state.panDocumentLocation);
                               $("html,body").scrollTop(0);
                               swal({
                                   title: "Thank You!",
@@ -393,7 +395,8 @@ class Addkycdetails extends Component {
         S3FileUpload
           .deleteFile(imageName,this.state.config)
           .then((response) =>{
-            swal("Image deleted successfully");
+            //swal("Image deleted successfully");
+            console.error("Deletedddd...");
           })
           .catch((err) => {
             console.error("Not-Deletedddd...",err)

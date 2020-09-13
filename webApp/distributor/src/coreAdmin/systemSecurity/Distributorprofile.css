@@ -61,7 +61,11 @@
     position: absolute;
     top: 36px;
     background-color: #fff;
-    left: 0px;    
+    left: -1px;  
+    width: 100%;
+    border: 1.5px solid #ccc;  
+    border-top: 0px solid #ccc; 
+    border-bottom: 1px solid #ccc; 
 }
 
 .placepadding{

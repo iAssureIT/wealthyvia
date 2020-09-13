@@ -54,8 +54,8 @@ class Myclients extends Component {
           if(res.data && res.data){
             this.setState({
               DistributorData : res.data,
-              clientsignupurl  : "http://wealthyvia.iassureit.com/signup?x="+ encryptcode,
-              subfranchiseurl  : "http://wealthyvia.iassureit.com/join-as-partner?x="+ encryptcode
+              clientsignupurl  : "https://wealthyvia.com/signup?x="+ encryptcode,
+              subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
             });
           }
         }
@@ -220,7 +220,9 @@ class Myclients extends Component {
                     </div>
                     <div className = "col-md-9 col-xs-7 col-sm-7 col-lg-9">
 
-                      <b className="pull-right pt">Status:&nbsp;&nbsp;<div className={this.state.DistributorData.status === "Active" ? 'label label-success' : this.state.DistributorData.status ==='New' ? 'label label-info' : 'label label-danger'}>{this.state.DistributorData.status}</div></b>
+                      <b className="pull-right pt" style={{"paddingTop": '10px'}}>                    
+                    Status:&nbsp;&nbsp;<div className={this.state.DistributorData.status === "Active" ? 'label label-success' : this.state.DistributorData.status ==='New' ? 'label label-info' : 'label label-danger'}>{this.state.DistributorData.status}</div><br/>
+                    Referrer Code: &nbsp;<span style={{paddingTop: '8px'}}>{this.state.DistributorData.distributorCode}</span>&nbsp;&nbsp;</b>
                       <h2>{this.state.DistributorData.firstname} {this.state.DistributorData.lastname}</h2>
                       <hr className="mt10 mb10"/>
                       <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
@@ -230,13 +232,13 @@ class Myclients extends Component {
                           <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li>
                           <li><p><b>DOB:</b>&nbsp;{this.state.DistributorData.dob}</p></li>
                           <li><p><b>Submitted On:</b>&nbsp;{this.state.DistributorData.currentDate}</p></li>
-                          <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload1}>{
-                                (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "PDF" ?
+                          <li><p><b>Adhar Document:</b> <a title="Click to View"  target="_blank" href={this.state.DistributorData.fileUpload}>{
+                                (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
                                     <img src="/images/pdf.png"/>
                                   :
-                                  (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "png"
+                                  (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "png"
                                   ?
-                                    <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
+                                    <img src={this.state.DistributorData.fileUpload} height="50" width="50"/>
                                   :
                                     null
                               }  </a></p>
@@ -249,13 +251,13 @@ class Myclients extends Component {
                           <li><p><b>Education:</b> {this.state.DistributorData.education}</p></li>
                           <li><p><b>Website:</b> &nbsp;{this.state.DistributorData.website}</p></li>
                           <li><p><b>Referrer has own office:</b> &nbsp;{this.state.DistributorData.ownOffice}</p></li>
-                          <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload}> 
+                          <li><p><b>PAN Document:</b> &nbsp; <a title="Click to View"  target="_blank" href ={this.state.DistributorData.fileUpload1}> 
                              {
-                                (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "PDF" ?
+                                (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "pdf" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "PDF" ?
                                     <img src="/images/pdf.png"/>
                                   :
-                                  (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload ? this.state.DistributorData.fileUpload.split('.').pop() : "") === "png"?
-                                    <img src={this.state.DistributorData.fileUpload} height="50" width="50"/>
+                                  (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "jpeg" || (this.state.DistributorData.fileUpload1 ? this.state.DistributorData.fileUpload1.split('.').pop() : "") === "png"?
+                                    <img src={this.state.DistributorData.fileUpload1} height="50" width="50"/>
                                   :
                                     null
                               }  </a></p></li>
@@ -271,6 +273,33 @@ class Myclients extends Component {
 
                 </div>
               </div>
+
+              <div className="col-lg-12 col-md-12 col-sm-12  col-xs-12 ">
+              <div className = "panel panel-default setBackgroundAccountdetails">
+                  <div className = "panel-heading"><h4 ><b className="bankheading">Bank Details </b></h4></div>
+                  <br/>
+             
+                 <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                      <ul className="noMl fontWeight pl">
+                        <li><p><b>Bank Account Number:</b>&nbsp;{this.state.DistributorData.accountnumber}</p></li>
+                        <li><p><b>Bank Name:</b>&nbsp;{this.state.DistributorData.bankname }</p></li>
+                        <li><p><b>Branch Name:</b>&nbsp;{this.state.DistributorData.branchname}</p></li>
+                        <li><p><b>IFSC code:</b>&nbsp;{this.state.DistributorData.IFSCcode}</p></li>
+                        <li><p><b>MICR code:</b>&nbsp;{this.state.DistributorData.MICRcode}</p></li>   
+                                                                  
+                      </ul>
+                  </div>
+                  <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+                      <ul className="noMl fontWeight pl">
+                        <li><p><b>GST:</b>&nbsp;{this.state.DistributorData.gst}</p></li>  
+                        <li><p><b>Aadhar Number:</b>&nbsp;{this.state.DistributorData.aadharnumber}</p></li>                                                                      
+                        <li><p><b>PAN Number:</b>&nbsp;{this.state.DistributorData.pannumber}</p></li>  
+                                             
+                      </ul>
+                  </div>  
+              </div>
+            </div>
+
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 workHeader" style={{marginTop: '20px'}}>
                 <h4 className="h5lettersp MasterBudgetTitle" >Client List
                 <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px'}}>
@@ -310,7 +339,7 @@ class Myclients extends Component {
                                   )
                                 })
                               :
-                                 <tr><td>No clients found</td></tr>
+                                 <tr><td colspan='10'>No record found</td></tr>
                               }
                               </tbody>
                             
@@ -365,7 +394,7 @@ class Myclients extends Component {
                                </tr>
                                 )
                               }):
-                            null
+                            <tr><td colspan='10'>No record found</td></tr>
                             }
                             </tbody>
                           

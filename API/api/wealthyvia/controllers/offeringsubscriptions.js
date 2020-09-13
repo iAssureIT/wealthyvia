@@ -587,6 +587,7 @@ exports.list_offerSub_byuserid = (req,res,next) => {
 exports.list_offerSubforclients_admin = (req,res,next) => {
 	
 	User.find({roles:'user'})
+		.sort({"createdAt":-1})
 		.exec()
 		.then(data=>{
 			if(data){
@@ -684,6 +685,7 @@ function getdistributoridbyuserid(distributorCode){
 	return new Promise(function (resolve, reject) {
 		// console.log("user", distributorCode);
 		Distributormaster.findOne({"distributorCode" : distributorCode})
+			.sort({createdAt : -1})
 			.then(data=>{
 				// console.log("data", data);
 					if(data){

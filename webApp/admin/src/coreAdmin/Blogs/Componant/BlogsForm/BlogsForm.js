@@ -329,7 +329,7 @@ uploadBlogImage(event){
     axios
           .patch('/api/blogs/patch/'+id,formValues)
           .then((res)=>{
-                      swal(" Your Blog Update successfully ");
+                      swal(" Your Blog Updated successfully ");
                        this.props.history.push("/allblogs");
 
                   })
@@ -483,7 +483,13 @@ uploadBlogImage(event){
 		return (
 			<div>
   			<div className=" boxform1">
-          <div className="col-lg-12 textAlignCenter createBlogLabel"><label className="">Create Blog</label></div>
+          <div className="col-lg-12 textAlignCenter createBlogLabel"><label className="">
+          {this.state.editId ? 
+            "Edit Blog"
+            :
+            "Create Blog"
+          }  
+            </label></div>
 
   				<form id="blogForm" className="col-lg-12 col-md-12 col-sm-12 col-xs-12 nopadding blogFormBox">
                 <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">

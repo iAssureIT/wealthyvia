@@ -97,6 +97,7 @@ exports.search_tool = (req,res,next) =>{
     Uploadurl.find(
                     { $text: { $search: String(req.params.searchtext) } }
                   )
+            .sort({ pinOrder : -1, createdAt : -1})
             .exec()
             .then(data=>{
                 res.status(200).json(data);
@@ -153,7 +154,7 @@ exports.fetch_tool_list_bydate = (req,res,next) => {
     console.log("grater",new Date(req.body.startDate),"less",new Date(req.body.endDate));
     Uploadurl.aggregate([
         {$match:{'createdAt':{$gte : new Date(req.body.startDate), $lt : new Date(req.body.endDate) }}},
-        { "$sort": { "createdAt": -1 } },        
+        { "$sort": { pinOrder : -1, "createdAt": -1 } },        
     ])
     .exec()
     .then(data=>{

@@ -174,7 +174,7 @@ class SignUp extends Component {
 		                )
 	                
 	            } else {
-			        return swal("Passwords does not match","Please Try Again")
+			        return swal("Passwords do not match.","Please Try Again")
 	            }
             
 				let fields = {};
@@ -408,15 +408,20 @@ class SignUp extends Component {
     return formIsValid;
   }
 
-  handleChangePlaces = address => {
+  handleChangePlaces = (address) => {
+     // console.log(window.event);
 	this.setState({ location : address });
 	let fields = this.state.fields;
 	      fields['locationV'] = address;
 	      this.setState({
 	        fields
 	      });
-	      
+    if(window.event.key == 'ArrowDown' || window.event.key == 'ArrowUp') {
+       this.handleSelectLocation(address);
+    }
+   
 };
+
 
 handleSelectLocation = address => {
     
@@ -439,7 +444,7 @@ geocodeByAddress(address)
                   break;
               case 'administrative_area_level_1':
                   var state = results[0].address_components[i].long_name;
-                  // console.log("state",state);
+                   // console.log("state",state);
                   this.setState({states: state});
                   break;
               case 'country':
@@ -453,6 +458,7 @@ geocodeByAddress(address)
     }
 })
 .catch(error => console.error('Error', error));
+// console.log("city",this.state.city);
 geocodeByAddress(address)
   .then(results => getLatLng(results[0]))
   .then(latLng => this.setState({'fromLatLng': latLng}))
@@ -539,7 +545,7 @@ geocodeByAddress(address)
 								            onChange={this.handleChangePlaces}
 								            onSelect={this.handleSelectLocation}
 								            searchOptions={searchOptions}
-
+                            
 								          >
 								            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
 								              <div>

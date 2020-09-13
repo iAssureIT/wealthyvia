@@ -4,6 +4,13 @@
     thead {display:table-header-group}
     .NoPrint {visibility:hidden; display:none}
     a {color:#000000}
+    .iconContainerIP{ padding-top: 0px; height: auto; }
+    .mt20{margin-top: 0px; }
+    .margintopad {  margin-top: 0px; margin-bottom: 20px !important; }
+    .customTableIPTD { color: #000 !important;  padding: 10px !important; padding-top: 10px !important;   padding-bottom: 10px !important; border: 1px solid #aaa; }
+    .customTablePP tr> td, th { border: 1px solid #aaa; color: #000 !important; padding: 10px !important; }
+    .textAlignRight {    text-align: left !important; }
+    .succesmsg{ display: none; }
 }
 .note{
 	font-size: 25px;
@@ -47,4 +54,16 @@
 }
 .failPay{
   color: #f00;
+}
+.successpaid{
+  margin-top: 20px !important;
+}
+.suceesssection{
+  margin-top: 100px !important;
+}
+.failedsection{
+  margin-top: 30px !important;
+}
+.failedsection label{
+  font-size: 30px !important;
 }

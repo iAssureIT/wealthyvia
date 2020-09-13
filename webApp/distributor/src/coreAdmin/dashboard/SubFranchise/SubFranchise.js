@@ -22,7 +22,8 @@ class SubFranchise extends Component {
       errors          : {},
       fields          : {},
       subfranchiseurl : '',
-      subfranchiseList : []
+      subfranchiseList : [],
+      shareHeading     : 'Share'
     }   
   }
   handleChange(event){
@@ -49,7 +50,7 @@ class SubFranchise extends Component {
         var encryptcode = discode * 298564;
         this.setState({
           distributorCode  : distributorCode,
-          subfranchiseurl  : "http://wealthyvia.iassureit.com/join-as-partner?x="+ encryptcode
+          subfranchiseurl  : "https://wealthyvia.com/join-as-partner?x="+ encryptcode
         });
       }
     })
@@ -151,9 +152,11 @@ class SubFranchise extends Component {
 
   shareurl(event){
     event.preventDefault();
-    console.log("values", this.state.fullName, this.state.email);
+    // console.log("values", this.state.fullName, this.state.email);
     if (this.validateForm() && this.validateFormReq()) {
-      console.log("not error");
+      this.setState({shareHeading: "Processing..."})
+      $( ".sharesfbtn" ).prop( "disabled", true );
+      // console.log("not error");
       const formValues = {
         "email"         : this.state.email ,
         "subject"       : "Wealthyvia - Join as a Partner",
@@ -172,11 +175,13 @@ class SubFranchise extends Component {
         .post('/send-email',formValues)
         .then((res)=>{
                    if(res.status === 200){
-                    swal("Signup url email sent to this "+this.state.email);
-                    this.setState({
-                      fullName : '',
-                      email    : ''
-                    })
+                      swal("Signup url email sent to this "+this.state.email);
+                      this.setState({
+                        fullName : '',
+                        email    : ''
+                      })
+                      this.setState({shareHeading: "Share"});
+                      $( ".sharesfbtn" ).prop( "disabled", false );
                     }
                     else{
                       swal("Something went wrong");
@@ -220,7 +225,7 @@ class SubFranchise extends Component {
                 <h4 style={{paddingBottom: '14px' }}>My Sub Franchise URL:  <a href={this.state.subfranchiseurl} style={{color: '#337ab7' }} target="_blank"> {this.state.subfranchiseurl} </a></h4>
                 <div className="row">
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12 ">
-                            <div className=" col-lg-5 col-md-5 col-xs-12 col-sm-12 inputContent btmmargin">                              
+                            <div className=" col-lg-4 col-md-4 col-xs-12 col-sm-12 inputContent btmmargin">                              
                               
                                  <input type="text" style={{textTransform:'capitalize'}} className="form-control nameSpaceUpper col-lg-12 col-md-12 col-sm-12 col-xs-12 shareinputbox" id="fullName" ref="fullName" name="fullName" placeholder="Full Name*" 
                                       value={this.state.fullName} 
@@ -229,7 +234,7 @@ class SubFranchise extends Component {
                                 
                               
                             </div>
-                            <div className="col-lg-5 col-md-5 col-xs-12 col-sm-12 inputContent">                            
+                            <div className="col-lg-4 col-md-4 col-xs-12 col-sm-12 inputContent">                            
                                <input type="email"  className="disableInput inputMaterial form-control inputText shareinputbox" id="email" ref="email"  name="email" placeholder="Email address*"  required
                                     value={this.state.email || ''}
                                     onChange={this.handleChange.bind(this)}
@@ -238,7 +243,7 @@ class SubFranchise extends Component {
                                
                             </div>
                             <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12 ">
-                              <button className="btn btn-primary " onClick={this.shareurl.bind(this)}>&nbsp; &nbsp;Share&nbsp; &nbsp;</button>
+                              <button className="btn btn-primary sharesfbtn" style={{"width": "100%"}} onClick={this.shareurl.bind(this)}>&nbsp; &nbsp;{this.state.shareHeading}&nbsp; &nbsp;</button>
                             </div>
                         </div>
                     </div>  
@@ -291,7 +296,7 @@ class SubFranchise extends Component {
                                </tr>
                                 )
                               }):
-                            null
+                            <tr><td colspan='10'>No record found.</td></tr>
                             }
                             </tbody>
                           

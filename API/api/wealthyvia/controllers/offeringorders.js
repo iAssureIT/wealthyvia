@@ -65,7 +65,7 @@ exports.payment_response = (req,res,next) =>{
                                         "method"    : "POST", 
                                         "url"       : "http://localhost:"+globalVariable.port+"/send-email",
                                         "body"      : {
-                                                            email   : "monikapawashe25@gmail.com", 
+                                                            email   : "kycwealthyvia@gmail.com", 
                                                             subject : "A Client has invested in a Product",
                                                             mail    : "Dear admin, <br/>"+
                                                             			"Following are the details of the Client & his investment:<br/>"+

@@ -90,7 +90,7 @@ class Login extends Component {
         if(error.message === "Request failed with status code 401")
           {
              swal("Invalid Email or Password","Please Enter valid email and password","warning");
-             this.setState(this.baseState);
+             // this.setState(this.baseState);
                //swal("Your session is expired! Please login again.","", "error");
                //this.props.history.push("/login");
           }

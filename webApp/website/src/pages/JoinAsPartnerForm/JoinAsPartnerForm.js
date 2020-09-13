@@ -48,9 +48,11 @@ export default class JoinAsPartnerForm extends Component {
           "errors2"      :{},
           "franchiseCode":"",
           "franchiseName":"",
+          portfolioImage1 : "",
+          portfolioImage2 : "",
           submit         :true,
           gmapsLoaded    : false,
-
+          buttonHeading     : "Submit",
           currentDate: date,
         "editId"          : this.props.match.params ? this.props.match.params.ID : ''
       }
@@ -153,6 +155,14 @@ export default class JoinAsPartnerForm extends Component {
       
       }
     }
+
+     if (  this.validateFormReview() ) {
+      let errors2 = {};
+      
+      this.setState({
+        errors2: errors2
+      });
+      }
     
   }
 
@@ -196,10 +206,10 @@ export default class JoinAsPartnerForm extends Component {
           formIsValid = false;
           errors["education"] = "This field is required.";
         }*/
-        // if (!fields["adressLine"]) {
-        //   formIsValid = false;
-        //   errors["adressLine"] = "This field is required.";
-        // }
+        if (!fields["addressLine"]) {
+           formIsValid = false;
+           errors["address"] = "This field is required.";
+         }
        /* if (!fields["address"]) {
           formIsValid = false;
           errors["address"] = "This field is required.";
@@ -285,6 +295,9 @@ export default class JoinAsPartnerForm extends Component {
      var phone = this.refs.phone.value;
      var email = this.refs.email.value;
     if (this.validateFormReview() && this.validateFormReqReview()) {
+      this.setState({
+                    buttonHeading : 'We are processing. Please Wait...',
+                  });
       var dataArray1={
         "firstname"           : this.state.firstname,
         "lastname"            : this.state.lastname,
@@ -326,6 +339,7 @@ export default class JoinAsPartnerForm extends Component {
 
                           if(partnerdata.status == 'New' && !partnerdata.email.verified ){
                             swal("","Your Email address is not verified");
+                            $("html,body").scrollTop(0);
                             this.props.history.push("/partner-emailotp/"+partnerdata._id);
                           }
                           else if(partnerdata.status == 'New'){
@@ -344,6 +358,7 @@ export default class JoinAsPartnerForm extends Component {
                         }
                         else{
                           swal("Great","Information submitted successfully and OTP is sent to your registered Email ID.");
+                          $("html,body").scrollTop(0);
                           this.props.history.push("/partner-emailotp/"+response.data.ID);
                         }
                       }else{
@@ -382,29 +397,20 @@ export default class JoinAsPartnerForm extends Component {
   uploadLogoImage(event){
    event.preventDefault();
     var file = event.target.files[0];
+    console.log("this.state.fileUpload", this.state.fileUpload);
 
     if(file){
      if(file.size>=2097152)
      {
         swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
-        event.target.value ="";
+        
+           event.target.value ="";
+           $("#upload-file2").addClass("removevalue");           
+
+        
      }else{
-          this.setState({
-              "fileUpload":event.target.value,
-            });
-        }
-      }
-      let fields2 = this.state.fields2;
-    fields2[event.target.name] = event.target.value;
-    this.setState({
-      fields2
-    });
-      let errors2 = {};
-      errors2[event.target.name] = "";
-      this.setState({
-        errors2: errors2
-      });
-    var index = event.target.getAttribute('id');
+          
+    
 
     // console.log("index--------------->",index);
     let self = this;
@@ -412,58 +418,84 @@ export default class JoinAsPartnerForm extends Component {
       var file = event.currentTarget.files[0];
       var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
       var newFile = new File([file],newFileName);
-      this.setState({
-        fileUpload : newFile.name,
-      })
+      
       // console.log("file",newFile);
-      if (newFile) {
-        var ext = newFile.name.split('.').pop();
-        if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
           if (newFile) {
-            if(this.state.fileUpload && this.state.fileUpload.length === 0){
-            // console.log("this.state.confiq",this.state.config);
-              S3FileUpload
-                .uploadFile(newFile,this.state.config)
-                .then((Data)=>{ 
+            var ext = newFile.name.split('.').pop();
+            if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
+
+            
+
+              var index = event.target.getAttribute('id');
+
+              if (newFile) {
+                if(this.state.fileUpload && this.state.fileUpload.length === 0){
+                // console.log("this.state.confiq",this.state.config);
                   this.setState({
-                    portfolioImage1 : Data.location,
-                  })
-                  this.deleteimageLogo(index)
-                })
-                .catch((error)=>{
-                  console.log(error);
-                })
-            }else{
-              swal({
-                    title: "Are you sure you want to replace this image?",
-                    text: "Once replaced, you will not be able to recover this image!",
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                  })
-                  .then((success) => {
-                      if (success) {
-                        S3FileUpload
-                          .uploadFile(newFile,this.state.config)
-                          .then((Data)=>{
-                            this.setState({
-                              portfolioImage1 : Data.location,
-                            })
-                            this.deleteimageLogo(index)
-                          })
-                          .catch((error)=>{
-                            console.log(error);
-                          })
-                      } else {
-                      swal("Your information is safe!");
-                    }
+                    fileUpload : newFile.name,
+                  })  
+
+                  this.setState({
+                    "fileUpload":event.target.value,
                   });
-            }         
-          }else{         
-            swal("File not uploaded","Something went wrong","error"); 
-          }    
-        }else{
-          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+                  let fields2 = this.state.fields2;
+                  fields2[event.target.name] = event.target.value;
+                  this.setState({
+                    fields2
+                  });
+                    let errors2 = {};
+                    errors2[event.target.name] = "";
+                    this.setState({
+                      errors2: errors2
+                    });
+
+                  S3FileUpload
+                    .uploadFile(newFile,this.state.config)
+                    .then((Data)=>{ 
+                      $("#upload-file2").addClass("removevalue");   
+                      this.setState({
+                        portfolioImage1 : Data.location,
+                      })
+                      this.deleteimageLogo(index)
+                    })
+                    .catch((error)=>{
+                      console.log(error);
+                    })
+                }else{
+                  swal({
+                        title: "Are you sure you want to replace this image?",
+                        text: "Once replaced, you will not be able to recover this image!",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                      })
+                      .then((success) => {
+                          if (success) {
+                            S3FileUpload
+                              .uploadFile(newFile,this.state.config)
+                              .then((Data)=>{
+                                this.setState({
+                                  portfolioImage1 : Data.location,
+                                })
+                                this.deleteimageLogo(index)
+                              })
+                              .catch((error)=>{
+                                console.log(error);
+                              })
+                          } else {
+                          swal("Your information is safe!");
+                        }
+                      });
+                }         
+              }else{         
+                swal("File not uploaded","Something went wrong","error"); 
+              }    
+            }else{
+              event.target.value ="";
+              
+              swal("Format is incorrect","File format supported: (JPG, PNG, JPEG, PDF)","warning");  
+            }
+          }
         }
       }
     }
@@ -493,21 +525,7 @@ export default class JoinAsPartnerForm extends Component {
         swal("Warning!", "File size should not be greater than 2 MB..!", "warning")
         event.target.value ="";
      }else{
-          this.setState({
-              "fileUpload1":event.target.value,
-            });
-        }
-      }
-      let fields2 = this.state.fields2;
-    fields2[event.target.name] = event.target.value;
-    this.setState({
-      fields2
-    });
-      let errors2 = {};
-      errors2[event.target.name] = "";
-      this.setState({
-        errors2: errors2
-      });
+         
     var index = event.target.getAttribute('id');
 
     // console.log("index--------------->",index);
@@ -516,19 +534,35 @@ export default class JoinAsPartnerForm extends Component {
       var file = event.currentTarget.files[0];
       var newFileName = JSON.parse(JSON.stringify(new Date()))+"_"+file.name;
       var newFile = new File([file],newFileName);
-      this.setState({
-        fileUpload1 : newFile.name,
-      })
+      
       // console.log("file",newFile);
       if (newFile) {
         var ext = newFile.name.split('.').pop();
         if(ext==="jpg" || ext==="png" || ext==="jpeg" || ext==="JPG" || ext==="PNG" || ext==="JPEG" ||  ext==="PDF" ||  ext==="pdf"){ 
+           this.setState({
+              "fileUpload1":event.target.value,
+            });
+      
+            let fields2 = this.state.fields2;
+          fields2[event.target.name] = event.target.value;
+          this.setState({
+            fields2
+          });
+            let errors2 = {};
+            errors2[event.target.name] = "";
+            this.setState({
+              errors2: errors2
+            });
+            this.setState({
+            fileUpload1 : newFile.name,
+          })
           if (newFile) {
             if(this.state.fileUpload1 && this.state.fileUpload1.length === 0){
             // console.log("this.state.confiq",this.state.config);
               S3FileUpload
                 .uploadFile(newFile,this.state.config)
                 .then((Data)=>{ 
+                  $("#upload-file3").addClass("removevalue");  
                   this.setState({
                     portfolioImage2 : Data.location,
                   })
@@ -567,9 +601,12 @@ export default class JoinAsPartnerForm extends Component {
             swal("File not uploaded","Something went wrong","error"); 
           }    
         }else{
-          swal("Format is incorrect","Only Upload images format (jpg,png,jpeg)","warning");  
+          event.target.value ="";
+          swal("Format is incorrect","File format supported: (JPG, PNG, JPEG, PDF)","warning");  
         }
       }
+    }
+  }
     }
   }
 
@@ -668,6 +705,14 @@ export default class JoinAsPartnerForm extends Component {
 
   handleChangePlaces = address => {
         this.setState({ adressLine : address});
+        let fields2 = this.state.fields2;  
+        fields2["addressLine"] = address;
+        this.setState({
+          fields2
+        });
+        if(window.event.key == 'ArrowDown' || window.event.key == 'ArrowUp') {
+           this.handleSelect(address);
+        }
   };
 
   
@@ -804,7 +849,7 @@ export default class JoinAsPartnerForm extends Component {
                                 />
                                 <span className="floating-label">
                                   <i className="fa fa-map-marker signupIconFont" aria-hidden="true"/> 
-                                    Location 
+                                    Location <span className="fontSize"> *</span> 
                                 </span>
                                 <div className="autocomplete-dropdown-container">
                                   {loading && <div>Loading...</div>}
@@ -876,6 +921,45 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
+                    
+                    { this.state.portfolioImage1!=="" ? 
+                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-8 col-md-8 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
+                        <span className="blocking-span noIb">
+                        <span>
+                            <div className="setFont">Attach Aadhar copy <span className="asterix"> *</span>  </div> 
+                          </span>
+                           <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload"  ref="fileUpload" id="upload-file2"
+                                onChange={this.uploadLogoImage.bind(this)} 
+                            />
+                            {this.state.errors2.fileUpload  && (
+                            <span className="text-danger">{this.state.errors2.fileUpload}</span> 
+                          )}               
+                        </span>
+                      </div>
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row nopadding">
+                              { this.state.portfolioImage1!=="" ? 
+                                <div>
+                                  
+                                 {
+                                  (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "pdf" || (this.state.portfolioImage1 ? this.state.portfolioImage1.split('.').pop() : "") === "PDF" ?
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
+                                      <a href={this.state.portfolioImage1} target="_blank"><img src="/images/pdf.png"/></a>
+                                      
+                                    </div>
+                                    :
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
+                                      <img src={this.state.portfolioImage1} height="70" width="70"/>
+                                    </div> 
+                                }
+
+                                </div>
+                                : 
+                                <div> </div>
+                              }
+                        </div>
+                     </div>   
+                        :
                     <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd boxMarg">
                         <span className="blocking-span noIb">
@@ -883,14 +967,53 @@ export default class JoinAsPartnerForm extends Component {
                             <div className="setFont">Attach Aadhar copy <span className="asterix"> *</span>  </div> 
                           </span>
                            <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload"  ref="fileUpload" id="upload-file2"
-                                onChange={this.uploadLogoImage.bind(this)} id="upload-file2"
+                                onChange={this.uploadLogoImage.bind(this)} 
                             />
                             {this.state.errors2.fileUpload  && (
                             <span className="text-danger">{this.state.errors2.fileUpload}</span> 
                           )}               
                         </span>
                       </div>
+                     </div> 
+                    }
+                    { this.state.portfolioImage2!=="" ? 
+                    <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12 Zeropadding">
+                      <div className="form-group form-group1 col-lg-8 col-md-8 col-xs-12 col-sm-12 setZindex inputContent textpd Mt30 boxMarg">
+                        <span className="blocking-span noIb">
+                        <span>
+                            <div className="setFont">Attach PAN  copy  <span className="asterix"> *</span> </div> 
+                          </span>
+                           <input type="file" className="customInputKF  inputBox nameParts" name="fileUpload1"  ref="fileUpload1"
+                                onChange={this.uploadLogoImage1.bind(this)} id="upload-file3"
+                            />
+                            {this.state.errors2.fileUpload1  && (
+                            <span className="text-danger">{this.state.errors2.fileUpload1}</span> 
+                          )}               
+                        </span>
+                      </div>
+                      <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 row nopadding">
+                              { this.state.portfolioImage2!=="" ? 
+                                <div>
+                                  
+                                 {
+                                  (this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "") === "pdf" || (this.state.portfolioImage2 ? this.state.portfolioImage2.split('.').pop() : "") === "PDF" ?
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 setpdf" id="LogoImageUpOne">
+                                      <a href={this.state.portfolioImage2} target="_blank"><img src="/images/pdf.png"/></a>
+                                      
+                                    </div>
+                                    :
+                                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 brdlogosPersonmaster" id="licenseProof">
+                                      <img src={this.state.portfolioImage2} height="70" width="70"/>
+                                    </div> 
+                                }
+
+                                </div>
+                                : 
+                                <div> </div>
+                              }
+                        </div>
                     </div>
+                    :
                     <div className="col-lg-6 col-md-6 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-12 col-md-12 col-xs-12 col-sm-12 setZindex inputContent textpd Mt30 boxMarg">
                         <span className="blocking-span noIb">
@@ -906,6 +1029,7 @@ export default class JoinAsPartnerForm extends Component {
                         </span>
                       </div>
                     </div>
+                    }
                     <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent  textpd boxMarg ">
                         <span className="blocking-span noIb">
@@ -980,14 +1104,14 @@ export default class JoinAsPartnerForm extends Component {
                       </div>
                     </div>
                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
-                      <div className="col-lg-2 col-md-2 hidden-xs hidden-sm submitButton pull-right mgt"
-                        onClick={this.SubmitReview.bind(this)}>Submit
+                      <div className="col-lg-4 col-md-4 hidden-xs hidden-sm submitButton pull-right mgt"
+                        onClick={this.SubmitReview.bind(this)}>{this.state.buttonHeading}
                       </div>
-                    <div className="hidden-lg hidden-md col-xs-5 col-sm-5 submitButton pull-right sm-mt30"
+                    <div className="hidden-lg hidden-md col-xs-8 col-sm-8 submitButton pull-right sm-mt30"
                             onClick={this.SubmitReview.bind(this)}>
-                      Submit
+                      {this.state.buttonHeading}
                     </div>     
-                  </div>
+                  </div> 
                     </div>
                 </form>
               </div>

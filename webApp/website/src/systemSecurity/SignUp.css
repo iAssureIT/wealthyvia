@@ -698,7 +698,7 @@
   background-repeat: no-repeat;
 }
 .oesSignUpForm:focus ~ .floating-label, .oesSignUpForm:not(:focus):valid ~ .floating-label {
-    top: -16px;
+    top: -19px;
     font-size: 13px;
     color: #4183D7;
     left: 18px !important;
@@ -1929,7 +1929,7 @@ text-align: center;
   background-repeat: no-repeat;
 }
 .oesSignUpForm:focus ~ .floating-label, .oesSignUpForm:not(:focus):valid ~ .floating-label {
-    top: -16px;
+    top: -19px;
     font-size: 13px;
     color: #000!important;
     left: 18px !important;

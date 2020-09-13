@@ -9,12 +9,14 @@ import $      from 'jquery';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import {ExportCSV} from '../../common/Export/ExportCSV.js';
+import ClipLoader from "react-spinners/ClipLoader"; 
 
 export default class distributerList extends Component{
   constructor(props){
   	super();
      this.state  ={
         DistributorData : [],
+        loading : true
       }
   }
   componentDidMount(){
@@ -30,9 +32,12 @@ export default class distributerList extends Component{
     Axios.get("api/distributormaster/get/list")
        .then((response)=>{
          if(response.data){
-          this.setState({
-             DistributorData : response.data,
-           });
+
+          if(response.data.length > 0){
+            var dislist = response.data;
+            this.getdata(dislist);            
+          }
+          
         console.log("response.data.DistributorData = ",response.data);
         }
        })
@@ -40,6 +45,42 @@ export default class distributerList extends Component{
         console.log("Error during get Data = ", error);
         Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
        });    
+  }
+
+  async getdata(dislist){
+      var i=0;
+      for(i=0; i< dislist.length; i++){
+        var nooffrchise = await this.getmySubfranchise(dislist[i].distributorCode);
+        dislist[i].noOfFranchise = nooffrchise;
+      }
+      if(i === dislist.length){
+        this.setState({
+           DistributorData : dislist,  loading: false
+         });
+      }
+    }
+
+  getmySubfranchise(distributorCode){
+
+     return new Promise((resolve, reject) => {       
+  
+      Axios.get("api/distributormaster/get/all/myfranchiselist/"+distributorCode)
+      .then(res=>{
+        console.log("response from api=>client",res.data);
+
+        if(res && res.data ){
+          
+          resolve(res.data.length);
+        } 
+      })        
+      .catch(err=>{
+        // console.log("err",err);
+        // swal("Oops...","Something went wrong! <br/>"+err, "error");
+        reject(err)
+
+      })
+    })
+
   }
 
 
@@ -481,46 +522,59 @@ export default class distributerList extends Component{
   deleteDistributor(event){
     event.preventDefault(); 
     var disid = event.currentTarget.id.substr(2);
-    console.log("disid = ",disid);
+    var noofclients = event.currentTarget.getAttribute('data-noofclients');
+    var franchise = event.currentTarget.getAttribute('data-franchise');
+    var noOfFrachise = event.currentTarget.getAttribute('data-noOfFranchise');
+    // console.log("disid = ",disid, nofoclients);
+    if(noofclients > 0){
+      swal('Restricted', "This referrer already has Singed Up Clients. Hence, this action cannot be completed.", 'warning' );
+    }
+    /*else if(franchise){
+      swal('Restricted', "This referrer is Sub Franchise of another referrer. Hence, this action cannot be completed.", 'warning' );
+    }*/
+    else if(noOfFrachise > 0){
+      swal('Restricted', "This referrer already has Sub Franchise. Hence, this action cannot be completed.", 'warning' );
+    }
+    else{
+      Swal.fire({
+        title: 'Are you sure, you want to Delete this Data?',
+        text: 'You will not be able to recover this record!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',     
+        confirmButtonText: 'Yes, delete it!',
+        cancelButtonText: 'No, keep it'
+      }).then((result) => {
+        if (result.value) {
+          Axios.delete("api/distributormaster/delete/"+disid)
+            .then((data)=>{
+              this.getDistributorFormData();
+                Swal.fire(
+                  'Deleted!',
+                  'Distributor Record has been deleted successfully',
+                  'success'
+                )
+            })
+            .catch((err)=>{
+              console.log("error while deleting employee = ",err);
+                Swal.fire(
+                  'Some Error Occured!',
+                  ''+err,
+                  'error'
+                )                     
+            });
 
-    Swal.fire({
-      title: 'Are you sure, you want to Delete this Data?',
-      text: 'You will not be able to recover this record!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',     
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, keep it'
-    }).then((result) => {
-      if (result.value) {
-        Axios.delete("api/distributormaster/delete/"+disid)
-          .then((data)=>{
-            this.getDistributorFormData();
-              Swal.fire(
-                'Deleted!',
-                'Distributor Record has been deleted successfully',
-                'success'
-              )
-          })
-          .catch((err)=>{
-            console.log("error while deleting employee = ",err);
-              Swal.fire(
-                'Some Error Occured!',
-                ''+err,
-                'error'
-              )                     
-          });
 
-
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-          'Cancelled',
-          'Your Distributor Record is NOT Deleted :)',
-          'error'
-        )
-      }
-    })    
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire(
+            'Cancelled',
+            'Your Distributor Record is NOT Deleted :)',
+            'error'
+          )
+        }
+      })    
+    }
   }
 
   exportdistributordata = () => {
@@ -530,7 +584,8 @@ export default class distributerList extends Component{
           var data = this.state.DistributorData;
           for (let i = 0; i < data.length; i++) {
               distributor.push({"Code": data[i].distributorCode, "Name": data[i].firstname+" "+data[i].lastname, "email" : data[i].email.address,
-                          "Contact" : data[i].phone, "Date of Application": moment(data[i].currentDate).format("Do MMM YYYY"), "No of clients": data[i].usercount,  });        
+                          "Contact" : data[i].phone, "Date of Application": moment(data[i].currentDate).format("Do MMM YYYY"), "City": data[i].address ? data[i].address.city : '', "No of clients": data[i].usercount,
+                          "Referred By" : data[i].franchiseCode  });        
             }
       }
       
@@ -547,7 +602,7 @@ export default class distributerList extends Component{
               <h2>Referrer List</h2>
           <hr/>
            <div className=" pull-right" style={{ textAlign: 'right', fontSize: '14px', marginTop: '5px', marginBottom: '5px'}}>
-                  <ExportCSV csvData={this.exportdistributordata()} fileName="Distributor List" />&nbsp;
+                  <ExportCSV csvData={this.exportdistributordata()} fileName="Referrer List" />&nbsp;
                 </div>
           </div>			
 
@@ -563,6 +618,7 @@ export default class distributerList extends Component{
                 <th>Date of Application</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>City</th>
                 <th>No of Clients</th>
                 <th>Referred By</th>
                 <th>Actions</th>
@@ -583,27 +639,31 @@ export default class distributerList extends Component{
                 <td>{moment(DistributorData.currentDate).format("Do MMM YYYY")}</td>
                 <td>{DistributorData.phone}</td>
                 <td>{DistributorData.email.address}</td>
+                <td>{DistributorData.address ? DistributorData.address.city : ""}</td>
                 <td>{DistributorData.usercount}</td>
                 <td><a href={"/distributor/myclients/"+ DistributorData.franchiseuser}>{DistributorData.franchiseCode}</a></td>
                 <td> 
-                  <a className="blueColor" href={"/distributor-profile-view/"+ DistributorData._id }><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Distributor Profile"></i></a> &nbsp;&nbsp;
+                  <a className="blueColor" href={"/distributor/myclients/"+ DistributorData._id}><i id={"u-"+DistributorData._id} className="fa fa-eye  fontSize" title="View Referrer Profile"></i></a> &nbsp;&nbsp;
                   <a href={"/distributorEditForm/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-edit fontSize" title="Click to Edit"> </i> </a> &nbsp;&nbsp;
-                  <a><i id={"d-"+DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;
+                  <a><i id={"d-"+DistributorData._id} className="fa fa-trash fontSize" title="Click to Delete" data-noofclients={DistributorData.usercount} data-franchise={DistributorData.franchiseCode} data-noOfFranchise={DistributorData.noOfFranchise} onClick={this.deleteDistributor.bind(this)}> </i></a>&nbsp;&nbsp;&nbsp;
 
                   {DistributorData.status==='New' ? 
-                  <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={DistributorData._id+"-"+"Active"} title="Approve Distributor Profile" 
+                  <span><a className="cursor"><i className="fontSize fa fa-thumbs-up cursor"   value="Approve" id={DistributorData._id+"-"+"Active"} title="Approve Referrer Profile" 
                           data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)}  ></i></a> &nbsp;&nbsp;
-                    <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={DistributorData._id+"-"+"Rejected"} title="Reject Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;
+                    <a className="cursor"><i className="fa fa-thumbs-down fontSize"  value="Reject" id={DistributorData._id+"-"+"Rejected"} title="Reject Referrer Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>&nbsp;&nbsp;
                     </span>
                     :null}
-                   {DistributorData.status!=='Disabled' ? <a className="cursor"><i className="fa fa-close fontSize"  value="Disable" id={DistributorData._id+"-"+"Disabled"} title="Disable Distributor Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>
+                   {DistributorData.status!=='Disabled' ? <a className="cursor"><i className="fa fa-close fontSize"  value="Disable" id={DistributorData._id+"-"+"Disabled"} title="Disable Referrer Profile" data-firstname={DistributorData.firstname} data-lastname={DistributorData.lastname} data-email={DistributorData.email.address} data-phone={DistributorData.phone} onClick={this.setDistributorstatus.bind(this)} ></i></a>
                     : null }
                      &nbsp;&nbsp;
-                  {!DistributorData.franchiseCode ?
+                  {DistributorData.status==='Active' ?    
+                  !DistributorData.franchiseCode ?
                    <a href={"/distributormapping/"+ DistributorData._id} ><i id={"e-"+DistributorData._id} className="fa fa-retweet fontSize" title="Click to Map Referrer"> </i> </a> 
                    :
                    null
-                 }
+                   :
+                   null
+                  }
                </td>
                <td className ="centeralign"><div className={DistributorData.status === "Rejected" ? 'label label-danger' : DistributorData.status ==='Active' ? 'label label-success' : DistributorData.status ==='Disabled' ? 'label label-default' : 'label label-info'}>{DistributorData.status}</div>
                &nbsp;<div className={!DistributorData.email.verified ? 'label label-danger' : 'label label-success' }>{DistributorData.email.verified ? "Verified" : "Not verified"}</div></td>
@@ -612,8 +672,20 @@ export default class distributerList extends Component{
             )
               })
               :
-            <tr> 
-              <td colSpan="13"> Sorry... No Data available! </td>
+
+            <tr>
+            {
+              this.state.loading === false ? 
+                <td colSpan="13"> Sorry... No Data available! </td>
+                :
+                <td colSpan="13" className="text-center"> 
+                <ClipLoader
+                        size={80}
+                        color={"#3c8dbc"}
+                        loading={this.state.loading}
+                    /> </td>
+            } 
+              
             </tr>
           }
             </tbody>

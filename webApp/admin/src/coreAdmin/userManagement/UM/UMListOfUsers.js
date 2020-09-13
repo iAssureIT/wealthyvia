@@ -29,7 +29,7 @@ class UMListOfUsers extends Component{
                 mobNumber       : 'Mobile Number', 
                 status          : 'Status',
                 role            : 'Role',
-                actions         : 'Action',
+                actions         : 'Actions',
             },
             "startRange"        : 0,
             "limitRange"        : 100, 
@@ -39,6 +39,7 @@ class UMListOfUsers extends Component{
             adminRolesListData   : [
 
               { roleName : "admin"},
+              { roleName : "distributor"},
               { roleName : "user"},            
                 
             ],

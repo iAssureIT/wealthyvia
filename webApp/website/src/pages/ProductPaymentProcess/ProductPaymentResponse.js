@@ -88,10 +88,49 @@ export default class ProdutctPaymentResponse extends React.Component {
         
           return (
            loggedIn ?
-            <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite  ">
+            <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 backColorWhite suceesssection">
+            {
+                    this.state.orderDetails && 
+                    this.state.orderDetails.paymentStatus == "Paid" ?
+                    <label className="note mt20 col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 succesmsg"> Thank you for investing in Wealthyvia. Your payment is successful.</label>
+                    :
+                    null
+
+                  }
+              {
+                this.state.orderDetails && 
+                this.state.orderDetails.paymentStatus == "Failed" ?
+                <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan failedsection">
+                <label className="noteRed mt20"> Something went wrong!<br/> We are sorry, Your payment is unsuccessful.</label>
+                  <div className="margintopad col-lg-12  noPadding">
+                      <div className="col-lg-8 col-lg-offset-4  col-md-12 col-sm-12 col-xs-12 btnContainer">
+                         <div>
+                            <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
+                            
+                              <input type="hidden" name="key_id" value="rzp_test_lQNmCUfCX3Wkh4"/>
+                              <input type="hidden" name="order_id" value={this.state.orderDetails.paymentOrderId}/>
+                              <input type="hidden" name="name" value="Wealthyvia"/>
+                              <input type="hidden" name="description" value=""/>
+                              <input type="hidden" name="image" value="https://cdn.razorpay.com/logos/BUVwvgaqVByGp2_large.png"/>
+                              <input type="hidden" name="prefill[name]" value="Gaurav Kumar"/>
+                              <input type="hidden" name="prefill[contact]" value="9123456780"/>
+                              <input type="hidden" name="prefill[email]" value="gaurav.kumar@example.com"/>
+                              <input type="hidden" name="notes[shipping address]" value="L-16, The Business Centre, 61 Wellfield Road, New Delhi - 110001"/>
+                              <input type="hidden" name="callback_url" value={axios.defaults.baseURL+"/api/offeringorders/payment-response/"+this.state.orderDetails._id}/>
+                              <input type="hidden" name="cancel_url" value={CurrentURL}/>
+                              <button className="col-lg-4 pull-right col-md-12 col-sm-12 col-xs-12 makePaymentButton NoPrint">
+                                 Retry
+                              </button>
+                            </form>
+                         </div>    
+                      </div>
+                  </div> 
+                </div>
+                :
+              <div> 
               {
               this.state.orderDetails.paymentOrderId ?
-                <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan">
+                <div className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12 selectedPlan successpaid">
                   <div className="col-lg-2 col-md-12 col-sm-12 col-xs-12 ">
                   {
                   this.state.companysettings && this.state.companysettings.length>0?
@@ -100,22 +139,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                     null
                   }
                   </div>
-                  {
-                    this.state.orderDetails && 
-                    this.state.orderDetails.paymentStatus == "Paid" ?
-                    <label className="note mt20"> Thank you for investing in Wealthyvia. Your payment is successful.</label>
-                    :
-                    null
-
-                  }
-                  {
-                    this.state.orderDetails && 
-                    this.state.orderDetails.paymentStatus == "Failed" ?
-                    <label className="noteRed mt20"> Something went wrong</label>
-                    :
-                    null
-
-                  }
+                  
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
                     <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12 iconContainerIP">
                        <h4 className="invoiceHead">Invoice From:</h4> 
@@ -154,7 +178,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                     <table className="customTableIP col-lg-12">
                       <tr>
                         <th><p style={{textAlign: 'left' }}>Description</p></th>
-                        <th>Amount</th>
+                        <th><p >Amount</p></th>
                       </tr>
                       <tr >
                         <td className="customTableIPTD">
@@ -178,7 +202,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                             <li className="dateContain">Subtotal</li>
                             <li className="dateContain">CGST @ 9% </li>
                             <li className="dateContain">SGST @ 9% </li>
-                            <li className="dateContain"><b>Grand Total</b></li>
+                            <li className="dateContain"><b>Amount Paid</b></li>
                           </ul>
                           <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
                         
@@ -195,7 +219,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                          <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
                             <li className="dateContain">Subtotal</li>
                             <li className="dateContain">IGST @18%  </li>
-                            <li className="dateContain"><b>Grand Total</b></li>
+                            <li className="dateContain"><b>Amount Paid</b></li>
                           </ul>
                           <ul className="customUlIP textAlignRight col-lg-2 col-md-12 col-sm-6 col-xs-6">
                         
@@ -209,10 +233,10 @@ export default class ProdutctPaymentResponse extends React.Component {
                     <div className="margintopad col-lg-12  noPadding sentanceCase pull-right amountwords"> Total in words: {Converter.toWords(parseInt((this.state.orderDetails.amountPaid/100)))} only</div>
                   </div>
                   <div className="col-lg-12  col-md-12 col-sm-12 col-xs-12 btnContainer noPadding NoPrint mt20">                
-                    <div className="col-lg-2  col-md-12 col-sm-12 col-xs-12 makePaymentButton mt20 " >
-                      <a href="/clientDashboard"> Back </a>
-                    </div>
-                     <div className="col-lg-2 pull-right  col-md-12 col-sm-12 col-xs-12 makePaymentButton NoPrint" onClick={this.printContent.bind(this)}>
+                   <a href="/clientDashboard" style={{'color': '#fff'}}> <div className="col-lg-2  col-md-12 col-sm-12 col-xs-12 makePaymentButton mt20 " >
+                       Back 
+                    </div></a>
+                     <div className="col-lg-2 pull-right  col-md-12 col-sm-12 col-xs-12 makePaymentButton NoPrint mt20" onClick={this.printContent.bind(this)}>
                        Print
                     </div>
                   </div>    
@@ -220,7 +244,10 @@ export default class ProdutctPaymentResponse extends React.Component {
                 :
                 null 
               }
+              </div>
+            }
             </div>
+          
             :
             <div>
               {this.props.history.push("/login")}

@@ -70,7 +70,7 @@ export default class Profileheader extends Component{
               <div className="col-lg-3 col-md-3 col-sm-9 col-xs-12 pull-right logoutAct">
                     
                       <div className="col-lg-10 col-md-10 col-xs-8 col-sm-12 pull-right hover" onClick={this.LogoutSectionHover.bind(this)}>
-                        <div className="headiconName pull-right">Wealthyvia Distributor&nbsp;&nbsp;<i className="fa fa-angle-down"></i></div>
+                        <div className="headiconName pull-right">Wealthyvia Referrer&nbsp;&nbsp;<i className="fa fa-angle-down"></i></div>
                       </div>
                       <div className="arrow-up showme"></div>
                       <div className="col-lg-12 user-footer showme">

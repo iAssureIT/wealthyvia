@@ -190,6 +190,14 @@ export default class Editprofile extends Component{
         errors2: errors2
       });
       }*/
+
+       if (  this.validateFormReview() ) {
+      let errors2 = {};
+      
+      this.setState({
+        errors2: errors2
+      });
+      }
   
   }
 
@@ -420,30 +428,30 @@ export default class Editprofile extends Component{
           formIsValid = false;
           errors["ownOffice"] = "This field is required.";
         }     
-        if (!fields["education"]) {
+        /*if (!fields["education"]) {
           formIsValid = false;
           errors["education"] = "This field is required.";
-        }
+        }*/
         if (!fields["dob"]) {
           formIsValid = false;
           errors["dob"] = "This field is required.";
         }          
-        if (!fields["fileUpload"]) {
+       /* if (!fields["fileUpload"]) {
           formIsValid = false;
           errors["fileUpload"] = "This field is required.";
         } 
         if (!fields["fileUpload1"]) {
           formIsValid = false;
           errors["fileUpload1"] = "This field is required.";
-        }          
+        }      */    
         if (!fields["phone"]) {
           formIsValid = false;
           errors["phone"] = "This field is required.";
         }
-        if (!fields["gst"]) {
+        /*if (!fields["gst"]) {
           formIsValid = false;
           errors["gst"] = "This field is required.";
-        }
+        }*/
         if (!fields["description"]) {
           formIsValid = false;
           errors["description"] = "This field is required.";
@@ -484,7 +492,9 @@ export default class Editprofile extends Component{
           errors2: errors
         });
         console.log("errors",errors);
-
+        if(!formIsValid){
+          $("html,body").scrollTop(100);
+        }
         return formIsValid;
   }
 
@@ -510,6 +520,9 @@ export default class Editprofile extends Component{
       this.setState({
         errors2: errors
       });
+       if(!formIsValid){
+        $("html,body").scrollTop(100);
+      }
       return formIsValid;
   }
 
@@ -531,10 +544,15 @@ export default class Editprofile extends Component{
         formIsValid = false;
         errors["contactNumber"] = "Please enter valid mobile no.";
       }
-    }        
+    } 
+
     this.setState({
       errors: errors
     });
+
+    if(!formIsValid){
+      $("html,body").scrollTop(100);
+    }
     return formIsValid;
   }
 
@@ -649,7 +667,7 @@ export default class Editprofile extends Component{
         axios.patch('/api/distributormaster/patch/additionalinfo/'+userid,formvalues)
         .then((response)=> {    
           console.log("response",response);
-          swal("Distributor information updated Succesfully","", "success");    
+          swal("Referrer information updated Succesfully","", "success");    
             this.props.history.push("/myprofile");
             //window.location.reload();
            // console.log('response --====================',response);
@@ -711,8 +729,9 @@ export default class Editprofile extends Component{
                                   <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="firstname" ref="firstname" name="firstname" placeholder="First Name" 
                                       value={this.state.firstname} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.firstname}</div>
+                                    
                                </div>   
+                               <div className="errorMsg">{this.state.errors2.firstname}</div>
                               </span>
                            </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -726,8 +745,9 @@ export default class Editprofile extends Component{
                                       value={this.state.lastname} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.lastname}</div>
-                                </div>   
+                                    
+                                </div> 
+                                <div className="errorMsg">{this.state.errors2.lastname}</div>  
                                 </span>
                             </div>
                         </div>
@@ -742,10 +762,10 @@ export default class Editprofile extends Component{
                                     <InputMask  mask="9999999999"  type="text" 
                                         className="form-control UMname inputText form-control  has-content" placeholder="mobile number" id="phone" ref="phone" name="phone" 
                                           value={this.state.phone} 
-                                          onChange={this.handleChange}/>
-                                        <div className="errorMsg">{this.state.errors2.phone}</div>
-
-                                 </div>   
+                                          onChange={this.handleChange}/>                                        
+                                 </div> 
+                                 <div className="errorMsg">{this.state.errors2.phone}</div>
+  
                               </span>
                             </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -757,16 +777,17 @@ export default class Editprofile extends Component{
                                 </div>  
                                 <input type="email"  className="disableInput inputMaterial form-control inputText" id="email" ref="email"  name="email" required
                                     value={this.state.email || ''}
-                                    onChange={this.handleChange}
+                                    onChange={this.handleChange} disabled
                                 />
-                                    <div className="errorMsg">{this.state.errors2.email}</div>
-                               </div>   
+                                    
+                               </div> 
+                               <div className="errorMsg">{this.state.errors2.email}</div>  
                               </span>
                            </div>
                         </div>
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                            <div className="col-lg-6 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label className="formLable">GST Number <label className="requiredsign">*</label></label>
+                            <label className="formLable">GST Number </label>
                               <span className="blocking-span">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
@@ -776,12 +797,13 @@ export default class Editprofile extends Component{
                                         value={this.state.gst}
                                         onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.gst}</div>
+                                    
                                  </div>   
+                                 <div className="errorMsg">{this.state.errors2.gst}</div>
                               </span>
                             </div>
                             <div className=" col-lg-6 col-md-12 col-xs-12 col-sm-6 inputContent">
-                            <label className="formLable">Education <label className="requiredsign">*</label></label>
+                            <label className="formLable">Education </label>
                               <span className="blocking-span">
                                <div className="input-group inputBox-main  new_inputbx " >
                                  <div className="input-group-addon remove_brdr inputIcon">
@@ -791,14 +813,15 @@ export default class Editprofile extends Component{
                                   value={this.state.education}
                                   onChange={this.handleChange}
                                 />
-                                  <div className="errorMsg">{this.state.errors2.education}</div>
-                               </div>   
+                                  
+                               </div>  
+                               <div className="errorMsg">{this.state.errors2.education}</div> 
                               </span>
                            </div>
                         </div>
                         <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                            <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label htmlFor='filrUpload' className="formLable">Attach Aadhar self attested copies <label className="requiredsign">*</label></label>
+                            <label htmlFor='filrUpload' className="formLable">Attach Aadhar self attested copies</label>
                               <span className="blocking-span">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
@@ -807,8 +830,9 @@ export default class Editprofile extends Component{
                                     <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload" ref="fileUpload"
                                          onChange={this.uploadAadhar.bind(this)} 
                                     />
-                                    <div className="errorMsg">{this.state.errors2.fileUpload}</div>
+                                    
                                  </div>   
+                                 <div className="errorMsg">{this.state.errors2.fileUpload}</div>
                               </span>
                             </div>  
                             <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
@@ -835,7 +859,7 @@ export default class Editprofile extends Component{
                               </div>
                             </div>  
                             <div className="col-lg-4 col-sm-12 col-xs-12 col-md-6 group btmmargin inputContent">
-                            <label htmlFor='filrUpload' className="formLable">Attach PAN self attested copies <label className="requiredsign">*</label></label>
+                            <label htmlFor='filrUpload' className="formLable">Attach PAN self attested copies </label>
                               <span className="blocking-span">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
@@ -844,8 +868,9 @@ export default class Editprofile extends Component{
                                     <input type="file"  className="disableInput inputMaterial form-control inputText"id="upload-file2" name="fileUpload1" ref="fileUpload1"
                                          onChange={this.uploadPancard.bind(this)} 
                                     />
-                                    <div className="errorMsg">{this.state.errors2.fileUpload1}</div>
-                                 </div>   
+                                    
+                                 </div>
+                                 <div className="errorMsg">{this.state.errors2.fileUpload1}</div>   
                               </span>
                             </div>  
                             <div className="col-lg-2 col-md-6 col-xs-12  col-sm-2 nopadding ">
@@ -885,12 +910,13 @@ export default class Editprofile extends Component{
                                           value={this.state.dob}  required
                                           max={moment(oldDate).format("YYYY-MM-DD")}
                                       />
-                                    <div className="errorMsg">{this.state.errors2.dob}</div>
-                                   </div>   
+                                    
+                                   </div>  
+                                   <div className="errorMsg">{this.state.errors2.dob}</div> 
                                 </span>
                             </div>
                             <div className="col-lg-6 col-sm-6 col-xs-6 col-md-6 group btmmargin setplusZindex inputContent">
-                            <label className="formLable">Location <label className="requiredsign">*</label></label>
+                            <label className="formLable">Location </label>
                               <span className="blocking-span setplusZindex">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
@@ -959,8 +985,9 @@ export default class Editprofile extends Component{
                                         onChange={this.handleChange.bind(this)}
                                         value={this.state.description}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.description}</div>
-                                 </div>   
+                                    
+                                 </div>  
+                                 <div className="errorMsg">{this.state.errors2.description}</div> 
                               </span>
                             </div>                          
                         </div>
@@ -980,6 +1007,7 @@ export default class Editprofile extends Component{
                                       onChange={this.selectownOffice.bind(this)}
                                       checked={this.state.ownOffice === "no" ? "checked" : false} /> No
                                 </div>
+                                <div className="errorMsg">{this.state.errors2.ownOffice}</div>
                             </div>
                         </div>
                         <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent btmmargin">
@@ -996,12 +1024,13 @@ export default class Editprofile extends Component{
                                   <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="aadharnumber" ref="aadharnumber" name="aadharnumber" placeholder="Aadhar Number" 
                                       value={this.state.aadharnumber} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.aadharnumber}</div>
+                                    
                                </div>   
+                               <div className="errorMsg">{this.state.errors2.aadharnumber}</div>
                               </span>
                            </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
-                                <label className="formLable">Pan Number <label className="requiredsign">*</label></label>
+                                <label className="formLable">PAN Number <label className="requiredsign">*</label></label>
                                 <span className="blocking-span ">
                                 <div className="input-group inputBox-main  new_inputbx " >
                                    <div className="input-group-addon remove_brdr inputIcon">
@@ -1011,8 +1040,9 @@ export default class Editprofile extends Component{
                                       value={this.state.pannumber} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.pannumber}</div>
+                                    
                                 </div>   
+                                <div className="errorMsg">{this.state.errors2.pannumber}</div>
                                 </span>
                             </div>
                         </div>
@@ -1027,8 +1057,9 @@ export default class Editprofile extends Component{
                                   <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="accountnumber" ref="accountnumber" name="accountnumber" placeholder="Account Number" 
                                       value={this.state.accountnumber} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.accountnumber}</div>
+                                    
                                </div>   
+                               <div className="errorMsg">{this.state.errors2.accountnumber}</div>
                               </span>
                            </div>
                             <div className=" col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent">
@@ -1042,8 +1073,9 @@ export default class Editprofile extends Component{
                                       value={this.state.bankname} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.bankname}</div>
+                                    
                                 </div>   
+                                <div className="errorMsg">{this.state.errors2.bankname}</div>
                                 </span>
                             </div>
                         </div>
@@ -1073,8 +1105,9 @@ export default class Editprofile extends Component{
                                       value={this.state.IFSCcode} 
                                       onChange={this.handleChange}
                                     />
-                                    <div className="errorMsg">{this.state.errors2.IFSCcode}</div>
-                                </div>   
+                                    
+                                </div> 
+                                <div className="errorMsg">{this.state.errors2.IFSCcode}</div>  
                                 </span>
                             </div>
                         </div>
@@ -1089,8 +1122,9 @@ export default class Editprofile extends Component{
                                   <input type="text" style={{textTransform:'capitalize'}} className="form-control UMname inputText form-control  has-content" id="MICRcode" ref="MICRcode" name="MICRcode" placeholder="MICR Code" 
                                       value={this.state.MICRcode} 
                                       onChange={this.handleChange}  />
-                                    <div className="errorMsg">{this.state.errors2.MICRcode}</div>
+                                    
                                </div>   
+                               <div className="errorMsg">{this.state.errors2.MICRcode}</div>
                               </span>
                            </div>
                             

@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import {ExportCSV} from '../../common/Export/ExportCSV.js';
 import './Clientlist.css';
+import ClipLoader from "react-spinners/ClipLoader"; 
 
 
 class Clientlist extends Component {
@@ -23,7 +24,8 @@ class Clientlist extends Component {
       fields          : {},
       clientsignupurl : '',
       clientList      : [],
-      clientSubscription : []
+      clientSubscription : [],
+      loading : true
     }   
   }
   handleChange(event){
@@ -40,7 +42,7 @@ class Clientlist extends Component {
     
     axios.get('/api/offeringsubscriptions/get/offersub/allclientsubscription')
     .then( (res)=>{      
-      this.setState({clientSubscription: res.data})
+      this.setState({clientSubscription: res.data, loading: false})
       
     })
     .catch((error)=>{
@@ -190,7 +192,7 @@ class Clientlist extends Component {
                                                   { b.distributorCode === '' ? 
                                                     <span>{ k === 0 ?
                                                       <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                        Map Distributor 
+                                                        Map Referrer 
                                                       </a> 
                                                       :
                                                       null 
@@ -223,7 +225,7 @@ class Clientlist extends Component {
                                                 <td className="col-lg-1">
                                                   { b.distributorCode === '' ? 
                                                   <a href={"/clientmapping/"+ b._id} className="btn btn-primary btn-sm">
-                                                      Map Distributor 
+                                                      Map Referrer 
                                                   </a>  
                                                   :
                                                    null 
@@ -235,7 +237,23 @@ class Clientlist extends Component {
                                                                                
                                         )
                                       })
-                              :null
+                                 :
+                                 <tbody>
+                                    <tr>
+                                      {
+                                        this.state.loading === false ? 
+                                          <td colSpan="13"> No record found </td>
+                                          :
+                                          <td colSpan="13" className="text-center"> 
+                                          <ClipLoader
+                                                  size={70}
+                                                  color={"#3c8dbc"}
+                                                  loading={this.state.loading}
+                                              /> </td>
+                                      } 
+                                    </tr>
+                                  </tbody>  
+
                                 } 
                                 
                                
