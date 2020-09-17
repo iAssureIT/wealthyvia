@@ -257,7 +257,14 @@ class Clientlist extends Component {
                                 } 
                                 
                                
-                          </table>
+                          </table>                          
+                        </div>
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <p className="psubtextstyle">
+                              <div className="circleblue divfloatleft"></div><div className="divfloatleft">&nbsp;Subscribed</div>
+                              <div className="circlered divfloatleft"></div><div className="divfloatleft">&nbsp;Subscription Expired</div>
+                              <div className="circlewhite divfloatleft"></div><div className="divfloatleft">&nbsp;Not Subscribed Yet</div>
+                            </p>
                         </div>
                       </div>
               </div>    

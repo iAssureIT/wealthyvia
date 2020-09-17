@@ -1238,13 +1238,13 @@ export default class Header extends Component {
                                           </div> 
                                         
                                           <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right">
-                                           <a href="https://www.linkedin.com/in/wealthy-via-882512194/" target="_blank"  rel="noopener noreferrer"><img src="/images/link.png" alt="" /></a>
+                                           <a href="https://www.linkedin.com/in/wealthyvia-882512194" target="_blank"  rel="noopener noreferrer"><img src="/images/link.png" alt="" /></a>
                                           </div> 
                                           <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook pull-right">
-                                            <a href="https://www.facebook.com/wealthy.via" target="_blank"  rel="noopener noreferrer">  <img src="/images/face.png" alt="" /></a>
+                                            <a href="https://www.facebook.com/Wealthyvia-110661300391812" target="_blank"  rel="noopener noreferrer">  <img src="/images/face.png" alt="" /></a>
                                           </div>
                                            <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook pull-right ">
-                                            <a href=" https://twitter.com/ViaWealthy" target="_blank"  rel="noopener noreferrer"><img src="/images/tweet.png" alt="" /></a>
+                                            <a href="https://twitter.com/ViaWealthy" target="_blank"  rel="noopener noreferrer"><img src="/images/tweet.png" alt="" /></a>
                                           </div>
                                         </div>
                                       </div>

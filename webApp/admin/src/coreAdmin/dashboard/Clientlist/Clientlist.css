@@ -9,5 +9,41 @@
 }
 
 .strip_red{
-	background-color: #ffccca;
+	background-color: #fb736e3b;
+}
+
+.circleblue{
+	background-color: #98fb9826;
+	border: 1px solid #ccc;
+	margin-top: 1px;
+	height: 17px;
+	width: 17px;
+}
+
+.circlered{
+	background-color: #fb736e3b;
+	margin-left: 15px;
+	margin-top: 1px;
+	border: 1px solid #ccc;
+	height: 17px;
+	width: 17px;
+}
+
+.circlewhite{
+	background-color: #FFF;
+	margin-left: 15px;
+	border: 1px solid #ccc;
+	margin-top: 1px;
+	height: 17px;
+	width: 17px;
+}
+
+.psubtextstyle{
+	font-weight: 600;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+
+.divfloatleft{
+	float: left;
 }
