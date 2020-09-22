@@ -29,10 +29,10 @@ export default class disProfile extends Component{
 
   getDistributorFormData(){
     var ID = this.props.match.params.ID;
-      console.log("response from api=>", ID);
+      // console.log("response from api=>", ID);
     Axios.get("api/distributormaster/get/one/"+ID)
     .then(res=>{
-      console.log("response from api=>",res.data);
+      // console.log("response from api=>",res.data);
       //  var jobData:res.data.jobManage;
       if(res.data && res.data){
         this.setState({
@@ -53,7 +53,7 @@ export default class disProfile extends Component{
     event.preventDefault(); 
     var disid = event.currentTarget.id.substr(2);
 
-    console.log("disid = ",disid);
+    // console.log("disid = ",disid);
 
     Swal.fire({
       title: 'Are you sure, you want to Delete this Data?',
@@ -109,7 +109,7 @@ export default class disProfile extends Component{
     var idnstatusarray = id.split("-");
     var id = idnstatusarray[0];
     var status = idnstatusarray[1];
-      console.log("status",status);
+      // console.log("status",status);
     
     var formValues = {
       id: id,
@@ -126,7 +126,7 @@ export default class disProfile extends Component{
    Axios
       .patch("api/distributormaster/set/status",formValues)
        .then((response)=>{
-          console.log("status .data = ",response.data);
+          // console.log("status .data = ",response.data);
          if(response.data){
            // swal( "Distributor information approved successfully!" ,
            //  "Login credentials have been created & email has been sent to the Distributor.",
@@ -144,15 +144,15 @@ export default class disProfile extends Component{
               role          : 'distributor',
               status        : 'Active',
           }
-          console.log("auth",auth);
-          console.log("auth",auth.role);
+          // console.log("auth",auth);
+          // console.log("auth",auth.role);
           Axios.post("/api/users/post/signup/user",auth)
            .then((res) => {
-                console.log('sendDataToUser in result==>>>', res.data);
+                // console.log('sendDataToUser in result==>>>', res.data);
 
                       Axios.get("/api/users/get/list/role/admin/1")
                         .then((adminusers) => {
-                                    console.log('admin data', adminusers.data);
+                                    // console.log('admin data', adminusers.data);
                                     var adminemaillist = [];
                                     var admindata = adminusers.data;
                                     if(admindata && admindata.length > 0){
@@ -160,7 +160,8 @@ export default class disProfile extends Component{
                                         adminemaillist.push(admindata[i].email);
                                       }
                                     }
-                                    console.log("admin email list", adminemaillist);
+                                    adminemaillist.push("partner@wealthyvia.com");
+                                    // console.log("admin email list", adminemaillist);
                                     const formValues2 = {
                                       "emaillist"     : adminemaillist ,
                                       "subject"       : "A Partner Profile has been Approved!",
@@ -177,7 +178,7 @@ export default class disProfile extends Component{
                                                         
 
                                     };
-                                    console.log("notification",formValues2); 
+                                    // console.log("notification",formValues2); 
                                     
                                       Axios
                                       .post('/send-email-admin',formValues2)
@@ -238,7 +239,7 @@ export default class disProfile extends Component{
                       // swal('Distributor information rejected successfully!')    
                })            
            .catch((error)=>{
-            console.log("Error during get Status Data = ", error);
+            // console.log("Error during get Status Data = ", error);
             Swal.fire("Oops...","Something went wrong! <br/>"+error, "error");
            });   
         }
@@ -253,14 +254,14 @@ export default class disProfile extends Component{
                 Axios
                   .patch("api/distributormaster/set/status",formValues)
                    .then((response)=>{
-                      console.log("status .data = ",response.data);
+                      // console.log("status .data = ",response.data);
                       // swal("Distributer Status rejected");
                      if(response.data){
                       this.getDistributorFormData();  
-                        console.log("reject");
+                        // console.log("reject");
                         Axios.get("/api/users/get/list/role/admin/1")
                           .then((adminusers) => {
-                            console.log('admin data', adminusers.data);
+                            // console.log('admin data', adminusers.data);
                             var adminemaillist = [];
                             var admindata = adminusers.data;
                             if(admindata && admindata.length > 0){
@@ -268,7 +269,8 @@ export default class disProfile extends Component{
                                 adminemaillist.push(admindata[i].email);
                               }
                             }
-                            console.log("admin email list", adminemaillist);
+                            adminemaillist.push("partner@wealthyvia.com");
+                            // console.log("admin email list", adminemaillist);
                             const formValues2 = {
                               "emaillist"     : adminemaillist ,
                               "subject"       : "A Distributor Profile has been Rejected",
@@ -283,7 +285,7 @@ export default class disProfile extends Component{
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. " ,
                             };
-                            console.log("notification",formValues2); 
+                            // console.log("notification",formValues2); 
                             
                               Axios
                               .post('/send-email-admin',formValues2)
@@ -308,7 +310,7 @@ export default class disProfile extends Component{
                                                 "Team Wealthyvia. " ,
 
                             };
-                            console.log("notification",formValues1); 
+                            // console.log("notification",formValues1); 
                             
                               Axios
                               .post('/send-email',formValues1)
@@ -349,7 +351,7 @@ export default class disProfile extends Component{
 
   render(){
     var params = this.props.match.params;
-        console.log("params = ",params);
+        // console.log("params = ",params);
     return(
       <div>
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  marginLeft page">

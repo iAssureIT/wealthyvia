@@ -69,6 +69,7 @@ exports.payment_response = (req,res,next) =>{
                                                             subject : "A Client has invested in a Product",
                                                             mail    : "Dear admin, <br/>"+
                                                             			"Following are the details of the Client & his investment:<br/>"+
+                                                            			"<b>Invoice Number: </b>"+paymentinfo.invoiceNum+"<br/>"+
                                                             			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
 											                          	"<b>Client Name: </b>"+paymentinfo.userName+"<br/>"+
 											                          	"<b>Phone Number: </b>"+paymentinfo.mobileNumber+"<br/>"+
@@ -104,6 +105,7 @@ exports.payment_response = (req,res,next) =>{
                                                             subject : "Thank you for investing in Wealthyvia. Your payment has been successful",
                                                             mail    : "Dear "+paymentinfo.userName+", <br/>"+
                                                             			"Following are the details of your latest investment in our product:<br/>"+
+                                                            			"<b>Invoice Number: </b>"+paymentinfo.invoiceNum+"<br/>"+
                                                             			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
 											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
 											                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+

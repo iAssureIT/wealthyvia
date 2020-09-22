@@ -1258,9 +1258,19 @@ export default class Header extends Component {
                             <nav className="navbar marginZero customNavBarSmall navbar-default">
                                 <div className="container-fluid">
                                   <div className="navbar-header">
-                                    <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-lg-1 col-md-1 col-sm-1 col-xs-1" href="/">
+                                    <a className="navbar-brand webSiteNameOther colorWhite hidden-lg hidden-md col-sm-6 col-xs-6" href="/">
                                       <img src ="/images/IMG-20191129-WA0007.jpg" alt=""  />
                                     </a>
+
+                                    <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook ">
+                                      <a href="https://www.linkedin.com/in/wealthyvia-882512194" target="_blank"  rel="noopener noreferrer" className="headersociallinksmb"><img src="/images/link.png" alt="" /></a>
+                                    </div> 
+                                    <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook ">
+                                      <a href="https://www.facebook.com/Wealthyvia-110661300391812" target="_blank"  rel="noopener noreferrer" className="headersociallinksmb">  <img src="/images/face.png" alt="" /></a>
+                                    </div>
+                                     <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook">
+                                      <a href="https://twitter.com/ViaWealthy" target="_blank"  rel="noopener noreferrer" className="headersociallinksmb"><img src="/images/tweet.png" alt="" /></a>
+                                    </div> 
 
                                     <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navBar" aria-expanded="false" >
                                       <span className="sr-only">Toggle navigation</span>

@@ -291,3 +291,10 @@
 	padding: 0px 50px 30px 50px !important;
 }
 }
+
+.disbledkycrisk{
+	color: currentColor;
+  cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
+}

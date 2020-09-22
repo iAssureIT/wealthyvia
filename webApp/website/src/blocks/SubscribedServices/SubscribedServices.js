@@ -38,6 +38,8 @@ export default class SubscribedServices extends Component {
           expiredproductSub     : [],
           riskkycMsg            : '',
           newredirect           : '',
+          risksubmit            : '',
+          kycsubmit             : ''
         };
     }
   ScrollTop(event){
@@ -66,8 +68,9 @@ export default class SubscribedServices extends Component {
     axios.get("/api/users/get/kycrisk/user/"+user_ID)
       .then((response)=>{ 
         var userinfo = response.data;
-        console.log("risk",userinfo.risksubmit, userinfo.kycsubmit);
+        console.log("userinfo",userinfo);
           if(userinfo){
+            this.setState({risksubmit : userinfo.risksubmit, kycsubmit: userinfo.kycsubmit })
             if(!userinfo.risksubmit || !userinfo.kycsubmit){
               if(!userinfo.risksubmit && userinfo.kycsubmit){
                 this.setState({ riskkycMsg : "To start investing, please fill Risk Profile first", newredirect:"risk"})
@@ -487,10 +490,10 @@ export default class SubscribedServices extends Component {
                   <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 ">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 blogContainCD backColorWhite">
                       <ul className="nav nav-pills nav-stacked  textAlignCenter">
-                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a  data-toggle="pill" href="#kycform">Add KYC details</a></li>
-                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href="#kycform">Add KYC details</a></li>
-                        <li className=" kycprofilebtnsmall hidden-lg hidden-md"><a data-toggle="pill" href="#riskprofileform">Submit Risk Profile</a></li>
-                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href="#riskprofileform">Submit Risk Profile</a></li>
+                        <li className="kycprofilebtnsmall hidden-lg hidden-md"><a  data-toggle="pill" href={this.state.kycsubmit ? "" : "#kycform" } className={this.state.kycsubmit ? "disbledkycrisk" : ''}>Add KYC details</a></li>
+                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href={this.state.kycsubmit ? "" : "#kycform" } className={this.state.kycsubmit ? "disbledkycrisk" : ''}>Add KYC details</a></li>
+                        <li className=" kycprofilebtnsmall hidden-lg hidden-md"><a data-toggle="pill" href={this.state.risksubmit ? "" : "#riskprofileform" }  className={this.state.risksubmit ? "disbledkycrisk" : ''}>Submit Risk Profile</a></li>
+                        <li className=" kycprofilebtn hidden-xs hidden-sm"><a data-toggle="pill" href={this.state.risksubmit ? "" : "#riskprofileform" } className={this.state.risksubmit ? "disbledkycrisk" : ''}>Submit Risk Profile</a></li>
                         <li className="kycprofilebtnsmall hidden-lg hidden-md"><a href="/clientDashboard">Performance Report</a></li>
                         <li className=" kycprofilebtn hidden-xs hidden-sm"><a href="/clientDashboard">Performance Report</a></li>
                       </ul>

@@ -108,20 +108,23 @@ export default class Footer extends Component {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6 col-xs-12 footerDivFirst">
                   <label>Hear about wealthyvia tips, experience & more</label>
-                   <div className="col-lg-8 col-md-8 col-sm-10 col-xs-12 inputContainerEH ">
+                   {/*<div className="col-lg-8 col-md-8 col-sm-10 col-xs-12 inputContainerEH ">
                      <input type="text" className="customInput col-lg-10 col-md-10 col-sm-10 col-xs-10" ref="email" placeholder="Enter Email Address" onChange={this.handleChange.bind(this)}/>
                       <span className="searchIcon col-lg-2 col-md-2 col-xs-2 col-sm-2 " onClick={this.submitEmail.bind(this)}><i className="fa fa-chevron-right iconS"></i></span>
-                    </div>
+                    </div>*/}
+                  <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6" style={{paddingLeft: "0px"}}>
+                    <div className="buyNowButtonPP" style={{marginTop: "0px", textAlign: "center", marginBottom:"10px"}} data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                  </div>  
                   <div className="hidden-lg hidden-md  col-sm-10 col-xs-12">
                     <div className="row">
                      <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook ">
-                                    <a href="https://in.linkedin.com/" target="_blank"><img src="/images/linkedin1.png"/></a>
+                                    <a href="https://www.linkedin.com/in/wealthyvia-882512194" target="_blank"><img src="/images/linkedin1.png"/></a>
                       </div> 
                       <div className="col-lg-1 col-md-3 col-sm-1 col-xs-1 faceBook ">
-                                      <a href="https://www.facebook.com/arthavruddhi" target="_blank">  <img src="/images/facebook.png"/></a>
+                                      <a href="https://www.facebook.com/Wealthyvia-110661300391812" target="_blank">  <img src="/images/facebook.png"/></a>
                       </div>
                       <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
-                       <a href="https://twitter.com/login?lang=en" target="_blank"><img src="/images/twitter.png"/></a>
+                       <a href="https://twitter.com/ViaWealthy" target="_blank"><img src="/images/twitter.png"/></a>
                       </div> 
                           
                     </div>

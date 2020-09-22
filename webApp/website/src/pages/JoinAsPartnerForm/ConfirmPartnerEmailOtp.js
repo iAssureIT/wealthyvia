@@ -38,17 +38,18 @@ class ConfirmPartnerEmailOtp extends Component {
                   });
                 var distributor = response.data.distributor;
                 //console.log("res after otpcheck",response);
-                axios.get("/api/users/get/list/role/admin/1")
+                /*axios.get("/api/users/get/list/role/admin/1")
                     .then((adminusers) => {
-                      //console.log('admin data', adminusers.data);
+                      //console.log('admin data', adminusers.data);*/
                       var adminemaillist = [];
-                      var admindata = adminusers.data;
+                      /*var admindata = adminusers.data;
                       if(admindata && admindata.length > 0){
                         for(let i = 0 ; i < admindata.length ; i++){
                           adminemaillist.push(admindata[i].email);
                         }
-                      }
+                      }*/
                       adminemaillist.push("kycwealthyvia@gmail.com");
+                      adminemaillist.push("partner@wealthyvia.com");
                       // console.log("admin email list", adminemaillist);
                       const formValues2 = {
                         "emaillist"     : adminemaillist ,
@@ -120,8 +121,8 @@ class ConfirmPartnerEmailOtp extends Component {
                                 });        
 
                       
-                  })
-                  .catch((error) => { console.log('user error: ',error)})
+                  /*})
+                  .catch((error) => { console.log('user error: ',error)})*/
 
               }
               else{

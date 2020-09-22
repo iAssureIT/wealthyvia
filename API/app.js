@@ -139,8 +139,10 @@ app.post('/send-email-admin', (req, res)=> {
 			// port: 587,
 			port: 465,
 			auth: {
-				user: 'Partner@wealthyvia.com',
-				pass: 'Wealthy19$'
+				user: 'wealthyviaapp@gmail.com',
+				pass: 'Wealthyvia@123'
+				//user: 'Partner@wealthyvia.com',
+				//pass: 'Wealthy19$'
 				// user : 'iassureitmail@gmail.com',
 				// pass : 'iAssureIT@123'
 			}

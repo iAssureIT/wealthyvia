@@ -324,7 +324,8 @@ export default class Linechart extends Component{
                     <div className="col-lg-12 col-md-12 hidden-sm hidden-xs ">
                       <Line
                         data={this.state.data}
-                        options={this.state.options}                    
+                        options={this.state.options}    
+                        width={800} height={375}                  
                       />
                     </div>
                     <div className="hidden-lg hidden-md col-sm-12 col-xs-12 extspace">

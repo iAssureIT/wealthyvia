@@ -865,3 +865,10 @@ hr{
   }
 }
 
+.headersociallinksmb{
+  background-color: #fff;
+  padding: 0px;
+}
+.headersociallinksmb:hover{
+  background-color: #fff;  
+}

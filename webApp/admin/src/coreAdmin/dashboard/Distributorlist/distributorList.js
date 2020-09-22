@@ -38,7 +38,7 @@ export default class distributerList extends Component{
             this.getdata(dislist);            
           }
           
-        console.log("response.data.DistributorData = ",response.data);
+        // console.log("response.data.DistributorData = ",response.data);
         }
        })
        .catch((error)=>{
@@ -66,7 +66,7 @@ export default class distributerList extends Component{
   
       Axios.get("api/distributormaster/get/all/myfranchiselist/"+distributorCode)
       .then(res=>{
-        console.log("response from api=>client",res.data);
+        // console.log("response from api=>client",res.data);
 
         if(res && res.data ){
           
@@ -164,8 +164,8 @@ export default class distributerList extends Component{
     var idnstatusarray = id.split("-");
     var id = idnstatusarray[0];
     var status = idnstatusarray[1];
-      console.log("status",status);
-      console.log("firstname", firstname);
+      // console.log("status",status);
+      // console.log("firstname", firstname);
     
     var formValues = {
       id: id,
@@ -192,11 +192,11 @@ export default class distributerList extends Component{
               role          : 'distributor',
               status        : 'Active',
           }
-          console.log("auth",auth);
-          console.log("auth",auth.role);
+          // console.log("auth",auth);
+          // console.log("auth",auth.role);
           Axios.post("/api/users/post/signup/distributor",auth)
            .then((res) => {
-                console.log('sendDataToUser in result==>>>', res.data);
+                // console.log('sendDataToUser in result==>>>', res.data);
                       var userId = res.data.ID;
                       formValues = {
                         id: id,
@@ -205,7 +205,7 @@ export default class distributerList extends Component{
                     }
                       Axios.get("/api/users/get/list/role/admin/1")
                         .then((adminusers) => {
-                            console.log('admin data', adminusers.data);
+                            // console.log('admin data', adminusers.data);
                             var adminemaillist = [];
                             var admindata = adminusers.data;
                             if(admindata && admindata.length > 0){
@@ -213,7 +213,8 @@ export default class distributerList extends Component{
                                 adminemaillist.push(admindata[i].email);
                               }
                             }
-                            console.log("admin email list", adminemaillist);
+                            adminemaillist.push("partner@wealthyvia.com");
+                            // console.log("admin email list", adminemaillist);
                             const formValues2 = {
                               "emaillist"     : adminemaillist ,
                               "subject"       : "A Partner Profile has been Approved!",
@@ -230,7 +231,7 @@ export default class distributerList extends Component{
                                                 
 
                             };
-                            console.log("notification",formValues2); 
+                            // console.log("notification",formValues2); 
                             
                               Axios
                               .post('/send-email-admin',formValues2)
@@ -278,7 +279,7 @@ export default class distributerList extends Component{
                     Axios
                     .patch("api/distributormaster/set/status",formValues)
                      .then((response)=>{
-                        console.log("status .data = ",response.data);
+                        // console.log("status .data = ",response.data);
                          if(response.data){
                            // swal( "Distributor information approved successfully!" ,
                            //  "Login credentials have been created & email has been sent to the Distributor.",
@@ -323,14 +324,14 @@ export default class distributerList extends Component{
                 Axios
                   .patch("api/distributormaster/set/status",formValues)
                    .then((response)=>{
-                      console.log("status .data = ",response.data);
+                      // console.log("status .data = ",response.data);
                       // swal("Distributer Status rejected");
                      if(response.data){
                       this.getDistributorFormData();  
-                        console.log("reject");
+                        // console.log("reject");
                         Axios.get("/api/users/get/list/role/admin/1")
                           .then((adminusers) => {
-                            console.log('admin data', adminusers.data);
+                            // console.log('admin data', adminusers.data);
                             var adminemaillist = [];
                             var admindata = adminusers.data;
                             if(admindata && admindata.length > 0){
@@ -338,7 +339,8 @@ export default class distributerList extends Component{
                                 adminemaillist.push(admindata[i].email);
                               }
                             }
-                            console.log("admin email list", adminemaillist);
+                            adminemaillist.push("partner@wealthyvia.com");
+                            // console.log("admin email list", adminemaillist);
                             const formValues2 = {
                               "emaillist"     : adminemaillist ,
                               "subject"       : "A Partner Profile has been Rejected",
@@ -353,7 +355,7 @@ export default class distributerList extends Component{
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. " ,
                             };
-                            console.log("notification",formValues2); 
+                            // console.log("notification",formValues2); 
                             
                               Axios
                               .post('/send-email-admin',formValues2)
@@ -378,7 +380,7 @@ export default class distributerList extends Component{
                                                 "Team Wealthyvia. " ,
 
                             };
-                            console.log("notification",formValues1); 
+                            // console.log("notification",formValues1); 
                             
                               Axios
                               .post('/send-email',formValues1)
@@ -422,14 +424,14 @@ export default class distributerList extends Component{
                 Axios
                   .patch("api/distributormaster/set/status",formValues)
                    .then((response)=>{
-                      console.log("status .data = ",response.data);
+                      // console.log("status .data = ",response.data);
                       // swal("Distributer Status rejected");
                      if(response.data){
                       this.getDistributorFormData();  
-                        console.log("reject");
+                        // console.log("reject");
                         Axios.get("/api/users/get/list/role/admin/1")
                           .then((adminusers) => {
-                            console.log('admin data', adminusers.data);
+                            // console.log('admin data', adminusers.data);
                             var adminemaillist = [];
                             var admindata = adminusers.data;
                             if(admindata && admindata.length > 0){
@@ -437,7 +439,8 @@ export default class distributerList extends Component{
                                 adminemaillist.push(admindata[i].email);
                               }
                             }
-                            console.log("admin email list", adminemaillist);
+                            adminemaillist.push("partner@wealthyvia.com");
+                            // console.log("admin email list", adminemaillist);
                             const formValues2 = {
                               "emaillist"     : adminemaillist ,
                               "subject"       : "A Partner Profile has been Disabled",
@@ -452,7 +455,7 @@ export default class distributerList extends Component{
                                                 "Regards<br/> " +
                                                 "Team Wealthyvia. " ,
                             };
-                            console.log("notification",formValues2); 
+                            // console.log("notification",formValues2); 
                             
                               Axios
                               .post('/send-email-admin',formValues2)
@@ -477,7 +480,7 @@ export default class distributerList extends Component{
                                                 "Team Wealthyvia. " ,
 
                             };
-                            console.log("notification",formValues1); 
+                            // console.log("notification",formValues1); 
                             
                               Axios
                               .post('/send-email',formValues1)
@@ -593,7 +596,7 @@ export default class distributerList extends Component{
     } 
 
   render(){
-    console.log("Distributor Data",this.state.DistributorData)
+    // console.log("Distributor Data",this.state.DistributorData)
   	return(
 
   	   <div className="row">

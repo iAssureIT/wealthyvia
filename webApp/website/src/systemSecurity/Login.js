@@ -61,7 +61,8 @@ class Login extends Component {
                       this.props.history.push("/planPage");
                  }
                 }else{
-                    this.props.history.push(this.state.destination);
+                    // this.props.history.push(this.state.destination);
+                    this.props.history.push("/planPage");
                     window.location.reload();                 
                 }
                 })
@@ -75,7 +76,8 @@ class Login extends Component {
               })
           }else{ 
             if( localStorage.getItem("lastUrl")){
-               this.props.history.push(localStorage.getItem("lastUrl"));
+               // this.props.history.push(localStorage.getItem("lastUrl"));
+               this.props.history.push("clientDashboard");
                 window.location.reload();
             }else{
               this.props.history.push("/login");
