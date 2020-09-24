@@ -928,7 +928,7 @@ sendpdfemail = (paymentinfo)=>{
                                         "method"    : "POST", 
                                         "url"       : "http://localhost:"+globalVariable.port+"/send-email",
                                         "body"      : {
-                                                            email   : "anuja.kate@iassureit.com", 
+                                                            email   : "kycwealthyvia@gmail.com", 
                                                             subject : "A Client has invested in a Product",
                                                             mail    : "Dear admin, <br/>"+
                                                             			"Client has just subscribed to a Product on Wealthyvia! For details of Subscription, please find an attachment. <br/>"+
