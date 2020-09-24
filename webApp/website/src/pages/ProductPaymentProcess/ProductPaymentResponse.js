@@ -153,15 +153,14 @@ export default class ProdutctPaymentResponse extends React.Component {
                     </div>
 
                     <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 iconContainerIP mt20">                        
-                        <h4></h4><label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
+                        <h4 className="emptyh4"></h4><label className="col-lg-12 dateContain "><span className="pull-right">Invoice No. : <span className="noBold">{this.state.orderDetails.invoiceNum}</span></span></label>
                         <label className="col-lg-12 dateContain "><span className="pull-right">Date : <span className="noBold">{this.state.date}</span></span></label>
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
                     <div className="col-lg-6 col-md-6 col-sm-6 col-xs-6 userDetails noPadding">
                       <ul className="customUlIP col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                      <h4 className="invoiceHead">Invoice To: </h4>
-
+                      <h4 className="invoiceHead invoicetoh4">Invoice To: </h4>
                         <li className="userName">{this.state.orderDetails.userName}</li>
                         <p className="paracontent">{this.state.orderDetails.email}<br />
                         {this.state.orderDetails.mobileNumber}<br />
@@ -196,7 +195,7 @@ export default class ProdutctPaymentResponse extends React.Component {
                       </ul>
 
                     {
-                      this.state.states === 'Maharashtra' ?
+                      this.state.orderDetails.states === 'Maharashtra' ?
                         <div> 
                          <ul className="customUlIP col-lg-2 col-lg-offset-3 col-md-12 col-sm-6 col-xs-6">
                             <li className="dateContain">Subtotal</li>

@@ -9,5 +9,6 @@ router.get('/paymentOrderDetails/all', OfferingOrderController.paymentOrderDetai
 router.get('/paymentOrderDetails/:paymentOrderId', OfferingOrderController.paymentOrderDetails);
 router.get('/paymentOrderDetailsUser/:userId', OfferingOrderController.paymentOrderDetails_user);
 router.get('/get/allpaymentorder/byclientist', OfferingOrderController.get_clientRevenue);
+// router.post('/post/orders/sendpdfemail', OfferingOrderController.sendpdfemail);
 
 module.exports = router;

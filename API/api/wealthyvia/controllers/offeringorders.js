@@ -14,6 +14,8 @@ const Invoice 		= require('../models/invoice.js');
 
 const OfferSub      = require('../models/offeringsubscriptions.js');
 const WMSub 		= require('../models/wmsubscriptions.js');
+const pdf 			= require('html-pdf');
+const converter 	= require('number-to-words');
 
 var instance 		= new Razorpay({
   key_id     : 'rzp_test_lQNmCUfCX3Wkh4',
@@ -51,7 +53,7 @@ exports.payment_response = (req,res,next) =>{
          			setofferingsubscription();
          			async function setofferingsubscription(){
          				var paymentinfo = await paymentOrderDetailsforemail(orderDetails.paymentOrderId);
-         				if(paymentinfo.states === 'Maharashtra'){
+         				/*if(paymentinfo.states === 'Maharashtra'){
          					var taxinfo = 	"Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
          									"CGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>"+
          									"SGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>";
@@ -59,9 +61,28 @@ exports.payment_response = (req,res,next) =>{
          				else{
          					var taxinfo = "Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
          									"IGST @18%: </b>₹ "+parseInt(parseInt((paymentinfo.amountPaid/100)) - parseInt(((paymentinfo.amountPaid)/100)/1.18)).toLocaleString("en-IN")+"</b><br/>";
+         				}*/
+
+         				var pdfinfo = {
+         					"userName"      : paymentinfo.userName,
+					       	"email"         : paymentinfo.email,
+					       	"mobileNumber" 	: paymentinfo.mobileNumber,
+					        "panNumber" 	: paymentinfo.panNumber,
+					        "gstNumber" 	: paymentinfo.gstNumber,
+					        "states"    	: paymentinfo.states,
+					        "amountPaid" 	: paymentinfo.amountPaid,
+					        "offeringTitle" : paymentinfo.offeringTitle,
+					        "invoiceNum" 	: paymentinfo.invoiceNum,
+					        "date" 			: moment(paymentinfo.createdAt).format('DD-MM-YYYY'),
+					        "totalinwords" 	: paymentinfo.userName,
+					        "startDate" 	: moment(paymentinfo.createdAt).format('DD-MM-YYYY'),
+					        "endDate" 		: moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")    
+  
          				}
+         				
+         				var pdfsent = await sendpdfemail(pdfinfo);
          				 
-         				request({
+         				/*request({
                                         "method"    : "POST", 
                                         "url"       : "http://localhost:"+globalVariable.port+"/send-email",
                                         "body"      : {
@@ -96,7 +117,7 @@ exports.payment_response = (req,res,next) =>{
                                     .catch(err =>{
                                         console.log(err);
                                         
-                                    });
+                                    });*/
                         request({
                                         "method"    : "POST", 
                                         "url"       : "http://localhost:"+globalVariable.port+"/send-email",
@@ -662,3 +683,284 @@ function paymentOrderDetailsforemail(paymentOrderId){
             })
 	})	  
 };
+
+
+function pdfhtml(paymentinfo){
+    const today = new Date();
+return `
+    <!doctype html>
+    <html>
+       <head>
+          <meta charset="utf-8">
+          <title>PDF Result Template</title>
+          <style>
+             .invoice-box {
+             	max-width: 500px;
+             width: 100%;
+             margin: auto;
+             padding: 30px;
+             border: 1px solid #eee;
+             box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+             font-size: 10px;
+             line-height: 24px;
+             font-family: 'Helvetica Neue', 'Helvetica',
+             color: #555;
+             }
+             .col-lg-12{
+             	width:100%;
+             	fliat:left;
+             	display: block;
+             	clear: both;
+             }
+             .col-lg-2{
+             	width: 20%;
+             	float:left;
+             	display: block;
+             }
+             .col-lg-3{
+             	width: 30%;
+             	float:left;
+             	display: block;
+             }
+             .col-lg-9{
+             	width: 70%;
+             	float:left;
+             	display: block;
+             } 
+             .col-lg-8{
+             	width: 60%;
+             	float:left;
+             	display: block;
+             } 
+             .col-lg-4{
+             	width: 40%;
+             	float:left;
+             	display: block;
+             }
+             .col-lg-6{
+             	width: 60%;
+             	float:left;
+             	display: block;
+             } 
+             .imglogo{
+             	width: 30%;
+
+             }  
+             .customTableIP{
+             	display: table;
+			    border-collapse: separate;
+			    border-spacing: 2px;
+			    border-color: grey;
+			    width: 100%;
+			    background-color: #f7f7f7;
+
+             }  
+             .trtable {
+			    display: table-row;
+			    vertical-align: inherit;
+			    border-color: inherit;
+			    width: 100%;
+			    padding: 0px;			    
+			    margin: 0px;
+			} 
+			.thtable1{
+				text-align: left;
+				border-bottom: 1px solid #ccc;
+				border-top: 1px solid #ccc;
+				border-left: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+				padding: 0px;
+				margin: -1px;
+			} 
+			.thtable2{
+				text-align: left;
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;
+				border-top: 1px solid #ccc;
+				
+				padding: 0px;
+				margin: -1px;
+			} 
+			.dateContain{
+				list-style:none;
+			}  
+			ul{
+				list-style:none;
+			}  
+			.customTableIPTD1{
+				margin: 0px;
+				border-bottom: 1px solid #ccc;
+				border-left: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+				padding: 0px;
+			}
+			.customTableIPTD2{
+				border-right: 1px solid #ccc;
+				border-bottom: 1px solid #ccc;				
+				padding: 0px;
+				margin: 0px;
+			}
+			p{
+				line-height:18px;
+			}
+			.paddingadd{
+				padding: 0px 20px;
+			}
+			.invoiceHead{
+				line-height:15px;
+			}
+             .margin-top {
+             margin-top: 50px;
+             }
+             .justify-center {
+             text-align: center;
+             }
+             .mt20{
+             	margin-top: 30px;
+             }
+             .amountwords{
+             	text-transform:capitalize;
+             }
+             </style>
+       </head>
+       <body>
+          <div class="invoice-box">
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 selectedPlan successpaid">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">                  
+                    <img src="https://wealthyvia.com/images/WealthyVia_Logo.png" class="imglogo"/>                   
+                  </div>
+                  
+                </div>  
+                  
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding ">
+                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 iconContainerIP">
+                       <h4 class="invoiceHead">Invoice From:</h4> 
+                       <p class="paracontent">
+                        PRITAM PRABODH DEUSKAR <br/>
+                        D1 706, MAYUR KILBIL, DHANORI, <br/>
+                        NEAR VITTHAL MANDIR, PUNE CITY,<br /> Pune, Maharashtra, 411015 </p>
+                                              
+
+                    </div>
+
+                    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 iconContainerIP mt20">  
+                    	<p>GSTIN: 27ALFPD0936Q1ZU </br>                                         
+                        <span class="pull-right">Invoice No. : <span class="noBold">${paymentinfo.invoiceNum ? paymentinfo.invoiceNum : '' }</span></span><br/>
+                        <span class="pull-right">Date : <span class="noBold">${paymentinfo.date ? paymentinfo.date : '' }</span></span></p>
+                    </div>
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">                    
+                      <h4 class="invoiceHead">Invoice To: </h4>
+                        <p class="userName">${paymentinfo.userName ? paymentinfo.userName : ''}<br />
+                        ${paymentinfo.email ? paymentinfo.email : ''} <br />
+                        ${paymentinfo.mobileNumber ? paymentinfo.mobileNumber : '' }<br />
+                        PAN: ${paymentinfo.panNumber ? paymentinfo.panNumber : ''}<br />
+                        GSTIN: ${paymentinfo.gstNumber ? paymentinfo.gstNumber : ''}<br />
+                        State Name: ${paymentinfo.states ? paymentinfo.states : ''}</p>                                          
+                  </div>
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 noPadding mt20">
+                    <table class="customTableIP col-lg-12">
+                      <tr class="trtable">
+                        <th class="thtable1"><p class="paddingadd">Description</p></th>
+                        <th class="thtable2"><p class="paddingadd">Amount</p></th>
+                      </tr>
+                      <tr class="trtable">
+                        <td class="customTableIPTD1">
+                        <p style={{textAlign: 'left' }} class="paddingadd">12 Months Subscription for Wealthyvia-${paymentinfo.offeringTitle} <br/> 
+                        ${paymentinfo.startDate} to ${paymentinfo.endDate}</p></td>
+                        
+                        <td class="customTableIPTD2"><p class="paddingadd">₹&nbsp;${parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString('en-IN')}</p></td>
+                      </tr>
+                     
+                    </table>
+                  </div> 
+                  ${paymentinfo.states === 'Maharashtra' ?
+                  	`<div class=" col-lg-12 mt20">                                       
+                        <div class="col-lg-4">
+                            <div class="dateContain">Subtotal</div>
+                            <div class="dateContain">CGST @ 9% </div>
+                            <div class="dateContain">SGST @ 9% </div>
+                            <div class="dateContain"><b>Amount Paid</b></div>
+                          </div>
+                          <div class="col-lg-8">                        
+                            <div class="dateContain">₹&nbsp;${parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString('en-IN')}</div>
+                            <div class="dateContain">₹&nbsp;${(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString('en-IN')}</div>
+                            <div class="dateContain">₹&nbsp;${(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString('en-IN')}</div>
+                            <div class="dateContain">₹&nbsp;${parseInt((paymentinfo.amountPaid/100)).toLocaleString('en-IN')}</div>
+                          </div>
+                   </div>` 
+                  :
+                  	`<div class=" col-lg-12 mt20">                                       
+                        <div class="col-lg-4">
+                            <div class="dateContain">Subtotal</div>
+                            <div class="dateContain">IGST @18% </div>
+                            <div class="dateContain"><b>Amount Paid</b></div>
+                          </div>
+                          <div class="col-lg-8">                        
+                            <div class="dateContain">₹&nbsp;${parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString('en-IN')}</div>
+                            <div class="dateContain">₹&nbsp;${parseInt(parseInt((paymentinfo.amountPaid/100)) - parseInt(((paymentinfo.amountPaid)/100)/1.18)).toLocaleString("en-IN")}</div>
+                            <div class="dateContain">₹&nbsp;${parseInt((paymentinfo.amountPaid/100)).toLocaleString('en-IN')}</div>
+                          </div>
+                   </div>`
+                  }
+                  
+                
+                	<div class="col-lg-12 pull-right amountwords mt20"> Amount paid in words: ${converter.toWords(parseInt((paymentinfo.amountPaid/100)))} only</div>    
+                
+          </div>
+       </body>
+    </html>
+    `;
+};
+
+sendpdfemail = (paymentinfo)=>{
+	return new Promise(function (resolve, reject) {
+		pdf.create(pdfhtml(paymentinfo), {}).toStream(function (err, stream) {
+            if (err) {
+                //error handling
+            }
+            /*res.writeHead(200, {
+                'Content-Type': 'application/force-download',
+                'Content-disposition': 'attachment; filename=file.pdf'
+            });*/
+            // stream.pipe(res);
+            request({
+                                        "method"    : "POST", 
+                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                        "body"      : {
+                                                            email   : "anuja.kate@iassureit.com", 
+                                                            subject : "A Client has invested in a Product",
+                                                            mail    : "Dear admin, <br/>"+
+                                                            			"Client has just subscribed to a Product on Wealthyvia! For details of Subscription, please find an attachment. <br/>"+
+                                                            			"<br/><br/> Regards, <br/> Team, <br/> www.wealthyvia.com " ,  
+                                                            			
+											                "attachments" : [   
+						                                          {
+						                                          	filename: 'invoice.pdf',
+        															"content" : stream,
+						                                            contentType: 'application/pdf'
+						                                           }
+						                                              
+						                                        ],         
+                                                       },
+                                        "json"      : true,
+                                        "headers"   : {
+                                                        "User-Agent": "Test Agent"
+                                                    }
+                                    })
+                                    .then(source=>{
+                                    	console.log("mail sent")
+                                    	resolve(true);
+                                        //res.status(201).json({message:"OTP_UPDATED"})
+                                    })
+                                    .catch(err =>{
+                                        console.log(err);
+                                        reject(err);
+                                        
+                                    });
+            // console.log(res);
+            // res.status(200).json({clientRevenue : "okk"});
+        });
+    })    
+  
+}

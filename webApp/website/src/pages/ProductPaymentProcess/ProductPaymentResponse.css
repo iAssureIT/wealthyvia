@@ -11,6 +11,9 @@
     .customTablePP tr> td, th { border: 1px solid #aaa; color: #000 !important; padding: 10px !important; }
     .textAlignRight {    text-align: left !important; }
     .succesmsg{ display: none; }
+    .emptyh4{ margin:0px;padding:0px;line-height:1;    }
+    .dateContain{margin-bottom: 0px;padding-bottom: 0px;}
+    .invoicetoh4{ margin:0px;padding:0px;line-height:1;    }
 }
 .note{
 	font-size: 25px;
