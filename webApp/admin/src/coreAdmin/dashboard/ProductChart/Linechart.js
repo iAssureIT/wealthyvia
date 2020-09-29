@@ -75,7 +75,7 @@ export default class Linechart extends Component{
   }
   
   setchartdata(productData, productkey){
-    console.log("productdata prname", productData.productName);
+    // console.log("productdata prname", productData.productName);
       //console.log("prkey",productkey);
       var rates= productData.rates;
 
@@ -89,7 +89,7 @@ export default class Linechart extends Component{
       var inceptiontext = "on inception";
 
       if(productkey === "MAX") {
-        inceptiontext = "on inception";
+        inceptiontext = "on inception";        
       }
       else if(productkey === "1Y") {
         inceptiontext = "1 year ago";
@@ -245,7 +245,7 @@ export default class Linechart extends Component{
         }
         };
         this.setState({data : data, options: options, productName: productData.productName, indexName: productData.indexName,
-          productinvestedvalue: productinvestedvalue, indexinvestedvalue: indexinvestedvalue, inceptiontext: inceptiontext})
+          productinvestedvalue: productinvestedvalue, indexinvestedvalue: indexinvestedvalue, inceptiontext: inceptiontext })
   }
 
 

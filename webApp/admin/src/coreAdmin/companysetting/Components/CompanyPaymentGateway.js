@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { render }           from 'react-dom';
 import $ from "jquery";
-
+import axios from 'axios';
+import swal from 'sweetalert';
 // import swal from 'sweetalert';
 
 class CompanyPaymentGateway extends Component{
@@ -17,6 +18,7 @@ class CompanyPaymentGateway extends Component{
       prodKey        : '',
       prodSecret     : '',
       environment    : '',
+      action         : '',
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -26,7 +28,7 @@ class CompanyPaymentGateway extends Component{
     
   }
   componentDidMount() {
-  
+    this.getData();
   
   }
 
@@ -37,9 +39,33 @@ class CompanyPaymentGateway extends Component{
       [name]: event.target.value,
     });
   }
+
+  getData(){
+    var type = 'PG';
+    axios.get('/api/projectsettings/get/'+type)
+            .then((response) => {
+              console.log("response", response.data);
+              
+              if(response.data){
+                this.setState({
+                  environment   : response.data.environment,
+                  sandboxAPI    : response.data.sandboxAPI,
+                  sandboxKey    : response.data.sandboxKey,
+                  sandboxSecret : response.data.sandboxSecret,
+                  prodAPI       : response.data.prodAPI,
+                  prodKey       : response.data.prodKey,
+                  prodSecret    : response.data.prodSecret,
+                  action        : "update",
+                });
+              }             
+                
+            })
+            .catch((error) => {});
+}
+
   submit(event){
     event.preventDefault();
-    var formvalues = {
+    var formvalue = {
                       "environment"   : $("input[name='environment']:checked").val(),
                       "sandboxAPI"    : this.state.sandboxAPI,
                       "sandboxKey"    : this.state.sandboxKey,
@@ -47,17 +73,49 @@ class CompanyPaymentGateway extends Component{
                       "prodAPI"       : this.state.prodAPI,
                       "prodKey"       : this.state.prodKey,
                       "prodSecret"    : this.state.prodSecret,
+                      "type"          : 'PG',
+                      "createdBy"     : localStorage.getItem("user_ID")
                      }
-          console.log("formvalues123",formvalues);
+          
+        console.log("formvalue===>",formvalue);
+        if(this.state.action === 'update'){
 
-    // console.log('formvalues: ',formvalues);
-      // Meteor.call('saveQWSetting', formvalues, (error,result)=>{
-      //   if(error){
-      //     console.log("error"+error);
-      //   }else{    
-      //     swal('Quik Wallet Settings submitted successfully.');
-      //   }
-      // });
+          axios.patch('/api/projectsettings/patch/PG',formvalue)
+          .then((response)=> {
+            console.log("response===>",response.data);
+            
+            swal({                
+                  text: "Payment Gateway details added successfully!",
+                });
+              
+            this.getData();
+          })
+          .catch((error)=> {
+            swal({                
+                  text: "Failed to add Payment Gateway details!",
+                });
+          })
+
+        }
+        else{
+          axios.post('/api/projectsettings/post',formvalue)
+          .then((response)=> {
+            console.log("response===>",response.data);
+            
+            swal({                
+                  text: "Payment Gateway details added successfully!",
+                });
+              
+            this.getData();
+          })
+          .catch((error)=> {
+            swal({                
+                  text: "Failed to add Payment Gateway details!",
+                });
+          })
+        }
+          
+    
   }
 
   render(){
@@ -73,7 +131,7 @@ class CompanyPaymentGateway extends Component{
               <div className="col-lg-12 col-sm-12 col-xs-12 col-md-12">
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                   <form onSubmit={this.submit.bind(this)}>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkoutTitle">(Please Select Quik Wallet Environment)</div>
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkoutTitle">(Please Select Razor Pay Environment)</div>
                     <div className="col-lg-5 col-md-4 col-sm-4 col-xs-4 form-group envtSettings">
                       <input type="radio" onChange={this.handleChange.bind(this)} ref="environment" name="environment" checked={this.state.environment == 'sandbox' ? true : false } value="sandbox" required/><br/>Sandbox<br/><hr/>
                       <label className="col-lg-12 col-md-12 col-sm-12 col-xs-12 envLabel statelabel locationlabel">API</label>

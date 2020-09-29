@@ -12,93 +12,125 @@ var globalVariable  = require("../../../nodemon.js");
 const Orders        = require('../models/subscriptionorders.js');
 const Invoice 		= require('../models/invoice.js');
 
+const ProjectSettings   = require('../../coreAdmin/models/projectsettings.js');
 
-var instance 		= new Razorpay({
-  key_id     : 'rzp_test_lQNmCUfCX3Wkh4',
-  key_secret : 'VgF165CC3e5vKlfqwPnbeckJ'
-});
+
+
+function getPGdata(){
+	return new Promise(function (resolve, reject) {
+		ProjectSettings.findOne({"type": "PG"})
+        .exec()
+        .then(data=>{
+            if(data){         	
+            	
+                resolve(data);
+            }else{
+                resolve(false);
+            }
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+	})
+} 
 
 exports.payment_response = (req,res,next) =>{
 	var _id = req.params.order_id;
+
+	getdataasync();
+
+	async function getdataasync(){
+		var pgdata = await getPGdata();
+		if(pgdata){
+			if(pgdata.environment === 'production'){				
+				var key_id = pgdata.prodKey;
+				var key_secret = pgdata.prodSecret;                
+			}
+			else{
+				var key_id = pgdata.sandboxKey;
+				var key_secret = pgdata.sandboxSecret;
+			}
+		}
 	
-	var generated_signature = sha256.hmac('VgF165CC3e5vKlfqwPnbeckJ', req.body.razorpay_order_id+"|"+req.body.razorpay_payment_id);
-	console.log("generated_signature",generated_signature);
-	if (generated_signature == req.body.razorpay_signature) { 
-	  Orders.updateOne(
-                    { "_id": _id},
+		var generated_signature = sha256.hmac(key_secret, req.body.razorpay_order_id+"|"+req.body.razorpay_payment_id);
+		console.log("generated_signature",generated_signature);
+		if (generated_signature == req.body.razorpay_signature) { 
+		  Orders.updateOne(
+	                    { "_id": _id},
 
-                    {
-                        $set : {
-								"transactionId" 	: req.body.razorpay_payment_id,
-								"paymentStatus"		: "Paid",
-                        }
-                    }
-                    )
- 		
-         .exec()
-         .then(data=>{
-         	// res.redirect("http://localhost:3000/paymentResponse");
-            if(data.nModified === 1){
-         	console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+	                    {
+	                        $set : {
+									"transactionId" 	: req.body.razorpay_payment_id,
+									"paymentStatus"		: "Paid",
+	                        }
+	                    }
+	                    )
+	 		
+	         .exec()
+	         .then(data=>{
+	         	// res.redirect("http://localhost:3000/paymentResponse");
+	            if(data.nModified === 1){
+	         	console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
 
-         		Orders.findOne({ "paymentOrderId":req.body.razorpay_order_id})
-         		.then((orderDetails)=>{
-         			console.log("orderDetails--",orderDetails);
-         			console.log("globalVariable.url ",globalVariable.url);
-         			
-         			var url = globalVariable.url+"payment-response/"+orderDetails.paymentOrderId;
-         			if(url){
-						res.redirect(url);
-         			}
-         		})
-	            .catch(err =>{
-	                console.log(err);
-	                res.status(500).json({
-	                    error: err
-	                });
-	            });	
-            }else{
-                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
-            }
-         })
-	} else {
-		console.log("payment Failed",JSON.stringify(req.body));
-		console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
-		Orders.updateOne(
-                        { "_id" : _id},
-                        {
-                            $set : {
-								"transactionId" 	: req.body.razorpay_payment_id,
-								"paymentStatus"		: "Failed",
-                            }
-                        }
-                    )
-         .exec()
-         .then(data=>{
-         	if(data.nModified === 1){
-         	console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+	         		Orders.findOne({ "paymentOrderId":req.body.razorpay_order_id})
+	         		.then((orderDetails)=>{
+	         			console.log("orderDetails--",orderDetails);
+	         			console.log("globalVariable.url ",globalVariable.url);
+	         			
+	         			var url = globalVariable.url+"payment-response/"+orderDetails.paymentOrderId;
+	         			if(url){
+							res.redirect(url);
+	         			}
+	         		})
+		            .catch(err =>{
+		                console.log(err);
+		                res.status(500).json({
+		                    error: err
+		                });
+		            });	
+	            }else{
+	                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
+	            }
+	         })
+		} else {
+			console.log("payment Failed",JSON.stringify(req.body));
+			console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+			Orders.updateOne(
+	                        { "_id" : _id},
+	                        {
+	                            $set : {
+									"transactionId" 	: req.body.razorpay_payment_id,
+									"paymentStatus"		: "Failed",
+	                            }
+	                        }
+	                    )
+	         .exec()
+	         .then(data=>{
+	         	if(data.nModified === 1){
+	         	console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
 
-         		Orders.findOne({ "_id":_id})
-         		.then((orderDetails)=>{
-         			console.log("orderDetails--",orderDetails);
-         			console.log("globalVariable.url ",globalVariable.url);
-         			var url = globalVariable.url+"payment-response/"+orderDetails.paymentOrderId;
-         			if(url){
-						res.redirect(url);
-         			}
-         		})
-	            .catch(err =>{
-	                console.log(err);
-	                res.status(500).json({
-	                    error: err
-	                });
-	            });	
-            }else{
-                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
-            }
-         	
-         })
-	}
+	         		Orders.findOne({ "_id":_id})
+	         		.then((orderDetails)=>{
+	         			console.log("orderDetails--",orderDetails);
+	         			console.log("globalVariable.url ",globalVariable.url);
+	         			var url = globalVariable.url+"payment-response/"+orderDetails.paymentOrderId;
+	         			if(url){
+							res.redirect(url);
+	         			}
+	         		})
+		            .catch(err =>{
+		                console.log(err);
+		                res.status(500).json({
+		                    error: err
+		                });
+		            });	
+	            }else{
+	                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
+	            }
+	         	
+	         })
+		}
+	}	
 }
 //End of payment gateway integration
 exports.create_order = (req, res, next) => {
@@ -108,61 +140,79 @@ exports.create_order = (req, res, next) => {
 		"receipt"			: req.body.receipt,
 		"payment_capture"	: req.body.payment_capture,
 	};
-	instance.orders.create(paymentData, function(err, payment_order) {
-      	if(err){
-	        res.status(500).json({
-	            error: err
-	        }); 
-	    }else if(payment_order){
-	        // res.status(200).json(order);
-	        // console.log("payment_order ",payment_order);
+	getdata();
+	async function getdata(){
+		var pgdata = await getPGdata();
+		if(pgdata){
+			if(pgdata.environment === 'production'){				
+				var key_id = pgdata.prodKey;
+				var key_secret = pgdata.prodSecret;                
+			}
+			else{
+				var key_id = pgdata.sandboxKey;
+				var key_secret = pgdata.sandboxSecret;
+			}
+		}
+		var instance 		= new Razorpay({
+					  key_id     : key_id,
+					  key_secret : key_secret
+					});	
+		instance.orders.create(paymentData, function(err, payment_order) {
+	      	if(err){
+		        res.status(500).json({
+		            error: err
+		        }); 
+		    }else if(payment_order){
+		        // res.status(200).json(order);
+		        // console.log("payment_order ",payment_order);
 
-			Orders  .find()
-					.count()
-				    .then((maxInvoiceNum)=>{
+				Orders  .find()
+						.count()
+					    .then((maxInvoiceNum)=>{
 
-						var order = new Orders({
-												"_id"           	: mongoose.Types.ObjectId(), 
-												"invoiceNum" 		: maxInvoiceNum + 1,
-												"plan_ID"			: req.body.planID,
-											    "userID"			: req.body.userID,
-											    "planName"			: req.body.planName,
-												"planAmount"  		: req.body.planAmount, 
-												"validityPeriod" 	: req.body.validityPeriod, //1 month or 1 year
-												"purchaseDate"		: req.body.purchaseDate, //"YYYY-MM-DD"
-												"startDate" 		: req.body.startDate, //"YYYY-MM-DD"
-												"endDate" 			: req.body.endDate, //"YYYY-MM-DD"
-												"paymentOrderId" 	: payment_order.id,
-												"amountPaid"		: payment_order.amount,
-												"paymentStatus"		: "unPaid",
-												"createdBy"			: req.body.createdBy,
-												"createdAt"			: new Date(),
-											});
-						console.log("order ",order);
+							var order = new Orders({
+													"_id"           	: mongoose.Types.ObjectId(), 
+													"invoiceNum" 		: maxInvoiceNum + 1,
+													"plan_ID"			: req.body.planID,
+												    "userID"			: req.body.userID,
+												    "planName"			: req.body.planName,
+													"planAmount"  		: req.body.planAmount, 
+													"validityPeriod" 	: req.body.validityPeriod, //1 month or 1 year
+													"purchaseDate"		: req.body.purchaseDate, //"YYYY-MM-DD"
+													"startDate" 		: req.body.startDate, //"YYYY-MM-DD"
+													"endDate" 			: req.body.endDate, //"YYYY-MM-DD"
+													"paymentOrderId" 	: payment_order.id,
+													"amountPaid"		: payment_order.amount,
+													"paymentStatus"		: "unPaid",
+													"createdBy"			: req.body.createdBy,
+													"createdAt"			: new Date(),
+												});
+							console.log("order ",order);
 
 
-						order.save()
-					        .then(data=>{
-					                res.status(200).json(payment_order);
-					            })
-					            .catch(err =>{
-					                console.log(err);
-					                res.status(500).json({
-					                	message: "Some issue occured in Order Insert",
-					                    error: err
-					                });
-					            });	
+							order.save()
+						        .then(data=>{
+						                res.status(200).json(payment_order);
+						            })
+						            .catch(err =>{
+						                console.log(err);
+						                res.status(500).json({
+						                	message: "Some issue occured in Order Insert",
+						                    error: err
+						                });
+						            });	
 
-				    })
-		            .catch(err =>{
-		                console.log(err);
-		                res.status(500).json({
-		                	message: "Some issue occured while finding Max Invoice Number",
-		                    error: err
-		                });
-		            });	
-	    }
-    });
+					    })
+			            .catch(err =>{
+			                console.log(err);
+			                res.status(500).json({
+			                	message: "Some issue occured while finding Max Invoice Number",
+			                    error: err
+			                });
+			            });	
+		    }
+	    });
+	}    
 };
 exports.paymentOrderDetails = (req,res,next) =>{
 	Invoice.find()

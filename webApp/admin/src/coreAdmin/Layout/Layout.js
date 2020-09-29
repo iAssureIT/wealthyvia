@@ -42,6 +42,7 @@ import tools              from '../dashboard/Tools/tools.js';
 import ProductPricing       from '../dashboard/ProductPricing/ProductPricing.js';
 import Clientlist           from '../dashboard/Clientlist/Clientlist.js';
 import Clientmapping           from '../dashboard/Clientlist/Clientmapping.js';
+import TechnicalMaster  from '../companysetting/Components/TechnicalMasters.js';
 
 import ResetPasswordconfirmotp     from '../common/ResetPasswordOtp/ResetPasswordconfirmotp.js';
 import ResetPasswordafterlogin     from '../common/ResetPasswordOtp/ResetPasswordafterlogin.js';
@@ -151,7 +152,8 @@ componentDidMount(){
                       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 NOpadding mainContentBackground">                  
                         <Switch>
                           <Route path="/" component={AdminContent} exact />                
-                          <Route path="/dashboard" component={AdminContent} exact />                
+                          <Route path="/dashboard" component={AdminContent} exact />      
+                          <Route path="/technical-master" component={TechnicalMaster} exact />          
                           <Route path="/umlistofusers" component={UMListOfUsers} exact />
                           <Route path="/umroleslist" component={UMRolesList} exact />
                           <Route path="/edituserprofile/:id" component={EditUserProfile} exact />

@@ -96,9 +96,36 @@
     font-size: 23px;
 }
 
-@media (max-width: 767px){
+.cagrheading{
+    font-size: 18px;    
+}
+.cagrvalue{
+    font-weight: 600;
+}
+.chartheightfix{
+    height: 620px;
+}
+
+@media (max-width: 899px){
     .extspace{
         padding-left: 0px !important;
         padding-right: 0px !important;
+    }
+    .chartheightfix{
+        height: 720px !important;
+    }
+}
+
+@media (min-width: 1300px){
+    
+    .chartheightfix{
+        height: 820px !important;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1200px){
+    
+    .chartheightfix{
+        height: 560px !important;
     }
 }

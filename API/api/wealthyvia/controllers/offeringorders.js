@@ -17,192 +17,229 @@ const WMSub 		= require('../models/wmsubscriptions.js');
 const pdf 			= require('html-pdf');
 const converter 	= require('number-to-words');
 
-var instance 		= new Razorpay({
-  key_id     : 'rzp_test_lQNmCUfCX3Wkh4',
-  key_secret : 'VgF165CC3e5vKlfqwPnbeckJ'
-});
+const ProjectSettings   = require('../../coreAdmin/models/projectsettings.js');
+
+
+
+function getPGdata(){
+	return new Promise(function (resolve, reject) {
+		ProjectSettings.findOne({"type": "PG"})
+        .exec()
+        .then(data=>{
+            if(data){         	
+            	
+                resolve(data);
+            }else{
+                resolve(false);
+            }
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+	})
+} 
+
+
+
 
 exports.payment_response = (req,res,next) =>{
 	var _id = req.params.order_id;
-	
-	var generated_signature = sha256.hmac('VgF165CC3e5vKlfqwPnbeckJ', req.body.razorpay_order_id+"|"+req.body.razorpay_payment_id);
-	console.log("generated_signature",generated_signature);
-	if (generated_signature == req.body.razorpay_signature) { 
-	  Orders.updateOne(
-                    { "_id": _id},
 
-                    {
-                        $set : {
-								"transactionId" 	: req.body.razorpay_payment_id,
-								"paymentStatus"		: "Paid",
-                        }
-                    }
-                    )
- 		
-         .exec()
-         .then(data=>{
-         	// res.redirect("http://localhost:3000/paymentResponse");
-            if(data.nModified === 1){
-         	console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+	getdataasync();
 
-         		Orders.findOne({ "paymentOrderId":req.body.razorpay_order_id})
-         		.then((orderDetails)=>{
-         			console.log("orderDetails--",orderDetails);
-         			console.log("globalVariable.url ",globalVariable.url);
-         			
-         			setofferingsubscription();
-         			async function setofferingsubscription(){
-         				var paymentinfo = await paymentOrderDetailsforemail(orderDetails.paymentOrderId);
-         				/*if(paymentinfo.states === 'Maharashtra'){
-         					var taxinfo = 	"Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
-         									"CGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>"+
-         									"SGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>";
-         				}
-         				else{
-         					var taxinfo = "Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
-         									"IGST @18%: </b>₹ "+parseInt(parseInt((paymentinfo.amountPaid/100)) - parseInt(((paymentinfo.amountPaid)/100)/1.18)).toLocaleString("en-IN")+"</b><br/>";
-         				}*/
+	async function getdataasync(){
+		var pgdata = await getPGdata();
+		if(pgdata){
+			if(pgdata.environment === 'production'){				
+				var key_id = pgdata.prodKey;
+				var key_secret = pgdata.prodSecret;                
+			}
+			else{
+				var key_id = pgdata.sandboxKey;
+				var key_secret = pgdata.sandboxSecret;
+			}
+		}
+		var generated_signature = sha256.hmac(key_secret, req.body.razorpay_order_id+"|"+req.body.razorpay_payment_id);
+		// console.log("generated_signature",generated_signature);
+		if (generated_signature == req.body.razorpay_signature) { 
+		  Orders.updateOne(
+	                    { "_id": _id},
 
-         				var pdfinfo = {
-         					"userName"      : paymentinfo.userName,
-					       	"email"         : paymentinfo.email,
-					       	"mobileNumber" 	: paymentinfo.mobileNumber,
-					        "panNumber" 	: paymentinfo.panNumber,
-					        "gstNumber" 	: paymentinfo.gstNumber,
-					        "states"    	: paymentinfo.states,
-					        "amountPaid" 	: paymentinfo.amountPaid,
-					        "offeringTitle" : paymentinfo.offeringTitle,
-					        "invoiceNum" 	: paymentinfo.invoiceNum,
-					        "date" 			: moment(paymentinfo.createdAt).format('DD-MM-YYYY'),
-					        "totalinwords" 	: paymentinfo.userName,
-					        "startDate" 	: moment(paymentinfo.createdAt).format('DD-MM-YYYY'),
-					        "endDate" 		: moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")    
-  
-         				}
-         				
-         				var pdfsent = await sendpdfemail(pdfinfo);
-         				 
-         				/*request({
-                                        "method"    : "POST", 
-                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
-                                        "body"      : {
-                                                            email   : "kycwealthyvia@gmail.com", 
-                                                            subject : "A Client has invested in a Product",
-                                                            mail    : "Dear admin, <br/>"+
-                                                            			"Following are the details of the Client & his investment:<br/>"+
-                                                            			"<b>Invoice Number: </b>"+paymentinfo.invoiceNum+"<br/>"+
-                                                            			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
-											                          	"<b>Client Name: </b>"+paymentinfo.userName+"<br/>"+
-											                          	"<b>Phone Number: </b>"+paymentinfo.mobileNumber+"<br/>"+
-											                          	"<b>Email: </b>"+paymentinfo.email+"<br/>"+
-											                          	"<b>Pan Number: </b>"+paymentinfo.panNumber+"<br/>"+
-											                          	"<b>GST Number: </b>"+paymentinfo.gstNumber+"<br/>"+
-											                          	"<b>State: </b>"+paymentinfo.states+"<br/>"+											                          	
-											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
-											                          	""+taxinfo+"<br/>"+
-											                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
-											                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
-											                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>",
-											                          
-                                                       },
-                                        "json"      : true,
-                                        "headers"   : {
-                                                        "User-Agent": "Test Agent"
-                                                    }
-                                    })
-                                    .then(source=>{
-                                    	console.log("mail sent")
-                                        //res.status(201).json({message:"OTP_UPDATED"})
-                                    })
-                                    .catch(err =>{
-                                        console.log(err);
-                                        
-                                    });*/
-                        request({
-                                        "method"    : "POST", 
-                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
-                                        "body"      : {
-                                                            email   : paymentinfo.email, 
-                                                            subject : "Thank you for investing in Wealthyvia. Your payment has been successful",
-                                                            mail    : "Dear "+paymentinfo.userName+", <br/>"+
-                                                            			"Following are the details of your latest investment in our product:<br/>"+
-                                                            			"<b>Invoice Number: </b>"+paymentinfo.invoiceNum+"<br/>"+
-                                                            			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
-											                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
-											                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
-											                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
-											                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>"+
-											                			"<br/><br/> Thank You, <br/> Team, <br/> www.wealthyvia.com " ,         
-                                                       },
-                                        "json"      : true,
-                                        "headers"   : {
-                                                        "User-Agent": "Test Agent"
-                                                    }
-                                    })
-                                    .then(source=>{
-                                    	console.log("mail sent")
-                                        //res.status(201).json({message:"OTP_UPDATED"})
-                                    })
-                                    .catch(err =>{
-                                        console.log(err);
-                                        
-                                    });            
-         				var result = await create_offerSub_wsSub(orderDetails);
-         				var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
+	                    {
+	                        $set : {
+									"transactionId" 	: req.body.razorpay_payment_id,
+									"paymentStatus"		: "Paid",
+	                        }
+	                    }
+	                    )
+	 		
+	         .exec()
+	         .then(data=>{
+	         	// res.redirect("http://localhost:3000/paymentResponse");
+	            if(data.nModified === 1){
+	         	// console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+
+	         		Orders.findOne({ "paymentOrderId":req.body.razorpay_order_id})
+	         		.then((orderDetails)=>{
+	         			// console.log("orderDetails--",orderDetails);
+	         			// console.log("globalVariable.url ",globalVariable.url);
+	         			
+	         			setofferingsubscription();
+	         			async function setofferingsubscription(){
+	         				var paymentinfo = await paymentOrderDetailsforemail(orderDetails.paymentOrderId);
+	         				/*if(paymentinfo.states === 'Maharashtra'){
+	         					var taxinfo = 	"Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
+	         									"CGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>"+
+	         									"SGST @ 9% : </b>₹ "+(parseInt(((paymentinfo.amountPaid)/100)/1.18)*0.09).toLocaleString("en-IN")+"</b><br/>";
+	         				}
+	         				else{
+	         					var taxinfo = "Subtotal: </b>₹ "+parseInt(((paymentinfo.amountPaid)/100)/1.18).toLocaleString("en-IN")+"</b><br/>"+
+	         									"IGST @18%: </b>₹ "+parseInt(parseInt((paymentinfo.amountPaid/100)) - parseInt(((paymentinfo.amountPaid)/100)/1.18)).toLocaleString("en-IN")+"</b><br/>";
+	         				}*/
+
+	         				var pdfinfo = {
+	         					"userName"      : paymentinfo.userName,
+						       	"email"         : paymentinfo.email,
+						       	"mobileNumber" 	: paymentinfo.mobileNumber,
+						        "panNumber" 	: paymentinfo.panNumber,
+						        "gstNumber" 	: paymentinfo.gstNumber,
+						        "states"    	: paymentinfo.states,
+						        "amountPaid" 	: paymentinfo.amountPaid,
+						        "offeringTitle" : paymentinfo.offeringTitle,
+						        "invoiceNum" 	: paymentinfo.invoiceNum,
+						        "date" 			: moment(paymentinfo.createdAt).format('DD-MM-YYYY'),
+						        "totalinwords" 	: paymentinfo.userName,
+						        "startDate" 	: moment(paymentinfo.createdAt).format('DD-MM-YYYY'),
+						        "endDate" 		: moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")    
+	  
+	         				}
+	         				
+	         				var pdfsent = await sendpdfemail(pdfinfo);
+	         				 
+	         				/*request({
+	                                        "method"    : "POST", 
+	                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+	                                        "body"      : {
+	                                                            email   : "kycwealthyvia@gmail.com", 
+	                                                            subject : "A Client has invested in a Product",
+	                                                            mail    : "Dear admin, <br/>"+
+	                                                            			"Following are the details of the Client & his investment:<br/>"+
+	                                                            			"<b>Invoice Number: </b>"+paymentinfo.invoiceNum+"<br/>"+
+	                                                            			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
+												                          	"<b>Client Name: </b>"+paymentinfo.userName+"<br/>"+
+												                          	"<b>Phone Number: </b>"+paymentinfo.mobileNumber+"<br/>"+
+												                          	"<b>Email: </b>"+paymentinfo.email+"<br/>"+
+												                          	"<b>Pan Number: </b>"+paymentinfo.panNumber+"<br/>"+
+												                          	"<b>GST Number: </b>"+paymentinfo.gstNumber+"<br/>"+
+												                          	"<b>State: </b>"+paymentinfo.states+"<br/>"+											                          	
+												                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
+												                          	""+taxinfo+"<br/>"+
+												                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
+												                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
+												                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>",
+												                          
+	                                                       },
+	                                        "json"      : true,
+	                                        "headers"   : {
+	                                                        "User-Agent": "Test Agent"
+	                                                    }
+	                                    })
+	                                    .then(source=>{
+	                                    	console.log("mail sent")
+	                                        //res.status(201).json({message:"OTP_UPDATED"})
+	                                    })
+	                                    .catch(err =>{
+	                                        console.log(err);
+	                                        
+	                                    });*/
+	                        request({
+	                                        "method"    : "POST", 
+	                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+	                                        "body"      : {
+	                                                            email   : paymentinfo.email, 
+	                                                            subject : "Thank you for investing in Wealthyvia. Your payment has been successful",
+	                                                            mail    : "Dear "+paymentinfo.userName+", <br/>"+
+	                                                            			"Following are the details of your latest investment in our product:<br/>"+
+	                                                            			"<b>Invoice Number: </b>"+paymentinfo.invoiceNum+"<br/>"+
+	                                                            			"<b>Transaction Status: </b>"+paymentinfo.paymentStatus+"<br/>"+
+												                          	"<b>Product opted for : </b>"+paymentinfo.offeringTitle+"<br/>"+
+												                          	"<b>Amount Paid: </b>₹ "+((paymentinfo.amountPaid)/100).toLocaleString('en-IN')+"<br/>"+
+												                          	"<b>Start Date: </b>"+moment(paymentinfo.createdAt).format('DD-MM-YYYY')+"<br/>"+
+												                          	"<b>End Date: </b>"+moment(paymentinfo.createdAt).add(paymentinfo.validityPeriod, 'months').format("DD-MM-YYYY")+"<br/>"+
+												                			"<br/><br/> Thank You, <br/> Team, <br/> www.wealthyvia.com " ,         
+	                                                       },
+	                                        "json"      : true,
+	                                        "headers"   : {
+	                                                        "User-Agent": "Test Agent"
+	                                                    }
+	                                    })
+	                                    .then(source=>{
+	                                    	console.log("mail sent")
+	                                        //res.status(201).json({message:"OTP_UPDATED"})
+	                                    })
+	                                    .catch(err =>{
+	                                        console.log(err);
+	                                        
+	                                    });            
+	         				var result = await create_offerSub_wsSub(orderDetails);
+	         				var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
+		         			if(url){
+								res.redirect(url);
+		         			}
+	         			}
+	         			
+	         		})
+		            .catch(err =>{
+		                console.log(err);
+		                res.status(500).json({
+		                    error: err
+		                });
+		            });	
+	            }else{
+	                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
+	            }
+	         })
+		} else {
+			// console.log("payment Failed",JSON.stringify(req.body));
+			// console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+			Orders.updateOne(
+	                        { "_id" : _id},
+	                        {
+	                            $set : {
+									"transactionId" 	: req.body.razorpay_payment_id,
+									"paymentStatus"		: "Failed",
+	                            }
+	                        }
+	                    )
+	         .exec()
+	         .then(data=>{
+	         	if(data.nModified === 1){
+	         	// console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
+
+	         		Orders.findOne({ "_id":_id})
+	         		.then((orderDetails)=>{
+	         			// console.log("orderDetails--",orderDetails);
+	         			// console.log("globalVariable.url ",globalVariable.url);
+	         			var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
 	         			if(url){
 							res.redirect(url);
 	         			}
-         			}
-         			
-         		})
-	            .catch(err =>{
-	                console.log(err);
-	                res.status(500).json({
-	                    error: err
-	                });
-	            });	
-            }else{
-                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
-            }
-         })
-	} else {
-		console.log("payment Failed",JSON.stringify(req.body));
-		console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
-		Orders.updateOne(
-                        { "_id" : _id},
-                        {
-                            $set : {
-								"transactionId" 	: req.body.razorpay_payment_id,
-								"paymentStatus"		: "Failed",
-                            }
-                        }
-                    )
-         .exec()
-         .then(data=>{
-         	if(data.nModified === 1){
-         	console.log("req.body.razorpay_order_id",req.body.razorpay_order_id);
-
-         		Orders.findOne({ "_id":_id})
-         		.then((orderDetails)=>{
-         			console.log("orderDetails--",orderDetails);
-         			console.log("globalVariable.url ",globalVariable.url);
-         			var url = globalVariable.url+"product-payment-response/"+orderDetails.paymentOrderId;
-         			if(url){
-						res.redirect(url);
-         			}
-         		})
-	            .catch(err =>{
-	                console.log(err);
-	                res.status(500).json({
-	                    error: err
-	                });
-	            });	
-            }else{
-                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
-            }
-         	
-         })
+	         		})
+		            .catch(err =>{
+		                console.log(err);
+		                res.status(500).json({
+		                    error: err
+		                });
+		            });	
+	            }else{
+	                res.status(200).json({message : "SIGNATURE_MATCHED_BUT_ORDER_NOT_UPDATED"})
+	            }
+	         	
+	         })
+		}
 	}
+
+	
 }
 //End of payment gateway integration
 exports.create_order = (req, res, next) => {
@@ -212,6 +249,24 @@ exports.create_order = (req, res, next) => {
 		"receipt"			: req.body.receipt,
 		"payment_capture"	: req.body.payment_capture,
 	};
+
+	getdata();
+	async function getdata(){
+		var pgdata = await getPGdata();
+		if(pgdata){
+			if(pgdata.environment === 'production'){				
+				var key_id = pgdata.prodKey;
+				var key_secret = pgdata.prodSecret;                
+			}
+			else{
+				var key_id = pgdata.sandboxKey;
+				var key_secret = pgdata.sandboxSecret;
+			}
+		}
+		var instance 		= new Razorpay({
+					  key_id     : key_id,
+					  key_secret : key_secret
+					});	
 	instance.orders.create(paymentData, function(err, payment_order) {
       	if(err){
 	        res.status(500).json({
@@ -245,7 +300,7 @@ exports.create_order = (req, res, next) => {
 												"createdBy"			: req.body.createdBy,
 												"createdAt"			: new Date(),
 											});
-						console.log("order ",order);
+						// console.log("order ",order);
 
 
 						order.save()
@@ -270,6 +325,9 @@ exports.create_order = (req, res, next) => {
 		            });	
 	    }
     });
+	}
+
+	
 };
 exports.paymentOrderDetails = (req,res,next) =>{
 	Invoice.find()
@@ -482,7 +540,7 @@ function getUserOrderdetails(user_id){
 
 function update_offering(offering){
 	return new Promise(function (resolve, reject) {
-		console.log("offering", offering.wmSub_ID, offering.user_ID,offering.offering_ID );
+		// console.log("offering", offering.wmSub_ID, offering.user_ID,offering.offering_ID );
 		OfferSub.findOne({
 						"wmSubscription_ID" : offering.wmSub_ID,
 						"user_ID"			: offering.user_ID,
@@ -492,9 +550,9 @@ function update_offering(offering){
 				.sort({createdAt:1})
 				.exec()
 				.then(offersub=>{
-					console.log("off", offersub);
+					// console.log("off", offersub);
 					if(!offersub ){
-						console.log("active", offering.offeringStatus);
+						// console.log("active", offering.offeringStatus);
 						const offersub = new OfferSub({
 												"_id"           	: mongoose.Types.ObjectId(), 
 												"user_ID" 			: offering.user_ID,
@@ -518,7 +576,7 @@ function update_offering(offering){
 			                            });
 			                        });
 					}else if(offersub && offersub.offeringStatus != "Active"){
-						console.log("not", offering.offeringStatus);
+						// console.log("not", offering.offeringStatus);
 						OfferSub.updateOne(
 										{ "_id" : offersub._id},
 										{
@@ -550,7 +608,7 @@ function update_offering(offering){
 
 function create_offerSub_wsSub (offeringorder) {
 	return new Promise(function (resolve, reject) {
-		console.log("offeringorder", offeringorder);
+		// console.log("offeringorder", offeringorder);
 	WMSub.findOne({
 						"user_ID" 		: offeringorder.userID,
 						"wsSubStatus"	: "Active"
@@ -601,7 +659,7 @@ function create_offerSub_wsSub (offeringorder) {
 			                });		 		
 	                wmsub_var.save()
 	                    .then(data=>{
-	                    		console.log("data ",data);
+	                    		// console.log("data ",data);
 	                    		getdata();
 			 					async function getdata(){
 			                            	var status = await update_offering({

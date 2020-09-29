@@ -314,3 +314,28 @@ border-radius: 2px 0px 0px 2px;
     height: 600px;
     border-radius: 3px;
 }
+
+.userciclebox{
+    border-radius: 100% !important;
+    width: 80px !important;
+    height: 80px !important;
+}
+
+.addinfobox{
+    padding: 7.5px 0px 4px 5px !important;
+}
+
+.titletexinfo{
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+.rightArrowSign {
+    text-align: right;
+    margin-top: -15px;
+    font-size: 20px;
+}       
+
+.backgroundextrs{
+    background-color: #eee;
+}                                                                                    

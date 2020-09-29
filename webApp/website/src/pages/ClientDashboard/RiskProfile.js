@@ -263,7 +263,7 @@ class RiskProfile extends Component {
                              swal("Thank You!", "Your risk profile details submitted successfully.", "success")
                         }
                         this.setState({
-                          buttonHeading : 'Sign Up',
+                          buttonHeading : 'Submit',
                         });
                         this.setState(this.baseState);
                         $("html,body").scrollTop(0);
@@ -272,7 +272,7 @@ class RiskProfile extends Component {
                       .catch((error)=>{
                         console.log("error = ", error);
                         this.setState({
-                          buttonHeading : 'Sign Up',
+                          buttonHeading : 'Submit',
                         });
                         
                       });
@@ -281,7 +281,7 @@ class RiskProfile extends Component {
           .catch((error)=>{
             console.log("error = ", error);
             this.setState({
-                        buttonHeading : 'Sign Up',
+                        buttonHeading : 'Submit',
             });
           });
           

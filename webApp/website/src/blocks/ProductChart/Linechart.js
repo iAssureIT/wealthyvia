@@ -298,7 +298,7 @@ export default class Linechart extends Component{
 
 
 	render(){
-    console.log("loading", this.state.loading);
+    // console.log("loading", this.state.loading);
 		return(
 				<section>
 					<div className="row">

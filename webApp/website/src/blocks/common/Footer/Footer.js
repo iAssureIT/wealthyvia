@@ -124,7 +124,7 @@ export default class Footer extends Component {
                                       <a href="https://www.facebook.com/Wealthyvia-110661300391812" target="_blank">  <img src="/images/facebook.png"/></a>
                       </div>
                       <div className="col-lg-1 col-md-2 col-sm-1 col-xs-1 faceBook  ">
-                       <a href="https://twitter.com/ViaWealthy" target="_blank"><img src="/images/twitter.png"/></a>
+                       <a href="https://twitter.com/intent/follow?original_referer=http%3A%2F%2Fwww.wealthyvia.com%2F&ref_src=twsrc%5Etfw&region=follow_link&screen_name=Viawealthy&tw_p=followbutton" target="_blank"><img src="/images/twitter.png"/></a>
                       </div> 
                           
                     </div>

@@ -6,8 +6,9 @@ import CompanyLocation              from  '../Components/CompanyLocation.js';
 import CompanyBankDetails           from  '../Components/CompanyBankDetails.js';
 import CompanyTaxDetails            from  '../Components/CompanyTaxDetails.js';
 import CompanyPaymentGateway        from  '../Components/CompanyPaymentGateway.js';
-import CompanySMSGateway            from  '../Components/CompanySMSGateway.js';
-import CompanyAmazons3              from  '../Components/CompanyAmazons3.js';
+// import CompanySMSGateway            from  '../Components/CompanySMSGateway.js';
+import CompanyEmailGateway            from  '../Components/CompanyEmailGateway.js';
+import CompanyAmazons3              from  '../Components/AmazonS3.js';
 // import AddPropertyType           from  '/imports/admin/companySetting/Add_Property_subproperty/AddPropertyType.jsx';
 import '../css/CompanySetting.css';
 
@@ -63,9 +64,9 @@ import '../css/CompanySetting.css';
                                     {/*<li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyBankDetails" data-toggle="tab">Bank Details</a></li>*/}
                                     <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyTaxDetails" data-toggle="tab">Tax Information</a></li>
                                     <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyPaymentGateway" data-toggle="tab">Payment Gateway</a></li>
-                                    {/*<li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanySMSGateway" data-toggle="tab">SMS Gateway</a></li>
+                                    <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyEmailGateway" data-toggle="tab">Email Gateway</a></li>
                                     <li className="col-lg-12 col-md-12 col-xs-12 col-sm-12"         onClick={this.clickLi.bind(this)}><a className="tabLeft lettersp tablefthr" href="#CompanyAmazons3" data-toggle="tab">Amazon S3</a></li>
-                                */}</ul>
+                                </ul>
                               </div>
                               <div className="tab-content col-lg-9 col-md-9 col-xs-12 col-sm-12">
                                 <div className="tab-pane active" id="companyInformation"> <CompanyInformation/> </div>
@@ -73,7 +74,7 @@ import '../css/CompanySetting.css';
                                 {/*<div className="tab-pane" id="CompanyBankDetails"> <CompanyBankDetails/> </div>*/}
                                 <div className="tab-pane" id="CompanyTaxDetails"> <CompanyTaxDetails/> </div>
                                 <div className="tab-pane" id="CompanyPaymentGateway"> <CompanyPaymentGateway/> </div>
-                                <div className="tab-pane" id="CompanySMSGateway"> <CompanySMSGateway/> </div>
+                                <div className="tab-pane" id="CompanyEmailGateway"> <CompanyEmailGateway/> </div>
                                 <div className="tab-pane" id="CompanyAmazons3"> <CompanyAmazons3/> </div>
                               </div> 
                             </div>
