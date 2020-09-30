@@ -97,13 +97,25 @@
 }
 
 .cagrheading{
-    font-size: 18px;    
+    font-size: 18px;  
+    
 }
 .cagrvalue{
     font-weight: 600;
 }
 .chartheightfix{
     height: 620px;
+}
+.colorwealthypr{
+    color: #1f7ae0;
+}
+.colorwealthycgr {
+    color: #1f7ae0;
+    line-height: 1.57;
+    font-weight: 600;
+}
+.colorwealthyindex{
+    color: #E3AF64;
 }
 
 @media (max-width: 899px){

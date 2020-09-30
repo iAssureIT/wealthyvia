@@ -7,6 +7,7 @@ import 'font-awesome/css/font-awesome.min.css';
 
 import swal                     from 'sweetalert';
 import Axios                    from "axios";
+import { Doughnut, Pie, Bar, Radar, Polar, Line, Chart, defaults } from 'react-chartjs-2';
 
 import './Dashboard.css';
 
@@ -15,8 +16,10 @@ export default class Dashboard extends Component{
   constructor(props) {
    super(props);
     this.state = {
-      noofclients : 0,
-      noofsubfranchise : 0
+      noofclients        : 0,
+      noofsubfranchise   : 0,
+      clientList         : [],
+      clientSubscription : [],
     }
   }
    
@@ -44,7 +47,10 @@ export default class Dashboard extends Component{
     .then(res=>{
       if(res && res.data){
         this.setState({
-          noofclients : res.data.length 
+          noofclients : res.data.length, 
+          clientList : res.data 
+        },()=>{
+          this.getclientofferingsubscription();
         });
       }
     })
@@ -65,6 +71,41 @@ export default class Dashboard extends Component{
         
         this.setState({
           noofsubfranchise : res.data.length 
+        });
+      }
+    })
+    .catch(err=>{
+      console.log("err",err);
+      swal("Oops...","Something went wrong! <br/>"+err, "error");
+
+    })
+  }
+
+  getclientofferingsubscription(){
+    console.log("clientList", this.state.clientList);
+    var query = {
+      params: {
+          clientList : JSON.stringify(this.state.clientList)
+        }
+    }
+    Axios.get("api/offeringsubscriptions/get/allofferingsub/byclientist", query)
+    .then(res=>{
+      console.log("response from api=>client subscription",res.data);
+
+      if(res && res.data){
+
+       const  data= {
+        labels: ['A', 'B', 'C'],
+        datasets: [{
+          label: 'My data',
+          data: res.data.clientRevenue ,
+          backgroundColor: ['#0000ff','#ff0000','f3f4f5']
+        }]
+      }
+        this.setState({data : data})
+        
+        this.setState({
+          clientSubscription : res.data.clientRevenue 
         });
       }
     })
@@ -113,7 +154,7 @@ export default class Dashboard extends Component{
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+           {/* <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                 <div class="info-box addinfobox">
                   <span class="info-box-icon bg-aqua userciclebox">
                     <i class="fa fa-users"></i>
@@ -129,11 +170,16 @@ export default class Dashboard extends Component{
                   </div>
                 </div>
             </div>
-
-              
             {/*  <img src="/images/partner-dashboard.jpg" style={{width: '100%'}}/> */ }
            
           </div>
+
+          {/*<div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <Line
+                    data={this.state.data}
+                    
+              />
+          </div>*/}
           
       </div>     
     );

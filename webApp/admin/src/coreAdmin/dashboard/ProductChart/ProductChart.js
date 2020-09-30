@@ -359,7 +359,7 @@ class ProductChart extends Component{
                         </div>
 
                         <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                          CAGR <span className="cagrvalue">{this.state.CAGR ? parseFloat(this.state.CAGR).toFixed(2) : 0 }% </span>
+                          <span className="colorwealthypr">CAGR </span> <span className="cagrvalue">{this.state.CAGR ? parseFloat(this.state.CAGR).toFixed(2) : 0 }% </span>
                         </div>
 
                         <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">

@@ -135,7 +135,7 @@ class ProductChart extends Component{
                         </div>
 
                         <div className="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                          <h4 className="cagrheading">CAGR <span className="cagrvalue">{this.state.CAGR ? parseFloat(this.state.CAGR).toFixed(2) : 0 }% </span></h4>
+                          <h4 className="cagrheading"><span className="colorwealthycgr">CAGR</span> <span className="cagrvalue">{this.state.CAGR ? parseFloat(this.state.CAGR).toFixed(2) : 0 }% </span></h4>
                         </div>
 
                         <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 extspace">

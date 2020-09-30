@@ -312,11 +312,11 @@ export default class Linechart extends Component{
                               Current value of <b>₹ 100</b> invested once <b>{this.state.inceptiontext}</b> would be
                           </div>
                           <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.productName} <br /> <b>₹ {this.state.productinvestedvalue ? parseFloat(this.state.productinvestedvalue).toFixed(2) : 0}</b>
+                              <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                  <span className="colorwealthypr">{this.state.productName} </span> <br /> <b>₹ {this.state.productinvestedvalue ? parseFloat(this.state.productinvestedvalue).toFixed(2) : 0}</b>
                               </div>
-                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                  {this.state.indexName} <br/> <b>₹ {this.state.indexinvestedvalue ? parseFloat(this.state.indexinvestedvalue).toFixed(2) : 0 }</b>
+                              <div className="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                  <span className="colorwealthyindex">{this.state.indexName}</span> <br/> <b>₹ {this.state.indexinvestedvalue ? parseFloat(this.state.indexinvestedvalue).toFixed(2) : 0 }</b>
                               </div>
                           </div>
                         </div>
