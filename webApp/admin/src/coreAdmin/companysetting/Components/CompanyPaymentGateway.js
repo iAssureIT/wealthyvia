@@ -44,9 +44,11 @@ class CompanyPaymentGateway extends Component{
     var type = 'PG';
     axios.get('/api/projectsettings/get/'+type)
             .then((response) => {
-              console.log("response", response.data);
-              
-              if(response.data){
+              // console.log("response PG", response.data);
+              if(response.data.message === "DATA_NOT_FOUND"){
+
+              }              
+              else if(response.data){
                 this.setState({
                   environment   : response.data.environment,
                   sandboxAPI    : response.data.sandboxAPI,
@@ -77,15 +79,15 @@ class CompanyPaymentGateway extends Component{
                       "createdBy"     : localStorage.getItem("user_ID")
                      }
           
-        console.log("formvalue===>",formvalue);
+        // console.log("formvalue===>",formvalue);
         if(this.state.action === 'update'){
 
           axios.patch('/api/projectsettings/patch/PG',formvalue)
           .then((response)=> {
-            console.log("response===>",response.data);
+            // console.log("response===>",response.data);
             
             swal({                
-                  text: "Payment Gateway details added successfully!",
+                  text: "Payment Gateway details updated successfully!",
                 });
               
             this.getData();
@@ -100,7 +102,7 @@ class CompanyPaymentGateway extends Component{
         else{
           axios.post('/api/projectsettings/post',formvalue)
           .then((response)=> {
-            console.log("response===>",response.data);
+            // console.log("response===>",response.data);
             
             swal({                
                   text: "Payment Gateway details added successfully!",
