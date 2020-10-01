@@ -16,6 +16,7 @@ export default class InvoicePage extends Component {
           CurrentURL     : "",
           user_ID        : "",
           date           : "",
+          key_id         : ""
         };
     }
   ScrollTop(event){
@@ -31,6 +32,7 @@ export default class InvoicePage extends Component {
     var order_id = this.props.match.params.order_id;
     CurrentURL = window.location.href;
     this.getDate();
+    this.getPGData();
 
     this.setState({
       CurrentURL : CurrentURL,
@@ -72,6 +74,30 @@ export default class InvoicePage extends Component {
   {
     event.preventDefault();
    
+  }
+
+  getPGData(){
+    var type = 'PG';
+    axios.get('/api/projectsettings/get/'+type)
+            .then((response) => {
+              
+              if(response.data.message === "DATA_NOT_FOUND"){
+
+              }              
+              else if(response.data){
+                if(response.data.environment == 'sandbox'){
+                  var key_id = response.data.sandboxKey;
+                }
+                else{
+                  var key_id = response.data.prodKey;
+                }
+                this.setState({
+                  key_id : key_id
+                });
+              }             
+                
+            })
+            .catch((error) => {});
   }
 
   render() {
@@ -159,7 +185,7 @@ export default class InvoicePage extends Component {
                          <div>
                             <form method="POST" action="https://api.razorpay.com/v1/checkout/embedded">
                             
-                              <input type="hidden" name="key_id" value="rzp_test_lQNmCUfCX3Wkh4"/>
+                              <input type="hidden" name="key_id" value={this.state.key_id} />
                               <input type="hidden" name="order_id" value={this.state.orderDetails.paymentOrderId}/>
                               <input type="hidden" name="name" value="Wealthyvia"/>
                               <input type="hidden" name="description" value=""/>
