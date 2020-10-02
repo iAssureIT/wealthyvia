@@ -571,7 +571,7 @@ export default class SubscribedServices extends Component {
                               <a href="/planPage"><li>Click Here to Subscribe Blogs</li></a>
                              </ul>
                           </div>
-                          <div className="col-lg-12 textAlignCenter mt20 fs19 borderTop textAlignCenter" ><label>Premium Blogs</label></div>
+                          <div className="col-lg-12 textAlignCenter mt20 fs19 borderTop textAlignCenter premiumsbc" ><label>Premium Blogs</label></div>
                         <OwlCarousel
                             className="owl-theme  col-lg-10 col-md-10 col-lg-offset-1 col-sm-12 col-xs-12 boxShadow borderRadiusT"
                             loop

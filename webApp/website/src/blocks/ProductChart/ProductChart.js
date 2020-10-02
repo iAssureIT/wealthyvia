@@ -71,7 +71,7 @@ class ProductChart extends Component{
                 var enddatemax = rates[rates.length - 1].date;
                 var startdatearr = startdatemax.split("-");
                 var enddatearr  = enddatemax.split("-");
-                var a = Moment([enddatearr[0], enddatearr[1], enddatearr[2]]);
+                /*var a = Moment([enddatearr[0], enddatearr[1], enddatearr[2]]);
                 var b = Moment([startdatearr[0], startdatearr[1], startdatearr[2]]);
 
                 var years = a.diff(b, 'year');
@@ -82,13 +82,23 @@ class ProductChart extends Component{
 
                 var days = a.diff(b, 'days');
 
-                // console.log(years + ' years ' + months + ' months ' + days + ' days');
+                // console.log(years + ' years ' + months + ' months ' + days + ' days'); */
+
+                var startdatemaxDate = Moment(startdatemax);
+                var enddatemaxDate = Moment(enddatemax);
+
+                var years = enddatemaxDate.diff(startdatemaxDate, 'years');
+                var months = enddatemaxDate.diff(startdatemaxDate, 'months');
+                var months = months % 12;
 
                 var converttoyear = months / 12 ;
                 
                 var actualyear = years + converttoyear;
                 
                 /*carg formula = (((endvalue / startvalue) power (1 / noof years)) - 1 ) * 100 */
+
+
+
                 var yearpower = 1 / actualyear ;
 
                 var CAGR = (Math.pow(productendvalue / productstartvalue, yearpower ) - 1 )* 100;

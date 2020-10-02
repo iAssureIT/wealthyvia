@@ -92,7 +92,7 @@ export default class ProdutctPaymentResponse extends React.Component {
             {
                     this.state.orderDetails && 
                     this.state.orderDetails.paymentStatus == "Paid" ?
-                    <label className="note mt20 col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 succesmsg"> Thank you for investing in Wealthyvia. Your payment is successful.</label>
+                    <label className="note mt20 col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 succesmsg"> Thank you for choosing Wealthyvia. Your payment is Successful.</label>
                     :
                     null
 

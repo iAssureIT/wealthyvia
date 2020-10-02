@@ -298,3 +298,12 @@
   opacity: 0.5;
   text-decoration: none;
 }
+
+@media (max-width: 767px){ 
+	.headerBlogCD{
+		margin-top: 30%;
+	}
+	.premiumsbc{
+		margin-top: 50% !important;
+	}
+}

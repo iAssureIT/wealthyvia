@@ -126,10 +126,12 @@ class ProductChart extends Component{
                 var enddatemax = rates[rates.length - 1].date;
                 var startdatearr = startdatemax.split("-");
                 var enddatearr  = enddatemax.split("-");
+                /*console.log("ehdghs", enddatearr[0],enddatearr[1],enddatearr[2], "startghsgf", startdatearr[0],startdatearr[1],startdatearr[2] )
                 var a = Moment([enddatearr[0], enddatearr[1], enddatearr[2]]);
                 var b = Moment([startdatearr[0], startdatearr[1], startdatearr[2]]);
-
+                console.log(a, b);
                 var years = a.diff(b, 'year');
+                console.log("yesr", years);
                 b.add(years, 'years');
 
                 var months = a.diff(b, 'months');
@@ -137,8 +139,19 @@ class ProductChart extends Component{
 
                 var days = a.diff(b, 'days');
 
-                console.log(years + ' years ' + months + ' months ' + days + ' days');
+                console.log(years + ' years ' + months + ' months ' + days + ' days');*/
 
+                var startdatemaxDate = Moment(startdatemax);
+                var enddatemaxDate = Moment(enddatemax);
+
+                var years = enddatemaxDate.diff(startdatemaxDate, 'years');
+                var months = enddatemaxDate.diff(startdatemaxDate, 'months');
+                var months = months % 12;
+
+                console.log(years + ' years, ' + months + ' months');
+
+
+                
                 var converttoyear = months / 12 ;
                 console.log("conver", converttoyear);
 
