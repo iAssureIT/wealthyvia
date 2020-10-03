@@ -116,7 +116,7 @@ export default class Header extends Component{
                         </div>
                         <div className="profiledetails">
                           <p>Name: {this.state.userinfo ?this.state.userinfo.fullName :null}</p>
-                          <p>Mobile: {this.state.userinfo ?this.state.userinfo.mobNumber :null}</p>
+                          <p>Mobile: {this.state.userinfo ?this.state.userinfo.mobNumber.replace(new RegExp('-', 'g'), '') :null}</p>
                           <p>Email: {this.state.userinfo ?this.state.userinfo.email :null}</p>
                           <p>Referrer Code: {this.state.distributorCode ? this.state.distributorCode :null}</p>
                         </div>

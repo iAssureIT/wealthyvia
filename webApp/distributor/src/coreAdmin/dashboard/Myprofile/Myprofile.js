@@ -79,7 +79,7 @@ export default class Myprofile extends Component{
                     <hr className="mt10 mb10"/>
                     <div className = "col-md-6 col-xs-6 col-sm-6 col-lg-6" >
                       <ul className=" noMl fontWeight pl">
-                        <li><p><b>Contact:</b>&nbsp;{this.state.DistributorData.phone}</p></li>
+                        <li><p><b>Contact:</b>&nbsp;{this.state.DistributorData.phone ?  this.state.DistributorData.phone.replace(new RegExp('-', 'g'), '') : ''}</p></li>
                         <li><p><b>Email:</b>&nbsp;{this.state.DistributorData.email ? this.state.DistributorData.email.address : ''}</p></li>
                         <li><p><b>DOB:</b>&nbsp;{this.state.DistributorData.dob}</p></li>
                         <li><p><b>Submitted On:</b>&nbsp;{this.state.DistributorData.currentDate}</p></li>

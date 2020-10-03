@@ -640,7 +640,7 @@ export default class distributerList extends Component{
                 <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.distributorCode}</a> </td>
                 <td><a href={"/distributor/myclients/"+ DistributorData._id}>{DistributorData.firstname}  {DistributorData.lastname}</a></td>
                 <td>{moment(DistributorData.currentDate).format("Do MMM YYYY")}</td>
-                <td>{DistributorData.phone}</td>
+                <td>{DistributorData.phone ? DistributorData.phone.replace(new RegExp('-', 'g'), '') : ''}</td>
                 <td>{DistributorData.email.address}</td>
                 <td>{DistributorData.address ? DistributorData.address.city : ""}</td>
                 <td>{DistributorData.usercount}</td>

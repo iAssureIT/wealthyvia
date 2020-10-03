@@ -767,7 +767,7 @@ export default class JoinAsPartnerForm extends Component {
                     <div className="col-lg-12 col-md-12 col-xs-12 col-sm-12 Zeropadding">
                       <div className="form-group form-group1 col-lg-6 col-md-6 col-xs-12 col-sm-12 inputContent textpd boxMarg">
                           <span className="blocking-span noIb">
-                            <InputMask mask="9999-999-999" maskChar=" " className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="phone" ref="phone" id="phone" 
+                            <InputMask mask="9999999999" maskChar=" " className="form-control abacusTextbox oesSignUpForm sentanceCase"  name="phone" ref="phone" id="phone" 
                             // <input type="text" maxLength="10" className="form-control abacusTextbox oesSignUpForm sentanceCase" name="phone" ref="phone" id="phone"  
                               onChange={this.handleChange.bind(this)}
                               value={this.state.phone}  required
