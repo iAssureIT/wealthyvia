@@ -724,7 +724,7 @@ exports.distributor_join_email_otp = (req,res,next)=>{
                                             if(result){
                                                 request({
                                                         "method"    : "POST", 
-                                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                                        "url"       : "http://localhost:"+globalVariable.port+"/send-partner-email",
                                                         "body"      : {
                                                                             email   : req.body.email, 
                                                                             subject : "Verify your Account on Wealthyvia",
@@ -830,7 +830,7 @@ exports.distributor_update_email_otp = (req,res,next) =>{
                             //console.log("data", data);
                             request({
                                         "method"    : "POST", 
-                                        "url"       : "http://localhost:"+globalVariable.port+"/send-email",
+                                        "url"       : "http://localhost:"+globalVariable.port+"/send-partner-email",
                                         "body"      : {
                                                             email   : distributor.email.address, 
                                                             subject : "Wealthyvia OTP",

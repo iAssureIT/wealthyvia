@@ -4,7 +4,7 @@ const ProjectSettings   = require('../models/projectsettings.js');
 exports.create_projectSettings = (req, res, next) => {
     var conditionQuery      = "";
     var listRequiredFields  = ""; 
-    switch(req.body.type){
+    switch(req.body.type){ 
         case 'S3'       :
             conditionQuery      = req.body.key && req.body.secret && req.body.bucket && req.body.region;
             listRequiredFields  = "Keys, secret, bucket and region";
@@ -17,6 +17,10 @@ exports.create_projectSettings = (req, res, next) => {
             conditionQuery      = req.body.user && req.body.password && req.body.port && req.body.emailHost && req.body.projectName;
             listRequiredFields  = "user and password and port";
             break;  
+        case 'PARTNEREMAIL'      :
+            conditionQuery      = req.body.user && req.body.password && req.body.port && req.body.emailHost && req.body.projectName;
+            listRequiredFields  = "user and password and port";
+            break;      
         case 'GOOGLE'   :
             conditionQuery      = req.body.googleapikey;
             listRequiredFields  = "googleapikey";
@@ -152,6 +156,10 @@ exports.patch_projectsettings = (req, res, next)=>{
             conditionQuery      = req.body.user && req.body.password && req.body.port && req.body.emailHost && req.body.projectName;
             listRequiredFields  = "user and password and port";
             break;  
+        case 'PARTNEREMAIL'      :
+            conditionQuery      = req.body.user && req.body.password && req.body.port && req.body.emailHost && req.body.projectName;
+            listRequiredFields  = "user and password and port";
+            break;      
         case 'GOOGLE'   :
             conditionQuery      = req.body.googleapikey;
             listRequiredFields  = "googleapikey";

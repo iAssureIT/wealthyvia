@@ -104,7 +104,23 @@ function getEmaildata(){
 	})
 } 
 
-
+function getPartnerEmaildata(){
+	return new Promise(function (resolve, reject) {
+		ProjectSettings.findOne({"type": "PARTNEREMAIL"})
+        .exec()
+        .then(data=>{
+            if(data){         	
+            	
+                resolve(data);
+            }else{
+                resolve(false);
+            }
+        })
+        .catch(err =>{
+            reject(err);
+        });   
+	})
+} 
 
 app.post('/send-email', (req, res)=> {
 	// console.log('req',req.body);
@@ -163,12 +179,71 @@ app.post('/send-email', (req, res)=> {
 		}
 	}
 });
+
+app.post('/send-partner-email', (req, res)=> {
+	// console.log('req',req.body);
+	getdataasync();
+
+	async function getdataasync(){
+		var emailsettings = await getPartnerEmaildata();
+		// console.log("emailsettings", emailsettings);
+		if(emailsettings){
+			let transporter = nodeMailer.createTransport({
+					// service: 'Gmail',
+					host: emailsettings.emailHost,
+					// port: 587,
+					port: emailsettings.port,
+					auth: {
+						user: emailsettings.user,
+						pass: emailsettings.password
+						
+					}
+				});
+				console.log('after transport');
+				let mailOptions = {
+					
+					from   : '"Wealthyvia" <'+emailsettings.user+'>', // sender address
+					// from   : '"Wealthyvia" <iassureitmail@gmail.com>', // sender address
+					to     : req.body.email, // list of receivers
+					subject: req.body.subject, // Subject line
+					text   : req.body.text, // plain text body
+					html   : req.body.mail, // html body
+					attachments : req.body.attachments
+				};
+				console.log('after mailoption');
+				//name email mobilenumber message
+				// console.log("mailOptions",mailOptions);
+				
+				transporter.sendMail(mailOptions, (error, info) => {
+					console.log('in mail');
+					if (error) {
+						
+						console.log("send mail error",error);
+						return "Failed";
+					}
+					if(info){
+						console.log('in info');
+						// return "Success";
+						res.status(200).json({ 
+							
+							message: "Success",
+							// return "Success",
+
+						});
+					}
+			
+					res.render('index');
+				});
+		}
+	}
+});
+
 app.post('/send-email-admin', (req, res)=> {
 	// console.log('req',req.body);
 	getdataasync();
 
 	async function getdataasync(){
-		var emailsettings = await getEmaildata();
+		var emailsettings = await getPartnerEmaildata();
 		// console.log("emailsettings", emailsettings);
 		if(emailsettings){
 			let transporter = nodeMailer.createTransport({

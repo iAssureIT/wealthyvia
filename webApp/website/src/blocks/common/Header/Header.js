@@ -36,6 +36,7 @@ export default class Header extends Component {
             "Question3"          : "3) Your investments % exposure of your investable capital can be best described as",
             "Question4"          : "4) What is number of years you have spent in stock market investments",
             "Question5"          : "5) What is your biggest drawdown on your entire portfolio ?",
+            "modalsubmitbtn"     : 'Submit'
 
         };
   }
@@ -589,16 +590,35 @@ export default class Header extends Component {
     SubmitEnquire(event){
     event.preventDefault();
     if (this.validateFormModal() && this.validateFormReqModal()) {
+      this.setState({
+          modalsubmitbtn : 'We are processing...',
+        });
        
        /* ======================= Send Email to user ==================================*/
       var adminEmail = "kycwealthyvia@gmail.com";
       const dataArray = {
           "email"         : this.state.emailModal ,
-          "subject"       : "Your query is sent successfully!",
+          "subject"       : "Welcome to Wealthyvia : about your query",
           "message"       : "", 
-          "mail"          : 'Dear  ' + this.state.nameModal + ', <br/><br/>'+
-                            "Your query has been successfully delivered to the admin! We will get back to you shortly. <br/> <br/> " + 
-                            "<br/><br/> Thank You, <br/> Support Team, <br/> www.wealthyvia.com " ,
+          "mail"          : '<div style="color:#000">Dear Valued Investor <br/><br/>'+
+                            "Thank you for submitting your query. Our team will get back to you shortly. <br/> " + 
+                            "<h4>Greetings!!! :) </h4>"+
+                            "Very warm welcome to <a href='https://wealthyvia.com/'>https://wealthyvia.com/</a>  and heartfelt thanks for reading our blog posts. <br/><br/>"+
+                            "We are sure that you have a great desire for wealth creation and you might be already working on it. We would like to assure you that Stock Market is definitely a place to benefit you the most if you act wisely and rightly with your investments. <br/><br/>"+
+                            "1. Market goes through number of cycles and always some of leading companies of bull market create maximum wealth. These companies have all great factors positive for them for their growth and their efficient management can make wonders when those opportunities are on. However to select these companies and investing in them <b>with high conviction</b> and also <b>exiting them</b> after multiple quarters or years of growth <b>at the right time and price</b> becomes important so as to protect capital and its high gains and thereafter participate in next cycle.<br/><br /> "+
+                            "2. Investing in high quality, good growth, high integrity management and enough catalysts presence: all these parameters <b>qualifying 8-12 stocks</b> as per one's comfort is enough diversification for a portfolio. Ove diversification dilutes returns and excessive concentration can increase the risk. <br/><br/>"+
+                            "3. Money comes from <b>sizing.</b> Investing good enough capital in each of stocks is important else even after having high % growth, absolute amount will not make much difference to you.<br/><br/> "+
+                            "At <b>Wealthyvia</b> we have created  full-fledged frameworks and models that increase your chances of being right and by large quantum in market. With these frameworks we have created two portfolios in Indian markets named <br/><br/>"+
+                            "<a href='http://wealthyvia.com/offerings/5gcpm'><b>5GCPM:</b></a> High growth mid-cap stocks that can become large caps and some of which may even multi fold over next 3-4 years. 5 types of growth, Corporate governance, practicability of things working out in their business game favor and magic indicators based on fundamentals , technical , macros and market perception towards stock are the factors that make this strong framework that has generated amazing returns over the last 7 years. Details about framework are here in this <a href='http://wealthyvia.com/blog/why-you-need-5gcpm-like-framework-to-succeed-in-stock-investments'>Blogpost</a> and https://wealthyvia.com/offerings/5gcpm <br/><br/>"+
+                            "<a href='https://wealthyvia.com/offerings/superFocused'><b>Super Focus :</b></a>  For a concentrated investor, focus has to be on relative opportunities in a few stocks with very high growth  possibility in top line &    bottom line for next several quarters. A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to    generate consistent High CAGR. Higher the Conviction and higher the strength and continuation, Higher should be the allocation. Returns are most dependent variable on Risk Reward and position sizing! This is a star product of Wealthyvia with best concentrated high growth sustenance bets irrespective of market cap category. Backed by 5GCPM framework but focus of high growth with concentration and risk reward , it delivered amazing    consistent <a href='https://wealthyvia.com/offerings/superFocused#productchart'>CAGR</a>.   https://wealthyvia.com/offerings/superFocused <br/><br/>"+
+                            "<a href='http://wealthyvia.com/offerings/USAStocks'><b>US listed stocks :</b></a>  While Indian market does have good opportunities it's mostly inward economy and consumption market. In today's changed Era , one can not afford to lose out on opportunities in the first , biggest or most different companies present in World's biggest market 'USA' with the best of technology , unique innovative business model companies. With detailed study we have created best of companies portfolio 'US listed stocks' listed on NYSE. With most ease you can now invest in American companies like Google, Amazon types or even next big things. We provide you a platform to invest there at zero brokerage. Our research and stock selection framework can best serve you portfolio of right companies. Please find details here. http://wealthyvia.com/offerings/USAStocks <br/><br/>"+
+                            "<a href='http://wealthyvia.com/offerings/unlistedStocks'><b>Unlisted high liquidity proven companies before IPO :</b></a>  In market earliest buyer in good company always makes the most and it's the reason most of IPO today of great companies get listed at very high price. What if one gets them before IPO in own DEMAT account? We provide such shares to you from unlisted space only after choosing them well with our detailed research, plant visits or primary surveys.<br/><br/> "+
+                            "<span style='text-decoration:underline'>Please feel free to write to us about anything that you need to know about investments and these products.</span> You can also avail your existing portfolio review facility at the bottom of our website.<br/><br/> "+
+                            "Also let us know suitable time to have a great conversation with you about wealth and ways forward over phone call. It will be a great pleasure to connect.<br/><br/> "+
+                            "Thanking you <br/>"+
+                            "Yours sincerely & profitably <br/>"+
+                            "<b>Team Wealthyvia</b> "+
+                            "<br/> www.wealthyvia.com </div>" ,
         };
       
        axios
@@ -631,26 +651,28 @@ export default class Header extends Component {
                   if(res.status === 200){
                    swal("Thank You!", "Our team will get in touch with you shortly..!", "success")
                   }
+                   let fields1 = {};
+                   fields1["nameModal"]            = "";
+                   fields1["emailModal"]           = "";
+                   fields1["contactNumberModal"]   = "";
+                    $("#EnquireModal").hide();
+                    $("#EnquireModal").removeClass('in');
+                    $(".modal-backdrop").remove();
+                    $("body").removeClass("modal-open");
+                      this.setState({
+                        "nameModal"            : "",
+                        "emailModal"            : "",
+                        "contactNumberModal"    : "",
+                        "fields1"               : fields1,
+                        "modalsubmitbtn"        : "Submit"
+                      });
                 })
                 .catch((error)=>{
                   console.log("error = ", error);
                   
                 });
        /* ======================= Send Email to user ==================================*/
-       let fields1 = {};
-       fields1["nameModal"]            = "";
-       fields1["emailModal"]           = "";
-       fields1["contactNumberModal"]   = "";
-        $("#EnquireModal").hide();
-        $("#EnquireModal").removeClass('in');
-        $(".modal-backdrop").remove();
-        $("body").removeClass("modal-open");
-          this.setState({
-            "nameModal"            : "",
-            "emailModal"            : "",
-            "contactNumberModal"    : "",
-            "fields1"               : fields1
-          });
+      
       }
   }
 
@@ -1613,8 +1635,8 @@ export default class Header extends Component {
                                       </div>
                                        
                                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 inputContainerRP textAlignCenter">
-                                            <div className="col-lg-2 col-md-2 col-sm-6 col-xs-6 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
-                                              Submit
+                                            <div className="col-lg-4 col-md-4 col-sm-6 col-xs-6 submitButton pull-right" onClick={this.SubmitEnquire.bind(this)}>
+                                              {this.state.modalsubmitbtn }
                                             </div>
                                              
                                       </div>

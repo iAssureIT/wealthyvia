@@ -211,7 +211,7 @@ export default class disProfile extends Component{
                                     //console.log("notification",formValues1); 
                                     
                                       Axios
-                                      .post('/send-email',formValues1)
+                                      .post('/send-partner-email',formValues1)
                                       .then((res)=>{
                                                  if(res.status === 200){
                                                    //Swal("Thank you for contacting us. We will get back to you shortly.")
@@ -313,7 +313,7 @@ export default class disProfile extends Component{
                             // console.log("notification",formValues1); 
                             
                               Axios
-                              .post('/send-email',formValues1)
+                              .post('/send-partner-email',formValues1)
                               .then((res)=>{
                                          if(res.status === 200){
                                            //swal("Thank you for contacting us. We will get back to you shortly.")

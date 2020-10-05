@@ -172,7 +172,7 @@ class SubFranchise extends Component {
       console.log("notification",formValues); 
       
         Axios
-        .post('/send-email',formValues)
+        .post('/send-partner-email',formValues)
         .then((res)=>{
                    if(res.status === 200){
                       swal("Signup url email sent to this "+this.state.email);

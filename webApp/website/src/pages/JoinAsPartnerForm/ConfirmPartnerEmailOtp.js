@@ -105,7 +105,7 @@ class ConfirmPartnerEmailOtp extends Component {
                       // console.log("notification",formValues1); 
                       
                         axios
-                        .post('/send-email',formValues1)
+                        .post('/send-partner-email',formValues1)
                         .then((res)=>{
                                    if(res.status === 200){
                                     swal( "Thank you for submitting your information.","We will get back to you very shortly.", "success");
