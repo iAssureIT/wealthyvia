@@ -68,12 +68,12 @@ export default class BottomDiv extends Component {
 			  		</div>
 				</div></a>
 					
-				<a href="#USAStocks"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
+				<a href="/offerings/USAStocks#productchart"><div className="col-lg-3 col-md-12 col-sm-12 col-xs-12 miniDiv1Filter ht162">
 						<div className="row">
 			  			<img src="/images/ab4.jpg" alt=""/>
 						 <div className="miniFilterTextDiv col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="pad20">USA Stocks</label><br/><br/>
-				          <span className="shopNowButtonFilters">Read More</span><br/>
+				          <span className="shopNowButtonFilters">Check Performance</span><br/>
 				        </div>
 				        <div className="miniFilterTextDiv1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				          <label className="margins">USA Stocks</label><br/>

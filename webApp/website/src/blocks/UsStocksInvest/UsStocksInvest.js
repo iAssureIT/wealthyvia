@@ -40,8 +40,9 @@ export default class UsStocksInvest extends Component {
                     <div className="col-lg-7 col-md-7 col-sm-12 col-xs-12 learnMoreST">
                     <label><span className="iceBlueColor">US stocks investments simplified </span></label>
                     <p>One can unleash global growth potential by Investing in the largest economy and 40% market of the world equities – USA. It is also a geographical diversification along with opportunity to be part of High Tech global giants’ growth and that too with zero brokerage. Wanna know more?</p>
-                     <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
-
+                     <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a> 
+                     &nbsp;&nbsp;
+                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                     </div>
                    
                   </div>
@@ -64,6 +65,8 @@ export default class UsStocksInvest extends Component {
                    <label><span className="iceBlueColor">US stocks investments simplified  </span></label>
                     <p>One can unleash global growth potential by Investing in the largest economy and 40% market of the world equities – USA. It is also a geographical diversification along with opportunity to be part of High Tech global giants’ growth and that too with zero brokerage. Wanna know more?</p>
                      <a href={"/offerings/"+this.state.nameOfDiv} className="">Read More </a>
+                     &nbsp;&nbsp;
+                        <a href={"/offerings/"+this.state.nameOfDiv+"#productchart"} className="">Check Performance </a>
                     </div>
                   </div>
                 </div>
