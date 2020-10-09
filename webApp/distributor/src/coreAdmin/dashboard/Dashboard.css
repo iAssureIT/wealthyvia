@@ -316,18 +316,43 @@ border-radius: 2px 0px 0px 2px;
 }
 
 .userciclebox{
-    border-radius: 100% !important;
-    width: 80px !important;
+    /*border-radius: 100% !important;*/
+    /*width: 80px !important;*/
     height: 80px !important;
 }
 
+.partnerdatanumbers{
+    margin-bottom: 3% !important;
+}
+
 .addinfobox{
-    padding: 7.5px 0px 4px 5px !important;
+    /*padding: 7.5px 0px 4px 5px !important;*/
+    padding: 0px 0px 0px 0px !important;
+    min-height: 80px !important;
+    margin-bottom: 20px !important;
+}
+
+.piesectionpartner{
+    padding-bottom: 15px;
+}
+
+.norecordpartner{
+    height: 200px;
+}
+
+.datanotfoundheading{
+    margin-bottom: 20px
 }
 
 .titletexinfo{
-    font-size: 14px !important;
-    font-weight: 600;
+    /*font-size: 14px !important;*/
+    /*font-weight: 600;*/
+    font-size: 13px !important;
+    font-weight: 500;
+}
+
+.chartheadingpart{
+    font-weight: 500 !important;
 }
 
 .rightArrowSign {
@@ -336,6 +361,34 @@ border-radius: 2px 0px 0px 2px;
     font-size: 20px;
 }       
 
-.backgroundextrs{
-    background-color: #eee;
-}                                                                                    
+.clientchartbox{
+    background-color: #fff;
+    border-top: 3px solid #f39c12;
+    border-radius: 5px;
+    background: #fff;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    margin-bottom: 5px;
+    padding: 0;
+}
+.subfranchisechartbox{
+    background-color: #fff;
+    border-top: 3px solid #00a65a;
+    border-radius: 5px;
+    background: #fff;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    margin-bottom: 5px;
+    padding: 0;
+}
+.with-borderbargraph{
+    border-bottom: 1px solid #f4f4f4;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+.partnernewdash{
+    min-height: 600px;
+    background-color: #eee;    
+}

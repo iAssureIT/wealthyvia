@@ -86,7 +86,7 @@ export default class SingleBlogPage extends React.Component {
 	render() {
    var url = this.props.location.pathname;
     localStorage.setItem("lastUrl",url);
-    console.log("localStorage.setItem",localStorage.getItem("lastUrl"))
+    // console.log("localStorage.setItem",localStorage.getItem("lastUrl"))
     
     const token = localStorage.getItem("user_ID");
       if(token){

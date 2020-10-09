@@ -44,36 +44,62 @@ class Login extends Component {
       .then((response)=> {
           localStorage.setItem("token",response.data.token);
           localStorage.setItem("user_ID",response.data.ID);   
-          console.log("destination,st",this.state.destination);
+          // console.log("destination,st",this.state.destination);
+          var userid = response.data.ID;
           if(this.state.destination){
-            
+            var blgdestination = this.state.destination;
+            var blogurlarr = blgdestination.split("/");
+            var id = blogurlarr[2];
+            if(id){
               axios
-              .get('/api/subscriptionorders/paymentOrderDetailsUser/'+response.data.ID)
-              .then((userStatus)=>{
-                console.log("userStatus.data",userStatus.data)
-                if(userStatus.data.length>0)
-                {
-                  if(userStatus.data[0].paymentStatus === "Paid" )
-                  {
-                      this.props.history.push(this.state.destination);            
-                      window.location.reload();                 
-                   }else{
-                      this.props.history.push("/planPage");
-                 }
-                }else{
-                    // this.props.history.push(this.state.destination);
-                    this.props.history.push("/planPage");
-                    window.location.reload();                 
+              .get('/api/blogs/get/'+id)
+              .then((response)=>{
+                var blogtype = response.data.typeOfBlog;
+                var blogtype = response.data.typeOfBlog;
+                if(blogtype == "Premium"){
+                    axios
+                    .get('/api/subscriptionorders/paymentOrderDetailsUser/'+userid)
+                    .then((userStatus)=>{
+                      // console.log("userStatus.data",userStatus.data)
+                      if(userStatus.data.length>0)
+                      {
+                        if(userStatus.data[0].paymentStatus === "Paid" )
+                        {
+                            this.props.history.push(this.state.destination);            
+                            window.location.reload();                 
+                         }else{
+                            this.props.history.push("/planPage");
+                       }
+                      }else{
+                          // this.props.history.push(this.state.destination);
+                          this.props.history.push("/planPage");
+                          window.location.reload();                 
+                      }
+                      })
+                    .catch(function(error){
+                      console.log(error);
+                        if(error.message === "Request failed with status code 401")
+                            {
+                                 swal("Your session is expired! Please login again.","", "error");
+                                 this.props.history.push("/");
+                            }
+                    })
                 }
-                })
+                else{
+                    this.props.history.push(this.state.destination); 
+                    window.location.reload();  
+                }
+                
+              })
               .catch(function(error){
-                console.log(error);
                   if(error.message === "Request failed with status code 401")
                       {
-                           swal("Your session is expired! Please login again.","", "error");
-                           this.props.history.push("/");
+                        swal("Your session is expired! Please login again.","", "error");
                       }
               })
+              
+            }
+              
           }else{ 
             if( localStorage.getItem("lastUrl")){
                // this.props.history.push(localStorage.getItem("lastUrl"));

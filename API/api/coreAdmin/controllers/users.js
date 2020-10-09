@@ -1029,7 +1029,7 @@ exports.fetch_users_by_distibutorcode = (req,res,next)=>{
     //var countNum2   = limitRange * req.params.pageno;
     //var startRange  = countNum2 - limitRange;
 	User.find({distributorCode:req.params.distributorCode, roles:req.params.role})
-		.select("profile.firstname profile.lastname profile.status profile.fullName roles profile.emailId profile.mobNumber profile.clientId")
+		.select("profile.firstname profile.lastname profile.status profile.fullName roles profile.emailId profile.mobNumber profile.clientId createdAt")
 		.sort({createdAt : -1})
         // .skip(startRange)
         // .limit(limitRange)
@@ -1048,7 +1048,8 @@ exports.fetch_users_by_distibutorcode = (req,res,next)=>{
 										"role"      : data[i].roles, //Mandatory
 										"status"	: data[i].profile.status, //Either "Active" or "Inactive"
 										"fullName"	: data[i].profile.fullName,
-										"clientId"	: data[i].profile.clientId
+										"clientId"	: data[i].profile.clientId,
+										"createdAt" : data[i].createdAt,
 									});
 				}
 				if( i >= data.length){
