@@ -401,10 +401,10 @@ export default class Distributorprofile extends Component{
           formIsValid = false;
           errors["lastname"] = "This field is required.";
         }     
-        if (!fields["addressLine"]) {
-           formIsValid = false;
-           errors["address"] = "This field is required.";
-         }
+        // if (!fields["addressLine"]) {
+        //    formIsValid = false;
+        //    errors["address"] = "This field is required.";
+        //  }
         /*if (!fields["email"]) {
           formIsValid = false;
           errors["email"] = "This field is required.";
@@ -922,7 +922,7 @@ export default class Distributorprofile extends Component{
                                 </span>
                             </div>
                             <div className="col-lg-6 col-sm-6 col-xs-6 col-md-6 group btmmargin setplusZindex inputContent">
-                            <label className="formLable">Location <label className="requiredsign">*</label> </label>
+                            <label className="formLable">Location </label>
                               <span className="blocking-span setplusZindex">
                                  <div className="input-group inputBox-main  new_inputbx " >
                                     <div className="input-group-addon remove_brdr inputIcon">
