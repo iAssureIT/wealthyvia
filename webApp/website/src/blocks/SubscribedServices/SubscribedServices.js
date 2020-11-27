@@ -136,13 +136,25 @@ export default class SubscribedServices extends Component {
     axios
         .get('/api/subscriptionorders/paymentOrderDetailsUser/'+user_ID)
         .then((userStatus)=>{
-          // console.log("userStatus",userStatus)
-          this.setState({
+          console.log("userStatus",userStatus)
+          var subscribeblog = userStatus.data;
+          if(subscribeblog.length > 0){
+            var subcribepaid = subscribeblog.filter((obj) =>{
+               return obj.paymentStatus === 'Paid';
+            })
+          }
+          /*this.setState({
               userStatus    :userStatus.data[0].paymentStatus,
               blogSubscribed:userStatus.data[0],
               validityPeriod:userStatus.data[0].validityPeriod,
               createdAt     :moment(userStatus.data[0].createdAt).format("YYYY-MM-DD"),
-            });
+            });*/
+          this.setState({
+              userStatus    :subcribepaid[0].paymentStatus,
+              blogSubscribed:subcribepaid[0],
+              validityPeriod:subcribepaid[0].validityPeriod,
+              createdAt     :moment(subcribepaid[0].createdAt).format("YYYY-MM-DD"),
+          })  
           var currentDate = this.state.createdAt;
           var futureMonth = moment(currentDate).add(this.state.validityPeriod, 'M');
           

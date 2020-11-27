@@ -212,9 +212,40 @@ exports.user_signup_distributor = (req,res,next)=>{
 			.exec()
 			.then(user =>{
 				if(user.length >= 1){
-					return res.status(409).json({
+					bcrypt.hash(req.body.pwd,10,(err,hash)=>{
+						if(err){
+							return res.status(500).json({
+								error:err
+							});
+						}
+						else{
+							User.updateOne(
+									{"emails.address":req.body.email}, 
+									{
+										$set:{
+											roles : ["distributor"],
+											"services.password.bcrypt": hash									
+										}
+									}
+							)
+						    .exec()
+						    .then(data=>{
+						    	res.status(200).json({
+									message	: 'User created',
+									ID 		: user[0]._id,
+								})
+						    })
+						    .catch(err =>{
+								console.log('user error ',err);
+								res.status(500).json({
+									error: err
+								});
+							})
+						}	
+					})	
+					/*return res.status(409).json({
 						message: 'Email Id already exits.'
-					});
+					});*/
 				}else{
 					bcrypt.hash(req.body.pwd,10,(err,hash)=>{
 						if(err){
