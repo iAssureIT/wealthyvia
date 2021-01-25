@@ -584,7 +584,7 @@ export default class ProductPage extends Component {
                 <label className="investLabel">The philosophy of Super Focused</label>
                 <p className="col-lg-10 col-lg-offset-1">A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. </p>
                 <p className="col-lg-10 col-lg-offset-1" >Higher the Conviction and higher the strength and continuation, Higher should be the  allocation! Returns are most dependent variable on Risk Reward and position sizing! <br/>
-                If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners! </p>
+                If you cut your losers & let your winners ride. At the end,  You will be left with a portfolio of winners! </p>
             </div> 
             <div className="hidden-lg hidden-md hidden-sm hidden-xs backColorWhite onHoverEffect" >
                 <div className="row">
@@ -597,7 +597,7 @@ export default class ProductPage extends Component {
                         <ul className="customOl listStyle">
                         <li>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. </li>
                         <li>Higher the Conviction and higher the strength and continuation, Higher should be the  allocation! Returns are most dependent variable on Risk Reward and position sizing! </li>
-                        <li>If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners!  </li>
+                        <li>If you cut your losers & let your winners ride. At the end,  You will be left with a portfolio of winners!  </li>
 
                         </ul>
                       </p>                 
@@ -611,7 +611,7 @@ export default class ProductPage extends Component {
                         <ul className="customOl listStyle">
                           <li>A tactical investment strategy on a concentrated portfolio and prudent risk management have high potential to generate consistent High CAGR. </li>
                           <li>Higher the Conviction and higher the strength and continuation, Higher should be the  allocation! Returns are most dependent variable on Risk Reward and position sizing! </li>
-                          <li>If you cut your losers & let your winners ride. At the end,  you will be left out with a portfolio is winners! </li>
+                          <li>If you cut your losers & let your winners ride. At the end,  You will be left with a portfolio of winners! </li>
 
                         </ul>
                       </p>                  
