@@ -30,8 +30,9 @@ export default class AboutUs extends Component {
                 <div className="row">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  blackDivRisk"> 
                     <div className="col-lg-2 col-lg-offset-5 col-md-offset-5 col-md-2 hidden-sm hidden-xs imgContentAU"></div>
-                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">9 Years of Experience</p>
-                    <label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">We are the one of experienced organization, we have 9 Years of Research Experience of working for our Institutional clients</label>
+                    {/*<p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">9 Years of Experience</p>*/}
+                    <p className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">We provide research notes as<br/> sebi regd RA</p>
+                    {/*<label className="col-lg-10 col-lg-offset-1 col-md-12 col-sm-12 col-xs-12">We are the one of experienced organization, we have 9 Years of Research Experience of working for our Institutional clients</label>*/}
                     </div>  
                 </div>  
             </div>
