@@ -87,7 +87,7 @@ export default class AboutUs extends Component {
               <div className="col-lg-12 col-md-12 hidden-xs hidden-sm  backColorGray padding40inDiv">
                   <div className="row">
                     
-                      <div className="col-lg-7 col-md-7 hidden-xs hidden-sm sebicontent backColorGray"> 
+                      <div className="col-lg-6 col-md-7 hidden-xs hidden-sm sebicontent backColorGray"> 
                         <p><span className="iceBlueColor regsebinumber">SEBI Registration No. INH000005397 </span></p>
                         
                         <p> Pritam Deuskar is a sebi registered research analyst , 
@@ -101,8 +101,8 @@ export default class AboutUs extends Component {
                             financial express, economic times, money control,  and many more.
                         </p>
                       </div>
-                      <div className="col-lg-5 col-md-5 hidden-xs hidden-sm  sebiimage noPadding"> 
-                        <img src="/images/pritam_deuskar.jpeg" alt=""/>
+                      <div className="col-lg-6 col-md-5 hidden-xs hidden-sm  sebiimage noPadding"> 
+                        <img src="/images/pritamdeuskar.jpg" alt=""/>
                         <p className="sebiname"><span className="iceBlueColor">Pritam Deuskar <br />(SEBI Registered Research Analyst) </span></p>
                       </div>  
                        
@@ -111,7 +111,7 @@ export default class AboutUs extends Component {
               <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray">
                   <div className="row">
                        <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding sebiimage"> 
-                        <img src="/images/pritam_deuskar.jpeg" alt="" style={{marginTop: '10px'}}/>
+                        <img src="/images/pritamdeuskar.jpg" alt="" style={{marginTop: '10px'}}/>
                         <p className="sebiname"><span className="iceBlueColor">Pritam Deuskar<br/>(SEBI Registered Research Analyst) </span></p>
                       </div>  
                       <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 

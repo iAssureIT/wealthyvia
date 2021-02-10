@@ -291,6 +291,10 @@ width: 80px !important;
 	text-align: center;
 }
 
+.sebiimage img{
+	width:60%;
+} 
+
 .sebiname{
 	margin-top:10px;
 	font-size: 1.5em;
