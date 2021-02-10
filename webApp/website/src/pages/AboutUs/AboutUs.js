@@ -84,6 +84,109 @@ export default class AboutUs extends Component {
             </div>
             </div>*/}
             <div className="row">
+              <div className="col-lg-12 col-md-12 hidden-xs hidden-sm  backColorGray padding40inDiv">
+                  <div className="row">
+                    
+                      <div className="col-lg-7 col-md-7 hidden-xs hidden-sm sebicontent backColorGray"> 
+                        <p><span className="iceBlueColor regsebinumber">SEBI Registration No. INH000005397 </span></p>
+                        
+                        <p> Pritam Deuskar is a sebi registered research analyst , 
+                            runs this website to provide research notes and reports. 
+                            Pritam had worked in Fund Management for a  PMS earlier and institutional 
+                            research and business analysis of companies for more than 12 years. 
+                            He is a SEBI registered research analyst and holds Engineering degree BE Mechanical. 
+                            Finding Multibaggers in very early stage has been his forte. 
+                            He had been appearing in articulations in Dalal street investment journal , 
+                            CNBC channel and all leading financial newspapers like business standard, 
+                            financial express, economic times, money control,  and many more.
+                        </p>
+                      </div>
+                      <div className="col-lg-5 col-md-5 hidden-xs hidden-sm  sebiimage noPadding"> 
+                        <img src="/images/pritam_deuskar.jpeg" alt=""/>
+                        <p className="sebiname"><span className="iceBlueColor">Pritam Deuskar <br />(SEBI Registered Research Analyst) </span></p>
+                      </div>  
+                       
+                  </div>  
+              </div>
+              <div className="hidden-lg hidden-md col-sm-12 col-xs-12 backColorGray">
+                  <div className="row">
+                       <div className="col-sm-12 col-xs-12 hidden-lg hidden-md  noPadding sebiimage"> 
+                        <img src="/images/pritam_deuskar.jpeg" alt="" style={{marginTop: '10px'}}/>
+                        <p className="sebiname"><span className="iceBlueColor">Pritam Deuskar<br/>(SEBI Registered Research Analyst) </span></p>
+                      </div>  
+                      <div className="col-sm-12 col-xs-12 hidden-lg hidden-md imageContent2"> 
+                        <p><span className="iceBlueColor">SEBI Registration No. INH000005397 </span></p>
+                        
+                        <p> Pritam Deuskar is a sebi registered research analyst , 
+                              runs this website to provide research notes and reports. 
+                              Pritam had worked in Fund Management for a  PMS earlier and institutional 
+                              research and business analysis of companies for more than 12 years. 
+                              He is a SEBI registered research analyst and holds Engineering degree BE Mechanical. 
+                              Finding Multibaggers in very early stage has been his forte. 
+                              He had been appearing in articulations in Dalal street investment journal , 
+                              CNBC channel and all leading financial newspapers like business standard, 
+                              financial express, economic times, money control,  and many more.
+                        </p>
+                      </div>  
+                  </div>  
+              </div>
+            </div>  
+
+            {/*<div className='row'>
+              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 backColorWhite mt20 " >
+                <div className="row">
+
+                  <div className="col-lg-10 col-md-6 hidden-sm hidden-xs startTrandingContent  padding40 backColorGray">
+                    <div className="row">
+                      <div className="col-lg-9 col-md-8 col-sm-12 col-xs-12 learnMoreST">
+                      <p><span className="iceBlueColor">SEBI Registration No. INH000005397 </span></p>
+                      <p> Pritam Deuskar is a sebi registered research analyst , 
+                          runs this website to provide research notes and reports. 
+                          Pritam had worked in Fund Management for a  PMS earlier and institutional 
+                          research and business analysis of companies for more than 12 years. 
+                          He is a SEBI registered research analyst and holds Engineering degree BE Mechanical. 
+                          Finding Multibaggers in very early stage has been his forte. 
+                          He had been appearing in articulations in Dalal street investment journal , 
+                          CNBC channel and all leading financial newspapers like business standard, 
+                          financial express, economic times, money control,  and many more.
+                          </p>
+                      </div>
+                     
+                    </div>
+                  </div>
+                 <div className="col-lg-3 col-lg-offset-8 col-md-3 col-lg-offset-8 hidden-sm hidden-xs padding40 sebiabout para1 ">
+                      <img className="row" src="/images/pritam_deuskar.jpeg" alt=""/>
+                  </div>
+                    <div className="hidden-md hidden-lg col-sm-12 col-xs-12 backColorWhite  ">
+                      <div className="row">
+                        <div className="col-sm-12 col-sm-12 hidden-md hidden-lg small">
+                              <img className="row" src="/images/pritam_deuskar.jpeg" alt=""/>
+                          </div>
+                          <div className="col-sm-12 col-xs-12 hidden-md hidden-lg startTrandingContentSmall  backColorGray">
+                            <div className="row">
+                              <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 pull-right noPadding learnMoreST">
+                                <p><span className="iceBlueColor">SEBI Registration No. INH000005397 </span></p>
+                                <p> Pritam Deuskar is a sebi registered research analyst , 
+                                  runs this website to provide research notes and reports. 
+                                  Pritam had worked in Fund Management for a  PMS earlier and institutional 
+                                  research and business analysis of companies for more than 12 years. 
+                                  He is a SEBI registered research analyst and holds Engineering degree BE Mechanical. 
+                                  Finding Multibaggers in very early stage has been his forte. 
+                                  He had been appearing in articulations in Dalal street investment journal , 
+                                  CNBC channel and all leading financial newspapers like business standard, 
+                                  financial express, economic times, money control,  and many more.
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                       
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>*/}
+
+            <div className="row">
               <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 textAlignCenter">
                   <div className="row">
                    <label className="qfHead col-lg-12 col-md-12 col-sm-12 col-xs-12 ">Qualitative Framework</label>

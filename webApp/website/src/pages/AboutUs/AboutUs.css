@@ -278,3 +278,27 @@ width: 80px !important;
 .padding40inDiv{
 	padding: 90px !important;
 }
+
+.sebicontent{
+	color: #333;
+	/*font-size: 19px;*/
+	font-size: 1.5em;
+    line-height: 1.5em;
+    text-align: justify;
+}
+
+.sebiimage{
+	text-align: center;
+}
+
+.sebiname{
+	margin-top:10px;
+	font-size: 1.5em;
+    line-height: 1.5em;
+    
+}
+
+.regsebinumber{
+	font-size: 24px;
+}
+
