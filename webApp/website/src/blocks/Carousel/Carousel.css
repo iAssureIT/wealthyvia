@@ -59,15 +59,18 @@ width: 100%;
 	z-index: 1000;
 	 font-family:Arial;
    background-color: rgba(0,0,0,0.2);
-	margin-top: -400px;
+	/*margin-top: -400px;*/
+  margin-top: -420px;
 	color: #fff;
 }
 .captionSmall label{
       margin-top: 80px;
 
     transition: all 0s ease 0s;
-    line-height: 45px;
-    font-size: 30px;
+    /*line-height: 45px;*/
+    line-height: 42px;
+    /*font-size: 30px;*/
+    font-size: 25px;
     font-family:Arial;
     visibility: visible;
     opacity: 1;

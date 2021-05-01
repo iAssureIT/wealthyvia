@@ -762,6 +762,7 @@ export default class Header extends Component {
       var firstLetterL = var1[1].charAt(0);
     }
       return (
+        <div className="row headerrwcontain">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
               <div className="row">
                   <div className="modal fade in " id="myModalHeader" role="dialog">
@@ -1537,7 +1538,7 @@ export default class Header extends Component {
                                           <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
                                           <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
-                                         <a className="dropdown-item" href="#">Nifty Algo Trading</a>
+                                          <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
                                           <a className="dropdown-item" href="#">Multibagger</a>
@@ -1651,8 +1652,12 @@ export default class Header extends Component {
                        :
                        null 
                      }
-     </div> 
-      </div>    
+     </div>      
+    </div>  
+      <div className="hidden-lg hidden-md col-sm-12 col-xs-12 sebicontain">
+        <a className="navbar-brand colorP" href=""><b>SEBI Registration No. INH000005397</b></a>
+      </div>
+    </div>    
     );
   }
 }
