@@ -761,6 +761,7 @@ export default class Header extends Component {
       var firstLetterF = var1[0].charAt(0);
       var firstLetterL = var1[1].charAt(0);
     }
+    console.log("Page after deployment");
       return (
         <div className="row headerrwcontain">
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 h1zindex">
