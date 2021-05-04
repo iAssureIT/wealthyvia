@@ -118,7 +118,8 @@ export default class Header extends Component {
 
     });
     const userid = localStorage.getItem('user_ID');
-     axios.get("/api/users/get/"+userid)
+    if(userid){
+      axios.get("/api/users/get/"+userid)
       .then((response)=>{ 
           this.setState({
               userinfo : response.data
@@ -128,6 +129,8 @@ export default class Header extends Component {
       .catch((error)=>{
             console.log('error', error);
       })
+    }
+     
       /*userCount*/
        axios.get("/api/users/get/list/1")
       .then((userInfo)=>{ 
@@ -167,7 +170,8 @@ export default class Header extends Component {
   }
   getData(){
     const userid = localStorage.getItem('user_ID');
-    axios.get("/api/users/get/"+userid)
+    if(userid){
+      axios.get("/api/users/get/"+userid)
       .then((response)=>{ 
           this.setState({
               userinfo : response.data
@@ -176,6 +180,8 @@ export default class Header extends Component {
       .catch((error)=>{
             console.log('error', error);
       })
+    }
+    
 
     axios.get("/api/carts/get/count/"+userid)
       .then((response)=>{ 
@@ -1649,7 +1655,7 @@ export default class Header extends Component {
                              </div>
                      
                      {
-                       !token ? <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
+                       !token ? <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now -></div>
                        :
                        null 
                      }
