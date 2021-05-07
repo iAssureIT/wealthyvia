@@ -1655,14 +1655,14 @@ export default class Header extends Component {
                              </div>
                      
                      {
-                       !token ? <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now -></div>
+                       !token ? <div className="enquireNow enquirenowsidebtn"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
                        :
                        null 
                      }
      </div>      
     </div>  
       <div className="hidden-lg hidden-md col-sm-12 col-xs-12 sebicontain">
-        <a className="navbar-brand colorP" href=""><b>SEBI Registration No. INH000005397</b></a>
+        <a className="navbar-brand colorP" href="" style={{paddingLeft :'0px',paddingRight :'0px', fontSize: '16.5px',height: '48px'}}><b>SEBI Registration No. INH000005397</b></a>
       </div>
     </div>    
     );
