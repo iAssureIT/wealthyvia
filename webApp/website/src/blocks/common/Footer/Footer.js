@@ -86,8 +86,8 @@ export default class Footer extends Component {
                   <ul>
                       <li><a href="/#5gcpm">5GCPM</a></li>
                       <li><a href="/#safeHeavenMoats">Safe Heavan Stocks</a></li>
-                      <li> <a href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a></li>
-                      <li> <a href="#">Nifty Algo Trading</a></li>
+                      {/*<li> <a href="/#safeHeavenAlpha">Safe Heavan Stocks + Alpha</a></li>*/}
+                      {/*<li> <a href="#">Nifty Algo Trading</a></li>*/}
                      <li> <a href="/#USAStocks">USA Stocks</a></li>
                      <li> <a href="/#unlistedStocks">Unlisted Stocks</a></li>
                      <li> <a href="#">Multibagger</a></li>

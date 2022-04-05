@@ -1720,7 +1720,7 @@ validateFormReqReview() {
                       <div className="col-lg-offset-3 col-lg-3 enquireNow"  data-toggle="modal" data-target="#EnquireModal">Enquire Now</div>
                       }
                       
-                      <div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>
+                      {/*<div className="col-lg-offset-1 col-lg-3 buyNowButtonPP"  data-toggle="modal" data-target="#portfolioReview">Portfolio Review</div>*/}
                       </div>
                   </div>
               </div>
