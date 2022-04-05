@@ -1389,7 +1389,7 @@ export default class Header extends Component {
                                         <ul className="dropdown-menu customDropdownSmall " aria-labelledby="navbarDropdownMenuLink">
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
+                                          {/*<a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>*/}
                                          {/*<a className="dropdown-item" href="#">Nifty Algo Trading</a>*/}
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
@@ -1478,8 +1478,8 @@ export default class Header extends Component {
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
-                                         <a className="dropdown-item" href="#">Nifty Algo Trading</a>
+                                          {/*<a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>*/}
+                                         {/*<a className="dropdown-item" href="#">Nifty Algo Trading</a>*/}
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
                                           <a className="dropdown-item" href="#">Multibagger</a>
@@ -1545,7 +1545,7 @@ export default class Header extends Component {
                                           <a  className="dropdown-item" href="/offerings/5gcpm">5GCPM</a>
                                           <a className="dropdown-item" href="/offerings/safeHeavenMoats">Safe Heaven Moats</a>
                                           {/*<a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>*/}
-                                          <a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>
+                                          {/*<a className="dropdown-item" href="/offerings/safeHeavenAlpha">Safe Heaven Stocks + Alpha</a>*/}
                                           <a className="dropdown-item" href="/offerings/superFocused">Super Focused</a>
                                           <a className="dropdown-item" href="/offerings/USAStocks">USA Stocks</a>
                                           <a className="dropdown-item" href="/offerings/unlistedStocks">Unlisted Stocks</a>
