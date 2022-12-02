@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "across-tabs": "^1.3.1",
-    "aws-sdk": "^2.586.0",
+    "aws-sdk": "^2.814.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "crypto-js": "^3.1.9-1",
